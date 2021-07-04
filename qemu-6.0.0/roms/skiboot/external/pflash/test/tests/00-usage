@@ -1,0 +1,12 @@
+#! /bin/sh
+
+run_binary "./pflash" "-h"
+if [ "$?" -ne 0 ] ; then
+	fail_test
+fi
+
+strip_version_from_result "pflash"
+
+diff_with_result
+
+pass_test

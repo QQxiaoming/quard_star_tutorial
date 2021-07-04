@@ -1,0 +1,96 @@
+.TH pflash "1" "September 2016"
+.SH NAME
+pflash \- manual page for Open-Power Flash tool
+.SH SYNOPSIS
+\fBpflash\fP [\fI\,options\/\fP] \fI\,commands\/\fP...
+.SH DESCRIPTION
+pflash is a tool to access the flash modules
+on such systems and update the OpenPower firmware.
+.SS Options
+.TP
+\fB\-a\fP \fI\,address\/\fP, \fB\-\-address\fP=\fI\,address\/\fP
+Specify the start address for erasing, reading or flashing
+.TP
+\fB\-s\fP \fI\,size\/\fP, \fB\-\-size\fP=\fI\,size\/\fP
+Specify the size in bytes for erasing, reading or flashing
+.TP
+\fB\-P\fP \fI\,part_name\/\fP, \fB\-\-partition\fP=\fI\,part_name\/\fP
+Specify the partition whose content is to be erased
+programmed or read. This is an alternative to \fB\-a\fP and \fB\-s\fP
+if both \fB\-P\fP and \fB\-s\fP are specified, the smallest of the
+two will be used
+.TP
+\fB\-f\fP, \fB\-\-force\fP
+Don't ask for confirmation before erasing or flashing
+.TP
+\fB\-d\fP, \fB\-\-dummy\fP
+Don't write to flash
+.TP
+\fB\-m\fP, \fB\-\-mtd\fP
+Avoid accessing the flash directly if the BMC supports it.
+This will access the flash through the kernel MTD layer and
+not the flash directly
+.TP
+\fB\-b\fP, \fB\-\-bmc\fP
+Target BMC flash instead of host flash.
+Note: This carries a high chance of bricking your BMC if you
+don't know what you're doing. Consider \fB\-\-mtd\fP to be safe(r)
+.TP
+\fB\-F\fP \fI\,filename\/\fP, \fB\-\-flash\-file\fP \fI\,filename
+Target filename instead of actual flash.
+.TP
+\fB\-S\fP, \fB\-\-side\fP
+Side of the flash on which to operate, 0 (default) or 1
+.TP
+\fB\-T\fP, \fB\-\-toc\fP
+libffs TOC on which to operate, defaults to 0.
+leading 0x is required for interpretation of a hex value
+.SS
+Commands:
+.TP
+\fB\-4\fP, \fB\-\-enable\-4B\fP
+Switch the flash and controller to 4\-bytes address
+mode (no confirmation needed).
+.TP
+\fB\-3\fP, \fB\-\-disable\-4B\fP
+Switch the flash and controller to 3\-bytes address
+mode (no confirmation needed).
+.TP
+\fB\-r\fP \fI\,file\/\fP, \fB\-\-read\fP=\fI\,file\/\fP
+Read flash content from address into file, use \fB\-s\fP
+to specify the size to read (or it will use the source
+file size if used in conjunction with \fB\-p\fP and \fB\-s\fP is not
+specified). When using \fB\-r\fP together with \fB\-e\fP or \fB\-p\fP, the
+read will be performed first
+.TP
+\fB\-E\fP, \fB\-\-erase\-all\fP
+Erase entire flash chip (Not supported on all chips/controllers)
+.TP
+\fB\-e\fP, \fB\-\-erase\fP
+Erase the specified region. If size or address are not
+specified, but '\-\-program' is used, then the file
+size will be used (rounded to an erase block) and the
+address defaults to 0.
+.TP
+\fB\-p\fP \fI\,file\/\fP, \fB\-\-program\fP=\fI\,file\/\fP
+Will program the file to flash. If the address is not
+specified, it will use 0. If the size is not specified
+it will use the file size. Otherwise it will limit to
+the specified size (whatever is smaller). If used in
+conjunction with any erase command, the erase will
+take place first.
+.TP
+\fB\-t\fP, \fB\-\-tune\fP
+Just tune the flash controller & access size
+(Implicit for all other operations)
+.TP
+\fB\-c\fP \fB\-\-clear\fP
+Used to ECC clear a partition of the flash
+Must be used in conjunction with \fB\-P\fP. Will erase the
+partition and then set all the ECC bits as they should be
+.TP
+\fB\-i\fP, \fB\-\-info\fP
+Display some information about the flash.
+.TP
+\fB\-h\fP, \fB\-\-help\fP
+This message.

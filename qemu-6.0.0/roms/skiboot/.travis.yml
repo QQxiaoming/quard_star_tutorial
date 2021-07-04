@@ -1,0 +1,63 @@
+language: c
+
+os:
+ - linux
+ - linux-ppc64le
+
+cache: ccache
+
+env:
+    matrix:
+    - RUN_ON_CONTAINER=ubuntu-16.04
+    - RUN_ON_CONTAINER=ubuntu-18.04
+    - RUN_ON_CONTAINER=ubuntu-latest
+    - RUN_ON_CONTAINER=centos7
+    - RUN_ON_CONTAINER=fedora29
+    - RUN_ON_CONTAINER=fedora30
+    - RUN_ON_CONTAINER=fedora-rawhide
+    - RUN_ON_CONTAINER=debian-stretch
+    - RUN_ON_CONTAINER=debian-unstable
+    - RUN_ON_CONTAINER=docs
+    global:
+        # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+        #   via the "travis encrypt" command using the project repo's public key
+        secure: "MpNEGFa1VrF/vsQq24n5UgfRbz1wVC6B8mubFnyK4gX0IuQ9xhWuTzMLUQF9UJxe5jnC2DTmVUvYTYN/hggw+PpYwbOOAE0QGR5pmPHA4PSRmc5pxt1q18/sv7EPFw66GFyWJq94nWjpigyKQ8KGtA67j1xFqrDoS43OA76WZgo="
+
+matrix:
+  allow_failures:
+    - env: RUN_ON_CONTAINER=fedora-rawhide
+    - env: RUN_ON_CONTAINER=debian-unstable
+    - os: linux-ppc64le
+      env: RUN_ON_CONTAINER=fedora30
+  exclude:
+    - os: linux-ppc64le
+      env: RUN_ON_CONTAINER=centos7
+    - os: linux-ppc64le
+      env: RUN_ON_CONTAINER=docs
+
+
+sudo: required
+services: docker
+
+dist: trusty
+
+script:
+    - docker build --pull -t ${RUN_ON_CONTAINER} -f opal-ci/Dockerfile-${RUN_ON_CONTAINER} . &&
+      docker run --volume $HOME/.ccache:/root/.ccache --volume `pwd`:/build --rm -t $RUN_ON_CONTAINER bash -c "./opal-ci/build-${RUN_ON_CONTAINER}.sh";
+
+addons:
+  coverity_scan:
+    project:
+      name: "open-power/skiboot"
+      description: "Build submitted via Travis CI"
+    notification_email: stewart@linux.vnet.ibm.com
+    branch_pattern: coverity_scan
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN # set in travis-ci.org dashboard, marked secure
+  local_dir: "doc/_build/ghpages"
+  on:
+    branch: master
+    condition: "$RUN_ON_CONTAINER = docs"

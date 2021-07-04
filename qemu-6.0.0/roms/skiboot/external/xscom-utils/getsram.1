@@ -1,0 +1,23 @@
+.TH XSCOM "1" "January 2018"
+.SH NAME
+getsram \- part of xscom utils
+.SH SYNOPIS
+.TP
+\fBgetsram\fP [\-c | \-\-chip \fIchip\-id\fP] \fIaddr\fP
+.TP
+\fBgetsram\fP [\-n | \-\-occ\-channel \fIchan\fP]
+.TP
+\fBgetsram\fP [\-v | \-\-version]
+.SH DESCRIPTION
+\fBgetsram\fP utility provides an interface to query the
+OCC RAM of an OpenPower system.
+.SS Options
+.TP
+\fB\-c|\-\-chip-id\fP \fIchip-id\fP
+Specify chipset where to read register at \fIaddr\fP
+.TP
+\fB\-n|\-\-occ\-channel\fP
+Specify the channel : 0, 1, 2 or 3
+.TP
+\fB\-v|\-\-version\fP
+Display version of the tool
