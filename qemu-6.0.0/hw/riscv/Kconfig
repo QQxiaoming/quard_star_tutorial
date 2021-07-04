@@ -38,6 +38,9 @@ config RISCV_VIRT
 config QUARD_STAR
     bool
     select SERIAL
+    select SIFIVE_CLINT
+    select SIFIVE_PLIC
+    select PFLASH_CFI01
 
 config SIFIVE_E
     bool

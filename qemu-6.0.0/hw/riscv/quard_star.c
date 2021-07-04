@@ -31,6 +31,8 @@
 #include "hw/riscv/quard_star.h"
 #include "hw/riscv/boot.h"
 #include "hw/riscv/numa.h"
+#include "hw/intc/sifive_clint.h"
+#include "hw/intc/sifive_plic.h"
 #include "chardev/char.h"
 #include "sysemu/arch_init.h"
 #include "sysemu/device_tree.h"
@@ -39,9 +41,55 @@
 static const MemMapEntry virt_memmap[] = {
     [QUARD_STAR_MROM]  = {        0x0,        0x8000 },
     [QUARD_STAR_SRAM]  = {     0x8000,        0x8000 },
+    [QUARD_STAR_CLINT] = {  0x2000000,       0x10000 },
+    [QUARD_STAR_PLIC]  = {  0xc000000, QUARD_STAR_PLIC_SIZE(QUARD_STAR_CPUS_MAX * 2) },
     [QUARD_STAR_UART0] = { 0x10000000,         0x100 },
+    [QUARD_STAR_UART1] = { 0x10001000,         0x100 },
+    [QUARD_STAR_UART2] = { 0x10002000,         0x100 },
+    [QUARD_STAR_FLASH] = { 0x20000000,     0x2000000 },
     [QUARD_STAR_DRAM]  = { 0x80000000,           0x0 },
 };
+
+#define QUARD_STAR_FLASH_SECTOR_SIZE (256 * KiB)
+
+static PFlashCFI01 *quard_star_flash_create(RISCVVirtState *s,
+                                       const char *name,
+                                       const char *alias_prop_name)
+{
+    DeviceState *dev = qdev_new(TYPE_PFLASH_CFI01);
+
+    qdev_prop_set_uint64(dev, "sector-length", QUARD_STAR_FLASH_SECTOR_SIZE);
+    qdev_prop_set_uint8(dev, "width", 4);
+    qdev_prop_set_uint8(dev, "device-width", 2);
+    qdev_prop_set_bit(dev, "big-endian", false);
+    qdev_prop_set_uint16(dev, "id0", 0x89);
+    qdev_prop_set_uint16(dev, "id1", 0x18);
+    qdev_prop_set_uint16(dev, "id2", 0x00);
+    qdev_prop_set_uint16(dev, "id3", 0x00);
+    qdev_prop_set_string(dev, "name", name);
+
+    object_property_add_child(OBJECT(s), name, OBJECT(dev));
+    object_property_add_alias(OBJECT(s), alias_prop_name,
+                              OBJECT(dev), "drive");
+
+    return PFLASH_CFI01(dev);
+}
+
+static void quard_star_flash_map(PFlashCFI01 *flash,
+                            hwaddr base, hwaddr size,
+                            MemoryRegion *sysmem)
+{
+    DeviceState *dev = DEVICE(flash);
+
+    assert(QEMU_IS_ALIGNED(size, QUARD_STAR_FLASH_SECTOR_SIZE));
+    assert(size / QUARD_STAR_FLASH_SECTOR_SIZE <= UINT32_MAX);
+    qdev_prop_set_uint32(dev, "num-blocks", size / QUARD_STAR_FLASH_SECTOR_SIZE);
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(dev), &error_fatal);
+
+    memory_region_add_subregion(sysmem, base,
+                                sysbus_mmio_get_region(SYS_BUS_DEVICE(dev),
+                                                       0));
+}
 
 static void quard_star_setup_rom_reset_vec(MachineState *machine, RISCVHartArrayState *harts,
                                hwaddr start_addr,
@@ -94,8 +142,10 @@ static void quard_star_machine_init(MachineState *machine)
     MemoryRegion *main_mem = g_new(MemoryRegion, 1);
     MemoryRegion *sram_mem = g_new(MemoryRegion, 1);
     MemoryRegion *mask_rom = g_new(MemoryRegion, 1);
-    int i, base_hartid, hart_count;
-    char *soc_name;
+    int i, j, base_hartid, hart_count;
+    char *plic_hart_config, *soc_name;
+    size_t plic_hart_config_len;
+    DeviceState *mmio_plic=NULL;
 
     if (QUARD_STAR_SOCKETS_MAX < riscv_socket_count(machine)) {
         error_report("number of sockets/nodes should be less than %d",
@@ -132,6 +182,42 @@ static void quard_star_machine_init(MachineState *machine)
         object_property_set_int(OBJECT(&s->soc[i]), "num-harts",
                                 hart_count, &error_abort);
         sysbus_realize(SYS_BUS_DEVICE(&s->soc[i]), &error_abort);
+
+        sifive_clint_create(
+            memmap[QUARD_STAR_CLINT].base + i * memmap[QUARD_STAR_CLINT].size,
+            memmap[QUARD_STAR_CLINT].size, base_hartid, hart_count,
+            SIFIVE_SIP_BASE, SIFIVE_TIMECMP_BASE, SIFIVE_TIME_BASE,
+            SIFIVE_CLINT_TIMEBASE_FREQ, true);
+
+        plic_hart_config_len =
+            (strlen(QUARD_STAR_PLIC_HART_CONFIG) + 1) * hart_count;
+        plic_hart_config = g_malloc0(plic_hart_config_len);
+        for (j = 0; j < hart_count; j++) {
+            if (j != 0) {
+                strncat(plic_hart_config, ",", plic_hart_config_len);
+            }
+            strncat(plic_hart_config, QUARD_STAR_PLIC_HART_CONFIG,
+                plic_hart_config_len);
+            plic_hart_config_len -= (strlen(QUARD_STAR_PLIC_HART_CONFIG) + 1);
+        }
+
+        s->plic[i] = sifive_plic_create(
+            memmap[QUARD_STAR_PLIC].base + i * memmap[QUARD_STAR_PLIC].size,
+            plic_hart_config, base_hartid,
+            QUARD_STAR_PLIC_NUM_SOURCES,
+            QUARD_STAR_PLIC_NUM_PRIORITIES,
+            QUARD_STAR_PLIC_PRIORITY_BASE,
+            QUARD_STAR_PLIC_PENDING_BASE,
+            QUARD_STAR_PLIC_ENABLE_BASE,
+            QUARD_STAR_PLIC_ENABLE_STRIDE,
+            QUARD_STAR_PLIC_CONTEXT_BASE,
+            QUARD_STAR_PLIC_CONTEXT_STRIDE,
+            memmap[QUARD_STAR_PLIC].size);
+        g_free(plic_hart_config);
+
+        if (i == 0) {
+            mmio_plic = s->plic[i];
+        }
     }
 
     memory_region_init_ram(main_mem, NULL, "riscv_quard_star_board.dram",
@@ -149,10 +235,25 @@ static void quard_star_machine_init(MachineState *machine)
     memory_region_add_subregion(system_memory, memmap[QUARD_STAR_MROM].base,
                                 mask_rom);
 
-    quard_star_setup_rom_reset_vec(machine, &s->soc[0], memmap[QUARD_STAR_MROM].base,
+    quard_star_setup_rom_reset_vec(machine, &s->soc[0], virt_memmap[QUARD_STAR_FLASH].base,
                               virt_memmap[QUARD_STAR_MROM].base,
                               virt_memmap[QUARD_STAR_MROM].size,
                               0x0, 0x0);
+
+    serial_mm_init(system_memory, memmap[QUARD_STAR_UART0].base,
+        0, qdev_get_gpio_in(DEVICE(mmio_plic), QUARD_STAR_UART0_IRQ), 399193,
+        serial_hd(0), DEVICE_LITTLE_ENDIAN);
+    serial_mm_init(system_memory, memmap[QUARD_STAR_UART1].base,
+        0, qdev_get_gpio_in(DEVICE(mmio_plic), QUARD_STAR_UART1_IRQ), 399193,
+        serial_hd(1), DEVICE_LITTLE_ENDIAN);
+    serial_mm_init(system_memory, memmap[QUARD_STAR_UART2].base,
+        0, qdev_get_gpio_in(DEVICE(mmio_plic), QUARD_STAR_UART2_IRQ), 399193,
+        serial_hd(2), DEVICE_LITTLE_ENDIAN);
+
+    s->flash = quard_star_flash_create(s, "quard-star.flash0", "pflash0");
+    pflash_cfi01_legacy_drive(s->flash, drive_get(IF_PFLASH, 0, 0));
+    quard_star_flash_map(s->flash, virt_memmap[QUARD_STAR_FLASH].base,
+                         virt_memmap[QUARD_STAR_FLASH].size, system_memory);
 }
 
 static void quard_star_machine_instance_init(Object *obj)
