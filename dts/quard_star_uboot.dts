@@ -7,58 +7,13 @@
 	model = "riscv-quard-star,qemu";
 
 	chosen {
+		bootargs = "console=ttyS0";
 		stdout-path = "/soc/uart0@10000000";
-
-		opensbi-domains {
-		    compatible = "opensbi,domain,config";
-
-            tmem: tmem {
-                compatible = "opensbi,domain,memregion";
-                base = <0x0 0xb0000000>;
-                order = <28>;
-            };
-
-            tuart: tuart {
-                compatible = "opensbi,domain,memregion";
-                base = <0x0 0x10002000>;
-                order = <8>;
-                mmio;
-                devices = <&uart2>;
-            };
-
-		    allmem: allmem {
-		        compatible = "opensbi,domain,memregion";
-		        base = <0x0 0x0>;
-		        order = <64>;
-		    };
-
-            tdomain: trusted-domain {
-                compatible = "opensbi,domain,instance";
-                possible-harts = <&cpu7>;
-                regions = <&tmem 0x7>, <&tuart 0x7>, <&allmem 0x7>;
-                boot-hart = <&cpu7>;
-                next-arg1 = <0x0 0x00000000>;
-		        next-addr = <0x0 0xb0000000>;
-		        next-mode = <0x0>;
-                system-reset-allowed;
-            };
-
-		    udomain: untrusted-domain {
-		        compatible = "opensbi,domain,instance";
-		        possible-harts = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6>;
-		        regions = <&tmem 0x0>, <&tuart 0x0>, <&allmem 0x7>;
-				boot-hart = <&cpu0>;
-		        next-arg1 = <0x0 0x82000000>;
-		        next-addr = <0x0 0x80200000>;
-		        next-mode = <0x1>;
-		        system-reset-allowed;
-		    };
-		};
 	};
 
 	memory@80000000 {
 		device_type = "memory";
-		reg = <0x0 0x80000000 0x0 0x40000000>;
+		reg = <0x0 0x80000000 0x0 0x30000000>;
 	};
 
 	cpus {
@@ -72,7 +27,6 @@
 			reg = <0x0>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -90,7 +44,6 @@
 			reg = <0x1>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -108,7 +61,6 @@
 			reg = <0x2>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -126,7 +78,6 @@
 			reg = <0x3>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -144,7 +95,6 @@
 			reg = <0x4>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -162,7 +112,6 @@
 			reg = <0x5>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -180,7 +129,6 @@
 			reg = <0x6>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&udomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -198,7 +146,6 @@
 			reg = <0x7>;
 			status = "okay";
 			compatible = "riscv";
-			opensbi-domain = <&tdomain>;
 			riscv,isa = "rv64imafdcsu";
 			mmu-type = "riscv,sv48";
 
@@ -268,14 +215,6 @@
 			interrupt-parent = <0x11>;
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10001000 0x0 0x100>;
-			compatible = "ns16550a";
-		};
-
-        uart2: uart2@10002000 {
-			interrupts = <0xa>;
-			interrupt-parent = <0x11>;
-			clock-frequency = <0x384000>;
-			reg = <0x0 0x10002000 0x0 0x100>;
 			compatible = "ns16550a";
 		};
 
