@@ -39,15 +39,17 @@
 #include "sysemu/sysemu.h"
 
 static const MemMapEntry virt_memmap[] = {
-    [QUARD_STAR_MROM]  = {        0x0,        0x8000 },
-    [QUARD_STAR_SRAM]  = {     0x8000,        0x8000 },
-    [QUARD_STAR_CLINT] = {  0x2000000,       0x10000 },
-    [QUARD_STAR_PLIC]  = {  0xc000000, QUARD_STAR_PLIC_SIZE(QUARD_STAR_CPUS_MAX * 2) },
-    [QUARD_STAR_UART0] = { 0x10000000,         0x100 },
-    [QUARD_STAR_UART1] = { 0x10001000,         0x100 },
-    [QUARD_STAR_UART2] = { 0x10002000,         0x100 },
-    [QUARD_STAR_FLASH] = { 0x20000000,     0x2000000 },
-    [QUARD_STAR_DRAM]  = { 0x80000000,           0x0 },
+    [QUARD_STAR_MROM]   = {        0x0,        0x8000 },
+    [QUARD_STAR_SRAM]   = {     0x8000,        0x8000 },
+    [QUARD_STAR_CLINT]  = {  0x2000000,       0x10000 },
+    [QUARD_STAR_PLIC]   = {  0xc000000, QUARD_STAR_PLIC_SIZE(QUARD_STAR_CPUS_MAX * 2) },
+    [QUARD_STAR_UART0]  = { 0x10000000,         0x100 },
+    [QUARD_STAR_UART1]  = { 0x10001000,         0x100 },
+    [QUARD_STAR_UART2]  = { 0x10002000,         0x100 },
+    [QUARD_STAR_VIRTIO] = { 0x10100000,        0x1000 }, //Eight consecutive groups
+    [QUARD_STAR_FW_CFG] = { 0x10108000,          0x18 },
+    [QUARD_STAR_FLASH]  = { 0x20000000,     0x2000000 },
+    [QUARD_STAR_DRAM]   = { 0x80000000,           0x0 },
 };
 
 #define QUARD_STAR_FLASH_SECTOR_SIZE (256 * KiB)
@@ -145,7 +147,7 @@ static void quard_star_machine_init(MachineState *machine)
     int i, j, base_hartid, hart_count;
     char *plic_hart_config, *soc_name;
     size_t plic_hart_config_len;
-    DeviceState *mmio_plic=NULL;
+    DeviceState *mmio_plic=NULL,*virtio_plic=NULL;
 
     if (QUARD_STAR_SOCKETS_MAX < riscv_socket_count(machine)) {
         error_report("number of sockets/nodes should be less than %d",
@@ -217,6 +219,10 @@ static void quard_star_machine_init(MachineState *machine)
 
         if (i == 0) {
             mmio_plic = s->plic[i];
+            virtio_plic = s->plic[i];
+        }
+        if (i == 1) {
+            virtio_plic = s->plic[i];
         }
     }
 
@@ -249,6 +255,19 @@ static void quard_star_machine_init(MachineState *machine)
     serial_mm_init(system_memory, memmap[QUARD_STAR_UART2].base,
         0, qdev_get_gpio_in(DEVICE(mmio_plic), QUARD_STAR_UART2_IRQ), 399193,
         serial_hd(2), DEVICE_LITTLE_ENDIAN);
+
+    for (i = 0; i < QUARD_STAR_COUNT; i++) {
+        sysbus_create_simple("virtio-mmio",
+            memmap[QUARD_STAR_VIRTIO].base + i * memmap[QUARD_STAR_VIRTIO].size,
+            qdev_get_gpio_in(DEVICE(virtio_plic), QUARD_STAR_IRQ + i));
+    }
+
+    s->fw_cfg = fw_cfg_init_mem_wide(memmap[QUARD_STAR_FW_CFG].base + 8, 
+                                     memmap[QUARD_STAR_FW_CFG].base,  8, 
+                                     memmap[QUARD_STAR_FW_CFG].base + 16,
+                                     &address_space_memory);
+    fw_cfg_add_i16(s->fw_cfg, FW_CFG_NB_CPUS, (uint16_t)machine->smp.cpus);
+    rom_set_fw(s->fw_cfg);
 
     s->flash = quard_star_flash_create(s, "quard-star.flash0", "pflash0");
     pflash_cfi01_legacy_drive(s->flash, drive_get(IF_PFLASH, 0, 0));

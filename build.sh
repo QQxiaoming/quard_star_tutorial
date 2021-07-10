@@ -73,4 +73,12 @@ dd of=fw.bin bs=1k conv=notrunc seek=2K if=$SHELL_FOLDER/output/opensbi/fw_jump.
 dd of=fw.bin bs=1k conv=notrunc seek=4K if=$SHELL_FOLDER/output/trusted_domain/trusted_fw.bin
 dd of=fw.bin bs=1k conv=notrunc seek=8K if=$SHELL_FOLDER/output/uboot/u-boot.bin
 
+# 合成文件系统映像
+if [ ! -d "$SHELL_FOLDER/output/rootfs" ]; then  
+mkdir $SHELL_FOLDER/output/rootfs
+fi  
+cd $SHELL_FOLDER/output/rootfs
+rm -rf rootfs.img
+dd of=rootfs.img bs=1k count=32k if=/dev/zero
+
 cd $SHELL_FOLDER

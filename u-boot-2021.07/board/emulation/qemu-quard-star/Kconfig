@@ -18,6 +18,8 @@ config SYS_TEXT_BASE
 config BOARD_SPECIFIC_OPTIONS # dummy
 	def_bool y
 	select GENERIC_RISCV
+	select CMD_QFW
+	select QFW_MMIO
 	imply AHCI
 	imply SMP
 	imply BOARD_LATE_INIT
@@ -34,5 +36,8 @@ config BOARD_SPECIFIC_OPTIONS # dummy
 	imply SYSRESET
 	imply SYSRESET_CMD_POWEROFF
 	imply SYSRESET_SYSCON
-
+	imply VIRTIO_MMIO
+	imply VIRTIO_PCI
+	imply VIRTIO_NET
+	imply VIRTIO_BLK
 endif

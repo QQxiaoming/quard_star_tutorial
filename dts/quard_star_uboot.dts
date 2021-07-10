@@ -7,13 +7,19 @@
 	model = "riscv-quard-star,qemu";
 
 	chosen {
-		bootargs = "console=ttyS0";
+		bootargs = "root=/dev/vda2 rw console=ttyS0";
 		stdout-path = "/soc/uart0@10000000";
 	};
 
 	memory@80000000 {
 		device_type = "memory";
 		reg = <0x0 0x80000000 0x0 0x30000000>;
+	};
+
+	fw-cfg@10108000 {
+		dma-coherent;
+		reg = <0x0 0x10108000 0x0 0x18>;
+		compatible = "qemu,fw-cfg-mmio";
 	};
 
 	cpus {
@@ -216,6 +222,62 @@
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10001000 0x0 0x100>;
 			compatible = "ns16550a";
+		};
+
+		virtio_mmio@10107000 {
+			interrupts = <0x8>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10107000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10106000 {
+			interrupts = <0x7>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10106000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10105000 {
+			interrupts = <0x6>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10105000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10104000 {
+			interrupts = <0x5>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10104000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10103000 {
+			interrupts = <0x4>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10103000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10102000 {
+			interrupts = <0x3>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10102000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10101000 {
+			interrupts = <0x2>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10101000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+		};
+
+		virtio_mmio@10100000 {
+			interrupts = <0x1>;
+			interrupt-parent = <0x11>;
+			reg = <0x0 0x10100000 0x0 0x1000>;
+			compatible = "virtio,mmio";
 		};
 
 		plic@c000000 {
