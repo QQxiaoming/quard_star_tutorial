@@ -12,10 +12,34 @@
 		opensbi-domains {
 		    compatible = "opensbi,domain,config";
 
-            tmem: tmem {
+            tmem0: tmem0 {
                 compatible = "opensbi,domain,memregion";
                 base = <0x0 0xBF800000>;
-                order = <23>;
+                order = <22>;
+            };
+
+            tmem1: tmem1 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFC00000>;
+                order = <21>;
+            };
+
+            tmem2: tmem2 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFE00000>;
+                order = <20>;
+            };
+
+            tmem3: tmem3 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFF00000>;
+                order = <19>;
+            };
+
+            tmem4: tmem4 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFFC0000>;
+                order = <18>;
             };
 
             tuart: tuart {
@@ -35,7 +59,7 @@
             tdomain: trusted-domain {
                 compatible = "opensbi,domain,instance";
                 possible-harts = <&cpu7>;
-                regions = <&tmem 0x7>, <&tuart 0x7>, <&allmem 0x7>;
+                regions = <&tmem0 0x7>, <&tmem1 0x7>, <&tmem2 0x7>, <&tmem3 0x7>, <&tmem4 0x7>, <&tuart 0x7>, <&allmem 0x7>;
                 boot-hart = <&cpu7>;
                 next-arg1 = <0x0 0x00000000>;
 		        next-addr = <0x0 0xBF800000>;
@@ -46,7 +70,7 @@
 		    udomain: untrusted-domain {
 		        compatible = "opensbi,domain,instance";
 		        possible-harts = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6>;
-		        regions = <&tmem 0x0>, <&tuart 0x0>, <&allmem 0x7>;
+		        regions = <&tmem0 0x0>, <&tmem1 0x0>, <&tmem2 0x0>, <&tmem3 0x0>, <&tmem4 0x0>, <&tuart 0x0>, <&allmem 0x7>;
 				boot-hart = <&cpu0>;
 		        next-arg1 = <0x0 0xB0000000>;
 		        next-addr = <0x0 0xB0200000>;
@@ -264,7 +288,7 @@
 		};
 
 		uart1: uart1@10001000 {
-			interrupts = <0xa>;
+			interrupts = <0xb>;
 			interrupt-parent = <0x11>;
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10001000 0x0 0x100>;
@@ -272,7 +296,7 @@
 		};
 
         uart2: uart2@10002000 {
-			interrupts = <0xa>;
+			interrupts = <0xc>;
 			interrupt-parent = <0x11>;
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10002000 0x0 0x100>;
