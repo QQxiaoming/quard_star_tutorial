@@ -4,7 +4,7 @@ ENTRY( _start )
 
 MEMORY
 { 
-	ddr (rxai!w) : ORIGIN = 0xb0000000, LENGTH = 256M
+	ddr (rxai!w) : ORIGIN = 0xBF800000, LENGTH = 7M
 }
 
 SECTIONS

@@ -1,6 +1,5 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 CROSS_PREFIX=/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux
-mv
 
 # 编译qemu
 cd $SHELL_FOLDER/qemu-6.0.0
@@ -26,7 +25,9 @@ mkdir $SHELL_FOLDER/output/opensbi
 fi  
 cd $SHELL_FOLDER/opensbi-0.9
 make CROSS_COMPILE=$CROSS_PREFIX- PLATFORM=quard_star
-cp -r $SHELL_FOLDER/opensbi-0.9/build/platform/quard_star/firmware/*.bin $SHELL_FOLDER/output/opensbi/
+cp -r $SHELL_FOLDER/opensbi-0.9/build/platform/quard_star/firmware/fw_jump.bin $SHELL_FOLDER/output/opensbi/fw_jump.bin
+cp -r $SHELL_FOLDER/opensbi-0.9/build/platform/quard_star/firmware/fw_jump.elf $SHELL_FOLDER/output/opensbi/fw_jump.elf
+$CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/opensbi/fw_jump.elf > $SHELL_FOLDER/output/opensbi/fw_jump.lst
 
 # 生成sbi.dtb
 cd $SHELL_FOLDER/dts
@@ -47,13 +48,12 @@ if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then
 mkdir $SHELL_FOLDER/output/uboot
 fi  
 cd $SHELL_FOLDER/u-boot-2021.07
-make CROSS_COMPILE=/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux- qemu-riscv64_smode_defconfig
+make CROSS_COMPILE=/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux- qemu-quard-star_defconfig
 make CROSS_COMPILE=/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux- -j16
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot $SHELL_FOLDER/output/uboot/u-boot.elf
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot.map $SHELL_FOLDER/output/uboot/u-boot.map
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot.bin $SHELL_FOLDER/output/uboot/u-boot.bin
 $CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/uboot/u-boot.elf > $SHELL_FOLDER/output/uboot/u-boot.lst
-
 
 # 生成uboot.dtb
 cd $SHELL_FOLDER/dts
