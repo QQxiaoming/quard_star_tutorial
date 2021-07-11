@@ -82,6 +82,15 @@ make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- defconfig
 make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- -j16
 cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 
+# 编译busybox-1.33.1
+if [ ! -d "$SHELL_FOLDER/output/busybox" ]; then  
+mkdir $SHELL_FOLDER/output/busybox
+fi  
+cd $SHELL_FOLDER/busybox-1.33.1
+make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- quard_star_defconfig
+make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- -j16
+make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- install
+
 # 合成文件系统映像
 if [ ! -d "$SHELL_FOLDER/output/rootfs" ]; then  
 mkdir $SHELL_FOLDER/output/rootfs
@@ -100,6 +109,7 @@ fi
 cp $SHELL_FOLDER/output/linux_kernel/Image $SHELL_FOLDER/output/rootfs/bootfs/Image
 cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $SHELL_FOLDER/output/rootfs/bootfs/quard_star.dtb
 $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/rootfs/bootfs/boot.scr
+cp -r $SHELL_FOLDER/output/busybox/* $SHELL_FOLDER/output/rootfs/rootfs/
 pkexec $SHELL_FOLDER/build_rootfs/build.sh $SHELL_FOLDER/output/rootfs
 
 cd $SHELL_FOLDER
