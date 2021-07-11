@@ -48,8 +48,8 @@ if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then
 mkdir $SHELL_FOLDER/output/uboot
 fi  
 cd $SHELL_FOLDER/u-boot-2021.07
-make CROSS_COMPILE=/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux- qemu-quard-star_defconfig
-make CROSS_COMPILE=/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux- -j16
+make CROSS_COMPILE=$CROSS_PREFIX- qemu-quard-star_defconfig
+make CROSS_COMPILE=$CROSS_PREFIX- -j16
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot $SHELL_FOLDER/output/uboot/u-boot.elf
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot.map $SHELL_FOLDER/output/uboot/u-boot.map
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot.bin $SHELL_FOLDER/output/uboot/u-boot.bin
@@ -73,12 +73,33 @@ dd of=fw.bin bs=1k conv=notrunc seek=2K if=$SHELL_FOLDER/output/opensbi/fw_jump.
 dd of=fw.bin bs=1k conv=notrunc seek=4K if=$SHELL_FOLDER/output/trusted_domain/trusted_fw.bin
 dd of=fw.bin bs=1k conv=notrunc seek=8K if=$SHELL_FOLDER/output/uboot/u-boot.bin
 
+# 编译linux kernel
+if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
+mkdir $SHELL_FOLDER/output/linux_kernel
+fi  
+cd $SHELL_FOLDER/linux-5.10.42
+make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- defconfig
+make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- -j16
+cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+
 # 合成文件系统映像
 if [ ! -d "$SHELL_FOLDER/output/rootfs" ]; then  
 mkdir $SHELL_FOLDER/output/rootfs
-fi  
+fi
+if [ ! -d "$SHELL_FOLDER/output/rootfs/rootfs" ]; then  
+mkdir $SHELL_FOLDER/output/rootfs/rootfs
+fi
+if [ ! -d "$SHELL_FOLDER/output/rootfs/bootfs" ]; then  
+mkdir $SHELL_FOLDER/output/rootfs/bootfs
+fi
 cd $SHELL_FOLDER/output/rootfs
-rm -rf rootfs.img
-dd of=rootfs.img bs=1k count=32k if=/dev/zero
+if [ ! -f "$SHELL_FOLDER/output/rootfs/rootfs.img" ]; then  
+dd if=/dev/zero of=rootfs.img bs=1M count=1024
+pkexec $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $SHELL_FOLDER/output/rootfs/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
+fi
+cp $SHELL_FOLDER/output/linux_kernel/Image $SHELL_FOLDER/output/rootfs/bootfs/Image
+cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $SHELL_FOLDER/output/rootfs/bootfs/quard_star.dtb
+$SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/rootfs/bootfs/boot.scr
+pkexec $SHELL_FOLDER/build_rootfs/build.sh $SHELL_FOLDER/output/rootfs
 
 cd $SHELL_FOLDER
