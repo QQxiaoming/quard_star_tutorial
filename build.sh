@@ -111,10 +111,18 @@ cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $SHELL_FOLDER/output/rootfs/b
 $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/rootfs/bootfs/boot.scr
 cp -r $SHELL_FOLDER/output/busybox/* $SHELL_FOLDER/output/rootfs/rootfs/
 cp -r $SHELL_FOLDER/target_root_script/* $SHELL_FOLDER/output/rootfs/rootfs/
+if [ ! -d "$SHELL_FOLDER/output/rootfs/rootfs/proc" ]; then  
 mkdir $SHELL_FOLDER/output/rootfs/rootfs/proc
+fi
+if [ ! -d "$SHELL_FOLDER/output/rootfs/rootfs/sys" ]; then  
 mkdir $SHELL_FOLDER/output/rootfs/rootfs/sys
+fi
+if [ ! -d "$SHELL_FOLDER/output/rootfs/rootfs/dev" ]; then  
 mkdir $SHELL_FOLDER/output/rootfs/rootfs/dev
+fi
+if [ ! -d "$SHELL_FOLDER/output/rootfs/rootfs/tmp" ]; then  
 mkdir $SHELL_FOLDER/output/rootfs/rootfs/tmp
+fi
 pkexec $SHELL_FOLDER/build_rootfs/build.sh $SHELL_FOLDER/output/rootfs
 
 cd $SHELL_FOLDER
