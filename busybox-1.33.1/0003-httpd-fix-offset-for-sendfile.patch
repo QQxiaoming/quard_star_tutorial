@@ -1,0 +1,48 @@
+From 04e0d8e579b289178b0303a92c705012237f4ca3 Mon Sep 17 00:00:00 2001
+From: Maxim Storchak <m.storchak@gmail.com>
+Date: Tue, 29 Dec 2020 17:29:05 +0200
+Subject: [PATCH 03/65] httpd: fix offset for sendfile
+
+If the Range: header is not present it the request,
+the offset passed to sendfile is wrong,
+and httpd falls back to the read-write loop.
+
+function                                             old     new   delta
+send_file_and_exit                                   857     865      +8
+handle_incoming_and_exit                            2239    2230      -9
+------------------------------------------------------------------------------
+(add/remove: 0/0 grow/shrink: 1/1 up/down: 8/-9)               Total: -1 bytes
+
+Signed-off-by: Maxim Storchak <m.storchak@gmail.com>
+Signed-off-by: Denys Vlasenko <vda.linux@googlemail.com>
+---
+ networking/httpd.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/networking/httpd.c b/networking/httpd.c
+index 4346141ee..4c014bc71 100644
+--- a/networking/httpd.c
++++ b/networking/httpd.c
+@@ -1871,7 +1871,7 @@ static NOINLINE void send_file_and_exit(const char *url, int what)
+ 		send_headers(HTTP_OK);
+ #if ENABLE_FEATURE_USE_SENDFILE
+ 	{
+-		off_t offset = range_start;
++		off_t offset = (range_start < 0) ? 0 : range_start;
+ 		while (1) {
+ 			/* sz is rounded down to 64k */
+ 			ssize_t sz = MAXINT(ssize_t) - 0xffff;
+@@ -2486,8 +2486,8 @@ static void handle_incoming_and_exit(const len_and_sockaddr *fromAddr)
+ 		if (STRNCASECMP(iobuf, "Range:") == 0) {
+ 			/* We know only bytes=NNN-[MMM] */
+ 			char *s = skip_whitespace(iobuf + sizeof("Range:")-1);
+-			if (is_prefixed_with(s, "bytes=")) {
+-				s += sizeof("bytes=")-1;
++			s = is_prefixed_with(s, "bytes=");
++			if (s) {
+ 				range_start = BB_STRTOOFF(s, &s, 10);
+ 				if (s[0] != '-' || range_start < 0) {
+ 					range_start = -1;
+-- 
+2.30.0
+
