@@ -1,4 +1,5 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
+REBUILD_ROOTFS=$1
 CROSS_COMPILE_DIR=/opt/riscv64--glibc--bleeding-edge-2020.08-1
 CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-linux
 
@@ -94,47 +95,58 @@ make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- install
 
 # 合成文件系统映像
 MAKE_ROOTFS_DIR=$SHELL_FOLDER/output/rootfs
-TARGET_ROOTFS_DIR=$MAKE_ROOTFS_DIR/rootfs
-TARGET_BOOTFS_DIR=$MAKE_ROOTFS_DIR/bootfs
-if [ ! -d "$MAKE_ROOTFS_DIR" ]; then  
+if [ ! -d "$MAKE_ROOTFS_DIR" ]; then
 mkdir $MAKE_ROOTFS_DIR
+REBUILD_ROOTFS="yes"
 fi
-if [ ! -d "$TARGET_ROOTFS_DIR" ]; then  
-mkdir $TARGET_ROOTFS_DIR
-fi
-if [ ! -d "$TARGET_BOOTFS_DIR" ]; then  
-mkdir $TARGET_BOOTFS_DIR
-fi
-cd $MAKE_ROOTFS_DIR
-if [ ! -f "$MAKE_ROOTFS_DIR/rootfs.img" ]; then  
-dd if=/dev/zero of=rootfs.img bs=1M count=1024
-pkexec $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $MAKE_ROOTFS_DIR/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
-fi
-cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
-cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
-$SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
-cp -r $SHELL_FOLDER/output/busybox/* $TARGET_ROOTFS_DIR/
-cp -r $SHELL_FOLDER/target_root_script/* $TARGET_ROOTFS_DIR/
-if [ ! -d "$TARGET_ROOTFS_DIR/proc" ]; then  
-mkdir $TARGET_ROOTFS_DIR/proc
-fi
-if [ ! -d "$TARGET_ROOTFS_DIR/sys" ]; then  
-mkdir $TARGET_ROOTFS_DIR/sys
-fi
-if [ ! -d "$TARGET_ROOTFS_DIR/dev" ]; then  
-mkdir $TARGET_ROOTFS_DIR/dev
-fi
-if [ ! -d "$TARGET_ROOTFS_DIR/tmp" ]; then  
-mkdir $TARGET_ROOTFS_DIR/tmp
-fi
-if [ ! -d "$TARGET_ROOTFS_DIR/lib" ]; then  
-mkdir $TARGET_ROOTFS_DIR/lib
-cd $TARGET_ROOTFS_DIR
-ln -s ./lib ./lib64
-cd $MAKE_ROOTFS_DIR
-fi
-cp $CROSS_COMPILE_DIR/riscv64-buildroot-linux-gnu/sysroot/lib/* $TARGET_ROOTFS_DIR/lib/
-cp $CROSS_COMPILE_DIR/riscv64-buildroot-linux-gnu/sysroot/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
-pkexec $SHELL_FOLDER/build_rootfs/build.sh $MAKE_ROOTFS_DIR
+case "$REBUILD_ROOTFS" in
+yes)
+    TARGET_ROOTFS_DIR=$MAKE_ROOTFS_DIR/rootfs
+    TARGET_BOOTFS_DIR=$MAKE_ROOTFS_DIR/bootfs
+    if [ ! -d "$MAKE_ROOTFS_DIR" ]; then  
+    mkdir $MAKE_ROOTFS_DIR
+    fi
+    if [ ! -d "$TARGET_ROOTFS_DIR" ]; then  
+    mkdir $TARGET_ROOTFS_DIR
+    fi
+    if [ ! -d "$TARGET_BOOTFS_DIR" ]; then  
+    mkdir $TARGET_BOOTFS_DIR
+    fi
+    cd $MAKE_ROOTFS_DIR
+    if [ ! -f "$MAKE_ROOTFS_DIR/rootfs.img" ]; then  
+    dd if=/dev/zero of=rootfs.img bs=1M count=1024
+    pkexec $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $MAKE_ROOTFS_DIR/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
+    fi
+    cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
+    cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
+    $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
+    cp -r $SHELL_FOLDER/output/busybox/* $TARGET_ROOTFS_DIR/
+    cp -r $SHELL_FOLDER/target_root_script/* $TARGET_ROOTFS_DIR/
+    if [ ! -d "$TARGET_ROOTFS_DIR/proc" ]; then  
+    mkdir $TARGET_ROOTFS_DIR/proc
+    fi
+    if [ ! -d "$TARGET_ROOTFS_DIR/sys" ]; then  
+    mkdir $TARGET_ROOTFS_DIR/sys
+    fi
+    if [ ! -d "$TARGET_ROOTFS_DIR/dev" ]; then  
+    mkdir $TARGET_ROOTFS_DIR/dev
+    fi
+    if [ ! -d "$TARGET_ROOTFS_DIR/tmp" ]; then  
+    mkdir $TARGET_ROOTFS_DIR/tmp
+    fi
+    if [ ! -d "$TARGET_ROOTFS_DIR/lib" ]; then  
+    mkdir $TARGET_ROOTFS_DIR/lib
+    cd $TARGET_ROOTFS_DIR
+    ln -s ./lib ./lib64
+    cd $MAKE_ROOTFS_DIR
+    fi
+    cp $CROSS_COMPILE_DIR/riscv64-buildroot-linux-gnu/sysroot/lib/* $TARGET_ROOTFS_DIR/lib/
+    cp $CROSS_COMPILE_DIR/riscv64-buildroot-linux-gnu/sysroot/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
+    pkexec $SHELL_FOLDER/build_rootfs/build.sh $MAKE_ROOTFS_DIR
+    ;;
+*)
+    echo "skip build rootfs.img!"
+	;;
+esac
 
 cd $SHELL_FOLDER

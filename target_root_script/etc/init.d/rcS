@@ -1,9 +1,16 @@
 #! /bin/sh
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
+LD_LIBRARY_PATH=/lib
+export PATH LD_LIBRARY_PATH
 
 mount -a
 /sbin/mdev -s
 mount -a
+
+echo QEMU-QUARD-STAR > /proc/sys/kernel/hostname
+
+dmesg -n 1
+chmod 666 /dev/null
 
 echo "---------------------------------------------"
 echo " Welcome debugging on Qemu Quard Star board! "

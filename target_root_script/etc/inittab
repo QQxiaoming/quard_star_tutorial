@@ -1,2 +1,4 @@
 ::sysinit:/etc/init.d/rcS
-console::askfirst:-/bin/sh
+console::respawn:/sbin/getty 38400 console
+console::restart:/sbin/init
+console::ctrlaltdel:/sbin/reboot
