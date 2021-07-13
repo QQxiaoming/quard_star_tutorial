@@ -80,7 +80,7 @@ if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then
 mkdir $SHELL_FOLDER/output/linux_kernel
 fi  
 cd $SHELL_FOLDER/linux-5.10.42
-make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- defconfig
+make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- quard_star_defconfig
 make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- -j16
 cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 
