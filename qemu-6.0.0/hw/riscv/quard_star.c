@@ -33,6 +33,7 @@
 #include "hw/riscv/numa.h"
 #include "hw/intc/sifive_clint.h"
 #include "hw/intc/sifive_plic.h"
+#include "hw/misc/sifive_test.h"
 #include "chardev/char.h"
 #include "sysemu/arch_init.h"
 #include "sysemu/device_tree.h"
@@ -41,11 +42,13 @@
 static const MemMapEntry virt_memmap[] = {
     [QUARD_STAR_MROM]   = {        0x0,        0x8000 },
     [QUARD_STAR_SRAM]   = {     0x8000,        0x8000 },
+    [QUARD_STAR_TEST]   = {   0x100000,        0x1000 },
     [QUARD_STAR_CLINT]  = {  0x2000000,       0x10000 },
     [QUARD_STAR_PLIC]   = {  0xc000000, QUARD_STAR_PLIC_SIZE(QUARD_STAR_CPUS_MAX * 2) },
     [QUARD_STAR_UART0]  = { 0x10000000,         0x100 },
     [QUARD_STAR_UART1]  = { 0x10001000,         0x100 },
     [QUARD_STAR_UART2]  = { 0x10002000,         0x100 },
+    [QUARD_STAR_RTC]    = { 0x10003000,        0x1000 },
     [QUARD_STAR_VIRTIO] = { 0x10100000,        0x1000 }, //Eight consecutive groups
     [QUARD_STAR_FW_CFG] = { 0x10108000,          0x18 },
     [QUARD_STAR_FLASH]  = { 0x20000000,     0x2000000 },
@@ -183,6 +186,8 @@ static void quard_star_machine_init(MachineState *machine)
                                 base_hartid, &error_abort);
         object_property_set_int(OBJECT(&s->soc[i]), "num-harts",
                                 hart_count, &error_abort);
+        object_property_set_int(OBJECT(&s->soc[i]), "resetvec", 
+                                virt_memmap[QUARD_STAR_MROM].base, &error_abort);
         sysbus_realize(SYS_BUS_DEVICE(&s->soc[i]), &error_abort);
 
         sifive_clint_create(
@@ -255,6 +260,11 @@ static void quard_star_machine_init(MachineState *machine)
     serial_mm_init(system_memory, memmap[QUARD_STAR_UART2].base,
         0, qdev_get_gpio_in(DEVICE(mmio_plic), QUARD_STAR_UART2_IRQ), 399193,
         serial_hd(2), DEVICE_LITTLE_ENDIAN);
+
+    sysbus_create_simple("goldfish_rtc", memmap[QUARD_STAR_RTC].base,
+        qdev_get_gpio_in(DEVICE(mmio_plic), QUARD_STAR_RTC_IRQ));
+
+    sifive_test_create(memmap[QUARD_STAR_TEST].base);
 
     for (i = 0; i < QUARD_STAR_COUNT; i++) {
         sysbus_create_simple("virtio-mmio",
