@@ -58,5 +58,9 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,drive=hd0 \
 -device virtio-gpu-device,id=video0,xres=1280,yres=720 \
+-device virtio-mouse-device \
+-device virtio-keyboard-device \
+-fsdev local,security_model=passthrough,id=fsdev0,path=$SHELL_FOLDER/target_root_app \
+-device virtio-9p-device,id=fs0,fsdev=fsdev0,mount_tag=hostshare \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc="$DEFAULT_V"" \
 $GRAPHIC_PARAM

@@ -1,11 +1,13 @@
 #! /bin/sh
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-LD_LIBRARY_PATH=/lib
+LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
 export PATH LD_LIBRARY_PATH
 
 mount -a
 /sbin/mdev -s
 mount -a
+
+mount -t 9p -o trans=virtio,version=9p2000.L hostshare /mnt/
 
 echo QEMU-QUARD-STAR > /proc/sys/kernel/hostname
 

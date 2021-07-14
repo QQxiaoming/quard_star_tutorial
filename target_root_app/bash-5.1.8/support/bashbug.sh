@@ -26,14 +26,14 @@
 # configuration section:
 #	these variables are filled in by the make target in Makefile
 #
-MACHINE="!MACHINE!"
-OS="!OS!"
-CC="!CC!"
-CFLAGS="!CFLAGS!"
-RELEASE="!RELEASE!"
+MACHINE="riscv64"
+OS="none"
+CC="/opt/riscv64--glibc--bleeding-edge-2020.08-1/bin/riscv64-linux-gcc"
+CFLAGS="-g -O2 -Wno-parentheses -Wno-format-security"
+RELEASE="5.1"
 PATCHLEVEL="!PATCHLEVEL!"
-RELSTATUS="!RELSTATUS!"
-MACHTYPE="!MACHTYPE!"
+RELSTATUS="release"
+MACHTYPE="riscv64-unknown-none"
 
 PATH=/bin:/usr/bin:/usr/local/bin:$PATH
 export PATH

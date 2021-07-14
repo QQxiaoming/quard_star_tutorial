@@ -134,6 +134,9 @@ yes)
     if [ ! -d "$TARGET_ROOTFS_DIR/tmp" ]; then  
     mkdir $TARGET_ROOTFS_DIR/tmp
     fi
+    if [ ! -d "$TARGET_ROOTFS_DIR/mnt" ]; then  
+    mkdir $TARGET_ROOTFS_DIR/mnt
+    fi
     if [ ! -d "$TARGET_ROOTFS_DIR/lib" ]; then  
     mkdir $TARGET_ROOTFS_DIR/lib
     cd $TARGET_ROOTFS_DIR
