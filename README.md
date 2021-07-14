@@ -7,7 +7,7 @@
 ubuntu18.04需要使用apt安装的包:
 
 ```shell
-sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtkd-3-dev libcap-ng-dev  libattr1-dev
+sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtkd-3-dev libcap-ng-dev  libattr1-dev device-tree-compiler
 ```
 
 - 2021.07.04(下午):增加了Quard Star开发板定义，8核支持，增加中断控制器、串口、pflash。添加低阶启动代码固化在pflash运行。
