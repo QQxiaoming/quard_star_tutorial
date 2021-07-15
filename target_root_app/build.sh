@@ -29,3 +29,20 @@ $CONFIGURE --host=riscv64 --disable-stripping CXX=$CROSS_PREFIX-g++ CC=$CROSS_PR
 make -j16
 #make install.progs
 #make install.data
+
+# 编译sudo
+cd $SHELL_FOLDER/sudo-SUDO_1_9_7p1
+./configure --host=riscv CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+make -j16
+#install-binaries
+
+# 安装screenFetch
+cd $SHELL_FOLDER/screenFetch-3.9.1
+if [ ! -d "$SHELL_FOLDER/output/usr" ]; then  
+mkdir $SHELL_FOLDER/output/usr
+mkdir $SHELL_FOLDER/output/usr/bin
+fi  
+if [ ! -d "$SHELL_FOLDER/output/usr/bin" ]; then  
+mkdir $SHELL_FOLDER/output/usr/bin
+fi 
+cp screenfetch-dev $SHELL_FOLDER/output/usr/bin/screenfetch

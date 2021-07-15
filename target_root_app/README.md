@@ -53,3 +53,53 @@ export TERM=xterm-256color
 export TERMINFO=/usr/local/share/terminfo
 export PS1='[\w]\$'
 ```
+
+#### sudo编译
+
+编译sudo，首先在host系统交叉编译
+
+```shell
+./configure --host=riscv CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+make -j16
+```
+
+进入目标系统机中挂载sudo目录。执行以下命令
+
+```shell
+make install-binaries
+```
+
+添加/etc/sudoers内容如下：
+
+```shell
+#                                                                         
+# This file MUST be edited with the 'visudo' command as root.             
+#                                                                         
+# See the sudoers man page for the details on how to write a sudoers file.
+#                                                                         
+ 
+##                                                                        
+# Override built-in defaults                                              
+##                                                                        
+Defaults                syslog=auth,runcwd=~                              
+Defaults>root           !set_logname                                      
+Defaults:FULLTIMERS     !lecture,runchroot=*               
+Defaults:millert        !authenticate                      
+Defaults@SERVERS        log_year, logfile=/var/log/sudo.log
+Defaults!PAGERS         noexec                             
+                                                           
+# Host alias specification                                 
+                                                           
+# User alias specification                                 
+                                                           
+# Cmnd alias specification    
+                              
+# User privilege specification                       
+root    ALL=(ALL:ALL) ALL                                                    
+                                                                             
+# Members of the admin group may gain root privileges                        
+%admin ALL=(ALL) ALL                                                         
+                                                                             
+# Allow members of group sudo to execute any command                         
+%sudo   ALL=(ALL:ALL) ALL  
+```
