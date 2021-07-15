@@ -310,22 +310,7 @@
 			compatible = "google,goldfish-rtc";
 		};
 
-		reboot {
-			value = <0x7777>;
-			offset = <0x0>;
-			regmap = <0x12>;
-			compatible = "syscon-reboot";
-		};
-
-		poweroff {
-			value = <0x5555>;
-			offset = <0x0>;
-			regmap = <0x12>;
-			compatible = "syscon-poweroff";
-		};
-		
 		test@100000 {
-			phandle = <0x12>;
 			reg = <0x0 0x100000 0x0 0x1000>;
 			compatible = "sifive,test1", "sifive,test0", "syscon";
 		};
