@@ -26,7 +26,7 @@ graphic)
 	if [ $# != 2 ] ; then
 		DEFAULT_VC="1280x720"
 	fi
-	GRAPHIC_PARAM="--display gtk --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --parallel none --monitor vc:$DEFAULT_VC"
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --parallel none --monitor vc:$DEFAULT_VC"
 	
 	WIDTH="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\1/g')"
 	HEIGHT="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\2/g')"
