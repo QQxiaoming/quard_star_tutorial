@@ -1,0 +1,235 @@
+.\" $Copyright: $
+.\" Copyright (c) 1996 - 2001 by Steve Baker
+.\" All Rights reserved
+.\"
+.\" This software is provided as is without any express or implied
+.\" warranties, including, without limitation, the implied warranties
+.\" of merchantability and fitness for a particular purpose.
+.\"
+...
+.V= $Header: tree.1 1.4 1996 - 2001 $
+.TH TREE 1 "\*(V)" "Manuel du Programmeur UNIX"
+.SH NOM
+tree \- liste le contenu de répertoires sous forme d'arborescence
+.SH SYNOPSIS
+\fBtree\fP [ \fB-adfgilnopqstuxACDFNS\fP ] [ \fB-L\fP \fIniveau\fP [ \fB-R\fP ]] [ \fB-H\fP \fIbaseHREF\fP ] [ \fB-P\fP \fImotif\fP ] [ \fB-I\fP \fImotif\fP ] [ \fIrepertoire\fP ... ]
+.br
+.SH DESCRIPTION
+\fITree\fP est un programme de listage récursif de répertoires qui produit
+un listage des fichiers indenté en profondeur, qui est mis en couleurs à la
+manière de \fIdircolors\fP si la variable d'environnement \fBLS_COLORS\fP
+est activée et que la sortie est un tty. Sans arguments, \fItree\fP liste
+les fichiers contenus dans le répertoire courant. Lorsque des répertoires
+sont donnés en argument, \fItree\fP liste tous les fichiers et/ou
+répertoires trouvés dans les répertoires donnés, chacun à son tour. Après
+avoir affiché tous les fichiers et répertoires trouvés, \fItree\fP renvoie
+le nombre total de fichiers et/ou de répertoires listés. 
+
+Par défaut, quand un lien symbolique est rencontré, la chemin auquel il
+renvoie est affiché après le nom du lien sous la forme suivante\ :
+
+.br
+
+    nom -> chemin-reel
+.br
+
+Si l'on donne l'option `\fB-l\fP' et que le lien symbolique renvoie à un
+répertoire existant, \fItree\fP suivra le chemin du lien symbolique
+comme s'il s'agissait d'un véritable répertoire.
+
+.br
+
+.SH OPTIONS
+\fITree\fP comprend les commutateurs suivants en ligne de commande\ :
+
+.TP
+.B --help
+Donne en sortie un listage verbeux des options d'utilisation
+.PP
+.TP
+.B --version
+Sort la version de tree
+.PP
+.TP
+.B --inodes
+Affiche le numéro d'inode du fichier ou du répertoire
+.PP
+.TP
+.B --device
+Affiche le numéro de périphérique auquel le fichier ou le répertoire
+appartient 
+.PP
+.TP
+.B --noreport
+Omet d'afficher le compte des fichiers et répertoires à la fin du listage
+arborescent 
+.PP
+.TP
+.B --nolinks
+Désactive les hyperliens en sortie HTML
+.PP
+.TP
+.B -a
+Tous les fichiers sont affichés. Par défaut tree n'affiche pas les fichiers
+cachés (ceux qui commencent par un point `.'). En aucun cas, tree n'affiche
+les constructeurs de système de fichiers `.' (répertoire courant) et `..'
+(répertoire parent). 
+.PP
+.TP
+.B -d
+Liste uniquement les répertoires
+.PP
+.TP
+.B -f
+Affiche le chemin complet en préfixe de chaque fichier
+.PP
+.TP
+.B -i
+Fait que tree n'affiche pas les lignes d'indentation, ce qui est utile en
+conjonction avec l'option \fB-f\fP
+.PP
+.TP
+.B -l
+Suit les liens symboliques s'ils pointent sur des répertoires, comme
+s'ils étaient des répertoires. Les liens symboliques qui finiraient de
+façon récursive sont évités, une fois détectés
+.PP
+.TP
+.B -x
+Reste exclusivement dans le système de fichiers courant, à la manière de
+\fBfind \fI-xdev\fP
+.PP
+.TP
+\fB-P \fImotif\fP
+Liste exclusivement les fichiers correspondant au joker
+\fImotif\fP. Remarque\ : vous devez utiliser l'option \fI-a\fP pour prendre 
+également en considération les fichiers commençant par un point `.'. Les
+opérateurs de joker valides sont `*' (zéro caractère ou plus), `?'
+(n'importe quel caractère), `[...]' (n'importe quel caractère parmi ceux
+qui sont listés entre crochets (un tiret `-' optionnel peut être utilisé
+pour une plage de caractères\ ; par exemple\ : [A-Z])), et `[^...]'
+(n'importe quel caractère à l'exclusion de ceux qui sont listés entre
+crochets). 
+.PP
+.TP
+.B -I \fImotif\fP
+Ne pas lister les fichiers correspondant au joker \fImotif\fP
+.PP
+.TP
+.B -p
+Afficher les protections pour chaque fichier (comme avec ls -l)
+.PP
+.TP
+.B -o \fInom-de-fichier\fP
+Envoie la sortie vers \fInom-de-fichier\fP
+.PP
+.TP
+.B -s
+Affiche la taille de chaque fichier devant son nom
+.PP
+.TP
+.B -u
+Affiche le nom d'utilisateur du fichier, ou le numéro d'UID si aucun nom
+d'utilisateur n'est disponible 
+.PP
+.TP
+.B -g
+Affiche le nom de groupe du fichier, ou le numéro de GID si aucun nom de
+groupe n'est disponible 
+.PP
+.TP
+.B -D
+Affiche la date et l'heure de dernière modification du fichier
+.PP
+.TP
+.B -F
+Appose un `/' pour les répertoires, un `=' pour les fichiers de socket, un
+`*' pour les fichiers exécutables et un `|' pour les FIFO, comme avec ls\ -F 
+.PP
+.TP
+.B -q
+Affiche les caractères non affichables dans les noms de fichiers sous forme
+de points d'interrogation au lieu de la notation carret par défaut 
+.PP
+.TP
+.B -N
+Affiche les caractères non affichables tels quels au lieu de la notation
+carret par défaut
+.PP
+.TP
+.B -t
+Trie la sortie par horaire de dernière modification, au lieu de trier
+alphabétiquement 
+.PP
+.TP
+.B -n
+Désactive toujours la mise en couleurs, forcée par l'option \fB-C\fP
+.PP
+.TP
+.B -C
+Active toujours la mise en couleurs, au moyen des couleurs intégrées par
+défaut si la variable d'environnement LS_COLORS n'est pas activée. Utile
+pour mettre en couleurs la sortie vers un tube.
+.PP
+.TP
+.B -A
+Active le graphisme ANSI de lignes pour l'affichage des lignes
+d'indentation 
+.PP
+.TP
+.B -S
+Active le graphisme ASCII de lignes (utile pour utiliser les polices du
+mode console de Linux)
+.PP
+.TP
+.B -L \fIniveau\fP
+Maximum de profondeur d'affichage de l'arborescence des répertoires
+.PP
+.TP
+.B -R
+Descendre récursivement dans l'arborescence de chaque niveau de répertoires  
+(voir l'option \fB-L\fP), et pour chacun d'eux exécuter de nouveau
+\fBtree\fP en y ajoutant `-o 00Tree.html' comme nouvelle option.
+.PP
+.TP
+.B -H \fIbaseHREF\fP
+Active la sortie HTML, en incluant des références HTTP. Utile pour les
+sites FTP. \fIbaseHREF\fP donne l'emplacement ftp de base lorsque l'on
+utilise la sortie HTML. C'est-à-dire que le répertoire local peut être
+`/local/ftp/pub', mais il doit être référencé en tant que
+`ftp://hostname.organization.domain/pub' (\fIbaseHREF\fP doit être
+`ftp://hostname.organization.domain'). Conseils\ : n'utilisez pas les lignes
+ANSI avec cette option, et n'indiquez pas plus d'un répertoire dans la
+liste des répertoires. Si vous voulez utiliser des couleurs via une feuille
+de style CSS, utilisez l'option -C en plus de cette option pour forcer la
+sortie en couleurs.
+.PP
+.br
+.SH FICHIERS
+/etc/DIR_COLORS		Base de données des couleurs système
+.br
+~/.dircolors		Base de données des couleurs utilisateur
+.br
+
+.SH ENVIRONNEMENT
+\fBLS_COLORS\fP		Informations sur les couleurs créées par dircolors
+
+.SH AUTEUR
+Steve Baker (ice@mama.indstate.edu)
+.br
+La sortie HTML a été hackée par Francesc Rocher (rocher@econ.udg.es)
+
+.SH BOGUES
+Aucun bogue connu. N'a pas été testé en profondeur. Pourrait utiliser
+quelques options supplémentaires, à la manière de ls. 
+
+.SH VOIR AUSSI
+.BR dircolors (1L),
+.BR ls (1L),
+.BR find (1L)
+
+.SH TRADUCTEUR
+Baptiste Mélès <baptiste.meles@ens.fr>
+
+N'hésitez pas à reporter respectivement à l'auteur ou au traducteur toute
+erreur ou omission dans cette page de manuel.

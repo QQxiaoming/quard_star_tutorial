@@ -1,0 +1,233 @@
+Version 1.8.0 (11/16/2018)
+  - Added an experimental --fromfile option (suggested by several people.)
+    This may eventually be replaced or supplimented by a --fromjson option.
+  - Added support for BSD's CLICOLOR and CLICOLOR_FORCE environment variables.
+    (Suggested by Alyssa Ross)
+  - Use strftime() exclusively when formatting date/time to respect locale.
+  - Some man page fixes and cleanups curtsey of Kirill Kolyshkin
+  - Update BINDIR in Makefile for MacOS X -- It is not allowed to install
+    programs to /usr/bin on MacOS X any longer due to System Integrity
+    Protection (SIP) (Shawn Mehan)
+  - Misc patches from Jacob Wahlgren:
+    - Improved command line switch error reporting.
+    - Symbolic links not displayed if a -P pattern is active
+    - Missing argument error reporting fixes on long format switches.
+  - Fixed JSON output hanging commas (John Lane, Tad, others)
+  - JSON size output ignored -h/--si flags (Wagner Camarao)
+  - Fixed issue with malformed multibyte string handling. (Mantas
+    Mikul&#279;nas)
+  - Fixed issue where mbstowcs() fails to null terminate the string due to
+    improper UTF-8 encoding leading to garbage being printed. (Nick Craig-Wood)
+  - Found a bug where the wrong inode (and device) information would be printed
+    for symbolic links. (Stephan Gabert)
+
+Version 1.7.0 (04/23/2014)
+  - Allow user/group names up to 32 characters before clipping.
+  - Made -i compress XML and JSON output as much as possible by eliminating
+    extraneous whitespace.
+  - Added --caseinsensitive (renamed --ignore-case ala grep) flag so patterns
+    match without regard to case, courtesy of Jason A Donenfeld.
+  - Added --matchdirs option courtesy of Brian Mattern & Jason A. Donenfeld
+    <Jason@zx2c4.com>.
+  - Fixed possible buffer overflow on large uid/gids w/o user names/group
+    names (Alexandre Wendling <alexandrerw@celepar.pr.gov.br>)
+  - Added JSON support courtesy of Florian Sesser <fs@it-agenten.com>.
+  - Fixed formatting error with HTML output when -L 1 specified. (Sascha Zorn 
+    <sascha.zorn@gmail.com>)
+  - Added file size sorting (Philipp M?ller <philippausmuensing@googlemail.com>)
+  - Added '--sort[=]<name>' option, ala ls.
+  - Fixed OS X makefile problems (Ryan Hollis <theryanhollis@gmail.com>)
+  - Fixed possible memory overflow in read_dir (path/lbuf not equal in size
+    to pathsize/lbufsize.) (Han Hui <hanhui03@163.com>)
+  - Fix S_ISDOOR/S_IFDOOR spelling mistake for Solaris. (Tim Mooney
+    <Tim.Mooney@ndsu.edu>)
+  - Make tree more reliably detect UTF-8 locales. (Mantas Mikulnas
+    <grawity@gmail.com> and others.)
+  - Return non-zero exit status on option errors, print usage to stdout when
+    not an error, add the posix '--' option terminator, Change -S description
+    to mean CP437 (console) output codes, not ASCII. (Ivan Shmakov
+    <oneingray@gmail.com>)
+
+Version 1.6.0 (05/24/11)
+  - Re-org of code into multiple files, split HTML and Unix listdir() into
+    separate functions, various code cleanups and optimizations.
+  - Fixed a memory leak in listdir() when memory was allocated early and not
+    freed before function exit.
+  - Fixed possible buffer overflow where symbolic links are followed.
+  - Fixed links printing "argetm" before the name of the link when the LINK
+    setting for DIR_COLORS is set to target (Markus Schnalke
+    <meillo@marmaro.de>)
+  - More fully support dir colors -- added support for su, sg, tw, ow, & st
+    options (and "do" in theory).
+  - Use the environment variable "TREE_COLORS" instead of "LS_COLORS" for
+    color information if it exists.
+  - Added --si flag to print filesizes in SI (powers of 1000) units (Ulrich
+    Eckhardt)
+  - Added -Q to quote filenames in double quotes.  Does not override -N or -q.
+  - Control characters are no longer printed in carrot notation, but as
+    backslashed octal, ala ls, except for codes 7-13 which are printed as
+    \a, \b, \t, \n, \v, \f and \r respectively. Spaces and backslashes are
+    also now backslashed as per ls, for better input to scripts unless -Q
+    is in use (where "'s are backslashed.) (Ujjwal Kumar)
+  - Added -U for unsorted listings (directory order).
+  - Added -c for sorting by last status change (ala ls -c).
+  - --dirsfirst is now a meta-sort and does not override -c, -v, -r or -t, but
+    is disabled by -U.
+  - After many requests, added the ability to process the entire tree before
+    emitting output.  Used for the new options --du, which works like the du
+    command: sums the amount of space under each directory and prints a total
+    amount used in the report and the --prune option which will prune all empty
+    directories from the output (makes the -P option output much more readable.)
+    It should be noted that this will be slow to output when processing large
+    directory trees and can consume copious amounts of memory, use at your own
+    peril.
+  - Added -X option to emit the directory tree in XML format (turns colorization
+    off always.)
+  - Added --timefmt option to specify the format of time display (implies -D).
+    Uses the strftime format.
+
+Version 1.5.3 (11/24/09)
+  - Properly quote directories for the system command when tree is relaunched
+    using the -R option.
+  - Fixed possible indentation problem if dirs[*] is not properly zeroed
+    (Martin Nagy).
+  - Use strcoll() instead of strcmp() to sort files based on locale if set.
+  - Change "const static" to "static const" to remove some compiler warnings
+    for Solaris (Kamaraju Kusumanchi).
+  - Actually use TREE_CHARSET if it's defined.
+  - Automatically select UTF-8 charset if TREE_CHARSET is not set, and the
+    locale is set to *UTF-8 (overridden with --charset option.)
+
+Version 1.5.2.2 (01/22/09)
+  - Set locale before checking MB_CUR_MAX.
+  - Added HP-NonStop platform support (Craig McDaniel <craigmcd@gmail.com>)
+  - Fixed to support 32 bit UID/GIDs.
+  - Added Solaris build options to Makefile (edit and uncomment to use).
+    Provided by Wang Quanhong
+
+Version 1.5.2.1 (08/29/08)
+  - Added strverscmp.c file for os's without strverscmp.  Source file is
+    attributed to: Jean-Franois Bignolles <bignolle@ecoledoc.ibp.fr>
+  - Try different approach to MB_CUR_MAX problem.
+  - Changed the argument to printit() to be signed char to avoid warnings.
+
+Version 1.5.2 (06/06/08)
+  - Added --filelimit X option to not descend directories that have more than
+    X number of files in them.
+  - Added -v option for version sorting (also called natural sorting) ala ls.
+
+Version 1.5.1.2 (06/04/08)
+  - Fixed compile issues related to MB_CUR_MAX on non-linux machines.
+  - Removed unecessary features.h
+
+Version 1.5.1.1 (06/11/07)
+  - Regression in HTML output, fixed formatting issues.
+
+Version 1.5.1 (?)
+  - Remove extraneous / at end of user input directory names when using -f
+    option (Zurd)
+  - List available charsets if --charset option is missing charset argument.
+  - Fixed --charset option processing bug.
+  - Fixed missing <br>'s when -i option used with -H.
+  - Added -h option for human readable output.
+  - Colorization bugfix for special files and directories (make tree behave as
+    ls does)
+
+Version 1.5.0 (08/15/04)
+  - Added -T option to change title and H1 header in HTML output.
+  - Added -r option to reverse alpha sort output, ala. 'ls -r'.
+  - '|' wildcard support added by David MacMahon <davidm@astron.Berkeley.EDU>.
+  - Remove extraneous '/' at the end of dirs and dir-symlinks in HTML output.
+  - Removed several possible overflow problems by dynamically allocating
+    arrays in several places.
+  - Better support for Locales and printing utf-8 encoded characters in
+    filenames (still hackish).
+  - Fixed -t to alphasort files with same time-stamps.
+  - Fixed encoding of filenames in HTML output, Kyosuke and others.
+  - Patches by Kyosuke Tokoro <NBG01720@nifty.ne.jp>:
+    - Now, runs OS/2 systems.
+      + Print the file attributes in 'adhrs' format for each file, instead
+        of the protections in 'drwxrwxrwx' format, when running the tree
+        on OS/2 with option -p.
+    - Added --charset option, to specify which character set is used for
+      output.
+       + You can specify any IANA registered character set name. But I have
+         tested only following character sets:
+               Shift_JIS       EUC-JP          IBM850
+               UTF-8           ISO-8859-1      US-ASCII
+       + Now, `-S' option is equal to `--charset=IBM437'.
+       + When running on OS/2 systems, the default value of this option
+         is according to current codepage.  On the other systems, no default.
+  - Change font-weight to font-size in CSS .VERSION.
+  - Change version to standard major.minor.patch format.
+  - Switch from artistic license to GPLv2.
+
+Version 1.4 (02/21/02 (b1), 03/24/02 (b2), 02/06/03 (b3))
+  - Added large file support under Linux.
+  - Fixed crashing on missing command line arguments.
+  - Fixed several memory leaks
+  - Added --dirsfirst option to list directories first.
+  - Fixed formatting error when unable to open directories.
+  - Fixed bug in parse_dir_colors().
+  - Changed -I to also ignore directories.
+  - Added --nolinks command to turn off hyperlinks with the HTML output.
+  - Fixed several memory leaks in listdir().
+  - Some additional code cleanup in listdir().
+  - Some systems may define TRUE/FALSE, so don't create the enums for TRUE
+    and FALSE if that's the case.
+  - Fixed over-allocation bug in read_dir().
+  - Added crude beginnings of color output for HTML via CSS (Ted Tiberio
+    ttiberio@rochester.rr.com).
+  - Fixed buffer overflow problem in dircolors parsing.
+  - Fixed recursive symlink detection.
+  - Added --inodes and --device options.
+  - Added --noreport option.
+
+Version 1.3 (02/15/99)
+  - Fixed long pathname problem by dynamically allocating the path.
+  - Added recursive symlink detection.
+  - Added --help and --version options.
+  - When -C is used and LS_COLORS is undefined, tree uses a default color
+    scheme (thus -C always forces color output now).
+  - Added -S to show ASCII tree lines (Gerald Scheidl)
+  - Made tree more portable (Guido Socher and others)
+
+  Following options courtesy of Francesc Rocher:
+  - Added -o <filename> to redirect the output.
+  - Added -H <baseHRef> to print the tree in HTML format.
+  - Added -L to set the maximum level of directories to print.
+  - Added -R to recursively restart the search at the level given by `-L'
+    option (adding as well `-o 00Tree.html').
+
+Version 1.2 (01/05/97)
+  - Added -D to print the date of the last modification.
+  - Added -t option to sort by last modification time (ala ls -t).
+  - Added -I <pattern>, similar to the -P option except tree does not print
+    those files which match the pattern.
+  - Made tree print non-printable characters in filenames in standard unix
+    carrot notation.
+  - Added -N option to make tree print filenames without any processing.
+  - Added -q option to make tree print non-printable characters in filenames
+    as question marks.
+  - Added `|' to -F output and made it only print character type after the
+    link on sym-links, not on the symlink name itself.
+  - Added -u option to display username/uid, and -g option to display group
+    name/gid.
+  - Fully (pass the salt) implemented dircolors support.
+
+Version 1.1 (07/09/96)
+  - Made some changes to the Makefile to insure proper installation and for
+    multi-architecture support and a bug-fix.
+  - Made root directory colorized if dircolors is enabled.
+  - Put []'s around permission and size info, 'cause I think it looks better.
+  - Added -A option to enable ANSI-lines hack.
+  - Added some sanity checks for dircolors support.
+  - Added -P <pattern> to list only those files that match the wildcard
+    given in <pattern>.
+  - Fixed error where relative symbolic links to directories would not be
+    followed when the -l option was used.
+  - Made uid 0 the same as anyone else (-a was default for uid 0)
+  - Added -x directive to stay on one filesystem (ala find -xdev).
+
+Version 1.0 (??/??/90?)
+  - The original, a model of perfection...

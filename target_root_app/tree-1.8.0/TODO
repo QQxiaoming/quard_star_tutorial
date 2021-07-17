@@ -1,0 +1,57 @@
+Should do:
+- Use stdint.h and inttypes.h to standardize the int sizes and format strings.
+
+- Add --DU option to fully report disk usage, taking into account files that
+  are not displayed in the output.
+
+- Should be a better way code the various tree formats (XML/HTML/Unix) to
+  share more code. Probably make a generic tree crawling routine that calls
+  various function pointers to emit the file information based on the kind
+  of tree we want.
+
+- Make wide character support less of a hack.
+
+- Fully support HTML colorization properly.
+
+- Go over the -R option for HTML output and make it cleaner & less of a hack.
+  Should do -R internally so we don't have to rebuild a command line or use
+  something awful like system().  Should be doable by saving some state and
+  recursing and also separating out parts of main.
+
+- Should probably make it so that options like -p, -u, etc print out info for
+  the top directory, if people think that would be desirable.
+
+- Might be nice to prune files by things like type, mode, access/modify/change
+  time, uid/gid, etc. ala find.
+
+- Just incorporate the stat structure into _info, since we now need most of
+  the structure anyway.
+
+Maybe do:
+
+- With the addition of TREE_COLORS, add some custom options to perhaps colorize
+  metadata like the permissions, date, username, etc, and change the color of
+  the tree lines and so on.
+
+- Make tree look for a .comments file in a directory and append the text from
+  that file to the output of the files and directories, so that the output
+  looks like Slackware's README file, like:
+
+  > tree -F --comments
+  ...
+  |-- kernels/             Precompiled Linux 2.6.37.6 kernel images.
+  |   |
+  |   |-- hugesmp.s        The default standard install kernel for Slackware.
+  |   |                    This supports pretty much everything in the
+  |   |                    2.6.37.6 kernel, and includes support for Speakup.
+  |   |                    This kernel requires at least a Pentium-Pro processor.
+  |   |
+  |   `-- huge.s           A single-processor version of huge.s that will
+  |                        function with older hardware such as a 486 with
+  |                        128MB (64MB _might_ work) or more of RAM.
+  |                        This kernel also supports Speakup.
+  ...
+
+  Might be particularly nice for the HTML output, where the comments could be
+  made as mouse-over popups or the like.
+
