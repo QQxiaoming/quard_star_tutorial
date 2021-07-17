@@ -1,0 +1,16 @@
+This is a port of openbsd cu(1) to Linux.
+
+cu is used to connect to another system over a serial link.
+In the era before modern networks, it was typically used to
+connect to a modem in order to dial in to a remote host.
+It is now frequently used for tasks such as attaching to the
+serial console of another machine for administrative or
+debugging purposes.
+
+When working with an embedded Linux box, it is useful to setup the tty
+device in embedded os with the rows and columns of the terminal in the
+host os. The termsize[1] script by Akkana Peck is quite useful[2] for
+this task.
+
+[1] https://github.com/akkana/scripts/blob/master/termsize
+[2] http://shallowsky.com/blog/hardware/serial-24-line-terminals.html
