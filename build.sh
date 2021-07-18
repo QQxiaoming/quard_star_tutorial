@@ -40,10 +40,9 @@ if [ ! -d "$SHELL_FOLDER/output/trusted_domain" ]; then
 mkdir $SHELL_FOLDER/output/trusted_domain
 fi  
 cd $SHELL_FOLDER/trusted_domain
-$CROSS_PREFIX-gcc -x assembler-with-cpp -c startup.s -o $SHELL_FOLDER/output/trusted_domain/startup.o
-$CROSS_PREFIX-gcc -nostartfiles -T./link.lds -Wl,-Map=$SHELL_FOLDER/output/trusted_domain/trusted_fw.map -Wl,--gc-sections $SHELL_FOLDER/output/trusted_domain/startup.o -o $SHELL_FOLDER/output/trusted_domain/trusted_fw.elf
-$CROSS_PREFIX-objcopy -O binary -S $SHELL_FOLDER/output/trusted_domain/trusted_fw.elf $SHELL_FOLDER/output/trusted_domain/trusted_fw.bin
-$CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/trusted_domain/trusted_fw.elf > $SHELL_FOLDER/output/trusted_domain/trusted_fw.lst
+make CROSS_COMPILE=$CROSS_PREFIX- clean
+make CROSS_COMPILE=$CROSS_PREFIX- -j16
+cp ./build/trusted_fw.* $SHELL_FOLDER/output/trusted_domain/
 
 # 编译uboot
 if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then  
