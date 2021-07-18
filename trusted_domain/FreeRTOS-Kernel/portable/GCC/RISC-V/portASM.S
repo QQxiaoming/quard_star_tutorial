@@ -82,6 +82,7 @@
 .extern pullNextTime
 .extern uxTimerIncrementsForOneTick /* size_t type so 32-bit on 32-bit core and 64-bits on 64-bit core. */
 .extern xISRStackTop
+.extern prvTaskExitError
 
 /*-----------------------------------------------------------*/
 
@@ -365,7 +366,8 @@ pxPortInitialiseStack:
 	addi a0, a0, -(22 * portWORD_SIZE)	/* Space for registers x11-x31. */
 	store_x a2, 0(a0)					/* Task parameters (pvParameters parameter) goes into register X10/a0 on the stack. */
 	addi a0, a0, -(6 * portWORD_SIZE)	/* Space for registers x5-x9. */
-	store_x x0, 0(a0)					/* Return address onto the stack, could be portTASK_RETURN_ADDRESS */
+	la t0, prvTaskExitError
+	store_x t0, 0(a0)					/* Return address onto the stack, could be portTASK_RETURN_ADDRESS */
 
 	addi a0, a0, -portWORD_SIZE
 	store_x a1, 0(a0)					/* mret value (pxCode parameter) onto the stack. */

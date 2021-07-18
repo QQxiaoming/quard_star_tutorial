@@ -92,6 +92,7 @@ not need to be guarded with a critical section. */
 
 /* Scheduler utilities. */
 extern void vTaskSwitchContext( void );
+/* 通过sbi触发自己核心的软中断 */
 extern void sbi_send_ipi(const unsigned long *hart_mask);
 #define portYIELD() sbi_send_ipi((const unsigned long *)(0x1<<PRIM_HART))
 #define portEND_SWITCHING_ISR( xSwitchRequired ) if( xSwitchRequired ) vTaskSwitchContext()
@@ -106,6 +107,7 @@ extern void vTaskExitCritical( void );
 
 #define portSET_INTERRUPT_MASK_FROM_ISR() 0
 #define portCLEAR_INTERRUPT_MASK_FROM_ISR( uxSavedStatusValue ) ( void ) uxSavedStatusValue
+/* S模式下SIE全局中断控制 */
 #define portDISABLE_INTERRUPTS()	__asm volatile( "csrc sstatus, 2" )
 #define portENABLE_INTERRUPTS()		__asm volatile( "csrs sstatus, 2" )
 #define portENTER_CRITICAL()	vTaskEnterCritical()
@@ -166,29 +168,6 @@ not necessary for to use this port.  They are defined so the common demo files
 
 #define portMEMORY_BARRIER() __asm volatile( "" ::: "memory" )
 /*-----------------------------------------------------------*/
-
-
-/* configCLINT_BASE_ADDRESS is a legacy definition that was replaced by the
-configMTIME_BASE_ADDRESS and configMTIMECMP_BASE_ADDRESS definitions.  For
-backward compatibility derive the newer definitions from the old if the old
-definition is found. */
-#if defined( configCLINT_BASE_ADDRESS ) && !defined( configMTIME_BASE_ADDRESS ) && ( configCLINT_BASE_ADDRESS == 0 )
-	/* Legacy case where configCLINT_BASE_ADDRESS was defined as 0 to indicate
-	there was no CLINT.  Equivalent now is to set the MTIME and MTIMECMP
-	addresses to 0. */
-	#define configMTIME_BASE_ADDRESS 	( 0 )
-	#define configMTIMECMP_BASE_ADDRESS ( 0 )
-#elif defined( configCLINT_BASE_ADDRESS ) && !defined( configMTIME_BASE_ADDRESS )
-	/* Legacy case where configCLINT_BASE_ADDRESS was set to the base address of
-	the CLINT.  Equivalent now is to derive the MTIME and MTIMECMP addresses
-	from the CLINT address. */
-	#define configMTIME_BASE_ADDRESS 	( ( configCLINT_BASE_ADDRESS ) + 0xBFF8UL )
-	#define configMTIMECMP_BASE_ADDRESS ( ( configCLINT_BASE_ADDRESS ) + 0x4000UL )
-#elif !defined( configMTIME_BASE_ADDRESS ) || !defined( configMTIMECMP_BASE_ADDRESS )
-	#error configMTIME_BASE_ADDRESS and configMTIMECMP_BASE_ADDRESS must be defined in FreeRTOSConfig.h.  Set them to zero if there is no MTIME (machine time) clock.  See https://www.FreeRTOS.org/Using-FreeRTOS-on-RISC-V.html
-#endif
-
-
 
 #ifdef __cplusplus
 }

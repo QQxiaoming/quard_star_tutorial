@@ -40,18 +40,6 @@
 /* Standard includes. */
 #include "string.h"
 
-#ifdef configCLINT_BASE_ADDRESS
-	#warning The configCLINT_BASE_ADDRESS constant has been deprecated.  configMTIME_BASE_ADDRESS and configMTIMECMP_BASE_ADDRESS are currently being derived from the (possibly 0) configCLINT_BASE_ADDRESS setting.  Please update to define configMTIME_BASE_ADDRESS and configMTIMECMP_BASE_ADDRESS dirctly in place of configCLINT_BASE_ADDRESS.  See https://www.FreeRTOS.org/Using-FreeRTOS-on-RISC-V.html
-#endif
-
-#ifndef configMTIME_BASE_ADDRESS
-	#warning configMTIME_BASE_ADDRESS must be defined in FreeRTOSConfig.h.  If the target chip includes a memory-mapped mtime register then set configMTIME_BASE_ADDRESS to the mapped address.  Otherwise set configMTIME_BASE_ADDRESS to 0.  See https://www.FreeRTOS.org/Using-FreeRTOS-on-RISC-V.html
-#endif
-
-#ifndef configMTIMECMP_BASE_ADDRESS
-	#warning configMTIMECMP_BASE_ADDRESS must be defined in FreeRTOSConfig.h.  If the target chip includes a memory-mapped mtimecmp register then set configMTIMECMP_BASE_ADDRESS to the mapped address.  Otherwise set configMTIMECMP_BASE_ADDRESS to 0.  See https://www.FreeRTOS.org/Using-FreeRTOS-on-RISC-V.html
-#endif
-
 /* Let the user override the pre-loading of the initial LR with the address of
 prvTaskExitError() in case it messes up unwinding of the stack in the
 debugger. */
@@ -90,7 +78,7 @@ void vPortSetupTimerInterrupt( void ) __attribute__(( weak ));
 
 /*-----------------------------------------------------------*/
 
-/* Used to program the machine timer compare register. */
+/* Tick时间间隔 */
 const size_t uxTimerIncrementsForOneTick = ( size_t ) ( ( configCPU_CLOCK_HZ ) / ( configTICK_RATE_HZ ) ); /* Assumes increment won't go over 32-bits. */
 
 /* Set configCHECK_FOR_STACK_OVERFLOW to 3 to add ISR stack checking to task
@@ -124,14 +112,19 @@ static uint64_t get_ticks()
     return time_elapsed;
 }
 
+/*-----------------------------------------------------------*/
+
 void vPortSetupTimerInterrupt( void )
 {
-	/* Set timer */
+	/* 通过sbi设置下次tick中断 */
 	sbi_set_timer(get_ticks() + uxTimerIncrementsForOneTick);
 }
 
+/*-----------------------------------------------------------*/
+
 void vPortClearIpiInterrupt( void )
 {
+	/* 通过sbi清除软中断，在软中断服务函数中调用 */
 	extern void sbi_clear_ipi(void);
 	sbi_clear_ipi();
 }
@@ -164,12 +157,11 @@ extern void xPortStartFirstTask( void );
 	}
 	#endif /* configASSERT_DEFINED */
 
-	/* If there is a CLINT then it is ok to use the default implementation
-	in this file, otherwise vPortSetupTimerInterrupt() must be implemented to
-	configure whichever clock is to be used to generate the tick interrupt. */
+	/* 通过sbi设置Timer为滴答时钟 */
 	vPortSetupTimerInterrupt();
 
-    /* Enable the Supervisor-Timer bit in SIE */
+    /* 使能SIE中S模式Timer中断和Soft中断，注意此处使能并不会立即响应
+	xPortStartFirstTask中将打开全局使能 */
     csr_set(CSR_SIE, SIP_STIP);
     csr_set(CSR_SIE, SIP_SSIP);
 
@@ -179,6 +171,22 @@ extern void xPortStartFirstTask( void );
 	should be executing. */
 	return pdFAIL;
 }
+
+/*-----------------------------------------------------------*/
+
+void prvTaskExitError( void )
+{
+	/* A function that implements a task must not exit or attempt to return to
+	its caller as there is nothing to return to.  If a task wants to exit it
+	should instead call vTaskDelete( NULL ).
+
+	Artificially force an assert() to be triggered if configASSERT() is
+	defined, then stop here so application writers can catch the error. */
+	configASSERT( ulPortInterruptNesting == ~0UL );
+	portDISABLE_INTERRUPTS();
+	for( ;; );
+}
+
 /*-----------------------------------------------------------*/
 
 void vPortEndScheduler( void )

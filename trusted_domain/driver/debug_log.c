@@ -1,4 +1,6 @@
 #include <FreeRTOS.h>
+#include <task.h>
+#include <semphr.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -8,18 +10,18 @@
 
 #define UART_LOG_BUFF_SIZE 1024
 
-char *mystrcpy(char *dest, const char *src);
-char *mystrcat(char *dest, const char *src);
-unsigned int mystrlen(const char *s);
-void *mymemset(void *s, int c, unsigned int count);
-void myitoa(unsigned int n, char *buf);
-int myatoi(char *pstr);
-void myxtoa(unsigned int n, char *buf);
-int myisDigit(unsigned char c);
-int myisLetter(unsigned char c);
-int _puts(char *str);
+static char printk_string[UART_LOG_BUFF_SIZE] = {0};
+static SemaphoreHandle_t xMutex = NULL;
 
-void *mymemcpy(void *dest, const void *src, unsigned int count)
+static unsigned int mystrlen(const char *s);
+static void *mymemset(void *s, int c, unsigned int count);
+static void myitoa(unsigned int n, char *buf);
+static int myatoi(char *pstr);
+static void myxtoa(unsigned int n, char *buf);
+static int myisDigit(unsigned char c);
+static int myputs(char *str);
+
+static void *mymemcpy(void *dest, const void *src, unsigned int count)
 {
     uint8_t * _src = (uint8_t *)src;
     uint8_t * _dst = (uint8_t *)dest;
@@ -31,10 +33,10 @@ void *mymemcpy(void *dest, const void *src, unsigned int count)
 }
 
 /*
-*功能：整型(int) 转化成 字符型(char)
-*注意：不用 % / 符号的话，只能正确打印:0...9的数字对应的字符'0'...'9'
-*/
-void myitoa(unsigned int n, char *buf)
+ * 功能：整型(int) 转化成 字符型(char)
+ * 注意：不用 % / 符号的话，只能正确打印:0...9的数字对应的字符'0'...'9'
+ */
+static void myitoa(unsigned int n, char *buf)
 {
     int i;
 
@@ -55,9 +57,9 @@ void myitoa(unsigned int n, char *buf)
 }
 
 /*
-*功能：字符型(char) 转化成 整型(int)
-*/
-int myatoi(char *pstr)
+ * 功能：字符型(char) 转化成 整型(int)
+ */
+static int myatoi(char *pstr)
 {
     int int_ret = 0;
     int int_sign = 1; //正负号标示 1:正数 -1:负数
@@ -96,11 +98,11 @@ int myatoi(char *pstr)
 }
 
 /*
-*功能：16进制字(0x) 转化成 字符型(char)
-*注意：不用 % / 符号的话，只能正确打印，0...9..15的数字,对应的'0'...'9''A'...'F'
-*注意：由于编译问题，这个函数，暂时由uart_sendByte_hex()函数替代
-*/
-void myxtoa(unsigned int n, char *buf)
+ * 功能：16进制字(0x) 转化成 字符型(char)
+ * 注意：不用 % / 符号的话，只能正确打印，0...9..15的数字,对应的'0'...'9''A'...'F'
+ * 注意：由于编译问题，这个函数，暂时由uart_sendByte_hex()函数替代
+ */
+static void myxtoa(unsigned int n, char *buf)
 {
     int i;
     if (n < 16)
@@ -135,22 +137,9 @@ void myxtoa(unsigned int n, char *buf)
 /*
  * 判断一个字符是否数字
  */
-int myisDigit(unsigned char c)
+static int myisDigit(unsigned char c)
 {
     if (c >= '0' && c <= '9')
-        return 1;
-    else
-        return 0;
-}
-
-/*
- * 判断一个字符是否英文字母
- */
-int myisLetter(unsigned char c)
-{
-    if (c >= 'a' && c <= 'z')
-        return 1;
-    else if (c >= 'A' && c <= 'Z')
         return 1;
     else
         return 0;
@@ -164,7 +153,7 @@ int myisLetter(unsigned char c)
  *
  * Do not use mymemset() to access IO space, use memset_io() instead.
  */
-void *mymemset(void *s, int c, unsigned int count)
+static void *mymemset(void *s, int c, unsigned int count)
 {
     char *xs = (char *)s;
 
@@ -175,24 +164,10 @@ void *mymemset(void *s, int c, unsigned int count)
 }
 
 /**
- * mystrcpy - Copy a %NUL terminated string
- * @dest: Where to copy the string to
- * @src: Where to copy the string from
- */
-char *mystrcpy(char *dest, const char *src)
-{
-    char *tmp = dest;
-
-    while ((*dest++ = *src++) != '\0')
-        /* nothing */;
-    return tmp;
-}
-
-/**
  * mystrlen - Find the length of a string
  * @s: The string to be sized
  */
-unsigned int mystrlen(const char *s)
+static unsigned int mystrlen(const char *s)
 {
     const char *sc;
 
@@ -201,31 +176,38 @@ unsigned int mystrlen(const char *s)
     return sc - s;
 }
 
-/**
- * mystrcat - Append one %NUL-terminated string to another
- * @dest: The string to be appended to
- * @src: The string to append to it
- */
-char *mystrcat(char *dest, const char *src)
+static int myputs(char *str)
 {
-    char *tmp = dest;
-
-    while (*dest)
-        dest++;
-    while ((*dest++ = *src++) != '\0')
-        ;
-
-    return tmp;
+    int counter = 0;
+    if (!str)
+    {
+        return 0;
+    }
+    while (*str && (counter < UART_LOG_BUFF_SIZE))
+    {
+        if(*str == '\n')
+	        vOutNS16550( NS16550_ADDR, '\r' );
+	    vOutNS16550( NS16550_ADDR, *str++ );
+        counter++;
+    }
+    return counter;
 }
 
-static char printk_string[UART_LOG_BUFF_SIZE] = {0};
+/*
+ * 功能：打印log初始化
+ */
+void debug_log_init(void)
+{
+    xMutex = xSemaphoreCreateMutex();
+}
 
-/*功能：格式化打印一个字符串
-*参数：格式化的字符串
-*注意：这个是简易版本 (%02x 完成)
-* %-3s不行， %f也不行， %X不行
-*/
-int _printf(char *fmt, ...)
+/*
+ * 功能：格式化打印一个字符串
+ * 参数：格式化的字符串
+ * 注意：这个是简易版本 (%02x 完成)
+ * %-3s不行， %f也不行， %X不行
+ */
+int debug_log(char *fmt, ...)
 {
     char *str = printk_string;
     int count = 0;
@@ -240,6 +222,9 @@ int _printf(char *fmt, ...)
     char digit[16];
     int num = 0;
     int len = 0;
+
+    if(xMutex)
+        xSemaphoreTake(xMutex, portMAX_DELAY);
 
     mymemset(printk_string, 0, UART_LOG_BUFF_SIZE);
     mymemset(buf, 0, sizeof(buf));
@@ -407,27 +392,12 @@ int _printf(char *fmt, ...)
 
     va_end(ap);
     
-    
-    _puts(printk_string);
+    myputs(printk_string);
+
+    if(xMutex)
+        xSemaphoreGive(xMutex);    
 
     return count;
-}
-
-int _puts(char *str)
-{
-    int counter = 0;
-    if (!str)
-    {
-        return 0;
-    }
-    while (*str && (counter < UART_LOG_BUFF_SIZE))
-    {
-        if(*str == '\n')
-	        vOutNS16550( NS16550_ADDR, '\r' );
-	    vOutNS16550( NS16550_ADDR, *str++ );
-        counter++;
-    }
-    return counter;
 }
 
 
