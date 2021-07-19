@@ -47,6 +47,11 @@ _start:
 	/* set to disable FPU */
 	li t0, SSTATUS_FS
 	csrc sstatus, t0
+#ifdef __riscv_flen
+	/* set to init FPU */
+	li t0, (0x1 << 13)
+	csrs sstatus, t0
+#endif
 	li t0, SSTATUS_SUM // SUM in sstatus
 	csrs sstatus, t0
 
