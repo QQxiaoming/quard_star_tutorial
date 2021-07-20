@@ -220,39 +220,28 @@ test_if_mtimer:						/* If there is a CLINT then the mtimer is used to generate 
 
 test_if_external_interrupt:			/* If there is a CLINT and the mtimer interrupt is not pending then check to see if an external interrupt is pending. */
 	addi t1, t1, 4					/* 0x80000005 + 4 = 0x80000009 == Supervisor external interrupt. */
-	bne a0, t1, as_yet_unhandled	/* Something as yet unhandled. */
+	bne a0, t1, processed_trap   	/* Something as yet unhandled. */
 
-	load_x sp, xISRStackTop				/* Switch to ISR stack before function call. */
-	jal handle_trap		             	/* Jump to the interrupt handler if there is no CLINT or if there is a CLINT and it has been determined that an external interrupt is pending. */
+	load_x sp, xISRStackTop			/* Switch to ISR stack before function call. */
+	jal handle_interrupt	        /* Jump to the interrupt handler if there is no CLINT or if there is a CLINT and it has been determined that an external interrupt is pending. */
 	j processed_source
 
 handle_synchronous:
-	addi a1, a1, 4						/* Synchronous so updated exception return address to the instruction after the instruction that generated the exeption. */
-	store_x a1, 0( sp )					/* Save updated exception return address. */
+	addi a1, a1, 4					/* Synchronous so updated exception return address to the instruction after the instruction that generated the exeption. */
+	store_x a1, 0( sp )				/* Save updated exception return address. */
 
-test_if_environment_call:
-	li t0, 11 							/* 11 == environment call. */
-	bne a0, t0, is_exception			/* Not an M environment call, so some other exception. */
-	load_x sp, xISRStackTop				/* Switch to ISR stack before function call. */
-	jal vTaskSwitchContext
+processed_trap:
+	csrr a0, scause
+	csrr a1, sepc
+	csrr a2, stval
+	mv   a4, sp
+	load_x sp, xISRStackTop			/* Switch to ISR stack before function call. */
+	jal handle_trap	                /* Jump to the interrupt handler if there is no CLINT or if there is a CLINT and it has been determined that an external interrupt is pending. */
 	j processed_source
 
-is_exception:
-	csrr t0, scause						/* For viewing in the debugger only. */
-	csrr t1, sepc						/* For viewing in the debugger only */
-	csrr t2, sstatus
-	j is_exception						/* No other exceptions handled yet. */
-
-as_yet_unhandled:
-	csrr t0, scause						/* For viewing in the debugger only. */
-	j as_yet_unhandled
-
-handle_trap:
-	j handle_trap
-
 processed_source:
-	load_x  t1, pxCurrentTCB			/* Load pxCurrentTCB. */
-	load_x  sp, 0( t1 )				 	/* Read sp from first TCB member. */
+	load_x  t1, pxCurrentTCB		/* Load pxCurrentTCB. */
+	load_x  sp, 0( t1 )				/* Read sp from first TCB member. */
 
 	/* Load sret with the address of the next instruction in the task to run next. */
 	load_x t0, 0 * portWORD_SIZE( sp )
@@ -264,7 +253,7 @@ processed_source:
 
 	/* Load mstatus with the interrupt enable bits used by the task. */
 	load_x  t0, 29 * portWORD_SIZE( sp )
-	csrw sstatus, t0						/* Required for MPIE bit. */
+	csrw sstatus, t0				/* Required for MPIE bit. */
 
 #ifdef __riscv_flen
 	li t0, SSTATUS_FS
@@ -337,6 +326,23 @@ processed_source:
 	addi sp, sp, portCONTEXT_SIZE
 
 	sret
+	.endfunc
+/*-----------------------------------------------------------*/
+
+.align 8
+.weak handle_trap
+.func
+handle_trap:
+	j handle_trap
+	.endfunc
+/*-----------------------------------------------------------*/
+
+.align 8
+.weak handle_interrupt
+.func
+handle_interrupt:
+	j handle_interrupt
+	ret
 	.endfunc
 /*-----------------------------------------------------------*/
 

@@ -18,6 +18,7 @@ static void *mymemset(void *s, int c, unsigned int count);
 static void myitoa(unsigned int n, char *buf);
 static int myatoi(char *pstr);
 static void myxtoa(unsigned int n, char *buf);
+static int myftoa(double num, int n,char *buf);
 static int myisDigit(unsigned char c);
 static int myputs(char *str);
 
@@ -134,6 +135,65 @@ static void myxtoa(unsigned int n, char *buf)
     buf[i + 1] = '\0';
 }
 
+static int myftoa(double num, int n,char *buf)
+{
+    int     sumI;
+    float   sumF;
+    int     sign = 0;
+    int     temp;
+    int     count = 0;
+    char *p;
+    char *pp;
+
+    if(buf == NULL) return -1;
+    p = buf;
+
+    /*Is less than 0*/
+    if(num < 0)
+    {
+        sign = 1;
+        num = 0 - num;
+    }
+    sumI = (int)num;    //sumI is the part of int
+    sumF = num - sumI;  //sumF is the part of float
+
+    /*Int ===> String*/
+    do
+    {
+        temp = sumI % 10;
+        *(buf++) = temp + '0';
+    }while((sumI = sumI /10) != 0);
+
+    if(sign == 1)
+    {
+        *(buf++) = '-';
+    }
+    pp = buf;
+    pp--;
+    while(p < pp)
+    {
+        *p = *p + *pp;
+        *pp = *p - *pp;
+        *p = *p -*pp;
+        p++;
+        pp--;
+    }
+    *(buf++) = '.';     //point
+
+    /*Float ===> String*/
+    do
+    {
+        temp = (int)(sumF*10);
+        *(buf++) = temp + '0';
+        if((++count) == n)
+            break;
+        sumF = sumF*10 - temp;
+    }while(!(sumF > -0.000001 && sumF < 0.000001));
+
+    *buf ='\0';
+    return 0;
+}
+
 /*
  * 判断一个字符是否数字
  */
@@ -214,6 +274,7 @@ int debug_log(char *fmt, ...)
     char c;
     char *s;
     int n;
+    double f;
 
     int index = 0;
     int ret = 2;
@@ -267,6 +328,21 @@ int debug_log(char *fmt, ...)
             {
                 n = va_arg(ap, int);
                 myxtoa(n, buf);
+                mymemcpy(str, buf, mystrlen(buf));
+                str += mystrlen(buf);
+                break;
+            }
+            case 'f': /*单精度浮点*/
+            {
+                f = va_arg(ap, double);
+                int ndigit = 0;
+                float temp = (float)f;
+                while(temp != (long)(temp))
+                {
+                    temp *= 10;
+                    ndigit ++;
+                }
+                myftoa(f, ndigit, buf);
                 mymemcpy(str, buf, mystrlen(buf));
                 str += mystrlen(buf);
                 break;

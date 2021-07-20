@@ -13,9 +13,18 @@ VC=\
 640x480 | \
 640x340"
 
+MODE=\
+"graphic | \
+nographic | \
+customize1 | \
+customize2 | \
+customize3"
+
+USAGE="usage $0 [$MODE] [$VC]"
+
 if [ $# != 1 ] ; then
 	if [ $# != 2 ] ; then
-		echo "usage $0 [graphic | nographic] [$VC]"
+		echo $USAGE
 		exit 1
 	fi
 fi
@@ -26,7 +35,7 @@ graphic)
 	if [ $# != 2 ] ; then
 		DEFAULT_VC="1280x720"
 	fi
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --parallel none --monitor vc:$DEFAULT_VC"
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor vc:$DEFAULT_VC --parallel none"
 	
 	WIDTH="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\1/g')"
 	HEIGHT="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\2/g')"
@@ -39,12 +48,33 @@ nographic)
     GRAPHIC_PARAM="-nographic --parallel none"
 	DEFAULT_V=":vn:$DEFAULT_VN:"
     ;;
+customize1)
+	DEFAULT_VC=$2
+	if [ $# != 2 ] ; then
+		DEFAULT_VC="1280x720"
+	fi
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor stdio --parallel none"
+	
+	WIDTH="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\1/g')"
+	HEIGHT="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\2/g')"
+	ROWS="$(echo $WIDTH / 8 |bc)"
+	COLS="$(echo $HEIGHT / 16 |bc)"
+	DEFAULT_V=":vn:$COLS""x""$ROWS:"
+	;;
+customize2)
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor stdio --parallel none"
+	DEFAULT_V=":vn:24x80:"
+	;;
+customize3)
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
+	DEFAULT_V=":vn:24x80:"
+	;;
 --help)
-	echo "usage $0 [graphic | nographic] [$VC]"
+	echo $USAGE
 	exit 0
 	;;
 *)
-	echo "usage $0 [graphic | nographic] [$VC]"
+	echo $USAGE
 	exit 1	
 	;;
 esac
