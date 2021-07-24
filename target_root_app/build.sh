@@ -1,6 +1,6 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-CROSS_COMPILE_DIR=/opt/riscv64--glibc--bleeding-edge-2020.08-1
-CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-linux
+CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
+CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
 
 case "$2" in
 skip)
@@ -11,20 +11,11 @@ skip)
 	;;
 esac
 
-build_bash()
-{
-    # 编译bash
-    cd $SHELL_FOLDER/bash-5.1.8
-    $CONFIGURE --host=riscv64 --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
-    make -j16
-    make install
-}
-
 build_make()
 {
     # 编译make
     cd $SHELL_FOLDER/make-4.3
-    $CONFIGURE --host=riscv64 --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j16
     make install
 }
@@ -33,17 +24,27 @@ build_ncurses()
 {
     # 编译ncurses
     cd $SHELL_FOLDER/ncurses-6.2
-    $CONFIGURE --host=riscv64 --disable-stripping CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu --with-shared --without-normal --without-debug CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j16
+    make  install.libs DESTDIR=$SHELL_FOLDER/output
     #make install.progs
     #make install.data
+}
+
+build_bash()
+{
+    # 编译bash
+    cd $SHELL_FOLDER/bash-5.1.8
+    $CONFIGURE --host=riscv64 --prefix=$SHELL_FOLDER/output CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j16
+    make install
 }
 
 build_sudo()
 {
     # 编译sudo
     cd $SHELL_FOLDER/sudo-SUDO_1_9_7p1
-    $CONFIGURE --host=riscv CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j16
     #make install-binaries
 }
@@ -74,7 +75,7 @@ build_libevent()
 {
     # 编译libevent
     cd $SHELL_FOLDER/libevent-2.1.12-stable
-    $CONFIGURE --host=riscv --disable-openssl --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu --disable-openssl --disable-static --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j16
     make install
 }
@@ -83,7 +84,7 @@ build_screen()
 {
     # 编译screen
     cd $SHELL_FOLDER/screen-4.8.0
-    $CONFIGURE --host=riscv64 CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j16
     #make install
 }
@@ -125,9 +126,9 @@ cu)
     build_cu
     ;;
 all)
-    build_bash
     build_make
     build_ncurses
+    build_bash
     build_sudo
     build_screenfetch
     build_tree

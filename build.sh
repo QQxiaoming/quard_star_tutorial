@@ -1,7 +1,10 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 REBUILD_ROOTFS=$1
-CROSS_COMPILE_DIR=/opt/riscv64--glibc--bleeding-edge-2020.08-1
-CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-linux
+GLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
+GLIB_ELF_CROSS_PREFIX=$GLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
+GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR=$GLIB_ELF_CROSS_COMPILE_DIR/sysroot
+NEWLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-elf
+NEWLIB_ELF_CROSS_PREFIX=$NEWLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-elf
 
 # 编译qemu
 cd $SHELL_FOLDER/qemu-6.0.0
@@ -16,20 +19,20 @@ if [ ! -d "$SHELL_FOLDER/output/lowlevelboot" ]; then
 mkdir $SHELL_FOLDER/output/lowlevelboot
 fi  
 cd $SHELL_FOLDER/lowlevelboot
-$CROSS_PREFIX-gcc -x assembler-with-cpp -c startup.s -o $SHELL_FOLDER/output/lowlevelboot/startup.o
-$CROSS_PREFIX-gcc -nostartfiles -T./boot.lds -Wl,-Map=$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.map -Wl,--gc-sections $SHELL_FOLDER/output/lowlevelboot/startup.o -o $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf
-$CROSS_PREFIX-objcopy -O binary -S $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin
-$CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf > $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.lst
+$NEWLIB_ELF_CROSS_PREFIX-gcc -x assembler-with-cpp -c startup.s -o $SHELL_FOLDER/output/lowlevelboot/startup.o
+$NEWLIB_ELF_CROSS_PREFIX-gcc -nostartfiles -T./boot.lds -Wl,-Map=$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.map -Wl,--gc-sections $SHELL_FOLDER/output/lowlevelboot/startup.o -o $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf
+$NEWLIB_ELF_CROSS_PREFIX-objcopy -O binary -S $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin
+$NEWLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf > $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.lst
 
 # 编译opensbi
 if [ ! -d "$SHELL_FOLDER/output/opensbi" ]; then  
 mkdir $SHELL_FOLDER/output/opensbi
 fi  
 cd $SHELL_FOLDER/opensbi-0.9
-make CROSS_COMPILE=$CROSS_PREFIX- PLATFORM=quard_star
+make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- PLATFORM=quard_star
 cp -r $SHELL_FOLDER/opensbi-0.9/build/platform/quard_star/firmware/fw_jump.bin $SHELL_FOLDER/output/opensbi/fw_jump.bin
 cp -r $SHELL_FOLDER/opensbi-0.9/build/platform/quard_star/firmware/fw_jump.elf $SHELL_FOLDER/output/opensbi/fw_jump.elf
-$CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/opensbi/fw_jump.elf > $SHELL_FOLDER/output/opensbi/fw_jump.lst
+$GLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/opensbi/fw_jump.elf > $SHELL_FOLDER/output/opensbi/fw_jump.lst
 
 # 生成sbi.dtb
 cd $SHELL_FOLDER/dts
@@ -40,8 +43,8 @@ if [ ! -d "$SHELL_FOLDER/output/trusted_domain" ]; then
 mkdir $SHELL_FOLDER/output/trusted_domain
 fi  
 cd $SHELL_FOLDER/trusted_domain
-make CROSS_COMPILE=$CROSS_PREFIX- clean
-make CROSS_COMPILE=$CROSS_PREFIX- -j16
+make CROSS_COMPILE=$NEWLIB_ELF_CROSS_PREFIX- clean
+make CROSS_COMPILE=$NEWLIB_ELF_CROSS_PREFIX- -j16
 cp ./build/trusted_fw.* $SHELL_FOLDER/output/trusted_domain/
 
 # 编译uboot
@@ -49,12 +52,12 @@ if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then
 mkdir $SHELL_FOLDER/output/uboot
 fi  
 cd $SHELL_FOLDER/u-boot-2021.07
-make CROSS_COMPILE=$CROSS_PREFIX- qemu-quard-star_defconfig
-make CROSS_COMPILE=$CROSS_PREFIX- -j16
+make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- qemu-quard-star_defconfig
+make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j16
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot $SHELL_FOLDER/output/uboot/u-boot.elf
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot.map $SHELL_FOLDER/output/uboot/u-boot.map
 cp $SHELL_FOLDER/u-boot-2021.07/u-boot.bin $SHELL_FOLDER/output/uboot/u-boot.bin
-$CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/uboot/u-boot.elf > $SHELL_FOLDER/output/uboot/u-boot.lst
+$GLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/uboot/u-boot.elf > $SHELL_FOLDER/output/uboot/u-boot.lst
 
 # 生成uboot.dtb
 cd $SHELL_FOLDER/dts
@@ -79,8 +82,8 @@ if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then
 mkdir $SHELL_FOLDER/output/linux_kernel
 fi  
 cd $SHELL_FOLDER/linux-5.10.42
-make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- quard_star_defconfig
-make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- -j16
+make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
+make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j16
 cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 
 # 编译busybox-1.33.1
@@ -88,9 +91,9 @@ if [ ! -d "$SHELL_FOLDER/output/busybox" ]; then
 mkdir $SHELL_FOLDER/output/busybox
 fi  
 cd $SHELL_FOLDER/busybox-1.33.1
-make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- quard_star_defconfig
-make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- -j16
-make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- install
+make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
+make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j16
+make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- install
 
 # 合成文件系统映像
 MAKE_ROOTFS_DIR=$SHELL_FOLDER/output/rootfs
@@ -145,8 +148,8 @@ all)
     ln -s ./lib ./lib64
     cd $MAKE_ROOTFS_DIR
     fi
-    cp $CROSS_COMPILE_DIR/riscv64-buildroot-linux-gnu/sysroot/lib/* $TARGET_ROOTFS_DIR/lib/
-    cp $CROSS_COMPILE_DIR/riscv64-buildroot-linux-gnu/sysroot/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
+    cp -r $GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR/lib/* $TARGET_ROOTFS_DIR/lib/
+    cp -r $GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
     pkexec $SHELL_FOLDER/build_rootfs/build.sh $MAKE_ROOTFS_DIR
     ;;
 bootfs)
