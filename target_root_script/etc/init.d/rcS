@@ -7,6 +7,8 @@ mount -a
 /sbin/mdev -s
 mount -a
 
+mkdir /dev/pts
+mount -t devpts devpts /dev/pts
 mount -t 9p -o trans=virtio,version=9p2000.L,msize=16384 hostshare /mnt/
 
 echo QEMU-QUARD-STAR > /proc/sys/kernel/hostname
