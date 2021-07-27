@@ -1,7 +1,8 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 
 VC=\
-"1920x1080 | \
+"full-screen | \
+1920x1080 | \
 1600x900 | \
 1280x960 | \
 1280x720 | \
@@ -35,6 +36,7 @@ else
 	case "$2" in
 	full-screen)
 		DEFAULT_VC="$(xrandr -q 2>/dev/zero | awk '/*/{print $1}')"
+		FULL_SCREEN=-full-screen
 		;;
 	*)
 		DEFAULT_VC=$2
@@ -95,4 +97,4 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device virtio-keyboard-device,id=input1 \
 -device virtio-9p-device,id=fs0,fsdev=fsdev0,mount_tag=hostshare \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc="$DEFAULT_V"" \
-$GRAPHIC_PARAM
+$GRAPHIC_PARAM $FULL_SCREEN

@@ -598,7 +598,12 @@ static void gd_switch(DisplayChangeListener *dcl,
     }
 
     if (resized) {
-        gd_update_windowsize(vc);
+        if(vc->s->full_screen){
+            gtk_menu_item_activate(GTK_MENU_ITEM(vc->s->full_screen_item));
+            gtk_menu_item_activate(GTK_MENU_ITEM(vc->s->full_screen_item));
+        } else {
+            gd_update_windowsize(vc);
+        }
     } else {
         gd_update_full_redraw(vc);
     }
