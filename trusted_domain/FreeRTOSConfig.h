@@ -53,7 +53,6 @@
 #define configMINIMAL_STACK_SIZE		( ( unsigned short ) 512 )
 #define configTOTAL_HEAP_SIZE			( ( size_t ) 64500 )
 #define configMAX_TASK_NAME_LEN			( 16 )
-#define configUSE_TRACE_FACILITY		0
 #define configUSE_16_BIT_TICKS			0
 #define configIDLE_SHOULD_YIELD			0
 #define configUSE_MUTEXES				1
@@ -63,7 +62,6 @@
 #define configUSE_MALLOC_FAILED_HOOK	0
 #define configUSE_APPLICATION_TASK_TAG	0
 #define configUSE_COUNTING_SEMAPHORES	1
-#define configGENERATE_RUN_TIME_STATS	0
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
 
 /* Co-routine definitions. */
@@ -75,6 +73,11 @@
 #define configTIMER_TASK_PRIORITY		( configMAX_PRIORITIES - 1 )
 #define configTIMER_QUEUE_LENGTH		6
 #define configTIMER_TASK_STACK_DEPTH	( 110 )
+
+/* Run time and task stats gathering related definitions. */
+#define configGENERATE_RUN_TIME_STATS           0
+#define configUSE_TRACE_FACILITY                1
+#define configUSE_STATS_FORMATTING_FUNCTIONS    1
 
 /* RISC-V definitions. */
 #define configISR_STACK_SIZE_WORDS		2048

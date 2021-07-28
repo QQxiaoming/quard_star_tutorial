@@ -63,7 +63,8 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     2021.07.18(下午):从昨天晚上开始准备着手把freertos移植到trusted_domain中，但是下载了目前最新版本的freertos发现官方没有只有riscv S模式的移植包，都是基于M模式，那就自己来干吧，反正FreeRTOS是我最最熟悉的操作系统，经过一晚上加今天大半天的时间，终于移植成功了，主要是三部分，Tick使用sbi系统调用sbi_set_timer，任务上下文调度主要在S模式不要操作错CSR寄存器了，最后是portYIELD使用sbi_send_ipi向自己核心发送软中断进行。目前基本功能移植成功，目前已知还有两个细节需要优化，一是使用了中断栈但不能支持嵌套，sscratch没有利用到也不高效，这个需要分析下看究竟能否支持中断嵌套，二是浮点栈帧没有保存恢复，这个下次添加时要仔细考虑，最好能实现惰性压栈。不过目前的移植对于大部分需求来讲已经满足了。不知道是不是全网首发的S模式Freertos移植，反正我是没找到有人发布。毕竟S模式下，实时性可能会备受打击，但是目前我在qemu测试还好，当然我需要进一步测试，后面添加一些实时系统和linux系统ipc通讯的测试看看。
 - 
     2021.07.24(上午):这周头痛没太多进展，这次主要是重新自己使用了 https://github.com/riscv/riscv-gnu-toolchain （ gitee镜像：https://gitee.com/mirrors/riscv-gnu-toolchain ），仓库分别编译了用于linux的编译器和用于裸机开发的编译器，这样裸机开发就能使用newlib的c库。不过更新了编译器后重新编译target_root_app时更新了一些编译脚本，大部分都没有问题了，但是screen工作不正常，debug了一下还没找到问题，后面有空再查找这个问题了。
-- 2021.07.26(晚上):周末台风天一直在debug screen工作不正常的问题，今天晚上终于给解决了。这里一定要记录下曲折的心路历程(＞﹏＜)！首先是执行screen后出现“[screen is terminating]”后就瞬间退出了，很莫名其妙，第一想法就是打开编译screen的Makefile文件，把“OPTIONS= -DDEBUG”打开，然后再次执行，会在/tmp/debug/{SCREEN,screen}.*产生log信息，查找log并对比了之前正常工作log，完全没发现什么异常，然后我尝试交叉编译了strace工具，没有什么异常发现，没有办法，只好去交叉编译了gdb工具（交叉编译gdb时会报出很多错误，主要还是官方的编译脚本有漏洞，均是路径错误，我手动修改后最终编译成功）生成了一个可以在目标板运行 的gdb工具，拷贝到目标板中，使用gdb调试一点点定位问题，再次打开编译screen的Makefile文件，修改成“CFLAGS = -g -O0 -D_GNU_SOURCE”方便我们使用gdb调试。很快我就发现screen.c:1235这里会调用fork，并且主进程在之后并没有做产生异常就收到了SIGHUP信号退出了，因此出现异常的应该是这里创建的子进程。我想起来之前strace可能没有检查子进程的log，于是重新使用“strace -f /bin/screen”检查，却还是没发现什么异常，奇怪！只好继续用gdb跟踪子进程，方法是进入gdb后，使用“set follow-fork-mode child”命令来指示gdb跟踪子进程，经过一番定位最终screen.c:1428的MakeWindow(&nwin)返回了-1引起错误，进一步跟踪发现产生错误的调用关系是这样：
+- 
+    2021.07.26(晚上):周末台风天一直在debug screen工作不正常的问题，今天晚上终于给解决了。这里一定要记录下曲折的心路历程(＞﹏＜)！首先是执行screen后出现“[screen is terminating]”后就瞬间退出了，很莫名其妙，第一想法就是打开编译screen的Makefile文件，把“OPTIONS= -DDEBUG”打开，然后再次执行，会在/tmp/debug/{SCREEN,screen}.*产生log信息，查找log并对比了之前正常工作log，完全没发现什么异常，然后我尝试交叉编译了strace工具，没有什么异常发现，没有办法，只好去交叉编译了gdb工具（交叉编译gdb时会报出很多错误，主要还是官方的编译脚本有漏洞，均是路径错误，我手动修改后最终编译成功）生成了一个可以在目标板运行 的gdb工具，拷贝到目标板中，使用gdb调试一点点定位问题，再次打开编译screen的Makefile文件，修改成“CFLAGS = -g -O0 -D_GNU_SOURCE”方便我们使用gdb调试。很快我就发现screen.c:1235这里会调用fork，并且主进程在之后并没有做产生异常就收到了SIGHUP信号退出了，因此出现异常的应该是这里创建的子进程。我想起来之前strace可能没有检查子进程的log，于是重新使用“strace -f /bin/screen”检查，却还是没发现什么异常，奇怪！只好继续用gdb跟踪子进程，方法是进入gdb后，使用“set follow-fork-mode child”命令来指示gdb跟踪子进程，经过一番定位最终screen.c:1428的MakeWindow(&nwin)返回了-1引起错误，进一步跟踪发现产生错误的调用关系是这样：
     
     ```
     screen.c:1428:MakeWindow(&nwin)
@@ -82,7 +83,7 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     
     但是要注意到[内核文档devices](linux-5.10.42/Documentation/admin-guide/devices.rst)第155行提到了要将devpts挂载到/dev/pts这样linux风格的pty设备才能使用，原来是这样( ^_^ )！我们在目标文件系统配置文件/etc/fstab使用mdev的方式生成/dev目录，但是并没有给我们创建/dev/pts目录，因此不能直接在/etc/fstab添加挂载设备信息，那我们就还是在/etc/init.d/rcS启动脚本中添加，在/sbin/mdev -s后添加
     
-    ```
+    ```shell
     mkdir /dev/pts
     mount -t devpts devpts /dev/pts
     ```
@@ -102,3 +103,16 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     ```
 
     这样就可以针对全屏的情况下刷新正确的size。
+- 
+    2021.07.28(晚上):trusted_domain裸机程序可以使用newlib了，因此修改了一下启动脚本并做了相关newlib桩函数的移植，然后编译发现出错，原来是因为我们使用编译选项-mcmodel=medany来保证程序可以链接到0x80000000以上的高地址，但是默认编译的带newlib的编译器使用了-mcmodel=medlow来编译c库，因此无法链接，又踩到一个坑，只好重新编译了。最终总结编译命令如下:
+
+    ```shell
+    # 用于裸机带newlib的gcc
+    ./configure --prefix=/opt/gcc-riscv64-unknown-elf --with-cmodel=medany
+    make -j16
+    # 用于linux带glibc的gcc
+    ./configure --prefix=/opt/gcc-riscv64-unknown-linux-gnu
+    make linux -j16
+    ```
+    到这里我们的编译器基本更换完成，后面如果遇到问题终于不用担心别人提供的二进制开发工具是否存在问题了，我们拥有全部的源码可以自行编译、debug、fix问题，O(∩_∩)O哈哈~ 
+

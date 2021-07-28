@@ -58,6 +58,7 @@ C_SOURCES =  \
 		${wildcard $(TOP_DIR)/FreeRTOS-Kernel/portable/GCC/RISC-V/*.c} \
 		${wildcard $(TOP_DIR)/FreeRTOS-Kernel/portable/MemMang/heap_4.c} \
 		${wildcard $(TOP_DIR)/driver/*.c} \
+		${wildcard $(TOP_DIR)/stubs/*.c} \
 		${wildcard $(TOP_DIR)/riscv/*.c} \
 		${wildcard $(TOP_DIR)/*.c}
 
@@ -75,7 +76,7 @@ PERIFLIB_SOURCES =
 #######################################
 # CFLAGS
 #######################################
-MCU = -march=rv64imafdc -mcmodel=medany -msmall-data-limit=8 -fmessage-length=0 -fsigned-char
+MCU = -march=rv64imafdc -mabi=lp64d -mcmodel=medany -msmall-data-limit=8 -fmessage-length=0 -fsigned-char
 
 # macros for gcc
 # AS defines
@@ -94,6 +95,7 @@ C_INCLUDES = \
 		-I $(TOP_DIR)/FreeRTOS-Kernel/include \
 		-I $(TOP_DIR)/FreeRTOS-Kernel/portable/GCC/RISC-V \
 		-I $(TOP_DIR)/riscv \
+		-I $(TOP_DIR)/stubs \
 		-I $(TOP_DIR)/driver \
 		-I $(TOP_DIR)
 
