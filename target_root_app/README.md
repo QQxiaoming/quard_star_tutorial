@@ -378,3 +378,96 @@ ROWS="$(echo $QEMU_VPARAM | sed 's/\(.*\)vn:\(.*\)x\(.*\)/\2/g')"
 COLS="$(echo $QEMU_VPARAM | sed 's/\(.*\)vn:\(.*\)x\(.*\)/\3/g')"
 stty rows $ROWS cols $COLS
 ```
+
+#### qt编译
+
+添加编译配置文件qt-everywhere-src-5.12.11/qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf，内容如下：
+
+```
+#
+# qmake configuration for building with riscv64-unknown-linux-gnu-g++
+#
+
+MAKEFILE_GENERATOR      = UNIX
+CONFIG                 += incremental
+QMAKE_INCREMENTAL_STYLE = sublib
+
+include(../common/linux.conf)
+include(../common/gcc-base-unix.conf)
+include(../common/g++-unix.conf)
+
+# modifications to g++.conf
+QMAKE_CC                = riscv64-unknown-linux-gnu-gcc
+QMAKE_CXX               = riscv64-unknown-linux-gnu-g++
+QMAKE_LINK              = riscv64-unknown-linux-gnu-g++ 
+QMAKE_LINK_SHLIB        = riscv64-unknown-linux-gnu-g++
+QMAKE_LIBS              = -latomic
+
+# modifications to linux.conf
+QMAKE_AR                = riscv64-unknown-linux-gnu-ar cqs
+QMAKE_OBJCOPY           = riscv64-unknown-linux-gnu-objcopy
+QMAKE_NM                = riscv64-unknown-linux-gnu-nm -P
+QMAKE_STRIP             = riscv64-unknown-linux-gnu-strip
+load(qt_config)
+```
+
+添加编译配置文件qt-everywhere-src-5.12.11/qtbase/mkspecs/linux-riscv64-gnu-g++/qplatformdefs.h，内容如下：
+
+```c
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the qmake spec of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:LGPL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Lesser General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU Lesser
+** General Public License version 3 as published by the Free Software
+** Foundation and appearing in the file LICENSE.LGPL3 included in the
+** packaging of this file. Please review the following information to
+** ensure the GNU Lesser General Public License version 3 requirements
+** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 2.0 or (at your option) the GNU General
+** Public license version 3 or any later version approved by the KDE Free
+** Qt Foundation. The licenses are as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
+** included in the packaging of this file. Please review the following
+** information to ensure the GNU General Public License requirements will
+** be met: https://www.gnu.org/licenses/gpl-2.0.html and
+** https://www.gnu.org/licenses/gpl-3.0.html.
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+#include "../linux-g++/qplatformdefs.h"
+```
+
+修改源码中一个缺失的头文件包含，位于qt-everywhere-src-5.12.11/qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h:52行，添加如下内容：
+
+```c
+#include <limits>
+```
+
+执行以下命令进行编译
+
+```shell
+# 编译qt
+export PATH=$PATH:$CROSS_COMPILE_DIR/bin
+$CONFIGURE -release -opensource -ltcg -optimize-size -confirm-license -skip webengine -nomake tools -nomake tests -nomake examples -no-opengl -silent -qpa linuxfb -xplatform linux-riscv64-gnu-g++ -prefix $SHELL_FOLDER/host_output
+make -j16
+make install
+```

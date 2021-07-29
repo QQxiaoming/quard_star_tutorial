@@ -49,6 +49,7 @@
 
 #include <initializer_list>
 #include <type_traits>
+#include <limits>
 
 //
 //  W A R N I N G

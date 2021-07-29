@@ -107,6 +107,17 @@ build_cu()
     make prefix=$SHELL_FOLDER/output LIBEVENTDIR=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc install
 }
 
+build_qt()
+{
+    # 编译qt
+    echo "\033[1;4;41;32m编译qt\033[0m"
+    cd $SHELL_FOLDER/qt-everywhere-src-5.12.11
+	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
+	$CONFIGURE -release -opensource -ltcg -optimize-size -confirm-license -skip webengine -nomake tools -nomake tests -nomake examples -no-opengl -silent -qpa linuxfb -xplatform linux-riscv64-gnu-g++ -prefix $SHELL_FOLDER/host_output
+	make -j$PROCESSORS
+	make install
+}
+
 case "$1" in
 bash)
     build_bash
@@ -135,6 +146,9 @@ screen)
 cu)
     build_cu
     ;;
+qt)
+    build_qt
+    ;;
 all)
     build_make
     build_ncurses
@@ -145,6 +159,7 @@ all)
     build_libevent
     build_screen
     build_cu
+	build_qt
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
