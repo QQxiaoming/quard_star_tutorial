@@ -1,0 +1,144 @@
+import("//build/config/features.gni")
+import("//build/config/ui.gni")
+import("//components/spellcheck/spellcheck_build_features.gni")
+import("//pdf/features.gni")
+import("//ppapi/buildflags/buildflags.gni")
+import("//printing/buildflags/buildflags.gni")
+
+source_set("qtwebengine_spellcheck_sources") {
+  include_dirs = core_include_dirs
+  configs += [
+    "//third_party/boringssl:external_config",
+  ]
+  sources = [
+    "//chrome/browser/spellchecker/spell_check_host_chrome_impl.cc",
+    "//chrome/browser/spellchecker/spell_check_host_chrome_impl.h",
+    "//chrome/browser/spellchecker/spellcheck_custom_dictionary.cc",
+    "//chrome/browser/spellchecker/spellcheck_custom_dictionary.h",
+    "//chrome/browser/spellchecker/spellcheck_factory.cc",
+    "//chrome/browser/spellchecker/spellcheck_factory.h",
+    "//chrome/browser/spellchecker/spellcheck_hunspell_dictionary.cc",
+    "//chrome/browser/spellchecker/spellcheck_hunspell_dictionary.h",
+    "//chrome/browser/spellchecker/spellcheck_service.cc",
+    "//chrome/browser/spellchecker/spellcheck_service.h",
+  ]
+  deps = [
+    "//components/spellcheck/browser",
+    "//components/spellcheck/renderer",
+    "//third_party/blink/public:blink",
+    "//third_party/hunspell",
+  ]
+  if (is_mac && use_browser_spellchecker) {
+    sources += [
+        "//chrome/browser/spellchecker/spell_check_host_chrome_impl_mac.cc",
+    ]
+  }
+}
+
+source_set("qtwebengine_sources") {
+  configs += [
+    "//skia:skia_config",
+    "//third_party/boringssl:external_config",
+  ]
+  deps = [
+    "//chrome/common:buildflags",
+    "//components/nacl/common:buildflags",
+    "//extensions/buildflags:buildflags",
+    "//third_party/blink/public/mojom:mojom_platform",
+  ]
+  sources = [
+    "//chrome/common/custom_handlers/protocol_handler.cc",
+    "//chrome/common/custom_handlers/protocol_handler.h",
+    "//chrome/browser/custom_handlers/protocol_handler_registry.cc",
+    "//chrome/browser/custom_handlers/protocol_handler_registry.h",
+    "//chrome/browser/custom_handlers/protocol_handler_registry_factory.cc",
+    "//chrome/browser/custom_handlers/protocol_handler_registry_factory.h",
+    "//chrome/browser/media/webrtc/desktop_media_list.h",
+    "//chrome/browser/media/webrtc/desktop_streams_registry.cc",
+    "//chrome/browser/media/webrtc/desktop_streams_registry.h",
+    "//chrome/browser/net/chrome_mojo_proxy_resolver_factory.cc",
+    "//chrome/browser/net/chrome_mojo_proxy_resolver_factory.h",
+    "//chrome/browser/profiles/profile.cc",
+    "//chrome/browser/profiles/profile.h",
+    "//chrome/browser/ui/webui/devtools_ui.cc",
+    "//chrome/browser/ui/webui/devtools_ui.h",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_handler.cc",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_handler.h",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_proxy.cc",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_proxy.h",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_types.cc",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_types.h",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_ui.cc",
+    "//chrome/browser/ui/webui/quota_internals/quota_internals_ui.h",
+    "//chrome/browser/ui/webui/task_scheduler_internals/task_scheduler_internals_ui.cc",
+    "//chrome/browser/ui/webui/task_scheduler_internals/task_scheduler_internals_ui.h",
+    "//chrome/common/chrome_switches.cc",
+    "//chrome/common/chrome_switches.h",
+    "//chrome/common/pref_names.cc",
+    "//chrome/common/pref_names.h",
+    "//chrome/common/url_constants.cc",
+    "//chrome/common/url_constants.h",
+    "//chrome/common/webui_url_constants.cc",
+    "//chrome/common/webui_url_constants.h",
+    "//extensions/common/constants.cc",
+    "//extensions/common/constants.h",
+    "//extensions/common/url_pattern.cc",
+    "//extensions/common/url_pattern.h",
+  ]
+
+  if (is_linux) {
+    sources += [
+      "//chrome/browser/ui/webui/sandbox_internals_ui.cc",
+      "//chrome/browser/ui/webui/sandbox_internals_ui.h",
+    ]
+  }
+
+  if (enable_spellcheck) {
+    deps += [
+      ":qtwebengine_spellcheck_sources",
+      "//chrome/tools/convert_dict",
+    ]
+  }
+
+  if (enable_plugins) {
+      sources += [
+        "//chrome/browser/renderer_host/pepper/pepper_flash_clipboard_message_filter.cc",
+        "//chrome/browser/renderer_host/pepper/pepper_flash_clipboard_message_filter.h",
+        "//chrome/renderer/pepper/pepper_flash_font_file_host.cc",
+        "//chrome/renderer/pepper/pepper_flash_font_file_host.h",
+        "//chrome/renderer/pepper/pepper_shared_memory_message_filter.cc",
+        "//chrome/renderer/pepper/pepper_shared_memory_message_filter.h",
+      ]
+
+      deps += [
+        # Need to depend on //content/ppapi_plugin, which is private, thus depending on parent.
+        "//content",
+      ]
+  }
+
+  if (enable_basic_printing || enable_print_preview) {
+    sources += [
+      "//chrome/browser/printing/printer_query.cc",
+      "//chrome/browser/printing/printer_query.h",
+      "//chrome/browser/printing/print_job.cc",
+      "//chrome/browser/printing/print_job.h",
+      "//chrome/browser/printing/print_job_manager.cc",
+      "//chrome/browser/printing/print_job_manager.h",
+      "//chrome/browser/printing/print_job_worker.cc",
+      "//chrome/browser/printing/print_job_worker.h",
+    ]
+    deps += [
+      "//printing/buildflags:buildflags",
+    ]
+  }
+
+  if (enable_pdf) {
+      deps += [
+         "//pdf",
+         "//pdf:buildflags",
+         "//components/printing/browser",
+         "//components/printing/renderer",
+      ]
+  }
+}
+

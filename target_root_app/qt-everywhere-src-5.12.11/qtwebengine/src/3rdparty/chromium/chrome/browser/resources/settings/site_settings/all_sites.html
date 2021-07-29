@@ -1,0 +1,65 @@
+<link rel="import" href="chrome://resources/html/polymer.html">
+
+<link rel="import" href="chrome://resources/html/md_select_css.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/iron-list/iron-list.html">
+<link rel="import" href="../global_scroll_target_behavior.html">
+<link rel="import" href="../route.html">
+<link rel="import" href="../settings_page/settings_subpage_search.html">
+<link rel="import" href="../settings_shared_css.html">
+<link rel="import" href="../settings_vars_css.html">
+<link rel="import" href="site_entry.html">
+
+<dom-module id="all-sites">
+  <template>
+    <style include="settings-shared md-select">
+      /* Align the search box search icon with the site-entry icons. */
+      #searchAndSort {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 var(--cr-icon-button-margin-start);
+        margin-bottom: 50px;
+        padding: 0 var(--settings-box-row-padding);
+      }
+
+      #sortMethod {
+        -webkit-margin-start: 1em;
+      }
+
+      /* There is only one top-level heading for All Sites, so remove the
+       * additional leading padding used for lists. */
+      .list-frame.without-heading {
+        -webkit-padding-start: var(--settings-box-row-padding);
+      }
+    </style>
+    <div id="searchAndSort">
+      <settings-subpage-search label="$i18n{siteSettingsAllSitesSearch}"
+          on-search-changed="onSearchChanged_">
+      </settings-subpage-search>
+
+      <div>
+        <label id="sortLabel">$i18n{siteSettingsAllSitesSort}</label>
+        <select id="sortMethod" class="md-select" aria-labelledby="sortLabel"
+          on-change="onSortMethodChanged_">
+          <!-- TODO(https://crbug.com/835712): Implement remaining two sort
+              methods. -->
+          <option value="[[sortMethods_.name]]">
+            $i18n{siteSettingsAllSitesSortMethodName}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="list-frame" hidden$="[[siteGroupList.length]]">
+      <div class="list-item secondary">$i18n{noSitesAdded}</div>
+    </div>
+    <div class="list-frame without-heading" id="listContainer">
+      <iron-list id="allSitesList"
+          items="[[filterPopulatedList_(siteGroupList, searchQuery_)]]"
+          scroll-target="[[subpageScrollTarget]]">
+        <template>
+          <site-entry site-group="[[item]]" list-index="[[index]]"></site-entry>
+        </template>
+      </iron-list>
+    </div>
+  </template>
+  <script src="all_sites.js"></script>
+</dom-module>

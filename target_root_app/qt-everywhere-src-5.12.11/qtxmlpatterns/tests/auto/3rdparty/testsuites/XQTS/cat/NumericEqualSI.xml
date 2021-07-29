@@ -1,0 +1,26 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NumericEqualSI">
+   <GroupInfo>
+      <title>op:numeric-equal</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="value-comparison-3" FilePath="SchemaImport/NumericEqualSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of numeric value comparison involving type promotion to least common type. Uses "eq" operator between integer and float types.</description>
+      <spec-citation spec="FuncOps" section-number="6.3.1" section-title="op:numeric-equal" section-pointer="func-numeric-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="value-comparison-3" date="2006-04-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value-comparison-3.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="value-comparison-4" FilePath="SchemaImport/NumericEqualSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of numeric value comparison involving type promotion to least common type. Uses "ne" operator between integer and float types.</description>
+      <spec-citation spec="FuncOps" section-number="6.3.1" section-title="op:numeric-equal" section-pointer="func-numeric-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="value-comparison-4" date="2006-04-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value-comparison-4.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+</test-group>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="fn">round-half-to-even</xqx:functionName>
+        <xqx:arguments>
+          <xqx:divOp>
+            <xqx:firstOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">negativeInteger</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>-999999999999999999</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">negativeInteger</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>-297014075999096793</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:secondOperand>
+          </xqx:divOp>
+          <xqx:integerConstantExpr>
+            <xqx:value>18</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

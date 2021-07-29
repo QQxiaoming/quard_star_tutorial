@@ -1,0 +1,121 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                 General                                  *
+****************************************************************************
+
+Chromium Snapshot
+-----------------
+
+- Updated the Chromium version to 65.0.3325.151.
+- Applied security fixes from Chrome up to version 66.0.3359.139.
+  * Including: CVE-2018-6085, CVE-2018-6086, CVE-2018-6087, CVE-2018-6088,
+    CVE-2018-6089, CVE-2018-6090, CVE-2018-6091, CVE-2018-6092,
+    CVE-2018-6093, CVE-2018-6094, CVE-2018-6096, CVE-2018-6099,
+    CVE-2018-6100, CVE-2018-6101, CVE-2018-6102, CVE-2018-6103,
+    CVE-2018-6104, CVE-2018-6105, CVE-2018-6106, CVE-2018-6108,
+    CVE-2018-6110, CVE-2018-6111, CVE-2018-6115, CVE-2018-6116 and
+    CVE-2018-6118
+
+Behavioral Changes
+------------------
+
+- [QTBUG-65484] User script metadata parsing now supports regular
+  expressions in @include and @exclude rules.
+- Enabled chrome://quota-internals, chrome://taskscheduler-internals,
+  and on Linux, chrome://sandbox.
+- [QTBUG-62414] Default context menus for Qt Quick and Qt Widgets got
+  a revamp and are now unified.
+
+Build System
+------------
+
+- [QTBUG-66596] QtWebEngine now requires Visual Studio 2017 on Windows.
+- Building with -no-feature-draganddrop configure option got fixed.
+
+Command Line
+------------
+
+- Process per Site model is now supported via --process-per-site.
+- There's now an option to hide internal IP addresses from WebRTC via
+  --force-webrtc-ip-handling-policy=default_public_interface_only.
+
+****************************************************************************
+*                                Libraries                                 *
+****************************************************************************
+
+Deprecation Notice
+------------------
+
+- [QTBUG-62640] [Q]WebEngineDownloadItem::type got deprecated. Use newly
+  introduced [Q]WebEngineDownloadItem::isSavePageDownload instead.
+
+Qt WebEngineCore
+----------------
+
+- [QTBUG-62897] Added QWebEngineCookieStore::setCookieFilter()
+  to allow blocking cookie access.
+- Added QWebEngineQuotaRequest, QWebEngineQuotaRequest classes.
+- Added QWebEngineUrlRequestJob::initiator() accessor.
+
+Qt WebEngine (QML)
+------------------
+
+- Added WebEngineContextMenuRequest::editFlags,
+  WebEngineContextMenuRequest::mediaFlags properties to allow further tailoring
+  custom context menus.
+- [QTBUG-57505] Added WebEngineSettings::webRTCPublicInterfacesOnly property
+  to enable hiding private IP addresses from WebRTC services.
+- [QTBUG-64056] Added WebEngineSettings::javaScriptCanPaste property
+  to enable 'execCommand("paste")'.
+- Added WebEngineSettings::playbackRequiresUserGesture property
+  to inhibit playback of media content until the user interacts with the page.
+- Added WebEngineSettings::unknownUrlSchemePolicy property
+  to specify how navigation requests to URLs with unknown schemes should be
+  handled.
+- [QTBUG-51181] Added WebEngineView.geometryChangeRequested signal.
+- [QTBUG-47899, QTBUG-50725, QTBUG-50766] WebEngineView::inspectedView,
+  WebEngineView::devToolsView properties can be used to programmatically set up
+  a devtools page.
+- Added WebEngineView::quotaRequested() signal to handle requests for bigger
+  file system quotas (navigator.webkitPersistentStorage.requestQuota).
+- Added WebEngineView::registerProtocolHandlerRequested() signal to handle
+  requests from window.navigator.registerProtocolHandler API.
+
+Qt WebEngineWidgets
+-------------------
+
+- Added QWebEngineContextMenuData::editFlags(),
+  QWebEngineContextMenuData::mediaFlags() properties to allow further tailoring
+  custom context menus.
+- [QTBUG-57505] Added QWebEngineSettings::WebRTCPublicInterfacesOnly attribute
+  to enable hiding private IP addresses from WebRTC services.
+- [QTBUG-64056] Added QWebEngineSettings::JavaScriptCanPaste attribute
+  to enable 'execCommand("paste")'.
+- Added QWebEngineSettings::PlaybackRequiresUserGesture attribute
+  to inhibit playback of media content until the user interacts with the page.
+- Added QWebEngineSettings::unknownUrlSchemePolicy property
+  to specify how navigation requests to URLs with unknown schemes should be
+  handled.
+- [QTBUG-47899, QTBUG-50725, QTBUG-50766] QWebEnginePage::setInspectedPage(),
+  QWebEnginePage::setDevToolsPage() can be set to programmatically set up
+  a devtools page.
+- Added QWebEnginePage::quotaRequested() signal to handle requests for bigger
+  file system quotas (navigator.webkitPersistentStorage.requestQuota).
+- Added QWebEnginePage::registerProtocolHandlerRequested() signal to handle
+  requests from window.navigator.registerProtocolHandler API.

@@ -1,0 +1,110 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtserialbus-index.html
+    \title Qt Serial Bus
+    \brief Provides an API to access various serial bus devices
+    \ingroup technology-apis
+
+    The Qt Serial Bus API provides classes and functions to access the various
+    industrial serial buses and protocols, such as CAN, ModBus, and others.
+
+    \section1 Getting Started
+
+    To include the definitions of the module's classes and functions, use the
+    following directive:
+
+    \code
+    #include <QtSerialBus>
+    \endcode
+
+    To link against the module, add this line to your qmake .pro file:
+
+    \code
+    QT += serialbus
+    \endcode
+
+    \section1 Supported Buses and Protocols
+
+    \list
+        \li \l {Qt CAN Bus}
+        \li \l {Qt Modbus}
+    \endlist
+
+    \section1 API Reference
+
+    These are links to the API reference materials.
+
+    \list
+         \li \l {Qt Serial Bus C++ Classes}{C++ Classes}
+    \endlist
+
+    \section1 Logging Categories
+
+    The \l QtSerialBus module exports the following \l {Configuring Categories}{logging categories}:
+
+    \table
+    \header
+        \li Logging Category
+        \li Description
+    \row
+        \li qt.canbus
+        \li Enables standard logging inside the \l {Qt CAN Bus} classes
+    \row
+        \li qt.canbus.plugins
+        \li Enables low level logging inside the \l {Qt CAN Bus} plugin classes.
+        To set logging for a specific plugin, use "qt.canbus.plugins.pluginname".
+        e.g. "qt.canbus.plugins.socketcan". "qt.canbus.plugins*" affects all plugins.
+    \row
+        \li qt.modbus
+        \li Enables standard logging inside the \l {Qt Modbus} classes
+    \row
+        \li qt.modbus.lowlevel
+        \li Enables low level logging including individual packet content inside
+            the \l {Qt Modbus} classes
+    \endtable
+
+    Logging categories can be used to enable additional warning and debug output
+    for \l QtSerialBus. More detailed information about logging can be found
+    in \l QLoggingCategory.
+
+    A quick way to enable all \l {Qt Modbus} logging is to add the following line
+    to the main() function:
+
+    \code
+        QLoggingCategory::setFilterRules(QStringLiteral("qt.modbus* = true"));
+    \endcode
+
+    \section1 Examples
+
+    \list
+         \li \l {CAN Bus Example}
+         \li \l {Modbus Master example}
+         \li \l {Modbus Slave example}
+    \endlist
+*/

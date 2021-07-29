@@ -1,0 +1,244 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="AdjDateToTimezoneFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:adjust-date-to-timezone</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone1args-1" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "adjust-date-to-timezone" function with the arguments set as follows: $arg = xs:date(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone1args-2" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "adjust-date-to-timezone" function with the arguments set as follows: $arg = xs:date(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone1args-3" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "adjust-date-to-timezone" function with the arguments set as follows: $arg = xs:date(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-1" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as per example 1 for this function from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-1" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-2" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as per example 2 for this function from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-2" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-adjust-date-to-timezone-3" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as per example 3 for this function from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-3" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-adjust-date-to-timezone-4" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as per example 4 for this function from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-4" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-5" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as per example 5 for this function from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-5" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-6" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as per example 6 for this function from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-6" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-7" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function using the empty sequence as the value for the first argument.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-7" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-9" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of expression that yields a negative number (two adjust-date-to-timezone functions used).</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-9" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-10" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of subtraction expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-10" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-11" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-11" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-12" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-12" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-13" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as an argument to the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-13" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-14" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of a boolean (or) expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-14" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-15" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of a boolean (or) expression and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-15" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-16" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of a boolean (and) expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-16" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-17" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of a boolean (and) expression and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-17" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-adjust-date-to-timezone-18" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of a subtraction expression that yields a negative number (an adjust-date-to-timezone function and an xs:date constructor used).</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-18" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-adjust-date-to-timezone-19" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function where an xs:date value is subtracted.</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-19" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-adjust-date-to-timezone-20" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:adjust-date-to-timezone" function as part of a comparison expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.7.2" section-title="fn:adjust-date-to-timezone" section-pointer="func-adjust-date-to-timezone"/>
+      <query name="fn-adjust-date-to-timezone-20" date="2005-09-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-adjust-date-to-timezone-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-1" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `adjust-date-to-timezone()`.</description>
+      <query name="K-AdjDateToTimezoneFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-2" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `adjust-date-to-timezone((), (), "WRONG PARAM")`.</description>
+      <query name="K-AdjDateToTimezoneFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-3" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(adjust-date-to-timezone(()))`.</description>
+      <query name="K-AdjDateToTimezoneFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-4" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(adjust-date-to-timezone((), ()))`.</description>
+      <query name="K-AdjDateToTimezoneFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-5" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>A test whose essence is: `adjust-date-to-timezone(()) instance of xs:date?`.</description>
+      <query name="K-AdjDateToTimezoneFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-6" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="runtime-error">
+      <description>Passing a too large xs:dayTimeDuration as timezone to adjust-date-to-timezone().</description>
+      <query name="K-AdjDateToTimezoneFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-7" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="runtime-error">
+      <description>Passing a too small xs:dayTimeDuration as timezone to adjust-date-to-timezone().</description>
+      <query name="K-AdjDateToTimezoneFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-8" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="runtime-error">
+      <description>Passing a xs:dayTimeDuration as timezone to adjust-date-to-timezone() which isn't an integral number of minutes.</description>
+      <query name="K-AdjDateToTimezoneFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-9" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>Example from F&amp;O.</description>
+      <query name="K-AdjDateToTimezoneFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-10" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>Example from F&amp;O.</description>
+      <query name="K-AdjDateToTimezoneFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-11" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>Example from F&amp;O.</description>
+      <query name="K-AdjDateToTimezoneFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-12" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>Example from F&amp;O.</description>
+      <query name="K-AdjDateToTimezoneFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-13" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>Example from F&amp;O.</description>
+      <query name="K-AdjDateToTimezoneFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AdjDateToTimezoneFunc-14" FilePath="Functions/DurationDateTimeFunc/TimezoneFunction/AdjDateToTimezoneFunc/" scenario="standard">
+      <description>Example from F&amp;O.</description>
+      <query name="K-AdjDateToTimezoneFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AdjDateToTimezoneFunc-14.txt</output-file>
+   </test-case>
+</test-group>

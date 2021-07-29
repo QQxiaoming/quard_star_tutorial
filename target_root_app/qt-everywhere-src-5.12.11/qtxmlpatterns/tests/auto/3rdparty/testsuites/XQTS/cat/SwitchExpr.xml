@@ -1,0 +1,186 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SwitchExpression" featureOwner="Michael Kay">
+
+    <GroupInfo>
+        <title>switch expression (XQuery 1.1)</title>
+        <description>Test cases for switch expression introduced in XQuery 1.1</description>
+    </GroupInfo>
+
+    <test-case is-XPath2="false" name="switch-001" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>Basic switch example</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-001" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-002" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>Basic switch example, matches default clause</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-002" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-003" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, non-constant case clause</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-003" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-004" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, multiple case clause</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-004" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-005" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, multiple case clause</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-005" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-006" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, numeric case clause, no type error</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-006" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-007" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, switch operand atomized and converted to string</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-007" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-008" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, case operand atomized and converted to string</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-008" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-008.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-009" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, empty matches empty</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-009" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-009.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-010" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, non-matching empty case operand</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-010" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-010.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-011" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, NaN matches NaN</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-011" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-011.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-012" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, no dynamic errors</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-012" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-012.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-013" FilePath="Expressions/SwitchExpr/" scenario="standard" Creator="Michael Kay">
+        <description>switch test, no dynamic errors</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-013" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">switch-013.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-901" FilePath="Expressions/SwitchExpr/" scenario="runtime-error" Creator="Michael Kay">
+        <description>switch test, type error, switch operand has more than one item</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-901" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-902" FilePath="Expressions/SwitchExpr/" scenario="runtime-error" Creator="Michael Kay">
+        <description>switch test, type error, case operand has more than one item</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-902" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-903" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-903" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-904" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-904" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-905" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-905" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-906" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-906" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-907" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-907" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-908" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-908" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="switch-909" FilePath="Expressions/SwitchExpr/" scenario="parse-error" Creator="Michael Kay">
+        <description>switch test, bad syntax</description>
+        <spec-citation spec="FuncOps" section-number="3.11" section-title="Switch Expression" section-pointer="id-switch"/>
+        <query name="switch-909" date="2010-03-16"/>        
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+    </test-case>
+    
+
+    
+</test-group>

@@ -1,0 +1,237 @@
+{
+    "worldPosition": {
+        "outputs": [
+            "worldPosition"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp vec3 $worldPosition = worldPosition;",
+                "headerSnippets": [ "varying highp vec3 worldPosition;" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "vec3 $worldPosition = worldPosition;",
+                "headerSnippets": [ "in vec3 worldPosition;" ]
+            }
+        ]
+    },
+    "texture": {
+        "outputs": [
+            "texture"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "sampler2D $texture = texture;",
+                "headerSnippets": [ "uniform sampler2D texture;" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "sampler2D $texture = texture;",
+                "headerSnippets": [ "uniform sampler2D texture;" ]
+            }
+        ]
+    },
+    "texCoord": {
+        "outputs": [
+            "texCoord"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp vec2 $texCoord = texCoord;",
+                "headerSnippets": [ "varying highp vec2 texCoord;" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "vec2 $texCoord = texCoord;",
+                "headerSnippets": [ "in vec2 texCoord;" ]
+            }
+        ]
+    },
+    "lightIntensity": {
+        "outputs": [
+            "lightIntensity"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp float $lightIntensity = lightIntensity;",
+                "headerSnippets": [ "uniform highp float lightIntensity;" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "float $lightIntensity = lightIntensity;",
+                "headerSnippets": [ "uniform float lightIntensity;" ]
+            }
+        ]
+    },
+    "exposure": {
+        "outputs": [
+            "exposure"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp float $exposure = exposure;",
+                "headerSnippets": [ "uniform highp float exposure;" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "float $exposure = exposure;",
+                "headerSnippets": [ "uniform float exposure;" ]
+            }
+        ]
+    },
+    "fragColor": {
+        "inputs": [
+            "fragColor"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "gl_fragColor = $fragColor;"
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "fragColor = $fragColor;",
+                "headerSnippets": [ "out vec4 fragColor;" ]
+            }
+        ]
+    },
+    "sampleTexture": {
+        "inputs": [
+            "sampler",
+            "coord"
+        ],
+        "outputs": [
+            "color"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp vec4 $color = texture2D($sampler, $coord);"
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "vec4 $color = texture2D($sampler, $coord);"
+            }
+        ]
+    },
+    "lightModel": {
+        "inputs": [
+            "baseColor",
+            "position",
+            "lightIntensity"
+        ],
+        "outputs": [
+            "outputColor"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp vec4 $outputColor = lightModel($baseColor, $position, $lightIntensity);",
+                "headerSnippets": [ "#pragma include lightmodel.es2.inc" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "vec4 $outputColor = lightModel($baseColor, $position, $lightIntensity);",
+                "headerSnippets": [ "#pragma include lightmodel.gl3.inc" ]
+            }
+        ]
+    },
+    "exposureFunction": {
+        "inputs": [
+            "inputColor",
+            "exposure"
+        ],
+        "outputs": [
+            "outputColor"
+        ],
+        "rules": [
+            {
+                "format": {
+                    "api": "OpenGLES",
+                    "major": 2,
+                    "minor": 0
+                },
+                "substitution": "highp vec4 $outputColor = $inputColor * pow(2.0, $exposure);",
+                "headerSnippets": [ "#pragma include :/lightmodel.es2.inc" ]
+            },
+            {
+                "format": {
+                    "api": "OpenGLCoreProfile",
+                    "major": 3,
+                    "minor": 2
+                },
+                "substitution": "vec4 $outputColor = $inputColor * pow(2.0, $exposure);",
+                "headerSnippets": [ "#pragma include :/lightmodel.gl3.inc" ]
+            }
+        ]
+    }
+}

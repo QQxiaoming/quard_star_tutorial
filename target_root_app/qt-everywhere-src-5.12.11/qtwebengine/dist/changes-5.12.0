@@ -1,0 +1,84 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+
+****************************************************************************
+*                                 General                                  *
+****************************************************************************
+
+Chromium Snapshot
+-----------------
+
+- Updated the Chromium version to 69.0.3497.128
+- Applied security fixes from Chrome up to version 70.0.3538.102
+
+
+Core library changes
+--------------------
+
+- [QTBUG-51631, QTBUG-65682] Both Linux desktop and embedded now use Ozone
+  internally, to be more consistent and better support Wayland.
+- [QTBUG-66068] Stopped creating the default profile if the user didn't use it.
+- [QTBUG-69442] Fixed swapping of Control/Meta on macOS, an improved keycode
+  conversion on all platforms.
+- [QTBUG-70288] Fixed suggested filenames of non-ASCII downloaded items,
+  when encoding is implicit.
+- The internal chrome://accessibility page is now supported.
+
+
+Build System
+------------
+
+- Updated macOS build requirements to macOS 10.12, macOS SDK 10.12, Xcode
+  8.3.3.
+- QtWebChannel is now an optional dependency.
+- [QTBUG-51082] Kerberos support can now be enabled.
+- [QTBUG-70183] Fixed building with system libvpx.
+
+
+****************************************************************************
+*                                Libraries                                 *
+****************************************************************************
+
+Qt WebEngineCore
+----------------
+
+- [QTBUG-62536] Added the QWebEngineUrlScheme class for configuring how
+   custom schemes are parsed and which security restrictions should apply.
+
+
+Qt WebEngine (QML)
+------------------
+
+- WebEngineSettings::dnsPrefetchEnabled added, but disabled by default.
+- WebEngineDownloadItem::view accessor added to tell were the download was triggered.
+- [QTBUG-56117] Introduce WebEngineAction in Quick API.
+- [QTBUG-53745, QTBUG-69237] WebEngineView::printRequest added for window.print() support.
+
+
+ Qt WebEngineWidgets
+-------------------
+
+- QWebEngineSettings::DnsPrefetchEnabled added, but disabled by default.
+- QWebEngineSettings::XSSAuditingEnabled is now enabled by default, to mirror
+  Chromium's behavior.
+- QWebEngineDownloadItem::page() accessor added to tell were the download was triggered.
+- [QTBUG-53745, QTBUG-69237] QWebEnginePage::printRequest added for window.print() support.
+- [QTBUG-54877] Introduced support for client certificates.
+- [QTBUG-64501] Fixed a way to trigger an infinite loop.
+- [QTBUG-69222] Fixed call order of print callback.
+

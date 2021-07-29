@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-AnyURIEqual-10                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoked 'ne' on xs:anyURI values.            :)
+(:*******************************************************:)
+xs:anyURI("http://example.com/A") ne xs:string("http://example.com/B")

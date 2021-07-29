@@ -1,0 +1,261 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="YearMonthDurationMultiply" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:multiply-yearMonthDuration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration2args-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(lower bound) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration2args-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(mid range) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration2args-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(upper bound) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration2args-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(lower bound) $arg2 = xs:double(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration2args-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(lower bound) $arg2 = xs:double(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator as per example 1 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4621</reflects-resolution>
+      <query name="op-multiply-yearMonthDuration-1" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator as part of a boolean expression (and operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-2" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" opeartor as part of a boolean expression (or operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-3" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator used in conjunction with the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-4" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-5" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator as an argument to the "fn:number" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-6" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-7" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-7" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-8" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator that returns a negative value.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-8" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-9" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator, which is part of an "and" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-9" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-10" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator as part of an "or" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-10" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-11" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-11" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-12" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" function used in conjunction with a boolean expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-12" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-13" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-13" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-14" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-14" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-15" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-15" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-16" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-16" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-17" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator multiplied by +0.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-17" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-18" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator multiplied by +0.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-18" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-19" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:multiply-yearMonthDuration" operator, with $arg2 set to NAN, should raise error.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <query name="op-multiply-yearMonthDuration-19" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="op-multiply-yearMonthDuration-20" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Tests rounding of the result of the "op:multiply-yearMonthDuration" operator. See erratum E12.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.3" section-title="op:multiply-yearMonthDuration" section-pointer="func-multiply-yearMonthDuration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4621</reflects-resolution>
+      <query name="op-multiply-yearMonthDuration-20" date="2009-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-multiply-yearMonthDuration-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard">
+      <description>Simple test of multiplying a xs:yearMonthDuration with 3.</description>
+      <query name="K-YearMonthDurationMultiply-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationMultiply-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard">
+      <description>Simple test of multiplying 3 with xs:yearMonthDuration.</description>
+      <query name="K-YearMonthDurationMultiply-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationMultiply-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard">
+      <description>Simple test of multiplying 0 with xs:yearMonthDuration.</description>
+      <query name="K-YearMonthDurationMultiply-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationMultiply-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="standard">
+      <description>Simple test of multiplying a xs:yearMonthDuration with 0.</description>
+      <query name="K-YearMonthDurationMultiply-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationMultiply-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>Simple test of multiplying a xs:yearMonthDuration with INF.</description>
+      <query name="K-YearMonthDurationMultiply-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>Simple test of multiplying a xs:yearMonthDuration with -INF.</description>
+      <query name="K-YearMonthDurationMultiply-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-7" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>Simple test of multiplying a xs:yearMonthDuration with NaN.</description>
+      <query name="K-YearMonthDurationMultiply-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-8" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>The multiplication operator is not available between xs:duration and xs:integer.</description>
+      <query name="K-YearMonthDurationMultiply-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-9" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>The multiplication operator is not available between xs:integer and xs:duration.</description>
+      <query name="K-YearMonthDurationMultiply-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-10" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>The multiplication operator is not available between xs:dayTimeDuration and xs:yearMonthDuration.</description>
+      <query name="K-YearMonthDurationMultiply-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-11" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>The multiplication operator is not available between xs:yearMonthDuration and xs:dayTimeDuration.</description>
+      <query name="K-YearMonthDurationMultiply-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-12" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>The multiplication operator is not available between xs:yearMonthDuration and xs:yearMonthDuration.</description>
+      <query name="K-YearMonthDurationMultiply-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationMultiply-13" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationMultiply/" scenario="runtime-error">
+      <description>The multiplication operator is not available between xs:dayTimeDuration and xs:dayTimeDuration.</description>
+      <query name="K-YearMonthDurationMultiply-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

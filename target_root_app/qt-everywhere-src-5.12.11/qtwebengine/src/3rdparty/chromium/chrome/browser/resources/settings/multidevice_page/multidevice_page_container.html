@@ -1,0 +1,18 @@
+<link rel="import" href="chrome://resources/html/polymer.html">
+
+<link rel="import" href="chrome://resources/html/cr.html">
+<link rel="import" href="chrome://resources/html/web_ui_listener_behavior.html">
+<link rel="import" href="multidevice_constants.html">
+<link rel="import" href="multidevice_browser_proxy.html">
+<link rel="import" href="multidevice_page.html">
+
+<dom-module id="settings-multidevice-page-container">
+  <template>
+    <template is="dom-if" if="[[doesPotentialConnectedPhoneExist]]" restamp>
+      <settings-multidevice-page prefs="[[prefs]]"
+          page-content-data="[[pageContentData_]]">
+      </settings-multidevice-page>
+    </template>
+  </template>
+  <script src="multidevice_page_container.js"></script>
+</dom-module>

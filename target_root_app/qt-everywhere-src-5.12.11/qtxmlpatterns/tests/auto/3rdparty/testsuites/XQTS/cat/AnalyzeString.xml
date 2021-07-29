@@ -1,0 +1,224 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="AnalyzeString">
+    <GroupInfo>
+      <title>Tests of XQuery 1.1 analyze-string() function</title>
+      <description>New function in XQuery 1.1</description>
+    </GroupInfo>
+   <test-case is-XPath2="false" name="analyzeString-001" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string on a zero length string. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-001" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-001.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>  
+   <test-case is-XPath2="false" name="analyzeString-002" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string on an empty sequence. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-002" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-002.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-003" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string with a mix of matching and non-matching strings. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-003" date="2009-10-18"/>                     
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-003.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-004" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string with a single non-matching string. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-004" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-004.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-005" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string with a single matching string. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-005" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-005.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-006" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string with adjacent matching strings. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-006" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-006.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-007" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string with a single captured group. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-007" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-007.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-008" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string with nested captured groups. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-008" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-008.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case> 
+   <test-case is-XPath2="false" name="analyzeString-009" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, groups in alternative branches. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-009" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-009.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>    
+   <test-case is-XPath2="false" name="analyzeString-010" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, with "i" flag. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-010" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-010.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>       
+   <test-case is-XPath2="false" name="analyzeString-011" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, with "i" and "x" flag. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-011" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-011.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>       
+   <test-case is-XPath2="false" name="analyzeString-012" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, flags set to zero-length string. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-012" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-012.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>      
+   <test-case is-XPath2="false" name="analyzeString-013" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, with "s" flag. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-013" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-013.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>        
+   <test-case is-XPath2="false" name="analyzeString-014" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, multiple lines without "s" flag. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-014" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-014.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>      
+   <test-case is-XPath2="false" name="analyzeString-015" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, multiple lines with "m" flag. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-015" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-015.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>  
+   <test-case is-XPath2="false" name="analyzeString-016" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Purpose: analyze-string, multiple lines without "m" flag. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-016" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-016.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>  
+   <test-case is-XPath2="false" name="analyzeString-017" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Subtle distinction in the nesting of an empty captured group</description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-017" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-017.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>                         
+   <test-case is-XPath2="false" name="analyzeString-018" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> Subtle distinction in the nesting of an empty captured group</description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-018" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-018.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>         
+   <test-case is-XPath2="false" name="analyzeString-019" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> "q" flag suppresses grouping </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-019" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-019.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>       
+   <test-case is-XPath2="false" name="analyzeString-020" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> test typing of result of analyze-string: with no import-schema </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-020" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-020.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>     
+   <test-case is-XPath2="false" name="analyzeString-021" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description>test typing of result of analyze-string: with no import-schema </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-021" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-021.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="analyzeString-022" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> test string value of result of analyze-string </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-022" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-022.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>           
+   <test-case is-XPath2="false" name="analyzeString-023" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description> test string value of result of analyze-string </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-023" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-023.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>   
+   <test-case is-XPath2="false" name="analyzeString-024" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="standard" Creator="Michael Kay">
+      <description>test typed value of result of analyze-string: referencing a name defined in the schema </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-024" date="2009-10-18"/>
+      <output-file spec-version="1.1" role="principal" compare="XML">analyzeString-024.out</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>                                             
+   
+   
+   <test-case is-XPath2="false" name="analyzeString-901" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="runtime-error" Creator="Michael Kay">
+      <description> Purpose: analyze-string with bad regex pattern. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-901" date="2009-10-18"/>
+      <expected-error spec-version="1.1">FORX0002</expected-error>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>    
+   <test-case is-XPath2="false" name="analyzeString-902" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="runtime-error" Creator="Michael Kay">
+      <description> Purpose: analyze-string with bad regex flags. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-902" date="2009-10-18"/>
+      <expected-error spec-version="1.1">FORX0001</expected-error>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>       
+   <test-case is-XPath2="false" name="analyzeString-903" FilePath="Functions/AllStringFunc/MatchStringFunc/AnalyzeString/" scenario="runtime-error" Creator="Michael Kay">
+      <description> Purpose: analyze-string, error, regex matches zero-length string. </description>
+      <spec-citation spec="FuncOps" section-number="5.6.5" section-title="fn:analyze-string" section-pointer="func-analyze-string"/>
+      <query name="analyzeString-903" date="2009-10-18"/>
+      <expected-error spec-version="1.1">FORX0003</expected-error>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>          
+</test-group>

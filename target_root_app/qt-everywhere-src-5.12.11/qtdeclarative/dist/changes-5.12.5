@@ -1,0 +1,89 @@
+Qt 5.12.5 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.4.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                   Important Behavior Changes                             *
+****************************************************************************
+
+ - [QTBUG-76871] TapHandler.point now holds the release position while the
+   tapped() signal is emitted.
+
+****************************************************************************
+*                                 QtQml                                    *
+****************************************************************************
+
+ - [QTBUG-76018] Readonly QML properties can now be templates such as
+   list<...>.
+ - [QTBUG-76085] QQmlApplication engine now automatically loads translation
+   files from resource directories.
+ - [QTBUG-75939] Instances of QJSValue can now safely be passed between
+   threads and destroyed in a different thread.
+ - [QTBUG-75642] Fixed an invalid memory read caused by the JIT compiler.
+ - [QTBUG-71387] Fixed a use-after-free condition caused by calling
+   qmlClearTypeRegistrations().
+ - [QTBUG-76656] Made sure JavaScript "this" points to the right object when
+   calling scope and context properties through lookups.
+ - [QTBUG-76796] Fixed bindings to typeof(<name>) to get re-evaluated when
+   <name> gets defined.
+ - [QTBUG-55407] Avoid invalid memory access when calling setData() on a
+   QQmlComponent constructed without an engine.
+ - [QTBUG-76441] Fixed importing "qrc:/" (with exactly one slash).
+ - [QTBUG-71329] Implemented the missing bits of JavaScript promise chains.
+ - [QTBUG-75983] Fixed null pointer dereference in QQmlXmlHttpRequest.
+ - [QTBUG-77012] Fixed static build issue: multiple definitions of
+   qtPositionAttributeName().
+ - [QTBUG-77102] The component versioning is not enforced when loading
+   singletons.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - Item Views:
+   * [QTBUG-76487] We now properly populate delegates with the populate
+     transition when the view is resized after componentComplete.
+   * [QTBUG-31677] A ListView footer is now positioned correctly after the
+     last item is removed.
+   * [QTBUG-76433][QTBUG-44308] Fixed a crash while doing fast flicking in
+     transitions that use Animators.
+   * [QTBUG-76254] Fixed a crash in QQmlDelegateModel.
+
+ - Input:
+   * [QTBUG-75399] Fixed a crash when using the KeyNavigation attached property.
+   * [QTBUG-76875] DragHandler now respects acceptedButtons.
+   * [QTBUG-71218] If a Controls 2 Button has a DragHandler, the button is
+     now released when the drag begins.
+
+ - Scene graph:
+   * [QTBUG-76603] qmlscene now sets the default surface format earlier
+     and correctly.
+   * [QTBUG-68566] Fixed rendering freeze when using software rendering
+     of WebEngine in QQuickWidget.
+   * [QTBUG-66810] Software rendering: repaint everything when moving
+     between HiDpi and lower-resolution screens.
+
+ - Text:
+   * [QTBUG-77217] Fixed a bug where aligning an image to "top" or "bottom"
+     could cause a crash under certain circumstances.
+   * [QTBUG-76528] Fixed missing glyphs and in some cases crashes when
+     displaying many characters from the same font on a system with a
+     low maximum texture size.
+   * [QTBUG-76528] Fixed a bug when displaying many characters from the same
+     font on a system with a low maximum texture size.
+   * [QTBUG-74761] Added support for text color when using color fonts.

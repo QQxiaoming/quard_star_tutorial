@@ -1,0 +1,28 @@
+#version 100
+
+varying highp vec3 worldPosition;
+uniform sampler2D texture;
+varying highp vec2 texCoord;
+uniform highp float lightIntensity;
+uniform highp float exposure;
+highp vec4 lightModel(const in highp vec3 baseColor,
+                      const in highp vec3 pos,
+                      const in highp float intensity)
+{
+    ...
+}
+
+#line 9
+highp vec4 lightModel(const in highp vec3 baseColor,
+                      const in highp vec3 pos,
+                      const in highp float intensity)
+{
+    ...
+}
+
+#line 11
+
+void main()
+{
+    gl_fragColor = (((((lightModel(((texture2D(texture, texCoord))), worldPosition, lightIntensity)))) * pow(2.0, exposure)));
+}

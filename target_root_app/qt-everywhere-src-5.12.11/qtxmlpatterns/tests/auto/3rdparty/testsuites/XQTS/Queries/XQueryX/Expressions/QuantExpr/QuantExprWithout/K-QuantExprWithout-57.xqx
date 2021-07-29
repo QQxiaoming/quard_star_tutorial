@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:eqOp>
+        <xqx:firstOperand>
+          <xqx:functionCallExpr>
+            <xqx:functionName>true</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:firstOperand>
+        <xqx:secondOperand>
+          <xqx:quantifiedExpr>
+            <xqx:quantifier>some</xqx:quantifier>
+            <xqx:quantifiedExprInClause>
+              <xqx:typedVariableBinding>
+                <xqx:varName xqx:prefix="xs">name</xqx:varName>
+              </xqx:typedVariableBinding>
+              <xqx:sourceExpr>
+                <xqx:sequenceExpr>
+                  <xqx:integerConstantExpr>
+                    <xqx:value>1</xqx:value>
+                  </xqx:integerConstantExpr>
+                  <xqx:integerConstantExpr>
+                    <xqx:value>2</xqx:value>
+                  </xqx:integerConstantExpr>
+                </xqx:sequenceExpr>
+              </xqx:sourceExpr>
+            </xqx:quantifiedExprInClause>
+            <xqx:predicateExpr>
+              <xqx:varRef>
+                <xqx:name xqx:prefix="xs">name</xqx:name>
+              </xqx:varRef>
+            </xqx:predicateExpr>
+          </xqx:quantifiedExpr>
+        </xqx:secondOperand>
+      </xqx:eqOp>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

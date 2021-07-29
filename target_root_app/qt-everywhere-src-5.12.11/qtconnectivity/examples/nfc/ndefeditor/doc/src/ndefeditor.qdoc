@@ -1,0 +1,112 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt local connectivity modules.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\example ndefeditor
+\title NDEF Editor Example
+\brief An example about reading and writing NFC Data Exchange Format (NDEF) messages to NFC Forum Tags.
+
+The NDEF Editor example reads and writes NFC Data Exchange Format
+(NDEF) messages to NFC Forum Tags. NDEF messages can be composed by
+adding records of supported types. Additionally, NDEF messages can be
+loaded/saved from/into a file located in the file system of the
+machine where the application is running.
+
+\image ndefeditor.png
+
+\section1 NFC Tag detection
+
+The MainWindow class is able to detect if a NFC Tag is in the range
+for read/write operations. It can also detect if connectivity has been
+lost. This is achieved by connecting the MainWindow class private
+handlers to the signals QNearFieldManager::targetDetected and
+QNearFieldManager::targetLost.
+
+\snippet ndefeditor/mainwindow.cpp QNearFieldManager init
+
+Through the UI a user requests when to start the detection of a NFC
+Tag by calling the method QNearFieldManager::startTargetDetection.
+
+\snippet ndefeditor/mainwindow.cpp QNearFieldManager start detection
+
+Once the target is detected the MainWindow connects the following
+signals to its internal private slots:
+QNearFieldTarget::ndefMessageRead, QNearFieldTarget::NdefReadError,
+QNearFieldTarget::ndefMessagesWritten,
+QNearFieldTarget::NdefWriteError and QNearFieldTarget::error
+
+\snippet ndefeditor/mainwindow.cpp QNearFieldTarget detected
+
+If during the process of reading or writing to a NFC Tag the
+connection is lost, the MainWindow reacts to this event by
+scheduling the target deletion (QObject::deleteLater).
+
+\snippet ndefeditor/mainwindow.cpp QNearFieldTarget lost
+
+\section1 Record creation
+
+The main window of the ndefeditor example manages the composition and
+creation of NFC records. The UI contains a QScrollArea where
+RecordEditors are added dynamically on a user requests basis. The
+following methods of the MainWindow class provide an interface towards
+each of the record editing classes managing the different types of
+records.
+
+\snippet ndefeditor/mainwindow.h 0
+
+The following sections explain each of the record editing classes.
+\section1 Record editing classes
+
+\section2 TextRecordEditor
+
+The TextRecordEditor is a QWidget that can handle editing the values
+of text record that has been requested by the user. For each text
+record, there is a new instance of this class.
+
+\snippet ndefeditor/textrecordeditor.h 0
+
+\section2 UriRecordEditor
+
+The UriRecordEditor is a QWidget that can handle editing the values of
+Uri record that has been requested by the user. For each new Uri
+record there is a new instance of this class.
+
+\snippet ndefeditor/urirecordeditor.h 0
+
+\section2 MimeImageRecordEditor
+
+The UriRecordEditor is a QWidget that can handle editing the values of
+a Mime Image record that has been requested by the user. For each Mime
+Image record there is a new instance of this class.
+
+\snippet ndefeditor/mimeimagerecordeditor.h 0
+
+
+\include examples-run.qdocinc
+
+\sa {Qt NFC}
+*/

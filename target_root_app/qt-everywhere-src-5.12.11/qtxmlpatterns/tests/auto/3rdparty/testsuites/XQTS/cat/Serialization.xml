@@ -1,0 +1,80 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="true" name="Serialization">
+   <GroupInfo>
+      <title>Serialization</title>
+      <description/>
+   </GroupInfo>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-1" FilePath="Optional/Serialization/" scenario="runtime-error">
+      <description>A standalone attribute node cannot be serialized.</description>
+      <query name="K2-Serialization-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>SENR0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-2" FilePath="Optional/Serialization/" scenario="runtime-error">
+      <description>An attribute node appearing after an element cannot be serialized.</description>
+      <query name="K2-Serialization-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>SENR0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-3" FilePath="Optional/Serialization/" scenario="runtime-error">
+      <description>An attribute node appearing before an element cannot be serialized.</description>
+      <query name="K2-Serialization-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>SENR0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-4" FilePath="Optional/Serialization/" scenario="runtime-error">
+      <description>An attribute node appearing between two element nodes cannot be serialized.</description>
+      <query name="K2-Serialization-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>SENR0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-5" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Ensure that CR, NEL and LINE SEPARATOR in text nodes are escaped when serialized.</description>
+      <query name="K2-Serialization-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-6" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Ensure that CR, NL, TAB, NEL and LINE SEPARATOR in attributes are escaped when serialized.</description>
+      <query name="K2-Serialization-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-7" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Use characters in a text node that in XML 1.0 are invalid, and in XML 1.1 must be escaped.</description>
+      <query name="K2-Serialization-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-7.txt</output-file>
+      <expected-error>FOCH0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-8" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Use characters in an attribute node that in XML 1.0 are invalid, and in XML 1.1 must be escaped.</description>
+      <query name="K2-Serialization-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-8.txt</output-file>
+      <expected-error>FOCH0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-9" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Use characters in the range of #x7F through #x9F in an attribute node and ensure they are escaped properly.</description>
+      <query name="K2-Serialization-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-10" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Use characters in the range of #x7F through #x9F in an attribute node and ensure they are escaped properly.</description>
+      <query name="K2-Serialization-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-11" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Ensure a new-line character is properly escaped.</description>
+      <query name="K2-Serialization-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Serialization-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Serialization-12" FilePath="Optional/Serialization/" scenario="standard">
+      <description>Write out elements and attributes that have the same names except for their prefixes.</description>
+      <query name="K2-Serialization-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Serialization-12.txt</output-file>
+   </test-case>
+</test-group>

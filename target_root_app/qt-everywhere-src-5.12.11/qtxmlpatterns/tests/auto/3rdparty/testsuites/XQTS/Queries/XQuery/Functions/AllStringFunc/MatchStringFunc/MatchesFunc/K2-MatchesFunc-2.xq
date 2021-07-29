@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-MatchesFunc-2                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Whitespace(before) in the regexp is collapsed, but not inside a character class. :)
+(:*******************************************************:)
+fn:matches("hello world", "     hello[ ]world", "x")

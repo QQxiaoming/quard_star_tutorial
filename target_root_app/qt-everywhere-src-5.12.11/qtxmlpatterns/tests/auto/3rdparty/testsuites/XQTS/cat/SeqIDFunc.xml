@@ -1,0 +1,246 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqIDFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:id</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-id-1" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-1" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-2" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with second argument ommited an no context node.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-2" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-3" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with second argument not a node.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-3" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-4" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given node not being part of a document with root not Document Element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-4" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-5" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given IDREF matching a single element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-5" static-name="fn-id-dtd-5-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-6" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given IDREF does not match any element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-6" static-name="fn-id-dtd-6-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-id-dtd-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-7" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given IDREF matches same element (Eliminates duplicates).  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-7" static-name="fn-id-dtd-7-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-8" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF matching more than one element (Eliminates duplicates).  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-8" static-name="fn-id-dtd-8-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-8.txt</output-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtdalt-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-9" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF, but only one matching element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-9" static-name="fn-id-dtd-9-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-10" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF, and none matching an element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-10" static-name="fn-id-dtd-10-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-id-dtd-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-11" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF set to empty string.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-11" static-name="fn-id-dtd-11-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-id-dtd-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-12" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id function, where first argument is given as part of fn:substring function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-12" static-name="fn-id-dtd-12-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-13" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id, where the same IDREF makes reference to the same element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-13" static-name="fn-id-dtd-13-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-14" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for for which the given the given IDREF contains a prefix.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-14" static-name="fn-id-dtd-14-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-id-dtd-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-15" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which all members of the IDREF list having the same value.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-15" static-name="fn-id-dtd-15-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-16" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which all members of the IDREF list having the same value (but different cases).  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-16" static-name="fn-id-dtd-16-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-17" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the lower-case function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-17" static-name="fn-id-dtd-17-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-18" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the upper-case function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-18" static-name="fn-id-dtd-18-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-19" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the fn:concat function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-19" static-name="fn-id-dtd-19-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-20" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the xs:string function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-20" static-name="fn-id-dtd-20-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-id-dtd-21" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the fn:string-join function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-21" static-name="fn-id-dtd-21-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-22" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with second argument set to "." an no context node.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-22" date="2006-02-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-dtd-23" FilePath="Functions/NodeSeqFunc/SeqIDFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id together with declare ordering.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-dtd-23" static-name="fn-id-dtd-23-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-dtd-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-1" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Wrong arguments to fn:id().</description>
+      <query name="K2-SeqIDFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-2" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Wrong arguments to fn:id().</description>
+      <query name="K2-SeqIDFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-3" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Wrong arguments to fn:id().</description>
+      <query name="K2-SeqIDFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqIDFunc-4" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Use an invalid target node.</description>
+      <query name="K2-SeqIDFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqIDFunc-5" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Use an invalid target node.</description>
+      <query name="K2-SeqIDFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqIDFunc-6" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Use an invalid target node.</description>
+      <query name="K2-SeqIDFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqIDFunc-7" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Use an invalid target node.</description>
+      <query name="K2-SeqIDFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqIDFunc-8" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="runtime-error">
+      <description>Use an invalid target node.</description>
+      <query name="K2-SeqIDFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqIDFunc-9" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="standard">
+      <description>Use an invalid target node.</description>
+      <query name="K2-SeqIDFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-SeqIDFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-10" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="standard">
+      <description>Select elements with xml:id, and trigger node sorting.</description>
+      <query name="K2-SeqIDFunc-10" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context1">UsingXMLId</input-file>
+      <output-file role="principal" compare="Fragment">K2-SeqIDFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-11" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="standard">
+      <description>Select elements with xml:id, and trigger node sorting.</description>
+      <query name="K2-SeqIDFunc-11" static-name="K2-SeqIDFunc-11-static" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context1">UsingXMLId</input-file>
+      <output-file role="principal" compare="Fragment">K2-SeqIDFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-12" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="standard">
+      <description>Select elements with xml:id, trigger node sorting, and use an invalid NCName in the lookup.</description>
+      <query name="K2-SeqIDFunc-12" static-name="K2-SeqIDFunc-12-static" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context1">UsingXMLId</input-file>
+      <output-file role="principal" compare="Fragment">K2-SeqIDFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDFunc-13" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDFunc/" scenario="standard">
+      <description>Use on xml:id with input strings which contains many IDREFs, and invalid ones too.</description>
+      <query name="K2-SeqIDFunc-13" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context1">XMLIDMany</input-file>
+      <output-file role="principal" compare="Text">K2-SeqIDFunc-13.txt</output-file>
+   </test-case>
+</test-group>

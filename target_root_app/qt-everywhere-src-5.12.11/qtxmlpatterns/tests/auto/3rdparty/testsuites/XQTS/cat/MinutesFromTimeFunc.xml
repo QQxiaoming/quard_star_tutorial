@@ -1,0 +1,190 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="MinutesFromTimeFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:minutes-from-time</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-minutes-from-time1args-1" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function with the arguments set as follows: $arg = xs:time(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time1args-2" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function with the arguments set as follows: $arg = xs:time(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time1args-3" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function with the arguments set as follows: $arg = xs:time(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-1" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function as per example 1 (of this function) of the Functions Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-1" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-2" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function used as part of a numeric less than operation (lt operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-2" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-3" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function as part of a numeric greater than operation (gt operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-3" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-4" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function used as an argument to an avg function.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-4" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-5" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function using empty sequence as argument. Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-5" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-6" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function with argument set so the function returns 59.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-6" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-7" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function as part of an abs function.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-7" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-8" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of an addition expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-8" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-9" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a subtraction expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-9" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-10" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a multiplication expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-10" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-11" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-11" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-12" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of an idiv expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-12" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-13" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a mod expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-13" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-14" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a numeric-unary-plus expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-14" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-15" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a numeric-unary-minus expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-15" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-16" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-16" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-17" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-17" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-18" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-18" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-minutes-from-time-19" FilePath="Functions/DurationDateTimeFunc/MinutesFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "minutes-from-time" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.19" section-title="fn:minutes-from-time" section-pointer="func-minutes-from-time"/>
+      <query name="fn-minutes-from-time-19" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-minutes-from-time-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MinutesFromTimeFunc-1" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MinutesFromTimeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `minutes-from-time()`.</description>
+      <query name="K-MinutesFromTimeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MinutesFromTimeFunc-2" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MinutesFromTimeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `minutes-from-time((), "Wrong param")`.</description>
+      <query name="K-MinutesFromTimeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MinutesFromTimeFunc-3" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MinutesFromTimeFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(minutes-from-time(()))`.</description>
+      <query name="K-MinutesFromTimeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-MinutesFromTimeFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MinutesFromTimeFunc-4" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MinutesFromTimeFunc/" scenario="standard">
+      <description>A test whose essence is: `minutes-from-time(()) instance of xs:integer?`.</description>
+      <query name="K-MinutesFromTimeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-MinutesFromTimeFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MinutesFromTimeFunc-5" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MinutesFromTimeFunc/" scenario="standard">
+      <description>A test whose essence is: `minutes-from-time(xs:time("23:11:12.43")) eq 11`.</description>
+      <query name="K-MinutesFromTimeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-MinutesFromTimeFunc-5.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-IRIToURIfunc-7                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Check some ASCII characters that must be escaped. :)
+(:*******************************************************:)
+iri-to-uri("<> ""{}|\^`")

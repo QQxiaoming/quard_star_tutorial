@@ -1,0 +1,19 @@
+{
+    "name" : "9-patch export",
+    "description" : "Crops upscaled 9-patch PNG assets when exported from Sketch.",
+    "version" : "0.1",
+    "identifier" : "org.qt-project.sketch.9-patch-export",
+    "author" : "The Qt Project",
+    "commands" : [
+        {
+            "name" : "9-patch export",
+            "identifier" : "9-patch-export",
+            "script" : "9-patch-export.js",
+            "handlers" : {
+                "actions" : {
+                    "ExportSlices": "onExportSlices",
+                },
+            },
+        },
+    ],
+}

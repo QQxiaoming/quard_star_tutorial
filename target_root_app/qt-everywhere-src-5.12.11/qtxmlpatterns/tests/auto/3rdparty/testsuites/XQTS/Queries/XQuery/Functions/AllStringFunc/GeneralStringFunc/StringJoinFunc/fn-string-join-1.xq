@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(:Test: fn-string-join-1                                 :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri June 24, 2005                                :)
+(:Purpose: Evaluates The "string-join" function as per   :)
+(: example 1 for this frunction in F&O sepecs.           :)
+(:*******************************************************:)
+fn:string-join(('Now', 'is', 'the', 'time', '...'), ' ') 

@@ -1,0 +1,56 @@
+Qt 5.12.6 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.5.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                Compositor                                *
+****************************************************************************
+
+ - Fixed various rounding errors related to touch and mouse input.
+ - Fixed a crash when trying to maximize an XdgTopLevel with no output.
+
+ - Important Behavior Changes:
+   * Fixed potential memory access violation.
+     Between version 5.11 and 5.12 binary compatibility for the
+     wayland compositor module was broken by increasing the size of
+     various classes. This was unfortunately not visible in public
+     headers. As a consequence, application C++ code allocating or
+     subclassing any of the following classes would have potential
+     memory access violations: QWaylandKeymap, QWaylandQuickOutput,
+     QWaylandQuickSurface, QWaylandIviSurface, QWaylandWlShellSurface,
+     QWaylandXdgSurface, QWaylandXdgSurfaceV5, QWaylandXdgPopupV5,
+     QWaylandXdgSurfaceV6. To mitigate this issue, upgrade Qt to
+     5.12.6 and recompile all compositor code. Do not run a compositor
+     built with 5.11 or earlier against Qt versions 5.12 or later.
+
+****************************************************************************
+*                                QPA plugin                                *
+****************************************************************************
+
+ - Fixed a freeze that happened when starting a drag-and-drop operation
+   without a valid source surface.
+ - Fixed a 100 ms freeze that would occur if applications did not draw
+   after receiving a deliverUpdateRequest().
+ - Fixed touch point position rounding errors.
+ - Fixed a freeze that could happen when showing a window.
+ - Fixed an issue where touch focus would be set to false before all touch
+   points where released.
+ - Fixed touch event touch points sometimes being reordered, which caused
+   issues with QtQuick's MultiPointTouchArea.
+ - Fixed a crash that happened with very long window titles using UTF-16
+   characters.

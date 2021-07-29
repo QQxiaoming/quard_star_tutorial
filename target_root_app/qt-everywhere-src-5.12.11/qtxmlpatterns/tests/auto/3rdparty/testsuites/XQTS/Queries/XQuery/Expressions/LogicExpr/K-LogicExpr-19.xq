@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-LogicExpr-19                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: An 'and' expression having an operand which EBV cannot be extracted from. :)
+(:*******************************************************:)
+current-date() and current-date()

@@ -1,0 +1,109 @@
+Qt 5.10.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.10.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.10 series is binary compatible with the 5.9.x series.
+Applications compiled for 5.9 will continue to run with 5.10.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+This release contains all fixes included in the Qt 5.9.4 release.
+
+****************************************************************************
+*                   Important Behavior Changes                             *
+****************************************************************************
+
+* A type that can be used for object declaration in QML must start with an
+  uppercase letter (this has always been the convention).  Registration of
+  type names beginning with lowercase characters is now explicitly disallowed.
+
+****************************************************************************
+*                            Qt 5.10.1 Changes                             *
+****************************************************************************
+
+QtQml
+-----
+
+ - [QTBUG-65924] Fixed namespaced builds with -no-qml-debug
+ - [QTBUG-65624] Fixed a crash with simple qsTr() bindings on var properties
+ - [QTBUG-36773] A qmldir file can be provided via a custom schema
+ - [QTBUG-64798] Property alias syntax error no longer causes a crash
+ - [QTBUG-44153] Fixed a crash when a property alias points to a deleted object
+ - [QTBUG-47321][QTBUG-51995][QTBUG-60344] We now avoid temporarily invalid
+   bindings (such as "Cannot read property of null") while unloading a Loader
+ - [QTBUG-66067] Fixed a bug with negative-valued enum values in singletons
+
+ - QML profiler:
+   * [QTBUG-64674] Re-enabled QML memory profiling
+   * [QTBUG-65190] QML profiler tracks signals globally to prevent duplication
+
+ - Platform Specific Changes:
+   * Fixed compilation on QNX 7.0
+   * Enabled x86-64 JIT for QNX
+   * Enabled ARM64 JIT for QNX
+
+QtQuick
+-------
+
+ - [QTBUG-50992] Fixed bugs related to deferred property bindings to avoid
+   item view delegate objects being destroyed during incubation or failing
+   to be created.  This fixes a lot of related bugs in QtQuick Controls 2.
+ - [QTBUG-64548][QTBUG-62990][QTBUG-64367] Shortcut works in QQuickWidget
+   and QQuickRenderControl scenes
+ - [QTBUG-65789] An Image with an SVG source uses the SVG renderer to do
+   animorphic scaling sharply
+ - [QTBUG-64616] Fixed a bug with TextInput validators allowing invalid characters
+ - [QTBUG-52944] When a Loader loads a Window, its transient parent will now
+   be set to the Loader's window (i.e. the window manager should place it on top).
+ - Improved support for compressed textures
+
+ - Software rendering:
+   * [QTBUG-62867] Fixed bad clipping caused by incorrect background coordinates
+
+ - Item Views:
+   * [QTBUG-49218] Fixed an off-by-one layout error in GridView
+   * [QTBUG-64311] Fixed the removal transition animation when the last item
+     of a GridView or ListView is removed
+
+ - Shapes:
+   * [QTBUG-64951] Some rendering performance improvements; added
+     qt.shape.time.sync logging category
+   * [QTBUG-65173] Shapes work correctly in static builds
+   * [QTBUG-63105] Invisible Shapes can be used with OpacityMask and other
+     Qt Graphical Effects
+
+ - Pointer Handlers:
+   * [QTBUG-64692] Pointer Handlers receive events in the reverse of
+     declaration order, just as Items receive events in top-down Z order
+   * [QTBUG-65003] TapHandler consistently emits the canceled signal when
+     its passive or exclusive grab is taken over by another handler or item
+   * [QTBUG-64848] One pinch gesture cannot pinch two PinchHandlers at the
+     same time; to that end, we now test the target item's bounds correctly
+     when delivering native gesture events from trackpads
+   * A Pointer Handler with only a passive grab cannot prevent delivery to
+     other handlers by accepting all the points in the pointer event.
+     This enables Handlers to cooperatively modify behavior of existing controls.
+   * TapHandler.gesturePolicy is now DragThreshold by default (rather than
+     ReleaseWithinBounds), because this makes it easier for a TapHandler to
+     add additional onTapped behavior to existing controls.  The reason is
+     that the DragThreshold policy only requires a passive grab, not an exclusive
+     grab, so it doesn't interfere with the pre-existing event delivery.
+   * Fixed a bug with target item translation in DragHandler
+   * Added plugins.qmltyles so that syntax highlighting and completion work
+     in Qt Creator
+   * Various improvements in the tests/manual/pointer manual tests
+
+ - Platform Specific Changes:
+   * [QTBUG-61882][QTBUG-65519] Fixed rendering of emoji on macOS
+   * [QTBUG-65663] Fixed re-rendering of window when dragged to a screen
+     with a different devicePixelRatio on macOS

@@ -1,0 +1,244 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="DocumentURIFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:document-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-document-uri-1" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-1" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-2" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-2" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-3" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to computed element node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-3" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-4" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to computed comment node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-4" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-5" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to computed text node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-5" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-6" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to computed attribute node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-6" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-7" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to computed processing instruction node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-7" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-8" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to a directly constructed processing instruction node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-8" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-9" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to a directly constructed comment node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-9" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-10" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to a directly constructed element node.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-10" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-document-uri-11" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to a directly constructed document node. it should be empty document-uri property.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-11" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-12" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to a document node from an XML file (Normal usage).</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-12" date="2005-11-28"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-document-uri-12.txt</output-file>
+      <output-file role="principal" compare="Text">fn-document-urialt-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-13" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to an element node from an XML file.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-13" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-14" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function with argument set to an attribute node from an XML file.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-14" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-15" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:string-length function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-15" date="2005-11-28"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-document-uri-15.txt</output-file>
+      <output-file role="principal" compare="Text">fn-document-urialt-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-16" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-16" date="2005-11-28"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-document-uri-16.txt</output-file>
+      <output-file role="principal" compare="Text">fn-document-urialt-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-17" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-17" date="2005-11-28"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-document-uri-17.txt</output-file>
+      <output-file role="principal" compare="Text">fn-document-urialt-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-18" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:concat function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-18" date="2005-11-28"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-document-uri-18.txt</output-file>
+      <output-file role="principal" compare="Text">fn-document-urialt-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-19" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:string-join function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-19" date="2005-11-28"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-document-uri-19.txt</output-file>
+      <output-file role="principal" compare="Text">fn-document-urialt-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-20" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:substring-before function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-20" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-document-uri-21" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "document-uri" function as argument to fn:substring-after function.</description>
+      <spec-citation spec="FuncOps" section-number="2.6" section-title="fn:document-uri" section-pointer="func-document-uri"/>
+      <query name="fn-document-uri-21" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-document-uri-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DocumentURIFunc-1" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `document-uri((), "wrong param")`.</description>
+      <query name="K-DocumentURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DocumentURIFunc-2" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `document-uri()`.</description>
+      <query name="K-DocumentURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DocumentURIFunc-3" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(document-uri(()))`.</description>
+      <query name="K-DocumentURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DocumentURIFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-1" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a comment node.</description>
+      <query name="K2-DocumentURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-2" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on an attribute node.</description>
+      <query name="K2-DocumentURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-3" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-DocumentURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-4" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-DocumentURIFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-5" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a text node.</description>
+      <query name="K2-DocumentURIFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-6" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a single element node.</description>
+      <query name="K2-DocumentURIFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-7" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a single attribute node.</description>
+      <query name="K2-DocumentURIFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-8" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a single document node.</description>
+      <query name="K2-DocumentURIFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-9" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a tree document node.</description>
+      <query name="K2-DocumentURIFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-10" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Invoke on a tree document node with fn:root().</description>
+      <query name="K2-DocumentURIFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-10.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DocumentURIFunc-11" FilePath="Functions/AccessorFunc/DocumentURIFunc/" scenario="standard">
+      <description>Ensure that the return value of document-uri() is of correct type.</description>
+      <query name="K2-DocumentURIFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context1">TopMany</input-file>
+      <output-file role="principal" compare="Text">K2-DocumentURIFunc-11.txt</output-file>
+   </test-case>
+</test-group>

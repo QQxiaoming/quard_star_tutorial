@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>x</xqx:varName>
+        <xqx:varValue>
+          <xqx:unaryMinusOp>
+            <xqx:operand>
+              <xqx:doubleConstantExpr>
+                <xqx:value>3.4028235E38</xqx:value>
+              </xqx:doubleConstantExpr>
+            </xqx:operand>
+          </xqx:unaryMinusOp>
+        </xqx:varValue>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:varRef>
+        <xqx:name>x</xqx:name>
+      </xqx:varRef>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

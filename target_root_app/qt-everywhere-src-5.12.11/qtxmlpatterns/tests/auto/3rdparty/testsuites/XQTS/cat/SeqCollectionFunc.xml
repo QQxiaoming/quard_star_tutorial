@@ -1,0 +1,113 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqCollectionFunc" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>fn:collection</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-collection-1" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:collection function with wrong arity.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-1" date="2005-12-02"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-2" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:collection, for a non existent resource.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-2" date="2005-12-02"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FODC0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-3" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:collection with argument set to an invalid URI.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-3" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-4" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Count the number of nodes in the collection.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-4" date="2006-07-07"/>
+      <input-URI role="principal-data" variable="input-context">collection1</input-URI>
+      <output-file role="principal" compare="Text">fn-collection-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-4d" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Count the number of nodes in the collection.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-4d" date="2006-07-07"/>
+      <defaultCollection role="principal-data">collection1</defaultCollection>
+      <output-file role="principal" compare="Text">fn-collection-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-5" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Count the number of nodes in the collection.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-5" date="2006-07-07"/>
+      <input-URI role="principal-data" variable="input-context">collection2</input-URI>
+      <output-file role="principal" compare="Text">fn-collection-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-5d" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Count the number of nodes in the collection.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-5d" date="2006-07-07"/>
+      <defaultCollection role="principal-data">collection2</defaultCollection>
+      <output-file role="principal" compare="Text">fn-collection-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-collection-6" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Return the titles in the collection ordered by the title.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-6" date="2006-07-07"/>
+      <input-URI role="principal-data" variable="input-context">collection2</input-URI>
+      <output-file role="principal" compare="Fragment">fn-collection-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-7" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Return elements that immediately contain TCP/IP.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-7" date="2006-07-07"/>
+      <input-URI role="principal-data" variable="input-context">collection2</input-URI>
+      <output-file role="principal" compare="Fragment">fn-collection-7.txt</output-file>
+      <output-file role="principal" compare="Fragment">fn-collection-7alt1.txt</output-file>
+      <output-file role="principal" compare="Fragment">fn-collection-7alt2.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-collection-8" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Return the first title element in each document.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-8" date="2006-07-08"/>
+      <input-URI role="principal-data" variable="input-context">collection1</input-URI>
+      <output-file role="principal" compare="Fragment">fn-collection-8.txt</output-file>
+      <output-file role="principal" compare="Fragment">fn-collection-8alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-collection-9" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Count the title elements in each document.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-9" date="2006-07-08"/>
+      <defaultCollection role="principal-data">collection2</defaultCollection>
+      <output-file role="principal" compare="Text">fn-collection-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-collection-10" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Test that two uses of fn:collection are stable.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-10" date="2006-07-17"/>
+      <input-URI role="principal-data" variable="input-context">collection2</input-URI>
+      <output-file role="principal" compare="Text">fn-collection-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-collection-10d" FilePath="Functions/NodeSeqFunc/SeqCollectionFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Test that two uses of fn:collection are stable.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.6" section-title="fn:collection" section-pointer="func-collection"/>
+      <query name="fn-collection-10d" date="2006-07-17"/>
+      <defaultCollection role="principal-data">collection2</defaultCollection>
+      <output-file role="principal" compare="Text">fn-collection-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqCollectionFunc-1" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqCollectionFunc/" scenario="runtime-error">
+      <description>Pass an invalid xs:anyURI to fn:collection().</description>
+      <query name="K2-SeqCollectionFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqCollectionFunc-2" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqCollectionFunc/" scenario="runtime-error">
+      <description>':/ is an invalid URI.</description>
+      <query name="K2-SeqCollectionFunc-2" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0004</expected-error>
+   </test-case>
+</test-group>

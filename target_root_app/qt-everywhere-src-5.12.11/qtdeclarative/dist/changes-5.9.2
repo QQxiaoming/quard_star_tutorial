@@ -1,0 +1,86 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.2 Changes                           *
+****************************************************************************
+
+Qml
+---
+
+ - Fix loading of static qml plugins using the old plugin interface id
+ - [QTBUG-62243] Fixed bug where sometimes changes to a qml singleton
+   would not propagate to the users or cause crashes
+ - [QTBUG-59256] Fix possible use-after-free when removing items from a
+   ListModel through JavaScript
+ - [QTBUG-61552] Fix crash due to misaligned data structures on ARMv7
+ - [QTBUG-61681] Fix crash if QObject instances are passed between QQmlEngine
+   instances
+ - [QTBUG-59704] Fix crashes with objects retrieved via ListModel.get() upon
+   destruction
+ - [QTBUG-61536] Fix memory leaks when clearing/trimming component caches
+ - [QTBUG-62978] Fix race conditions in QML profiler
+ - [QTBUG-61781] Fix crashes with closures created in QML components that outlive
+   the component instances
+ - [QTBUG-62175] Fix incorrect values of lastIndex in regular expressions created
+   from literals
+
+QtQuick
+-------
+
+ - Window:
+   * [QTBUG-62055] Fixed a (rare) crash in mouseGrabberItem()
+
+ - Text:
+   * [QTBUG-40943] Fixed TextInput cursor behavior when using inputMask
+   * QQuickTextInput: fixed a problem with validator transition from
+     Acceptable to an Intermediate state, which was preventing further editing
+   * [QTBUG-63153] TextEdit recalculates its implicit width when text is changed
+
+ - AnimatedImage:
+   * [QTBUG-62380] Fixed a crash in QQuickAnimatedImage
+   * [QTBUG-62913] QQuickAnimatedImage::frameCount now has a notifier signal
+
+ - Canvas:
+   * [QTBUG-37095] Canvas repaints at the correct resolution when the window is
+     dragged between high-DPI and lower-resolution screens.  The new logging
+     category qt.quick.canvas can be enabled to verify what it is doing.
+
+ - Drag and Drop:
+   * [QTBUG-61980] DnD dragged image hotspot is now set correctly
+
+ - Item Views:
+   * [QTBUG-61537] ListView layout is redone when a delegate is placed at
+     the last visible position
+   * [QTBUG-33568] Fixed a problem with ListView delegate size change animation
+     when highlightRangeMode is StrictlyEnforceRange
+   * [QTBUG-60894] ListView.currentIndex stays in sync during ObjectModel.move()
+   * [QTBUG-62939] Flickable (and subclasses) rebound is more consistent
+     when flicked repeatedly beyond bounds
+
+ - Scene Graph:
+   * [QTBUG-62392] Cached shader programs are freed by releaseResources()
+   * [QTBUG-61754] Fixed a memory leak in QSGAtlasTexture
+   * [QTBUG-54434] QQuickFramebufferObject::Renderer::invalidateFramebufferObject
+     always re-creates the FBO
+   * [QTBUG-61939] Fixed clipping when using the software renderer
+   * [QTBUG-61686] QSGFrameBufferObjectNode now stores devicePixelRatio as qreal
+   * [QTBUG-61502] QQuickWidget supports non-integral devicePixelRatio
+   * [QTBUG-59789] Fixed excessive recursion in QSGBatchRenderer which caused
+     a stack overflow when hiding TableView

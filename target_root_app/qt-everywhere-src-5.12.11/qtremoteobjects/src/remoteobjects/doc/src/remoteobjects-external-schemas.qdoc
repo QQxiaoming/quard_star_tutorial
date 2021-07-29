@@ -1,0 +1,137 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Ford Motor Company
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page qtremoteobjects-external-schemas.html
+\title Qt Remote Objects - External QIODevices
+\brief Describes how Qt Remote Objects supports custom QIODevice channels.
+
+\section1 External QIODevices
+
+Qt Remote Objects supports several communications channels out-of-the-box, such
+as the \l QTcpServer and \l QTcpSocket pair. Given the desired \l QUrl for tcp,
+or the desired name (for the \l QLocalServer and \l QLocalSocket pair), the
+code needed to listen and connect are boilerplate and handled internally by Qt.
+Qt Remote Objects supports other types of \l QIODevice as well, and the \l
+QRemoteObjectNode classes provide additional methods to support cases where
+custom code is needed.
+
+A contrived example with TCP/IP is shown below. A more realistic example would
+use an SSL connection, which would require configuration of certificates, etc.
+
+\code
+    // Create the server and listen outside of QtRO
+    QTcpServer tcpServer;
+    tcpServer.listen(QHostAddress(127.0.0.1), 65213);
+
+    // Create the host node.  We don't need a hostUrl unless we want to take
+    // advantage of external schemas (see next example).
+    QRemoteObjectHost srcNode();
+
+    // Make sure any connections are handed to QtRO
+    QObject::connect(&tcpServer, &QTcpServer::newConnection, &srcNode,
+                     [&srcNode, &tcpServer]() {
+        srcNode.addHostSideConnection(tcpServer.nextPendingConnection());
+    });
+\endcode
+
+The Replica side code needs to manually connect to the Host
+\code
+    QRemoteObjectNode repNode();
+    QTcpSocket *socket = new QTcpSocket(&repNode);
+    connect(socket, &QTcpSocket::connected, &repNode,
+            [socket, &repNode]() {
+        repNode.addClientSideConnection(socket);
+    });
+    socket->connectToHost(QHostAddress(127.0.0.1), 65213);
+    };
+\endcode
+
+\section1 External Schemas
+
+It is possible to create each side of the QIODevice and call \l
+{QRemoteObjectNode::addClientSideConnection(QIODevice *ioDevice)} and \l
+{QRemoteObjectHostBase::addHostSideConnection(QIODevice *ioDevice)} as shown
+above. This is fully supported, but requires the client know how to establish
+the connection or have a way to discover that information. This is exactly the
+problem the registry was designed to solve.
+
+Qt Remote Objects also allows "External Schemas" to be used with the registry,
+which helps with connection setup. On the \l QRemoteObjectHost side, the
+user must set the hostUrl with the desired schema.
+
+\code
+    // Use standard tcp url for the registry
+    const QUrl registryUrl = QUrl(QStringLiteral("tcp://127.0.0.1:65212"));
+    // Use "exttcp" for the "external" interface
+    const QUrl extUrl = QUrl(QStringLiteral("exttcp://127.0.0.1:65213"));
+
+    // Create the server and listen outside of QtRO
+    QTcpServer tcpServer;
+    tcpServer.listen(QHostAddress(extUrl.host()), extUrl.port());
+
+    // We need a registry for everyone to connect to
+    QRemoteObjectRegistryHost registry(registryUrl);
+
+    // Finally, we create our host node and register "exttcp" as our schema.
+    // We need the AllowExternalRegistration parameter to prevent the node from
+    // setting a hostUrlInvalid error.
+    QRemoteObjectHost srcNode(extUrl, registryUrl, QRemoteObjectHost::AllowExternalRegistration);
+    // From now on, when we call enableRemoting() from this node, the registry
+    // will be updated to show the Source object at extUrl.
+\endcode
+
+On the \l Replica side, the \l QRemoteObjectNode needs to register a callback
+to be used when the external schema is detected. The callback must be a
+\l {QRemoteObjectNode::}{RemoteObjectSchemaHandler}.
+
+\code
+    // Use standard tcp url for the registry
+    const QUrl registryUrl = QUrl(QStringLiteral("tcp://127.0.0.1:65212"));
+
+    // This time create the node connected to the registry
+    QRemoteObjectNode repNode(registryUrl);
+
+    // Create the RemoteObjectSchemaHandler callback
+    QRemoteObjectNode::RemoteObjectSchemaHandler setupTcp = [&repNode](QUrl url) {
+        QTcpSocket *socket = new QTcpSocket(&repNode);
+        connect(socket, &QTcpSocket::connected,
+                [socket, &repNode]() {
+            repNode.addClientSideConnection(socket);
+        });
+        connect(socket, QOverload<QAbstractSocket::SocketError>::of(&QSslSocket::error),
+                [socket](QAbstractSocket::SocketError error) {
+            delete socket;
+        });
+        socket->connectToHost(url.host(), url.port());
+    };
+
+    // Once we call registerExternalSchema, the above method will be called
+    // whenever the registry sees an object we are interested in on "exttcp"
+    repNode.registerExternalSchema(QStringLiteral("exttcp"), setupTcp);
+\endcode
+*/

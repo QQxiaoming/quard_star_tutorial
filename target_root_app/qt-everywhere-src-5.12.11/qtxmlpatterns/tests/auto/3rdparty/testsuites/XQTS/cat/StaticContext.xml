@@ -1,0 +1,13 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="StaticContext">
+   <GroupInfo>
+      <title>Static Context Evaluation</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="static-context-1" FilePath="Basics/StaticContext/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates an expression relies on some component of the static context that has not been assigned a value.</description>
+      <spec-citation spec="XQuery" section-number="2.1.1" section-title="Static Context" section-pointer="static_context"/>
+      <query name="static-context-1" date="2006-07-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+</test-group>

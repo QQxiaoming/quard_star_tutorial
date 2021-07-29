@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>ctx</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/context</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>simple</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/simple</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:namespaceDecl>
+        <xqx:prefix>unknown</xqx:prefix>
+        <xqx:uri>http://www.w3.org/TestModules/unknown</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="ctx">use-schema</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:functionBody>
+          <xqx:castExpr>
+            <xqx:argExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>47</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:argExpr>
+            <xqx:singleType>
+              <xqx:atomicType xqx:prefix="simple">myType</xqx:atomicType>
+            </xqx:singleType>
+          </xqx:castExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="ctx">use-namespace</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">data</xqx:functionName>
+            <xqx:arguments>
+              <xqx:elementConstructor>
+                <xqx:tagName xqx:prefix="unknown">thing</xqx:tagName>
+                <xqx:elementContent>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>47</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:elementContent>
+              </xqx:elementConstructor>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

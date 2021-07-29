@@ -1,0 +1,334 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="WhereExpr" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>WHERE Clause</title>
+      <description>Tests for the WHERE part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="WhereExpr001" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - test existence of child elements in Where clause.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5670</reflects-resolution>
+      <query name="WhereExpr001" date="2003-02-10">
+         <description>For+Where+Return - test existence of child elements in Where clause</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr001.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr002" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="runtime-error" Creator="Jinghao Liu">
+      <description>For+Where+Return - error, variable in 'Where' Expr hasn't been defined.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr002" date="2003-02-10">
+         <description>For+Where+Return - error, variable in 'Where' Expr hasn't been defined</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr003" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - using same predicate (as FLWOR003) in 'Where' predicate.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5670</reflects-resolution>
+      <query name="WhereExpr003" date="2003-02-10">
+         <description>For+Where+Return - using same predicate (as FLWOR003) in 'Where' predicate</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr004" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - filters in 'Where' expr and in 'In' expr using predicate.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr004" date="2003-02-10">
+         <description>For+Where+Return - filters in 'Where' expr and in 'In' expr using predicate</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr005" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - use always-false-predicate in 'Where' expr.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr005" date="2003-02-10">
+         <description>For+Where+Return - use always-false-predicate in 'Where' expr</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr005.xml</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr006" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - In the inner For+Where+Return, uses outer variable in 'Where' expr.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr006" date="2003-02-10">
+         <description>For+Where+Return - In the inner For+Where+Return, uses outer variable in 'Where' expr</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr006.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr007" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return 2 iterations use 'Where' to build relationship.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr007" date="2003-02-10">
+         <description>For+Where+Return 2 iterations use 'Where' to build relationship</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr008" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test 'where' expression with the empty sequence literal.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr008" date="2005-06-24">
+         <description>Test 'where' expression with the empty sequence literal</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr008.xml</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr009" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test 'where' expression returning a sequence with one or more nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5670</reflects-resolution>
+      <query name="WhereExpr009" date="2005-06-24">
+         <description>Test 'where' expression returning a sequence with one or more nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr009.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr010" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test 'where' expression returning a sequence with multiple values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr010" date="2005-06-24">
+         <description>Test 'where' expression returning a sequence with multiple values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr013" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test 'where' expression returning a sequence with a single boolean value.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr013" date="2005-06-24">
+         <description>Test 'where' expression returning a sequence with a single boolean value</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr013.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr014" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test 'where' expression returning a sequence with a constant boolean value.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr014" date="2005-06-24">
+         <description>Test 'where' expression returning a sequence with a constant boolean value</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr014.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr015" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test 'where' expression returning a sequence with a constant boolean value.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr015" date="2005-06-24">
+         <description>Test 'where' expression returning a sequence with a constant boolean value</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr015.xml</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr016" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test 'where' clause based on a positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr016" date="2005-06-24">
+         <description>Test 'where' clause based on a positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">WhereExpr016.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="WhereExpr017" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Attempt to use multiple expressions in a 'where' clause.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr017" date="2005-06-24">
+         <description>Attempt to use multiple expressions in a 'where' clause</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="WhereExpr018" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Use of undefined variable in 'where' clause.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr018" date="2005-06-24">
+         <description>Use of undefined variable in 'where' clause</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="WhereExpr019" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Typo on 'where' clause.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr019" date="2005-06-24">
+         <description>Typo on 'where' clause</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="WhereExpr020" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Multiple 'where' clauses.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="WhereExpr020" date="2005-06-24">
+         <description>Multiple 'where' clauses</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">WhereExpr020.txt</output-file>
+      <expected-error spec-version="1.0">XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-1" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause using a single item sequence and an "or" expression with fn:true() function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-1" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-2" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause using a single item sequence and an "or" expression with fn:false() function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-2" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-3" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause using a single item sequence and an "or" ("and" operator) expression with fn:true() function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-3" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-4" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause using a single item sequence and an "or" ("and" operator) expression with fn:false() function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-4" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-5" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with a typeswitch expression.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-5" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-6" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause used with the fn:string function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-6" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-7" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause used with the fn:string-length function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-7" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-8" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause used with the fn:count function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-8" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-9" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause used with the "is" node comparator.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-9" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-10" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause used with a quantified expression ("some" keyword).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-10" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="whereClause-11" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test 'where' clause used with a quantified expression ("every" keyword).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <query name="whereClause-11" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">whereClause-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-1" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for/where combination where the cardinality of the return statement is crucially affected by the binding sequence.</description>
+      <query name="K-WhereExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-2" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>Get the string value of the return statement of a for expression after being filtered by a where clause.</description>
+      <query name="K-WhereExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-3" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="runtime-error">
+      <description>A where clause containing a value which EBV cannot be extracted from.</description>
+      <query name="K-WhereExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-4" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for/where expression combined with fn:count().</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5670</reflects-resolution>
+      <query name="K-WhereExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-5" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for expression binding to one single value, combined with a positive where clause.</description>
+      <query name="K-WhereExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-6" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for expression binding to one single value, combined with a negative where clause.</description>
+      <query name="K-WhereExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-7" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for expression binding to one single value, combined with a positive where clause.</description>
+      <query name="K-WhereExpr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-8" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for expression binding to one single value, combined with a negative where clause.</description>
+      <query name="K-WhereExpr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-9" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for/where expression combined with fn:boolean.</description>
+      <query name="K-WhereExpr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-10" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for/where expression combined with fn:boolean and xs:anyURI.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5670</reflects-resolution>
+      <query name="K-WhereExpr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-WhereExpr-11" FilePath="Expressions/FLWORExpr/WhereExpr/" scenario="standard">
+      <description>A for/where expression combined with fn:boolean and xs:anyURI.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5670</reflects-resolution>
+      <query name="K-WhereExpr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-WhereExpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-WhereExpr-1" FilePath="FLWORExpr/WhereExpr/" scenario="standard">
+      <description>Multiple where clauses is not allowed.</description>
+      <query name="K2-WhereExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file spec-version="1.1" role="principal" compare="Text">K2-WhereExpr-1.txt</output-file>
+      <expected-error spec-version="1.0">XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-WhereExpr-2" FilePath="FLWORExpr/WhereExpr/" scenario="parse-error">
+      <description>Multiple where clauses is not allowed(#2).</description>
+      <query name="K2-WhereExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+</test-group>

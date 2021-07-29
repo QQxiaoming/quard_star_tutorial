@@ -1,0 +1,472 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Guidelines for XML Query Test Suite Submissions</title>
+</head>
+<body>
+<p><img alt="W3C" src="http://www.w3.org/Icons/WWW/w3c_home.gif" /></p>
+<h1 style="text-align: center;">Guidelines for XML Query Test Suite Submissions</h1>
+<h2>Licensing Issues and Acceptance</h2>
+<ul type="disc">
+<li>Tests submissions must use the <a href=
+"http://www.w3.org/2002/09/wbs/1/testgrants2-200409/">Grant II:
+Grant of License for Contributed test Cases Published Outside a W3C
+Recommendation</a>. This license grant, for non-participant
+test case Contributors, is described <a href="http://www.w3.org/2004/10/27-testcases.html">Policies for Contribution of Test Cases to W3C</a>.</li>
+<li>The XML Query Working Group and XSL Working Group will, at their sole discretion, determine
+what tests are incorporated in the test suite.</li>
+</ul>
+<h2><b>Conformance to Schemas and File Format</b></h2>
+<ul type="disc">
+<li>Submissions must be valid with respect to "XQTSCatalog.xsd" schema file.</li>
+<li>All submissions must be in a ZIP, tar or gzip file formats.</li>
+<li>Please add your test cases to the "XQTSCatalogSubmission.xml" document that we have provided.</li>
+</ul>
+<h2><b>Test Structure</b></h2>
+<ul type="disc">
+<li>Entries in the catalogue file should contain citations of document sections, using both the section number and section name,
+whenever possible. This practice is highly recommended.  A typical test catalogue entry is illustrated below.</li>
+</ul>
+<table style = "solid" border = "1"  align="center">
+<tr>
+<td>&lt;test-case name="test001" FilePath="Axes" ... &gt;<br/>
+  ...<br/>
+  &lt;query name="test001.xq" date="2003-02-25"&gt;<br/>
+   &lt;description&gt;Child Element Test&lt;/description&gt;<br/>
+  &lt;/query&gt;<br/>
+  &lt;input-file role="principal-data" context="default" variable="input-context"&gt;TreeCompass&lt;/input-file&gt;<br/>
+  &lt;output-file role="principal" compare="XML"&gt;test001.xml&lt;/output-file&gt;<br/>
+ &lt;/test-case&gt;<br/>
+</td>
+</tr>
+</table>
+<ul type="disc">
+<li>Tests for which the &lt;input-file&gt; element in the catalog file references the "emptydoc" file are not required
+to make any variable mapping back to the &lt;input-file&gt; element.  In other words the following declaration is not
+required to be present in the test case:
+<p></p>
+<table style = "solid"  border= "1" align="center">
+<tr>
+<td>
+(: insert-start :)<br/>
+declare variable $input-context external;<br/>
+(: insert-end :)<br/>
+</td>
+</tr>
+</table>
+<p></p>
+</li>
+<li>Submitters should indicate any potential problems with the
+tests.</li>
+<li>Negatives tests will be accepted. However, they must be
+identified as such in the catalog file.  Please see the <a href="#Error-Tests">Error Tests</a> Section below for futher
+information.  A typical negative test is illustrated below:</li>
+</ul>
+<p></p>
+<table style = "solid"  border= "1" align="center">
+<tr>
+<td>
+(:  Name:  test001 :)<br/>
+(: Test Description:  count function with missing argument :)<br/>
+      fn:count()<br/>
+</td>
+</tr>
+</table>
+<ul type="disc">
+<li>Variable names, function names, etc., should not contain any
+copyrighted information or any company name or any other text
+identifying a company.  However test submitters are allowed to use a company name as
+the value of the "featureOwner" attribute of the &lt;test-group&gt; element.</li>
+<li>Submitted tests should be minimal in nature and independent of
+one another.</li>
+<li>Submitted tests must at least include a &ldquo;Name&rdquo;
+comment and a &ldquo;Description&rdquo; comment. These
+comments must appear as the first two lines of the file.</li>
+<li>Submitters should reuse existing input files whenever
+possible.</li>
+<li>Tests involving dates, times and dateTime should use an explicit timezone (whether optional or required).  These tests should use the "Z"
+whenever possible.  Tests designed to evaluate implicit timezone should omit the timezone component.</li>
+<li>Submitted tests should be insensitive to boundary-space, that is, in direct 
+element constructors there should be no boundary space between open/close tags and enclosed 
+expression.</li>
+<li>Tests involving the decimal and integer data types should use no more than 18 digits.</li>
+<li>Test involving the data types xs:date, xs:time, xs:dateTime, xs:gYear, xs:gYearMonth,
+the maximum value of the year component should be no more than 4 digits, and the maximum number of
+fractional second digits must be no more than 3.</li>
+<li>For tests involving the int, long, short and byte data types, please see the <a href="http://www.w3.org/TR/xmlschema-2/">Schema</a> specifications for limits 
+on those data types.</li> 
+<li>For tests cases that are sensitive to typed values, submittors will provide a result for 
+both the typed and untyped data.</li>
+<li>For test cases where typed data is imperative, submittors will need to use 
+constructor functions instead of relying on typed data.</li>
+<li>Submitted tests for a particular section must include only
+functionality defined by that section and by the provided
+foundation features. The XML Query Working Group defines the
+following features as foundation features:</li>
+</ul>
+<table frame = "border" style="solid" border = "1" width = "550" align="center">
+<tr>
+<td><h4>Feature Name</h4></td>
+<td><h4>Comments</h4></td>
+</tr>
+<tr>
+<td>string literals (quoted strings)</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>integer literals</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>URI literals</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Parentheses</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>empty-sequence constructor ()</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>concatenation (comma operator) for sequence</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>expression comments</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>/ and //</td>
+<td>for path steps</td>
+</tr>
+<tr>
+<td>/ alone</td>
+<td>for root node</td>
+</tr>
+<tr>
+<td>all axes</td>
+<td>for both expanded and abbreviated forms</td>
+</tr>
+<tr>
+<td>node tests (e.g., text() )</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Predicates</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>element constructors</td>
+<td>including text-node content for those elements</td>
+</tr>
+<tr>
+<td>Namespace declaration in prolog</td>
+<td>Including default</td>
+</tr>
+<tr>
+<td>+, - with two operands</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:true(), fn:false()</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:not()</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>and, or</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>string equality with XPath 1.0 semantics</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>numeric equality and inequality</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>node compare (these operators == and != backing up &lsquo;node-equal&rsquo;)</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>accessor functions: fn:data, fn:node-kind</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:empty</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:count</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:position, fn:last</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:string-length</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>fn:string-to-codepoints</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&ldquo;is&rdquo; predicate</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>The Constructors: xs:string, xs:anyURI, xs:integer, xs:decimal, xs:float, xs:double, xs:boolean, xs:date, xs:dateTime, xs:time</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<h2>Collations and URI&rsquo;s</h2>
+<ul type="disc">
+<li>When no collation is specified, the Unicode-Codepoint collation
+is assumed. Tests should be written with that in mind.</li>
+<li>URI&rsquo;s must be based on the <a href="http://www.example.com/">www.example.com</a> domain.</li>
+</ul>
+<h2>Static Typing</h2>
+<ul type="disc">
+<li>Submitted tests should obey the Static Typing rules, except for
+tests intended to evaluate violations of the Static Typing
+rules.</li>
+<li>Submitted tests must not rely on any static typing
+extensions.</li>
+</ul>
+<h2>Optional Features and vendor Specific Features</h2>
+<ul type="disc">
+<li>Submitted tests that evaluate non-optional features should not
+use optional features.</li>
+<li>Submitted tests should not include any vendor specific
+extensions (pragmas).</li>
+</ul>
+<h2><a id ="Error-Tests" name = "Error-Tests"></a>Error Tests</h2>
+<p>Error conditions that can be mapped to the conditions specified
+in the appendices of the XML Query specifications should include the
+error code stated for that condition. The following example
+from the catalog file illustrates one of such conditions:</p>
+<table style="solid" border = "1" width = "700" align="center">
+<tr>
+<td align = "left">&lt;test-case name=&quot;Literals036&quot; FilePath=&quot;Expressions/PrimaryExpr/Literals/&quot; scenario=&quot;parse-error&quot; Creator=&quot;John Doe&quot;&gt;<br/>
+&lt;description&gt;Test for invalid decimal literal&lt;/description&gt;<br/>
+&lt;spec-citation spec=&quot;XQuery&quot; section-number=&quot;3.1.1&quot; section-title=&quot;Literals&quot; section-pointer=&quot;id-literals&quot;/&gt;<br/>
+&lt;query name=&quot;Literals036.xq&quot; date=&quot;2005-02-03&quot;/&gt;<br/>
+&lt;input-file role=&quot;principal-data&quot; variable=&quot;input-context&quot;&gt;emptydoc&lt;/input-file&gt;<br/>
+&lt;expected-error&gt;XPST0003&lt;/expected-error&gt;<br/>
+&lt;/test-case&gt;</td></tr>
+</table>
+<p>Any error condition for which there is not a predefined code, the "*" symbol should be used.</p>
+
+<h2><a id ="External-Variables-Tests" name = "External-Variables-Tests"></a>External Variable Tests</h2>
+<p>External variable tests are designed to run queries, whose external variable values are defined by outsite
+agents.  The main catalog will define an &lt;input-query&gt; element.  The results of the input query (s) are bind to
+external variables defined in the main query.  The &lt;input-query&gt; element require three attributes,
+namely:</p>
+<ol>
+<li>name - specifies the name of the input query (no extension required).</li>
+<li>variable - the name of the variable to which the results of the query should be binded.</li>
+<li>date - the date the query was written.</li>
+</ol>
+<p>The following table illustrates a typical entry for an external variable test case:</p>
+<table style="text-align: left; width: 750px; height: 47px;" border="2"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="font-size: 10pt; font-family: Courier; color: black;">
+&nbsp;&nbsp;&lt;test-case is-XPath2="false" name="extvardeclwithtype-17" ...&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;description>External Variable used to evaluate a boolean expression ... .&lt;/description&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;spec-citation spec="XQuery" section-number="4.14" ... /&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;query name="extvardeclwithtype-17" date="2006-02-09"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;input-file role="principal-data" variable="input-context"&gt;emptydoc&lt;/input-file&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;input-query variable="x" name="extvardeclwithtypetobind-17" date="2006-02-09"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&lt;output-file role="principal" compare="Text"&gt;extvardeclwithtype-17.txt&lt;/output-file&gt;<br/>
+&nbsp;&nbsp;&lt;/test-case&gt;
+      </span></td>
+    </tr>
+  </tbody>
+</table>
+<p>The following are the input query and the main query that corresponds to the entry above:</p>
+<table style="text-align: left; width: 750px; height: 47px;" border="2"
+ cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><span
+ style="font-size: 10pt; font-family: Courier; color: black;">Input Query<br/><br/>
+&nbsp;&nbsp;&nbsp;(: Name: extvardeclwithtypetobind-17 :)<br/>
+&nbsp;&nbsp;&nbsp;(: Description: Binding boolean expression for extvardeclwithtype-17.:)<br/><br/>
+&nbsp;&nbsp;&nbsp;let $var := fn:true() or fn:true()<br/>
+&nbsp;&nbsp;&nbsp;return $var<br/><br/>
+Main Query<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(: Name: extvardeclwithtype-17 :)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(: Description: Evaluates an external variable used in a boolean expression:)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(: Both queries perform the operation. :)<br/><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;declare variable $x as xs:boolean external;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$x or fn:false()<br/>
+       </span></td>
+    </tr>
+  </tbody>
+</table>
+<p>Note the name(s) of the external variable(s) defined in the main query must match the names of the 
+variable(s) defined in the input queries ("x" in this case).  The main query must be a stand alone query,
+it should have no input infosets.</p>
+<h2><a id ="Module-Import-Tests" name = "Module-Import-Tests"></a>Module Import Tests</h2>
+<p>Module Import tests are accepted as optional features of the XML Query Specifications
+as outlined in sections 4.2 and 5.2.5.  The following example from the catalog file
+illustrates a typical entry for a module import test.</p>
+<table style="solid" border = "1" width = "700" align="center">
+<tr>
+<td align = "left">
+&lt;test-case name=&quot;modules-simple&quot; FilePath=&quot;Modules/ModuleImport/&quot; scenario=&quot;standard&quot; Creator=&quot;Jane Doe&quot;&gt;<br/>
+&lt;description&gt;Import simple library module&lt;/description&gt;<br/>
+&lt;spec-citation spec=&quot;XQuery&quot; section-number=&quot;4.11&quot; section-title=&quot;Module Import&quot; section-pointer=&quot;id-module-imports&quot;/&gt;<br/>
+&lt;spec-citation spec=&quot;XQuery&quot; section-number=&quot;4.2&quot; section-title=&quot;Module Declaration&quot; section-pointer=&quot;id-module-declaration&quot;/&gt;<br/>                   
+&lt;query name=&quot;modules-simple&quot; date=&quot;2005-12-05&quot;/&gt;<br/>
+&lt;module namespace=&quot;http://www.w3.org/TestModules/test1&quot;&gt;test1-lib&lt;/module&gt;<br/>
+&lt;input-file role=&quot;principal-data&quot; variable=&quot;input-context&quot;&gt;emptydoc&lt;/input-file&gt;<br/>
+&lt;output-file role=&quot;principal&quot; compare=&quot;XML&quot;&gt;modules-simple.xml&lt;/output-file&gt;<br/>
+&lt;/test-case&gt;
+</td></tr>
+</table>
+<p>Note the presence of a required &lt;module&gt; element and the required namespace attribute.  
+There must be one &lt;module&gt; element for every module that is imported by 
+the main query.  There also must be one &lt;module&gt; element for each library module that the imported module
+may in turn have. The content of the &lt;module&gt; element is an IDREF type that must
+match an ID attribute from a &lt;module&gt; element defined in the sections area of the catalog file
+as a child of the &lt;sections&gt; element.
+The following example illustrates the matching ID definition for the example above.</p>
+<table style="solid" border = "1" width = "700" align="center">
+<tr>
+<td align = "left">
+&lt;module ID=&quot;test1-lib&quot; FileName=&quot;TestSources/test1-lib&quot; Creator=&quot;Jane Doe&quot;&gt;<br/>
+&lt;description last-mod=&quot;2005-12-05&quot;&gt;Simple library module&lt;/description&gt;<br/>
+&lt;/module&gt;<br/>
+</td></tr>
+</table>
+<p>Note that the file "TestSources/test1-lib" does not have an extension.  The extension for this file is defined  
+at "test-suite/@XQueryFileExtension".</p>
+<p>The main query (and any imported library module with subsequent imports) must have an import statement with a
+prefix and a namespace URI.  The namespace URI must match the namespace URI defined in the catalog file.  The module import 
+statements must be between the "(: insert-start :)" and the "(: insert-end :)" comments.  Please refer to the 
+"Guidelines for Running The XML Query Test Suite" for further usage of these comments.  The following example
+shows the query that corresponds to the example above.</p>
+<table style="solid" border = "1" width = "700" align="center">
+<tr>
+<td align = "left">
+(: insert-start :)<br/>
+import module namespace test1=&quot;http://www.w3.org/TestModules/test1&quot;<br/>
+declare variable $input-context external;<br/>
+(: insert-end :)<br/>
+</td></tr>
+</table>
+<p>And the corresponding relevant section from the library module.</p>
+<table style="solid" border = "1" width = "700" align="center">
+<tr>
+<td align = "left">
+module namespace test1="http://www.w3.org/TestModules/test1";<br/>
+</td></tr>
+</table>
+<p>It is highly recommended (but not required) that any library module contain the "lib" string as
+part of its name.</p>
+<h2>XML and Namespaces</h2>
+<ul type="disc">
+<li>Submitted tests should be independent of XML versions
+&ldquo;1.0&rdquo; and &ldquo;1.1&rdquo; and XML Namespaces versions
+&ldquo;1.0&rdquo; and &ldquo;1.1&rdquo; features unless the purpose
+is to evaluate those features.</li>
+</ul>
+<h2>XML Encoding</h2>
+<ul type="disc">
+<li>Submitted tests should use UTF-8 encoding.</li>
+</ul>
+<h2>Related Specifications</h2>
+<ul type="disc">
+<li>Submitted tests should be based exclusively on the XQuery
+specifications and the Functions and Operators
+specifications. Some tests may rely on the Formal Semantics,
+Data Model and Serialization documents, however those
+specifications are not being directly tested.</li>
+</ul>
+<h2>XPath Compatibility</h2>
+<ul type="disc">
+<li>The test-group element in the catalog may have the optional
+attribute is-XPath2="no". If this attribute is not present,
+when it is assumed that all descendent test cases may or may not be
+XPath 2.0 tests.</li>
+<li>The test-case element in the catalog may have the optional
+attribute is-XPath2="yes|no". If this attribute is not
+present, then it is assumed that this test case may or may not be
+an XPath 2.0 test. If any test-group ancester of this element
+has is-XPath2="no", then this test-case element cannot have
+is-XPath2="yes". Over time, all test-case elements will have
+this attribute defined.</li>
+</ul>
+<h2>Results and Serialization</h2>
+<ul type="disc">
+<li>Tests in the XQTTF test suite rely on the serialized form of the test
+result in order to check correctness. Thus, any feature whose effect is
+not captured as part of the serialized result of a query, should be
+explicitly checked as part of the test query itself. For example, typing
+information is not present in the serialized results of an XQuery
+expression.</li>
+</ul>
+<h2>Expected Results</h2>
+<ul type="disc">
+<li>Submitters must provide expected results for all submitted
+tests.</li>
+<li>When serializing content of a typed element where the type is
+atomic, any lexical representation of the value may be serialized.
+To minimize the number of expected results per test case, the
+input value used to construct the typed element should be identical
+to the result if this input value was cast to xs:string. If
+this is true, then only one expected result with the serialized
+value in its original lexical form is required for this test case.
+However, if the intent of the testcase is to test other
+lexical representations, then two expected results must be created
+where one result would contain the value if it was cast to
+xs:string, and the other in its original lexical form.</li>
+<li>Many tests involve operations on floats/doubles and coverting those results to
+strings. Even as one explicit value is given, the task force realizes that
+other values may also be acceptable. In such cases submitters are encouraged
+to sumbit values that may differ.  The task force will eventually determine
+if such values are within the acceptable range.</li>
+</ul>
+<hr /> 
+<address> 
+  <a href="http://www.w3.org/Help/Webmaster">Webmaster</a> · Last modified: 
+  $Date: 2006/06/02 18:57:36 $ by $Author: cmontane $ 
+</address> 
+<p><a rel="Copyright" 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> 
+© 1994-2005 <a href="http://www.w3.org/"><acronym 
+title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a 
+href="http://www.csail.mit.edu/"><acronym 
+title="Massachusetts Institute of Technology">MIT</acronym></a>, <a 
+href="http://www.ercim.org/"><acronym 
+title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, 
+<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, 
+<a 
+href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>, 
+<a rel="Copyright" 
+href="http://www.w3.org/Consortium/Legal/copyright-documents">document 
+use</a> and <a rel="Copyright" 
+href="http://www.w3.org/Consortium/Legal/copyright-software">software 
+licensing</a> rules apply. Your interactions with this site are in accordance 
+with our <a 
+href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a> 
+and <a 
+href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a> 
+privacy statements.</p> 
+</body>
+</html>

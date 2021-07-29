@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:versionDecl>
+    <xqx:version>1.1</xqx:version>
+    <!-- encoding: null -->
+  </xqx:versionDecl>
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">f</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>x</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:addOp>
+            <xqx:firstOperand>
+              <xqx:varRef>
+                <xqx:name>x</xqx:name>
+              </xqx:varRef>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:secondOperand>
+          </xqx:addOp>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName>string</xqx:functionName>
+        <xqx:arguments>
+          <xqx:literalFunctionItemExpr>
+            <xqx:QName xqx:prefix="local">f</xqx:QName>
+            <xqx:integerConstantExpr>
+              <xqx:value>1</xqx:value>
+            </xqx:integerConstantExpr>
+          </xqx:literalFunctionItemExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

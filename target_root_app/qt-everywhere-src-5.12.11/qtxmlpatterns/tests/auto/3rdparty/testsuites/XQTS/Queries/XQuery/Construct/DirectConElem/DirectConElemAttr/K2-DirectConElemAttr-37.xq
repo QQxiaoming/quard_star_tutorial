@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemAttr-37                         :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract the local-name from a directly constructed attribute whose content consists of a computed processing-instruction constructor. :)
+(:*******************************************************:)
+local-name(<elem attr="{processing-instruction name {" content "}}"/>/@attr)

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqSubsequenceFunc-10                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Have a call to subsequence that triggers a type error in an expression which can be const folded(derived from functionbc20_037). :)
+(:*******************************************************:)
+subsequence((1, 2, 3), 1, "string")

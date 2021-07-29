@@ -1,0 +1,245 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                General                                   *
+****************************************************************************
+
+ - [QTBUG-51710] Added TableView with a similar architecture as ListView
+   (inheriting Flickable and using QQmlInstanceModel internally)
+   but 2-dimensional. It works best with a QAbstractItemModel that defines
+   multiple columns and rows (i.e. it's the QtQuick counterpart to QTableView)
+   but can also present a single-column view of other model types.
+   As an optimization, it maintains a pool of the delegate instances that
+   are visible (plus a few extras); during scrolling, as delegates fall
+   out of view, they are re-bound to show cells that have just come into view.
+ - [QTBUG-26681] Added DelegateChooser, a new type of Component to choose
+   different delegates in an Item View (e.g. TableView) depending on model
+   roles.  DelegateChoice instances specify the available choices.
+ - Pointer Handlers and the Keys handler are now collectively called
+   Input Handlers [QTBUG-66651], and are fully supported as part of
+   Qt Quick 2.12 and forward.  The Qt.labs.handlers import is now removed.
+ - [QTBUG-68072] Added HoverHandler to detect the position of the
+   hovering mouse or stylus pointer.
+ - The JavaScript engine now supports ECMAScript 7.
+ - ECMAScript modules can now be loaded directly with QJSEngine::importModule()
+   and imported in .qml files when using the .mjs file extension.
+ - Qt Quick applications can now be deployed via WebAssembly.
+ - The new Qt.labs.wavefrontmesh import provides an experimental
+   WavefrontMesh type which can read a Wavefront .obj file containing
+   a 2D shape, and generate a 2D mesh for use with ShaderEffect.
+
+****************************************************************************
+*                        Important Behavior Changes                        *
+****************************************************************************
+
+ - [QTBUG-7329][QTBUG-41977][QTBUG-69196] The automatic translation loading
+   in qml, qmlscene and QQmlApplicationEngine now tries to load
+   translations for all languages in QLocale::uiLanguages(). This might
+   require shipping an empty translation for the source language.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - LoggingCategory:
+   * [QTBUG-67094] Added defaultLogLevel property. It is possible to define
+     default log level that LoggingCategory is enabled for.
+
+ - QJSEngine:
+   * [QTBUG-39041] Added API to throw run-time errors.
+   * Added function to import ECMASCript modules from the file system or
+     the Qt resource system.
+   * [QTBUG-71083] Fixed a stack overflow in the parser.
+   * [QTBUG-70632] It's now OK to declare a class in a .mjs module.
+   * [QTBUG-69475] Fixed quadratic behavior when allocating large objects.
+
+ - QQmlEngine:
+   * [QTBUG-56150] QML cache files are now always stored in the
+     application's cache directory when being generated at run-time. If
+     precompiled QML files exist at the source location, then they are
+     loaded and no cache file is being generated. The application's
+     uninstaller is responsible for cleaning up the cache during removal.
+   * [QTBUG-39970] Added API to access singletons associated with a
+     QQmlEngine.
+   * [QTBUG-53111] The onStatusChanged signal from the incubator object
+     that is returned from Component.incubateObject() is more reliable.
+   * [QTBUG-70425] Fixed translation contexts for paths with drive letters
+     on Windows
+   * [QTBUG-68350] Fix QQmlEngine::retranslate() with ListElement objects
+     that use translation functions such as qsTr.
+   * [QTBUG-51581] Properties of the JS global object will now be looked up
+     after local properties in the QML object. This can lead to runtime
+     incompatibilities if your qml file is named the same as a property of
+     the global object (e.g. Date.qml).
+   * [QTBUG-71184] Enums in subclasses can overwrite inherited enums.
+   * Added option to disable unscoped registration of enum classes.
+   * [QTBUG-69884] Fixed the visibility of the Connections.enabled property
+     to appear only when importing QtQml/QtQuick >= 2.3, which was introduced
+     with Qt 5.7. Otherwise it would accidentally shadow an "enabled"
+     context property, for example.
+
+ - QtTest:
+   * We now call cleanupTestCase() on the object given to QUICK_TEST_MAIN
+     before starting destruction.
+   * Add test init function to be called when application object is
+     available.
+   * [QTBUG-47111] ignoreWarning now supports ignoring regular expressions
+     as well as strings.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - Input Handlers:
+   * The QQuickEventPoint::GrabState enum is renamed to GrabTransition.
+   * [QTBUG-68941] PinchHandler.scale is now persistent between gestures,
+     i.e. it's the same as the target Item's scale property if there is a
+     target.  Added an activeScale property to provide the scaling value
+     during a single pinch gesture (activeScale will be 1.0 whenever the
+     PinchHandler is not active, whereas the scale property was unintuitively
+     behaving that way in previous versions).  This change is intended to
+     increase flexibility when the scaling is not done by setting an Item's
+     scale property, but by other means.
+   * [QTBUG-68077] The pointDistanceThreshold property is renamed to
+     margin, and now allows activating any pointer handler within a margin
+     around the parent Item.  This makes it easier to pinch a PinchHandler
+     on a small item, makes it easier to comply with Fitts's Law when
+     a button with a TapHandler is near a screen edge, etc.  If margin
+     is set, it overrides the parent Item's containmentMask, if any.
+   * [QTBUG-68106] DragHandler is now a multi-point handler: if
+     declared with minimumPointCount: 2 for example, it will require
+     two fingers to initiate the drag.  This is especially useful with
+     target: null to handle 2-finger-drag for some alternate purpose.
+   * DragHandler and PinchHandler (and other future MultiPointHandler
+     subclasses) now have a centroid property, since that is usually
+     the focal point of the action or gesture being performed.
+   * [QTBUG-68101] QQuickHandlerPoint (i.e. a handler's centroid or
+     other exposed point property) includes a modifiers property so
+     that you can see which keyboard modifiers are being held.
+   * [QTBUG-61749][QTBUG-64847] The TapHandler.tapped signal includes an
+     eventPoint parameter so that you can see which button was tapped.
+   * [QTBUG-68074] The PointerHandler.grabChanged signal includes a
+     stateChange parameter so that you can see whether the grab was
+     acquired or lost.
+   * [QTBUG-70075] PinchHandler.centroid now has correct property values
+     on a macOS trackpad.
+   * [QTBUG-70292] The PinchHandler.pinchOrigin property is removed.
+   * [QTBUG-66360] PointHandler handles presses and releases of multiple
+     mouse buttons correctly.
+   * [QTBUG-69607] DragHandler doesn't react to mouse wheel events.
+   * [QTBUG-65012] TapHandler doesn't emit longPressed if the point
+     is dragged.
+
+ - AnimatedSprite:
+   * Added finished() signal to AnimatedSprite as a convenient way to react
+     to an animation finishing.
+
+ - Animation:
+   * Added finished() signal to Animation as a convenient way to react to
+     an animation finishing naturally.
+
+ - Canvas:
+   * [QTBUG-31807] Added set/get lineDash and lineDashOffset to Context2D
+     to allow non solid lines to be drawn.
+
+ - Image:
+   * [QTBUG-66116] Fixed a memory leak in Image in an invisible window.
+
+ - Item:
+   * There's now a warning whenever an Item has multiple states with the
+     same name.
+   * [QTBUG-68271] Fixed an infinite loop in tab focus chain when visiting
+     invisible items.
+
+ - MultiPointTouchArea:
+   * [QTBUG-70258] Avoid emitting gestureStarted until the drag threshold
+     is actually exceeded.  In a QML onGestureStarted callback,
+     gesture.touchPoints[0].startX and startY now have correct values.
+
+ - Rectangle:
+   * Added support for horizontal gradients.
+
+ - Repeater:
+   * [QTBUG-54752] If the model is an integer, it must be less than
+     100,000,000 to avoid running out of memory.
+
+ - Shape:
+   * [QTBUG-66843][QTBUG-66457] The Shape item will not try to use
+     GL_NV_path_rendering by default, unless explicitly requested.
+     Thus the default value of enableVendorExtensions is now false.
+
+ - Flickable and Item Views:
+   * [QTBUG-62902] Added a synchronousDrag property that makes the content
+     jump to the position it would have had if there was no drag threshold,
+     as soon as dragging begins.
+   * [QTBUG-70742][QTBUG-70941] We now cancel flicking when the model is
+     reset, and when programmatically positioning the content, to avoid
+     wasting time instantiating irrelevant delegates.
+   * [QTBUG-49224] Fixed a crash by avoiding movement during layout.
+   * [QTBUG-67051] Improved interaction between snapping and sections.
+   * [QTBUG-69863] GridView LeftMargin and RightMargin are taken into
+     account when calculating positions and columns.
+   * [QTBUG-69059][QTBUG-61144] Fixed the regression that when a
+     mouse-handling Item or Control is used in a Flickable with a
+     pressDelay, the delegate item did not receive touchscreen taps
+     (in the form of mouse clicks).  This fix was in 5.9.4 but somehow
+     did not get merged forward into 5.10 and 5.11.
+   * [QTBUG-59620] PathView calls setKeepMouseGrab() so that a parent
+     Flickable will not steal the grab from it.
+
+ - Text:
+   * [QTBUG-53279] Fixed an issue where updating text inside a layout would
+     not cause it to correctly adapt to its new width.
+   * [QTBUG-69356] Support pregenerated loading distance field glyph caches
+     to decrease startup time for applications with large amounts of text.
+
+ - QQuickWindow:
+   * [QTBUG-52748] You can now disable touch->mouse event synthesis in
+     QtQuick by calling
+     qGuiApp.setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents,
+     false). This will simplify and speed up event delivery, and it will
+     also prevent any and all interaction with mouse-only items like
+     MouseArea and Flickable on a touchscreen.
+   * [QTBUG-70998] Touch->mouse synthesis is canceled when the touch
+     is ungrabbed, rather than when a new touchpoint is pressed.  Thus
+     if you are using one finger to interact with a legacy mouse-handling
+     Item, and you press a second finger, the first interaction doesn't
+     necessarily end right away, unless some other handler steals the
+     grab from the first Item.
+   * [QTBUG-70898] Emit a warning rather than crashing if user code
+     calls sendEvent() while a pointer event is being delivered.
+     Nested event delivery is not possible because of the way that
+     the QQuickPointerEvent instances are reused for subsequent events.
+
+ - FolderListModel:
+   * [QTBUG-48757][QTBUG-70212] Added a sortCaseSensitive property that
+     can be set to false to sort filenames in a case-insensitive manner.
+
+ - Software renderer:
+   * [QTBUG-70740] Fixed a memory leak.
+   * Fixed QSGImageNode with QSGLayer.
+   * [QTBUG-68085] Italic text is no longer cut improperly due to line wrap.
+   * [QTBUG-70422] If Qt is built without support for threads, single-threaded
+     rendering is used.  (This includes the WebAssembly use case.)
+
+ - Platform Specific Changes:
+   * [QTBUG-63026][QTBUG-65160] Now that macOS provides a proper
+     ScrollMomentum phase in QWheelEvent, Flickable responds more
+     precisely when simulated momentum on the trackpad comes to an
+     end, rather than using a timer to wait for it to end.  This improves
+     robustness in some cases where scrolling was jumpy in older versions.

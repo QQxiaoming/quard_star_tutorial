@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-divide-yearMonthDuration-12                   :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 30, 2005                                    :)
+(:Purpose: Evaluates The "divide-yearMonthDuration" operators used :)
+(:with a boolean expression and the "fn:true" function.   :)
+(: Apply "fn:string" function to account for new EBV.     :)
+(:*******************************************************:)
+ 
+fn:string((xs:yearMonthDuration("P10Y11M") div 2.0)) and (fn:true())

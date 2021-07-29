@@ -1,0 +1,44 @@
+{
+    "module": "qdoc",
+    "tests": {
+        "libclang": {
+            "label": "libclang",
+            "test": "libclang",
+            "type": "libclang"
+        }
+    },
+    "features": {
+        "qdoc": {
+            "label": "QDoc",
+            "condition": "tests.libclang",
+            "output": [
+                "privateFeature",
+                { "type": "varAssign", "name": "CLANG_LIBS", "value": "tests.libclang.libs" },
+                { "type": "varAssign", "name": "CLANG_INCLUDEPATH", "value": "tests.libclang.includepath" },
+                { "type": "varAssign", "name": "CLANG_LIBDIR", "value": "tests.libclang.libdir" },
+                { "type": "varAssign", "name": "CLANG_DEFINES", "value": "tests.libclang.defines" },
+                { "type": "varAssign", "name": "CLANG_VERSION", "value": "tests.libclang.version" }
+            ]
+        }
+    },
+    "report": [
+        {
+            "type": "warning",
+            "condition": "!features.qdoc",
+            "message": "QDoc will not be compiled, probably because libclang could not be located. This means that you cannot build the Qt documentation.
+
+Either ensure that llvm-config is in your PATH environment variable, or set LLVM_INSTALL_DIR to the location of your llvm installation.
+On Linux systems, you may be able to install libclang by installing the libclang-dev or libclang-devel package, depending on your distribution.
+On macOS, you can use Homebrew's llvm package.
+On Windows, you must set LLVM_INSTALL_DIR to the installation path."
+        }
+    ],
+    "summary": [
+        {
+            "section": "Qt Tools",
+            "entries": [
+                "qdoc"
+            ]
+        }
+    ]
+}

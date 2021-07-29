@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-484                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: 'castable as' involving xs:float as sourceType and xs:NOTATION should fail due to it involving xs:NOTATION. :)
+(:*******************************************************:)
+not(xs:float("3.4e5") castable as xs:NOTATION)

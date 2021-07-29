@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FunctionCallExpr-13                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: No function by name fn:unparsed-text() exists(although one does in XSL-T). :)
+(:*******************************************************:)
+unparsed-text-available("example.com/file.ext")

@@ -1,0 +1,72 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="StringEqual" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>xs:string eq/ne xs:string</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringEqual-1" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>A test whose essence is: `'equals' eq 'equals'`.</description>
+      <query name="K-StringEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringEqual-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringEqual-2" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>A test whose essence is: `'' eq ''`.</description>
+      <query name="K-StringEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringEqual-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringEqual-3" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>A test whose essence is: `not('nada' eq 'equalness')`.</description>
+      <query name="K-StringEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringEqual-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringEqual-4" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>A test whose essence is: `'not' ne 'equal'`.</description>
+      <query name="K-StringEqual-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringEqual-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringEqual-5" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>A test whose essence is: `not('equal' ne 'equal')`.</description>
+      <query name="K-StringEqual-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringEqual-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-StringEqual-1" FilePath="Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>Compare two values returned from fn:lower-case().</description>
+      <query name="K2-StringEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-StringEqual-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-StringEqual-2" FilePath="Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>Compare two values returned from fn:upper-case().</description>
+      <query name="K2-StringEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-StringEqual-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-StringEqual-3" FilePath="Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case().</description>
+      <query name="K2-StringEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-StringEqual-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-StringEqual-4" FilePath="Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:upper-case().</description>
+      <query name="K2-StringEqual-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-StringEqual-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-StringEqual-5" FilePath="Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-StringEqual-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-StringEqual-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-StringEqual-6" FilePath="Operators/CompExpr/ValComp/StringComp/StringEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-StringEqual-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-StringEqual-6.txt</output-file>
+   </test-case>
+</test-group>

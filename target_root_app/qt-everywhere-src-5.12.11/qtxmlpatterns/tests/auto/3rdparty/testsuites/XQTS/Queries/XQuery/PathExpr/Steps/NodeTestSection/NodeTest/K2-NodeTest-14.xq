@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NodeTest-14                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: 'name' is not allowed inside document-node(). :)
+(:*******************************************************:)
+document-node(name)

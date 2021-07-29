@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>atomic</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:castExpr>
+        <xqx:argExpr>
+          <xqx:pathExpr>
+            <xqx:stepExpr>
+              <xqx:filterExpr>
+                <xqx:varRef>
+                  <xqx:name>input-context1</xqx:name>
+                </xqx:varRef>
+              </xqx:filterExpr>
+            </xqx:stepExpr>
+            <xqx:stepExpr>
+              <xqx:xpathAxis>child</xqx:xpathAxis>
+              <xqx:nameTest xqx:prefix="atomic">root</xqx:nameTest>
+            </xqx:stepExpr>
+            <xqx:stepExpr>
+              <xqx:xpathAxis>child</xqx:xpathAxis>
+              <xqx:nameTest xqx:prefix="atomic">date</xqx:nameTest>
+            </xqx:stepExpr>
+          </xqx:pathExpr>
+        </xqx:argExpr>
+        <xqx:singleType>
+          <xqx:atomicType xqx:prefix="xs">dateTime</xqx:atomicType>
+        </xqx:singleType>
+      </xqx:castExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

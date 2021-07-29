@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-LetExprWithout-23                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Bind the context item to a variable.         :)
+(:*******************************************************:)
+count(<e/>/(let $i := . return (string($i), data($i))))

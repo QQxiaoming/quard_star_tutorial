@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: sumsht2args-2                                     :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "sum" function                  :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:short(upper bound)                           :)
+(:$zero = xs:short(lower bound)                          :)
+(:*******************************************************:)
+
+fn:sum((xs:short("32767"),xs:short("-32768")))

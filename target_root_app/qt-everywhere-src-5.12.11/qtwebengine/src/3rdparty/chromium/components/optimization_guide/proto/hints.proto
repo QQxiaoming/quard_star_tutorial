@@ -1,0 +1,161 @@
+// Copyright 2017 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto2";
+option optimize_for = LITE_RUNTIME;
+
+package optimization_guide.proto;
+
+enum OptimizationType {
+  TYPE_UNSPECIFIED = 0;
+  // This optimization blocks JavaScript on the page.
+  NOSCRIPT = 1;
+  // This optimization applies a set of ResourceLoadingHint(s) to load the
+  // page.
+  RESOURCE_LOADING = 2;
+}
+
+// Presents semantics for how page load URLs should be matched.
+enum KeyRepresentation {
+  REPRESENTATION_UNSPECIFIED = 0;
+  // The suffix to match in the hostname of a page load URL.
+  //
+  // Example: A host suffix of example.com would match pages with host
+  // sports.example.com, but not fooexample.com.
+  HOST_SUFFIX = 1;
+}
+
+enum LoadingOptimizationType {
+  LOADING_UNSPECIFIED = 0;
+  // The resource should not be loaded.
+  LOADING_BLOCK_RESOURCE = 1;
+}
+
+message ResourceLoadingHint {
+  // The pattern to match against the resource URL.
+  //
+  // The pattern may be a single substring to match against the URL or it may be
+  // an ordered set of substrings to match where the substrings are separated by
+  // the ‘*’ wildcard character (with an implicit ‘*’ at the beginning and end).
+  optional string resource_pattern = 1;
+  // The type of loading optimization to apply to the resource.
+  optional LoadingOptimizationType loading_optimization_type = 2;
+}
+
+message Optimization {
+  // The type of optimization the hint applies to.
+  optional OptimizationType optimization_type = 1;
+  // A percent value to inflate the number of received bytes by for the purposes
+  // of data savings calculations in the client.
+  //
+  // If this value is set to 0, the client should use its configured default.
+  //
+  // Ex: If the received bytes is 100 and the inflation_percent is 30, the
+  // inflated bytes calculated by the client will be 30 in order to have a total
+  // consumed bytes value of 130.
+  optional int64 inflation_percent = 2;
+  // An ordered set of resource loading hints for OptimizationType
+  // RESOURCE_LOADING.
+  //
+  // Only the first ResourceLoadingHint record that matches a target resource
+  // URL will be applied to that resource.
+  repeated ResourceLoadingHint resource_loading_hints = 3;
+  // The experiment name that activates the optimization.
+  //
+  // If a non-empty name is provided, the optimization will be disabled unless
+  // a previews experiment of that same name is running. An empty name is not
+  // experimental.
+  //
+  // Previews experiments are enabled and configured by passing an
+  // experiment_name parameter to the OptimizationHintsExperiments feature.
+  // For example, if experiment_name is my_exp, it could be enabled with the
+  // following command-line flags:
+  //   --enable-features=OptimizationHintsExperiments<MyFieldTrial
+  //   --force-fieldtrial-params="MyFieldTrial.Enabled:experiment_name/my_exp"
+  //   --force-fieldtrials=MyFieldTrial/Enabled/
+  optional string experiment_name = 4;
+}
+
+// The possible effective connection type values.
+//
+// The values should match those of //net/nqe/effective_connection_type.h in the
+// Chromium repository.
+enum EffectiveConnectionType {
+  // Effective connection type reported when the network quality is unknown.
+  EFFECTIVE_CONNECTION_TYPE_UNKNOWN = 0;
+
+  // Effective connection type reported when the Internet is unreachable,
+  // either because the device does not have a connection or because the
+  // connection is too slow to be usable.
+  EFFECTIVE_CONNECTION_TYPE_OFFLINE = 1;
+
+  // Effective connection type reported when the network has the quality of a
+  // poor 2G connection.
+  EFFECTIVE_CONNECTION_TYPE_SLOW_2G = 2;
+
+  // Effective connection type reported when the network has the quality of a
+  // faster 2G connection.
+  EFFECTIVE_CONNECTION_TYPE_2G = 3;
+
+  // Effective connection type reported when the network has the quality of a
+  // 3G connection.
+  EFFECTIVE_CONNECTION_TYPE_3G = 4;
+
+  // Effective connection type reported when the network has the quality of a
+  // 4G connection.
+  EFFECTIVE_CONNECTION_TYPE_4G = 5;
+}
+
+message PageHint {
+  // The pattern to match against the committed page URL.
+  //
+  // The pattern may be a single substring to match against the full URL or it
+  // may be an ordered set of substrings to match where the substrings are
+  // separated by the ‘*’ wildcard character (with an implicit ‘*’ at the
+  // beginning and end).
+  optional string page_pattern = 1;
+  // The maximum effective connection type threshold for triggering the
+  // optimization associated with this hint.
+  optional EffectiveConnectionType max_ect_trigger = 2;
+  // An unordered set of optimizations that should be whitelisted for this
+  // page pattern.
+  repeated Optimization whitelisted_optimizations = 3;
+}
+
+message Hint {
+  // Describes the granularity of the key field.
+  optional KeyRepresentation key_representation = 1;
+  // The key that applies to this hint. The key_representation field describes
+  // the form in which this key takes. Guaranteed to be non-empty.
+  optional string key = 2;
+  // An unordered set of optimizations that should be whitelisted for this
+  // hint.
+  // If empty, then no optimizations should be whitelisted (this allows for an
+  // earlier hint entry to act as an exception to a subsequently matching hint
+  // whitelist entry). If multiple optimizations or page_hints are provided, the
+  // client will decide which one to act on.
+  repeated Optimization whitelisted_optimizations = 3;
+  // An ordered set of per-page hints. Only the first PageHint record
+  // that matches a committed page URL should be used for that page load.
+  repeated PageHint page_hints = 4;
+}
+
+message Configuration {
+  // An ordered list containing hints for key/optimization combinations.
+  //
+  // It is guaranteed that there will only be a single hint per key and key
+  // representation combination. These hints are intended to apply to a full
+  // page.
+  //
+  // Note, this list may contain multiple hints that apply to a page. For
+  // example, if there are hints for (HOST_SUFFIX,example.com) and
+  // (HOST_SUFFIX,sports.example.com), these may both apply to
+  // sports.example.com/foo.
+  //
+  // The client will use the first Hint record with a key that matches the
+  // main frame URL. Therefore, the server should provide all the hint
+  // details for that key that it wants to provide as the client will only
+  // look at that one record to decide which optimization to apply.
+  repeated Hint hints = 1;
+}

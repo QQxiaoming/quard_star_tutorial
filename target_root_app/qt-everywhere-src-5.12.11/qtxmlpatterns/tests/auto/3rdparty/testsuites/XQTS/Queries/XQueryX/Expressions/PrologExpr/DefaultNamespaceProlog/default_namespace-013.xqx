@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:defaultNamespaceDecl>
+        <xqx:defaultNamespaceCategory>function</xqx:defaultNamespaceCategory>
+        <xqx:uri>http://example.org</xqx:uri>
+      </xqx:defaultNamespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName>foo2</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>i</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName>foo</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>i</xqx:name>
+              </xqx:varRef>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName>foo</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>i</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:varRef>
+            <xqx:name>i</xqx:name>
+          </xqx:varRef>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName>foo2</xqx:functionName>
+        <xqx:arguments>
+          <xqx:stringConstantExpr>
+            <xqx:value>abc</xqx:value>
+          </xqx:stringConstantExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

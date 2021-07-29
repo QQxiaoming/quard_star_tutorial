@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-base64Binary-equal2args-8                      :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Tue Mar 22 11:23:46 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "op:base64Binary-equal" operator:)
+(: with the arguments set as follows:                    :)
+(:$value1 = xs:base64Binary(upper bound)                 :)
+(:$value2 = xs:base64Binary(lower bound)                 :)
+(:*******************************************************:)
+
+xs:base64Binary("cW9kanZzY3ZlaWthYXVreGxibm11dW91ZmllZGplbXZza2FqcGlwdWlxcG5xbHR4dmFjcWFjbGN1Z3BqYmVuZWhsdHhzeHZs") ne xs:base64Binary("cmxjZ3R4c3JidnllcmVuZG91aWpsbXV5Z2NhamxpcmJkaWFhbmFob2VsYXVwZmJ1Z2dmanl2eHlzYmhheXFtZXR0anV2dG1q")

@@ -1,0 +1,118 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Tue, 7 Jan 2020 13:32:12 -0800
+Subject: [PATCH 18/25] Avoid ambiguous true and false return
+
+Backports https://www.sqlite.org/src/info/ff9492d3ff733c22
+
+Bug: 1033461
+---
+ third_party/sqlite/patched/src/expr.c      | 21 ++++++++++++++++---
+ third_party/sqlite/patched/src/select.c    |  2 +-
+ third_party/sqlite/patched/src/sqliteInt.h |  1 +
+ third_party/sqlite/patched/test/with1.test | 24 ++++++++++++++++++++++
+ 4 files changed, 44 insertions(+), 4 deletions(-)
+
+diff --git a/third_party/sqlite/patched/src/expr.c b/third_party/sqlite/patched/src/expr.c
+index e8b1f31c42aa..760978c482d3 100644
+--- a/third_party/sqlite/patched/src/expr.c
++++ b/third_party/sqlite/patched/src/expr.c
+@@ -1814,19 +1814,34 @@ int sqlite3SelectWalkFail(Walker *pWalker, Select *NotUsed){
+   return WRC_Abort;
+ }
+ 
++/*
++** Check the input string to see if it is "true" or "false" (in any case).
++**
++**       If the string is....           Return
++**         "true"                         EP_IsTrue
++**         "false"                        EP_IsFalse
++**         anything else                  0
++*/
++u32 sqlite3IsTrueOrFalse(const char *zIn){
++  if( sqlite3StrICmp(zIn, "true")==0  ) return EP_IsTrue;
++  if( sqlite3StrICmp(zIn, "false")==0 ) return EP_IsFalse;
++  return 0;
++}
++
++
+ /*
+ ** If the input expression is an ID with the name "true" or "false"
+ ** then convert it into an TK_TRUEFALSE term.  Return non-zero if
+ ** the conversion happened, and zero if the expression is unaltered.
+ */
+ int sqlite3ExprIdToTrueFalse(Expr *pExpr){
++  u32 v;
+   assert( pExpr->op==TK_ID || pExpr->op==TK_STRING );
+   if( !ExprHasProperty(pExpr, EP_Quoted)
+-   && (sqlite3StrICmp(pExpr->u.zToken, "true")==0
+-       || sqlite3StrICmp(pExpr->u.zToken, "false")==0)
++   && (v = sqlite3IsTrueOrFalse(pExpr->u.zToken))!=0
+   ){
+     pExpr->op = TK_TRUEFALSE;
+-    ExprSetProperty(pExpr, pExpr->u.zToken[4]==0 ? EP_IsTrue : EP_IsFalse);
++    ExprSetProperty(pExpr, v);
+     return 1;
+   }
+   return 0;
+diff --git a/third_party/sqlite/patched/src/select.c b/third_party/sqlite/patched/src/select.c
+index ba70a2bdec78..be705c11d1b4 100644
+--- a/third_party/sqlite/patched/src/select.c
++++ b/third_party/sqlite/patched/src/select.c
+@@ -1980,7 +1980,7 @@ int sqlite3ColumnsFromExprList(
+         zName = pEList->a[i].zSpan;
+       }
+     }
+-    if( zName ){
++    if( zName && !sqlite3IsTrueOrFalse(zName) ){
+       zName = sqlite3DbStrDup(db, zName);
+     }else{
+       zName = sqlite3MPrintf(db,"column%d",i+1);
+diff --git a/third_party/sqlite/patched/src/sqliteInt.h b/third_party/sqlite/patched/src/sqliteInt.h
+index 2eb9ff559aac..970ef817f3e1 100644
+--- a/third_party/sqlite/patched/src/sqliteInt.h
++++ b/third_party/sqlite/patched/src/sqliteInt.h
+@@ -4093,6 +4093,7 @@ void sqlite3EndTransaction(Parse*,int);
+ void sqlite3Savepoint(Parse*, int, Token*);
+ void sqlite3CloseSavepoints(sqlite3 *);
+ void sqlite3LeaveMutexAndCloseZombie(sqlite3*);
++u32 sqlite3IsTrueOrFalse(const char*);
+ int sqlite3ExprIdToTrueFalse(Expr*);
+ int sqlite3ExprTruthValue(const Expr*);
+ int sqlite3ExprIsConstant(Expr*);
+diff --git a/third_party/sqlite/patched/test/with1.test b/third_party/sqlite/patched/test/with1.test
+index 4fb074b2cf0a..e5787db704d1 100644
+--- a/third_party/sqlite/patched/test/with1.test
++++ b/third_party/sqlite/patched/test/with1.test
+@@ -1140,4 +1140,28 @@ do_execsql_test 24.2 {
+   3 1 1 3
+ }
+ 
++# 2020-01-02 chromium ticket 1033461
++# Do not allow the generated name of a CTE be "true" or "false" as
++# such a label might be later confused for the boolean literals of
++# the same name, causing inconsistencies in the abstract syntax
++# tree.  This problem first arose in version 3.23.0 when SQLite
++# began recognizing "true" and "false" as boolean literals, but also
++# had to continue to recognize "true" and "false" as identifiers for
++# backwards compatibility.
++#
++reset_db
++do_execsql_test 25.1 {
++  CREATE TABLE dual(dummy);
++  INSERT INTO dual(dummy) VALUES('X');
++  WITH cte1 AS (
++    SELECT TRUE, (
++      WITH cte2 AS (SELECT avg(DISTINCT TRUE) FROM dual)
++      SELECT 2571 FROM cte2
++    ) AS subquery1
++    FROM dual
++    GROUP BY 1
++  )
++  SELECT (SELECT 1324 FROM cte1) FROM cte1;
++} {1324}
++
+ finish_test
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

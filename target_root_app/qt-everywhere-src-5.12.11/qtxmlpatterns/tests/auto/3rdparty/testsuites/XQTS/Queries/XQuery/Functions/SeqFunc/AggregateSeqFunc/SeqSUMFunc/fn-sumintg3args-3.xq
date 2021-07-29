@@ -1,0 +1,12 @@
+(:*******************************************************:)
+(:Test: sumintg3args-3                                    :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "sum" function                  :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:integer(lower bound)                        :)
+(:$arg2 = xs:integer(lower bound)                        :)
+(:$zero = xs:integer(mid range)                          :)
+(:*******************************************************:)
+
+fn:sum((xs:integer("0"),xs:integer("0"),xs:integer("830993497117024304")))

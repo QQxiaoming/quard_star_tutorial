@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName xqx:prefix="xqx">xquery</xqx:tagName>
+        <xqx:attributeList>
+          <xqx:namespaceDeclaration>
+            <xqx:prefix>xqx</xqx:prefix>
+            <xqx:uri>http://www.w3.org/2005/XQueryX</xqx:uri>
+          </xqx:namespaceDeclaration>
+        </xqx:attributeList>
+        <xqx:elementContent>
+          <xqx:stringConstantExpr>
+            <xqx:value>for $i in (1 to 5) let $j := 4 where $i &lt; $j return &lt;x&gt;&lt;i&gt;&#x7b;$i&#x7d;&lt;/i&gt;&lt;/x&gt;</xqx:value>
+          </xqx:stringConstantExpr>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

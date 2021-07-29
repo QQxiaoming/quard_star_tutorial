@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqReverseFunc-12                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal((3, 2, 1), reverse(1 to 3))`. :)
+(:*******************************************************:)
+deep-equal((3, 2, 1), reverse(1 to 3))

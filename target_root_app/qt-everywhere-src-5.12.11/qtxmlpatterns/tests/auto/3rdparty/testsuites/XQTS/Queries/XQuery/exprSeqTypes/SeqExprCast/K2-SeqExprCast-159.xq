@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-159                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast an empty string to xs:language.         :)
+(:*******************************************************:)
+xs:language("")

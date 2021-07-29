@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mixed</title>
+        <script>
+         var result;
+         var canary;
+
+         function setIFrameUrl(url) {
+             result = undefined;
+             canary = undefined;
+             document.getElementById("iframe").setAttribute("src", url);
+             // Early fire is OK unless the test is expecting cannotLoad.
+             // If timeout is too short then a false positive is possible.
+             setTimeout(() => { result = result || "cannotLoad"; }, 500);
+         }
+
+         addEventListener("load", function() {
+             document.getElementById("iframe").addEventListener("load", function() {
+                 if (canary && window[0].canary)
+                     result = "canLoadAndAccess";
+                 else
+                     result = "canLoadButNotAccess";
+             });
+         });
+        </script>
+    </head>
+    <body>
+        <iframe id="iframe"></iframe>
+    </body>
+</html>

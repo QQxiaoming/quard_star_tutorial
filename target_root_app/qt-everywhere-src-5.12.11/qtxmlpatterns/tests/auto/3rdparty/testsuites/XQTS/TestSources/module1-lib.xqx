@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>mod1</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/module1</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>mod2</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/module2</xqx:targetNamespace>
+      </xqx:moduleImport>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="mod1">x</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:functionBody>
+          <xqx:sequenceExpr>
+            <xqx:stringConstantExpr>
+              <xqx:value>x</xqx:value>
+            </xqx:stringConstantExpr>
+            <xqx:functionCallExpr>
+              <xqx:functionName xqx:prefix="mod2">y</xqx:functionName>
+              <xqx:arguments>
+              </xqx:arguments>
+            </xqx:functionCallExpr>
+            <xqx:stringConstantExpr>
+              <xqx:value>x</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:sequenceExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

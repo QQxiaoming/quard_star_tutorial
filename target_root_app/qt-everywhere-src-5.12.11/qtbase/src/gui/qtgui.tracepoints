@@ -1,0 +1,19 @@
+{
+QT_BEGIN_NAMESPACE
+class QImageReader;
+QT_END_NAMESPACE
+}
+
+QGuiApplicationPrivate_init_entry()
+QGuiApplicationPrivate_init_exit()
+
+QGuiApplicationPrivate_processWindowSystemEvent_entry(int type)
+QGuiApplicationPrivate_processWindowSystemEvent_exit()
+
+QFontDatabase_addApplicationFont(const QString &filename)
+QFontDatabase_load(const QString &family, int pointSize)
+QFontDatabase_loadEngine(const QString &family, int pointSize)
+QFontDatabasePrivate_addAppFont(const QString &fileName)
+
+QImageReader_read_before_reading(QImageReader *reader, const QString &filename)
+QImageReader_read_after_reading(QImageReader *reader, bool result)

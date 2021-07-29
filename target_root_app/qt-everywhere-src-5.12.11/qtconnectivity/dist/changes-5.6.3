@@ -1,0 +1,47 @@
+Qt 5.6.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.6.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+  http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.6 series is binary compatible with the 5.5.x series.
+Applications compiled for 5.5 will continue to run with 5.6.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+  https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                          Library                                         *
+****************************************************************************
+
+QtNfc
+-----
+
+ - Android:
+   * [QTBUG-55297] Addressed an ODR violation in QLlcpServer
+
+
+QtBluetooth
+-----------
+
+ - [QTBUG-56294] Fixed misleading error message in QBluetoothSocket.
+
+ - Android:
+   * [QTBUG-45066] Fixed crash in QBluetoothDeviceDiscoveryAgent ctor due to
+     Java exception on some Android devices such as the HTC 10.
+
+ - BlueZ:
+   * Made sdpscanner compilable with non C++11 compiler.
+
+ - iOS/macOS:
+   * Replaced deprecated CBCentralManagerState enum and related values with
+     CBManagerState. This change was introduced by iOS 10.
+   * Fixed build on MacOSX10.12 SDK. Missing includes were added that allow
+     to build the module with 10.12 SDK and Xcode 8.

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-BaseURIProlog-3                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A base-uri declaration with a Windows file path which is invalid, and which is being used by a call to fn:doc(). :)
+(:*******************************************************:)
+declare base-uri "c:\windows"; fn:doc("example.com.xml")

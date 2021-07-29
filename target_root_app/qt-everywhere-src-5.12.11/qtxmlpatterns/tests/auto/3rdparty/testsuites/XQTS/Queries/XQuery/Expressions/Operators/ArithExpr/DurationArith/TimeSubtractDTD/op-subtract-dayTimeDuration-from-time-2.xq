@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(:Test: op-subtract-dayTimeDuration-from-time-2          :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: July 1, 2005                                     :)
+(:Purpose: Evaluates The "subtract-dayTimeDuration-from-time" operator :)
+(:as per example 2 (for this function) from the F&O specs. :)
+(:*******************************************************:)
+xs:time("08:20:00-05:00") - xs:dayTimeDuration("P23DT10H10M") 

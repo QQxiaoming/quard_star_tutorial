@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqDistinctValuesFunc-10                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal(distinct-values((1, 2.0, 3, 2)), (1, 2.0, 3))`. :)
+(:*******************************************************:)
+deep-equal(distinct-values((1, 2.0, 3, 2)), (1, 2.0, 3))

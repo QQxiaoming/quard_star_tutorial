@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>XML Query Test Suite Release Notes</title>
+   </head>
+   
+   <body>
+      <center>
+         <h1>XML Query Test Suite Release Notes</h1>
+      </center>
+      
+      <p>This document contains the release notes for the
+         <a href="http://www.w3.org/XML/Query/test-suite/">XML Query Test Suite</a>.
+      </p>
+      
+      <h2>XQTS 1.0.3 (Sept. 2010)</h2>
+      
+      <ul>
+         <li>Added 322 test cases that correspond to the errata that were incorporated into
+            the <a href="http://www.w3.org/TR/2009/PER-xquery-20090421/">XQuery 1.0 (Second Edition) Proposed Edited Recommendation</a>.
+            Each test case contains a "reflects-resolution" element that identifies the Bug Report that is associated with its erratum.
+         </li>
+         <li>Created a catalog file (<a href="XQTSCatalogSecondEdition.xml">XQTSCatalogSecondEdition.xml</a>)
+            that reflects only the test cases that correspond to the errata
+            that were incorporated into
+            the <a href="http://www.w3.org/TR/2009/PER-xquery-20090421/">XQuery 1.0 (Second Edition) Proposed Edited Recommendation</a>.
+         </li>
+         <li>Some XQuery 1.1 test cases have been added to the test suite.
+            These test cases contain output-file or expected-error elements with attribute spec-version="1.1".
+            An output-file or expected-error element without a spec-version attribute applies to all versions of XQuery.
+            When this test suite is being used to test XQuery 1.0, a test case that contains only XQuery 1.1 results may be skipped.
+         </li>
+         <li>For the purposes of testing XQueryX 1.0, a test harness may now skip the
+            execution of a test case when:
+            <ol>
+               <li>the scenario is parse-error, or</li>
+               <li>an XQuery 1.0 expected error is XPST0003, or</li>
+               <li>the XQueryX document does not validate using the XQueryX 1.0 schema</li>
+            </ol>
+         </li>
+         <li>Added 4089 new test cases.
+            Some of these reflect the resolution of XQTS issues
+            (<a href="http://www.w3.org/Bugs/Public/buglist.cgi?query_format=advanced&product=XML+Query+Test+Suite&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&resolution=FIXED&chfieldfrom=2006-11-21&chfieldto=2010-09-10">resolutions resulting in changes since the publication of XQTS 1.0.2</a>).            
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 1.0.2 (Nov. 20, 2006)</h2>
+      
+      <ul>
+         <li>Changed how the XQueryX documents are generated from the XQuery expressions in the test suite.</li>
+      </ul>
+      
+      
+      <h2>XQTS 1.0.1 (Oct. 2, 2006)</h2>
+      
+      <ul>
+         <li>Added 19 test cases.</li>         
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents (republished on June 8, 2006).
+            <br/>Changes have been made to reflect the resolutions of the following CR issues by the XML
+            Query and XSL WGs:
+            <blockquote>
+               <table>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3416">3416</a></td>
+                     <td>Base URI of a constructed element</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3637">3637</a></td>
+                     <td>Adjacent text nodes</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3447">3447</a></td>
+                     <td>xmlns="QNameXSD"</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3660">3660</a></td>
+                     <td>Unclear what to do on external variable with no value</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3443">3443</a></td>
+                     <td>additional expected values for decimal operations</td>
+                  </tr>                                                                  
+               </table>
+            </blockquote>
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 1.0 (Aug. 18, 2006)</h2>
+      
+      <ul>
+         <li>Added 230 test cases.</li>
+         <li>Added a small number of tests for the fn:collection function.</li>
+         <li>Revised the catalog schema in several ways to better support test cases
+            that use fn:doc, fn:collection, or use "." to refer to the context item
+            provided by the host environment.
+            <ol>
+               <li>Removed the context attribute from the input-file element.</li>
+               <li>Added an input-URI element.</li>
+               <li>Added a defaultCollection element.</li>
+               <li>Added a contextItem element.</li>
+            </ol>
+            <p>The Guidelines for Running the XQuery Test Suite have been updated to explain this and provide examples.
+            </p>
+         </li>
+         <li>Added the following items to the list of implementation-defined items in the catalog:
+            <blockquote>
+               <table border="1">
+                  <tr>
+                     <td valign="top">[XQuery] externalFunctionCall</td>
+                     <td>The result of an unsuccessful call to an external function (for example, if the function implementation cannot be found or does not return a value of the declared type).</td>
+                  </tr>
+                  <tr>
+                     <td valign="top">[FuncOps] stringToDecimal</td>
+                     <td>The result of casting a string to xs:decimal, when the resulting value is not too large or too small but nevertheless has too many decimal digits to be accurately represented, is implementation-defined. See 17.1.1 Casting from xs:string and xs:untypedAtomic.</td>
+                  </tr>
+                  <tr>
+                     <td valign="top">[FuncOps] weakenStable</td>
+                     <td>The manner in which implementations provide options to weaken the stable characteristic of 15.5.6 fn:collection and 15.5.4 fn:doc are implementation-defined.</td>
+                  </tr>
+               </table>
+            </blockquote>
+         </li>
+         
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents (republished on June 8, 2006).
+            <br/>Changes have been made to reflect the resolutions of the following CR issues by the XML
+            Query and XSL WGs:
+            <blockquote>
+               <table>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3310">3310</a></td>
+                     <td>"x" castable as xs:QName</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3312">3312</a></td>
+                     <td>XPST0080, XPST0003 and XPST0051 overlaps</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2710">2710</a></td>
+                     <td>extra white space in pragma content</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3358">3358</a></td>
+                     <td>Rules for min() and max() handling of non-primitive types</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3369">3369</a></td>
+                     <td>Operations on xs:duration</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3433">3433</a></td>
+                     <td>Comparing xs:anyURI values</td>
+                  </tr>
+               </table>
+            </blockquote>
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 0.9.4 (June 9, 2006)</h2>
+      
+      <ul>
+         <li>Added more than 4000 test cases.
+         </li>
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents.
+            <br/>Changes have been made to reflect the resolutions of the following CR issues by the XML
+            Query and XSL WGs:
+            <blockquote>
+               <table>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2768">2768</a></td>
+                     <td>constructing list of union types from PSVI</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3129">3129</a></td>
+                     <td>Catalog info for cast-within-3 and cast-within-4 are swapped</td>
+                  </tr>     
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3303">3303</a></td>
+                     <td>fn-base-uri-23 expects the uri to be escaped?</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Member/bugzilla/show_bug.cgi?id=436">436</a></td>
+                     <td>base-uri-8 should allow error FONS0005.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Member/bugzilla/show_bug.cgi?id=435">435</a></td>
+                     <td>base-uri test cases should allow error XQST0046</td>
+                  </tr>                    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3307">3307</a></td>
+                     <td>XQST0009 is also valid for validateexpr-*</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2900">2900</a></td>
+                     <td>invalid argument to doc() in fn-doc-xx</td>
+                  </tr>      
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3152">3152</a></td>
+                     <td>fn-data-1</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3281">3281</a></td>
+                     <td>value-comparison-3 and value-comparison-4 without schema import</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3151">3151</a></td>
+                     <td>extexpr-26</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2966">2966</a></td>
+                     <td>TestSources/test1collide-lib doesn't exist</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2961">2961</a></td>
+                     <td>fn-base-uri-2 results in XPTY0019 iso FOTY0011</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2959">2959</a></td>
+                     <td>op-subtract-dateTimes-yielding-DTD-10</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2938">2938</a></td>
+                     <td>what of the Base URI is set by the implementation?</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2936">2936</a></td>
+                     <td>negative zero xs:float in expected results?</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3285">3285</a></td>
+                     <td>fn-data-1: Typed value or not typed value?</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3280">3280</a></td>
+                     <td>orderBy55 is missing an alternative result</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3279">3279</a></td>
+                     <td>XQPST0081 is incorrectly used for undeclared variables</td>
+                  </tr>     
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3277">3277</a></td>
+                     <td>incorrect alternate results in case of InfoSet mapping when testing fn:count(fn:data(.../idrefs))?</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3288">3288</a></td>
+                     <td>full axis is an optional feature</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3274">3274</a></td>
+                     <td>op-time-greater-than-2 test 'gt' not 'ge'</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2939">2939</a></td>
+                     <td>Missing namespace declarations in predicates tests</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2903">2903</a></td>
+                     <td>fn-idref-xx incorrect input specified</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2943">2943</a></td>
+                     <td>Can static typing report FORG0006?</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2962">2962</a></td>
+                     <td>XPDY0002 or FONC0001?</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2626">2626</a></td>
+                     <td>base-URI-10</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3159">3159</a></td>
+                     <td>qname-cast-1 etc</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3267">3267</a></td>
+                     <td>Wrong error code for vardeclwithtype-15</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2954">2954</a></td>
+                     <td>White space problems in expected result files.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3157">3157</a></td>
+                     <td>Schema userdefined.xsd is invalid</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3153">3153</a></td>
+                     <td>fn-years-from-duration-20</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2815">2815</a></td>
+                     <td>fn:nilled tests on non-validated element.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3166">3166</a></td>
+                     <td>fn-iri-to-uri-18 has wrong baseline</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3158">3158</a></td>
+                     <td>fn-resolve-uri-3</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3155">3155</a></td>
+                     <td>fn-encode-for-uri1args-1</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3156">3156</a></td>
+                     <td>fn-iri-to-uri-3 et seq</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3167">3157</a></td>
+                     <td>fn-iri-to-uri-6, fn-iri-to-uri-14, fn-iri-to-uri-16, fn-iri-to-uri-3: wrong baselines</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3168">3157</a></td>
+                     <td>fn-codepoint-equal-17 and fn-codepoint-equal-14  have invalid baselines</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3132">3132</a></td>
+                     <td>fn-codepoint-equal-14 expects wrong result</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3139">3139</a></td>
+                     <td>Inspect/implementation defined order fn-trace-*</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3012">3012</a></td>
+                     <td>xqts static type errors</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3134">3134</a></td>
+                     <td>fn-max-2 and fn-min-2 have wrong serialization for double number</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3133">3133</a></td>
+                     <td>fn-codepoint-equal-17 expects wrong result</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3131">3131</a></td>
+                     <td>Catalog info for qname-cast-1/4 and notation-cast-3</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3130">3130</a></td>
+                     <td>casthcds10 and casthcds13 expect wrong results</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3128">3128</a></td>
+                     <td>Catalog info for value-comparison-3 binds the wrong variable</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3125">3125</a></td>
+                     <td>function-declaration-025: contains two errors, but only tests for one</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2927">2927</a></td>
+                     <td>Syntax error in vardeclwithtype-13</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2925">2925</a></td>
+                     <td>seq-queries-results-q5 doesn't use $input-context variable</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2913">2913</a></td>
+                     <td>Module context-lib.xq is invalid</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2908">2908</a></td>
+                     <td>fn-normalize-unicode-2 is not valid UTF-8</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2898">2898</a></td>
+                     <td>document-uri tests have wrong catalog info</td>
+                  </tr>      
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2994">2994</a></td>
+                     <td>Rules for comparing notations have changed</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3020">3020</a></td>
+                     <td>wrong definition of int in op-numeric-unary-minusint1args-1</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2932">2932</a></td>
+                     <td>Type/value mismatches in ExternalVariableWith tests</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3009">3009</a></td>
+                     <td>testsuite should allow year zero</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2608">2608</a></td>
+                     <td>Schema Import required?</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2971">2971</a></td>
+                     <td>Incorrect gMonth format</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2995">2995</a></td>
+                     <td>orderDecl-2 depends on undefined document order</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2887">2887</a></td>
+                     <td>Invalid URI in fn-static-base-7</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2709">2709</a></td>
+                     <td>Wrong overflow for float sum in sumflt3args-6</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2884">2884</a></td>
+                     <td>fn-resolve-uri-3</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2885">2885</a></td>
+                     <td>empty base-uris</td>
+                  </tr>      
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2901">2901</a></td>
+                     <td>Malformed URI in base-URI-24</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2906">2906</a></td>
+                     <td>fn-resolve-uri-16 should succeed</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2648">2648</a></td>
+                     <td>fn-nilled-8/9 is miscatalogued</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2897">2897</a></td>
+                     <td>Missing external variable declaration in Comp-notation</td>
+                  </tr>     
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2636">2636</a></td>
+                     <td>Wrong query filename in catalog info for schema-import-3</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2889">2889</a></td>
+                     <td>Catalog and external variable mismatches</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2888">2888</a></td>
+                     <td>Invalid URI in fn-resolve-QName tests</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2886">2886</a></td>
+                     <td>invalid uri in fn-base-uri-9</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2803">2803</a></td>
+                     <td>[FO] Error FONS0003 appears only in the Appendix C, Error Summary</td>
+                  </tr>        
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2647">2647</a></td>
+                     <td>extexpr-6 is miscatalogued</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2791">2791</a></td>
+                     <td>Missing tests for duration comparisons?</td>
+                  </tr>      
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2809">2809</a></td>
+                     <td>fn:resolve-uri() called without base uri paramater and no base uri in the static context.</td>
+                  </tr>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+               </table>
+            </blockquote>
+            Most of these changes have been reflected in the revised XML Query CR documents
+            published on June 9. 
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 0.9.0 (April 19, 2006)</h2>
+      
+      <ul>
+         <li>Changed the namespace of xdt:anyAtomicType, xdt:yearMonthDuration, xdt:dayTimeDuration,
+            xdt:untyped, and xdt:untypedAtomic to
+            the XML Schema namespace "http://www.w3.org/2001/XMLSchema" (see the CR issue resolved in
+            Bugzilla
+            <a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2548">2548</a>, 
+            Change namespace binding for anyAtomicType, yearMonthDuration and dayTimeDuration).
+         </li>
+         <li>Added small number of tests for Trivial XML Embedding Feature.
+            See the description of the new "trivial" scenario in the catalog.  
+         </li>
+         <li>An &lt;test-suite-info&gt; descriptive element was added to XQTSCatalog.xml.
+            This was requested in Bug
+            <a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2517">2517</a>
+         </li> 
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents.
+            <br/>Changes have been made to reflect the resolutions of the following CR issues by the XML
+            Query and XSL WGs:
+            <blockquote>
+               <table>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2681">2681</a></td>
+                     <td>Functions taking "." as default argument</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2692">2692</a></td>
+                     <td>for $p at $p in EXP return $p</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2462">2462</a></td>
+                     <td>Escaping URILiterals</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2559">2559</a></td>
+                     <td>Conflicting error codes: FORG0006 vs XPTY0004</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2460">2460</a></td>
+                     <td>XQuery error XQST0088</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2447">2447</a></td>
+                     <td>Error codes XPST0008 and XPST0081</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2944">2944</a></td>
+                     <td>fn:years-from-duration, days-from-duration, etc and wrong argument type.</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2941">2941</a></td>
+                     <td>fn:avg raise XPTY0004.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2500">2500</a></td>
+                     <td>Predicate list evaluation.</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2518">2518</a></td>
+                     <td>Feature request: allow XInclude and xml:*</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2789">2789</a></td>
+                     <td>Substitutability of duration subtypes.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2921">2921</a></td>
+                     <td>Provide an exemple of a numeric range used as filter expression.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2950">2950</a></td>
+                     <td>Modules binding the xml/xmlns prefix is valid.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3003">3003</a></td>
+                     <td>Catalog: multiple module imports for same namespace.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2456">2456</a></td>
+                     <td>Changes to min() and max().</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2457">2457</a></td>
+                     <td>Rules for URI encoding don't match RFC 3986/3987.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2517">2517</a></td>
+                     <td>Feature request: test-suite/@title.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2542">2542</a></td>
+                     <td>fn:id and fn:idref are not affected by ordering mode unordered.</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2710">2710</a></td>
+                     <td>[xqueryx and xquery] extra white space in pragma content.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2682">2682</a></td>
+                     <td>Whitespace text nodes stripped from source document.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2528">2528</a></td>
+                     <td>[xqueryx] check for node tests in xsl.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2644">2644</a></td>
+                     <td>[F+O] Conversion from float/double to string.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2459">2459</a></td>
+                     <td>[Serialization] Phases of Character Expansion.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2535">2535</a></td>
+                     <td>One empty sequence is deep-equal to another, but they are not =.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2447">2447</a></td>
+                     <td>XPST0008 and XPST0081 used interchangeably.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2680">2680</a></td>
+                     <td>Wrong error code for Constr-comppi-compname-9.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2492">2492</a></td>
+                     <td>[F+O] op:notation-equal.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2545">2545</a></td>
+                     <td>EBV (fn:boolean) and xs:anyURI.</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2672">2672</a></td>
+                     <td>fn-error-2 expected results.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2653">2653</a></td>
+                     <td>fn-escape-html-uri-20 is misencoded.</td>
+                  </tr> 
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2635">2635</a></td>
+                     <td>Wrong error for validateexpr-1.</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2580">2580</a></td>
+                     <td>fn:base-uri(), various tests.</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2735">2735</a></td>
+                     <td>Exact semantics in casting string to decimal.</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2934">2934</a></td>
+                     <td>Last digit of precision in fn:number tests.</td>
+                  </tr>  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=3001">3001</a></td>
+                     <td>orderDecl-2 is non-deterministic.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2896">2896</a></td>
+                     <td>Validated data in Comp-notation-2.</td>
+                  </tr>   
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2910">2910</a></td>
+                     <td>External variable tests.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2716">2716</a></td>
+                     <td>Constructor tests depending on schema validated data.</td>
+                  </tr>       
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2682">2682</a></td>
+                     <td>Whitespace text nodes stripped from source document.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2324">2324</a></td>
+                     <td>Value/General comparisons: type promotion for xs:anyURI/numeric.</td>
+                  </tr>    
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2678">2678</a></td>
+                     <td>Can't cast xs:QName to xs:QName.</td>
+                  </tr>                                                                        
+                  
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2548">2548</a></td>
+                     <td>Change namespace binding for anyAtomicType, yearMonthDuration and dayTimeDuration</td>
+                  </tr>                                           
+               </table>
+            </blockquote>
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 0.8.6 (Feb. 15, 2006)</h2>
+      
+      <ul>
+         <li>Added tests for the Module Import,
+            Schema Import,
+            External Variable References with TypeDeclatation, and
+            External Variable References without TypeDeclaration features.
+            The addition of these tests required that we extend our catalog schema.
+            Our guidelines have been updated to reflect these extensions as well.
+         </li>
+         <li>An expected error element can now specify "*", indicating that any error is acceptable.
+         </li>
+         <li>
+            End of line characters have been removed from the ends of files of expected results
+            that use the Text and Fragment comparator.
+         </li>
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents.
+            <br/>Changes have been made to reflect the resolutions of the following CR issues by the XML
+            Query and XSL WGs:
+            <blockquote>
+               <table>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2681">2681</a></td>
+                     <td>Functions taking "." as default argument</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2692">2692</a></td>
+                     <td>for $p at $p in EXP return $p</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2462">2462</a></td>
+                     <td>Escaping URILiterals</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2559">2559</a></td>
+                     <td>Conflicting error codes: FORG0006 vs XPTY0004</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2460">2460</a></td>
+                     <td>XQuery error XQST0088</td>
+                  </tr>
+                  <tr>
+                     <td><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2447">2447</a></td>
+                     <td>Error codes XPST0008 and XPST0081</td>
+                  </tr>                                                                                                                                                                                                                                                                                                                                                            
+               </table>
+            </blockquote>
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 0.8.4 (Jan. 4, 2006)</h2>
+      
+      <ul>
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents.</li>
+         <li>Added 450 tests.</li>
+         <li>
+            <a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=1997">Bugzilla Bug 1997</a>
+            noted that some tests require that the input document has
+            been constructed after XML Schema validation.
+            Some of these tests have been re-written to use typed values constructed in the query.
+            For others, we have added expected results for XQuery implementations that do not perform schema
+            validation.
+            Both the output-file and expected-error elements can now have an optional input-document attribute
+            that indicates whether they correspond to typed input documents or untyped input documents.
+         </li>
+      </ul>
+      
+      
+      <h2>XQTS 0.8.2 (Dec. 7, 2005)</h2>
+      
+      <ul>
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents.</li>
+         <li>Added 612 tests.</li>
+         <li><a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2476">Bugzilla Bug 2476</a>
+            suggested that the Text comparator should require that both the actual result and the
+            expected result be wrapped in an arbitrary element and canonicalized
+            before binary comparison takes place.
+            This change was suggested because serialization allows some characters to be 
+            represented multiple ways in the output
+            ("&lt;" could be represented by "&amp;lt;", "&amp;#60;", or "&amp;#x3C;", for example) .
+            With this change, the Text comparator and the Fragment comparator
+            now perform the same comparison.</li>
+      </ul>
+      
+      <h2>XQTS 0.8.0 (Nov. 3, 2005)</h2>
+      
+      <ul>
+         <li>Tests reflect Nov. 3, 2005 XML Query CR documents.</li>
+         <li>Added 135 tests.</li>
+         <li>
+            <a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=1997">Bugzilla Bug 1997</a>
+            has noted that some tests require that the input document has
+            been constructed after XML Schema validation.
+            This issue will be addressed by the XML Query WG shortly.
+         </li>
+         <li>
+            <a href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=2400">Bugzilla Bug 2400</a>
+            noted that some of the XQueryX tests were not schema valid.
+            This has been corrected.
+         </li>
+      </ul>
+      
+      <h2>XQTS 0.7.0 (Oct. 16, 2005)</h2>
+      
+      <ul>
+         <li>Tests reflect Sept. 15, 2005 XML Query WDs.</li>
+         <li>Added 1069 tests.</li>
+         <li>Added XQueryX tests.</li>
+         <ul>
+            <li>Test harnesses for XQuery should use the XQueryQueryOffsetPath and
+               XQueryFileExtension attributes in
+               the &lt;test-suite&gt; top-level element to identify the directory and file extension of XQuery tests.
+               Test harnesses for XQueryX should use the XQueryXQueryOffsetPath and
+               XQueryXFileExtension attributes instead.
+            </li>  
+            <li>Added &lt;syntax&gt; element to result document schema, requiring either XQuery or XQueryX.</li>
+            <li>In the future, there will be an XQueryX test case that corresponds to each XQuery test case that
+               is not identified as a parse error.
+               In this release, many of these XQueryX test cases are missing.</li>
+         </ul>
+         <li>Updated Implementation-defined items in the catalog.</li>
+      </ul>         
+      
+      
+      <h2>XQTS 0.6.0 (Aug. 11, 2005)</h2>
+      <ul>
+         <li>Initial public release of the XML Query Test Suite.</li>
+      </ul>
+   </body>
+</html>

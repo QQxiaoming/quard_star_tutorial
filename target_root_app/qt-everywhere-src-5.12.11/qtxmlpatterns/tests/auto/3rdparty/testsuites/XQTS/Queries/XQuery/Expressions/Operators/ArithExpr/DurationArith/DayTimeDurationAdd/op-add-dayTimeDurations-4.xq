@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-add-dayTimeDurations-4                        :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 29, 2005                                    :)
+(:Purpose: Evaluates The "add-dayTimeDurations" function that  :)
+(:return true and used together with fn:not.             :)
+(: Uses the "fn:string" function to account for new EBV rules. :)
+(:*******************************************************:)
+ 
+fn:not(fn:string(xs:dayTimeDuration("P11DT12H04M") + xs:dayTimeDuration("P02DT07H01M")))

@@ -1,0 +1,96 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+    GeoClue 2.0 Interface Specification
+
+    Copyright 2013 Red Hat, Inc.
+-->
+
+<node>
+
+  <!--
+      org.freedesktop.GeoClue2.Location:
+      @short_description: The Location interface
+
+      This is the interface you use on location objects.
+  -->
+  <interface name="org.freedesktop.GeoClue2.Location">
+
+    <!--
+        Latitude:
+
+        The latitude of the location, in degrees.
+    -->
+    <property name="Latitude" type="d" access="read"/>
+
+    <!--
+        Longitude:
+
+        The longitude of the location, in degrees.
+    -->
+    <property name="Longitude" type="d" access="read"/>
+
+    <!--
+        Accuracy:
+
+        The accuracy of the location fix, in meters.
+    -->
+    <property name="Accuracy" type="d" access="read"/>
+
+    <!--
+        Altitude:
+
+        The altitude of the location fix, in meters. When unknown, its set to
+        minimum double value, -1.7976931348623157e+308.
+    -->
+    <property name="Altitude" type="d" access="read"/>
+
+    <!--
+        Speed:
+
+        The speed in meters per second. When unknown, it's set to -1.0.
+    -->
+    <property name="Speed" type="d" access="read"/>
+
+    <!--
+        Heading:
+
+        The heading direction in degrees with respect to North direction, in
+        clockwise order. That means North becomes 0 degree, East: 90 degrees,
+        South: 180 degrees, West: 270 degrees and so on. When unknown,
+        it's set to -1.0.
+    -->
+    <property name="Heading" type="d" access="read"/>
+
+    <!--
+        Description:
+
+        A human-readable description of the location, if available.
+
+        WARNING: Applications should not rely on this property since not all
+        sources provide a description. If you really need a description (or
+        more details) about current location, use a reverse-geocoding API, e.g
+        geocode-glib.
+    -->
+    <property name="Description" type="s" access="read"/>
+
+
+    <!--
+        Timestamp:
+
+        The timestamp when the location was determined, in seconds and
+        microseconds since the Epoch. This is the time of measurement if the
+        backend provided that information, otherwise the time when GeoClue
+        received the new location.
+
+        Note that GeoClue can't guarantee that the timestamp will always
+        monotonically increase, as a backend may not respect that.
+        Also note that a timestamp can be very old, e.g. because of a cached
+        location.
+    -->
+    <property name="Timestamp" type="(tt)" access="read">
+      <annotation name="org.qtproject.QtDBus.QtTypeName" value="Timestamp"/>
+    </property>
+  </interface>
+</node>

@@ -1,0 +1,297 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="XQueryComment" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>XQuery Comments</title>
+      <description>Tests for the XQuery comment syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="XQueryComment001" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Simple use case for XQuery comments.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment001" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment001.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment002" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Simple use case for XQuery comments.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment002" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="XML">XQueryComment002.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment003" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Simple use case for XQuery comment containing '-'.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment003" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment004" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Empty comment.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment004" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment005" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comment containing only '-'.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment005" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment005.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment006" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comment containing ':'.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment006" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment006.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment007" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comment containing ')'.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment007" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment008" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Simple example of embedded comments.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment008" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment008.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment009" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comments inside a conditional expression.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment009" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Text">XQueryComment009.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment010" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comments inside a conditional expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment010" date="2003-02-10"/>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="XML">XQueryComment010.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment011" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comments inside a conditional expression.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment011" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Text">XQueryComment011.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment012" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comments that looks like a function call.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment012" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <output-file role="principal" compare="XML">XQueryComment012.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment013" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comments inside a sequence expression.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment013" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">XQueryComment013.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment014" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comments inside a cast expression.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment014" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">XQueryComment014.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment015" FilePath="Expressions/XQueryComment/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Incorrect comment syntax.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment015" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment016" FilePath="Expressions/XQueryComment/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Invalid comment.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment016" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment017" FilePath="Expressions/XQueryComment/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Invalid comment.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment017" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment018" FilePath="Expressions/XQueryComment/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Invalid comment.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment018" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="XQueryComment019" FilePath="Expressions/XQueryComment/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Old style comment syntax.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment019" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="XQueryComment020" FilePath="Expressions/XQueryComment/" scenario="standard" Creator="Mike Rorke">
+      <description>Comment containing enclosed expression.</description>
+      <spec-citation spec="XQuery" section-number="2.6" section-title="Comments" section-pointer="comments"/>
+      <query name="XQueryComment020" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">XQueryComment020.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-1" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test whose essence is: `(3(: comment inbetween :)- 1) eq 2`.</description>
+      <query name="K-XQueryComment-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-2" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test whose essence is: `1 (: a (: nested :) comment :) eq 1`.</description>
+      <query name="K-XQueryComment-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-3" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test whose essence is: `1 (: comment (: inside :) comment :) eq 1`.</description>
+      <query name="K-XQueryComment-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-4" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>Comparison of two string literals, whose content reminds of comments.</description>
+      <query name="K-XQueryComment-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-5" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test whose essence is: `5 instance (: strange place for a comment :) of item()`.</description>
+      <query name="K-XQueryComment-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-6" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test whose essence is: `1 (: simple comment :) eq 1`.</description>
+      <query name="K-XQueryComment-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-7" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test whose essence is: `1 (: comment (: inside :) NEW LINE comment :) eq 1`.</description>
+      <query name="K-XQueryComment-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-8" FilePath="Expressions/XQueryComment/" scenario="parse-error">
+      <description>A test whose essence is: `(: "recursive comments must be balanced, this one is not :)" :)`.</description>
+      <query name="K-XQueryComment-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-9" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>An empty comment inbetween the 'eq' operator and a number literal.</description>
+      <query name="K-XQueryComment-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-10" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>An empty comment at the very beginning of an expression.</description>
+      <query name="K-XQueryComment-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-11" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>An empty comment after a function's paranteses.</description>
+      <query name="K-XQueryComment-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-12" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A for loop with a comment inbetween.</description>
+      <query name="K-XQueryComment-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-13" FilePath="Expressions/XQueryComment/" scenario="parse-error">
+      <description>A test whose essence is: `if((: comment inbetween :)) then 1 else 1`.</description>
+      <query name="K-XQueryComment-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-14" FilePath="Expressions/XQueryComment/" scenario="parse-error">
+      <description>A syntactically invalid comment that never ends.</description>
+      <query name="K-XQueryComment-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-15" FilePath="Expressions/XQueryComment/" scenario="parse-error">
+      <description>A comment inside a comment that isn't terminated.</description>
+      <query name="K-XQueryComment-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-16" FilePath="Expressions/XQueryComment/" scenario="parse-error">
+      <description>A comment inside a comment that does not start properly.</description>
+      <query name="K-XQueryComment-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-17" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>Colons and paranteses appearing freely in comment content.</description>
+      <query name="K-XQueryComment-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-18" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>Three comments appearing serially inside a comment.</description>
+      <query name="K-XQueryComment-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-19" FilePath="Expressions/XQueryComment/" scenario="standard">
+      <description>A test stressing many nested comments.</description>
+      <query name="K-XQueryComment-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-XQueryComment-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-XQueryComment-20" FilePath="Expressions/XQueryComment/" scenario="parse-error">
+      <description>A syntactically invalid comment that doesn't properly start.</description>
+      <query name="K-XQueryComment-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-XQueryComment-1" FilePath="exprSeqTypes/XQueryComment/" scenario="parse-error">
+      <description>An invalid comment after a name test.</description>
+      <query name="K2-XQueryComment-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-XQueryComment-2" FilePath="exprSeqTypes/XQueryComment/" scenario="parse-error">
+      <description>An invalid comment after a name test(#2).</description>
+      <query name="K2-XQueryComment-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-XQueryComment-3" FilePath="exprSeqTypes/XQueryComment/" scenario="standard">
+      <description>Have a computed comment constructor as a last step.</description>
+      <query name="K2-XQueryComment-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-XQueryComment-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-XQueryComment-4" FilePath="exprSeqTypes/XQueryComment/" scenario="standard">
+      <description>Have a direct comment constructor as a last step.</description>
+      <query name="K2-XQueryComment-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-XQueryComment-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-XQueryComment-5" FilePath="exprSeqTypes/XQueryComment/" scenario="standard">
+      <description>Have a direct comment constructor as a last step(#2).</description>
+      <query name="K2-XQueryComment-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-XQueryComment-5.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,213 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SubstringBeforeFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:substring-before</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-substring-before-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "" $arg2 = "". Use of fn:count to avoid empty file. Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-1" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "" $arg2 = "A Character String". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-2" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = "". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-3" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = () $arg2 = "". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-4" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "" $arg2 = (). Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-5" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = (). Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-6" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = () $arg2 = "A Character String". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-7" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "AAAAABBBBBCCCCC" $arg2 = "BBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-8" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "AAAAABBBBB" $arg2 = " ". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-9" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = " " $arg2 = "AAAAABBBBB". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-10" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-11" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function as an argument of another function (fn:not)- return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-11" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-12" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function as an argument of another function (fn:not) - return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-12" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-13" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = xs:string("A") $arg2 = "A". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-13" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-14" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "A" $arg2 = xs:string("A"). Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-14" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-15" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "A" $arg2 = "a". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-15" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-16" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "a" $arg2 = "A". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-16" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-17" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "substring-before" $arg2 = "substring-before". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-17" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-18" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "substring-beforesubstring-before" $arg2 = "substring-before".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-18" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-19" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function with the arguments set as follows: $arg1 = "****" $arg2 = "***".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-19" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-20" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function using numbers as part of the string. Arguments set as follows: $arg1 = "12345" $arg2 = "2345".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-20" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-before-21" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-before" function using "substring-before" backwards. Arguments set as follows: $arg1 = "substring-before" $arg2 = "erofeb-gnirtsbus". Use count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.4" section-title="fn:substring-before" section-pointer="func-substring-before"/>
+      <query name="fn-substring-before-21" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-before-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-before()`.</description>
+      <query name="K-SubstringBeforeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-before(())`.</description>
+      <query name="K-SubstringBeforeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-before((), (), "http://www.w3.org/2005/xpath-functions/collation/codepoint", "wrong param")`.</description>
+      <query name="K-SubstringBeforeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-before("a string", "a string", "http://www.example.com/COLLATION/NOT/SUPPORTED")`.</description>
+      <query name="K-SubstringBeforeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-before("foo", "oo", "http://www.w3.org/2005/xpath-functions/collation/codepoint") eq "f"`.</description>
+      <query name="K-SubstringBeforeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringBeforeFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-before("tattoo", "attoo") eq "t"`.</description>
+      <query name="K-SubstringBeforeFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringBeforeFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-before("tattoo", "tatto") eq ""`.</description>
+      <query name="K-SubstringBeforeFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringBeforeFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-before((), ()) eq ""`.</description>
+      <query name="K-SubstringBeforeFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringBeforeFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-before("a string", "") eq ""`.</description>
+      <query name="K-SubstringBeforeFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringBeforeFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringBeforeFunc-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringBeforeFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-before("a string", "not in other") eq ""`.</description>
+      <query name="K-SubstringBeforeFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringBeforeFunc-10.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,41 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseSEQ" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "SEQ" - Queries based on Sequence</title>
+      <description>Although sequence is not significant in most traditional database systems or object systems, it can be quite significant in structured documents. This use case presents a series of queries based on a medical report.</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="seq-queries-results-q1" FilePath="UseCase/UseCaseSEQ/" scenario="standard" Creator="XML Query Group">
+      <description>In the Procedure section of Report1, what Instruments were used in the second Incision?</description>
+      <spec-citation spec="UseCases" section-number="1.3.4.1" section-title="Q1" section-pointer="seq-queries-results-q1"/>
+      <query name="seq-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">report1</input-file>
+      <output-file role="principal" compare="XML">seq-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="seq-queries-results-q2" FilePath="UseCase/UseCaseSEQ/" scenario="standard" Creator="XML Query Group">
+      <description>In the Procedure section of Report1, what are the first two Instruments to be used?</description>
+      <spec-citation spec="UseCases" section-number="1.3.4.2" section-title="Q2" section-pointer="seq-queries-results-q2"/>
+      <query name="seq-queries-results-q2" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">report1</input-file>
+      <output-file role="principal" compare="Fragment">seq-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="seq-queries-results-q3" FilePath="UseCase/UseCaseSEQ/" scenario="standard" Creator="XML Query Group">
+      <description>In Report1, what Instruments were used in the first two Actions after the second Incision?</description>
+      <spec-citation spec="UseCases" section-number="1.3.4.3" section-title="Q3" section-pointer="seq-queries-results-q3"/>
+      <query name="seq-queries-results-q3" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">report1</input-file>
+      <output-file role="principal" compare="Fragment">seq-queries-results-q3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="seq-queries-results-q4" FilePath="UseCase/UseCaseSEQ/" scenario="standard" Creator="XML Query Group">
+      <description>In Report1, find "Procedure" sections where no Anesthesia element occurs before the first Incision.</description>
+      <spec-citation spec="UseCases" section-number="1.3.4.4" section-title="Q4" section-pointer="seq-queries-results-q4"/>
+      <query name="seq-queries-results-q4" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">report1</input-file>
+      <output-file role="principal" compare="Text">seq-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="seq-queries-results-q5" FilePath="UseCase/UseCaseSEQ/" scenario="standard" Creator="XML Query Group">
+      <description>In Report1, what happened between the first Incision and the second Incision?</description>
+      <spec-citation spec="UseCases" section-number="1.3.4.5" section-title="Q5" section-pointer="seq-queries-results-q5"/>
+      <query name="seq-queries-results-q5" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">report1</input-file>
+      <output-file role="principal" compare="XML">seq-queries-results-q5.txt</output-file>
+   </test-case>
+</test-group>

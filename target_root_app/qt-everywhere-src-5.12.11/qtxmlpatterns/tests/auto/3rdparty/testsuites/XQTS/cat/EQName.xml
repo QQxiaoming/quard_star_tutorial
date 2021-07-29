@@ -1,0 +1,118 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="EQNames" featureOwner="Michael Kay">
+
+    <GroupInfo>
+        <title>Extended QNames ("uri":local)</title>
+        <description>Test cases for extended QName syntax introduced in XQuery 1.1</description>
+    </GroupInfo>
+
+    <test-case is-XPath2="false" name="eqname-001" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName as a step in a path expression</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-001" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-002" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName in a variable name</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-002" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-003" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName in a function name</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-003" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-004" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName in a type name</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-004" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-005" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName in an option declaration</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-005" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-006" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName in a pragma</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-006" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-007" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use EQName in a named decimal format</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-007" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-008" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use character references in an EQName</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-008" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-008.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-009" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use whitespace in an EQName</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-009" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-009.out</output-file>
+        <expected-error spec-version="1.1">XQST0046</expected-error> <!-- processors are allowed to reject invalid URIs as namespaces -->
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-010" FilePath="Basics/EQNames/" scenario="standard" Creator="Michael Kay">
+        <description>Use quotes in an EQName</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-010" date="2010-03-16"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">eqname-010.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    
+    <test-case is-XPath2="false" name="eqname-901" FilePath="Basics/EQNames/" scenario="parse-error" Creator="Michael Kay">
+        <description>Invalid EQName - doubled colon</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-901" date="2010-03-16"/>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-902" FilePath="Basics/EQNames/" scenario="parse-error" Creator="Michael Kay">
+        <description>Invalid EQName - mismatched quotes</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-902" date="2010-03-16"/>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="eqname-903" FilePath="Basics/EQNames/" scenario="parse-error" Creator="Michael Kay">
+        <description>EQName - not allowed in direct element constructor</description>
+        <spec-citation spec="XQuery" section-number="9.999999" section-title="__EQNAME__" section-pointer="id-eqname"/>
+        <query name="eqname-903" date="2010-03-16"/>
+        <expected-error spec-version="1.1">XPST0003</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+    </test-case>
+    
+ 
+    
+
+    
+</test-group>

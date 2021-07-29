@@ -1,0 +1,43 @@
+Qt 5.9.6 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0 through 5.9.5.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.9.6 Changes                            *
+****************************************************************************
+
+Qml
+---
+
+  - [QTBUG-66732] Fix issue allocating huge objects in JavaScript.
+  - [QTBUG-57041] Fix issue with bindings to aliases that cannot yet be resolved.
+  - [QTBUG-66832] Fix JITted code for jump strict-not-equal undefined on 32bit.
+  - [QTBUG-62458] QML debugger: Don't crash when creating objects on engine destruction
+  - [QTBUG-57043][QTBUG-50328][QTBUG-50328] Fix function-style syntax for signal handlers
+    with Qt Quick Compiler.
+  - [QTBUG-51581] Fix out of bounds reads in Array.concat.
+  - [QTBUG-41465] Fix crash when calling QQmlEngine::clearComponentCache().
+  - Fix QML context leak with visual data model and list property models.
+  - [QTBUG-67882] Fix url resolution on network redirects to resolve relative urls against
+    the redirected url.
+
+Qt Quick
+--------
+  - [QTBUG-66452] Fixed excessive QBackingStore::endPaint warnings when using
+    the software renderer
+  - [QTBUG-59192] Fixed incorrect scaling of Canvas in certain cases on iOS

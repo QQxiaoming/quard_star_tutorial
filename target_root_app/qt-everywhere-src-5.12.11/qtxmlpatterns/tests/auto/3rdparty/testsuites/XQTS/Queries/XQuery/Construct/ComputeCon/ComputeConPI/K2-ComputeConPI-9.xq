@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-ComputeConPI-9                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract (possible parser-confusing) PI data. :)
+(:*******************************************************:)
+string(processing-instruction {"thename"} {"content {1+ } {"})

@@ -1,0 +1,9 @@
+# Blacklist for testing
+[shadersource-dynamic-sourceobject::test_endresult]
+linux
+
+# The blacklisting does not work here as blacklisted tests are still executed and this one crashes.
+# Therefore, a skip() for platform "xcb" has been added to tst_DynamicallyCreatedSource.qml.
+# Please remove that skip() when the problem is resolved.
+[shadersource-dynamic-shadersource::test_endresult]
+linux

@@ -1,0 +1,79 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                          Controls                                        *
+****************************************************************************
+
+ - BusyIndicator:
+   * [QTBUG-61785] Fixed busy indicators to not block touch events.
+
+ - Control:
+   * [QTBUG-63119] Fixed font inheritance in item views.
+
+ - Drawer:
+   * [QTBUG-61581] Fixed multi-touch leaking through modal overlay.
+   * [QTBUG-59652] Fixed non-modal drawer drag/swipe open and close.
+
+ - Menu:
+   * [QTBUG-61608] Fixed press-and-hold support by removing OnReleaseOutside
+     from the default close policy, to avoid closing on release when opened
+     from an onPressAndHold signal handler.
+
+ - Popup:
+   * [QTBUG-61698] Fixed multi-touch leaking through modal overlay
+   * Fixed focus handling for chained popups. When a popup is closed, focus
+     is now restored to the next popup in chain instead of transferring focus
+     to the window content.
+   * [QTBUG-62158] Fixed popups to take Window::contentOrientation into
+     account.
+
+ - PageIndicator:
+   * Fixed interactive page indicators to work on touch.
+   * [QTBUG-61785] Fixed non-interactive page indicators to not block touch
+     events.
+
+ - ScrollIndicator:
+   * [QTBUG-61785] Fixed scroll indicators to not block touch events.
+
+ - SpinBox:
+   * [QTBUG-61426] Fixed to emit valueModified() on long press.
+   * [QTBUG-62508] Fixed initial value validation.
+
+ - StackView:
+   * [QTBUG-62153] Fixed a crash that would occur when pushing new items
+     from a StackView.onRemoved signal handler.
+   * Fixed resolving of the initialItem URL.
+
+ - TextArea:
+ - TextField:
+   * [QTBUG-62854] Improved the Default style.
+
+ - ToolTip:
+   * [QTBUG-60492] Fixed tooltips to not block shortcuts.
+
+ - Tumbler:
+   * [QTBUG-61374] Fixed a regression with currentIndex and currentItem.
+
+****************************************************************************
+*                          Calendar                                        *
+****************************************************************************
+
+ - MonthGrid:
+   * [QTBUG-61585] Fixed the clicked() signal to be emitted on touch.

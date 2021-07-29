@@ -1,0 +1,286 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="CompareFunction" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:compare</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-compare2args-1" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $comparand1 = xs:string(lower bound) $comparand2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare2args-2" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $comparand1 = xs:string(mid range) $comparand2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare2args-3" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $comparand1 = xs:string(upper bound) $comparand2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare2args-4" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $comparand1 = xs:string(lower bound) $comparand2 = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare2args-5" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $comparand1 = xs:string(lower bound) $comparand2 = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-1" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "" $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-1" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-2" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "" $arg2 = "A Character String".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-2" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-3" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-3" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-4" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = () $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-4" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-5" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "" $arg2 = ().</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-5" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-6" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = ().</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-6" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-7" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = () $arg2 = "A Character String".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-7" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-8" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "AAAAABBBBBCCCCC" $arg2 = "BBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-8" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-9" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "AAAAABBBBB" $arg2 = " ".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-9" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-10" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = " " $arg2 = "AAAAABBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-10" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-11" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function as an argument of another function (fn:not)- return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-11" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-12" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function as an argument of another function (fn:not) - return false.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-12" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-13" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = xs:string("A") $arg2 = "A".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-13" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-14" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "A" $arg2 = xs:string("A").</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-14" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-15" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "A" $arg2 = "a".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-15" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-16" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "a" $arg2 = "A".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-16" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-17" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "compare" $arg2 = "compare".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-17" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-18" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "comparecompare" $arg2 = "compare".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-18" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-19" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function with the arguments set as follows: $arg1 = "****" $arg2 = "***".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-19" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-20" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function using numbers as part of the string. Arguments set as follows: $arg1 = "12345" $arg2 = "1234".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-20" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-21" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function using "compare" backwards. Arguments set as follows: $arg1 = "compare" $arg2 = "reapmco".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-21" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-compare-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-compare-22" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "compare" function using "compare" that specifies a non-existent collation.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.2" section-title="fn:compare" section-pointer="func-compare"/>
+      <query name="fn-compare-22" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-1" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `codepoint-equal()`.</description>
+      <query name="K-compareFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-2" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `codepoint-equal(())`.</description>
+      <query name="K-compareFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-3" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `codepoint-equal((), (), ())`.</description>
+      <query name="K-compareFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-4" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(codepoint-equal((), "a string"))`.</description>
+      <query name="K-compareFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-5" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(codepoint-equal("a string", ()))`.</description>
+      <query name="K-compareFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-6" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `codepoint-equal("a string", "a string")`.</description>
+      <query name="K-compareFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-7" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `not(codepoint-equal("cow", "a string"))`.</description>
+      <query name="K-compareFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-8" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `compare()`.</description>
+      <query name="K-compareFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-9" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `compare(())`.</description>
+      <query name="K-compareFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-10" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `compare((), (), "http://www.w3.org/2005/xpath-functions/collation/codepoint", "wrong param")`.</description>
+      <query name="K-compareFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-11" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(compare((), "a string"))`.</description>
+      <query name="K-compareFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-12" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(compare("a string", ()))`.</description>
+      <query name="K-compareFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-13" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(compare("a string", (), "http://www.w3.org/2005/xpath-functions/collation/codepoint"))`.</description>
+      <query name="K-compareFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-14" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="standard">
+      <description>A test whose essence is: `compare("str", "str") instance of xs:integer`.</description>
+      <query name="K-compareFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-compareFunc-15" FilePath="Functions/AllStringFunc/CompStringFunc/CompareFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `empty(compare("a string", "a string", "http://www.example.com/COLLATION/NOT/SUPPORTED"))`.</description>
+      <query name="K-compareFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-compareFunc-15.txt</output-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+</test-group>

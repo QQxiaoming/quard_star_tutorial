@@ -1,0 +1,62 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseNS" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "NS" - Queries Using Namespaces</title>
+      <description>This use case is based on a scenario in which a neutral mediator is acting with public auction servers on behalf of clients. The reason for a client to use this imaginary service may be anonymity, better insurance, or the possibility to cover more than one market at a time.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="ns-queries-results-q1" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group">
+      <description>List all unique namespaces used in the sample data.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.1" section-title="Q1" section-pointer="ns-queries-results-q1"/>
+      <query name="ns-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case name="ns-queries-results-q2" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Select the title of each record that is for sale.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.2" section-title="Q2" section-pointer="ns-queries-results-q2"/>
+      <query name="ns-queries-results-q2" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case name="ns-queries-results-q3" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Select all elements that have an attribute whose name is in the XML Schema namespace.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.3" section-title="Q3" section-pointer="ns-queries-results-q3"/>
+      <query name="ns-queries-results-q3" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ns-queries-results-q4" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group">
+      <description>List the target URI's of all XLinks in the document.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.4" section-title="Q4" section-pointer="ns-queries-results-q4"/>
+      <query name="ns-queries-results-q4" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ns-queries-results-q5" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group">
+      <description>Select all records that have a remark in German.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.5" section-title="Q5" section-pointer="ns-queries-results-q5"/>
+      <query name="ns-queries-results-q5" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ns-queries-results-q6" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group">
+      <description>Select the closing time elements of all AnyZone auctions currently monitored.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.6" section-title="Q6" section-pointer="ns-queries-results-q6"/>
+      <query name="ns-queries-results-q6" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ns-queries-results-q7" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group">
+      <description>Select the homepage of all auctions where both seller and high bidder are registered at the same auctioneer.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.7" section-title="Q7" section-pointer="ns-queries-results-q7"/>
+      <query name="ns-queries-results-q7" static-name="ns-queries-results-q7-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ns-queries-results-q8" FilePath="UseCase/UseCaseNS/" scenario="standard" Creator="XML Query Group">
+      <description>Select all traders (either seller or high bidder) without negative comments.</description>
+      <spec-citation spec="UseCases" section-number="1.7.4.8" section-title="Q8" section-pointer="ns-queries-results-q8"/>
+      <query name="ns-queries-results-q8" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">auction</input-file>
+      <output-file role="principal" compare="XML">ns-queries-results-q8.txt</output-file>
+   </test-case>
+</test-group>

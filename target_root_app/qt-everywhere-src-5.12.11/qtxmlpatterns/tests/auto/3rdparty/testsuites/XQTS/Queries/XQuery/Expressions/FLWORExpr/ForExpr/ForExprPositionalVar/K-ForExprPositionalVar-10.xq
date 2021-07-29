@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ForExprPositionalVar-10                       :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Verify that the position is properly computed for fn:string-to-codepoints(). :)
+(:*******************************************************:)
+deep-equal((1, 2, 3), for $i at $p in distinct-values((1, 2, 3, 1, 2)) return $p)

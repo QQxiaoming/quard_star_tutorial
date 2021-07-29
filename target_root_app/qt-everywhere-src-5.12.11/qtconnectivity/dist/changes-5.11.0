@@ -1,0 +1,79 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+QtBluetooth
+-----------
+
+ - Added default assignment operator for QBluetoothUuid.
+
+ - Added default qRegisterMetaType() calls for QLowEnergyCharacteristic
+   and QLowEnergyDescriptor.
+
+ - Fixed various clazy warnings throughout the library.
+
+ - [QTBUG-65831] Added QBluetoothSocket::connectToService() overload to
+   disambiguate corner cases.
+
+ - Fixed minor documentation issues.
+
+ - [QTBUG-67651] Fixed QLowEnergyController::remoteName() and remoteAddress().
+
+QtNfc
+-----
+
+ - Improved and reviewed most examples and their documentation
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Android
+-------
+
+ - [QTBUG-66490] Fixed case of ACCESS_FINE_LOCATION not being recognized as
+   possible permission besides ACCESS_COARSE_LOCATION for device discovery.
+
+ - Fixed repeated connect()/disconnect() behavior for QLowEnergyController
+   in peripheral mode.
+
+iOS/macOS
+---------
+
+ - Dropped 10.9 SDK support
+
+Linux/BlueZ
+-----------
+
+ - [QTBUG-46819] Ported QLowEnergyController central mode to BlueZ's DBus
+   API. The new implementation is used when BlueZ 5.42+ is detected. Earlier
+   versions will continue to use the the previous custom GATT stack. The benefit
+   of this change is improved co-existence with BlueZ which avoids interference
+   between BlueZ and Qt and permits multiple Qt and platform apps being able to
+   share BTLE connections. The custom GATT peripheral role implementation is still used on
+   all BlueZ platforms.
+
+ - [QTBUG-66056] Fixed case of QLowEnergyController not resetting the MTU in between connect()/
+   disconnect() cycles.
+
+WinRT
+-----
+
+ - Fixed issues with not properly closing QBluetoothSocket.

@@ -1,0 +1,40 @@
+Qt 5.12.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.3.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                Compositor                                *
+****************************************************************************
+
+ - Fixed a crash that could happen when accessing the d_func of
+   QWaylandShell.
+
+****************************************************************************
+*                                QPA plugin                                *
+****************************************************************************
+
+ - The non-blocking version of eglSwapBuffers is now used, if supported.
+   This fixed a bug where minimized windows would block the event loop.
+ - Windows that don't get frame callbacks from the compositor within 100 ms
+   are now set as not exposed. This should stop most clients from rendering
+   unnecessary frames to minimized or hidden windows.
+ - Fixed a crash on xdg-shell v5 when creating a popup without a valid
+   parent.
+ - Fixed a protocol error when an application tried to render to a window
+   before a shell or sub-surface was created.
+ - Fixed a crash when closing multiple popups at once.

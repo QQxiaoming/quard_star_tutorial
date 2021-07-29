@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDeepEqualFunc-28                          :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Test deep-equalness of two attribute nodes.  :)
+(:*******************************************************:)
+deep-equal(attribute name {}, attribute name {})

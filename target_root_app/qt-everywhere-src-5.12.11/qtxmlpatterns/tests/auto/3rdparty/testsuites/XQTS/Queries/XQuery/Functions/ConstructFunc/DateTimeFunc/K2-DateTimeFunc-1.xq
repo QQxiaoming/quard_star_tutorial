@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DateTimeFunc-1                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Passing the empty sequence as both arguments is allowed(recent change in the specification). :)
+(:*******************************************************:)
+empty(dateTime((), ()))

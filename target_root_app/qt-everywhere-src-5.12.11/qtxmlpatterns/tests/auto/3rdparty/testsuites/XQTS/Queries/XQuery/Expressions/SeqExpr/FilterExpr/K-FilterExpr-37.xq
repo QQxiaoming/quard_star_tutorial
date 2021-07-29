@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FilterExpr-37                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: One xs:anyURI value is a valid predicate.    :)
+(:*******************************************************:)
+deep-equal((1, 2, 3), (1, 2, 3)[xs:anyURI("example.com/")])

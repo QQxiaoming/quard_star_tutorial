@@ -1,0 +1,90 @@
+Qt 5.12.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.3.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+  https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                   Important Behavior Changes                             *
+****************************************************************************
+
+ - [QTBUG-14769] TextEdit now uses the I-beam cursor by default, and the
+   pointing hand cursor for links. However in C++ it's still possible to
+   override with a custom cursor.
+ - [QTBUG-70826] The QML Runtime tool now has an updated application icon
+   and a default window icon. QtQuick applications can still use
+   QWindow::setIcon() to override the window icon.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - [QTBUG-75880] An anonymous function's "name" now comes directly from the
+   surrounding object pattern if applicable. This fixes some ecmascript tests
+   where functions were assigned to the key "eval" in an object.
+ - [QTBUG-75896] Fixed lookups of properties in QML singletons.
+ - [QTBUG-48809] We now print a warning when encountering a non-relative URL
+   in a qmldir file. You should use relative paths.
+ - [QTBUG-75609] Improved the cache for looking up attached properties objects,
+   to fix a performance regression in Qt Quick Layouts.
+ - [QTBUG-75392] Fixed a crash caused by std::function.
+ - [QTBUG-74048] Fixed a crash in QJSEngine::evaluate.
+ - [QTBUG-75501] lupdate now works better with the Qt Quick compiler.
+ - [QTBUG-75393] Fixed debugging of named signal arguments in Connections.
+ - [QTBUG-75410] Fixed maximum call stack depth for clang ASAN builds.
+ - [QTBUG-74815] We now allow creation of variants from non-singleton
+   QQmlTypeWrappers.
+ - [QTBUG-74815] Unknown types are no longer mis-identified as "null".
+ - [QTBUG-75335] Fixed a crash related to optimized heap lookups.
+ - [QTBUG-73217] The "QML debugging is enabled" warning is printed
+   normally rather than via a log message, which works better with
+   static builds.
+ - [QTBUG-75176] Fixed a crash on exit related to attached properties
+   on static builds.
+ - [QTBUG-75203] Fixed a crash when accessing invalid properties through
+   QObjectWrapper
+ - [QTBUG-71116] Errors in fetchOrCreateTypeForUrl are no longer fatal.
+ - [QTBUG-75121] Fixed an invalid capture in ECMAScript
+   string.replace(RegExp, backref)
+ - [QTBUG-74876] Fixed a crash in LinkBuffer's performFinalization.
+ - [QTBUG-74876] Fixed a memory leak when emitting QImage or QPixmap
+   as a signal argument.
+ - [QDS-589] qmlscene now supports file selectors.
+ - [QTBUG-74867] We now detect and reject cyclic aliases to avoid
+   infinite recursion.
+ - [QTBUG-74884] Configuration with -no-feature-delegate-model now works.
+ - [QTBUG-75030] Fixed an arithmetic exception related to bindings.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - [QTBUG-73768] Fixed a failing assertion in BorderImage when any border size
+   exceeds source image size.
+ - [QTBUG-75770] MouseArea no longer mis-identifies fast drags as double clicks.
+ - [QTBUG-75002] Accessibility: StaticText nodes are now properly marked as
+   read-only.
+ - [QTBUG-70083] Replaced PinchHandler qCInfo messages with qCDebug.
+ - [QTBUG-70083] Fixed the "no points" warning when using native gestures.
+ - [QTBUG-73182] Fixed a memory leak by optimizing storage of
+   QQuickEventPoint instances.
+ - [QTBUG-65761] Fixed input handling in QWebEngineView on eglfs.
+ - [QTBUG-51993] Canvas3D now works properly inside QQuickWidget.
+ - [QTBUG-74966] DragHandler no longer makes its target jump if you
+   start dragging in the margin area.
+ - [QTBUG-74679] Touch cancel now results in an ungrab event, so that
+   any parent flickable can filter the event, reset its state and be ready
+   to scroll again.

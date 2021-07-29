@@ -1,0 +1,103 @@
+# Load configure.prf from qtbase first
+load(configure)
+load(functions)
+load(platform)
+
+defineTest(runConfigure) {
+    !qtHaveModule(gui) {
+        skipBuild("QtWebEngine requires QtGui.")
+        return(false)
+    }
+
+    !exists(src/3rdparty/chromium) {
+        skipBuild("Submodule qtwebengine-chromium does not exist. Run 'git submodule update --init'.")
+        return(false)
+    }
+
+    WSPC = $$find(OUT_PWD, \\s)
+    !isEmpty(WSPC) {
+        skipBuild("QtWebEngine cannot be built in a path that contains whitespace characters.")
+        return(false)
+    }
+
+    !isPlatformSupported() {
+        # make sure we have skipBuildReason
+        isEmpty(skipBuildReason): skipBuild("Unknow error. Platform unspported")
+        return(false)
+    }
+
+    linux:contains(QT_CONFIG,no-pkg-config) {
+        skipBuild("pkg-config is required")
+        return(false)
+    }
+
+    include($$QTWEBENGINE_OUT_ROOT/src/core/qtwebenginecore-config.pri)
+    QT_FOR_CONFIG += webenginecore-private
+
+    !qtConfig(webengine-v8-snapshot-support):qtConfig(webengine-v8-snapshot) {
+        skipBuild("V8 snapshot cannot be built. Most likely, the 32-bit host compiler does not work."\
+                  "Please make sure you have 32-bit devel environment installed, or "\
+                  "configure webengine with '-no-webengine-v8-snapshot'")
+        return(false)
+    }
+
+    win32:!qtConfig(webengine-win-compiler64) {
+        skipBuild("Required 64-bit cross-building or native toolchain could not be found.")
+        return(false)
+    }
+
+    !qtConfig(webengine-gperf) {
+        skipBuild("Required gperf could not be found.")
+        return(false)
+    }
+    !qtConfig(webengine-bison) {
+        skipBuild("Required bison could not be found.")
+        return(false)
+    }
+    !qtConfig(webengine-flex) {
+        skipBuild("Required flex could not be found.")
+        return(false)
+    }
+    !qtConfig(webengine-python2) {
+        skipBuild("A suitable version of python2 could not be found.")
+        return(false)
+    }
+
+    sanitizer: !qtConfig(webengine-sanitizer) {
+        skipBuild("Chosen sanitizer configuration is not supported. Check config.log for details or use -feature-webengine-sanitizer to force build with the chosen sanitizer configuration.")
+        return(false);
+    }
+
+    linux {
+
+        !qtConfig(webengine-host-pkg-config) {
+            skipBuild("Host pkg-config is required")
+            return(false)
+        }
+
+        !qtConfig(webengine-system-glibc) {
+            skipBuild("A suitable version of libc could not be found. See: https://sourceware.org/bugzilla/show_bug.cgi?id=14898")
+            return(false)
+        }
+
+        QT_FOR_CONFIG += gui-private
+
+        !qtConfig(webengine-system-khr) {
+            skipBuild("khronos development headers appear to be missing (mesa/libegl1-mesa-dev)")
+            return(false)
+        }
+
+        for(package, $$list("nss dbus fontconfig")) {
+            !qtConfig(webengine-system-$$package) {
+                skipBuild("A suitable version of $$package could not be found.")
+                return(false)
+            }
+         }
+
+        !qtConfig(webengine-embedded-build): qtConfig(xcb) : !qtConfig(webengine-ozone-x11) {
+            skipBuild("Could not find all necessary libraries for qpa-xcb support")
+            return(false)
+        }
+    }
+}
+

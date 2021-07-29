@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-1000                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: 'castable as' involving xs:gYearMonth as sourceType and xs:NOTATION should fail due to it involving xs:NOTATION. :)
+(:*******************************************************:)
+not(xs:gYearMonth("1999-11") castable as xs:NOTATION)

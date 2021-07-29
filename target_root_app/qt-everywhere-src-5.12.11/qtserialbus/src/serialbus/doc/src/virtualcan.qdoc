@@ -1,0 +1,119 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 Andre Hartmann <aha_1980@gmx.de>
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+    \page qtserialbus-virtualcan-overview.html
+    \title Using VirtualCAN Plugin
+
+    \brief Overview of how to use the VirtualCAN plugin.
+
+    The VirtualCAN plugin allows testing of CAN applications with a local
+    TCP/IP connection without CAN hardware. The TCP server is created,
+    when the first client calls createDevice(). The default TCP port is
+    35468, which can be changed by giving the fully qualified URL to
+    createDevice(). Once the server is running, no further server is
+    started on the same system.
+
+    Afterwards, all clients send their CAN frames to the server, which
+    distributes them to the other clients.
+
+    \section1 Creating CAN Bus Devices
+
+    At first it is necessary to check that QCanBus provides the desired plugin:
+
+    \code
+        if (QCanBus::instance()->plugins().contains(QStringLiteral("virtualcan"))) {
+            // plugin available
+        }
+    \endcode
+
+    Where \e virtualcan is the plugin name.
+
+    Next, a connection to a specific interface can be established:
+
+    \code
+        QCanBusDevice *device = QCanBus::instance()->createDevice(
+            QStringLiteral("virtualcan"), QStringLiteral("can0"));
+        device->connectDevice();
+    \endcode
+
+    Where \e can0 is the active CAN channel name. The VirtualCAN plugin
+    provides two channels "can0" and "can1". Both can be used as CAN 2.0
+    or CAN FD channels. All applications connected to one of these channels
+    receive all messages that are sent to this channel.
+
+    To connect to a remote server, use the following fully qualified URL
+    as interface name:
+
+    \code
+        tcp://server:port/canX
+    \endcode
+
+    for example:
+
+    \code
+        tcp://192.168.1.2:35468/can0
+    \endcode
+
+    The device is now open for writing and reading CAN frames:
+
+    \code
+        QCanBusFrame frame;
+        frame.setFrameId(8);
+        QByteArray payload("A36E");
+        frame.setPayload(payload);
+        device->writeFrame(frame);
+    \endcode
+
+    The reading can be done using the \l {QCanBusDevice::}{readFrame()} method. The
+    \l {QCanBusDevice::}{framesReceived()} signal is emitted when at least one new
+    frame is available for reading:
+
+    \code
+        QCanBusFrame frame = device->readFrame();
+    \endcode
+
+    VirtualCAN supports the following configurations that can be controlled through
+    \l {QCanBusDevice::}{setConfigurationParameter()}:
+
+    \table
+        \header
+            \li Configuration parameter key
+            \li Description
+        \row
+            \li QCanBusDevice::CanFdKey
+            \li Determines whether the virtual CAN bus operates in CAN FD mode or not.
+                This option is disabled by default.
+        \row
+            \li QCanBusDevice::ReceiveOwnKey
+            \li The reception of the CAN frames on the same device that was sending
+                the CAN frame is disabled by default. When enabling this option,
+                all CAN frames sent to the CAN bus immediately appear in the receive
+                buffer. This can be used to check if sending was successful. If this
+                option is enabled, the therefore received frames are marked with
+                QCanBusFrame::hasLocalEcho()
+   \endtable
+*/

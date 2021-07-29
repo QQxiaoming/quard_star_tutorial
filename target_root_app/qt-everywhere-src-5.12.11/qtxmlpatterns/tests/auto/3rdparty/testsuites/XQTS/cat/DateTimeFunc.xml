@@ -1,0 +1,368 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="DateTimeFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:dateTime</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-dateTime-1" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function as per example 1 for this function from the F and O Specs.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-1" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-2" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function as per example 2 for this function from the F and O Specs.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-2" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-3" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime", where only the first argument have a timezone.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-3" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-4" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime", where only the second argument have a timezone.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-4" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-5" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime", where both arguments have the same timezone (Z).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-5" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-6" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime", where both arguments have the same timezone (+10:00).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-6" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-7" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(eq).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-7" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-8" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(ne).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-8" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-9" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(le).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-9" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-10" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(ge).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-10" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-11" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(lt).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-11" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-12" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(le).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-12" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-13" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(gt).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-13" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-14" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" function together together with the op:dateTime-equal operator(ge).</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-14" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-15" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "year-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-15" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-16" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "month-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-16" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-17" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "day-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-17" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-18" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "hours-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-18" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-19" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "minutes-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-19" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-20" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "seconds-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-20" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-21" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "timezone-from-dateTime".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-21" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-22" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" as an argument to the function "adjust-dateTime-to-timezone".</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-22" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-23" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" part of a subtraction operation.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-23" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-24" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" used together with the "op:add-yearMonthDuration-to-dateTime" operator.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-24" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-25" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" used together with the "op:add-dayTimeDuration-to-dateTime" operator.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-25" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-26" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" used together with the "subtract-yearMonthDuration-from-dateTime" operator.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-26" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-27" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" used together with the "subtract-dayTimeDuration-from-dateTime" operator.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-27" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-dateTime-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-28" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" where the first argument is the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-28" date="2006-09-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">zero.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-29" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" where the second argument is the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-29" date="2006-09-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">zero.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-dateTime-30" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:dateTime" where both arguments are equal to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="fn-dateTime-30" date="2006-09-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">zero.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="forg0008-1" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of error FORG008, different timezones for DateTimeFunc.</description>
+      <spec-citation spec="FuncOps" section-number="5.2" section-title="A Special Constructor Function for xs:dateTime" section-pointer="func-dateTime"/>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="forg0008-1" date="2009-09-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-1" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="runtime-error">
+      <description>Passing too few parameters(none) to fn:dateTime().</description>
+      <query name="K-DateTimeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-2" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="runtime-error">
+      <description>Passing too few parameters(only one) to fn:dateTime().</description>
+      <query name="K-DateTimeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-3" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="runtime-error">
+      <description>Passing too many parameters to fn:dateTime().</description>
+      <query name="K-DateTimeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-4" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Passing the empty sequence as second argument is allowed(recent change in the specification).</description>
+      <query name="K-DateTimeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-5" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Passing the empty sequence as first argument is allowed(recent change in the specification).</description>
+      <query name="K-DateTimeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-6" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="runtime-error">
+      <description>Passing different timezones to fn:dateTime() is an error.</description>
+      <query name="K-DateTimeFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-7" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="runtime-error">
+      <description>Passing different timezones to fn:dateTime() is an error.</description>
+      <query name="K-DateTimeFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-8" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with timezones +00:00 and -00:00.</description>
+      <query name="K-DateTimeFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-9" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with identical timezones.</description>
+      <query name="K-DateTimeFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-10" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the first value having no timezone.</description>
+      <query name="K-DateTimeFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-11" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the second value having no timezone.</description>
+      <query name="K-DateTimeFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-12" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the time value being 24:00:00.</description>
+      <query name="K-DateTimeFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-13" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with timezones being canonical UTC('Z').</description>
+      <query name="K-DateTimeFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-14" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the first value's timezone being canonical UTC('Z').</description>
+      <query name="K-DateTimeFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-15" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the first value's timezone being an arbitrary value.</description>
+      <query name="K-DateTimeFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-16" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the second value's timezone being an arbitrary value.</description>
+      <query name="K-DateTimeFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-17" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() where none of its values has a timezone.</description>
+      <query name="K-DateTimeFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateTimeFunc-18" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Invoke fn:dateTime() with the first value's timezone being canonical UTC('Z').</description>
+      <query name="K-DateTimeFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateTimeFunc-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DateTimeFunc-1" FilePath="Functions/ConstructFunc/DateTimeFunc/" scenario="standard">
+      <description>Passing the empty sequence as both arguments is allowed(recent change in the specification).</description>
+      <query name="K2-DateTimeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DateTimeFunc-1.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,62 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9. Exception:
+between Qt 5.8.0 and 5.9.0 the QWaylandQuickOutput class was changed
+in a binary incompatible way.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt Wayland General                            *
+****************************************************************************
+
+- Fix detection of wayland-egl on imx6 without pkg-config.
+
+****************************************************************************
+*                            Qt Wayland QPA Plugin                         *
+****************************************************************************
+
+- Fix crash when window was reset twice (e.g. if both setParent and
+  setVisible was called together).
+
+- [QTBUG-61704] Fix crash when focus event arrives after hiding window.
+
+- Fix crash when window attach was called without waiting for frame
+  callbacks.
+
+- [QTBUG-62048] Fix crash with nested menus on Weston.
+
+- [QTBUG-62044] Fix crash when second monitor is attached.
+
+- Update QWindow::screen() based on surface enter/leave events.
+
+- Send pointer event to all bound resources. This fixes the issue where
+  the breeze Qt style would block mouse events, leading to an unresponsive
+  client.
+
+- [QTBUG-60932] Place popup menus correctly even if parent is not set.
+
+- Make tooltips non-grabbing with XDG shell v6.
+
+- Make the QT_WAYLAND_SERVER_BUFFER_INTEGRATION environment variable work.
+
+
+
+****************************************************************************
+*                       Qt Wayland Compositor API                          *
+****************************************************************************
+
+- Buffer returned by toOpenGLTexture() now has correct size and format.

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-223                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Whitespace is ignored for xs:float's lexical space(#2). :)
+(:*******************************************************:)
+xs:float("      INF           ")

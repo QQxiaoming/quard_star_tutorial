@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(:Test: op-subtract-yearMonthDuration-from-date-1        :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: July 6, 2005                                     :)
+(:Purpose: Evaluates The "subtract-yearMonthDuration-from-date" operator :)
+(:As per example 1 (for this function)of the F&O specs.  :)
+(:*******************************************************:)
+xs:date("2000-10-30") - xs:yearMonthDuration("P1Y2M")

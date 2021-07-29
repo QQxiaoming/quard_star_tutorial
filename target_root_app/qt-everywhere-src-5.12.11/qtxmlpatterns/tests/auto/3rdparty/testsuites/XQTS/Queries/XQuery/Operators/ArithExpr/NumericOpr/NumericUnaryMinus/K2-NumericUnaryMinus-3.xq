@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NumericUnaryMinus-3                          :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Operand is constructor function for xs:decimal. :)
+(:*******************************************************:)
+-xs:decimal(0)

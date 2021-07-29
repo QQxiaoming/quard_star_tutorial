@@ -1,0 +1,6 @@
+﻿\warning Although it is possible to access QML objects from C++ and manipulate
+them, it is not the recommended approach, except for testing and prototyping
+purposes. One of the strengths of QML and C++ integration is the ability to
+implement UIs in QML separate from the C++ logic and dataset backend, and this
+fails if the C++ side starts manipulating QML directly. Such an approach also
+makes changing the QML UI difficult without affecting its C++ counterpart.

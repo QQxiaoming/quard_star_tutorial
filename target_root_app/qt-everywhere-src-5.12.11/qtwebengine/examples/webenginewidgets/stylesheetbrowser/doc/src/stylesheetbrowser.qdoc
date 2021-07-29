@@ -1,0 +1,68 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: http://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example webenginewidgets/stylesheetbrowser
+    \title WebEngine StyleSheet Browser Example
+    \ingroup webengine-widgetexamples
+    \brief Demonstrates how to inject CSS into web pages using user scripts.
+
+    \image stylesheetbrowser.png
+
+    \e {StyleSheet Browser} demonstrates how to use the \l{Qt WebEngine Widgets C++ Classes}
+    {Qt WebEngine C++ classes} to inject user stylesheets into web pages.
+
+    \include examples-run.qdocinc
+
+    \section1 Working With Stylesheets
+
+    We use JavaScript to create and append CSS elements to the documents.
+    After declaring the script source, QWebEnginePage::runJavaScript() can run it
+    immediately and apply newly created styles on the current content of the web view.
+    Encapsulating the script into a QWebEngineScript and adding it to the script collection
+    of QWebEnginePage makes its effect permanent.
+
+    \quotefromfile webenginewidgets/stylesheetbrowser/mainwindow.cpp
+    \skipto MainWindow::insertStyleSheet
+    \printuntil /^\}/
+
+    Removing stylesheets can be done similarly:
+
+    \quotefromfile webenginewidgets/stylesheetbrowser/mainwindow.cpp
+    \skipto MainWindow::removeStyleSheet
+    \printuntil /^\}/
+
+    \section1 Files and Attributions
+
+    The example uses icons from the Tango Icon Library:
+
+    \table
+    \row
+        \li \l{stylesheetbrowser-tango}{Tango Icon Library}
+        \li Public Domain
+    \endtable
+*/

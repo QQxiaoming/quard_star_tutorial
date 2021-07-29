@@ -1,0 +1,63 @@
+Qt 5.9.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                        Important Behavior Changes                        *
+****************************************************************************
+
+ - As a fix to QTBUG-50992, execution of delegates, such as contentItem and
+   background, is deferred until the construction of a control is complete,
+   or a delegate is accessed. Consequently, if a delegate is replaced with
+   a custom delegate, the default delegate is not created. Previously, when
+   a default delegate was replaced by a custom delegate, the default
+   delegate was nevertheless created and destroyed during the construction
+   of the control.
+
+****************************************************************************
+*                                Controls                                  *
+****************************************************************************
+
+ - [QTBUG-64548] Fixed shortcuts in QQuickWidget
+
+ - [QTBUG-65016] Fixed QQuickStyle::setFallbackStyle() in static builds
+
+ - [QTBUG-50992] Fixed a bug which caused delegates of customized controls
+   to often be "destroyed during incubation" when asynchronously incubated
+   by item views or asynchronous loaders.
+
+ - BusyIndicator:
+   * [QTBUG-62874] Fixed busy animation in QQuickWidget
+
+ - ProgressBar:
+   * [QTBUG-62874] Fixed indeterminate animation in QQuickWidget
+
+ - StackView:
+   * [QTBUG-65084] Fixed to not block touch events.
+
+ - SwipeView:
+   * [QTBUG-62110] Fixed slow swiping in large views
+
+ - ToolButton:
+   * [QTBUG-65052] Fixed round ripple for square buttons in the Material style
+
+ - Tumbler:
+   * [QTBUG-65165] Made currentIndex animations take a constant amount of
+     time (1 second) regardless of how many items are in the model. This
+     prevents Tumblers with large amounts of items from scrolling too
+     slowly when changing the currentIndex.

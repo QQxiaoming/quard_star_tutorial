@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DurationEQ-8                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The xs:duration values P1M and P31D are not equal. :)
+(:*******************************************************:)
+xs:duration("P1M") ne xs:duration("P31D")

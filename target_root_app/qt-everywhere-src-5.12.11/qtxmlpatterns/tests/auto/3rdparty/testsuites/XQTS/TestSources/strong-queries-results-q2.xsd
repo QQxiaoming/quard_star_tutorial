@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="qualified" 
+		   targetNamespace="http://www.example.com/zips" 
+		   xmlns:zips="http://www.example.com/zips">
+
+  <xs:element name="zips">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="zips:row"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="row">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="zips:city"/>
+        <xs:element ref="zips:state"/>
+        <xs:element ref="zips:zip"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="city" type="xs:string"/>
+  <xs:element name="state" type="xs:string"/>
+  <xs:element name="zip" type="xs:integer"/>
+</xs:schema>

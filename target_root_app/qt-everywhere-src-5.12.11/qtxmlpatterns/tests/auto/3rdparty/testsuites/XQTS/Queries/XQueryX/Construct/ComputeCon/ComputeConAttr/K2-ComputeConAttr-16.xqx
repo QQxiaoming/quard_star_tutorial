@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:elementTest/>
+          <xqx:occurrenceIndicator>+</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:elementConstructor>
+            <xqx:tagName>a</xqx:tagName>
+          </xqx:elementConstructor>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>b</xqx:tagName>
+        <xqx:elementContent>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+          <xqx:computedAttributeConstructor>
+            <xqx:tagName>name</xqx:tagName>
+            <xqx:valueExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>content</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:valueExpr>
+          </xqx:computedAttributeConstructor>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,246 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="CopyNamespacesProlog" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Copy Namespaces Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="copynamespace-1" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with more than one copy-namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-1" date="2006-02-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0055</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-2" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates that local namespace overrides default namespace.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-2" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-3" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve no-inherit".</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-3" static-name="copynamespace-3-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-3.txt</output-file>
+      <output-file role="principal" compare="Text">copynamespace-3alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-4" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit".</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-4" static-name="copynamespace-4-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-5" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve no-inherit" and copied element uses same namespace as constructor element.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-5" static-name="copynamespace-5-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-6" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit" and copied element uses same namespace as constructor element.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-6" static-name="copynamespace-6-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-7" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "no-preserve no-inherit". Use Global variables with namespaces with prefixes.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-7" static-name="copynamespace-7-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-8" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve no-inherit". Use Global variables with namespaces with prefixes.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-8" static-name="copynamespace-8-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-9" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "no-preserve inherit". Use Global variables with namespaces with prefixes.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-9" static-name="copynamespace-9-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-10" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit". Use Global variables with namespaces with prefixes.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-10" static-name="copynamespace-10-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-11" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit". Use Global variables with namespaces with same prefixes and different namespace URI.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-11" static-name="copynamespace-11-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-12" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit". Use Global variables with namespaces with different prefixes and same namespace URI.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-12" static-name="copynamespace-12-static-cbcl" date="2006-03-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-13" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit". Use global variables. Only the XML prefix is used.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-13" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-14" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit". Use global variables where prefix differes in case.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-14" static-name="copynamespace-14-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-15" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit" with multiple inclusions. Examines last element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-15" static-name="copynamespace-15-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-16" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "no-preserve inherit" with multiple inclusions. Examines last element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-16" static-name="copynamespace-16-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-17" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "no-preserve no-inherit" with multiple inclusions. Examines last element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-17" static-name="copynamespace-17-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-18" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve no-inherit" with multiple inclusions. Examines last element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-18" static-name="copynamespace-18-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-19" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve inherit" with multiple inclusions. Examines mid element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-19" static-name="copynamespace-19-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-20" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "no-preserve inherit" with multiple inclusions. Examines mid element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-20" static-name="copynamespace-20-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-21" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "no-preserve no-inherit" with multiple inclusions. Examines mid element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-21" static-name="copynamespace-21-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="copynamespace-22" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates copy namespace declaration with value set to "preserve no-inherit" with multiple inclusions. Examines mid element in subtree.</description>
+      <spec-citation spec="XQuery" section-number="4.9" section-title="Copy-Namespaces Declaration" section-pointer="id-copy-namespaces-decl"/>
+      <query name="copynamespace-22" static-name="copynamespace-22-static-cbcl" date="2006-03-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">copynamespace-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CopyNamespacesProlog-1" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="runtime-error">
+      <description>A prolog may not contain two copy-namespaces declarations.</description>
+      <query name="K-CopyNamespacesProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0055</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CopyNamespacesProlog-2" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>A 'declare copy-namespaces' declaration specifying no-preserve and no-inherit.</description>
+      <query name="K-CopyNamespacesProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CopyNamespacesProlog-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CopyNamespacesProlog-3" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>A 'declare copy-namespaces' declaration specifying no-preserve and no-inherit.</description>
+      <query name="K-CopyNamespacesProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CopyNamespacesProlog-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CopyNamespacesProlog-4" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="parse-error">
+      <description>A 'declare copy-namespaces' declaration specifying no-preserve and no-inherit in a wrong order .</description>
+      <query name="K-CopyNamespacesProlog-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CopyNamespacesProlog-5" FilePath="Expressions/PrologExpr/CopyNamespacesProlog/" scenario="parse-error">
+      <description>A 'declare copy-namespaces' declaration specifying preserve and inherit in a wrong order .</description>
+      <query name="K-CopyNamespacesProlog-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-1" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Use no-preserve, inherit with the default namespace.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4869</reflects-resolution>
+      <query name="K2-CopyNamespacesProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-CopyNamespacesProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-2" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="runtime-error">
+      <description>Ensure the 'copy-namespaces' keyword is parsed correctly.</description>
+      <query name="K2-CopyNamespacesProlog-2" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-3" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="runtime-error">
+      <description>Ensure the 'namespace' keyword is parsed correctly.</description>
+      <query name="K2-CopyNamespacesProlog-3" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-4" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Verify that the default element namespace is not touched when using no-inherit.</description>
+      <query name="K2-CopyNamespacesProlog-4" date="2008-01-07+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-CopyNamespacesProlog-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-5" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Have a namespace which is used further down.</description>
+      <query name="K2-CopyNamespacesProlog-5" date="2008-01-07+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-CopyNamespacesProlog-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-6" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Check in-scope bindings of constructed nodes.</description>
+      <query name="K2-CopyNamespacesProlog-6" date="2008-01-07+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CopyNamespacesProlog-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-7" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Have an unused prefix further down the hierarchy.</description>
+      <query name="K2-CopyNamespacesProlog-7" date="2008-01-07+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-CopyNamespacesProlog-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-8" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Copy an element with no children.</description>
+      <query name="K2-CopyNamespacesProlog-8" date="2008-01-07+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-CopyNamespacesProlog-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CopyNamespacesProlog-9" FilePath="exprSeqTypes/PrologExpr/CopyNamespacesProlog/" scenario="standard">
+      <description>Use direct element constructors inside enclosed expressions.</description>
+      <query name="K2-CopyNamespacesProlog-9" date="2008-01-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CopyNamespacesProlog-9.txt</output-file>
+   </test-case>
+</test-group>

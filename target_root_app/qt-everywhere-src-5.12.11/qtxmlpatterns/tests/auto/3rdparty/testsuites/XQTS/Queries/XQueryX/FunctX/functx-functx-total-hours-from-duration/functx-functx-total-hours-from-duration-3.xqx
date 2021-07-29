@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>functx</xqx:prefix>
+        <xqx:uri>http://www.example.com/</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="functx">total-hours-from-duration</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>duration</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">dayTimeDuration</xqx:atomicType>
+              <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">decimal</xqx:atomicType>
+          <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:divOp>
+            <xqx:firstOperand>
+              <xqx:varRef>
+                <xqx:name>duration</xqx:name>
+              </xqx:varRef>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">dayTimeDuration</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>PT1H</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:secondOperand>
+          </xqx:divOp>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="functx">total-hours-from-duration</xqx:functionName>
+        <xqx:arguments>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">dayTimeDuration</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>-PT3H</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

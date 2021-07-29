@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-DayTimeDurationAdd-3                          :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple test of adding two arbitrary xs:yearMonthDurations. :)
+(:*******************************************************:)
+xs:dayTimeDuration("P3DT4H3M3.100S") + xs:dayTimeDuration("P3DT12H31M56.303S")
+	                eq xs:dayTimeDuration("P6DT16H34M59.403S")

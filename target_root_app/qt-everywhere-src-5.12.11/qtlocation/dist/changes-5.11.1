@@ -1,0 +1,40 @@
+Qt 5.11.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.1 Changes                           *
+****************************************************************************
+
+QtLocation
+----------
+
+* [QTBUG-63223] Fixed MapPolyline documentation.
+* Fixed a crash in Map{Polyline,Polygon,Route}ObjectQsg.
+* [QTBUG-68261] Changed nominatim default endpoint base URL to HTTPS.
+* Bumped mapbox-gl-native to the latest version, fixing offline tiles support.
+* [QTBUG-68121] Supported raster-dem source types in the MapboxGL plugin.
+* [QTBUG-68358] Added missing route query parameters to the query in the mapbox plugin.
+* [QTBUG-68366] Fixed MapItemView deleting wrong item after changing to use the delegate model internally.
+* [QTBUG-68598] Supported dynamic QObject properties in QMapboxGLStyleChange.
+
+
+QtPositioning
+-------------
+
+* [QTBUG-64699] Fixed QGeoPositionInfo timestamp comparison in nmea source.

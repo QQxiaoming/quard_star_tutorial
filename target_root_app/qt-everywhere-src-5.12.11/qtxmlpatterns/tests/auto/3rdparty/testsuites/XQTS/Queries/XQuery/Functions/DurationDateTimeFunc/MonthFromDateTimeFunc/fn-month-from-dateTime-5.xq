@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: fn-month-from-dateTime-5                         :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 8, 2005                                     :)
+(:Purpose: Evaluates The "month-from-dateTime" function  :)
+(:using the empty sequence as an argument. Use count     :) 
+(:function to avoid empty file.                          :)
+(:*******************************************************:)
+
+fn:count(fn:month-from-dateTime(()))

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>webChannelWithBadString</title>
+    </head>
+    <body>
+        <script src="qrc:/qtwebchannel/qwebchannel.js"></script>
+        <script type="text/javascript">
+         new QWebChannel(qt.webChannelTransport, (channel) => {
+             channel.objects.host.text = String.fromCharCode(0xD800);
+         });
+        </script>
+    </body>
+</html>

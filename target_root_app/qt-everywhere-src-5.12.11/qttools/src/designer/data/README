@@ -1,0 +1,8 @@
+You may generate ui4.h and ui4.cpp parser files by using the generate_ui script
+or manually by invoking the xsltproc command:
+
+xsltproc generate_header.xsl ui4.xsd > ui4.h
+xsltproc generate_impl.xsl ui4.xsd > ui4.cpp
+
+Remember to update uic sources in qtbase module accordingly,
+adapting the license.

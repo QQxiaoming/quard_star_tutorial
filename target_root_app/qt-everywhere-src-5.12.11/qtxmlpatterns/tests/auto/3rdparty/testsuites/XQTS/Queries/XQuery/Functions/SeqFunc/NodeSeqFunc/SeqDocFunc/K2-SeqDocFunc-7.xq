@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDocFunc-7                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A windows file path is an invalid URI to fn:doc(). :)
+(:*******************************************************:)
+doc("example.com\example.org\does\not\exist\doesNotExist\works-mod.xml")

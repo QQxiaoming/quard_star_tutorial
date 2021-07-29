@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqAVGFunc-38                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: A test whose essence is: `avg((xs:yearMonthDuration("P20Y"), (3, 4, 5)))`. :)
+(:*******************************************************:)
+avg((xs:yearMonthDuration("P20Y"), (3, 4, 5)))

@@ -1,0 +1,82 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+Compositor
+----------
+
+ - [QTBUG-64600][QTBUG-64604] Added a tech preview for a plugin-based hardware
+   layer API and a VSP2 implementation (for Renesas R-Car M3 and H3).
+ - Added QML API for sending touch events to surfaces.
+ - Information about disconnected/removed WaylandOutputs are now
+   communicated to the clients.
+ - Updated the minimal-cpp and minimal-qml examples.
+ - Added a new example, overview-compositor.
+ - WaylandQuickItems now get an implicitSize from their wayland surface,
+   making them behave more like other QQuickItems. Compositors should set
+   WaylandQuickItem.sizeFollowsSurface to false to get the new behavior.
+ - Fixed a bug where window state (maximized, active etc.) was reverted if
+   XdgTopLevelV6.sendConfigure and related functions were called repeatedly
+   before the client could respond.
+ - Fixed a bug where keyboard events were not sent to clients in
+   WaylandQuickItem.keyPressEvent if the surface was not focused through
+   WaylandQuickItem.takeFocus().
+ - Fixed a bug where a negative size was requested when resizing on QML
+   compositors.
+ - Fixed mouse and touch events being sent to the wrong position for
+   WaylandQuickItems and ShellSurfaceItems scaled by the compositor.
+ - [QTBUG-67861] Fixed mouse and touch events being sent to the wrong
+   position for high DPI surfaces (QML API).
+ - Fixed crashes when clients tried to use a deleted WaylandOutput or a
+   Wayland extension.
+ - Added documentation for XdgShellV6.
+
+QPA plugin
+----------
+
+ - Clients now automatically change the scale factor when entering a new
+   screen. I.e. when moving a window from a low-resolution screen to a
+   high-resolution screen, the DPI will change.
+ - [QTBUG-54792][QTBUG-64572] Added Support for key composition, accents
+   and diaereses.
+ - [QTBUG-59762] When the plugin fails to connect to the Wayland display,
+   it now fails gracefully so other platform integrations can be tried
+   instead.
+ - ivi-shell will now be used automatically if no other shell integrations are
+   available.
+ - [QTBUG-62044] Fixed a crash that happened when connecting to a new
+   screen above or to the left of the other connected screens.
+ - [QTBUG-63411] Fixed a crash when calling setVisible for EGL windows twice
+   within one slot.
+ - [QTBUG-67150] Fixed a crash when a popup was shown without any input
+   events happening first.
+ - Fixed a bug where an OpenGL context with a compatibility profile would
+   be requested even though if it was set to unspecified in
+   QOpenGLContext::format. This would sometimes cause context creation to
+   fail.
+ - [QTBUG-66867] Fixed a crash that sometimes occurred when showing a
+   window.
+ - [QTBUG-64696] Fixed a freeze that would sometimes happen on startup on
+   some compositors.
+ - Fixed a bug where ABGR2101010 surfaces where submitted as ARGB2101010
+   surfaces.
+ - A new logging category has been added for the Wayland platform plugin,
+   "qt.qpa.wayland".
+

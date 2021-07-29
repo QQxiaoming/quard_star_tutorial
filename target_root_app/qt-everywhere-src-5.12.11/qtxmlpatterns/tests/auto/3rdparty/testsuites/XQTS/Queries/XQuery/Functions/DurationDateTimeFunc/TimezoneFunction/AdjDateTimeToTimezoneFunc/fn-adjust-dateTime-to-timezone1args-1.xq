@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: adjust-dateTime-to-timezone1args-1                :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Tue Apr 12 16:29:08 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "adjust-dateTime-to-timezone" function:)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:dateTime(lower bound)                        :)
+(:*******************************************************:)
+
+fn:adjust-dateTime-to-timezone(xs:dateTime("1970-01-01T00:00:00Z"),xs:dayTimeDuration("-PT10H"))

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-205                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The empty string is invalid in xs:NMTOKEN(#2). :)
+(:*******************************************************:)
+xs:NMTOKEN("       ")

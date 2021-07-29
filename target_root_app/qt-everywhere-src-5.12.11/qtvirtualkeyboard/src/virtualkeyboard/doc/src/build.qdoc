@@ -1,0 +1,623 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+
+\page qtvirtualkeyboard-build.html
+\contentspage {Building Qt Virtual Keyboard} {Contents}
+
+\title Building Qt Virtual Keyboard
+
+\section1 Overview
+
+This document describes how to build the Qt Virtual Keyboard plugin.
+
+The project is split into the following subprojects:
+\table
+\row
+    \li \e examples/virtualkeyboard/basic/basic.pro
+    \li Qt Virtual Keyboard Demo application
+\row
+    \li \e src/virtualkeyboard/import/
+    \li Qt Virtual Keyboard QML plugin (QtQuick.VirtualKeyboard)
+\row
+    \li \e src/virtualkeyboard/plugin/
+    \li Qt Virtual Keyboard platform input context plugin. This plugin
+        provides the QPlatformInputContext interface for the Qt and is
+        also responsible for loading the Virtual Keyboard Plugins
+        (QtQuick.VirtualKeyboard.Plugins).
+\row
+    \li \e src/virtualkeyboard/plugins/
+    \li A directory containing Qt Virtual Keyboard plugins, such as the Hunspell plugin
+\row
+    \li \e src/virtualkeyboard/settings/
+    \li Qt Virtual Keyboard Settings QML plugin (QtQuick.VirtualKeyboard.Settings)
+\row
+    \li \e src/virtualkeyboard/styles/styles.pro
+    \li Qt Virtual Keyboard Styles QML plugin (QtQuick.VirtualKeyboard.Styles)
+\row
+    \li \e src/virtualkeyboard/virtualkeyboard.pro
+    \li Qt Virtual Keyboard module, QML components and layouts
+\endtable
+
+The input methods are implemented either in C++ or QML.
+Qt Virtual Keyboard provides implementations of \e PlainInputMethod,
+\e MultitapInputMethod and \e HunspellInputMethod.
+The \e MultitapInputMethod is implemented in QML while the others are implemented
+in C++.
+
+\section1 Build Instructions
+
+The Qt Virtual Keyboard can be built for Linux Desktop/X11, Windows Desktop
+or Boot2Qt targets.
+The target is automatically detected by QMAKE and requires no special
+configuration parameters.
+
+Qt Creator is the preferred build environment for Qt Virtual Keyboard as you
+can then leverage the shadow build functionality and rapidly switch between
+build targets.
+
+\section2 Configuration Options
+
+The table below contains the top-level options for configuring the virtual
+keyboard features.
+
+\table
+\header
+    \li CONFIG
+    \li Description
+    \li Remarks
+\row
+    \li \e lang-<code>
+    \li Enables the specified language
+    \li The specified language can be activated using \e lang-<code> option, which
+        has the format "language[_country]", where:
+        \list
+            \li language is a lowercase, two-letter, ISO 639 language code
+            \li country is an uppercase, two-letter, ISO 3166 country code
+        \endlist
+
+        This option can be used to define the language support as required. The virtual
+        keyboard can support one or more languages at a time.
+
+        For example, \c CONFIG+=lang-fi_FI activates the Finnish language.
+
+        The virtual keyboard automatically includes all languages if no other languages
+        are specified.
+\row
+    \li \e lang-all
+    \li Enables all the languages
+    \li Enables all the languages supported by the virtual keyboard. This flag is essentially
+        an alias for \c {CONFIG+="lang-ar_AR lang-da_DK ..."}
+
+        This option is enabled by default. To build only a specific language, use the
+        \c lang-<code> option above.
+\row
+    \li \e handwriting
+    \li Enables handwriting input
+    \li This flag enables handwriting input using the first engine available at
+        build time in the following order: \c myscript, \c t9write, \c lipi-toolkit. To enable handwriting
+        input using a specific engine, use the feature-specific configuration instead.
+        For example, \c CONFIG+=lipi-toolkit.
+\row
+    \li \e arrow-key-navigation
+    \li Enables arrow key navigation for the keyboard
+    \li Allows controlling the keyboard using the arrow and return keys.
+\endtable
+
+\section3 Advanced Configuration Options
+
+The table below shows the advanced configuration options that will be applied
+automatically when activating a certain top-level feature. The options can also be
+used for enabling or disabling a specific feature.
+
+In most cases, these options are not needed, but there are also cases where their use is
+justified. For example, the Traditional Chinese language (CONFIG=lang-zh_TW) will include
+both Zhuyin and Cangjie input methods by default. This behavior can be changed by adding
+the preferred input method to the configuration, e.g., \c CONFIG+="lang-zh_TW zhuyin".
+
+\table
+\header
+    \li Advanced CONFIG
+    \li Top-level CONFIG
+    \li Description
+    \li Remarks
+\row
+    \li \e disable-desktop
+    \li \e n/a
+    \li Disables Desktop integration
+    \li By default, the desktop integration is enabled when the target environment
+        is X11 or Windows desktop. With this option, the desktop integration can be
+        disabled.
+        \note For embedded integration, where the InputPanel is instantitated by
+        the application, there is no need to use this option explicitly. The virtual
+        keyboard will not create the desktop input panel if the application creates
+        InputPanel before the focus is set to an input field.
+\row
+    \li \e disable-layouts
+    \li \e n/a
+    \li Disables built-in layouts
+    \li By default, the virtual keyboard plugin contains the English keyboard layout.
+        By specifiying the \e disable-layouts configuration flag, the built-in layout(s)
+        are excluded from the virtual keyboard plugin.
+        \note In this scenario, the \c QT_VIRTUALKEYBOARD_LAYOUT_PATH environment
+        variable should be set to the file system directory containing the custom keyboard
+        layouts before running the application.
+\row
+    \li \e disable-xcb
+    \li \e n/a
+    \li Disables X11 integration
+    \li \note Deprecated since 1.3. Use \e disable-desktop instead.
+\row
+    \li \e disable-hunspell
+    \li \e n/a
+    \li Disables Hunspell integration
+    \li Hunspell integration is enabled if the Hunspell library is available on the
+        system, or if it is built using the local project file. Integration can be
+        disabled using this option.
+\row
+    \li \e no-bundle-pinyin
+    \li \e n/a
+    \li Disables bundling of pinyin resources
+    \li This option excludes pinyin resources from the plugin binary. This option may be
+        used to reduce the plugin binary size.
+\row
+    \li \e no-bundle-tcime
+    \li \e n/a
+    \li Disables bundling of tcime resources
+    \li This option excludes tcime resources from the plugin binary. This option may be
+        used to reduce the plugin binary size.
+\row
+    \li \e static
+    \li Enables static builds of the virtual keyboard
+    \li This option enables \l {Static builds}{static builds}.
+\row
+    \li \e retro-style
+    \li \e n/a
+    \li Enables Retro style
+    \li Changes the default keyboard style to the Retro style. Both styles are still
+        included in the package, but this option allows you to change the built-in
+        default style.
+\row
+    \li \e no-builtin-style
+    \li \e n/a
+    \li Disables bunding of styles
+    \li This option excludes styles from the plugin binary.
+\row
+    \li \e pinyin
+    \li \e lang-zh_CN
+    \li Enables the Pinyin input method for Simplified Chinese.
+    \li This option activates the Pinyin input method for the Simplified Chinese
+        language.
+
+        \include build.qdocinc input-method-language-option-note
+\row
+    \li \e tcime
+    \li \e lang-zh_TW
+    \li Enables the both Cangjie and Zhuyin input methods for Traditional Chinese.
+    \li This option activates the both Cangjie and Zhuyin input methods for the
+        Traditional Chinese language.
+
+        \include build.qdocinc input-method-language-option-note
+\row
+    \li \e cangjie
+    \li \e lang-zh_TW
+    \li Enables the Cangjie input method for Traditional Chinese.
+    \li This option activates the Cangjie input method for the Traditional Chinese
+        language.
+
+        \include build.qdocinc input-method-language-option-note
+\row
+    \li \e zhuyin
+    \li \e lang-zh_TW
+    \li Enables the Zhuyin input method for Traditional Chinese.
+    \li This option activates the Zhuyin input method for the Traditional Chinese
+        language.
+
+        \include build.qdocinc input-method-language-option-note
+\row
+    \li \e hangul
+    \li \e lang-ko_KR
+    \li Enables the Hangul input method for Korean.
+    \li This option activates the Hangul input method for the Korean language.
+
+    \include build.qdocinc input-method-language-option-note
+\row
+    \li \e openwnn
+    \li \e lang-ja_JP
+    \li Enables the OpenWnn input method for Japanese.
+    \li This option activates the OpenWnn input method for the Japanese language.
+
+    \include build.qdocinc input-method-language-option-note
+\row
+    \li \e lipi-toolkit
+    \li \e handwriting
+    \li Enables the handwriting input method using Lipi Toolkit.
+    \li Handwriting recognition is based on the open source Lipi Toolkit.
+\row
+    \li \e t9write
+    \li \e handwriting
+    \li Enables the handwriting input method using T9 Write.
+    \li Handwriting recognition is based on the commercial T9 Write product from Nuance Communications.
+\row
+    \li \e myscript
+    \li \e handwriting
+    \li Enables the handwriting input method using MyScript Text SDK.
+    \li Handwriting recognition is based on the most recent commercial Text Recognition SDK product from MyScript.
+\endtable
+
+\section2 Building Documentation
+
+\table
+\row
+    \li \e {make docs}
+    \li Generates documentation
+\endtable
+
+\section2 Hunspell Integration
+
+By default, \e HunspellInputMethod will not be available unless the Hunspell
+library and development headers are found. For Linux/X11 targets, the Hunspell
+library can be provided by installing the libhunspell-dev package.
+Alternatively, the Hunspell sources can be extracted into the
+\e src/plugins/hunspell/3rdparty/hunspell directory. The sources are automatically
+detected by the qmake and the project will be configured to use the local Hunspell.
+If Hunspell sources are used, then the dictionary files must also be
+copied into the \e src/plugins/hunspell/3rdparty/hunspell/data directory.
+
+An example of how the directory structure should look after copying in the
+Hunspell sources and dictionary files is listed below:
+
+\badcode
+3rdparty
+└── hunspell
+    ├── data
+    │   ├── en_GB.aff
+    │   └── en_GB.dic
+    ├── hunspell.pro
+    └── src
+        └── hunspell
+            ├── affentry.cxx
+            ├── affentry.hxx
+            (etc.)
+\endcode
+
+\section2 T9 Write Integration
+
+T9 Write integration supports the T9 Write Alphabetic and T9 Write CJK engines. Both
+engines are integrated via T9WriteInputMethod. The input method can be initialized
+with either of the engines at runtime. The engine selection happens automatically
+based on input locale and input mode from the keyboard.
+
+\section3 T9 Write Compatibility
+
+Qt Virtual Keyboard is compatible with T9 Write v7.5.0 onward.
+
+The latest tested version is v7.8.1.
+
+\section3 T9 Write Build Preparations
+
+The contents of the SDK must be either manually copied to the directory structure
+described below, or by using the \e unpack.py script found in the t9write directory.
+
+To unpack the SDK using the script:
+
+\badcode
+$ cd src/plugins/t9write/3rdparty/t9write/
+$ python unpack.py T9Write_Alpha_v7-8-0_SDK.zip .
+\endcode
+
+\badcode
+3rdparty
+└── t9write
+    ├─── api
+    │   ├─── decuma*.h
+    │   ├─── t9write*.h
+    │   └─── xxt9w*.h
+    ├─── data
+    │   ├─── arabic
+    │   │   └─── *.bin [T9 Write Arabic]
+    │   ├─── hebrew
+    │   │   └─── *.bin [T9 Write Hebrew]
+    │   ├─── *.bin [T9 Write Alphabetic]
+    │   ├─── *.hdb
+    │   ├─── *.phd
+    │   └─── *.ldb [T9 Write v7.5]
+    └─── lib
+        ├─── arm
+        │   ├─── shared
+        │   │   ├─── alphabetic
+        │   │   │   └─── *.so
+        │   │   └─── cjk
+        │   │       └─── *.so
+        │   └─── static
+        │       ├─── alphabetic
+        │       │   └─── *.a / *.o
+        │       └─── cjk
+        │           └─── *.a / *.o
+        ├─── linux-x86
+        │   ├─── shared
+        │   │   ├─── alphabetic
+        │   │   │   └─── *.so
+        │   │   └─── cjk
+        │   │       └─── *.so
+        │   └─── static
+        │       ├─── alphabetic
+        │       │   └─── *.a / *.o
+        │       └─── cjk
+        │           └─── *.a / *.o
+        └─── win32
+            ├─── shared
+            │   ├─── alphabetic
+            │   │   ├─── *.dll
+            │   │   └─── *.lib
+            │   └─── cjk
+            │       ├─── *.dll
+            │       └─── *.lib
+            └─── static
+                ├─── alphabetic
+                │   └─── *.lib / *.obj
+                └─── cjk
+                    └─── *.lib / *.obj
+\endcode
+
+\note The above files are from the T9 Write demo SDK for Windows; the contents may vary for other
+      platforms.
+
+Where the contents of each directory are:
+
+\table
+\header
+    \li Directory
+    \li Description
+    \li Remarks
+\row
+    \li \e api
+    \li This directory should contain all of the API files
+    \li The API files usually located in the "api" and "public" directories
+        of the SDK, but sometimes in the "demo" directory.
+
+        When using both Alphabetic and CJK engines at the same time, any
+        overlapping files can be copied from either SDK.
+\row
+    \li \e data
+    \li This directory should contain all HWR databases and optionally
+        XT9 databases.
+    \li HWR database for the T9 Write Alphabetic:
+        \list
+            \li \e _databas_le.bin
+        \endlist
+
+        HWR database for the T9 Write CJK:
+        \list
+            \li \e cjk_HK_std_le.hdb HongKong Chinese
+            \li \e cjk_J_std_le.hdb Japanese
+            \li \e cjk_K_mkt_le.hdb Korean
+            \li \e cjk_S_gb18030_le.hdb Simplified Chinese
+            \li \e cjk_T_std_le.hdb Traditional Chinese
+        \endlist
+
+        Language database:
+        \list
+            \li File extension is either \e .ldb or \e .phd
+        \endlist
+\row
+    \li \e lib/<target>/<linkage>/<engine-variant>
+    \li Directory structure holding supported target builds.
+    \li These directories should hold the desired target libraries.
+        If both shared and static libraries are found, shared libraries
+        are preferred.
+
+        For example, to enable a static win32 build, copy
+        \e t9write_alphabetic_rel.obj to \e lib/win32/static/alphabetic
+        directory.
+\endtable
+
+Finally, the SDK is included in the build by adding CONFIG+=t9write to the
+qmake command line.
+
+\section2 MyScript Text SDK Integration
+
+MyScript Text is designed for building applications that enable the recognition of
+handwritten text. MyScript Text supports the recognition of isolated characters, cursive,
+print and superimposed writing.
+MyScript superimposed writing is integrated into Qt Virtual Keyboard. It enables
+the recognition of letters, words or parts of words written one over the other,
+without any explicit separation between consecutive fragments. It is capable of running
+on memory and CPU constrained devices.
+
+\section3 Input handwriting styles of MyScript Text SDK
+
+The end-user can write one word fragment over the other, or one character over the other,
+as depicted below. Space between two written words are automatically added, so that there
+is no need for an explicit gesture.
+
+\raw HTML
+<div align="center"><figure><svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="21.057215mm" height="23.094498mm" viewbox="0 0 74.612178 81.830896" id="svg4891" version="1.1"> <defs id="defs4893"></defs> <metadata id="metadata4896"> </metadata> <g id="layer1" transform="translate(523.68284,-132.09962)"> <filter id="dropshadow" height="130%"> <fegaussianblur in="SourceAlpha" stddeviation="3"></fegaussianblur> <feoffset dx="2" dy="2" result="offsetblur"></feoffset> <fecomponenttransfer xmlns="http://www.w3.org/2000/svg"> <fefunca type="linear" slope="0.5"></fefunca> </fecomponenttransfer> <femerge> <femergenode></femergenode> <femergenode in="SourceGraphic"></femergenode> </femerge></filter> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" stroke-dasharray="300" stroke-dashoffset="300" d="m -523.25902,200.29853 c 6.95139,11.10595 25.78874,3.22177 32.32488,-4.04061 11.79865,-13.1096 17.63403,-31.02787 14.14214,-48.48732 -0.50587,-2.52933 -5.5167,-18.22189 -9.09137,-14.64721 -5.55428,5.55427 -5.5673,24.06358 -6.06092,30.80965 -0.76585,10.46668 -2.8203,20.43699 -4.04061,30.80965 -0.6416,5.45361 -0.50508,9.28437 -0.50508,14.64722 0,1.34687 1.34687,4.04061 0,4.04061 -0.61968,0 0.23734,-4.20009 2.52539,-10.60661 3.69589,-10.34851 8.06488,-17.115 18.68782,-21.71828 2.1627,-0.93717 6.32571,-2.23606 7.07106,0 1.75433,5.26298 -3.71882,27.10875 8.08123,24.74874 1.4766,-0.29532 3.0107,-0.92173 4.04061,-2.0203 1.59968,-1.70633 2.42154,-4.00433 3.53553,-6.06092 1.07581,-1.98612 2.0203,-4.04061 3.03046,-6.06091" id="path4899"> <animate begin="0s;hOpacityFinal.end" attributename="stroke-dashoffset" from="300px" to="0px" dur="2s" fill="freeze" id="h"></animate> <animate begin="h.end" attributename="opacity" from="1" to="0.2" dur="2s" fill="freeze" id="hOpacity"></animate> <animate begin="oOpacity.end" attributename="opacity" from="0.2" to="0" dur="0.1s" fill="remove" id="hOpacityFinal"></animate> <set begin="hOpacityFinal.end" attributename="opacity" to="1"></set> </path> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" stroke-dasharray="150" stroke-dashoffset="150" d="m -503.05597,187.16655 c 6.30156,1.57539 7.48006,2.26745 14.64721,2.0203 4.68337,-0.16149 7.79914,-1.02611 11.11168,-4.54568 10.51043,-11.16733 -11.38898,-18.31643 -18.18274,-3.03046 -0.77578,1.7455 -0.56279,12.84339 0,14.14214 6.50612,15.01414 20.7593,7.81972 27.77919,-2.52539 1.4399,-2.12194 2.02031,-4.71404 3.03046,-7.07106" id="path4901"> <animate begin="h.end+0.01s" attributename="stroke-dashoffset" from="150px" to="0px" dur="2s" fill="freeze" id="e"></animate> <animate begin="e.end" attributename="opacity" from="1" to="0.2" dur="2s" fill="freeze" id="eOpacity"></animate> <animate begin="oOpacity.end" attributename="opacity" from="0.2" to="0" dur="0.1s" fill="remove" id="eOpacityFinal"></animate> <set begin="h.end" attributename="opacity" to="1"></set> </path> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" stroke-dasharray="200" stroke-dashoffset="200" d="m -501.03566,200.80361 c 11.64322,7.6781 20.14867,-6.67932 24.24366,-16.16244 1.65295,-3.82789 5.7942,-16.09995 4.54568,-21.71828 -0.76783,-3.45526 -2.7246,-6.56132 -4.54568,-9.59645 -10.0858,-16.80967 -16.78281,-1.60069 -18.68782,10.10152 -1.35371,8.31563 -3.14678,22.86131 -0.50508,31.31473 4.4811,14.33953 15.24399,22.1694 26.76904,8.5863 3.22845,-3.80496 5.30918,-10.30708 7.07107,-15.15229" id="path4903"> <animate begin="e.end+0.01s" attributename="stroke-dashoffset" from="200px" to="0px" dur="2s" fill="freeze" id="l"></animate> <animate begin="l.end" attributename="opacity" from="1" to="0.2" dur="2s" fill="freeze" id="lOpacity"></animate> <animate begin="oOpacity.end" attributename="opacity" from="0.2" to="0" dur="0.1s" fill="remove" id="lOpacityFinal"></animate> <set begin="e.end" attributename="opacity" to="1"></set> </path> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" stroke-dasharray="220" stroke-dashoffset="220" d="m -507.60165,205.3493 c 1.53719,3.07439 0.25722,2.0203 4.54568,2.0203 11.013,0 16.92189,-7.83289 21.21321,-17.67767 1.48054,-3.39653 3.24098,-15.42468 3.03045,-18.68782 -0.31004,-4.80567 -4.96262,-9.4326 -7.57614,-12.62691 -5.01521,-6.1297 -7.93642,-7.18375 -11.61676,1.51523 -3.61721,8.54979 -5.0193,26.86342 -2.0203,35.86042 3.71905,11.15714 12.82566,21.08507 24.74874,11.61675 3.11162,-2.47099 4.71404,-6.39763 7.07106,-9.59645" id="path4905"> <animate begin="l.end+0.01s" attributename="stroke-dashoffset" from="220px" to="0px" dur="2s" fill="freeze" id="l2"></animate> <animate begin="l2.end" attributename="opacity" from="1" to="0.2" dur="2s" fill="freeze" id="l2Opacity"></animate> <animate begin="oOpacity.end" attributename="opacity" from="0.2" to="0" dur="0.1s" fill="remove" id="l2OpacityFinal"></animate> <set begin="l.end" attributename="opacity" to="1"></set> </path> <path style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" stroke-dasharray="120" stroke-dashoffset="120" d="m -483.86307,185.14624 c -4.91638,-10.38229 -25.09874,-2.01585 -21.71828,9.09138 4.18358,13.74606 25.60472,15.81949 31.31473,2.0203 8.05585,-19.4683 -24.24366,-20.3309 -24.24366,-12.12183" id="path4907"> <animate begin="l2.end+0.01s" attributename="stroke-dashoffset" from="100px" to="0px" dur="2s" fill="freeze" id="o"></animate> <animate begin="o.end" attributename="opacity" from="1" to="0" dur="2s" fill="freeze" id="oOpacity"></animate> <set begin="l2.end" attributename="opacity" to="1"></set> </path> </g></svg><figcaption>Writing one character over the other</figcaption></figure></div>
+<div align="center"><figure><svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg2" viewbox="0 0 156.63411 96.840738" height="27.330608mm" width="44.205627mm"> <defs id="defs4"></defs> <metadata id="metadata7"> </metadata> <g transform="translate(-19.991064,-156.76845)" id="layer1"> <path id="path3338" stroke-dasharray="700" stroke-dashoffset="700" d="m 20.203051,228.07773 c 7.019038,3.28583 18.296996,2.19868 25.253814,2.0203 27.834023,-0.71369 42.825541,-21.91043 41.416254,-47.98224 -0.323001,-5.97553 -7.191269,-26.45641 -10.606602,-24.74874 -10.259596,5.1298 -9.124503,41.18434 -7.576144,52.02286 1.430314,10.01219 2.165272,8.95563 3.030458,20.20305 0.514408,6.68731 0.563751,12.53255 1.515229,19.19289 0.191958,1.34371 0.355181,2.69156 0.505076,4.04061 0.01859,0.16733 0,0.67344 0,0.50508 0,-2.49868 0.106479,0.64925 -1.010153,-4.04061 -1.138171,-4.78032 -2.879899,-14.31543 -2.525381,-18.68782 0.215131,-2.65328 1.334905,-5.19519 2.525381,-7.57615 1.190476,-2.38095 2.750791,-4.60015 4.545687,-6.56599 2.880061,-3.15435 5.631315,-6.15186 10.101525,-5.55584 7.218425,0.96246 9.158962,18.77507 9.596449,24.24367 0.312712,3.90889 -0.730173,4.84918 1.010153,8.08122 2.037193,3.78335 3.387013,4.88523 8.081223,5.55583 5.47716,0.78246 9.60547,-2.86344 13.63706,-6.06091 2.23856,-1.77541 4.56788,-3.62491 6.06091,-6.06092 4.94323,-8.06526 6.7262,-26.15308 -6.06091,-28.28427 -20.629129,-3.43819 -15.11782,36.04559 11.11167,35.35534 3.30658,-0.087 6.53787,-1.26596 9.59645,-2.52538 25.47885,-10.49129 20.89279,-45.3686 11.61676,-65.65992 -1.54311,-3.37554 -5.32932,-11.06285 -9.09137,-13.13198 -1.47519,-0.81135 -3.36718,0 -5.05077,0 -1.01015,0 -2.08112,-0.34521 -3.03046,0 -9.66282,3.51375 -12.01346,27.64821 -11.11167,36.36549 0.68611,6.63247 4.06851,21.716 8.08122,26.76905 8.89766,11.20446 20.90822,13.3675 34.34518,14.64721 4.58435,0.4366 7.15182,0.9294 10.10153,-2.02031" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;"> <animate begin="0s;helOpacityFinal.end" attributename="stroke-dashoffset" from="700px" to="0px" dur="2s" fill="freeze" id="hel"></animate> <animate begin="hel.end" attributename="opacity" from="1" to="0.2" dur="3s" fill="freeze" id="helOpacity"></animate> <animate begin="loOpacity.end" attributename="opacity" from="0.2" to="0" dur="0.1s" fill="remove" id="helOpacityFinal"></animate> <set begin="helOpacityFinal.end" attributename="opacity" to="1"></set> </path> <path id="path3344" stroke-dasharray="500" stroke-dashoffset="500" d="m 41.416254,231.61326 c 3.094802,7.92585 11.797035,7.22396 19.192898,7.57614 31.260076,1.48858 50.776938,-24.97346 43.436558,-55.55839 -2.10376,-8.76565 -7.342388,-19.06976 -17.172591,-20.70812 -0.664273,-0.11071 -1.494441,-0.42069 -2.020305,0 -0.542049,0.43364 -0.354492,1.34267 -0.505077,2.0203 -0.522917,2.35313 -1.164511,4.68619 -1.515229,7.07107 -2.708747,18.41948 0.296465,32.36077 6.565992,49.49747 2.682486,7.33213 5.639357,17.22468 15.15229,17.67767 13.38648,0.63746 15.45757,-25.2821 7.07106,-32.82995 -1.55953,-1.40358 -5.88665,6.03367 -4.54568,15.15228 1.46349,9.95173 11.80613,17.40505 21.71828,15.15229 4.41964,-1.00446 11.43406,-9.0399 12.6269,-11.11167 7.10359,-12.33781 -9.7499,-22.51604 -18.18274,-26.26397 -11.05732,-4.91436 -18.5283,7.61904 -12.62691,11.61675 9.07281,6.1461 23.89173,1.97435 32.32488,-1.51523 4.27171,-1.7676 7.7445,-5.05076 11.61676,-7.57614" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4"> <animate begin="hel.end" attributename="stroke-dashoffset" from="500px" to="0px" dur="3s" fill="freeze" id="lo"></animate> <animate begin="lo.end" attributename="opacity" from="1" to="0" dur="2s" fill="freeze" id="loOpacity"></animate> <set begin="hel.end" attributename="opacity" to="1"></set> </path> </g></svg><figcaption>Writing fragments of word over the others</figcaption></figure></div>
+\endraw
+
+\section3 Language coverage of MyScript Text SDK
+
+MyScript Superimposed supports 70 languages.
+
+\section3 MyScript Text SDK Packages Installation
+
+The MyScript delivery team can provide you the packages with various \c .zip archives.
+To access all the code, tools, and resources needed for building your own
+handwriting application, \b {extract all the packages in the same destination folder} as
+\c src/plugins/myscript/3rdparty/myscript.
+
+The file hierarchy should look like below:
+
+\badcode
+3rdparty
+└── myscript
+    ├─── conf
+    ├─── doc
+    ├─── edk
+    ├─── engine
+    │   └─── bin
+    │       ├─── lin-arm64
+    │       │   └─── *.so
+    │       ├─── lin-armv7
+    │       │   └─── *.so
+    │       ├─── lin-x64
+    │       │   └─── *.so
+    │       ├─── lin-x86
+    │       │   └─── *.so
+    │       ├─── win-x64
+    │       │   └─── *.dll
+    │       ├─── win-x86
+    │       │   └─── *.dll
+    │       (etc.)
+    ├─── rdk
+    ├─── resources
+    │   ├─── ar
+    │   │   └─── *.res
+    │   ├─── en_GB
+    │   │   └─── *.res
+    │   ├─── ja_JP
+    │   │   └─── *.res
+    │   ├─── ko_KR
+    │   │   └─── *.res
+    │   ├─── zh_CN
+    │   │   └─── *.res
+    │   (etc.)
+    ├─── tools
+    └─── voim
+        ├─── api
+        ├─── bin
+        │   ├─── lin-arm64
+        │   │   └─── *.so
+        │   ├─── lin-armv7
+        │   │   └─── *.so
+        │   ├─── lin-x64
+        │   │   └─── *.so
+        │   ├─── lin-x86
+        │   │   └─── *.so
+        │   ├─── win-x64
+        │   │   └─── *.dll
+        │   ├─── win-x86
+        │   │   └─── *.dll
+        │   (etc.)
+        └─── conf
+\endcode
+
+The description for the contents of each directory are:
+
+\table
+\header
+    \li Directory
+    \li Description
+\row
+    \li \e conf
+    \li Contains the language configuration files that the Engine uses to configure language resources.
+\row
+    \li \e doc
+    \li Contains the HTML documentation files. The file \c index.html displays the main page.
+\row
+    \li \e edk
+    \li Contains the Engine Development Kit and handwriting programming elements for each supported programming language API, including code samples.
+\row
+    \li \e engine
+    \li Contains libraries of each engine object, depending on the target platforms it could be SO, A, or DLL.
+\row
+    \li \e rdk
+    \li Contains the Resource Development Kit, i.e. tools and examples for creating custom resources.
+\row
+    \li \e resources
+    \li Contains resource files with the /c .res extension. They are binary assets used at run time by the different MyScript technologies to achieve the various recognition tasks.
+\row
+    \li \e tools
+    \li Contains useful programmer tools including InkTool for ink testing.
+\row
+    \li \e voim
+    \li Contains libraries of MyScript Text Input Method. It is an extension SDK to the MyScript Text recognition system and designed for building input methods using handwriting recognition easily and quickly.
+\endtable
+
+\section3 Setting the Certificate of MyScript Text SDK
+
+\b {A valid certificate is mandatory to use the MyScript Text SDK.} This is a
+security measure that uniquely identifies you as a legitimate customer of MyScript
+technologies. The certificate helps MyScript trace customers' identify and the products
+that have been purchased.
+
+The certificate is delivered in the /c [your_login].vo.zip package. When you unzip
+this package, the certificate is automatically put in the appropriate location.
+This ensure that the certificate is instantly working within the services and code
+samples that you have been provided with.
+
+\section3 How to build Qt Virtual Keyboard with MyScript Text SDK
+
+The MyScript Text SDK is included in the build of Qt Virtual Keyboard by either
+adding \c CONFIG+=handwriting or \c CONFIG+=myscript to the qmake command line.
+
+\section2 Static builds
+
+The virtual keyboard can be built and linked statically against the application.
+This implies that Qt is also built statically (using the -static option in the
+configure command line).
+
+Static builds of the virtual keyboard are enabled by adding \c CONFIG+=static to
+the qmake command line and then rebuilding.
+
+Some third party modules used by the virtual keyboard are always built as shared
+libraries. These modules are Hunspell and Lipi Toolkit.
+
+\section3 Using the static plugin
+
+The following section should be added to the application project file that uses the
+statically built virtual keyboard.
+
+\code
+static {
+    QTPLUGIN += qtvirtualkeyboardplugin
+    QT += svg
+}
+\endcode
+
+\c QTPLUGIN causes qmake to pull linker dependencies for the virtual keyboard
+plugin. The SVG module is required as an extra dependency for Qt, since the SVG format is
+required by the default styles.
+
+From here on, using a statically built virtual keyboard is no different from the normal
+case.
+
+\section1 Deployment
+
+\section2 Desktop Targets
+
+Add a Deploy Step that executes the \e {make install} command, then deploy using
+the \e {Deploy All} command.
+
+\section2 Boot2Qt Targets
+
+The installation is done by copying the necessary files to the memory card, or
+by using the adb push command.
+
+*/

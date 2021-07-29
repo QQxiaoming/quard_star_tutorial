@@ -1,0 +1,37 @@
+Qt 5.9.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.4 Changes                           *
+****************************************************************************
+
+QtSerialBus
+------
+
+ - SocketCAN
+   * [QTBUG-64406] Fixed compiling the SocketCAN plugin with older Kernels
+     without support for CAN FD bitrate switch and error state indicator.
+
+ - TinyCAN
+   * [QTBUG-65474] Fixed compiliation with MSVC 2013
+   * The function availableDevices() now returns {"can0.0"} instead
+     {"can0.0", "can0.1"} for the TinyCAN plugin. This value is
+     hardcoded for now as available devices cannot be detected.
+     The function will be changed in later Qt versions to return the
+     correct values once QTBUG-62958 is solved.

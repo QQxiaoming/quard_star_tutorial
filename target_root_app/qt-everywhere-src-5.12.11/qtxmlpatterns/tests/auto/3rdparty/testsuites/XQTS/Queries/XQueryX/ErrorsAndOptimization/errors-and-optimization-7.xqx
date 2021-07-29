@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:ifThenElseExpr>
+        <xqx:ifClause>
+          <xqx:functionCallExpr>
+            <xqx:functionName>true</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:ifClause>
+        <xqx:thenClause>
+          <xqx:integerConstantExpr>
+            <xqx:value>1</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:thenClause>
+        <xqx:elseClause>
+          <xqx:flworExpr>
+            <xqx:letClause>
+              <xqx:letClauseItem>
+                <xqx:typedVariableBinding>
+                  <xqx:varName xqx:prefix="unbound">var</xqx:varName>
+                </xqx:typedVariableBinding>
+                <xqx:letExpr>
+                  <xqx:integerConstantExpr>
+                    <xqx:value>2</xqx:value>
+                  </xqx:integerConstantExpr>
+                </xqx:letExpr>
+              </xqx:letClauseItem>
+            </xqx:letClause>
+            <xqx:returnClause>
+              <xqx:varRef>
+                <xqx:name xqx:prefix="unbound">var</xqx:name>
+              </xqx:varRef>
+            </xqx:returnClause>
+          </xqx:flworExpr>
+        </xqx:elseClause>
+      </xqx:ifThenElseExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

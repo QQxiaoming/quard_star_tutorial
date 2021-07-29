@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-410                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast xs:ENTITY to xs:string.                 :)
+(:*******************************************************:)
+xs:string(xs:ENTITY("foo"))

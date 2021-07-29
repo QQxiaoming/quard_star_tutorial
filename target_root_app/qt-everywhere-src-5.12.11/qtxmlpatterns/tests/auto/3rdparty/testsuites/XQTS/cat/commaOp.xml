@@ -1,0 +1,382 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="commaOp" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Comma Operator</title>
+      <description>Tests that construct sequences using the comma operator</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="sequenceexpressionhc1" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction involving integers.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc1" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc2" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction involving nested sequences using integers.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc2" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc3" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction using the empty sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc3" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc4" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction using the "to" operand.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc4" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc5" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction using a repeated element.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc5" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc6" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence expression resulting in an empty sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc6" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc7" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence expression resulting on a sequence in reverse order.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc7" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">sequenceexpressionhc7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc8" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence expression resulting by quering string data from xml source.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc8" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">works</input-file>
+      <output-file role="principal" compare="Fragment">sequenceexpressionhc8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequenceexpressionhc9" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple sequence expression resulting by quering string data from multiple xml source.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="sequenceexpressionhc9" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Fragment">sequenceexpressionhc9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-1" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members is an addition operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-1" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-2" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members is a subtraction operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-2" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-3" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members is a multiplication operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-3" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-4" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members is a division (div) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-4" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-5" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members is a division (idiv) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-5" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-6" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members contains invocation to "fn:count" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-6" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-7" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of the members contains invacotion to "fn:string-length" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-7" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-8" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "fn:true" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-8" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-9" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "fn:false" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-9" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-10" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "fn:not()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-10" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-11" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains a boolean (and) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-11" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-12" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains a boolean (or) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-12" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-13" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains invocation to "xs:string()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-13" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-14" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains invocation to "xs:integer()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-14" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-15" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains invocation to "xs:decimal()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-15" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-16" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "xs:anyURI".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-16" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-17" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains invocation to "xs:float()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-17" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-18" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains invocation to "xs:double()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-18" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-19" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where one of its members contains invocation to "xs:boolean()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-19" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-20" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "xs:date()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-20" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-21" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "xs:dateTime()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-21" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="constSeq-22" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple Sequence construction, where both of its members contains invocation to "xs:time()".</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <query name="constSeq-22" date="2005-08-31"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constSeq-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-001" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1 and arg2 : sequence of number.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-001" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-001.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-002" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1 and arg2 : string.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-002" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-002.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-003" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Args : string.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-003" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-003.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-004" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Args : string.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-004" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-004.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-005" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1 : string, arg2:anyURI.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-005" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-005.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-006" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1 : string, arg2:integer, arg3:anyURI.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-006" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-006.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-007" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1 : anyURI, arg2: decimal.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-007" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-007.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-008" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1 and arg2 : float.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-008" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-008.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-009" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1:float, arg2: double.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-009" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-009.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-010" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1: double, arg2: double, arg3:float.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-010" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-010.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-011" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1:boolean, arg2: boolean, arg3: integer.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-011" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-011.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-012" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1:boolean, arg2: boolean.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-012" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-012.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-013" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Iarg1:date, arg2: boolean, arg3: string.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-013" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-013.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-014" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1:dateTime, arg2: empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-014" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-014.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-015" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Arg1:time, arg2: string , arg3: decimal.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-015" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-015.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-016" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Arg1:empty seq, arg2: string , arg3: decimal.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-016" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-016.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-017" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use simple arithmetic expression with concat.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-017" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-017.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-018" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Concat more than two sequences.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-018" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-concatenate-mix-args-018.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-019" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use an external variable with op:concatenate.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-019" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="Fragment">op-concatenate-mix-args-019.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-concatenate-mix-args-020" FilePath="Expressions/Operators/SeqOp/SeqConcat/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use two external variables with op:contenate.</description>
+      <spec-citation spec="FuncOps" section-number="15.1.2" section-title="op:concatenate" section-pointer="func-concatenate"/>
+      <query name="op-concatenate-mix-args-020" date="2005-05-25"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="Fragment">op-concatenate-mix-args-020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-commaOp-1" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard">
+      <description>A heavily nested sequence of expressions with the comma operator. On some implementations this triggers certain optimization paths.</description>
+      <query name="K-commaOp-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-commaOp-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-commaOp-2" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard">
+      <description>An expression sequence containing only empty sequences. On some implementations this triggers certain optimization paths.</description>
+      <query name="K-commaOp-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-commaOp-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-commaOp-3" FilePath="Expressions/SeqExpr/ConstructSeq/commaOp/" scenario="standard">
+      <description>An expression sequence containing many empty sequences and one xs:string. On some implementations this triggers certain optimization paths.</description>
+      <query name="K-commaOp-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-commaOp-3.txt</output-file>
+   </test-case>
+</test-group>

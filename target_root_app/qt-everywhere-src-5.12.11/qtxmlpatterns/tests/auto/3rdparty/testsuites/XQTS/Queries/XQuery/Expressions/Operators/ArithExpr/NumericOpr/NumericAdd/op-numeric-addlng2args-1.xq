@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-numeric-addlng2args-1                          :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:15 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:numeric-add" operator       :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:long(mid range)                             :)
+(:$arg2 = xs:long(lower bound)                           :)
+(:*******************************************************:)
+
+xs:long("-47175562203048468") + xs:long("-45058158165499290")

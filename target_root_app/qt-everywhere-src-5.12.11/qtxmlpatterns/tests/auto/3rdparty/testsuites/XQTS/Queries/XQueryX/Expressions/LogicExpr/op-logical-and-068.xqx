@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>return</xqx:tagName>
+        <xqx:elementContent>
+          <xqx:andOp>
+            <xqx:firstOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">decimal</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:decimalConstantExpr>
+                    <xqx:value>9.99999999999999999999999999</xqx:value>
+                  </xqx:decimalConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">decimal</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:unaryMinusOp>
+                    <xqx:operand>
+                      <xqx:decimalConstantExpr>
+                        <xqx:value>123456789.123456789123456789</xqx:value>
+                      </xqx:decimalConstantExpr>
+                    </xqx:operand>
+                  </xqx:unaryMinusOp>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:secondOperand>
+          </xqx:andOp>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

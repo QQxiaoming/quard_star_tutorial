@@ -1,0 +1,27 @@
+﻿<html> 
+<head>
+
+<style>
+.editing { 
+    border: 2px solid red; 
+    padding: 12px; 
+    font-size: 24px; 
+}
+</style>
+
+<title>Korean Input Space Test</title> 
+</head> 
+<body>
+<p>This tests that a space used to terminate a marked sequence of characters produces a non breaking space in the editor, so that the space is actually visible in the document.</p>
+
+<p>Switch to Korean 2-Set, hit return, arrow up, type 'q', hit space.  You should see 'ㅂ' followed by a space, and the carat should be after the space.</p>
+<div contenteditable id="root" class="editing">
+
+</div>
+
+<script>
+runEditingTest();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="IRIToURIfunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:iri-to-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-iri-to-uri1args-1" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test iri-to-uri from example defined in functions and operators specification.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri1args-1" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri1args-2" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test iri-to-uri from example defined in functions and operators specification.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri1args-2" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri1args-3" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test iri-to-uri with zero-length string argument.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri1args-3" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri1args-4" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test iri-to-uri with empty sequence argument.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri1args-4" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri1args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri1args-5" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test iri-to-uri with invalid argument type.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri1args-5" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri1args-6" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test iri-to-uri with incorrect arity.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri1args-6" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-1" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test iri-to-uri with nothing to escape.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-1" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-2" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape numbers.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-2" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-3" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "#" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-3" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-4" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "-" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-4" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-5" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "_" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-5" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-6" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "." symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-6" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-7" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "!" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-7" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-8" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "~" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-8" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-9" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "*" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-9" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-10" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "'" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-10" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-11" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "(" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-11" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-12" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the ")" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-12" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-13" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the ";" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-13" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-14" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "/" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-14" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-15" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "?" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-15" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-16" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the ":" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-16" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-17" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "@" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-17" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-iri-to-uri-18" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the ampersand symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-18" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-19" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "=" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-19" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-20" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "+" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-20" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-21" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "$" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-21" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-22" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "," symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-22" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-23" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "[" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-23" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-24" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "]" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-24" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-25" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines that iri-to-uri does not escape the "%" symbol.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-25" date="2005-11-25"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-iri-to-uri-26" FilePath="Functions/AllStringFunc/EscapingFuncs/IRIToURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Examines the iri-to-uri function with the iri containing a space.</description>
+      <spec-citation section-number="7.4.11" spec="FuncOps" section-title="fn:iri-to-uri" section-pointer="func-iri-to-uri"/>
+      <query name="fn-iri-to-uri-26" date="2006-04-24"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-iri-to-uri-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-IRIToURIfunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="runtime-error">
+      <description>A test whose essence is: `iri-to-uri()`.</description>
+      <query name="K-IRIToURIfunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-IRIToURIfunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="runtime-error">
+      <description>A test whose essence is: `iri-to-uri("http://example.com/", "wrong param")`.</description>
+      <query name="K-IRIToURIfunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-IRIToURIfunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>A test whose essence is: `iri-to-uri(()) eq ""`.</description>
+      <query name="K-IRIToURIfunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-IRIToURIfunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-IRIToURIfunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Invoke fn:normalize-space() on the return value of fn:iri-to-uri(). Implementations supporting the static typing feature may raise XPTY0004.</description>
+      <query name="K-IRIToURIfunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-IRIToURIfunc-4.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="runtime-error">
+      <description>Must be passed at least one argument.</description>
+      <query name="K2-IRIToURIfunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="runtime-error">
+      <description>Must be passed at most one argument.</description>
+      <query name="K2-IRIToURIfunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="runtime-error">
+      <description>Must be passed a string.</description>
+      <query name="K2-IRIToURIfunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="runtime-error">
+      <description>Must be passed at most one string.</description>
+      <query name="K2-IRIToURIfunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Passing xs:anyURI causes type promotion.</description>
+      <query name="K2-IRIToURIfunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-IRIToURIfunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Passing xs:untypedAtomic causes type promotion.</description>
+      <query name="K2-IRIToURIfunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-IRIToURIfunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Check some ASCII characters that must be escaped.</description>
+      <query name="K2-IRIToURIfunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-IRIToURIfunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-IRIToURIfunc-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Pass a new-line character.</description>
+      <query name="K2-IRIToURIfunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-IRIToURIfunc-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-IRIToURIfunc-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Pass the range of 0x20 to 0x126(hexa decimals).</description>
+      <query name="K2-IRIToURIfunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-IRIToURIfunc-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-IRIToURIfunc-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/IRIToURIfunc/" scenario="standard">
+      <description>Pass a relatively high range of unicode characters.</description>
+      <query name="K2-IRIToURIfunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-IRIToURIfunc-10.txt</output-file>
+   </test-case>
+</test-group>

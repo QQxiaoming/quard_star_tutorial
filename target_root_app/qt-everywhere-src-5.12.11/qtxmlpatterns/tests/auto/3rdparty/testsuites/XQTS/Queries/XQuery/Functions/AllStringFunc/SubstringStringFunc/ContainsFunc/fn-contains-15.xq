@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-contains-15                                   :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri May 27, 2005                                 :)
+(:Purpose: Evaluates The "contains" function             :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "A"                                            :)
+(:$arg2 = "a"                                            :)
+(:*******************************************************:)
+
+fn:contains("A","a")

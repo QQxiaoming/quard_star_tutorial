@@ -1,0 +1,78 @@
+Qt 5.11.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0 through 5.11.1.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.2 Changes                           *
+****************************************************************************
+
+Chromium
+--------
+
+ - Security fixes from Chromium up to version 68.0.3440.75, including:
+     * CVE-2018-4117
+     * CVE-2018-6150
+     * CVE-2018-6152
+     * CVE-2018-6155
+     * CVE-2018-6158
+     * CVE-2018-6159
+     * CVE-2018-6161
+     * CVE-2018-6162
+     * CVE-2018-6163
+     * CVE-2018-6164
+     * CVE-2018-6165
+     * CVE-2018-6167
+     * CVE-2018-6168
+     * CVE-2018-6172
+     * CVE-2018-6175
+     * CVE-2018-6177
+     * Security Bug 683418
+     * Security Bug 831117
+     * Security Bug 838886
+     * Security Bug 839197
+     * Security Bug 840695
+     * Security Bug 854887
+     * Security Bug 860721
+     * Security Bug 861571
+
+
+General
+-------
+
+    * [QTBUG-59891] Popups are now closed when parent window is moved.
+    * [QTBUG-67801] Fixed assert with some AMD CPUs on Windows.
+    * [QTBUG-68699] Fixed another crash with non-integer Qt scaling.
+    * [QTBUG-69231] Fixed keyboard modifiers on drop events.
+    * [QTBUG-69236] Fixed --enable-webgl-software-rendering to ignore blacklist
+      of software OpenGL.
+    * [QTBUG-69359] Fixed crash in DevTools openInNewTab handling
+    * [QTBUG-69372] QWebEngineUrlRequestJob::initiator() now differs
+      between unique origins and unknown origins.
+    * [QTBUG-69605] HSTS state is now persistent with appropriate profiles.
+    * [QTBUG-69639] Work around MSVC compiler error affecting printing on
+      32-bit Windows.
+    * [QTBUG-69904] JavaScript worldID can now be up to 256 (up from 11),
+      and the limit is now documented.
+    * [QTBUG-70034] Fixed qtwebengine_convert_dict failing on certain
+      dictionaries.
+
+Build
+-----
+
+    * [QTBUG-50554] Update libvpx check to match standard versions.
+    * [QTBUG-69121] Fixed shadow builds on read-only sources.

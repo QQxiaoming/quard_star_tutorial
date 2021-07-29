@@ -1,0 +1,11 @@
+(: Name: emptyorderdecl-6 :)
+(: Description: Evaluation of a prolog that specifies "empty greatest" with a set of nodes (one empty) and no order by clause :)
+
+declare default order empty greatest;
+
+(: insert-start :)
+declare variable $input-context1 external;
+(: insert-end :)
+
+for $i in (<a>1</a>,<a>4</a>,<a></a>,<a>7</a>)
+return $i

@@ -1,0 +1,288 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="TokenizeFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:tokenize</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-tokenize-1" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>The supplied $pattern matches a zero-length string and thus and error must be raised.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-1" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORX0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-2" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" function with an invalid value for flags.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-2" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORX0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-3" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with pattern value set to "\s+" as per example 1 for this function from the Func and Ops sepcs.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-3" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-4" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with pattern value set to "\s*" as per example 2 for this function from the Func and Ops sepcs. .</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-4" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-5" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with pattern value set to "\s*&lt;br&gt;\s*" and flag set to "i" as per example 4 for this function from the Func and Ops sepcs. .</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-5" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-6" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with pattern with the falgs argument set to the zero length string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-6" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-7" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with pattern with the $input set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-7" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-8" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with pattern with the $input set to the zero length string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-8" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-9" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with two patterns that match the input string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-9" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-10" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" where the pattern does not matches the input string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-10" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-11" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "^a".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-11" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-12" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\^a" for an input string that contains "^".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-12" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-13" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\?" for an input string that contains "?".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-13" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-14" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\*" for an input string that contains "*".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-14" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-15" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\+" for an input string that contains "+".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-15" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-16" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\{" for an input string that contains "{".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-16" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-17" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\}" for an input string that contains "}".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-17" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-18" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\(" for an input string that contains "(".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-18" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-19" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\)" for an input string that contains ")".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-19" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-20" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\]" for an input string that contains "]".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-20" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-21" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\[" for an input string that contains "[".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-21" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-22" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\-" for an input string that contains "-".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-22" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-23" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\." for an input string that contains ".".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-23" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-24" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\|" for an input string that contains "|".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-24" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-25" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\\" for an input string that contains "\".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-25" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-26" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\t" for an input string that contains the tab character.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-26" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-27" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "\n" for an input string that contains the newline character.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-27" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-28" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "aa{1}" (exact quantity) for an input string that the "aa" string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-28" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-29" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "aa{1,}" (exact quantity) for an input string that the "aa" string twice.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-29" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-tokenize-30" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "tokenize" with the pattern set to "aa{1,2}" (range quantity) for an input string that the "aa" string twice.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.4" section-title="fn:tokenize" section-pointer="func-tokenize"/>
+      <query name="fn-tokenize-30" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-tokenize-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TokenizeFunc-1" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error">
+      <description>fn:tokenize takes at least two arguments.</description>
+      <query name="K-TokenizeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TokenizeFunc-2" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error">
+      <description>The pattern can't be the empty sequence.</description>
+      <query name="K-TokenizeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TokenizeFunc-3" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error">
+      <description>The flags argument cannot contain whitespace.</description>
+      <query name="K-TokenizeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TokenizeFunc-4" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error">
+      <description>The flags argument cannot contain 'X'.</description>
+      <query name="K-TokenizeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TokenizeFunc-5" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="runtime-error">
+      <description>Only three arguments are accepted.</description>
+      <query name="K-TokenizeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-1" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>fn:tokenize with a positional predicate.</description>
+      <query name="K2-TokenizeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-2" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>fn:tokenize with a positional predicate.</description>
+      <query name="K2-TokenizeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-3" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>fn:tokenize with a positional predicate(#2).</description>
+      <query name="K2-TokenizeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-4" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>fn:tokenize with a positional predicate(#3).</description>
+      <query name="K2-TokenizeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-5" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>Tokenize a sequence of words.</description>
+      <query name="K2-TokenizeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-6" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>A regexp that some Java versions have trouble with.</description>
+      <query name="K2-TokenizeFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TokenizeFunc-7" FilePath="Functions/AllStringFunc/MatchStringFunc/TokenizeFunc/" scenario="standard">
+      <description>Tokenize on a single whitespace.</description>
+      <query name="K2-TokenizeFunc-7" date="2008-05-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-TokenizeFunc-7.txt</output-file>
+   </test-case>
+</test-group>

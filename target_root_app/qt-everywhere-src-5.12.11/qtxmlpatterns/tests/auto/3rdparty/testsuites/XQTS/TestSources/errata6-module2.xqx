@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>errata6_2</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/errata6-2</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>a</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/userDefinedTypes</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="errata6_2">hatsize-add</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>a</xqx:varName>
+          </xqx:param>
+          <xqx:param>
+            <xqx:varName>b</xqx:varName>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="a">hatsize</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="a">hatsize</xqx:functionName>
+            <xqx:arguments>
+              <xqx:addOp>
+                <xqx:firstOperand>
+                  <xqx:varRef>
+                    <xqx:name>a</xqx:name>
+                  </xqx:varRef>
+                </xqx:firstOperand>
+                <xqx:secondOperand>
+                  <xqx:varRef>
+                    <xqx:name>b</xqx:name>
+                  </xqx:varRef>
+                </xqx:secondOperand>
+              </xqx:addOp>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

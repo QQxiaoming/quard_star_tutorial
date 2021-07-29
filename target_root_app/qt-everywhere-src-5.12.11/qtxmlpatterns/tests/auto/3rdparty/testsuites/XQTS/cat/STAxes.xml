@@ -1,0 +1,174 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="STAxes" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Static Typing of Axes Steps</title>
+      <description>Tests dealing with the static typing of axes step expressions</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="ST-Axes001" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>self:: axis with explicit name test called on set of nodes which do not contain any nodes of this name.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes001" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes002" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Get no attributes from self::*, because node kind differs.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes002" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes003" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>self::name from an attribute gets nothing when name matches, because node kind differs.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes003" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes004" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>self::name gets nothing from an attribute when name is different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes004" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes005" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>self::name from a text node gets nothing, because node kind differs.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes005" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes006" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>self::name from a text node gets nothing, because node kind differs.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes006" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes007" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>descendant-or-self::* from an attribute gets nothing.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes007" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes008" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>descendant-or-self::name from an attribute gets nothing.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes008" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes009" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>descendant-or-self::name from an attribute gets nothing, even with attribute's name.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes009" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes010" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>descendant-or-self::* from a text node gets nothing.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes010" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">Tree1Text</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes011" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>/attribute::* gets nothing because root can't have attributes.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes011" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes012" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>/@* gets nothing because root can't have attributes.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes012" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes013" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>/parent::* gets nothing because root can't have parent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes013" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes014" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>/.. gets nothing because root can't have parent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes014" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ST-Axes015" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>/self::* gets nothing because root is not an element node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-Axes015" date="2003-02-25"/>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="statictypingaxis-1" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates static typing on child axis. Context item not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictypingaxis-1" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="statictypingaxis-2" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates static typing on self axis. Context item not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictypingaxis-2" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="statictypingaxis-3" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates static typing on attribute axis. Context item not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictypingaxis-3" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="statictypingaxis-4" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates static typing on parent axis. Context item not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictypingaxis-4" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="statictypingaxis-5" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates static typing on descendant axis. Context item not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictypingaxis-5" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="statictypingaxis-6" FilePath="StaticTyping/STPathExpr/STSteps/STAxes/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates static typing on descendant-or-self axis. Context item not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictypingaxis-6" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+</test-group>

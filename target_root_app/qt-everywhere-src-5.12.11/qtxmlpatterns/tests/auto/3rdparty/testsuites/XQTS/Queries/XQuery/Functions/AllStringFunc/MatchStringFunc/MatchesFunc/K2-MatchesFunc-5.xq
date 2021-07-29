@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-MatchesFunc-5                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: whitespace in the regexp is collapsed, and should therefore compile. :)
+(:*******************************************************:)
+fn:matches("hello world", "\p{ IsBasicLatin}+", "x")

@@ -1,0 +1,386 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="LetExprWithout" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>LET Clause without TypeDeclaration</title>
+      <description>Tests for the LET part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="LetExpr001" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Assign a simple string using let.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr001" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr001.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr002" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Assign a simple integer using let.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr002" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr002.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr003" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use an arithmetic operator with let.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr003" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr003.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr004" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use xs:long(upper bound).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr004" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr004.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr005" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use xs:long(lower bound) +1.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr005" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr005.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr006" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use xs:double(upper bound).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr006" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr006.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr007" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>A node with an expression in curly braces.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr007" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">LetExpr007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr008" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>More than one variable cross referencing compatible values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr008" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr008.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr009" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>More than one variable cross referencing compatible values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr009" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">LetExpr009.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr010" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="runtime-error" Creator="Ravindranath Chennoju">
+      <description>More than one variable cross referencing incompatible values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr010" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr011" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use sequences with filter expressions.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr011" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr011.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr012" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use sequences with filter expressions with more than one variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr012" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr012.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr013" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use a function in the let.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr013" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr013.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr014" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="runtime-error" Creator="Ravindranath Chennoju">
+      <description>Use incompatible types in let.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr014" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr015" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use a sequence of different types of scalars.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr015" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr015.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr016" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use a sequence of nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr016" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">LetExpr016.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr017" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use a sequence with step.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr017" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">LetExpr017.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr018" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="runtime-error" Creator="Ravindranath Chennoju">
+      <description>Use a sequence of different types of values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr018" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr019" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Combine two 'Let' exprs in one 'Return'.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr019" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">LetExpr019.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr020" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard" Creator="Ravindranath Chennoju">
+      <description>Use three variables.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr020" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">LetExpr020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="LetExpr021" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="runtime-error" Creator="Ravindranath Chennoju">
+      <description>Refer to an undefined variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="LetExpr021" date="2005-05-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-LetExprWithout-1" FilePath="Expressions/FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>A 'let' variable is out-of-scope due to FLWOR has higher precendence than the comma operator.</description>
+      <query name="K-LetExprWithout-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-LetExprWithout-2" FilePath="Expressions/FLWORExpr/LetExpr/LetExprWithout/" scenario="parse-error">
+      <description>A value in a 'let' variable cannot be assigned to with '=', it must be ':='.</description>
+      <query name="K-LetExprWithout-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-LetExprWithout-3" FilePath="Expressions/FLWORExpr/LetExpr/LetExprWithout/" scenario="parse-error">
+      <description>A value in a 'let' variable cannot be assigned to with 'in', it must be ':='.</description>
+      <query name="K-LetExprWithout-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-LetExprWithout-4" FilePath="Expressions/FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>A binding in a let-expression shadows global variables.</description>
+      <query name="K-LetExprWithout-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-LetExprWithout-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-1" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>fn:deep-equal combined with a for/let expression.</description>
+      <query name="K2-LetExprWithout-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-2" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>fn:deep-equal combined with a for/let expression(#2).</description>
+      <query name="K2-LetExprWithout-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-3" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>The focus is undefined inside the initializing expression for a 'let' variable.</description>
+      <query name="K2-LetExprWithout-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-4" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>The focus is undefined inside the initializing expression for a 'let' variable(#2).</description>
+      <query name="K2-LetExprWithout-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-5" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>The focus is undefined inside the initializing expression for a 'let' variable(#3).</description>
+      <query name="K2-LetExprWithout-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-6" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>The focus is undefined inside the initializing expression for a 'let' variable(#4).</description>
+      <query name="K2-LetExprWithout-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-6.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-7" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause type conversion.</description>
+      <query name="K2-LetExprWithout-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-LetExprWithout-8" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="parse-error">
+      <description>A single return statement is syntactically incorrect.</description>
+      <query name="K2-LetExprWithout-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-9" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause numeric promotion.</description>
+      <query name="K2-LetExprWithout-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-10" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause numeric promotion(#2).</description>
+      <query name="K2-LetExprWithout-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-11" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause numeric promotion(#3).</description>
+      <query name="K2-LetExprWithout-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-12" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause numeric promotion(#4).</description>
+      <query name="K2-LetExprWithout-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-13" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause numeric promotion(#5).</description>
+      <query name="K2-LetExprWithout-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-14" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause string promotion conversion.</description>
+      <query name="K2-LetExprWithout-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-15" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>let-declarations doesn't cause URI promotion conversion.</description>
+      <query name="K2-LetExprWithout-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-16" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Ensure node identity is properly handled through a for binding.</description>
+      <query name="K2-LetExprWithout-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-17" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Ensure a name test is reported for using the undefined focus, when appearing as a child of a let binding. However, since the let body is the empty sequence, it does not have to be evaluated.</description>
+      <query name="K2-LetExprWithout-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-17.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-18" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Use a let-variable that acts as an alias for a function argument.</description>
+      <query name="K2-LetExprWithout-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-19" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Use an undefined focus in a let binding.</description>
+      <query name="K2-LetExprWithout-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-19.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-20" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Bind to let and subsequently use the for expression.</description>
+      <query name="K2-LetExprWithout-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context1">acme_corp</input-file>
+      <output-file role="principal" compare="Fragment">K2-LetExprWithout-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-21" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Use a focus within a LET tail expression.</description>
+      <query name="K2-LetExprWithout-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-LetExprWithout-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-22" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Use a focus within a LET expression.</description>
+      <query name="K2-LetExprWithout-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-LetExprWithout-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-23" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Bind the context item to a variable.</description>
+      <query name="K2-LetExprWithout-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-24" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>Ensure a name test is reported for using the undefined focus, when appearing as a child of a let binding.</description>
+      <query name="K2-LetExprWithout-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-24.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-25" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="standard">
+      <description>A combination of expressions that triggers a bug in some parsers.</description>
+      <query name="K2-LetExprWithout-25" date="2008-05-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-LetExprWithout-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-LetExprWithout-26" FilePath="FLWORExpr/LetExpr/LetExprWithout/" scenario="runtime-error">
+      <description>An element() test whose cardinality doesn't match.</description>
+      <query name="K2-LetExprWithout-26" date="2009-02-05+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Andrew Eisenberg" is-XPath2="false" name="xquery10keywords" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard">
+      <description>XQuery 1.0 keywords can be used as variable names</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="3.1.2" section-title="Variable References" section-pointer="id-variables"/>
+      <query name="xquery10keywords" date="2009-05-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">xquery10keywords.txt</output-file>
+   </test-case>
+   <test-case Creator="Andrew Eisenberg" is-XPath2="false" name="xquery10keywords2" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard">
+      <description>XQuery 1.0 keywords can be used as element name tests</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <query name="xquery10keywords2" date="2009-11-09"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">xquery10keywords2.txt</output-file>
+   </test-case>
+   <test-case Creator="Andrew Eisenberg" is-XPath2="false" name="xquery10keywords3" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard">
+      <description>XQuery 1.0 keywords can be used as element names</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="xquery10keywords3" date="2009-11-09"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">xquery10keywords3.xml</output-file>
+   </test-case>
+   <test-case Creator="Andrew Eisenberg" is-XPath2="false" name="xquery11keywords" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard">
+      <description>XQuery 1.1 keywords can be used as variable names</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="3.1.2" section-title="Variable References" section-pointer="id-variables"/>
+      <query name="xquery11keywords" date="2009-10-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">xquery11keywords.txt</output-file>
+   </test-case>
+   <test-case Creator="Andrew Eisenberg" is-XPath2="false" name="xquery11keywords2" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard">
+      <description>XQuery 1.1 keywords can be used as element name tests</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <query name="xquery11keywords2" date="2009-11-09"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">xquery11keywords2.txt</output-file>
+   </test-case>
+   <test-case Creator="Andrew Eisenberg" is-XPath2="false" name="xquery11keywords3" FilePath="Expressions/FLWORExpr/LetExpr/" scenario="standard">
+      <description>XQuery 1.1 keywords can be used as element names</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="xquery11keywords3" date="2009-11-09"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">xquery11keywords3.xml</output-file>
+   </test-case>
+</test-group>

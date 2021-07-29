@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:defaultNamespaceDecl>
+        <xqx:defaultNamespaceCategory>element</xqx:defaultNamespaceCategory>
+        <xqx:uri>http://www.w3.org/XQueryTestOrderBy</xqx:uri>
+      </xqx:defaultNamespaceDecl>
+      <xqx:schemaImport>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTestOrderBy</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:validateExpr>
+        <xqx:validationMode>lax</xqx:validationMode>
+        <xqx:argExpr>
+          <xqx:computedPIConstructor>
+            <xqx:piTarget>format</xqx:piTarget>
+            <xqx:piValueExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>role="output" </xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:piValueExpr>
+          </xqx:computedPIConstructor>
+        </xqx:argExpr>
+      </xqx:validateExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,28 @@
+// Copyright (C) 2017 Caio Lima. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+desc: >
+    Getter is called when obj is being deconstructed to a rest Object
+template: default
+esid: pending
+includes: [propertyHelper.js]
+features: [object-rest]
+---*/
+
+//- setup
+var x;
+var count = 0;
+//- elems
+{...x}
+//- vals
+{ get v() { count++; return 2; } }
+//- body
+assert.sameValue(count, 1);
+
+verifyProperty(x, "v", {
+  enumerable: true,
+  writable: true,
+  configurable: true,
+  value: 2
+});

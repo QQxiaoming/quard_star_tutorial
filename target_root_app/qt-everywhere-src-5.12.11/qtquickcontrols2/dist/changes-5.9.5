@@ -1,0 +1,56 @@
+Qt 5.9.5 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.9.5 Changes                              *
+****************************************************************************
+
+Controls
+--------
+
+ - Control:
+   * [QTBUG-65880] Fixed a bug in deferred execution, that caused the
+     background item to not follow the size of the control under certain
+     circumstances, leading to a visually missing background.
+   * [QTBUG-66133] Fixed focus scope controls, such as Frame, GroupBox,
+     Page, and Pane, to respect click and wheel focus policies by clearing
+     a potential sub-focus child. This makes it possible to close the virtual
+     keyboard by clicking the background of a Pane that has Qt.ClickFocus
+     set as its focusPolicy, for example.
+
+ - ComboBox:
+  * [QTBUG-65962] Fixed a bug in deferred execution, that caused the popup's
+    bindings to not get finalized under certain circumstances, leading to
+    a visually missing popup.
+
+ - Popup:
+   * [QTBUG-66113] Fixed restoring focus to popups that did not request
+     focus when opened, but gained focus later.
+
+Platform
+--------
+
+ - Menu:
+   * [QTBUG-55251] Fixed opening position on high-DPI screens.
+
+Third-Party Code
+----------------
+
+ - [QTBUG-65409] Document constants from AngularJS in
+   src/imports/controls/material/ElevationEffect.qml

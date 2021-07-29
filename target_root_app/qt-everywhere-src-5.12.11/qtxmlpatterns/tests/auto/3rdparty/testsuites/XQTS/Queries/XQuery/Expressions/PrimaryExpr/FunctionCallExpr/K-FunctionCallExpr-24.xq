@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FunctionCallExpr-24                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: No function by name fn:unparsed-entity-public-id() exists(although one does in XSL-T). :)
+(:*******************************************************:)
+unparsed-entity-public-id("entity")

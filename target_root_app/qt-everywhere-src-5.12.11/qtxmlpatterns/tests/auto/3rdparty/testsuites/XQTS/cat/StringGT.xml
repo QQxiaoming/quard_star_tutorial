@@ -1,0 +1,36 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="StringGT" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>xs:string gt/ge xs:string</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringGT-1" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringGT/" scenario="standard">
+      <description>A test whose essence is: `'abc' gt 'a'`.</description>
+      <query name="K-StringGT-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringGT-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringGT-2" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringGT/" scenario="standard">
+      <description>A test whose essence is: `not('abc' gt 'abc')`.</description>
+      <query name="K-StringGT-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringGT-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringGT-3" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringGT/" scenario="standard">
+      <description>A test whose essence is: `'abc' ge 'a'`.</description>
+      <query name="K-StringGT-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringGT-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringGT-4" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringGT/" scenario="standard">
+      <description>A test whose essence is: `not('a' ge 'abc')`.</description>
+      <query name="K-StringGT-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringGT-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringGT-5" FilePath="Expressions/Operators/CompExpr/ValComp/StringComp/StringGT/" scenario="standard">
+      <description>A test whose essence is: `'abc' ge 'abc'`.</description>
+      <query name="K-StringGT-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringGT-5.txt</output-file>
+   </test-case>
+</test-group>

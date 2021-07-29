@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-InScopePrefixesFunc-7                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure the default namespace is properly handled. :)
+(:*******************************************************:)
+count(in-scope-prefixes(<a xmlns=""/>))

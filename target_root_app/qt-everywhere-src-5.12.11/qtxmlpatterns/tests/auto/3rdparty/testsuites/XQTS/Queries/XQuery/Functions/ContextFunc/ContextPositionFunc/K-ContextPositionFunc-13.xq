@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-ContextPositionFunc-13                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: fn:position() can never return anything less or equal to 0(le). :)
+(:*******************************************************:)
+empty((1, 2, 3, current-time(), current-date(), 6, 7, 8)
+[position() le 0])

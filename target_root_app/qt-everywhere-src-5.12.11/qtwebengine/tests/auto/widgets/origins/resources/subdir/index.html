@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Subdir</title>
+
+        <script>
+         var msg = [];
+        </script>
+
+        <!-- for manual testing -->
+        <script>
+         window.addEventListener("load", () => {
+             for (let i of [0, 1]) {
+                 let p = document.createElement("p");
+                 p.appendChild(document.createTextNode(`frame ${i+1} says: ${msg[i]}`));
+                 document.body.insertBefore(p, null);
+             }
+         });
+        </script>
+
+    </head>
+    <body>
+        <iframe src="../subdir_frame1.html"></iframe>
+        <iframe src="frame2.html"></iframe>
+    </body>
+</html>

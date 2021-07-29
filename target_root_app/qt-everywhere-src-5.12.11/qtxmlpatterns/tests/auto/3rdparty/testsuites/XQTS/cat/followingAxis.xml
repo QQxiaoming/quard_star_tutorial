@@ -1,0 +1,177 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="followingAxis" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>following Axis</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="following-1" FilePath="FullAxis/followingAxis/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis for which the context node is not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-1" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="following-2" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis for which the given node does not exists.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-2" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-3" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "is" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-3" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-4" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "is" expression (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-4" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-5" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "node before" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-5" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-6" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "node before" expression and both operands are the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-6" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-7" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "node before" expression and operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-7" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-8" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "node-after" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-8" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-9" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "node-after" expression and both operands the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-9" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-10" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "node-after" expression operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-10" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-11" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "union" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-11" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">following-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-12" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "union" operation and both operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-12" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">following-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-13" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "intersect" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-13" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">following-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-14" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "except" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-14" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-15" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis that is part of an "except" operation and operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-15" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">following-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-16" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis as part of a boolean expression. Uses "and" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-16" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-17" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis as part of a boolean expression. Uses "and" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-17" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-18" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis as part of a boolean expression. Uses "or" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-18" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-19" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis as part of a boolean expression. Uses "or" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-19" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="following-20" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis as an argument to fn:deep-equal function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-20" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">following-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="following-21" FilePath="FullAxis/followingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an following axis used together with a newly constructed element.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="following-21" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">following-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-followingAxis-1" FilePath="Optional/FullAxis/followingAxis/" scenario="standard">
+      <description>Evaluate the 'following' axis on a html document.</description>
+      <query name="K2-followingAxis-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-followingAxis-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-followingAxis-2" FilePath="Optional/FullAxis/followingAxis/" scenario="standard">
+      <description>Evaluate the child node from the last node in a tree.</description>
+      <query name="K2-followingAxis-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-followingAxis-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-followingAxis-3" FilePath="Optional/FullAxis/followingAxis/" scenario="standard">
+      <description>Evaluate the child node from root of a tree.</description>
+      <query name="K2-followingAxis-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-followingAxis-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-followingAxis-4" FilePath="Optional/FullAxis/followingAxis/" scenario="standard">
+      <description>Evaluate fn:count() on a range of nodes, navigated with axis following.</description>
+      <query name="K2-followingAxis-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-followingAxis-4.txt</output-file>
+   </test-case>
+</test-group>

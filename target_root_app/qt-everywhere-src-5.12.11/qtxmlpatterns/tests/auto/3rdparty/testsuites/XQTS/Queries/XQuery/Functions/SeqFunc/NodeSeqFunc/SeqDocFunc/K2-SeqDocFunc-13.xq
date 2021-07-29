@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(: Test: K2-SeqDocFunc-13                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Never use the result of calls to fn:doc. Since implementations are allowed to dereference the sources in any case, an error is allowed. :)
+(:*******************************************************:)
+declare variable $doc1 := doc("http://example.com");
+let $doc2 := doc("ftp://example.com/")
+for $i in doc("localFile.xml")
+return (1, 2, 3)

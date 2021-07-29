@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K2-GenCompEq-7                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A failing call to a codepoints-to-string(), that may be written to true. See section 2.3.4. :)
+(:*******************************************************:)
+let $x := codepoints-to-string(12)
+    return ($x = $x)

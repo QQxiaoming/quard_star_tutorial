@@ -1,0 +1,107 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example chartthemes
+    \title Chart Themes Example
+    \ingroup qtcharts_examples
+
+    \brief The example shows the look and feel of the different built-in themes.
+
+    This example shows the look and feel of the different built-in themes for some of the supported
+    chart types.
+
+    \image examples_chartthemes_light.png
+    \image examples_chartthemes_brown_sand.png
+    \image examples_chartthemes_blue_cerulean.png
+
+    \include examples-run.qdocinc
+
+    \section1 Creating Charts
+
+    The charts of different types are generated and added to the layout separately. For example, the
+    line chart is created as follows. The creation of other chart types is similar.
+
+    First a chart is created.
+
+    \snippet chartthemes/themewidget.cpp 1
+
+    A common set of random data is generated and placed in a list. This list is used in each chart
+    type to add data to the series of the chart. For the line series, QLineSeries instances are
+    created and added to the chart.
+
+    \snippet chartthemes/themewidget.cpp 2
+
+    Default axes are created for the line series. We also specify ranges for the axes based on the
+    range of the data used for the series.
+
+    \snippet chartthemes/themewidget.cpp 3
+
+    We also want to add more space between the labels and the y-axes. For this we specify a label
+    format that adds space characters to the labels.
+
+    \snippet chartthemes/themewidget.cpp 4
+
+    Finally the line chart is added to the grid layout.
+
+    \snippet chartthemes/themewidget.cpp 5
+
+    \section1 Changing Theme
+
+    The user can select a built-in theme to be used in the example. This theme is then applied to
+    all charts in the layout.
+
+    \snippet chartthemes/themewidget.cpp 6
+
+    \snippet chartthemes/themewidget.cpp 7
+
+    In order to give the result a more harmonious look, the background palette of the application is
+    customized to match the selected theme. The QPalette::Window and QPalette::WindowText roles are
+    set based on the selected theme.
+
+    \snippet chartthemes/themewidget.cpp 8
+
+    \section1 Changing Animation, Legend and Anti-Aliasing
+
+    In this example, it is also possible to see how changing animation, legend and anti-aliasing
+    affects the appearance of the chart.
+
+    Based on the user's selection, the used animation type is set on each chart. It is possible to have
+    no animations in the chart, or have animations for grid axis or series, or both.
+
+    \snippet chartthemes/themewidget.cpp 9
+
+    The chart can be shown with a legend. The legend can be aligned to different sides of the chart.
+
+    \snippet chartthemes/themewidget.cpp 10
+
+    The user can also see how changing anti-aliasing option changes the appearance of the chart.
+    Anti-aliasing is updated based on the user's selection.
+
+    \snippet chartthemes/themewidget.cpp 11
+
+*/

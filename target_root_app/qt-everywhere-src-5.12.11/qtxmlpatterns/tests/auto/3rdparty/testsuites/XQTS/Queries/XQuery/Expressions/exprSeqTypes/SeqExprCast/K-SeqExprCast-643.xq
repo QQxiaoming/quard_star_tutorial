@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-643                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: It is not possible to extract an Effective Boolean Value from the type xs:duration, with the boolean() function. :)
+(:*******************************************************:)
+boolean(xs:duration("P1Y2M3DT10H30M"))

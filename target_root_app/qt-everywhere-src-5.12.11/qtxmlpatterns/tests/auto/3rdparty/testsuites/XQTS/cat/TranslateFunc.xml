@@ -1,0 +1,246 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="TranslateFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:translate</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-translate3args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test simple translate expression.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-1" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate3args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-translate3args-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test translate on space, tab, and newline.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-2" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate3args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate3args-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test translate with zero-length string argument.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-3" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate3args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate3args-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test translate with an empty sequence argument.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-4" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate3args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate3args-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test translate with invalid type in 1st argument.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-5" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate3args-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test translate with invalid type in 2nd argument.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-6" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate3args-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test translate with invalid type in 3rd argument.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-7" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate3args-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test translate with incorrect arity.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate3args-8" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test translate as per example 1 of the Functions and Operators specs for this function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-1" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test translate as per example 2 of the Functions and Operators specs for this function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-2" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test translate as per example 3 of the Functions and Operators specs for this function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-3" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function. Translate lower case letters to upper case letters.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-4" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function. Translate upper case letters to lower case letters.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-5" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, where all three arguments are the zero length string.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-6" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, where all three arguments are the same (letters).</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-7" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, where all three arguments are the same (numbers).</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-8" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, where all three arguments are a mixture of numbers and letters.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-9" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, where all three arguments are an invocation to fn:string.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-10" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-11" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, as an argument to the fn:string.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-11" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-12" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, as an argument to the fn:string-length.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-12" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-13" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, as an argument to the xs:decimal constructor function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-13" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-14" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, as an argument to the xs:integer constructor function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-14" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-15" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, as an argument to the xs:float constructor function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-15" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-translate-16" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of translate function, as an argument to the xs:double constructor function.</description>
+      <spec-citation section-number="7.4.9" spec="FuncOps" section-title="fn:translate" section-pointer="func-translate"/>
+      <query name="fn-translate-16" date="2005-10-06"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-translate-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `translate()`.</description>
+      <query name="K-TranslateFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `translate("string", "map string")`.</description>
+      <query name="K-TranslateFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `translate("arg", "map string", "transString", "wrong param")`.</description>
+      <query name="K-TranslateFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate("--aaa--","-","") eq "aaa"`.</description>
+      <query name="K-TranslateFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate("--aaa--","bbb++","") eq "--aaa--"`.</description>
+      <query name="K-TranslateFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate("argstr", "", "matrs") eq "argstr"`.</description>
+      <query name="K-TranslateFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate((), "map", "trans") eq ""`.</description>
+      <query name="K-TranslateFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate("abcdabc", "abc", "AB") eq "ABdAB"`.</description>
+      <query name="K-TranslateFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate("bar","abc","ABC") eq "BAr"`.</description>
+      <query name="K-TranslateFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TranslateFunc-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/TranslateFunc/" scenario="standard">
+      <description>A test whose essence is: `translate("--aaa--","abc-","ABC") eq "AAA"`.</description>
+      <query name="K-TranslateFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TranslateFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TranslateFunc-1" FilePath="Functions/AllStringFunc/AssDisassStringFunc/TranslateFunc/" scenario="runtime-error">
+      <description>The second argument to fn:translate() cannot be the empty sequence.</description>
+      <query name="K2-TranslateFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-TranslateFunc-2" FilePath="Functions/AllStringFunc/AssDisassStringFunc/TranslateFunc/" scenario="runtime-error">
+      <description>The third argument to fn:translate() cannot be the empty sequence.</description>
+      <query name="K2-TranslateFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

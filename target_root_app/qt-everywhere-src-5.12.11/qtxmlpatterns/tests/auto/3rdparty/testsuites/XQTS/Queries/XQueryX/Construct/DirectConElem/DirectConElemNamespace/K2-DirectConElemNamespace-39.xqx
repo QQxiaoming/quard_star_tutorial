@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>p</xqx:prefix>
+        <xqx:uri>http://example.com/</xqx:uri>
+      </xqx:namespaceDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:sequenceExpr>
+        <xqx:elementConstructor>
+          <xqx:tagName xqx:prefix="p">e</xqx:tagName>
+          <xqx:attributeList>
+            <xqx:namespaceDeclaration>
+              <xqx:uri></xqx:uri>
+            </xqx:namespaceDeclaration>
+          </xqx:attributeList>
+        </xqx:elementConstructor>
+        <xqx:functionCallExpr>
+          <xqx:functionName>count</xqx:functionName>
+          <xqx:arguments>
+            <xqx:functionCallExpr>
+              <xqx:functionName>in-scope-prefixes</xqx:functionName>
+              <xqx:arguments>
+                <xqx:elementConstructor>
+                  <xqx:tagName xqx:prefix="p">e</xqx:tagName>
+                  <xqx:attributeList>
+                    <xqx:namespaceDeclaration>
+                      <xqx:uri></xqx:uri>
+                    </xqx:namespaceDeclaration>
+                  </xqx:attributeList>
+                </xqx:elementConstructor>
+              </xqx:arguments>
+            </xqx:functionCallExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+      </xqx:sequenceExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,311 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqExprTreat" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Treat</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="treat-as-1" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression where dynamic type does not match expected type.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-1" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-2" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:string data type and a function that expects a string.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-2" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-3" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:integer data type and a div expression.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-3" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-4" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:decimal data type and a function that can take an decimal/integer (integer treated as decimal).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-4" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-5" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:decimal data type and a function that can take a decimal/integer (decimal treated as integer).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-5" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-6" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:float data type and a function that can take a float (fn:abs).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-6" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-7" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:double data type and a function that can take a double (fn:abs).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-7" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-8" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:boolean data type and a function that can take a boolean (fn:not).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-8" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-9" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:date data type and a function that can take a date (fn:year-from-date).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-9" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-10" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:dateTime data type and a function that can take a dateTime (fn:minutes-from-dateTime).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-10" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-11" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:time data type and a function that can take a time (fn:hours-from-time).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-11" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-12" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:integer data type and a homogeneous sequence.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-12" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-13" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression involving the xs:integer data type and a heterogeneous sequence.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-13" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-14" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and integer/float data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-14" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-15" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and integer/double data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-15" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-16" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and float/integer data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-16" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-17" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and double/integer data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-17" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-18" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and double/float data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-18" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-19" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and float/double data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-19" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-20" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and decimal/double data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-20" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-21" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and decimal/float data types.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-21" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-22" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and float/decimal data types (float cast as decimal treat as decimal).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-22" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-23" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression with a "cast as" expression and double/decimal data types (double cast as decimal treat as decimal).</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-23" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-24" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression used as part of an addition operation.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-24" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="treat-as-25" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of treat as expression used as part of a subtraction operation.</description>
+      <spec-citation section-number="3.12.6" spec="XQuery" section-title="Treat" section-pointer="id-treat"/>
+      <query name="treat-as-25" date="2005-11-30"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">treat-as-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-1" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>A test whose essence is: `3 treat as xs:string`.</description>
+      <query name="K-SeqExprTreat-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-2" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>A test whose essence is: `xs:double("3") treat as xs:float`.</description>
+      <query name="K-SeqExprTreat-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-3" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>A test whose essence is: `xs:anyURI("example.com/") treat as xs:float`.</description>
+      <query name="K-SeqExprTreat-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-4" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>A test whose essence is: `3.0 treat as xs:integer`.</description>
+      <query name="K-SeqExprTreat-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-5" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>A test whose essence is: `xs:integer(3) treat as xs:decimal instance of xs:integer`.</description>
+      <query name="K-SeqExprTreat-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-6" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>A test whose essence is: `"3" treat as xs:string eq '3'`.</description>
+      <query name="K-SeqExprTreat-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-7" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>A test whose essence is: `xs:integer("3") treat as xs:decimal instance of xs:decimal`.</description>
+      <query name="K-SeqExprTreat-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-8" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>A type is specified which doesn't exist.</description>
+      <query name="K-SeqExprTreat-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-9" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>A type is specified which doesn't exist.</description>
+      <query name="K-SeqExprTreat-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0051</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-10" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="runtime-error">
+      <description>Exactly-one xs:integer does not match empty-sequence().</description>
+      <query name="K-SeqExprTreat-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-11" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>Implementations using the static typing feature, may raise XPTY0004 because one of the operands to operator 'eq' has cardinality 'one-or-more'.</description>
+      <query name="K-SeqExprTreat-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-11.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-12" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>Implementations using the static typing feature, may raise XPTY0004 because one of the operands to operator 'eq' has cardinality 'zero-or-more'.</description>
+      <query name="K-SeqExprTreat-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-12.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-13" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>Implementations using the static typing feature, may raise XPTY0004 because one of the operands to the multiply-operator has cardinality 'zero-or-more'.</description>
+      <query name="K-SeqExprTreat-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-13.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-14" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>A test whose essence is: `(3 treat as xs:integer ? * 3) eq 9`.</description>
+      <query name="K-SeqExprTreat-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-15" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>A complex 'treat as' expression, stressing parser and evaluation logic. Implementations supporting the static typing feature may issue XPTY0004.</description>
+      <query name="K-SeqExprTreat-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-15.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-16" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="parse-error">
+      <description>'3 treat as item(' is a syntatically invalid expression.</description>
+      <query name="K-SeqExprTreat-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqExprTreat-17" FilePath="Expressions/exprSeqTypes/SeqExprTreat/" scenario="standard">
+      <description>A test whose essence is: `(remove((5, 1e0), 2) treat as xs:integer) eq 5`.</description>
+      <query name="K-SeqExprTreat-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqExprTreat-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqExprTreat-1" FilePath="exprSeqTypes/SeqExprCast/SeqExprTreat/" scenario="runtime-error">
+      <description>An xs:decimal, despite being a valid integer, cannot be treated as an xs:integer.</description>
+      <query name="K2-SeqExprTreat-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqExprTreat-2" FilePath="exprSeqTypes/SeqExprCast/SeqExprTreat/" scenario="standard">
+      <description>Use three pluses on a row, combined with 'treat as'.</description>
+      <query name="K2-SeqExprTreat-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqExprTreat-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqExprTreat-3" FilePath="exprSeqTypes/SeqExprCast/SeqExprTreat/" scenario="parse-error">
+      <description>Lhs must be a StepExpr, and TreatExpr is not.</description>
+      <query name="K2-SeqExprTreat-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqExprTreat-4" FilePath="exprSeqTypes/SeqExprCast/SeqExprTreat/" scenario="standard">
+      <description>Treat the result of an empty node test, as the empty-sequence().</description>
+      <query name="K2-SeqExprTreat-4" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqExprTreat-4.txt</output-file>
+   </test-case>
+</test-group>

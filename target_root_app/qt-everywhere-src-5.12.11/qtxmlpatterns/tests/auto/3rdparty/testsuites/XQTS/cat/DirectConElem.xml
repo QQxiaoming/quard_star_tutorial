@@ -1,0 +1,425 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="DirectConElem" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Direct Element Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-elem-empty-1" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-empty-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-empty-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-empty-2" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty element constructor with closing tag.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-empty-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-empty-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-empty-3" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Number of child nodes for empty element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-empty-3" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-elem-empty-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-empty-4" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Number of child nodes for empty element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-empty-4" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-elem-empty-4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-empty-5" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Whitespace in element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-empty-5" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-empty-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-elem-matchtag-1" FilePath="Expressions/Construct/DirectConElem/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Begin tag does not match end tag.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-matchtag-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-elem-matchtag-2" FilePath="Expressions/Construct/DirectConElem/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Begin tag does not match end tag with namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-matchtag-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-curlybr-1" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Element constructor with open curly brace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-curlybr-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-curlybr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-curlybr-2" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Element constructor with closing curly brace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-curlybr-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-curlybr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-curlybr-3" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Character reference for open curly brace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-curlybr-3" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-curlybr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-elem-curlybr-4" FilePath="Expressions/Construct/DirectConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Character reference for closing curly brace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-curlybr-4" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-elem-curlybr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-elem-curlybr-5" FilePath="Expressions/Construct/DirectConElem/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Single open curly brace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-curlybr-5" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-elem-curlybr-6" FilePath="Expressions/Construct/DirectConElem/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Single closing curly brace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1" section-title="Direct Element Constructors" section-pointer="id-element-constructor"/>
+      <query name="Constr-elem-curlybr-6" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-1" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Ensure processing-instructions aren't included when extracting the string-value from elements.</description>
+      <query name="K2-DirectConElem-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElem-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-2" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Ensure comments aren't included when extracting the string-value from elements.</description>
+      <query name="K2-DirectConElem-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElem-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-3" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-4" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-5" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-6" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-7" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-8" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-9" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-10" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-11" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-12" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-13" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntax error in direct element constructor.</description>
+      <query name="K2-DirectConElem-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-14" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-15" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-16" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-17" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-18" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-19" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-20" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-21" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-22" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-23" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-24" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Syntactically invalid direct element constructor.</description>
+      <query name="K2-DirectConElem-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-25" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Enclosed expressions aren't allowed inside element constructors.</description>
+      <query name="K2-DirectConElem-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-26" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Enclosed expressions aren't allowed inside element constructors.(#2).</description>
+      <query name="K2-DirectConElem-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-27" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Enclosed expressions aren't allowed inside element constructors.(#3).</description>
+      <query name="K2-DirectConElem-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-28" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>A simple direct element constructor.</description>
+      <query name="K2-DirectConElem-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-29" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Serialize a sequence of direct element constructors.</description>
+      <query name="K2-DirectConElem-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElem-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-30" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Serialize a couple of element constructors.</description>
+      <query name="K2-DirectConElem-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-31" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>A couple of simple elements.</description>
+      <query name="K2-DirectConElem-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-32" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>A couple of simple elements(#2).</description>
+      <query name="K2-DirectConElem-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-33" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>A couple of simple elements(#3).</description>
+      <query name="K2-DirectConElem-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-34" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>An element with a computed attribute and element.</description>
+      <query name="K2-DirectConElem-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-34.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-35" FilePath="Construct/DirectConElem/" scenario="runtime-error">
+      <description>Bind the 'xml' namespace URI to an invalid prefix.</description>
+      <query name="K2-DirectConElem-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-36" FilePath="Construct/DirectConElem/" scenario="runtime-error">
+      <description>Bind the 'xml' namespace URI to an invalid prefix(#2).</description>
+      <query name="K2-DirectConElem-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-37" FilePath="Construct/DirectConElem/" scenario="runtime-error">
+      <description>Bind the 'xml' namespace URI to an invalid prefix(#3).</description>
+      <query name="K2-DirectConElem-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-38" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Bind the 'xml' namespace URI to a valid prefix. The output doesn't expect the declaration because the c14n specification ignores declarations of the xml prefix if it binds to the XML namespace(see section 2.3). In either case, serializing this declaration is redundant. See the public report #4217 in W3C's Bugzilla database.</description>
+      <query name="K2-DirectConElem-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-38.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-39" FilePath="Construct/DirectConElem/" scenario="runtime-error">
+      <description>Bind the 'xmlns' namespace URI to an invalid prefix(#3).</description>
+      <query name="K2-DirectConElem-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-40" FilePath="Construct/DirectConElem/" scenario="runtime-error">
+      <description>Bind the 'xmlns' namespace URI to an invalid prefix(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="K2-DirectConElem-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-41" FilePath="Construct/DirectConElem/" scenario="runtime-error">
+      <description>Bind the 'xmlns' namespace URI to an invalid prefix(#3).</description>
+      <query name="K2-DirectConElem-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-42" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Use a content sequence that is a strange combination of a computed document constructor and a path.</description>
+      <query name="K2-DirectConElem-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-42.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-43" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Use a content sequence that is a computed document constructor.</description>
+      <query name="K2-DirectConElem-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-43.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-44" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Extract the string value of a single element node.</description>
+      <query name="K2-DirectConElem-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElem-44.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-45" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Extract the typed value of a single element node.</description>
+      <query name="K2-DirectConElem-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElem-45.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-46" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Use an element constructor that use a namespace declare in a prolog declaration.</description>
+      <query name="K2-DirectConElem-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-46.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-47" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Use content that needs to be escaped, inside namespace declaration attributes.</description>
+      <query name="K2-DirectConElem-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-47.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-48" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>In XQuery, as opposed to XML, the sequence ]]&lt; is allowed in element content.</description>
+      <query name="K2-DirectConElem-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-48.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-49" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>In XQuery, as opposed to XML, the sequence ]]&lt; is allowed in attribute content.</description>
+      <query name="K2-DirectConElem-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-49.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-50" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>Character &lt; cannot appear in attributes.</description>
+      <query name="K2-DirectConElem-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-51" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Ensure that whitespace normalization of xml:id is performed.</description>
+      <query name="K2-DirectConElem-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-51.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElem-52" FilePath="Construct/DirectConElem/" scenario="standard">
+      <description>Output sharp S.</description>
+      <query name="K2-DirectConElem-52" date="2008-05-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElem-52.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-53" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>There is no 'namespace' constructor in XQuery.</description>
+      <query name="K2-DirectConElem-53" date="2008-05-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElem-54" FilePath="Construct/DirectConElem/" scenario="parse-error">
+      <description>There is no 'namespace-node' constructor in XQuery.</description>
+      <query name="K2-DirectConElem-54" date="2008-05-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+</test-group>

@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-subtract-times2args-5                          :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Tue Apr 12 16:29:08 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "op:subtract-times" operator    :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:time(lower bound)                           :)
+(:$arg2 = xs:time(upper bound)                           :)
+(:*******************************************************:)
+
+xs:time("00:00:00Z") - xs:time("23:59:59Z")

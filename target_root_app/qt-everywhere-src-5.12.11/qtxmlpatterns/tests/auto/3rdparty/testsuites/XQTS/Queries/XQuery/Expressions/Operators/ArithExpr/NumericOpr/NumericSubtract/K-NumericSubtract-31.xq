@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-NumericSubtract-31                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: Operand(s) which are the empty sequence.     :)
+(:*******************************************************:)
+empty(() - xs:double(3))

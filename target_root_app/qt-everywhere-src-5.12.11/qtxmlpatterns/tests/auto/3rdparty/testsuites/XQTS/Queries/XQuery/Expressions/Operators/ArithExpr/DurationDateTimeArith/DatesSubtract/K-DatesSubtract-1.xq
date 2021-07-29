@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-DatesSubtract-1                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple testing involving operator '-' between xs:date and xs:date. :)
+(:*******************************************************:)
+xs:date("1999-07-19") - xs:date("1969-11-30")
+	                	eq xs:dayTimeDuration("P10823D")

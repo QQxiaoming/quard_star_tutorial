@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1">
+<context>
+    <name>QObject</name>
+    <message numerus="yes">
+        <location filename="main.cpp" line="39"/>
+        <source>un mot</source>
+        <comment>toto</comment>
+        <translation type="unfinished">
+            <numerusform>ein Wort</numerusform>
+        </translation>
+    </message>
+</context>
+</TS>

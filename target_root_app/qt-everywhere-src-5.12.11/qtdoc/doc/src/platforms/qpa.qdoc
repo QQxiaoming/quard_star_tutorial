@@ -1,0 +1,191 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page qpa.html
+\title Qt Platform Abstraction
+
+The Qt Platform Abstraction (QPA) is the platform abstraction layer for Qt 5
+and replaces Qt for Embedded Linux and the platform ports from Qt 4.
+
+QPA plugins are implemented by subclassing various \c QPlatform* classes. There
+are several \e root classes, such as \c QPlatformIntegration and
+\c QPlatformWindow for window system integration and \c QPlatformTheme for
+deeper platform theming and integration. QStyle is not a part of QPA.
+
+There are no source or binary compatibility guarantees for the QPA classes,
+meaning that a platform plugin is only guaranteed to work with the Qt version
+it was developed against. API changes will however only be made in minor
+releases. (5.1, 5.2, and so on.)
+
+\section1 QPA Minimal Plugins
+
+There is no detailed tutorial documentation for writing QPA plugins at this
+time. However, there are two minimal plugins shipped with Qt 5 for testing and
+other special purposes that you can use as examples:
+
+\list
+\li \c{qtbase/src/plugins/platforms/minimal/}
+\li \c{qtbase/src/plugins/platforms/minimalegl/}
+\endlist
+
+The \c qminimal plugin is used for tools that link against \l{Qt GUI}, but do
+not require window system integration (for example, \c qmlplugindump).
+It also has diagnostic support for dumping window contents to image files
+as determined by environment variables.
+
+\section1 Class Overview
+
+\list
+\li QPlatformIntegration
+    \list
+    \li QAbstractEventDispatcher
+    \li QPlatformAccessibility
+    \li QPlatformBackingStore
+    \li QPlatformClipboard
+    \li QPlatformCursor
+    \li QPlatformDrag
+    \li QPlatformFontDatabase
+    \li QPlatformGraphicsBuffer
+    \li QPlatformInputContext
+    \li QPlatformNativeInterface
+    \li QPlatformOffscreenSurface
+    \li QPlatformOpenGLContext
+    \li QPlatformScreen
+    \li QPlatformServices
+    \li QPlatformSharedGraphicsCache
+    \li QPlatformSurface
+    \li QPlatformWindow
+    \endlist
+
+\li QPlatformTheme
+    \list
+    \li QPlatformDialogHelper
+    \li QPlatformMenu
+    \li QPlatformMenuBar
+    \li QPlatformMenuItem
+    \li QPlatformSystemTrayIcon
+    \li platform palettes
+    \li platform fonts
+    \li theme hints
+    \endlist
+\endlist
+
+\c{qtbase/src/platformsupport} contains several helper classes for implementing
+platform plugins on Unix-like systems.
+
+\section1 QPA Plugins
+
+The following table summarizes the platform plugins available for QPA:
+
+\table
+\header
+    \li Plugin Name
+    \li Plugin Class Name
+    \li Description
+\row
+    \li \c qandroid
+    \li QAndroidPlatformIntegration
+    \li \l{Qt for Android}{Android support}
+\row
+    \li \c qbsdfb
+    \li QBsdFbIntegration
+    \li BsdFb support
+\row
+    \li \c qcocoa
+    \li QCocoaIntegrationPlugin
+    \li \l{Qt for macOS}{Cocoa support}
+\row
+    \li \c qdirect2d
+    \li QWindowsDirect2DIntegrationPlugin
+    \li Similar to the \c qwindows plugin, but replaces the raster paint engine
+        with a Direct2D-based paint engine for QPixmap and QBackingStore.
+\row
+    \li \c qdirectfb
+    \li QDirectFbIntegrationPlugin
+    \li DirectFB is centered around \e surfaces, which are the equivalent of a
+        QPaintDevice.
+\row
+    \li \c qeglfs
+    \li QEglFSIntegrationPlugin
+    \li \l{embedded eglfs}{EGLFS} support for embedded Linux devices.
+\row
+    \li \c qhaiku
+    \li QHaikuIntegration
+    \li Haiku support
+\row
+    \li \c qios
+    \li QIOSIntegrationPlugin
+    \li \l{Qt for iOS}{iOS support}
+\row
+    \li \c qlinuxfb
+    \li QLinuxFbIntegrationPlugin
+    \li \l LinuxFB support for embedded Linux devices.
+\row
+    \li \c qmirclient
+    \li QMirClientIntegration
+    \li Mir client support
+\row
+    \li \c qopenwf
+    \li QOpenWFDIntegrationPlugin
+    \li OpenWF Display support for managing display control hardware.
+\row
+    \li \c qqnx
+    \li QQnxIntegrationPlugin
+    \li \l{Platform and Compiler Notes - QNX}{QNX support}
+\row
+    \li \c qvnc
+    \li QVncIntegration
+    \li VNC support
+\row
+    \li \c qwayland
+    \li \list
+            \li QWaylandIntegrationPlugin
+            \li QWaylandBrcmEglPlatformIntegrationPlugin
+            \li QWaylandEglPlatformIntegrationPlugin
+            \li QWaylandXCompositeEglPlatformIntegrationPlugin
+            \li QWaylandXCompositeGlxPlatformIntegrationPlugin
+        \endlist
+    \li \l{Qt Wayland Compositor}{Wayland support}
+\row
+    \li \c qwindows
+    \li QWindowsIntegrationPlugin
+    \li \l{Qt for Windows}{Windows support}
+\row
+    \li \c qwinrt
+    \li QWinRTIntegrationPlugin
+    \li \l{Qt for WinRT}{WinRT and Windows Phone support}
+\row
+    \li \c qxcb
+    \li QXcbIntegrationPlugin
+    \li \l{Qt for Linux/X11}{X Window System (X11) support}
+\row
+    \li \c webgl
+    \li QWebGLIntegrationPlugin
+    \li \l{Qt Quick WebGL}{WebGL} support for Qt Quick applications
+\endtable
+*/

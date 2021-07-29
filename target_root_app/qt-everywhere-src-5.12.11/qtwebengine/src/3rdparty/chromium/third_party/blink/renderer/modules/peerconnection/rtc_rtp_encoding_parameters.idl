@@ -1,0 +1,23 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// https://w3c.github.io/webrtc-pc/#rtcprioritytype-enum
+enum RTCPriorityType {
+    "very-low",
+    "low",
+    "medium",
+    "high"
+};
+
+// https://w3c.github.io/webrtc-pc/#rtcrtpencodingparameters*
+dictionary RTCRtpEncodingParameters : RTCRtpCodingParameters {
+    //TODO(orphis): Missing codecPayloadType. https://crbug.com/857042
+    //TODO(orphis): Missing dtx. https://crbug.com/857044
+    boolean         active = true;
+    RTCPriorityType priority = "low";
+    //TODO(orphis): Missing ptime. https://crbug.com/857046
+    unsigned long   maxBitrate;
+    //TODO(orphis): Missing maxFramerate. https://crbug.com/857047
+    //TODO(orphis): Missing scaleResolutionDownBy. https://crbug.com/857048
+};

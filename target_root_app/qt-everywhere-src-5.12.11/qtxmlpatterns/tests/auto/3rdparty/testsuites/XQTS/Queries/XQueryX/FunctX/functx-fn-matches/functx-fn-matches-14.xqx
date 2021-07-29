@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>functx</xqx:prefix>
+        <xqx:uri>http://www.example.com/</xqx:uri>
+      </xqx:namespaceDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:flworExpr>
+        <xqx:letClause>
+          <xqx:letClauseItem>
+            <xqx:typedVariableBinding>
+              <xqx:varName>address</xqx:varName>
+            </xqx:typedVariableBinding>
+            <xqx:letExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>123 Main Street
+Traverse City, MI 49684</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:letExpr>
+          </xqx:letClauseItem>
+        </xqx:letClause>
+        <xqx:returnClause>
+          <xqx:functionCallExpr>
+            <xqx:functionName>matches</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>address</xqx:name>
+              </xqx:varRef>
+              <xqx:stringConstantExpr>
+                <xqx:value>street</xqx:value>
+              </xqx:stringConstantExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>i</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:returnClause>
+      </xqx:flworExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

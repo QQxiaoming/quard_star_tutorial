@@ -1,0 +1,47 @@
+# Copyright 2014 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//extensions/buildflags/buildflags.gni")
+import("//tools/json_schema_compiler/json_features.gni")
+import("//tools/json_schema_compiler/json_schema_api.gni")
+
+assert(enable_extensions,
+       "Cannot depend on extensions because enable_extensions=false.")
+
+schema_sources = [ "identity.idl" ]
+root_namespace = "extensions::shell::api::%(namespace)s"
+
+json_schema_api("api") {
+  sources = schema_sources
+  schemas = true
+  bundle = true
+  bundle_name = "Shell"
+}
+
+json_schema_api("api_registration") {
+  sources = schema_sources
+  impl_dir = "//extensions/shell/browser/api"
+  bundle_registration = true
+  bundle_name = "Shell"
+
+  deps = [
+    ":api",
+    "//extensions/common",
+  ]
+}
+
+json_features("shell_api_features") {
+  feature_type = "APIFeature"
+  method_name = "AddShellAPIFeatures"
+  sources = [
+    "_api_features.json",
+  ]
+}
+
+group("extensions_features") {
+  public_deps = [
+    ":shell_api_features",
+    "//extensions/common/api:extensions_features",
+  ]
+}

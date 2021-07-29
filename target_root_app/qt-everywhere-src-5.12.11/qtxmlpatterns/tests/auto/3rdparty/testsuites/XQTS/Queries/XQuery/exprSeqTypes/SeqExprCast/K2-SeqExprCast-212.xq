@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-212                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: No type by name xs:anyAtomic exists(2).      :)
+(:*******************************************************:)
+xs:anyAtomic("1")

@@ -1,0 +1,54 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.12.0 Changes                             *
+****************************************************************************
+
+QtSerialBus
+-----------
+
+ - QCanBusFrame
+   * [QTBUG-66143] Added the functions QCanBusDevice::readAllFrames() to read
+     all frames from the receive buffer and QCanBusDevice::clear() to clear
+     the receive or transmit buffer.
+
+ - canbusutil
+  * [QTBUG-67164] Added configuration options to canbusutil, e.g. for
+    bitrate setting or to enable CAN FD operation mode.
+
+ - CAN Plugins:
+   * [QTBUG-61837] Added a generic virtual CAN bus plugin.
+   * [QTBUG-62959] Added CAN FD functionality to the PeakCAN plugin.
+     Therefore the minimum required PCAN-Basic version is now 4.0.0.
+
+ - ModbusReply
+   * [QTBUG-68543] Ensure that pending QModbusReply::finished() is emitted
+     after a serial disconnection.
+
+ - QModbusServer
+   * [QTBUG-64843] Fixed incorrect reading and writing of QModbusServer
+     registers with non-zero start addresses.
+
+ - QModbusRtuSerialMaster
+   * [QTBUG-69188] Fixed that RTU Master ignored responses due to being in
+     Send state (Introduced by the fix for QTBUG-62299)
+   * [QTBUG-65684] Fixed a crash due to access of deleted memory.
+
+ - QModbusRtuSerialSlave
+   * [QTBUG-59286] Permit dropping the RTU Slave request buffer when it
+     contains wrong characters between individual Modbus PDUs.

@@ -1,0 +1,414 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ReplaceFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:replace</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-replace3args-1" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(lower bound) $pattern = xs:string(lower bound) $replacement = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace3args-2" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(mid range) $pattern = xs:string(lower bound) $replacement = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace3args-3" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(upper bound) $pattern = xs:string(lower bound) $replacement = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace3args-4" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(lower bound) $pattern = xs:string(mid range) $replacement = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace3args-5" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(lower bound) $pattern = xs:string(upper bound) $replacement = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace3args-6" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(lower bound) $pattern = xs:string(lower bound) $replacement = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-6" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace3args-7" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "replace" function with the arguments set as follows: $input = xs:string(lower bound) $pattern = xs:string(lower bound) $replacement = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace3args-7" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace3args-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replaceErr-1" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Invalid flag for the "replace" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replaceErr-1" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORX0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replaceErr-2" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>The value of $replacement contains a "\" character that is not part of a "\\" pair, unless it is immediately followed by a "$" character.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replaceErr-2" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replaceErr-3" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>The value of $replacement contains a "$" character that is not immediately followed by a digit 0-9 and not immediately preceded by a "\".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replaceErr-3" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-1" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with replacement = "*" as per example 1 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-1" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-2" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "a.*a" and replacement = "*" as an example 2 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-2" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-3" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "a.*?a" and replacement = "*" as an example 3 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-3" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-4" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "a" and replacement = "" as an example 4 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-4" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-5" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "a(.)" and replacement = "a$1$1" as an example 5 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-5" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-6" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = ".*?" and replacement = "$1" as an example 6 for this function. This should raise error.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-6" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORX0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-7" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "A+" and replacement = "b" as an example 7 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-7" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-8" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "A+?" and replacement = "b" as an example 8 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-8" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-9" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern = "^(.*?)d(.*)" and replacement = "$1c$2" as an example 9 for this function.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-9" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-10" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Two alternatives within the pattern both match at the same position in the $input. The first one is chosen.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-10" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-11" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:replace function with input set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-11" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-12" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate that calling function with flags ommited is same as flags being the zero length string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-12" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-13" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\?" for an input string that contains "?".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-13" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-14" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\*" for an input string that contains "*".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-14" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-15" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\+" for an input string that contains "+".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-15" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-16" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\{" for an input string that contains "{".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-16" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-17" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\}" for an input string that contains "}".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-17" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-18" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\(" for an input string that contains "(".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-18" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-19" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\)" for an input string that contains ")".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-19" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-20" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\[" for an input string that contains "[".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-20" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-21" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\]" for an input string that contains "]".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-21" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-22" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\-" for an input string that contains "-".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-22" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-23" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\." for an input string that contains ".".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-23" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-24" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\|" for an input string that contains "|".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-24" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-25" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\\" for an input string that contains "\".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-25" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-26" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\t" for an input string that contains the tab character.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-26" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-27" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of "replace" with the pattern set to "\n" for an input string that contains the newline character.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-27" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-28" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern set to "aa{1}" (exact quantity) for an input string that contains the "aa" string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-28" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-29" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern set to "aa{1,}" (min quantity) for an input string that contains the "aa" string twice.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-29" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-30" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern set to "aa{1,2}" (range quantity) for an input string that contains the "aa" string twice.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-30" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-31" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern set to "\^" for an input string that contains the "^" character.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-31" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-32" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern set to "^a".</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-32" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-replace-33" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of replace function with pattern that does not match the input string.</description>
+      <spec-citation spec="FuncOps" section-number="7.6.3" section-title="fn:replace" section-pointer="func-replace"/>
+      <query name="fn-replace-33" date="2005-10-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-replace-33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-1" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>The flags argument cannot contain whitespace.</description>
+      <query name="K-ReplaceFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-2" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>The pattern can't be the empty sequence.</description>
+      <query name="K-ReplaceFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-3" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>The replacement can't be the empty sequence.</description>
+      <query name="K-ReplaceFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-4" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>The flags argument cannot contain 'X'.</description>
+      <query name="K-ReplaceFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-5" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Only four arguments are accepted.</description>
+      <query name="K-ReplaceFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-6" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>A '\' cannot occur at the end of the line.</description>
+      <query name="K-ReplaceFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-7" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>A '$' cannot occur at the end of the line.</description>
+      <query name="K-ReplaceFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-8" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>A '\' cannot be used to escape whitespace.</description>
+      <query name="K-ReplaceFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ReplaceFunc-9" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>A '$' cannot be followed by whitespace.</description>
+      <query name="K-ReplaceFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-1" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Unexpectedly ending escape.</description>
+      <query name="K2-ReplaceFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-2" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Unexpectedly ending escape.</description>
+      <query name="K2-ReplaceFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-3" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Use a back reference that isn't preceeded by sufficiently many captures, and therefore match the empty sequence.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4634</reflects-resolution>
+      <query name="K2-ReplaceFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-4" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Use a back reference inside a character class.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4106</reflects-resolution>
+      <query name="K2-ReplaceFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-5" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Use a back reference inside a character class(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4106</reflects-resolution>
+      <query name="K2-ReplaceFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-6" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Use a back reference inside a character class(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4106</reflects-resolution>
+      <query name="K2-ReplaceFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReplaceFunc-7" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="runtime-error">
+      <description>Use a back reference inside a character class(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4106</reflects-resolution>
+      <query name="K2-ReplaceFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORX0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ReplaceFunc-8" FilePath="Functions/AllStringFunc/MatchStringFunc/ReplaceFunc/" scenario="standard">
+      <description>Use fn:replace inside user function.</description>
+      <query name="K2-ReplaceFunc-8" date="2008-06-06+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ReplaceFunc-8.txt</output-file>
+   </test-case>
+</test-group>

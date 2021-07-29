@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqMAXFunc-6                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoke fn:max() with an unsupported collation and one xs:anyURI value. :)
+(:*******************************************************:)
+max(xs:anyURI("str1"), "max://example.com/UNSUPPORTED_COLLATION")

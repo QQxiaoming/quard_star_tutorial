@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-InScopePrefixesFunc-19                       :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Count the in-scope namespaces of a node with name xml:space. :)
+(:*******************************************************:)
+count(in-scope-prefixes(element xml:space {()}))

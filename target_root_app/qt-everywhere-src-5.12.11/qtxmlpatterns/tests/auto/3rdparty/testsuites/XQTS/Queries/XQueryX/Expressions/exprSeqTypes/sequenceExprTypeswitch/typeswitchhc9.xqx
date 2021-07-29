@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:typeswitchExpr>
+        <xqx:argExpr>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">dateTime</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>1999-12-31T19:20:00</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:argExpr>
+        <xqx:typeswitchExprCaseClause>
+          <xqx:variableBinding>i</xqx:variableBinding>
+          <xqx:sequenceType>
+            <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+          </xqx:sequenceType>
+          <xqx:resultExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName>wrap</xqx:tagName>
+              <xqx:elementContent>
+                <xqx:stringConstantExpr>
+                  <xqx:value>test failed</xqx:value>
+                </xqx:stringConstantExpr>
+              </xqx:elementContent>
+            </xqx:elementConstructor>
+          </xqx:resultExpr>
+        </xqx:typeswitchExprCaseClause>
+        <xqx:typeswitchExprCaseClause>
+          <xqx:variableBinding>i</xqx:variableBinding>
+          <xqx:sequenceType>
+            <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+          </xqx:sequenceType>
+          <xqx:resultExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName>wrap</xqx:tagName>
+              <xqx:elementContent>
+                <xqx:stringConstantExpr>
+                  <xqx:value>test failed</xqx:value>
+                </xqx:stringConstantExpr>
+              </xqx:elementContent>
+            </xqx:elementConstructor>
+          </xqx:resultExpr>
+        </xqx:typeswitchExprCaseClause>
+        <xqx:typeswitchExprCaseClause>
+          <xqx:variableBinding>i</xqx:variableBinding>
+          <xqx:sequenceType>
+            <xqx:atomicType xqx:prefix="xs">dateTime</xqx:atomicType>
+          </xqx:sequenceType>
+          <xqx:resultExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName>wrap</xqx:tagName>
+              <xqx:elementContent>
+                <xqx:stringConstantExpr>
+                  <xqx:value>test passed - xs:dateTime("1999-12-31T19:20:00")is of dateTime type</xqx:value>
+                </xqx:stringConstantExpr>
+              </xqx:elementContent>
+            </xqx:elementConstructor>
+          </xqx:resultExpr>
+        </xqx:typeswitchExprCaseClause>
+        <xqx:typeswitchExprDefaultClause>
+          <xqx:resultExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName>wrap</xqx:tagName>
+              <xqx:elementContent>
+                <xqx:stringConstantExpr>
+                  <xqx:value>test failed</xqx:value>
+                </xqx:stringConstantExpr>
+              </xqx:elementContent>
+            </xqx:elementConstructor>
+          </xqx:resultExpr>
+        </xqx:typeswitchExprDefaultClause>
+      </xqx:typeswitchExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:attributeTest>
+            <xqx:attributeName>
+              <xqx:QName>foo</xqx:QName>
+            </xqx:attributeName>
+          </xqx:attributeTest>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:elementConstructor>
+            <xqx:tagName>foo</xqx:tagName>
+          </xqx:elementConstructor>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+        <xqx:arguments>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

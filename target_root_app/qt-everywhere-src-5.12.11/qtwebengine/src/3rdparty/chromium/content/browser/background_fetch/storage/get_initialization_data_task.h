@@ -1,0 +1,100 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#ifndef CONTENT_BROWSER_BACKGROUND_FETCH_STORAGE_GET_INITIALIZATION_DATA_TASK_H_
+#define CONTENT_BROWSER_BACKGROUND_FETCH_STORAGE_GET_INITIALIZATION_DATA_TASK_H_
+
+#include <map>
+#include <string>
+#include <vector>
+
+#include "base/callback.h"
+#include "content/browser/background_fetch/background_fetch_registration_id.h"
+#include "content/browser/background_fetch/storage/database_task.h"
+#include "content/browser/service_worker/service_worker_info.h"
+#include "content/common/background_fetch/background_fetch_types.h"
+#include "content/common/content_export.h"
+#include "third_party/blink/public/common/service_worker/service_worker_status_code.h"
+#include "third_party/blink/public/platform/modules/background_fetch/background_fetch.mojom.h"
+#include "third_party/skia/include/core/SkBitmap.h"
+
+namespace content {
+
+namespace background_fetch {
+
+// All the information needed to create a JobController and resume the fetch
+// after start-up.
+struct CONTENT_EXPORT BackgroundFetchInitializationData {
+  BackgroundFetchInitializationData();
+  BackgroundFetchInitializationData(BackgroundFetchInitializationData&&);
+  ~BackgroundFetchInitializationData();
+
+  BackgroundFetchRegistrationId registration_id;
+  BackgroundFetchOptions options;
+  SkBitmap icon;
+  BackgroundFetchRegistration registration;
+  size_t num_requests;
+  size_t num_completed_requests;
+  std::vector<std::string> active_fetch_guids;
+  std::string ui_title;
+
+  // The error, if any, when getting the registration data.
+  blink::mojom::BackgroundFetchError error =
+      blink::mojom::BackgroundFetchError::NONE;
+
+  DISALLOW_COPY_AND_ASSIGN(BackgroundFetchInitializationData);
+};
+
+using GetInitializationDataCallback =
+    base::OnceCallback<void(blink::mojom::BackgroundFetchError,
+                            std::vector<BackgroundFetchInitializationData>)>;
+
+// Gets all the data needed to resume fetches. The task starts by getting
+// all the <ServiceWorker Registration ID, Background Fetch Unique ID>
+// pairs available.
+//    * TODO(crbug.com/853060): Consider persisting which SWIDs contain BGF
+//    info.
+// Then for every Background Fetch Unique ID the required information is
+// queried from the ServiceWorker Database to fill an instance of
+// BackgroundFetchInitializationData.
+//
+// Note: All of this must run in one DatabaseTask, to ensure the
+// BackgroundFetchContext is properly initialized with JobControllers before
+// running any additional DatabaseTasks and reaching an incorrect state.
+class GetInitializationDataTask : public DatabaseTask {
+ public:
+  using InitializationDataMap =
+      std::map<std::string, BackgroundFetchInitializationData>;
+
+  GetInitializationDataTask(DatabaseTaskHost* host,
+                            GetInitializationDataCallback callback);
+
+  ~GetInitializationDataTask() override;
+
+  // DatabaseTask implementation:
+  void Start() override;
+
+ private:
+  void DidGetRegistrations(
+      const std::vector<std::pair<int64_t, std::string>>& user_data,
+      blink::ServiceWorkerStatusCode status);
+
+  void FinishWithError(blink::mojom::BackgroundFetchError error) override;
+
+  GetInitializationDataCallback callback_;
+
+  // Map from the unique_id to the initialization data.
+  InitializationDataMap initialization_data_map_;
+
+  base::WeakPtrFactory<GetInitializationDataTask>
+      weak_factory_;  // Keep as last.
+
+  DISALLOW_COPY_AND_ASSIGN(GetInitializationDataTask);
+};
+
+}  // namespace background_fetch
+
+}  // namespace content
+
+#endif  // CONTENT_BROWSER_BACKGROUND_FETCH_STORAGE_GET_INITIALIZATION_DATA_TASK_H_

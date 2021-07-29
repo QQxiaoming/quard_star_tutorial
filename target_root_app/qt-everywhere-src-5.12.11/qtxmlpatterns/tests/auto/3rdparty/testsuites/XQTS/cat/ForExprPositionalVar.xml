@@ -1,0 +1,214 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ForExprPositionalVar" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>FOR Clause with a Positional Variable</title>
+      <description>Tests for the 'at' variable in FLWOR expression.</description>
+   </GroupInfo>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-1" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprPositionalVar-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-2" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="runtime-error">
+      <description>Position variable which is not in scope.</description>
+      <query name="K-ForExprPositionalVar-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-3" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="runtime-error">
+      <description>Position variable which is not in scope.</description>
+      <query name="K-ForExprPositionalVar-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-4" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="runtime-error">
+      <description>Position variable which is not in scope.</description>
+      <query name="K-ForExprPositionalVar-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprPositionalVar-5" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="parse-error">
+      <description>The name for a positional variable must be preceeded with '$'.</description>
+      <query name="K-ForExprPositionalVar-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-6" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify positional variable with fn:deep-equal().</description>
+      <query name="K-ForExprPositionalVar-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-7" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Extract the EBV from a positional variable.</description>
+      <query name="K-ForExprPositionalVar-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-8" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="runtime-error">
+      <description>A positional variable causing a type error.</description>
+      <query name="K-ForExprPositionalVar-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-9" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:string-to-codepoints().</description>
+      <query name="K-ForExprPositionalVar-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-10" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:string-to-codepoints().</description>
+      <query name="K-ForExprPositionalVar-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-11" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for the empty sequence.</description>
+      <query name="K-ForExprPositionalVar-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-11.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-12" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:insert-before().</description>
+      <query name="K-ForExprPositionalVar-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-13" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:insert-before()(#2).</description>
+      <query name="K-ForExprPositionalVar-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-14" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:insert-before()(#3).</description>
+      <query name="K-ForExprPositionalVar-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-15" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for the range expression.</description>
+      <query name="K-ForExprPositionalVar-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-16" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for the range expression(#2).</description>
+      <query name="K-ForExprPositionalVar-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-17" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:remove().</description>
+      <query name="K-ForExprPositionalVar-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-18" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:remove().</description>
+      <query name="K-ForExprPositionalVar-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-19" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:remove().</description>
+      <query name="K-ForExprPositionalVar-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-20" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:remove().</description>
+      <query name="K-ForExprPositionalVar-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-21" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:remove().</description>
+      <query name="K-ForExprPositionalVar-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-22" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:remove().</description>
+      <query name="K-ForExprPositionalVar-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-23" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:subsequence().</description>
+      <query name="K-ForExprPositionalVar-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-24" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:subsequence().</description>
+      <query name="K-ForExprPositionalVar-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-24.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-25" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:subsequence().</description>
+      <query name="K-ForExprPositionalVar-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-25.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-26" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:subsequence().</description>
+      <query name="K-ForExprPositionalVar-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-26.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-27" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:subsequence().</description>
+      <query name="K-ForExprPositionalVar-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-28" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for fn:subsequence().</description>
+      <query name="K-ForExprPositionalVar-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-29" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Verify that the position is properly computed for a singleton value.</description>
+      <query name="K-ForExprPositionalVar-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprPositionalVar-30" FilePath="Expressions/FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Evaluate the positional and binding expression at the same time.</description>
+      <query name="K-ForExprPositionalVar-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprPositionalVar-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprPositionalVar-1" FilePath="FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Combine fn:remove() and a positional for-variable.</description>
+      <query name="K2-ForExprPositionalVar-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprPositionalVar-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprPositionalVar-2" FilePath="FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>A query that possibly could raise a type error.</description>
+      <query name="K2-ForExprPositionalVar-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprPositionalVar-2.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprPositionalVar-3" FilePath="FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Usage of two positional variable references.</description>
+      <query name="K2-ForExprPositionalVar-3" static-name="K2-ForExprPositionalVar-3-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprPositionalVar-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprPositionalVar-4" FilePath="FLWORExpr/ForExpr/ForExprPositionalVar/" scenario="standard">
+      <description>Cache a positional variable with a let-binding.</description>
+      <query name="K2-ForExprPositionalVar-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprPositionalVar-4.txt</output-file>
+   </test-case>
+</test-group>

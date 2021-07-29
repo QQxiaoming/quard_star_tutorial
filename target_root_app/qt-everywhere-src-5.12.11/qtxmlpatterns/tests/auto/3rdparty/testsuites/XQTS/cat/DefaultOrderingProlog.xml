@@ -1,0 +1,195 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="DefaultOrderingProlog" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Ordering Mode Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="orderDecl-1" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Declaration of both "ordered" and "unordered" mode. Should raise a type error.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-1" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0065</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-2" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Testing of a simple "union" operation with ordering mode to "ordered".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-2" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderdecl-3" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Testing of a simple "union" operation with ordering mode to "unordered".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderdecl-3" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-3.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderdeclalt-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-4" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Testing of a simple "intersect" operation with ordering mode to "ordered".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-4" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderdecl-5" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Testing of a simple "intersect" operation with ordering mode to "unordered".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderdecl-5" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderdecl-6" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Testing of a simple "except" operation with ordering mode to "ordered".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderdecl-6" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-7" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Testing of a simple "except" operation with ordering mode to "unordered".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-7" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-8" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "ordered" on a FLOWR expression with no ordering mode.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-8" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-9" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "ordered" on a FLOWR expression with order modifier of "descending".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-9" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-10" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "ordered" on a FLOWR expression with order modifier of "ascending".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-10" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-11" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "unordered" on a FLOWR expression with order modifier of "descending".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-11" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-12" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "unordered" on a FLOWR expression with order modifier of "ascending".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-12" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-13" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "ordered" on an XPATH expression containing" "/".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-13" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderdecl-14" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "unordered" on an XPATH expression containing "/".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderdecl-14" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-14.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderdeclalt-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-15" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "ordered" on an XPATH expression containing "//".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-15" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-16" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode "unordered" on an XPATH expression containing "//".</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-16" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-16.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderdeclalt-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-17" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode set to "unordered", which is overridden by an "ordered" expression.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-17" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-18" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode set to "ordered", which is overridden by an "unordered" expression.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-18" date="2005-10-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-18.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderdeclalt-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-20" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode set to "ordered", and use of the "child" axis.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-20" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-21" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode set to "ordered", and use of the "parent" axis.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-21" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-22" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode set to "ordered", and use of the "following" axis.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-22" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-22.txt</output-file>
+      <expected-error>XPST0010</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="orderDecl-23" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test of prolog ordering mode set to "ordered", and use of the "descendant" axis.</description>
+      <spec-citation spec="XQuery" section-number="4.7" section-title="Ordering Mode Declaration" section-pointer="id-default-ordering-decl"/>
+      <query name="orderDecl-23" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">orderdecl-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-DefaultOrderingProlog-1" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard">
+      <description>A simple 'declare ordering mode' declaration, specifying 'preserve'.</description>
+      <query name="K-DefaultOrderingProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DefaultOrderingProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-DefaultOrderingProlog-2" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="standard">
+      <description>A simple 'declare ordering mode' declaration, specifying 'strip'.</description>
+      <query name="K-DefaultOrderingProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DefaultOrderingProlog-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-DefaultOrderingProlog-3" FilePath="Expressions/PrologExpr/DefaultOrderingProlog/" scenario="runtime-error">
+      <description>Two 'declare ordering mode' declarations are invalid.</description>
+      <query name="K-DefaultOrderingProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0065</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DefaultOrderingProlog-1" FilePath="exprSeqTypes/PrologExpr/DefaultOrderingProlog/" scenario="runtime-error">
+      <description>Ensure the 'ordering' keyword is parsed correctly.</description>
+      <query name="K2-DefaultOrderingProlog-1" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DefaultOrderingProlog-2" FilePath="exprSeqTypes/PrologExpr/DefaultOrderingProlog/" scenario="runtime-error">
+      <description>Ensure the 'order' keyword is parsed correctly.</description>
+      <query name="K2-DefaultOrderingProlog-2" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

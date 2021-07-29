@@ -1,0 +1,219 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SubstringAfterFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:substring-after</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-substring-after-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "" $arg2 = "". Use of fn:count to avoid empty file. Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-1" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "" $arg2 = "A Character String". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-2" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = "". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-3" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = () $arg2 = "". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-4" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "" $arg2 = (). Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-5" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = (). Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-6" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = () $arg2 = "A Character String". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-7" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "AAAAABBBBBCCCCC" $arg2 = "BBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-8" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "AAAAABBBBB" $arg2 = " ". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-9" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = " " $arg2 = "AAAAABBBBB". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-10" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-11" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function as an argument of another function (fn:not)- return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-11" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-12" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function as an argument of another function (fn:not) - return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-12" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-13" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = xs:string("A") $arg2 = "A". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-13" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-14" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "A" $arg2 = xs:string("A"). Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-14" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-15" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "A" $arg2 = "a". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-15" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-16" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "a" $arg2 = "A". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-16" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-17" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "substring-after" $arg2 = "substring-after". Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-17" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-18" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "substring-aftersubstring-after" $arg2 = "substring-after".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-18" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-19" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function with the arguments set as follows: $arg1 = "****" $arg2 = "***".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-19" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-20" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function using numbers as part of the string. Arguments set as follows: $arg1 = "12345" $arg2 = "1234".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-20" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-substring-after-21" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "substring-after" function using "substring-after" backwards. Arguments set as follows: $arg1 = "substring-after" $arg2 = "retfa-gnirtsbus". Use count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.5" section-title="fn:substring-after" section-pointer="func-substring-after"/>
+      <query name="fn-substring-after-21" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-substring-after-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-after()`.</description>
+      <query name="K-SubstringAfterFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-after(())`.</description>
+      <query name="K-SubstringAfterFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-after((), (), "http://www.w3.org/2005/xpath-functions/collation/codepoint", "wrong param")`.</description>
+      <query name="K-SubstringAfterFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `substring-after("a string", "a string", "http://www.example.com/COLLATION/NOT/SUPPORTED")`.</description>
+      <query name="K-SubstringAfterFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after("foo", "fo", "http://www.w3.org/2005/xpath-functions/collation/codepoint") eq "o"`.</description>
+      <query name="K-SubstringAfterFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after("tattoo", "tat") eq "too"`.</description>
+      <query name="K-SubstringAfterFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after("tattoo", "tattoo") eq ""`.</description>
+      <query name="K-SubstringAfterFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after("abcdefgedij", "def") eq "gedij"`.</description>
+      <query name="K-SubstringAfterFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after((), ()) eq ""`.</description>
+      <query name="K-SubstringAfterFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after("a string", ()) eq "a string"`.</description>
+      <query name="K-SubstringAfterFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SubstringAfterFunc-11" FilePath="Functions/AllStringFunc/SubstringStringFunc/SubstringAfterFunc/" scenario="standard">
+      <description>A test whose essence is: `substring-after("a string", "not in other") eq ""`.</description>
+      <query name="K-SubstringAfterFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SubstringAfterFunc-11.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="fn">insert-before</xqx:functionName>
+        <xqx:arguments>
+          <xqx:sequenceExpr>
+            <xqx:stringConstantExpr>
+              <xqx:value>a</xqx:value>
+            </xqx:stringConstantExpr>
+            <xqx:stringConstantExpr>
+              <xqx:value>b</xqx:value>
+            </xqx:stringConstantExpr>
+            <xqx:stringConstantExpr>
+              <xqx:value>c</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:sequenceExpr>
+          <xqx:integerConstantExpr>
+            <xqx:value>2</xqx:value>
+          </xqx:integerConstantExpr>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">decimal</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>1.1</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

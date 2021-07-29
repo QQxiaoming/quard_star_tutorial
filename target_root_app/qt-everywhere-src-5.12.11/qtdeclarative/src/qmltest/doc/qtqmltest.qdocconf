@@ -1,0 +1,42 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+project                 = QtQmlTest
+description             = Qt Quick Test Reference Documentation
+version                 = $QT_VERSION
+moduleheader            = QtQuickTest
+qhp.projects            = QtQmlTest
+
+qhp.QtQmlTest.file                = qtqmltest.qhp
+qhp.QtQmlTest.namespace           = org.qt-project.qtqmltest.$QT_VERSION_TAG
+qhp.QtQmlTest.virtualFolder       = qtqmltest
+qhp.QtQmlTest.indexTitle          = Qt Quick Test
+qhp.QtQmlTest.indexRoot           =
+
+qhp.QtQmlTest.filterAttributes    = qtqmltest $QT_VERSION qtrefdoc
+qhp.QtQmlTest.customFilters.Qt.name = QtQmlTest $QT_VERSION
+qhp.QtQmlTest.customFilters.Qt.filterAttributes = qtqmltest $QT_VERSION
+qhp.QtQmlTest.subprojects         = qmltypes classes examples
+qhp.QtQmlTest.subprojects.classes.title = C++ Classes
+qhp.QtQmlTest.subprojects.classes.indexTitle = Qt Quick Test C++ Classes
+qhp.QtQmlTest.subprojects.classes.selectors = class doc:headerfile
+qhp.QtQmlTest.subprojects.classes.sortPages = true
+qhp.QtQmlTest.subprojects.examples.title = Examples
+qhp.QtQmlTest.subprojects.examples.indexTitle = Qt Quick Test Examples
+qhp.QtQmlTest.subprojects.examples.selectors = doc:example
+qhp.QtQmlTest.subprojects.qmltypes.title = QML Types
+qhp.QtQmlTest.subprojects.qmltypes.indexTitle = Qt Quick Test QML Types
+qhp.QtQmlTest.subprojects.qmltypes.selectors = qmlclass
+qhp.QtQmlTest.subprojects.qmltypes.sortPages = true
+
+
+tagfile                 = ../../../doc/qtqmltest/qtqmltest.tags
+
+depends += qtcore qtgui qttestlib qtqml qtquick qtdoc
+
+headerdirs  += ..
+
+sourcedirs  += ..
+
+navigation.landingpage = "Qt Quick Test"
+navigation.cppclassespage = "Qt Quick Test C++ Classes"
+navigation.qmltypespage = "Qt Quick Test QML Types"

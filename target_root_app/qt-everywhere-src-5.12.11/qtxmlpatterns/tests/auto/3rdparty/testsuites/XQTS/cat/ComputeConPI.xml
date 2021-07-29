@@ -1,0 +1,360 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ComputeConPI" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Computed Processing-instruction Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-comppi-name-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>NCName for computed attribute constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-name-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-name-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-comppi-name-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="parse-error" Creator="Andreas Behm">
+      <description>QName for PI constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-name-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Empty computed name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two strings as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-3" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two untypedAtomic values as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-4" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Content of two nodes as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-5" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two numeric values as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-5" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-6" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Numeric value as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-6" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-7" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>DataTime value as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-7" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-8" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>NCName as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-8" static-name="Constr-comppi-compname-8-static-cbcl" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-compname-8.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-9" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>QName as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-9" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <expected-error>XQDY0041</expected-error>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-10" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-10" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-compname-10.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-11" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-11" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-compname-11.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-12" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-12" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-compname-12.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-13" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>String with prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-13" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0041</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-15" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Untyped atomic as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-15" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-compname-15.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-16" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Untyped atomic with prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-16" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0041</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-18" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Non-ncname string as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-18" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0041</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-compname-19" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Non-ncname untyped atomic as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-compname-19" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0041</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-doc-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip document nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-doc-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-doc-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-parent-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-parent-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comppi-parent-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-string-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>String value of attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-string-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comppi-string-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-data-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Typed value of PI.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-data-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comppi-data-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-enclexpr-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in PI node content - atomic values.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-enclexpr-1" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-enclexpr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-enclexpr-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in PI node content - nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-enclexpr-2" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-enclexpr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-enclexpr-3" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in PI node content - empty string.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-enclexpr-3" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-enclexpr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-enclexpr-4" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in PI node content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-enclexpr-4" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-enclexpr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-enclexpr-5" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in PI node content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-enclexpr-5" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-enclexpr-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-namexml-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI target XML.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-namexml-1" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0064</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-namexml-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI target XML.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-namexml-2" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0064</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-namexml-3" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI target XML.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-namexml-3" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0064</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-namexml-4" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI target XML.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-namexml-4" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0064</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-invalid-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-invalid-1" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0026</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-invalid-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-invalid-2" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0026</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-invalid-3" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Invalid PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-invalid-3" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0026</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-space-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Leading whitespace in PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-space-1" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-space-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-space-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Leading whitespace in PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-space-2" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-space-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-space-3" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Leading whitespace in PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-space-3" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comppi-space-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-space-4" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Leading whitespace in PI content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-space-4" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comppi-space-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-empty-1" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty PI node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-empty-1" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-empty-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comppi-empty-2" FilePath="Expressions/Construct/ComputeCon/ComputeConPI/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty PI node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.5" section-title="Computed Processing Instruction Constructors" section-pointer="id-computed-pis"/>
+      <query name="Constr-comppi-empty-2" date="2005-08-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comppi-empty-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ComputeConPI-1" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="parse-error">
+      <description>The name can't be specified as a string literal.</description>
+      <query name="K2-ComputeConPI-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-2" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="runtime-error">
+      <description>An invalid name for a processing-instruction.</description>
+      <query name="K2-ComputeConPI-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0064</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-3" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="runtime-error">
+      <description>An invalid name for a processing-instruction.</description>
+      <query name="K2-ComputeConPI-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0064</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-4" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="standard">
+      <description>Extract the name from a computed PI.</description>
+      <query name="K2-ComputeConPI-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConPI-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-5" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="standard">
+      <description>Extract the name from a computed PI.</description>
+      <query name="K2-ComputeConPI-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConPI-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-6" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="runtime-error">
+      <description>Invalid target name.</description>
+      <query name="K2-ComputeConPI-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0041</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-7" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="runtime-error">
+      <description>PI data containing '?&gt;'.</description>
+      <query name="K2-ComputeConPI-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0026</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-8" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="standard">
+      <description>Extract the data from a computed PI.</description>
+      <query name="K2-ComputeConPI-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConPI-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-9" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="standard">
+      <description>Extract (possible parser-confusing) PI data.</description>
+      <query name="K2-ComputeConPI-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConPI-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-10" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="standard">
+      <description>Data that only is whitespace.</description>
+      <query name="K2-ComputeConPI-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConPI-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConPI-11" FilePath="Construct/ComputeCon/ComputeConPI/" scenario="standard">
+      <description>Test the atomized type.</description>
+      <query name="K2-ComputeConPI-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConPI-11.txt</output-file>
+   </test-case>
+</test-group>

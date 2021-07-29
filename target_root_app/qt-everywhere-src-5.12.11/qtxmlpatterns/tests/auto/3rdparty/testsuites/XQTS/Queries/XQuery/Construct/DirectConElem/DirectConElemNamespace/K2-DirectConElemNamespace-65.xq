@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemNamespace-65                    :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract an escaped namespace with fn:namespace-for-prefix(). :)
+(:*******************************************************:)
+namespace-uri-for-prefix("p", <e xmlns:p="http://example.com/{{}}{{{{}}}}"/>)

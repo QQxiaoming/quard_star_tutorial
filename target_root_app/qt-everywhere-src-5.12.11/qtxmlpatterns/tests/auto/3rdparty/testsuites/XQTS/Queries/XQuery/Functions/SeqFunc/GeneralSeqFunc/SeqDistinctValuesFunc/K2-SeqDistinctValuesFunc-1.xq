@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDistinctValuesFunc-1                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoke fn:distinct-values() with an invalid collation. :)
+(:*******************************************************:)
+fn:distinct-values(("1", "2", "3"), "http://www.example.com/COLLATION/NOT/SUPPORTED")

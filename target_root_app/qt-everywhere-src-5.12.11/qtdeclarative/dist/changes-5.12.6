@@ -1,0 +1,47 @@
+Qt 5.12.6 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.5.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - [QTBUG-77761] Fix loading of EcmaScript modules when using the Qt Quick
+   Compiler.
+ - [QTBUG-77954] Fix parsing errors when using a semicolon after an object
+   literal in property bindings.
+ - [QTBUG-76866] Fix crash with null value type objects.
+ - [QTBUG-74087] The JavaScript engine will parse lists iteratively now,
+   using less stack space. This allows for more complex JavaScript to be
+   parsed.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - [QTBUG-76137] QQuickTextNodeEngine: don't create a new rectangle node as
+   the background of text when the alpha of it is 0.
+ - [QTBUG-77173][QTBUG-59620][QTBUG-59052] QQuickPathView: Fix stopping and
+   snapping behavior when interrupting the movement with a mouse click.
+ - [QTBUG-77418] QQuickListView: Respect highlight properties after changing
+   currentIndex.
+ - [QTBUG-77142] Also deliver touch points to MultiPointTouchArea if only
+   secondary properties, like pressure, have changed.
+ - [QTBUG-78468] FolderListModel: Avoid infinite update loop over name
+   filters on iOS.
+ - Add documentation for HoverHandler.

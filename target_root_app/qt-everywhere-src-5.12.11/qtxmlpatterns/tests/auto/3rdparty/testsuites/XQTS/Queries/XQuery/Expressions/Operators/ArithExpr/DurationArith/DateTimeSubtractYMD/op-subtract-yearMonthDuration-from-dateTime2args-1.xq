@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-subtract-yearMonthDuration-from-dateTime2args-1:)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Tue Apr 12 16:29:08 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "op:subtract-yearMonthDuration-from-dateTime" operator:)
+(: with the arguments set as follows:                    :)
+(:arg1 = xs:dateTime(lower bound)                        :)
+(:$arg2 = xs:yearMonthDuration(lower bound)             :)
+(:*******************************************************:)
+
+xs:dateTime("1970-01-01T00:00:00Z") - xs:yearMonthDuration("P0Y0M")

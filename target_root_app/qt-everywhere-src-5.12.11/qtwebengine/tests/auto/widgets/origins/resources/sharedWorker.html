@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sharedWorker</title>
+        <script>
+         var done;
+         var result;
+         var error;
+         try {
+             let worker = new SharedWorker("sharedWorker.js");
+             worker.port.onmessage = (e) => { done = true; result = e.data; };
+             worker.port.postMessage(41);
+         } catch (e) {
+             done = true; error = e.message;
+         }
+        </script>
+    </head>
+    <body></body>
+</html>

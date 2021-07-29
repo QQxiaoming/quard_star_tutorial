@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ForExprPositionalVar-6                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Verify positional variable with fn:deep-equal(). :)
+(:*******************************************************:)
+deep-equal((1, 2, 3), for $i at $p in (1, 2, 3) return $p)

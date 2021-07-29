@@ -1,0 +1,122 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="StaticBaseURIFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:static-base-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-static-base-1" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "static-base-uri" function with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-1" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case name="fn-static-base-2" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function using "ftp" flavor for base-uri .</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-2" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-2.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-3" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function using "mailto" flavor for base-uri.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-3" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-3.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-4" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function using "news" flavor for base-uri .</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-4" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-4.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-5" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function using "telnet" flavor for base-uri .</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-5" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-5.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-6" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function using "tel" flavor for base-uri .</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-6" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-6.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-7" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function using "urn" flavor for base-uri .</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-7" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-7.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-8" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:upper-case.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-8" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-8.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-9" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:lower-case.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-9" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-9.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-10" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:concat.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-10" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-10.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-11" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:string-join.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-11" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-11.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-12" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:string-length.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-12" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-12.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-13" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:string-before.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-13" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-13.txt</output-file>
+   </test-case>
+   <test-case name="fn-static-base-14" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates the "static-base-uri" function used as argument to fn:string-before.</description>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="fn-static-base-uri-14" date="2005-11-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-static-base-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StaticBaseURIFunc-1" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `static-base-uri(.)`.</description>
+      <query name="K-StaticBaseURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StaticBaseURIFunc-2" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `static-base-uri(1, 2)`.</description>
+      <query name="K-StaticBaseURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StaticBaseURIFunc-3" FilePath="Functions/AccessorFunc/StaticBaseURIFunc/" scenario="standard">
+      <description>A test whose essence is: `if(static-base-uri()) then true() else true()`.</description>
+      <query name="K-StaticBaseURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StaticBaseURIFunc-3.txt</output-file>
+   </test-case>
+</test-group>

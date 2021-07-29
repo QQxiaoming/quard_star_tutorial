@@ -1,0 +1,28 @@
+From 821c869ad7af125a7a718093f8d4730108cffe5b Mon Sep 17 00:00:00 2001
+From: Jarkko Koivikko <jarkko.koivikko@code-q.fi>
+Date: Thu, 23 Aug 2018 21:51:19 +0300
+Subject: [PATCH] Fix string cast
+
+Enforce proper string cast using QT_NO_CAST_TO_ASCII and friends.
+
+Change-Id: I039b23144c8d57f12aad1c27f29654b382078222
+---
+ src/plugins/pinyin/3rdparty/pinyin/share/dicttrie.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/plugins/pinyin/3rdparty/pinyin/share/dicttrie.cpp b/src/plugins/pinyin/3rdparty/pinyin/share/dicttrie.cpp
+index e7d194f..a084395 100644
+--- a/src/plugins/pinyin/3rdparty/pinyin/share/dicttrie.cpp
++++ b/src/plugins/pinyin/3rdparty/pinyin/share/dicttrie.cpp
+@@ -245,7 +245,7 @@ bool DictTrie::load_dict(const char *filename, LemmaIdType start_id,
+   if (NULL == filename || end_id <= start_id)
+     return false;
+ 
+-  QFile file(filename);
++  QFile file(QString::fromUtf8(filename));
+   if (!file.open(QIODevice::ReadOnly))
+     return false;
+   QFile *fp = &file;
+-- 
+2.14.1.windows.1
+

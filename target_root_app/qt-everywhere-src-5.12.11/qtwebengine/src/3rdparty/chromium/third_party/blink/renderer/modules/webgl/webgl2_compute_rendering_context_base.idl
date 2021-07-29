@@ -1,0 +1,65 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+    NoInterfaceObject
+] interface WebGL2ComputeRenderingContextBase {
+    // TODO(jiajia.qin@intel.com): add more enums and apis
+    const GLenum COMPUTE_SHADER                         = 0x91B9;
+    const GLenum BUFFER_VARIABLE                        = 0x92E5;
+    const GLenum SHADER_STORAGE_BLOCK                   = 0x92E6;
+    const GLenum VERTEX_ATTRIB_ARRAY_BARRIER_BIT        = 0x00000001;
+    const GLenum ELEMENT_ARRAY_BARRIER_BIT              = 0x00000002;
+    const GLenum UNIFORM_BARRIER_BIT                    = 0x00000004;
+    const GLenum TEXTURE_FETCH_BARRIER_BIT              = 0x00000008;
+    const GLenum SHADER_IMAGE_ACCESS_BARRIER_BIT        = 0x00000020;
+    const GLenum COMMAND_BARRIER_BIT                    = 0x00000040;
+    const GLenum PIXEL_BUFFER_BARRIER_BIT               = 0x00000080;
+    const GLenum TEXTURE_UPDATE_BARRIER_BIT             = 0x00000100;
+    const GLenum BUFFER_UPDATE_BARRIER_BIT              = 0x00000200;
+    const GLenum FRAMEBUFFER_BARRIER_BIT                = 0x00000400;
+    const GLenum TRANSFORM_FEEDBACK_BARRIER_BIT         = 0x00000800;
+    const GLenum ATOMIC_COUNTER_BARRIER_BIT             = 0x00001000;
+    const GLenum SHADER_STORAGE_BARRIER_BIT             = 0x00002000;
+    const GLenum FALSE = 0;
+    const GLenum TRUE = 1;
+    const GLenum READ_ONLY                              = 0x88B8;
+    const GLenum WRITE_ONLY                             = 0x88B9;
+    const GLenum READ_WRITE                             = 0x88BA;
+    const GLenum SHADER_STORAGE_BUFFER                  = 0x90D2;
+    const GLenum SHADER_STORAGE_BUFFER_BINDING          = 0x90D3;
+    const GLenum SHADER_STORAGE_BUFFER_START            = 0x90D4;
+    const GLenum SHADER_STORAGE_BUFFER_SIZE             = 0x90D5;
+    const GLenum MAX_VERTEX_SHADER_STORAGE_BLOCKS       = 0x90D6;
+    const GLenum MAX_FRAGMENT_SHADER_STORAGE_BLOCKS     = 0x90DA;
+    const GLenum MAX_COMPUTE_SHADER_STORAGE_BLOCKS      = 0x90DB;
+    const GLenum MAX_COMBINED_SHADER_STORAGE_BLOCKS     = 0x90DC;
+    const GLenum MAX_SHADER_STORAGE_BUFFER_BINDINGS     = 0x90DD;
+    const GLenum MAX_SHADER_STORAGE_BLOCK_SIZE          = 0x90DE;
+    const GLenum SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT = 0x90DF;
+    const GLenum MAX_COMPUTE_ATOMIC_COUNTER_BUFFERS     = 0x8264;
+    const GLenum MAX_COMPUTE_ATOMIC_COUNTERS            = 0x8265;
+    const GLenum ATOMIC_COUNTER_BUFFER_INDEX            = 0x9301;
+    const GLenum ATOMIC_COUNTER_BUFFER                  = 0x92C0;
+    const GLenum ATOMIC_COUNTER_BUFFER_BINDING          = 0x92C1;
+    const GLenum ATOMIC_COUNTER_BUFFER_START            = 0x92C2;
+    const GLenum ATOMIC_COUNTER_BUFFER_SIZE             = 0x92C3;
+    const GLenum MAX_VERTEX_ATOMIC_COUNTER_BUFFERS      = 0x92CC;
+    const GLenum MAX_FRAGMENT_ATOMIC_COUNTER_BUFFERS    = 0x92D0;
+    const GLenum MAX_COMBINED_ATOMIC_COUNTER_BUFFERS    = 0x92D1;
+    const GLenum MAX_VERTEX_ATOMIC_COUNTERS             = 0x92D2;
+    const GLenum MAX_FRAGMENT_ATOMIC_COUNTERS           = 0x92D6;
+    const GLenum MAX_COMBINED_ATOMIC_COUNTERS           = 0x92D7;
+    const GLenum MAX_ATOMIC_COUNTER_BUFFER_SIZE         = 0x92D8;
+    const GLenum MAX_ATOMIC_COUNTER_BUFFER_BINDINGS     = 0x92DC;
+    const GLenum ACTIVE_ATOMIC_COUNTER_BUFFERS          = 0x92D9;
+    const GLenum UNSIGNED_INT_ATOMIC_COUNTER            = 0x92DB;
+
+    void dispatchCompute(GLuint numGroupsX, GLuint numGroupsY, GLuint numGroupsZ);
+    void bindImageTexture(GLuint unit, WebGLTexture ? texture, GLint level, GLboolean layered, GLint layer, GLenum access, GLenum format);
+    void memoryBarrier(GLbitfield barriers);
+    void memoryBarrierByRegion(GLbitfield barriers);
+};
+WebGL2ComputeRenderingContextBase implements WebGLRenderingContextBase;
+WebGL2ComputeRenderingContextBase implements WebGL2RenderingContextBase;

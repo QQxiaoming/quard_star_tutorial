@@ -1,0 +1,15 @@
+include_rules = [
+  "+base/metrics/single_sample_metrics.h",
+  "+cc",
+  "+components/viz/common",
+  "+services/resource_coordinator/public/cpp/resource_coordinator_features.h",
+]
+
+specific_include_rules = {
+  "main_thread_task_queue.h": [
+    "+base/task/sequence_manager/task_queue_impl.h",
+  ],
+  "frame_scheduler_impl.h": [
+    "+net/base/request_priority.h"
+  ]
+}

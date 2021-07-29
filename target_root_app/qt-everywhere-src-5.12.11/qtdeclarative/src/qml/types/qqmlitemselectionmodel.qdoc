@@ -1,0 +1,239 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \qmltype ItemSelectionModel
+    \instantiates QItemSelectionModel
+    \inqmlmodule QtQml.Models
+    \since 5.5
+    \ingroup qtquick-models
+
+    \brief Instantiates a QItemSelectionModel to be used in conjunction
+    with a QAbstractItemModel and any view supporting it.
+
+    \sa QItemSelectionModel, {Models and Views in Qt Quick}
+*/
+
+
+/*!
+    \qmlproperty QAbstractItemModel ItemSelectionModel::model
+
+    This property's value must match the view's model.
+*/
+
+/*!
+    \qmlproperty bool ItemSelectionModel::hasSelection
+    \readonly
+
+    It will trigger property binding updates every time \l selectionChanged()
+    is emitted, even though its value hasn't changed.
+
+    \sa selection, selectedIndexes, select(), selectionChanged()
+*/
+
+/*!
+    \qmlproperty QModelIndex ItemSelectionModel::currentIndex
+    \readonly
+
+    Use \l setCurrentIndex() to set its value.
+
+    \sa setCurrentIndex(), currentChanged()
+*/
+
+/*!
+    \qmlproperty QModelIndexList ItemSelectionModel::selectedIndexes
+    \readonly
+
+    Contains the list of all the indexes in the selection model.
+*/
+
+/*!
+    \qmlmethod bool ItemSelectionModel::isSelected(QModelIndex index)
+
+    Returns \c true if the given model item \a index is selected.
+*/
+
+/*!
+    \qmlmethod bool ItemSelectionModel::isRowSelected(int row, QModelIndex parent)
+
+    Returns \c true if all items are selected in the \a row with the given
+    \a parent.
+
+    Note that this function is usually faster than calling isSelected()
+    on all items in the same row, and that unselectable items are ignored.
+*/
+
+/*!
+    \qmlmethod bool ItemSelectionModel::isColumnSelected(int column, QModelIndex parent)
+
+    Returns \c true if all items are selected in the \a column with the given
+    \a parent.
+
+    Note that this function is usually faster than calling isSelected()
+    on all items in the same column, and that unselectable items are ignored.
+*/
+
+/*!
+    \qmlmethod bool ItemSelectionModel::rowIntersectsSelection(int row, QModelIndex parent)
+
+    Returns \c true if there are any items selected in the \a row with the
+    given \a parent.
+*/
+
+/*!
+    \qmlmethod bool ItemSelectionModel::columnIntersectsSelection(int column, QModelIndex parent)
+
+    Returns \c true if there are any items selected in the \a column with the
+    given \a parent.
+*/
+
+/*!
+    \qmlmethod QModelIndexList ItemSelectionModel::selectedRows(int column)
+
+    Returns the indexes in the given \a column for the rows where all columns
+    are selected.
+
+    \sa selectedColumns()
+*/
+
+/*!
+    \qmlmethod QModelIndexList ItemSelectionModel::selectedColumns(int row)
+
+    Returns the indexes in the given \a row for columns where all rows are
+    selected.
+
+    \sa selectedRows()
+*/
+
+/*!
+    \qmlproperty object ItemSelectionModel::selection
+    \readonly
+
+    Holds the selection ranges stored in the selection model.
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::setCurrentIndex(QModelIndex index, SelectionFlags command)
+
+    Sets the model item \a index to be the current item, and emits
+    currentChanged(). The current item is used for keyboard navigation and
+    focus indication; it is independent of any selected items, although a
+    selected item can also be the current item.
+
+    Depending on the specified \a command, the \a index can also become part
+    of the current selection.
+
+    Valid \a command values are described in \l {itemselectionmodelselectindex}
+    {select(\e index, \e command)}.
+
+    \sa select()
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::select(QModelIndex index, SelectionFlags command)
+    \keyword itemselectionmodelselectindex
+
+    Selects the model item \a index using the specified \a command, and emits
+    selectionChanged().
+
+    Valid values for the \a command parameter, are:
+
+    \value NoUpdate       No selection will be made.
+    \value Clear          The complete selection will be cleared.
+    \value Select         All specified indexes will be selected.
+    \value Deselect       All specified indexes will be deselected.
+    \value Toggle         All specified indexes will be selected or
+                          deselected depending on their current state.
+    \value Current        The current selection will be updated.
+    \value Rows           All indexes will be expanded to span rows.
+    \value Columns        All indexes will be expanded to span columns.
+    \value SelectCurrent  A combination of Select and Current, provided for
+                          convenience.
+    \value ToggleCurrent  A combination of Toggle and Current, provided for
+                          convenience.
+    \value ClearAndSelect A combination of Clear and Select, provided for
+                          convenience.
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::select(QItemSelection selection, SelectionFlags command)
+
+    Selects the item \a selection using the specified \a command, and emits
+    selectionChanged().
+
+    Valid \a command values are described in \l {itemselectionmodelselectindex}
+    {select(\e index, \e command)}.
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::clear()
+
+    Clears the selection model. Emits selectionChanged() and currentChanged().
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::reset()
+
+    Clears the selection model. Does not emit any signals.
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::clearSelection()
+
+    Clears the selection in the selection model. Emits selectionChanged().
+*/
+
+/*!
+    \qmlmethod void ItemSelectionModel::clearCurrentIndex()
+
+    Clears the current index. Emits currentChanged().
+*/
+
+/*!
+    \qmlsignal ItemSelectionModel::selectionChanged(QItemSelection selected, QItemSelection deselected)
+
+    This signal is emitted whenever the selection changes. The change in the
+    selection is represented as an item selection of \a deselected items and
+    an item selection of \a selected items.
+
+    Note the that the current index changes independently from the selection.
+    Also note that this signal will not be emitted when the item model is reset.
+
+    \sa select(), currentChanged()
+*/
+
+/*!
+    \qmlsignal ItemSelectionModel::currentChanged(QModelIndex current, QModelIndex previous)
+
+    This signal is emitted whenever the current item changes. The \a previous
+    model item index is replaced by the \a current index as the selection's
+    current item.
+
+    Note that this signal will not be emitted when the item model is reset.
+
+    \sa currentIndex, setCurrentIndex(), selectionChanged()
+*/

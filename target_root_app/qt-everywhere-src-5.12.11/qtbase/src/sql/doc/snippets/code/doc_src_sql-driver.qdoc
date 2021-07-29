@@ -1,0 +1,239 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:BSD$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** BSD License Usage
+** Alternatively, you may use this file under the terms of the BSD license
+** as follows:
+**
+** "Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are
+** met:
+**   * Redistributions of source code must retain the above copyright
+**     notice, this list of conditions and the following disclaimer.
+**   * Redistributions in binary form must reproduce the above copyright
+**     notice, this list of conditions and the following disclaimer in
+**     the documentation and/or other materials provided with the
+**     distribution.
+**   * Neither the name of The Qt Company Ltd nor the names of its
+**     contributors may be used to endorse or promote products derived
+**     from this software without specific prior written permission.
+**
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+//! [0]
+[...]
+
+Database options:
+
+  -sql-<driver> ........ Enable SQL <driver> plugin. Supported drivers:
+                         db2 ibase mysql oci odbc psql sqlite2 sqlite tds
+                         [all auto]
+  -sqlite .............. Select used sqlite3 [system/qt]
+
+[...]
+//! [0]
+
+
+//! [1]
+create procedure qtestproc (OUT param1 INT, OUT param2 INT)
+BEGIN
+    set param1 = 42;
+    set param2 = 43;
+END
+//! [1]
+
+
+//! [3]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- MYSQL_PREFIX=/usr/local
+make sub-mysql
+//! [3]
+
+
+//! [4]
+cd $QTDIR/qtbase/src/plugins/sqldrivers/mysql
+make install
+//! [4]
+
+
+//! [5]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- MYSQL_INCDIR=C:/MySQL/include "MYSQL_LIBDIR=C:/MYSQL/MySQL Server <version>/lib/opt"
+nmake sub-mysql
+//! [5]
+
+
+//! [6]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- "OCI_INCDIR=$ORACLE_HOME/rdbms/public" OCI_LIBDIR=$ORACLE_HOME/lib "OCI_LIBS=-lclntsh -lwtc9"
+make sub-oci
+//! [6]
+
+
+//! [7]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- OCI_INCDIR=/usr/include/oracle/10.1.0.3/client OCI_LIBDIR=/usr/lib/oracle/10.1.0.3/client/lib
+make sub-oci
+//! [7]
+
+
+//! [8]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- OCI_INCDIR=c:/oracle/oci/include OCI_LIBDIR=c:/oracle/oci/lib/msvc
+nmake sub-oci
+//! [8]
+
+
+//! [9]
+set PATH=%PATH%;c:\oracle\bin
+//! [9]
+
+
+//! [11]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- ODBC_PREFIX=/usr/local/unixODBC
+make sub-odbc
+//! [11]
+
+
+//! [12]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake
+nmake sub-odbc
+//! [12]
+
+
+//! [13]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- PSQL_INCDIR=/usr/include/pgsql
+make sub-psql
+//! [13]
+
+
+//! [15]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- PSQL_INCDIR=C:/psql/include PSQL_LIBDIR=C:/psql/lib/ms
+nmake sub-psql
+//! [15]
+
+
+//! [16]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- TDS_PREFIX=$SYBASE
+make sub-tds
+//! [16]
+
+
+//! [17]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake
+nmake sub-tds
+//! [17]
+
+
+//! [18]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- DB2_PREFIX=$DB2DIR
+make sub-db2
+//! [18]
+
+
+//! [20]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- "DB2_PREFIX=<DB2 home>/sqllib"
+nmake sub-db2
+//! [20]
+
+
+//! [21]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- -system-sqlite SQLITE3_PREFIX=$SQLITE
+make sub-sqlite
+//! [21]
+
+
+//! [23]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- -system-sqlite SQLITE3_PREFIX=C:/SQLITE
+nmake sub-sqlite
+//! [23]
+
+
+//! [27]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- IBASE_PREFIX=/opt/interbase
+make sub-ibase
+//! [27]
+
+
+//! [28]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- IBASE_PREFIX=/opt/interbase IBASE_LIBS=-lfbclient
+make sub-ibase
+//! [28]
+
+
+//! [29]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- IBASE_INCDIR=C:/interbase/include
+nmake sub-ibase
+//! [29]
+
+
+//! [30]
+cd %QTDIR%\qtbase\src\plugins\sqldrivers
+qmake -- IBASE_INCDIR=C:/interbase/include IBASE_LIBS=-lfbclient
+nmake sub-ibase
+//! [30]
+
+
+//! [32]
+configure OCI_INCDIR=/usr/include/oracle/10.1.0.3/client OCI_LIBDIR=/usr/lib/oracle/10.1.0.3/client/lib -R /usr/lib/oracle/10.1.0.3/client/lib "OCI_LIBS=-lclntsh -lnnz10"
+make
+//! [32]
+
+//! [33]
+cd $QTDIR/qtbase/src/plugins/sqldrivers
+qmake -- OCI_INCDIR=/usr/include/oracle/10.1.0.3/client OCI_LIBDIR=/usr/lib/oracle/10.1.0.3/client/lib "OCI_LIBS=-Wl,-rpath,/usr/lib/oracle/10.1.0.3/client/lib -lclntsh -lnnz10"
+make sub-oci
+//! [33]
+
+
+//! [35]
+QSqlDatabase: QPSQL driver not loaded
+QSqlDatabase: available drivers: QSQLITE QMYSQL QMYSQL3 QODBC QODBC3 QPSQL QPSQL7
+Could not create database object
+//! [35]
+
+
+//! [38]
+QPSQLDriver::getResult: Query results lost - probably discarded on executing another SQL query.
+//! [38]

@@ -1,0 +1,57 @@
+//! [conf]
+\table
+    \header
+        \li Variable
+        \li Description
+    \row
+        \li \c Path
+        \li Specifies the \l {imagine-path-attached-prop}{path} to the directory that contains
+        the Imagine style assets. If not specified, the built-in assets are used.
+
+        For example, to specify a path to a directory stored in the
+        \l {The Qt Resource System}{resource system}:
+
+        \badcode
+        [Imagine]
+        Path=:/imagine-assets
+        \endcode
+
+        To specify a relative path to a local directory:
+
+        \badcode
+        [Imagine]
+        Path=imagine-assets
+        \endcode
+
+        \note Due to a technical limitation, the path should not be named
+              \e "imagine" if it is relative to the \c qtquickcontrols2.conf file.
+\endtable
+//! [conf]
+
+//! [env]
+\table
+    \header
+        \li Variable
+        \li Description
+    \row
+        \li \c QT_QUICK_CONTROLS_IMAGINE_PATH
+        \li Specifies the path to the directory that contains the Imagine style assets.
+            If not specified, the built-in assets are used.
+
+            For example, to specify a path to a directory stored in the
+            \l {The Qt Resource System}{resource system}:
+
+            \badcode
+            QT_QUICK_CONTROLS_IMAGINE_PATH=:/imagine-assets
+            \endcode
+
+            To specify a relative path to a local directory:
+
+            \badcode
+            QT_QUICK_CONTROLS_IMAGINE_PATH=imagine-assets
+            \endcode
+
+            \note Due to a technical limitation, the path should not be named
+                  \e "imagine" if it is relative to the \c qtquickcontrols2.conf file.
+\endtable
+//! [env]

@@ -1,0 +1,286 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="StringToCodepointFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:string-to-codepoints</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-1" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-to-codepoints" function with the arguments set as follows: $arg = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.2.2" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-to-codepoints1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-2" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-to-codepoints" function with the arguments set as follows: $arg = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.2.2" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-to-codepoints1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-3" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-to-codepoints" function with the arguments set as follows: $arg = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.2.2" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-to-codepoints1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-4" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test string-to-codepoints with variety of characters.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-4" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints1args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-5" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test string-to-codepoints with an empty string argument.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-5" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints1args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-6" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test string-to-codepoints with empty sequence argument.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-6" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints1args-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-7" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test string-to-codepoints with invalid type in argument.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-7" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints1args-8" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test string-to-codepoints with incorrect function arity.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints1args-8" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-1" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument set to a single character ('1').</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-1" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-2" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument set to a single character ('a').</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-2" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-3" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument set to a combination of character/number ('1a').</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-3" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-4" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument set to the characters "#*^$".</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-4" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-5" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument set to the characters "string-to-codepoints".</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-5" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-6" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument that uses the "xs:string" function.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-6" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-7" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument that uses the "fn:upper-case" function.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-7" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-8" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints with argument that uses the "fn:lower-case" function.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-8" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-9" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints used as argument to the "fn:count" function.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-9" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-10" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints used as argument to the "fn:avg" function.</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-10" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-11" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints used as argument to the "fn:empty" function (return false).</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-11" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-12" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints used as argument to the "fn:empty" function (returns true).</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-12" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-13" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints used as argument to the "fn:exists" function (return false).</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-13" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-to-codepoints-14" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test string-to-codepoints used as argument to the "fn:exits" function (returns true).</description>
+      <spec-citation section-number="7.2.2" spec="FuncOps" section-title="fn:string-to-codepoints" section-pointer="func-string-to-codepoints"/>
+      <query name="fn-string-to-codepoints-14" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-string-to-codepoints-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-1" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `string-to-codepoints()`.</description>
+      <query name="K-StringToCodepointFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-2" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `string-to-codepoints("str", "INVALID")`.</description>
+      <query name="K-StringToCodepointFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-3" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(string-to-codepoints(()))`.</description>
+      <query name="K-StringToCodepointFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-4" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(string-to-codepoints(""))`.</description>
+      <query name="K-StringToCodepointFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-5" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `count(string-to-codepoints("123")) eq 3`.</description>
+      <query name="K-StringToCodepointFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-6" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `count(string-to-codepoints("")) eq 0`.</description>
+      <query name="K-StringToCodepointFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-7" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(string-to-codepoints(""))`.</description>
+      <query name="K-StringToCodepointFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-8" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `string-to-codepoints("e")`.</description>
+      <query name="K-StringToCodepointFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-9" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `deep-equal(string-to-codepoints("ee"), (101, 101))`.</description>
+      <query name="K-StringToCodepointFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-10" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `deep-equal(string-to-codepoints("eee"), (101, 101, 101))`.</description>
+      <query name="K-StringToCodepointFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-11" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `string-join(for $code in string-to-codepoints("example.com/") return string($code), "") eq "10112097109112108101469911110947"`.</description>
+      <query name="K-StringToCodepointFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-12" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine fn:deep-equal and string-to-codepoints().</description>
+      <query name="K-StringToCodepointFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-13" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>A test whose essence is: `codepoints-to-string((87, 36, 56, 87, 102, 96)) eq "W$8Wf`"`.</description>
+      <query name="K-StringToCodepointFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-14" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-15" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-16" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-17" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-18" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-19" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-20" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringToCodepointFunc-21" FilePath="Functions/AllStringFunc/AssDisassStringFunc/StringToCodepointFunc/" scenario="standard">
+      <description>Combine string-to-codepoints() and a predicate.</description>
+      <query name="K-StringToCodepointFunc-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringToCodepointFunc-21.txt</output-file>
+   </test-case>
+</test-group>

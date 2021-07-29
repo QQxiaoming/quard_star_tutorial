@@ -1,0 +1,66 @@
+Qt 5.11.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0 through 5.11.2.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.3 Changes                           *
+****************************************************************************
+
+Chromium
+--------
+
+ - Security fixes from Chromium up to version 70.0.3538.102, including:
+  * CVE-2018-16066
+  * CVE-2018-16067
+  * CVE-2018-16068
+  * CVE-2018-16070
+  * CVE-2018-16071
+  * CVE-2018-16072
+  * CVE-2018-16073
+  * CVE-2018-16074
+  * CVE-2018-16076
+  * CVE-2018-16077
+  * CVE-2018-16083
+  * CVE-2018-16085
+  * CVE-2018-17462
+  * CVE-2018-17466
+  * CVE-2018-17468
+  * CVE-2018-17468
+  * CVE-2018-17469
+  * CVE-2018-17470
+  * CVE-2018-17471
+  * CVE-2018-17473
+  * CVE-2018-17474
+  * CVE-2018-17476
+  * CVE-2018-17478
+
+General
+-------
+
+  * [QTBUG-69281, QTBUG-71128] Fixed asserts and crashes in proxy (.pac) file handling.
+  * [QTBUG-70062] Fixed rendering on late 2013 Mac Pros.
+  * [QTBUG-71393] Fixed issue with some cookies being incorrectly marked as thirdParty.
+
+Build
+-----
+
+  * [QTBUG-70981] macOS: Fixed build on macOS 10.14.
+  * [QTBUG-71033] Fixed configure check for minimum freetype version.
+  * [QTBUG-71295] Fixed building without webrtc but with pepper plugins.
+  * We are now explicitly setting arm_arch when compiling for ARM.
+  * Windows: Added configure check that we are using a 64 bit compiler.

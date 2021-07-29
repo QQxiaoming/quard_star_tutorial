@@ -1,0 +1,12 @@
+(:*******************************************************:)
+(:Test: fn-substring-before-21                           :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Mon Jun 1, 2005                                  :)
+(:Purpose: Evaluates The "substring-before" function     :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "substring-before                              :)
+(:$arg2 = "erofeb-gnirtsbus                              :)
+(:("substring-before" backwards)                         :)
+(:*******************************************************:)
+
+count(fn:substring-before("substring-before","erofeb-gnirtsbus"))

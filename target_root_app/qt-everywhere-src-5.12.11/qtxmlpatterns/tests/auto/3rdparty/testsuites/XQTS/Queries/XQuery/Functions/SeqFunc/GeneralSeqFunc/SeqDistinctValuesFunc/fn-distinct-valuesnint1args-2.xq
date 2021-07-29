@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: distinct-valuesnint1args-2                        :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Wed Dec 15 11:37:32 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "distinct-values" function      :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:negativeInteger(mid range)                   :)
+(:*******************************************************:)
+
+fn:distinct-values((xs:negativeInteger("-297014075999096793")))

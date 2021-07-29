@@ -1,0 +1,12 @@
+(:*******************************************************:)
+(:Test: replace3args-2                                    :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "replace" function              :)
+(: with the arguments set as follows:                    :)
+(:$input = xs:string(mid range)                          :)
+(:$pattern = xs:string(lower bound)                      :)
+(:$replacement = xs:string(lower bound)                  :)
+(:*******************************************************:)
+
+fn:replace("This is a characte","This is a characte","This is a characte")

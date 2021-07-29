@@ -1,0 +1,42 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.2 Changes                           *
+****************************************************************************
+
+Linux
+-----
+
+- [QTBUG-62435] Fixed regression that caused the selected device in the
+  audio input to be tested against the available output devices.
+- [QTBUG-61725] Fixed improper locking logic in QSoundEffect (PulseAudio)
+  that caused a crash if when context creation failed.
+
+Windows
+-------
+
+- [QTBUG-61817] Fixed crash in the camera caused by stale frame data.
+
+macOS & iOS
+-----------
+
+- [QTBUG-60329] Made AVFImageCaptureControl work without a preview.
+- [QTBUG-61367] Fixed deadlock caused by stopping the camera session
+  before the image capture thread was done processing.

@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-SeqMINFunc-40                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: A test whose essence is: `min((xs:anyURI("example.com/"), xs:anyURI("example.com/"))) eq xs:anyURI("example.com/")`. :)
+(:*******************************************************:)
+min((xs:anyURI("example.com/"), xs:anyURI("example.com/")))
+			eq xs:anyURI("example.com/")

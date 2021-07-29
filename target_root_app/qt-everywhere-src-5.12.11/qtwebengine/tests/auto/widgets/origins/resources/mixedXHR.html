@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mixed</title>
+        <script>
+         var result;
+         function sendXHR(url) {
+             result = undefined;
+             let req = new XMLHttpRequest();
+             req.addEventListener("load", () => { result = req.responseText });
+             req.addEventListener("error", () => { result = "error"; });
+             req.open("GET", url);
+             req.send();
+         }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

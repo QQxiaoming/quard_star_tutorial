@@ -1,0 +1,210 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeNameFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:node-name</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-node-name-1" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-1" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-node-name-2" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a comment node.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-2" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-node-name-3" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to an element node query from a file.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-3" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-4" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to directly constructed element node.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-4" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-5" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a comment node.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-5" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-6" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a processing instruction node.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-6" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-7" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a directly constructed element node with namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-7" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-8" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed element node with no namespace declaration and no children.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-8" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-9" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed element node with no namespace declaration and no children. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-9" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-10" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed element node with no namespace declaration and one child. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-10" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-11" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed attribute node with value set to empty string. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-11" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-12" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed attribute node with value set to a non empty value. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-12" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-13" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed attribute node with value set to a non empty value. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-13" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-14" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed document node with value set to empty string. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-14" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-15" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed document node with value set to empty string. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-15" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-16" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed document node with value set to non empty string. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-16" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-17" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed document node with value set to non empty string. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-17" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-18" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed text node with value set to empty string. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-18" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-19" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed text node with value set to empty string. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-19" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-20" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed text node with value set to a non-empty value. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-20" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-21" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed text node with value set to a non-empty value. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-21" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-22" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed processing instruction node. Used as argument to local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-22" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-23" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with argument set to a computed constructed processing instruction node. Used as argument to namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-23" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-node-name-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-node-name-24" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "node-name" function with wrong arity (2 arguments).</description>
+      <spec-citation spec="FuncOps" section-number="2.1" section-title="fn:node-name" section-pointer="func-node-name"/>
+      <query name="fn-node-name-24" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeNameFunc-1" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="runtime-error">
+      <description>node-name() must be passed one argument, it doesn't use the context item by default.</description>
+      <query name="K-NodeNameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeNameFunc-2" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `node-name((), "wrong param")`.</description>
+      <query name="K-NodeNameFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeNameFunc-3" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(node-name(()))`.</description>
+      <query name="K-NodeNameFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeNameFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeNameFunc-1" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="runtime-error">
+      <description>Invoke fn:node-name() with too many arguments.</description>
+      <query name="K2-NodeNameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeNameFunc-2" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="runtime-error">
+      <description>Invoke fn:node-name() with an invalid argument.</description>
+      <query name="K2-NodeNameFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeNameFunc-3" FilePath="Functions/AccessorFunc/NodeNameFunc/" scenario="standard">
+      <description>Check the return value of fn:node-name().</description>
+      <query name="K2-NodeNameFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeNameFunc-3.txt</output-file>
+   </test-case>
+</test-group>

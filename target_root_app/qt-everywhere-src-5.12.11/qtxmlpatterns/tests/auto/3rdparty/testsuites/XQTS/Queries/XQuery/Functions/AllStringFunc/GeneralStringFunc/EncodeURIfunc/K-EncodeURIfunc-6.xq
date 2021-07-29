@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-EncodeURIfunc-6                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: Invoke fn:normalize-space() on the return value of fn:encode-for-uri(). :)
+(:*******************************************************:)
+normalize-space(encode-for-uri(("some string", current-time())[1] treat as xs:string))

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ResolveQNameConstructFunc-4                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: Although the second argument contains a type error(because an element is expected), it is also valid to return the empty sequence because one must not evaluate all arguments. :)
+(:*******************************************************:)
+empty(resolve-QName((), "a string"))

@@ -1,0 +1,83 @@
+Qt 5.9.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.4 Changes                           *
+****************************************************************************
+
+QtQml
+-----
+
+ - Added qt.qml.gc.statistics and qt.qml.gc.allocatorStats logging
+   categories for garbage collection statistics
+ - [QTBUG-56521][QTBUG-56532] Added private qmlUnregisterType(int) for
+   advanced use cases such as re-registering an enum, or cleaning up
+   when a plugin is unloaded
+ - [QTBUG-61209] Fixed handling of QML cache files during URL interception.
+   This changes the semantics of URL redirects. Previously a redirected URL
+   was used as the base URL for further URL resolution. This doesn't work
+   because redirection occurs after interception and interception should
+   not influence the resolution of further URLs. We now use the original
+   URL as base URL for resolution of further URLs and rely on the server to
+   redirect those, too.
+ - [QTBUG-63844] Fixed a crash in QMetaObject::activate() when using
+   a Loader to load items with animations
+
+QtQuick
+-------
+
+ - QQuickWindow:
+   * Added logging category qt.quick.window.transient to check detection of
+     transient windows declared inside other Items and Windows
+
+ - QQuickWidget:
+   * [QTBUG-64241] Synthesized mouse events delivered via QQuickWidget
+     have QMouseEvent::source() set so they can be identified as synthesized
+   * [QTBUG-64548] Shortcut now works in QQuickWidget
+   * Fixed coordinate transformation in QInputMethodQueryEvent as delivered
+     to QQuickWidget
+
+ - Input Handling:
+   * [QTBUG-53036] When an application is deactivated (applicationState() is
+     no longer ApplicationActive), it's treated the same as window deactivation.
+     Thus on mobile devices MouseAreas no longer get stuck in pressed state, etc.
+   * [QTBUG-61144] Fixed the regression that when a mouse-handling Item
+     or Control is used in a Flickable with a pressDelay, the delegate item
+     did not receive touchscreen taps (in the form of mouse clicks)
+   * [QTBUG-63026] Flickable no longer jumps when reversing the direction of
+     scrolling on a pixel-delta-capable trackpad
+   * [QTBUG-64249] When pressing one MouseArea via mouse, then tapping another
+     via touch, then releasing, the first MouseArea correctly gets released
+
+ - Item Views:
+   * [QTBUG-46488] Refilling is restarted when necessary due to changing
+     the model in a delegate's Component.onCompleted()
+   * [QTBUG-50992] Fixed a bug which caused Qt Quick Controls to often be
+     "destroyed during incubation" during asynchronous creation
+   * [QTBUG-54859] Fixed a crash when items in a Repeater are moved around
+     during asynchronous creation
+   * [QTBUG-61537] Fixed incorrect delegate geometry due to model changes
+     during delegate creation
+   * [QTBUG-62864] Fixed incorrect ListView and GridView highlight position
+     while scrolling through delegates backed by a lazy-loading model
+   * [QTBUG-63743] Fixed a bug with clipping of items in a ScrollView
+
+  - Other:
+   * [QTBUG-62913] AnimatedImage.frameCount now has a NOTIFY signal
+   * [QTBUG-65156] Fixed a memory leak by releasing textures during resizing

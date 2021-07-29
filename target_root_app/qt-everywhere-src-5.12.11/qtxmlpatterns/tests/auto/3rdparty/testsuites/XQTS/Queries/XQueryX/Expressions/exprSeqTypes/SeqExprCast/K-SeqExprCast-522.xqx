@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:eqOp>
+        <xqx:firstOperand>
+          <xqx:castExpr>
+            <xqx:argExpr>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">double</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>3.3e3</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:argExpr>
+            <xqx:singleType>
+              <xqx:atomicType xqx:prefix="xs">boolean</xqx:atomicType>
+            </xqx:singleType>
+          </xqx:castExpr>
+        </xqx:firstOperand>
+        <xqx:secondOperand>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">boolean</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>true</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:secondOperand>
+      </xqx:eqOp>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

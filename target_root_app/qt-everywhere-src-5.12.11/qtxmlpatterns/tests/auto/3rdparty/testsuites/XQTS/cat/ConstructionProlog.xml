@@ -1,0 +1,183 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ConstructionProlog" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Construction Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="constprolog-1" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog with two construction declarations.</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-1" date="2005-11-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0067</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-2" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with directly construted element.</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-2" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-3" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with computed construted element.</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-3" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-4" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with directly construted element.</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-4" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-5" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with computed element.</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-5" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-6" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with directly constructed element compare against "xs:anyType".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-6" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-7" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with computed element compare against "xs:anyType".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-7" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-8" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with direct element and used as argument to fn:not().</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-8" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-9" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with computed element and used as argument to fn:not().</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-9" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-10" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with direct element and used as argument to fn:not().</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-10" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-11" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with computed element and used as argument to fn:not().</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-11" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-12" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with direct element (build inside instance of expression) and used as argument to fn:not().</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-12" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-13" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with computed element (build inside instance of expression) and used as argument to fn:not().</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-13" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-14" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with direct element and used with "and" and "fn:true".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-14" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-15" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with computed element and used with "and" and "fn:true".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-15" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-16" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with direct element and used with "and" and "fn:true".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-16" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-17" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with computed element and used with "and" and "fn:true".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-17" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-18" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with direct element and used with "or" and "fn:false".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-18" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-19" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "strip" and used with computed element and used with "or" and "fn:false".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-19" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-20" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with direct element and used with "or" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-20" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="constprolog-21" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with construction declaration set to "preserve" and used with computed element and used with "or" and "fn:false".</description>
+      <spec-citation spec="XQuery" section-number="4.6" section-title="Construction Declaration" section-pointer="id-construction-declaration"/>
+      <query name="constprolog-21" date="2006-01-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">constprolog-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ConstructionProlog-1" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard">
+      <description>Test that 'declare construction' with the preserve keyword is parsed properly.</description>
+      <query name="K-ConstructionProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ConstructionProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ConstructionProlog-2" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="parse-error">
+      <description>'declare construction Preserve' is syntactically invalid.</description>
+      <query name="K-ConstructionProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ConstructionProlog-3" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="standard">
+      <description>Test that 'declare construction' with the strip keyword is parsed properly.</description>
+      <query name="K-ConstructionProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ConstructionProlog-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ConstructionProlog-4" FilePath="Expressions/PrologExpr/ConstructionProlog/" scenario="runtime-error">
+      <description>Two 'declare construction' expressions is invalid.</description>
+      <query name="K-ConstructionProlog-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0067</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConstructionProlog-1" FilePath="exprSeqTypes/PrologExpr/ConstructionProlog/" scenario="runtime-error">
+      <description>Ensure the 'construction' keyword is parsed correctly.</description>
+      <query name="K2-ConstructionProlog-1" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

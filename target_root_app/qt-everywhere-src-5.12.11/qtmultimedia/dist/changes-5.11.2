@@ -1,0 +1,61 @@
+Qt 5.11.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0 through 5.11.1.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.2 Changes                           *
+****************************************************************************
+
+ - [QTBUG-66910] Fixed warning on deleteLater on nullptr in QSampleCache.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Gstreamer
+---------
+
+ - [QTBUG-60884] Setting a custom video source through QT_GSTREAMER_CAMERABIN_VIDEOSRC
+    will now use gst_parse_launch().
+ - [QTBUG-69468] gst_bus_remove_watch() will now be used if available.
+ - [QTBUG-69895] The video profile is now correctly set before CamerBin enters GST_STATE_READY.
+ - Fixed crash when resolution or frame rates are requested on an unloaded camera.
+
+Directshow
+----------
+
+ - Removed reporting of failure for stream source with no video output.
+ - [QTBUG-69143] Postponed setting camera image processing param if not ready.
+ - [QTBUG-68035] Added a notification if camera has been unplugged.
+
+WinRT
+-----
+
+ - [QTBUG-67417] Obtained new camera sample format and size on camera change.
+
+AVFoundation
+------------
+
+ - [QTBUG-65740] Fixed crash when no video capture device.
+ - [QTBUG-69076] Fixed linker error when building Qt without opengl support.
+ - Improved how context sharing is set-up in frame renderer.
+
+Android
+-------
+
+ - [QTBUG-68998] Fixed the player state when play() is called with no media.

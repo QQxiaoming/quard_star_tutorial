@@ -1,0 +1,98 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+   \example webenginewidgets/printme
+    \title WebEngine Widgets PrintMe Example
+    \ingroup webengine-widgetexamples
+    \brief Demonstrates how to print web pages using Qt WebEngine Widgets.
+
+    \image printme-example.png
+
+    \e PrintMe demonstrates how to use the \l{QWebEnginePage} and
+    \l{QPrintDialog} classes to print a web page. Further, it shows how
+    to implement print preview by using the \l{QPrintPreviewDialog} class.
+    For completeness, it also illustrates how to trigger a printing request
+    within JavaScript.
+
+    \include examples-run.qdocinc
+
+    \section1 Simple HTML Page
+
+    In this example, we create an internal HTML page that is added as a resource
+    collection file (.qrc). The page shows only a small HTML message box that
+    explains how to trigger printing by using keyboard shortcuts or clicking a
+    button. The button has the JavaScript \c{onclick} event attribute that calls
+    the JavaScript \c{window.print()} function.
+
+    \quotefromfile webenginewidgets/printme/data/index.html
+    \skipto <html
+    \printuntil html>
+
+    \section1 Main Function
+
+    In the \c main function, we first instantiate a QWebEngineView and set the
+    URL to our internal HTML page. Next, we create a \c PrintHandler instance
+    and pass the requested page. For convenience, we also create keyboard
+    shortcuts that can be used to call a print dialog or print preview dialog.
+
+    \quotefromfile webenginewidgets/printme/main.cpp
+    \skipto QWebEngineView view
+    \printto return
+
+    \section1 Print Handler
+
+    In the \c{PrintHandler} function, we first implement \c{printPreview()},
+    where we instantiate \l{QPrinter} together with \l{QPrintPreviewDialog}.
+    We need the \l{QPrintPreviewDialog::paintRequested} handle to generate a
+    set of preview pages.
+
+    \quotefromfile webenginewidgets/printme/printhandler.cpp
+    \skipto PrintHandler::printPreview(
+    \printuntil /^\}/
+
+    Now we can implement the \c{PrintHandler::printDocument()} slot, which is
+    called in response to the \l{QPrintPreviewDialog::paintRequested} signal.
+
+    \quotefromfile webenginewidgets/printme/printhandler.cpp
+    \skipto PrintHandler::printDocument(
+    \printuntil /^\}/
+
+    To do actual painting on a printer, we call the \l{QWebEnginePage::print()}
+    function. Because this call blocks the main event loop, we need to create
+    a local one. We begin the local event loop by calling
+    \l{QEventLoop::exec()}. When the local event loop terminates,
+    we check for \c{result} and report any errors that occurred.
+
+    The last function we implement, \c{PrintHandler::print()}, is trivial,
+    because it simply opens \l{QPrintDialog} and calls the previously
+    implemented \c{PrintHandler::printDocument()}.
+
+    \quotefromfile webenginewidgets/printme/printhandler.cpp
+    \skipto PrintHandler::print(
+    \printuntil /^\}/
+*/

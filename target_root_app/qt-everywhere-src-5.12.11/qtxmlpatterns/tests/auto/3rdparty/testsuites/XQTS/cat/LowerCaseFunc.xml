@@ -1,0 +1,170 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="LowerCaseFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:lower-case</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-lower-case1args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with the arguments set as follows: $arg = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case1args-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with the arguments set as follows: $arg = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case1args-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with the arguments set as follows: $arg = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function as per example 1 (for this function) from the Functions and Ops specs.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-1" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-2" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses only numbers as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-3" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses both numbers and letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-4" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses only upper case letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-5" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses only lower case letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-6" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses both, upper and lower case letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-7" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses the empty string as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-8" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function that uses the "upper-case" function as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-9" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with argument set to "*****".</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-10" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-11" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with argument set to another lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-11" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-12" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-12" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-13" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function as an argument to the "fn:concat" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-13" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-14" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function as an argument to the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-14" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-15" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with argument set to "%$#@!" .</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-15" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-16" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function with argument set to "lower-case" .</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-16" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lower-case-17" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lower-case" function as part of a boolean expression.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.8" section-title="fn:lower-case" section-pointer="func-lower-case"/>
+      <query name="fn-lower-case-17" date="2005-07-07"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-lower-case-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-LowerCaseFunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `lower-case()`.</description>
+      <query name="K-LowerCaseFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-LowerCaseFunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `lower-case("string", "wrong param")`.</description>
+      <query name="K-LowerCaseFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-LowerCaseFunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard">
+      <description>A test whose essence is: `lower-case(()) eq ""`.</description>
+      <query name="K-LowerCaseFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-LowerCaseFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-LowerCaseFunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/LowerCaseFunc/" scenario="standard">
+      <description>A test whose essence is: `upper-case("abCd0") eq "ABCD0"`.</description>
+      <query name="K-LowerCaseFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-LowerCaseFunc-4.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-350                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast xs:nonPositiveInteger to xs:float.      :)
+(:*******************************************************:)
+xs:float(xs:nonPositiveInteger(0))

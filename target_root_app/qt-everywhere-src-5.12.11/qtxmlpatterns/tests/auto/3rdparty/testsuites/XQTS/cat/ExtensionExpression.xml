@@ -1,0 +1,338 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ExtensionExpression" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Extension Expression</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="extexpr-1" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple extension expression that should not be recognized by any implementation and thus ignored.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-1" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">extexpr-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-2" FilePath="Expressions/ExtensionExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>An extension expression with no expression.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-2" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0079</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-3" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>A pragma content containing the "#" symbol, which is ignored in an extension expression.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-3" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">extexpr-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-4" FilePath="Expressions/ExtensionExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>A extension expression, for which its QName can not be resolved to a namespace URI.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-4" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-5" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>A extension expression that contains more than one pragma, both of wihc are ignored.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-5" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">extexpr-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-6" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>A FLOWR expression that uses the same pragma twice and both times should be ignored.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-6" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">extexpr-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-7" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a quantified expression ("every" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-7" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-8" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a quantified expression ("some" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-8" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-9" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a cal to fn:true function.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-9" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-10" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a cal to fn:false function.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-10" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-11" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an "or" true expression ("or" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-11" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-12" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an "or" false expression ("or" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-12" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-13" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an "or" true expression ("and" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-13" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-14" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an "or" false expression ("and" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-14" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-15" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an "if" expression (returns "then" part of expression).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-15" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-16" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an "if" expression (returns "else" part of expression).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-16" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-17" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a "typeswitch" expression.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-17" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-18" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression uses the fn:not function.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-18" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-19" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression uses the fn:string-length function.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-19" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-20" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression uses the fn:concat function.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-20" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-21" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is an addition operation.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-21" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-22" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a subtraction operation.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-22" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-23" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a multiplication operation.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-23" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-24" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a division operation (div operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-24" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-25" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>An extension expression for which the pragma is ignored and default expression is a division operation (idiv operator).</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-25" date="2005-12-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="extexpr-26" FilePath="Expressions/ExtensionExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Extension expression for missing space after pragma name.</description>
+      <spec-citation spec="XQuery" section-number="3.14" section-title="Extension Expressions" section-pointer="id-extension-expressions"/>
+      <query name="extexpr-26" date="2006-03-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">extexpr-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExtensionExpression-1" FilePath="Expressions/ExtensionExpression/" scenario="parse-error">
+      <description>A pragma expression that never ends is syntactically invalid.</description>
+      <query name="K-ExtensionExpression-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-2" FilePath="Expressions/ExtensionExpression/" scenario="parse-error">
+      <description>A pragma expression that never starts is syntactically invalid.</description>
+      <query name="K-ExtensionExpression-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-3" FilePath="Expressions/ExtensionExpression/" scenario="standard">
+      <description>A simple pragma expression.</description>
+      <query name="K-ExtensionExpression-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ExtensionExpression-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-4" FilePath="Expressions/ExtensionExpression/" scenario="runtime-error">
+      <description>A pragma expression cannot be in the empty namespace.</description>
+      <query name="K-ExtensionExpression-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-5" FilePath="Expressions/ExtensionExpression/" scenario="runtime-error">
+      <description>A pragma expression cannot be in the empty namespace even though a prefix is used.</description>
+      <query name="K-ExtensionExpression-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-6" FilePath="Expressions/ExtensionExpression/" scenario="standard">
+      <description>A pragma expression containing complex content.</description>
+      <query name="K-ExtensionExpression-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ExtensionExpression-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-7" FilePath="Expressions/ExtensionExpression/" scenario="runtime-error">
+      <description>A fallback expression must be present when no supported pragmas are specified.</description>
+      <query name="K-ExtensionExpression-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0079</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ExtensionExpression-8" FilePath="Expressions/ExtensionExpression/" scenario="standard">
+      <description>A pragma expression containing many comments.</description>
+      <query name="K-ExtensionExpression-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ExtensionExpression-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-1" FilePath="exprSeqTypes/ExtensionExpression/" scenario="runtime-error">
+      <description>An extension expression cannot be in an undeclared namespace.</description>
+      <query name="K2-ExtensionExpression-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-2" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>Whitespace isn't required if there is no pragma content.</description>
+      <query name="K2-ExtensionExpression-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-3" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>Whitespace is allowed but not required if there is no pragma content.</description>
+      <query name="K2-ExtensionExpression-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-4" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>Content looking like comments are not recognized as so in pragma content.</description>
+      <query name="K2-ExtensionExpression-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-5" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>Content looking like comments are not recognized as so in pragma content.</description>
+      <query name="K2-ExtensionExpression-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-6" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A single whitespace must separate pragma name and content.</description>
+      <query name="K2-ExtensionExpression-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-7" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A single whitespace must separate pragma name and content.</description>
+      <query name="K2-ExtensionExpression-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-8" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A single whitespace must separate pragma name and content.</description>
+      <query name="K2-ExtensionExpression-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-9" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>Whitespace between pragma-start and name cannot contain comments.</description>
+      <query name="K2-ExtensionExpression-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-10" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>Whitespace between pragma-start and name cannot contain comments.</description>
+      <query name="K2-ExtensionExpression-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-11" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>A single whitespace must separate pragma name and content.</description>
+      <query name="K2-ExtensionExpression-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-12" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>No whitespace is required between pragma content and name if the content is empty.</description>
+      <query name="K2-ExtensionExpression-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-13" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A pragma expression that hasn't even specified a name, but has trailing whitespace.</description>
+      <query name="K2-ExtensionExpression-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-14" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A pragma expression that hasn't even specified a name.</description>
+      <query name="K2-ExtensionExpression-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-15" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A pragma expression with name and trailing whitespace, but without content and end.</description>
+      <query name="K2-ExtensionExpression-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExtensionExpression-16" FilePath="exprSeqTypes/ExtensionExpression/" scenario="parse-error">
+      <description>A pragma expression with name but without content and end.</description>
+      <query name="K2-ExtensionExpression-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ExtensionExpression-17" FilePath="exprSeqTypes/ExtensionExpression/" scenario="standard">
+      <description>Use four nested pragma expressions.</description>
+      <query name="K2-ExtensionExpression-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ExtensionExpression-17.txt</output-file>
+   </test-case>
+</test-group>

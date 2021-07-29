@@ -1,0 +1,68 @@
+Qt 5.9.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                             Qt 5.9.4 changes                             *
+****************************************************************************
+
+Chromium
+--------
+
+   * Security fixes from Chromium up to version 63.0.3239.132.
+    Including: CVE-2017-15407, CVE-2017-15409, CVE-2017-15410,
+        CVE-2017-15411, CVE-2017-15415, CVE-2017-15416, CVE-2017-15418,
+        CVE-2017-15419, CVE-2017-15422, CVE-2017-15423, CVE-2017-15424,
+        CVE-2017-15425 and CVE-2017-15426
+   * Mitigation of SPECTRE.
+
+General
+-------
+
+ - [QTBUG-64265] JavaScript MouseLeave events are now always raised
+                 when mouse is leaving view.
+ - [QTBUG-63266] JavaScript PointerEvent.pointerType property is now
+                 properly set.
+ - [QTBUG-64560] Fixed rendering glitches after renderProcessTerminated
+                 signal was emitted.
+ - [QTBUG-47206] Fixed incorrect layouting due to bug in HTML5 viewport
+                 support.
+ - [QTBUG-57206] Fixed Favicon not updating if URL gets changed from
+                 JavaScript.
+ - [QTBUG-58400] Printing does now use less memory, avoiding OOM situations
+                 with very large documents.
+ - [QTBUG-65239] Fixed hanging of process if application is closed too
+                 fast after startup.
+
+QtWebEngineWidgets
+------------------
+
+ - [QTBUG-64436] Fixed crash when exiting fullscreen mode using the context
+                 menu.
+ - [QTBUG-64933] Fixed tooltips that did still show after mouse was moved
+                 away.
+
+Platform Specific Changes
+-------------------------
+
+ - Linux:
+   * [QTBUG-65174] Fixed regression from Qt 5.9.2 where the official
+                   QtWebEngine binary did not use the installed
+                   certificates via libnss.
+   * [QTBUG-57761] Fixed hardcoded lookup of library libGLES2.so.2 in
+                   the system.

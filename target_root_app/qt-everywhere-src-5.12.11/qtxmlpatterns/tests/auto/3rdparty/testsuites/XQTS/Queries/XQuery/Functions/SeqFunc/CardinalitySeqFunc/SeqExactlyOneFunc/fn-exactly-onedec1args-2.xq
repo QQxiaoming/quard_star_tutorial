@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: exactly-onedec1args-2                             :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "exactly-one" function          :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:decimal(mid range)                           :)
+(:*******************************************************:)
+
+fn:exactly-one(xs:decimal("617375191608514839"))

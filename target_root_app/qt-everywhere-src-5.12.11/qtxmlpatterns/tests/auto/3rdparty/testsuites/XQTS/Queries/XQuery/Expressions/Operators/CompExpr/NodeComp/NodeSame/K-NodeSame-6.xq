@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-NodeSame-6                                    :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A query reminding of an invokation of 'is' operator. However, this is not a parse error(XPST0003), because it is a valid function call, although to a non-existant function. 'is' is not a reserved function name. :)
+(:*******************************************************:)
+is ()

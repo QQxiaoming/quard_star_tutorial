@@ -1,0 +1,36 @@
+Qt 5.12.8 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.7.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - [QTBUG-48809] Fixed a warning about non-relative paths in qmldir files.
+   We now permit the use of resource urls in qmldir files to allow a plugin
+   to include its .qml files in resources, optionally compiled ahead of time.
+ - [QTBUG-81123] Fixed a crash when objects were deleted from a QML list property.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - [QTBUG-76362] Fixed behavior of ListView with PullBackHeader positioning
+   mode in combination with snapMode.
+ - [QTBUG-64138] Particle effects can now run continuously over longer
+   periods of time.

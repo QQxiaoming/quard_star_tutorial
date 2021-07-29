@@ -1,0 +1,417 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page whatsnew512.html
+    \title What's New in Qt 5.12
+    \brief Lists the new features in Qt 5.12.
+
+    \section1 New Features in Qt 5.12
+
+    \section2 Qt Core Module
+    \list
+        \li Added the static \l {QCryptographicHash::hashLength} method. It
+            returns the length of a hash's output.
+        \li Added wildcardToRegularExpression helper method to
+            QRegularExpression for easier wildcard implementation in user code.
+        \li Added anchoredPattern helper method to QRegularExpression for
+            easier exact matching implementation in user code.
+        \li Added QRegularExpression support to QSortFilterProxyModel.
+        \li Support for CBOR data similar to existing JSON support.
+    \endlist
+
+    \section2 Qt Network Module
+    \list
+        \li Added DTLS (Datagram Transport Layer Security) over UDP support.
+        \li Added renegotiation to Security Transport backend.
+        \li Added ALPN support and HTTP/2 protocol negotiation to Security
+            Transport backend.
+        \li Added PKCS#8 support in the generic SSL backend (WinRT and Secure
+            Transport).
+        \li Added QPasswordDigestor: a new namespace that contains
+            password-based key derivation functions (currently PBKDF1 and
+            PBKDF2).
+    \endlist
+
+    \section2 Qt Widgets Module
+    \list
+        \li Added \l {QStyle::SH_SpinBox_StepModifier} style hint.
+        \li Added \l {QLineEdit::inputRejected} signal.
+        \li Added \l {Qt::WA_StyleSheetTarget} attribute.
+        \li Added \l {QLayout::indexOf(QLayoutItem *)} function.
+    \endlist
+
+    \section2 Qt QML Module
+    \list
+        \li The JavaScript engine now supports
+            \l {http://www.ecma-international.org/ecma-262/7.0/}{ECMAScript 7}.
+            This includes an upgrade to ECMAScript 6, see
+            \l {http://es6-features.org/}{ECMAScript 6 - New Features: Overview
+            & Comparison}.
+        \li ECMAScript modules can now be loaded directly with
+            QJSEngine::importModule() and imported in .qml files when using the
+            .mjs file extension.
+    \endlist
+
+    \section2 Qt Quick Module
+    \list
+        \li Pointer Handlers are renamed to Input Handlers (we include the
+            pre-existing Keys attached property in this category) and are now
+            fully supported as a first-class QML feature in Qt Quick.
+            (C++ API for them is still not public yet.)
+        \li HoverHandler is a new type of handler for detecting mouse hover. It
+            can detect hover even in cases of deep nesting: unlike MouseArea,
+            you can hover multiple nested Items with HoverHandlers in them at
+            the same time. (For example, a sidebar and an individual button on
+            the sidebar).
+        \li DragHandler is now a multi-point handler: if you set
+            minimumPointCount to \c 2, it will react only to a 2-finger drag,
+            for example. This can give you another degree of freedom:
+            single-finger drag can perform the typical item movement, and
+            2-finger drag can do something else (change the tilt angle, for
+            example).
+        \li Added support for pregenerated distance field caches for faster
+            startup times.
+        \li Added TableView as another type of Item View: on par
+            with ListView but having multiple columns. Unlike the one in
+            QtQuick Controls 1.x, it does not do any styling; rather it
+            provides the optimal solution for instantiating (and pooling and
+            reusing) delegates on demand as you scroll through the rows and
+            columns.
+        \li Tech Preview: Added DelegateChooser as a means of choosing
+            different delegates in Item Views (such as TableView) depending on
+            role values from the model, or depending on the index.
+    \endlist
+
+    \section2 Qt Quick Controls 2 Module
+    \list
+        \li Dial: Added inputMode property, that adds two new ways of
+            interacting with the Dial: horizontally and vertically. These new
+            input modes use a relative input system that adds changes to the
+            dial's position to its value. This results in a dial that is less
+            "jumpy", making it safe for operations that could be harmful if
+            done incorrectly, like adjusting audio levels.
+        \li Control and Popup: Added topInset, bottomInset, leftInset, and
+            rightInset properties to control the geometry of the background,
+            similarly to how paddings control the geometry of the contentItem.
+        \li Added implicit*Width and implicit*Height properties (for example,
+            implicitHeaderWidth, implicitContentWidth, and so on) to simplify
+            complex implicit size bindings.
+        \li SwipeView and DialogButtonBox: Added contentWidth and contentHeight
+            properties.
+        \li RangeSlider:
+        \list
+            \li Added the valueAt() function, which enables tooltips to show
+                up-to-date values for each handle when live is set to \c false
+                (copied from Slider).
+            \li Added first.moved() and second.moved() signals, similar to
+                Slider's moved() signal.
+        \endlist
+        \li Control: Unless explicitly specified, baselineOffset is now
+            automatically updated based on the top padding of the control and
+            the baselineOffset of the contentItem. Styles no longer need to
+            specify the baselineOffset in QML.
+        \li Popup: added anchors.centerIn to allow a convenient way of
+            centering a popup.
+        \li QQuickStyle: Added stylePathList() and addStylePath() methods for
+            managing the list of directories where Qt Quick Controls 2 searches
+            for available styles.
+        \li Slider and RangeSlider: Added touchDragThreshold property for
+            configuring the threshold to initiate the touch 'drag' of the
+            handle of the slider. The mouse 'drag' is not affected by the
+            property.
+        \li TextArea and TextField: Added placeholderTextColor property to
+            customize the placeholderText color to fit the backgrounds.
+        \li Material: Added a Dense variant of the Material style for use on
+            desktop platforms. Some controls are slightly smaller in height and
+            use smaller font sizes. The variant can be enabled by setting
+            QT_QUICK_CONTROLS_MATERIAL_VARIANT to Dense or setting
+            \c {Variant=Dense} in the qtquickcontrols2.conf file.
+        \li DialogButtonBox: Added buttonLayout property that can be used to
+            arrange the buttons.
+        \li Tumbler: Added positionViewAtIndex() function that calls the
+            respective PathView/ListView function, depending on the value of
+            wrap. This allows changing currentIndex without animations.
+        \li Control and Popup: Added horizontalPadding and verticalPadding
+            properties as convenient ways to set both left and right, or top
+            and bottom paddings in one go.
+        \li ToolTip: Added non-attached show() and hide() methods to give the
+            same level of convenience for showing non-attached tooltips with
+            certain parameters.
+    \endlist
+
+    \section2 Qt 3D Module
+    \list
+        \li Load an animation from a file containing several animations, either
+            by name or index.
+        \li Enable stepped animation curves.
+        \li Fix for creation and re-parenting of QNodes in some circumstances.
+        \li Reflect loaded texture properties for frontend texture objects.
+        \li TextureImage no longer requires a texture as parent.
+        \li Reduce CPU usage when not in the simulation loop.
+        \li Enable EntityLoader to load from a Component or file.
+        \li Support rendering using OpenGL ES 3.1.
+        \li Performance and bug fixes in the renderer backend.
+    \endlist
+
+    \section2 macOS-Specific
+    \list
+        \li Added support for QSurfaceType::MetalSurface.
+        \li Added support for QSurfaceType::VulkanSurface and QVulkanWindow,
+            using MoltenVK.
+    \endlist
+
+    \section2 Qt Wayland Module
+    \list
+        \li Added support for xdg-shell stable (and deprecated unstable v5).
+        \li Made the default window decorations look nicer.
+        \li Added support for xdg-decoration-unstable-v1 for server-side window
+            decorations.
+    \endlist
+
+    \section2 Qt Websockets Module
+    \list
+        \li Added the \l {QWebsocket::bytesToWrite} function.
+    \endlist
+
+    \section2 Qt Location Module
+    \list
+        \li Updated MapboxGL plugin with QNX7 support.
+        \li Exposed add/remove transitions in MapItemView.
+        \li Updated MapItemView to inherit from MapItemGroup so that it can
+            nest itself. It can also be used as a delegate of itself.
+        \li Support populating the PlaceSearchModel incrementally, as opposed
+            to only switching pages.
+        \li Introduced Map.visibleArea, to restrict the visible area of the
+            map.
+        \li Updated the MapItem's geoShape property to be R/W, with a virtual
+            setter in the base class.
+        \li Added support for inner holes in QGeoPolygon. These are currently
+            honored, by MapPolygon, only with the MapboxGL plugin. Support in
+            the built-in renderer will follow.
+        \li Added support for Route legs.
+    \endlist
+
+    \section2 Qt Test Module
+    \list
+        \li Updated std::tuple errors to provide better diagnostics when used
+            with QCompare.
+    \endlist
+
+    \section2 Qt Labs Platform
+    \list
+        \li Menu, MenuItem, SystemTrayIcon: deprecated iconName and iconSource
+            in favor of icon.name and icon.source grouped properties.
+        \li Menu, MenuItem, SystemTrayIcon: added icon.mask grouped property.
+    \endlist
+
+    \section2 Qt Virtual Keyboard Module
+    \list
+        \li Introduced an extension interface for the virtual keyboard. All the
+            current input methods and some special keyboard layouts (for
+            example, Hunspell, OpenWnn, and so on) have been moved to
+            extensions. The extension interface allows third parties to create
+            new input methods without having to modify or rebuild the virtual
+            keyboard. In addition, this change makes it possible to add
+            features and languages independently by copying the desired
+            extensions to the system.
+        \li Introduced a virtualkeyboard module, which can be linked against an
+            extension plugin. This module provides the C++ API necessary for
+            creating an input method.
+        \li Added option to exclude all styles from the plugin at build time.
+        \li Added support for MyScript Superimposed handwriting recognition.
+            MyScript supports the recognition of isolated character, cursive,
+            print and superimposed writing. In addition, it enables the
+            recognition of letters, words or parts of words written one over
+            the other, without any explicit separation between consecutive
+            fragments. It targets small devices with sufficient hardware
+            capabilities in terms of CPU power and memory.
+        \li Added Vietnamese handwriting recognition (T9 Write).
+        \li Added new layouts: Albanian, American English, Brazilian Portuguese,
+            French Canadian, Indonesian, Malay, Mexican Spanish, Slovak,
+            Slovenian, Thai, Turkish, Vietnamese, and Ukrainian.
+        \li Added latin extra layout for Russian.
+        \li The pinyin and tcime dictionaries are now bundled in the plugin by
+            default.
+        \li Added user dictionary and learning for Hunspell.
+    \endlist
+
+    \section2 Qt WebEngine Module
+    \list
+        \li Updated to Chromium 69.
+        \li Added QWebEngineUrlScheme interface to configure type and security
+            of custom URL schemes.
+        \li WebActions are now exposed in QML.
+        \li The view or page that triggered a download can now be read from
+            download items.
+        \li Support client SSL certificates, in so far as the operating system
+            supports them.
+    \endlist
+
+    \section2 Qt GUI Module
+    \list
+        \li Added presets for QGradient based on https://webgradients.com/.
+        \li Added 4xU16 RGBA64 formats to QImage, reading them from PNGs, and
+            uploading or grabbing them from OpenGL.
+        \li Added support to Windows UI Automation to the WinRT QPA, allowing
+            Qt-based UWP applications to operate with accessibility and
+            programmatic UI control tools.
+        \li Replaced the handling of tablet/touchscreen/touchpad/mouse input
+            with a unified implementation based on the Windows Pointer Input
+            Messages on Windows 8 and newer. Hardware such as the screen
+            digitizer in the MS Surface line is now supported without special
+            drivers.
+    \endlist
+
+    \section2 Qt Serial Bus Module
+    \list
+        \li Added a virtual CAN bus plugin for simulation without CAN hardware.
+        \li Added configuration options to canbusutil, for example for bitrate
+            setting.
+        \li Added CAN FD functionality to the PeakCAN plugin.
+        \li Added the \l {QCanBusDevice::readAllFrames}{readAllFrames()} and
+            \l {QCanBusDevice::clear}{clear()} functions to QCanBusDevice.
+    \endlist
+
+    \section2 Qt Bluetooth Module
+    \list
+        \li Added manufacturer data to the QBluetoothDeviceInfo objects that
+            are emitted from the BLE discovery agent. Decoding iBeacon payloads
+            is still up to the application.
+    \endlist
+
+    \section2 Qt for Automation Offering
+    \list
+        \li Qt MQTT now has full support for MQTT protocol level 5.
+        \li Qt KNX
+            \list
+                \li Support for KNXnet/IP Core Version 2.
+                \li Support for KNXnet/IP Routing Version 1.
+                \li Support for KNXnet/IP Tunneling Version 2.
+                \li Support for KNXnet/IP communication via TCP.
+                \li Tech Preview: Basic support for KNXnet/IP Secure Protocol.
+            \endlist
+        \li Qt OPC UA (Tech Preview)
+            \list
+                \li Support for events.
+                \li Added a batch read API.
+                \li Added a batch write API.
+                \li Added a TranslateBrowsePathsToNodeIds API.
+                \li Improved browse API.
+                \li Support for the Argument and ExpandedNodeId types.
+                \li Nodes can now be instantiated from an ExpandedNodeId.
+                \li Support for multi-dimensional arrays has been fixed.
+                \li Support reading and writing of extension objects.
+            \endlist
+    \endlist
+
+    \section1 New Modules
+    \list
+        \li Qt Remote Objects is now fully supported.
+        \li Qt WebGL Streaming Plugin is now fully supported.
+    \endlist
+
+    \section1 Platform Changes
+    \list
+        \li QTimeZone
+            \list
+                \li Now uses ICU, when available, in preference to Microsoft's
+                    native APIs.
+            \endlist
+    \endlist
+
+    \section1 Technology Preview Features
+    \list
+        \li Qt for WebAssembly (TP2) - A platform target to compile Qt
+            applications for the web browsers using WebAssembly.
+    \endlist
+
+    \section1 Deprecated Modules
+    The following modules are part of the Qt 5.12 release, but are deprecated
+    and considered for removal in subsequent releases of Qt:
+
+    \list
+        \li Qt Script
+        \li Qt Quick Controls 1
+        \li Qt Canvas 3D
+    \endlist
+
+    \section1 List of API Changes
+    The pages below contain a list of API changes in Qt 5.12:
+    \list
+        \li \l{New Classes and Functions in Qt 5.12}
+        \li \l{Obsolete Classes}
+    \endlist
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+
+*/
+
+/*!
+    \page newclasses512.html
+    \title New Classes and Functions in Qt 5.12
+    \brief A list of new APIs in Qt 5.12.
+
+    This page contains a comprehensive list of all new classes and functions
+    introduced in Qt 5.12. Links to new APIs in previous Qt 5 releases are found
+    at the bottom of this page.
+
+    \sincelist 5.12
+
+    \section1 Additions to Other Qt 5 Releases
+
+    \list
+        \li \l{What's New in Qt 5.11}
+        \li \l{What's New in Qt 5.10}
+        \li \l{What's New in Qt 5.9}
+        \li \l{What's New in Qt 5.8}
+        \li \l{What's New in Qt 5.7}
+        \li \l{What's New in Qt 5.6}
+        \li \l{What's New in Qt 5.5}
+        \li \l{What's New in Qt 5.4}
+        \li \l{What's New in Qt 5.3}
+        \li \l{What's New in Qt 5.2}
+        \li \l{What's New in Qt 5.1}
+        \li \l{What's New in Qt 5.0}
+    \endlist
+*/
+

@@ -1,0 +1,149 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseR" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "R" - Access to Relational Data</title>
+      <description>One important use of an XML query language will be to access data stored in relational databases. This use case describes one possible way in which this access might be accomplished.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="rdb-queries-results-q1" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List the item number and description of all bicycles that currently have an auction in progress, ordered by item number.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.1" section-title="Q1" section-pointer="rdb-queries-results-q1"/>
+      <query name="rdb-queries-results-q1" static-name="rdb-queries-results-q1-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">items</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q2" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>For all bicycles, list the item number, description, and highest bid (if any), ordered by item number.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.2" section-title="Q2" section-pointer="rdb-queries-results-q2"/>
+      <query name="rdb-queries-results-q2" static-name="rdb-queries-results-q2-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q3" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>Find cases where a user with a rating worse (alphabetically, greater) than "C" is offering an item with a reserve price of more than 1000.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.3" section-title="Q3" section-pointer="rdb-queries-results-q3"/>
+      <query name="rdb-queries-results-q3" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">users</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q4" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List item numbers and descriptions of items that have no bids.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.4" section-title="Q4" section-pointer="rdb-queries-results-q4"/>
+      <query name="rdb-queries-results-q4" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q5" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>For bicycle(s) offered by Tom Jones that have received a bid, list the item number, description, highest bid, and name of the highest bidder, ordered by item number.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.5" section-title="Q5" section-pointer="rdb-queries-results-q5"/>
+      <query name="rdb-queries-results-q5" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context2">users</input-file>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context3">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q6" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>For each item whose highest bid is more than twice its reserve price, list the item number, description, reserve price, and highest bid.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.6" section-title="Q6" section-pointer="rdb-queries-results-q6"/>
+      <query name="rdb-queries-results-q6" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q7" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>Find the highest bid ever made for a bicycle or tricycle.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.7" section-title="Q7" section-pointer="rdb-queries-results-q7"/>
+      <query name="rdb-queries-results-q7" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q8" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>How many items were actioned (auction ended) in March 1999?</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.8" section-title="Q8" section-pointer="rdb-queries-results-q8"/>
+      <query name="rdb-queries-results-q8" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">items</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q9" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List the number of items auctioned each month in 1999 for which data is available, ordered by month.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.9" section-title="Q9" section-pointer="rdb-queries-results-q9"/>
+      <query name="rdb-queries-results-q9" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">items</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q10" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>For each item that has received a bid, list the item number, the highest bid, and the name of the highest bidder, ordered by item number.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.10" section-title="Q10" section-pointer="rdb-queries-results-q10"/>
+      <query name="rdb-queries-results-q10" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context2">users</input-file>
+      <input-file role="principal-data" variable="input-context1">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q11" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List the item number and description of the item(s) that received the highest bid ever recorded, and the amount of that bid.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.11" section-title="Q11" section-pointer="rdb-queries-results-q11"/>
+      <query name="rdb-queries-results-q11" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q12" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List the item number and description of the item(s) that received the largest number of bids, and the number of bids it (or they) received.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.12" section-title="Q12" section-pointer="rdb-queries-results-q12"/>
+      <query name="rdb-queries-results-q12" static-name="rdb-queries-results-q12-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q13" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>For each user who has placed a bid, give the userid, name, number of bids, and average bid, in order by userid.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.13" section-title="Q13" section-pointer="rdb-queries-results-q13"/>
+      <query name="rdb-queries-results-q13" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context2">users</input-file>
+      <input-file role="principal-data" variable="input-context1">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q14" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List item numbers and average bids for items that have received three or more bids, in descending order by average bid.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.14" section-title="Q14" section-pointer="rdb-queries-results-q14"/>
+      <query name="rdb-queries-results-q14" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bids</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q15" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List names of users who have placed multiple bids of at least $100 each.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.15" section-title="Q15" section-pointer="rdb-queries-results-q15"/>
+      <query name="rdb-queries-results-q15" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <input-file role="principal-data" variable="input-context1">users</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q16" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List all registered users in order by userid; for each user, include the userid, name, and an indication of whether the user is active (has at least one bid on record) or inactive (has no bid on record).</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.16" section-title="Q16" section-pointer="rdb-queries-results-q16"/>
+      <query name="rdb-queries-results-q16" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context2">bids</input-file>
+      <input-file role="principal-data" variable="input-context1">users</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q17" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List the names of users, if any, who have bid on every item.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.17" section-title="Q17" section-pointer="rdb-queries-results-q17"/>
+      <query name="rdb-queries-results-q17" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context3">bids</input-file>
+      <input-file role="principal-data" variable="input-context2">users</input-file>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="rdb-queries-results-q18" FilePath="UseCase/UseCaseR/" scenario="standard" Creator="XML Query Group">
+      <description>List all users in alphabetic order by name. For each user, include descriptions of all the items (if any) that were bid on by that user, in alphabetic order.</description>
+      <spec-citation spec="UseCases" section-number="1.4.4.18" section-title="Q18" section-pointer="rdb-queries-results-q18"/>
+      <query name="rdb-queries-results-q18" static-name="rdb-queries-results-q18-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context3">bids</input-file>
+      <input-file role="principal-data" variable="input-context2">users</input-file>
+      <input-file role="principal-data" variable="input-context1">items</input-file>
+      <output-file role="principal" compare="XML">rdb-queries-results-q18.txt</output-file>
+   </test-case>
+</test-group>

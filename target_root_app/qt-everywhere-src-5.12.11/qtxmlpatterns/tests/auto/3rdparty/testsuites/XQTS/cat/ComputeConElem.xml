@@ -1,0 +1,504 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ComputeConElem" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Computed Element Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-compelem-name-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>NCName for computed element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-name-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-name-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-name-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>QName for computed element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-name-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-name-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-name-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>QName with undeclared prefix for computed element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-name-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Empty computed name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two strings as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two untypedAtomic values as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-4" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Content of two nodes as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-4" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-5" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two numeric values as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-5" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-6" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Numeric value as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-6" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-7" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>DataTime value as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-7" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-8" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>NCName as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-8" static-name="Constr-compelem-compname-8-static-cbcl" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-8.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-9" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>QName as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-9" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-9.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-10" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-10" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-10.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-11" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-11" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-11.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-12" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-12" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-12.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-13" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>String with prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-13" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-13.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-14" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>String with undeclared prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-14" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-15" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Untyped atomic as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-15" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-15.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-16" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Untyped atomic with prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-16" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-compname-16.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-17" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Untyped atomic with undeclared prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-17" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-18" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Non-ncname string as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-18" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-compname-19" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Non-ncname untyped atomic as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-compname-19" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-adjtext-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Merge adjacent atomic values to text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-adjtext-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-adjtext-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-adjtext-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Merge adjacent atomic values and text nodes to text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-adjtext-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-adjtext-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-adjtext-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Merge adjacent atomic values between other nodes to text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-adjtext-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-adjtext-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nested-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested computed element constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nested-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-nested-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nested-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Copy node tree into computed element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nested-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-nested-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-enclexpr-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty computed element content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-enclexpr-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-enclexpr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-enclexpr-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Atomic values in computed element content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-enclexpr-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-enclexpr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-enclexpr-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Atomic values and nodes in computed element content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-enclexpr-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-enclexpr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-enclexpr-4" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty string in element content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-enclexpr-4" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-enclexpr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nodeid-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied element node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nodeid-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-nodeid-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nodeid-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied attribute node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nodeid-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-nodeid-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nodeid-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied comment node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nodeid-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-nodeid-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nodeid-4" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied pi node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nodeid-4" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-nodeid-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-nodeid-5" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied text node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-nodeid-5" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-nodeid-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Strip decimal type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-3" static-name="Constr-compelem-constrmod-3-static-cbcl" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-4" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Preserve decimal type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-4" static-name="Constr-compelem-constrmod-4-static-cbcl" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmod-4.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-7" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Strip decimal type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-7" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-8" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Preserve decimal type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-8" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <output-file role="principal" compare="Text" input-document="typed">Constr-compelem-constrmod-8.txt</output-file>
+      <expected-error input-document="untyped">FORG0001</expected-error>
+      <expected-error input-document="untyped">XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-baseuri-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Base-uri through xml:base attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-baseuri-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-baseuri-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-baseuri-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Base-uri through parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-baseuri-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-baseuri-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-baseuri-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Base-uri through declaration.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-baseuri-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-baseuri-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-doc-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip document nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-doc-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-doc-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-parent-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-parent-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-parent-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-string-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>String value of element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-string-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-string-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-data-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Typed value of element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-data-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-data-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-attr-1" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attribute node following atomic value.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-attr-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-attr-2" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attribute node following node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-attr-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-attr-3" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="standard" Creator="Andreas Behm">
+      <description>Attributes in content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-attr-3" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <output-file role="principal" compare="XML">Constr-compelem-attr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-attr-4" FilePath="Expressions/Construct/ComputeCon/ComputeConElem/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attribute in content with same name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-attr-4" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <expected-error>XQDY0025</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ComputeConElem-1" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="parse-error">
+      <description>The name can't be specified as a string literal.</description>
+      <query name="K2-ComputeConElem-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-2" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Simple content that only is empty string in an element constructor.</description>
+      <query name="K2-ComputeConElem-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConElem-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-3" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Simple content that only is empty string in an element constructor(#2).</description>
+      <query name="K2-ComputeConElem-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConElem-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-4" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>An unbound prefix in a lexical QName yields QDY0074.</description>
+      <query name="K2-ComputeConElem-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-5" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>An unbound prefix in a lexical QName yields QDY0074.</description>
+      <query name="K2-ComputeConElem-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-6" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Test the type of the typed value of a computationally constructed element node.</description>
+      <query name="K2-ComputeConElem-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-7" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Test the data of the typed value of a computationally constructed element node.</description>
+      <query name="K2-ComputeConElem-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-8" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Check that a directly constructed element gets the right type.</description>
+      <query name="K2-ComputeConElem-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-9" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Check that a directly constructed element gets the right type(#2).</description>
+      <query name="K2-ComputeConElem-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-10" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Check that a directly constructed element gets the right type(#3).</description>
+      <query name="K2-ComputeConElem-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-11" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Check that a directly constructed element gets the right type, and that the name test fails.</description>
+      <query name="K2-ComputeConElem-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-12" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Check that a directly constructed element gets the right type, and that the name test fails(#2).</description>
+      <query name="K2-ComputeConElem-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConElem-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-13" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Two simple nested constructors.</description>
+      <query name="K2-ComputeConElem-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConElem-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-14" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>Use a technique that sometimes is used for adding namespace nodes.</description>
+      <query name="K2-ComputeConElem-14" static-name="K2-ComputeConElem-14-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConElem-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConElem-15" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="standard">
+      <description>.</description>
+      <query name="K2-ComputeConElem-15" date="2008-01-28+01:00"/>
+      <input-file role="principal-data" variable="input-context1">acme_corp</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConElem-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-elem-bad-name-1" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0096 if namespace prefix is 'xmlns'</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-elem-bad-name-1" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0096</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-elem-bad-name-2" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0096 if namespace URI is 'http://www.w3.org/2000/xmlns/'</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-elem-bad-name-2" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0096</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-elem-bad-name-3" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0096 if namespace URI is 'http://www.w3.org/2000/xmlns/'</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-elem-bad-name-3" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0096</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-elem-bad-name-4" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0096 if namespace prefix is 'xml' and namespace URI is not 'http://www.w3.org/XML/1998/namespace'</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-elem-bad-name-4" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0096</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-elem-bad-name-5" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0096 if namespace prefix is not 'xml' and namespace URI is 'http://www.w3.org/XML/1998/namespace'</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-elem-bad-name-5" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0096</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-elem-bad-name-6" FilePath="Construct/ComputeCon/ComputeConElem/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0096 if namespace prefix is 'xmlns'</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-elem-bad-name-6" date="2010-02-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0096</expected-error>
+   </test-case>
+</test-group>

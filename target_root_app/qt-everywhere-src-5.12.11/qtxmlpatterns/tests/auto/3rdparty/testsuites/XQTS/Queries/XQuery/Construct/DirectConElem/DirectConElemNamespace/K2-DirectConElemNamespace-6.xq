@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemNamespace-6                     :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Verify the 'xml' prefix is in scope in a computed constructor. :)
+(:*******************************************************:)
+count(in-scope-prefixes(element e{})[. eq "xml"])

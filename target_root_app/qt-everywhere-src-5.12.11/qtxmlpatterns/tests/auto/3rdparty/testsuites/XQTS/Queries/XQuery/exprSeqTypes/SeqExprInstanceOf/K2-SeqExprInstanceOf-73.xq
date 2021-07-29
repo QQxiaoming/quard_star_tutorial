@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprInstanceOf-73                         :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure a name test with the abbreviated attribute axis gets the correct type. :)
+(:*******************************************************:)
+<e a=""/>/@a instance of attribute(a)

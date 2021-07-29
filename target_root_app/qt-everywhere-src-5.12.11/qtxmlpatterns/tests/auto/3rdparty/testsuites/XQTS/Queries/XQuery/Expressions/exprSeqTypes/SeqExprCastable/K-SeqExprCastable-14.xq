@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCastable-14                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: An invalid type for 'castable as' is specified, leading to a syntax error. :)
+(:*******************************************************:)
+'string' castable as node()

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket</title>
+        <script src="qrc:/qtwebchannel/qwebchannel.js"></script>
+        <script>
+         var result;
+         new QWebChannel(qt.webChannelTransport, channel => {
+             const ws = new WebSocket(channel.objects.echoServer.url);
+             ws.addEventListener("open", event => {
+                 ws.send("ok");
+             });
+             ws.addEventListener("message", event => {
+                 result = event.data;
+             });
+             ws.addEventListener("close", event => {
+                 result = event.code;
+             });
+         })
+        </script>
+    </head>
+    <body></body>
+</html>

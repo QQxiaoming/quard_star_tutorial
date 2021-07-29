@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>xqt</xqx:prefix>
+        <xqx:uri>http://www.w3.org/XQueryTestOrderBy</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:flworExpr>
+        <xqx:forClause>
+          <xqx:forClauseItem>
+            <xqx:typedVariableBinding>
+              <xqx:varName>num</xqx:varName>
+              <xqx:typeDeclaration>
+                <xqx:atomicType xqx:prefix="xs">undefinedType</xqx:atomicType>
+              </xqx:typeDeclaration>
+            </xqx:typedVariableBinding>
+            <xqx:forExpr>
+              <xqx:functionCallExpr>
+                <xqx:functionName>data</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:pathExpr>
+                    <xqx:stepExpr>
+                      <xqx:filterExpr>
+                        <xqx:varRef>
+                          <xqx:name>input-context</xqx:name>
+                        </xqx:varRef>
+                      </xqx:filterExpr>
+                    </xqx:stepExpr>
+                    <xqx:stepExpr>
+                      <xqx:xpathAxis>child</xqx:xpathAxis>
+                      <xqx:nameTest xqx:prefix="xqt">DataValues</xqx:nameTest>
+                    </xqx:stepExpr>
+                    <xqx:stepExpr>
+                      <xqx:xpathAxis>child</xqx:xpathAxis>
+                      <xqx:nameTest xqx:prefix="xqt">NegativeNumbers</xqx:nameTest>
+                    </xqx:stepExpr>
+                    <xqx:stepExpr>
+                      <xqx:xpathAxis>child</xqx:xpathAxis>
+                      <xqx:nameTest xqx:prefix="xqt">orderData</xqx:nameTest>
+                    </xqx:stepExpr>
+                  </xqx:pathExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:forExpr>
+          </xqx:forClauseItem>
+        </xqx:forClause>
+        <xqx:returnClause>
+          <xqx:varRef>
+            <xqx:name>num</xqx:name>
+          </xqx:varRef>
+        </xqx:returnClause>
+      </xqx:flworExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

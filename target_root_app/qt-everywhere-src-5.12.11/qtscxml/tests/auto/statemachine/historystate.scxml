@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="HistoryState">
+    <state id="Working">
+        <state id="State1">
+            <onentry>
+                <send event="timeout" delay="1s"/>
+            </onentry>
+        </state>
+        <history type="shallow" id="HistoryState"/>
+        <transition type="external" event="timeout" target="State2"/>
+    </state>
+    <state id="State2"/>
+</scxml>

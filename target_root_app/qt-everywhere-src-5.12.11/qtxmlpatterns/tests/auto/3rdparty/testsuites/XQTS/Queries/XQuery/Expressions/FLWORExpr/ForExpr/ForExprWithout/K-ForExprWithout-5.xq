@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ForExprWithout-5                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal(1 to 5, (for $i in (1,2,3,4,5) return $i))`. :)
+(:*******************************************************:)
+deep-equal(1 to 5, (for $i in (1,2,3,4,5) return $i))

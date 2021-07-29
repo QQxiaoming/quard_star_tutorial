@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>functx</xqx:prefix>
+        <xqx:uri>http://www.example.com/</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="functx">is-absolute-uri</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>uri</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+              <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">boolean</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName>matches</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>uri</xqx:name>
+              </xqx:varRef>
+              <xqx:stringConstantExpr>
+                <xqx:value>^[a-z]+:</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:sequenceExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">is-absolute-uri</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>http://www.datypic.com</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">is-absolute-uri</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>ftp://ftp.datypic.com</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">is-absolute-uri</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>ftp.datypic.com</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">is-absolute-uri</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>www.datypic.com</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">is-absolute-uri</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>prod.html</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+      </xqx:sequenceExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

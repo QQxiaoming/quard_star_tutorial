@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(: Test: K2-OrderbyExprWithout-18                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Sort a single atomic value.                  :)
+(:*******************************************************:)
+(for $i in current-time()
+order by $i
+return $i)
+eq current-time()

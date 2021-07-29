@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-AdjDateTimeToTimezoneFunc-1                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure dateTime values are properly normalized. :)
+(:*******************************************************:)
+fn:adjust-dateTime-to-timezone(xs:dateTime("1999-12-31T24:00:00"), ())

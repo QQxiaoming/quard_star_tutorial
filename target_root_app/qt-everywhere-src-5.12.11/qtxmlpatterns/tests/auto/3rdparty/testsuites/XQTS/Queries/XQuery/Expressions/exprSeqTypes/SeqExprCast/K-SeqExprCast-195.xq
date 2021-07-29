@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-195                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: No zone offset is allowed for xs:yearMonthDuration. :)
+(:*******************************************************:)
+xs:yearMonthDuration("P20Y15M+08:00")

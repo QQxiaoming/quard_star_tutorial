@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>test1</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/test1</xqx:targetNamespace>
+      </xqx:moduleImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:flworExpr>
+        <xqx:letClause>
+          <xqx:letClauseItem>
+            <xqx:typedVariableBinding>
+              <xqx:varName>var</xqx:varName>
+            </xqx:typedVariableBinding>
+            <xqx:letExpr>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="fn">concat</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName xqx:prefix="xs">string</xqx:functionName>
+                    <xqx:arguments>
+                      <xqx:varRef>
+                        <xqx:name xqx:prefix="test1">flag</xqx:name>
+                      </xqx:varRef>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName xqx:prefix="xs">string</xqx:functionName>
+                    <xqx:arguments>
+                      <xqx:functionCallExpr>
+                        <xqx:functionName xqx:prefix="test1">ok</xqx:functionName>
+                        <xqx:arguments>
+                        </xqx:arguments>
+                      </xqx:functionCallExpr>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:letExpr>
+          </xqx:letClauseItem>
+        </xqx:letClause>
+        <xqx:returnClause>
+          <xqx:varRef>
+            <xqx:name>var</xqx:name>
+          </xqx:varRef>
+        </xqx:returnClause>
+      </xqx:flworExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

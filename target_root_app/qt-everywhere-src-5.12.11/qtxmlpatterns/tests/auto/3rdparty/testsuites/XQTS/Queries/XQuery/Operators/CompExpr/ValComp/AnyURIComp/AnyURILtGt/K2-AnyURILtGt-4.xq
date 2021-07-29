@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-AnyURILtGt-4                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoked 'lt' on xs:anyURI values.            :)
+(:*******************************************************:)
+not(xs:anyURI("http://example.com/B") lt xs:string("http://example.com/A"))

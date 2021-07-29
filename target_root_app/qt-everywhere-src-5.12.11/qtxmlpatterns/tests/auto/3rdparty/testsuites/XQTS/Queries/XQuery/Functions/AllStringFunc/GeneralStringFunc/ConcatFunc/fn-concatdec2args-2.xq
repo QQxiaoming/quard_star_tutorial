@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: concatdec2args-2                                  :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Wed Dec 15 15:41:48 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "concat" function               :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:decimal(mid range)                          :)
+(:$arg2 = xs:decimal(lower bound)                        :)
+(:*******************************************************:)
+
+fn:concat(xs:decimal("617375191608514839"),xs:decimal("-999999999999999999"))

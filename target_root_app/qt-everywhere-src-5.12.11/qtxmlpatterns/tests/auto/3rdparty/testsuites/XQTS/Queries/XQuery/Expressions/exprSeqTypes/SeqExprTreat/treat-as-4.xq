@@ -1,0 +1,10 @@
+(: Name: treat-as-4 :)
+(: Description: Evaluation of treat as expression where involving an integer data type and div expression. :)
+
+(: insert-start :)
+declare variable $input-context1 external;
+(: insert-end :)
+
+let $var := 100
+return
+fn:abs($var treat as xs:decimal)

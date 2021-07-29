@@ -1,0 +1,23 @@
+{
+    "module": "script",
+    "testDir": "../../config.tests",
+
+    "tests": {
+        "asm_hwcap_h": {
+            "label": "asm/hwcap.h",
+            "condition": "config.android",
+            "type": "compile",
+            "test": {
+                "include": "asm/hwcap.h"
+            }
+        }
+    },
+
+    "features": {
+        "asm_hwcap_h": {
+            "label": "asm/hwcap.h",
+            "condition": "config.android && tests.asm_hwcap_h",
+            "output": [ "privateFeature" ]
+        }
+    }
+}

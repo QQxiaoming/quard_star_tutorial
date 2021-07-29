@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-subtract-yearMonthDurations-12                :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 29, 2005                                    :)
+(:Purpose: Evaluates The "subtract-yearMonthDurations" operators used :)
+(:with a boolean expression and the "fn:true" function.   :)
+(: Apply "fn:string" function to account for new EBV.     :)
+(:*******************************************************:)
+ 
+fn:string((xs:yearMonthDuration("P10Y11M") - xs:yearMonthDuration("P05Y07M"))) and (fn:true())

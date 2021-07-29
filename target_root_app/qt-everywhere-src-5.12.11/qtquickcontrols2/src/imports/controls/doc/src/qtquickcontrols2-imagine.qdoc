@@ -1,0 +1,2529 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtquickcontrols2-imagine.html
+    \title Imagine Style
+
+    The Imagine Style is based on configurable image assets. \l{detailed-desc-imagine}{More...}
+
+    \styleimport {QtQuick.Controls.Imagine 2.12} {Qt 5.10}
+
+    \section1 Attached Properties
+
+    \list
+        \li \l {imagine-path-attached-prop}{\b path} : string
+    \endlist
+
+    \section1 Detailed Description
+    \target detailed-desc-imagine
+
+    The Imagine style is based on image assets. The style comes with a default
+    set of images, but the images can be easily changed by providing a directory
+    with images using a predefined naming convention.
+
+    \image qtquickcontrols2-imagine.png
+    \caption The Imagine style with the default images
+
+    To run an application with the Imagine style, see
+    \l {Using Styles in Qt Quick Controls 2}.
+
+    \section2 File Names
+
+    The image files are named using the following convention:
+
+    \c <control>-<element>-<states>
+
+    The \c <control> and \c <element> sections are mandatory, but the
+    \c <states> section is optional. For example, if a single file named
+    \c "button-background.9.png" is provided for \l {Button}, it will be used
+    for every state that \c Button supports. It is up to the developer to
+    decide the set of states that they will provide images for. However, it
+    is recommended to provide images for the most common control states where
+    possible, such as \c disabled, \c pressed, etc. This will ensure that
+    interactive controls visually behave as the end user would expect them to.
+
+    \section2 Element Reference
+
+    The following table lists which elements are supported for each control,
+    along with the possible states for that element, and the file extension
+    that it expects. An element is an image that represents a certain visual
+    part of the control. For example, \c {Button}'s \c "background" element
+    represents its \l {Control::}{background}.
+
+    \table
+        \header
+            \li Control
+            \li Element
+            \li States
+            \li Extension
+        \row
+            \li \l ApplicationWindow
+            \li background
+            \li active
+            \li .9.png (or .png)
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li .9.png (or .png)
+        \row
+            \li \l BusyIndicator
+            \li animation
+            \li disabled, running, mirrored, hovered
+            \li .webp
+        \row
+            \li
+            \li background
+            \li same as above
+            \li .webp
+        \row
+            \li \l Button
+            \li background
+            \li disabled, pressed, checked, checkable, focused, highlighted, flat, mirrored, hovered
+            \li .9.png
+        \row
+            \li \l CheckBox
+            \li background
+            \li disabled, pressed, checked, partially-checked, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .png
+        \row
+            \li \l CheckDelegate
+            \li background
+            \li disabled, pressed, checked, partially-checked, focused, highlighted, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .png
+        \row
+            \li \l ComboBox
+            \li background
+            \li disabled, pressed, editable, open, focused, mirrored, hovered, flat
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .png
+        \row
+            \li
+            \li popup
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l DelayButton
+            \li background
+            \li disabled, pressed, checked, checkable, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li progress
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li mask
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l Dial
+            \li background
+            \li disabled, pressed, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l Dialog
+            \li background
+            \li modal, dim
+            \li .9.png (or .png)
+        \row
+            \li
+            \li title
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li .9.png (or .png)
+        \row
+            \li \l DialogButtonBox
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l Drawer
+            \li background
+            \li modal, dim, top, left, right, bottom
+            \li .9.png (or .png)
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li .9.png (or .png)
+        \row
+            \li \l Frame
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l GroupBox
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li
+            \li title
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l ItemDelegate
+            \li background
+            \li disabled, pressed, focused, highlighted, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l Label
+            \li background
+            \li disabled, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l Menu
+            \li background
+            \li modal, dim
+            \li .9.png (or .png)
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li .9.png (or .png)
+        \row
+            \li \l MenuItem
+            \li arrow
+            \li disabled, pressed, checked, focused, highlighted, mirrored, hovered
+            \li .png
+        \row
+            \li
+            \li background
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .png
+        \row
+            \li \l MenuSeparator
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li
+            \li separator
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l Page
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l PageIndicator
+            \li background
+            \li disabled, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li delegate
+            \li disabled, pressed, current, mirrored, hovered
+            \li .png
+        \row
+            \li \l Pane
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l Popup
+            \li background
+            \li modal, dim
+            \li .9.png (or .png)
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li .9.png (or .png)
+        \row
+            \li \l ProgressBar
+            \li animation
+            \li disabled, mirrored, hovered
+            \li .png
+        \row
+            \li
+            \li background
+            \li disabled, indeterminate, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li mask
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li progress
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l RadioButton
+            \li background
+            \li disabled, pressed, checked, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .png
+        \row
+            \li \l RadioDelegate
+            \li background
+            \li disabled, pressed, checked, focused, highlighted, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .png
+        \row
+            \li \l RangeSlider
+            \li background
+            \li vertical, horizontal, disabled, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l RangeSlider
+            \li progress
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li first, second, vertical, horizontal, disabled, pressed, focused, mirrored, hovered
+            \li .png
+        \row
+            \li \l RoundButton
+            \li background
+            \li disabled, pressed, checked, checkable, focused, highlighted, flat, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l ScrollBar
+            \li background
+            \li vertical, horizontal, disabled, interactive, pressed, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l ScrollIndicator
+            \li background
+            \li vertical, horizontal, disabled, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l ScrollView
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l Slider
+            \li background
+            \li vertical, horizontal, disabled, pressed, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li progress
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l SpinBox
+            \li background
+            \li disabled, editable, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li editor
+            \li disabled, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li up, down, disabled, editable, pressed, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l StackView
+            \li background
+            \li disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l SwipeDelegate
+            \li background
+            \li disabled, pressed, focused, highlighted, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l SwipeView
+            \li background
+            \li vertical, horizontal, disabled, interactive, focused, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l Switch
+            \li background
+            \li disabled, pressed, checked, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l SwitchDelegate
+            \li background
+            \li disabled, pressed, checked, focused, highlighted, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li
+            \li handle
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li
+            \li indicator
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l TabBar
+            \li background
+            \li disabled, header, footer, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l TabButton
+            \li background
+            \li disabled, pressed, checked, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l TextArea
+            \li background
+            \li disabled, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l TextField
+            \li background
+            \li disabled, focused, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l ToolBar
+            \li background
+            \li disabled, header, footer, mirrored
+            \li .9.png (or .png)
+        \row
+            \li \l ToolButton
+            \li background
+            \li disabled, pressed, checked, checkable, focused, highlighted, flat, mirrored, hovered
+            \li .9.png (or .png)
+        \row
+            \li \l ToolSeparator
+            \li background
+            \li vertical, horizontal, disabled, mirrored
+            \li .9.png (or .png)
+        \row
+            \li
+            \li separator
+            \li same as above
+            \li .9.png (or .png)
+        \row
+            \li \l ToolTip
+            \li background
+            \li
+            \li .9.png (or .png)
+        \row
+            \li \l Tumbler
+            \li background
+            \li disabled, focused, mirrored, hovered
+            \li .9.png (or .png)
+    \endtable
+
+    \section2 Asset Examples
+
+    The following table lists examples of assets (taken from the default
+    Imagine style assets) for all controls. The list is not exhaustive,
+    as not all elements need assets, but it can be used as a guide
+    when creating your own assets.
+
+    \table
+        \header
+            \li Control
+            \li Element
+            \li States
+            \li Asset
+            \li Notes
+        \row
+            \li \l ApplicationWindow
+            \li background
+            \li
+            \li \image imagine/images/applicationwindow-background.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li
+            \li overlay
+            \li
+            \li \image imagine/images/applicationwindow-overlay.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li \image imagine/images/applicationwindow-overlay-modal.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li \l Button
+            \li background
+            \li
+            \li \image imagine/images/button-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/button-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/button-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/button-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked
+            \li \image imagine/images/button-background-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, disabled
+            \li \image imagine/images/button-background-checked-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, focused
+            \li \image imagine/images/button-background-checked-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, hovered
+            \li \image imagine/images/button-background-checked-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted
+            \li \image imagine/images/button-background-highlighted.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, disabled
+            \li \image imagine/images/button-background-highlighted-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, focused
+            \li \image imagine/images/button-background-highlighted-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, hovered
+            \li \image imagine/images/button-background-highlighted-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, pressed
+            \li \image imagine/images/button-background-highlighted-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, checked
+            \li \image imagine/images/button-background-highlighted-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/button-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li flat
+            \li \image imagine/images/button-background-flat.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li flat, disabled
+            \li \image imagine/images/button-background-flat-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li flat, hovered
+            \li \image imagine/images/button-background-flat-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li flat, pressed
+            \li \image imagine/images/button-background-flat-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li flat, checked
+            \li \image imagine/images/button-background-flat-checked.9.png
+            \li
+        \row
+            \li \l CheckBox
+            \li indicator
+            \li
+            \li \image imagine/images/checkbox-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/checkbox-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/checkbox-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/checkbox-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/checkbox-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/checkbox-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/checkbox-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked
+            \li \image imagine/images/checkbox-indicator-partially-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked, pressed
+            \li \image imagine/images/checkbox-indicator-partially-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked, focused
+            \li \image imagine/images/checkbox-indicator-partially-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked, hovered
+            \li \image imagine/images/checkbox-indicator-partially-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/checkbox-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/checkbox-indicator-hovered.png
+            \li
+        \row
+            \li \l CheckDelegate
+            \li background
+            \li
+            \li \image imagine/images/checkdelegate-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/checkdelegate-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/checkdelegate-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/checkdelegate-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/checkdelegate-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li
+            \li \image imagine/images/checkdelegate-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/checkdelegate-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/checkdelegate-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/checkdelegate-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/checkdelegate-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/checkdelegate-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/checkdelegate-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/checkdelegate-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/checkdelegate-indicator-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked
+            \li \image imagine/images/checkdelegate-indicator-partially-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked, pressed
+            \li \image imagine/images/checkdelegate-indicator-partially-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked, focused
+            \li \image imagine/images/checkdelegate-indicator-partially-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li partially, checked, hovered
+            \li \image imagine/images/checkdelegate-indicator-partially-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/checkdelegate-indicator-hovered.png
+            \li
+        \row
+            \li \l ComboBox
+            \li background
+            \li
+            \li \image imagine/images/combobox-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/combobox-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/combobox-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/combobox-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/combobox-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li open
+            \li \image imagine/images/combobox-background-open.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li editable
+            \li \image imagine/images/combobox-background-editable.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li editable, focused
+            \li \image imagine/images/combobox-background-editable-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li editable, disabled
+            \li \image imagine/images/combobox-background-editable-disabled.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li
+            \li \image imagine/images/combobox-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/combobox-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li editable
+            \li \image imagine/images/combobox-indicator-editable.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li editable, disabled
+            \li \image imagine/images/combobox-indicator-editable-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li editable, mirrored
+            \li \image imagine/images/combobox-indicator-editable-mirrored.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li editable, mirrored, disabled
+            \li \image imagine/images/combobox-indicator-editable-mirrored-disabled.png
+            \li
+        \row
+            \li
+            \li popup
+            \li
+            \li \image imagine/images/combobox-popup.9.png
+            \li
+        \row
+            \li \l DelayButton
+            \li background
+            \li
+            \li \image imagine/images/delaybutton-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/delaybutton-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled, checked
+            \li \image imagine/images/delaybutton-background-disabled-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/delaybutton-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/delaybutton-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked
+            \li \image imagine/images/delaybutton-background-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, focused
+            \li \image imagine/images/delaybutton-background-checked-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, hovered
+            \li \image imagine/images/delaybutton-background-checked-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/delaybutton-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li
+            \li \image imagine/images/delaybutton-progress.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li disabled
+            \li \image imagine/images/delaybutton-progress-disabled.9.png
+            \li
+        \row
+            \li
+            \li mask
+            \li
+            \li \image imagine/images/delaybutton-mask.9.png
+            \li
+        \row
+            \li \l Dial
+            \li background
+            \li
+            \li \image imagine/images/dial-background.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/dial-background-disabled.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/dial-background-focused.png
+            \li
+        \row
+            \li
+            \li handle
+            \li
+            \li \image imagine/images/dial-handle.png
+            \li
+        \row
+            \li
+            \li handle
+            \li disabled
+            \li \image imagine/images/dial-handle-disabled.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused
+            \li \image imagine/images/dial-handle-focused.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused, pressed
+            \li \image imagine/images/dial-handle-focused-pressed.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused, hovered
+            \li \image imagine/images/dial-handle-focused-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li pressed
+            \li \image imagine/images/dial-handle-pressed.png
+            \li
+        \row
+            \li
+            \li handle
+            \li hovered
+            \li \image imagine/images/dial-handle-hovered.png
+            \li
+        \row
+            \li \l Dialog
+            \li background
+            \li
+            \li \image imagine/images/dialog-background.9.png
+            \li
+        \row
+            \li
+            \li overlay
+            \li
+            \li \image imagine/images/dialog-overlay.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li \image imagine/images/dialog-overlay-modal.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li \l DialogButtonBox
+            \li background
+            \li
+            \li \image imagine/images/dialogbuttonbox-background.9.png
+            \li
+        \row
+            \li \l Drawer
+            \li background
+            \li left
+            \li \image imagine/images/drawer-background-left.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li right
+            \li \image imagine/images/drawer-background-right.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li top
+            \li \image imagine/images/drawer-background-top.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li bottom
+            \li \image imagine/images/drawer-background-bottom.9.png
+            \li
+        \row
+            \li
+            \li overlay
+            \li
+            \li \image imagine/images/drawer-overlay.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li \image imagine/images/drawer-overlay-modal.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li \l Frame
+            \li background
+            \li
+            \li \image imagine/images/frame-background.9.png
+            \li
+        \row
+            \li \l GroupBox
+            \li background
+            \li
+            \li \image imagine/images/groupbox-background.9.png
+            \li
+        \row
+            \li
+            \li title
+            \li
+            \li \image imagine/images/groupbox-title.9.png
+            \li
+        \row
+            \li \l ItemDelegate
+            \li background
+            \li
+            \li \image imagine/images/itemdelegate-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/itemdelegate-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/itemdelegate-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/itemdelegate-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/itemdelegate-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted
+            \li \image imagine/images/itemdelegate-background-highlighted.9.png
+            \li
+        \row
+            \li \l Menu
+            \li background
+            \li
+            \li \image imagine/images/menu-background.9.png
+            \li
+        \row
+            \li \l MenuItem
+            \li background
+            \li
+            \li \image imagine/images/menuitem-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted
+            \li \image imagine/images/menuitem-background-highlighted.9.png
+            \li
+        \row
+            \li
+            \li arrow
+            \li
+            \li \image imagine/images/menuitem-arrow.png
+            \li
+        \row
+            \li
+            \li arrow
+            \li mirrored
+            \li \image imagine/images/menuitem-arrow-mirrored.png
+            \li
+        \row
+            \li
+            \li arrow
+            \li disabled
+            \li \image imagine/images/menuitem-arrow-disabled.png
+            \li
+        \row
+            \li
+            \li arrow
+            \li mirrored, disabled
+            \li \image imagine/images/menuitem-arrow-mirrored-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li
+            \li \image imagine/images/menuitem-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/menuitem-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/menuitem-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/menuitem-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/menuitem-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/menuitem-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/menuitem-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/menuitem-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/menuitem-indicator-hovered.png
+            \li
+        \row
+            \li \l MenuSeparator
+            \li separator
+            \li
+            \li \image imagine/images/menuseparator-separator.9.png
+            \li
+        \row
+            \li \l Page
+            \li background
+            \li
+            \li \image imagine/images/page-background.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li \l PageIndicator
+            \li delegate
+            \li
+            \li \image imagine/images/pageindicator-delegate.png
+            \li
+        \row
+            \li
+            \li delegate
+            \li disabled
+            \li \image imagine/images/pageindicator-delegate-disabled.png
+            \li
+        \row
+            \li
+            \li delegate
+            \li disabled, current
+            \li \image imagine/images/pageindicator-delegate-disabled-current.png
+            \li
+        \row
+            \li
+            \li delegate
+            \li pressed
+            \li \image imagine/images/pageindicator-delegate-pressed.png
+            \li
+        \row
+            \li
+            \li delegate
+            \li current
+            \li \image imagine/images/pageindicator-delegate-current.png
+            \li
+        \row
+            \li \l Pane
+            \li background
+            \li
+            \li \image imagine/images/pane-background.9.png
+            \li
+        \row
+            \li \l Popup
+            \li background
+            \li
+            \li \image imagine/images/popup-background.9.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li
+            \li overlay
+            \li
+            \li \image imagine/images/popup-overlay.png
+            \li \l {sup1}{See footnote} \sup 1
+        \row
+            \li
+            \li overlay
+            \li modal
+            \li \image imagine/images/popup-overlay-modal.png
+            \li
+        \row
+            \li \l ProgressBar
+            \li background
+            \li
+            \li \image imagine/images/progressbar-background.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li
+            \li \image imagine/images/progressbar-progress.png
+            \li
+        \row
+            \li
+            \li mask
+            \li
+            \li \image imagine/images/progressbar-mask.9.png
+            \li
+        \row
+            \li \l RadioButton
+            \li indicator
+            \li
+            \li \image imagine/images/radiobutton-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/radiobutton-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/radiobutton-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/radiobutton-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/radiobutton-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/radiobutton-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/radiobutton-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/radiobutton-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/radiobutton-indicator-hovered.png
+            \li
+        \row
+            \li \l RadioDelegate
+            \li background
+            \li
+            \li \image imagine/images/radiodelegate-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/radiodelegate-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/radiodelegate-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/radiodelegate-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/radiodelegate-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li
+            \li \image imagine/images/radiodelegate-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/radiodelegate-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/radiodelegate-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/radiodelegate-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/radiodelegate-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/radiodelegate-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/radiodelegate-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/radiodelegate-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/radiodelegate-indicator-hovered.png
+            \li
+        \row
+            \li \l RangeSlider
+            \li background
+            \li vertical
+            \li \image imagine/images/rangeslider-background-vertical.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li horizontal
+            \li \image imagine/images/rangeslider-background-horizontal.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li vertical
+            \li \image imagine/images/rangeslider-progress-vertical.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li vertical, disabled
+            \li \image imagine/images/rangeslider-progress-vertical-disabled.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li horizontal
+            \li \image imagine/images/rangeslider-progress-horizontal.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li horizontal, disabled
+            \li \image imagine/images/rangeslider-progress-horizontal-disabled.9.png
+            \li
+        \row
+            \li
+            \li handle
+            \li
+            \li \image imagine/images/rangeslider-handle.png
+            \li
+        \row
+            \li
+            \li handle
+            \li disabled
+            \li \image imagine/images/rangeslider-handle-disabled.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused
+            \li \image imagine/images/rangeslider-handle-focused.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused, hovered
+            \li \image imagine/images/rangeslider-handle-focused-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused, pressed
+            \li \image imagine/images/rangeslider-handle-focused-pressed.png
+            \li
+        \row
+            \li
+            \li handle
+            \li hovered
+            \li \image imagine/images/rangeslider-handle-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li pressed
+            \li \image imagine/images/rangeslider-handle-pressed.png
+            \li
+        \row
+            \li \l RoundButton
+            \li background
+            \li
+            \li \image imagine/images/roundbutton-background.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/roundbutton-background-disabled.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled, checked
+            \li \image imagine/images/roundbutton-background-disabled-checked.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/roundbutton-background-focused.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/roundbutton-background-pressed.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked
+            \li \image imagine/images/roundbutton-background-checked.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, focused
+            \li \image imagine/images/roundbutton-background-checked-focused.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, hovered
+            \li \image imagine/images/roundbutton-background-checked-hovered.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted
+            \li \image imagine/images/roundbutton-background-highlighted.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, pressed
+            \li \image imagine/images/roundbutton-background-highlighted-pressed.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, focused
+            \li \image imagine/images/roundbutton-background-highlighted-focused.png
+            \li
+        \row
+            \li
+            \li background
+            \li highlighted, hovered
+            \li \image imagine/images/roundbutton-background-highlighted-hovered.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/roundbutton-background-hovered.png
+            \li
+        \row
+            \li \l ScrollBar
+            \li handle
+            \li
+            \li \image imagine/images/scrollbar-handle.png
+            \li
+        \row
+            \li
+            \li handle
+            \li disabled
+            \li \image imagine/images/scrollbar-handle-disabled.png
+            \li
+        \row
+            \li
+            \li handle
+            \li interactive
+            \li \image imagine/images/scrollbar-handle-interactive.png
+            \li
+        \row
+            \li
+            \li handle
+            \li interactive, disabled
+            \li \image imagine/images/scrollbar-handle-interactive-disabled.png
+            \li
+        \row
+            \li
+            \li handle
+            \li interactive, pressed
+            \li \image imagine/images/scrollbar-handle-interactive-pressed.png
+            \li
+        \row
+            \li
+            \li handle
+            \li interactive, hovered
+            \li \image imagine/images/scrollbar-handle-interactive-hovered.png
+            \li
+        \row
+            \li \l ScrollIndicator
+            \li handle
+            \li
+            \li \image imagine/images/scrollindicator-handle.png
+            \li
+        \row
+            \li \l Slider
+            \li background
+            \li vertical
+            \li \image imagine/images/slider-background-vertical.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li horizontal
+            \li \image imagine/images/slider-background-horizontal.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li vertical
+            \li \image imagine/images/slider-progress-vertical.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li vertical, disabled
+            \li \image imagine/images/slider-progress-vertical-disabled.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li horizontal
+            \li \image imagine/images/slider-progress-horizontal.9.png
+            \li
+        \row
+            \li
+            \li progress
+            \li horizontal, disabled
+            \li \image imagine/images/slider-progress-horizontal-disabled.9.png
+            \li
+        \row
+            \li
+            \li handle
+            \li
+            \li \image imagine/images/slider-handle.png
+            \li
+        \row
+            \li
+            \li handle
+            \li disabled
+            \li \image imagine/images/slider-handle-disabled.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused
+            \li \image imagine/images/slider-handle-focused.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused, hovered
+            \li \image imagine/images/slider-handle-focused-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li focused, pressed
+            \li \image imagine/images/slider-handle-focused-pressed.png
+            \li
+        \row
+            \li
+            \li handle
+            \li hovered
+            \li \image imagine/images/slider-handle-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li pressed
+            \li \image imagine/images/slider-handle-pressed.png
+            \li
+        \row
+            \li \l SpinBox
+            \li background
+            \li
+            \li \image imagine/images/spinbox-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/spinbox-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/spinbox-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li editable
+            \li \image imagine/images/spinbox-background-editable.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up
+            \li \image imagine/images/spinbox-indicator-up.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, disabled
+            \li \image imagine/images/spinbox-indicator-up-disabled.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, pressed
+            \li \image imagine/images/spinbox-indicator-up-pressed.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, focused
+            \li \image imagine/images/spinbox-indicator-up-focused.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, mirrored
+            \li \image imagine/images/spinbox-indicator-up-mirrored.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, hovered
+            \li \image imagine/images/spinbox-indicator-up-hovered.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, editable
+            \li \image imagine/images/spinbox-indicator-up-editable.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, editable, pressed
+            \li \image imagine/images/spinbox-indicator-up-editable-pressed.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, editable, focused
+            \li \image imagine/images/spinbox-indicator-up-editable-focused.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, editable, mirrored
+            \li \image imagine/images/spinbox-indicator-up-editable-mirrored.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li up, editable, hovered
+            \li \image imagine/images/spinbox-indicator-up-editable-hovered.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down
+            \li \image imagine/images/spinbox-indicator-down.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, disabled
+            \li \image imagine/images/spinbox-indicator-down-disabled.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, pressed
+            \li \image imagine/images/spinbox-indicator-down-pressed.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, focused
+            \li \image imagine/images/spinbox-indicator-down-focused.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, mirrored
+            \li \image imagine/images/spinbox-indicator-down-mirrored.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, hovered
+            \li \image imagine/images/spinbox-indicator-down-hovered.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, editable
+            \li \image imagine/images/spinbox-indicator-down-editable.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, editable, pressed
+            \li \image imagine/images/spinbox-indicator-down-editable-pressed.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, editable, focused
+            \li \image imagine/images/spinbox-indicator-down-editable-focused.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, editable, mirrored
+            \li \image imagine/images/spinbox-indicator-down-editable-mirrored.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li down, editable, hovered
+            \li \image imagine/images/spinbox-indicator-down-editable-hovered.9.png
+            \li
+        \row
+            \li \l SwipeDelegate
+            \li background
+            \li
+            \li \image imagine/images/swipedelegate-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/swipedelegate-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/swipedelegate-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/swipedelegate-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/swipedelegate-background-hovered.9.png
+            \li
+        \row
+            \li \l Switch
+            \li indicator
+            \li
+            \li \image imagine/images/switch-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/switch-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/switch-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/switch-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/switch-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/switch-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/switch-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/switch-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/switch-indicator-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li
+            \li \image imagine/images/switch-handle.png
+            \li
+        \row
+            \li
+            \li handle
+            \li disabled
+            \li \image imagine/images/switch-handle-disabled.png
+            \li
+        \row
+            \li
+            \li handle
+            \li pressed
+            \li \image imagine/images/switch-handle-pressed.png
+            \li
+        \row
+            \li \l SwitchDelegate
+            \li background
+            \li
+            \li \image imagine/images/switchdelegate-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/switchdelegate-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/switchdelegate-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/switchdelegate-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/switchdelegate-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li
+            \li \image imagine/images/switchdelegate-indicator.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li disabled
+            \li \image imagine/images/switchdelegate-indicator-disabled.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li pressed
+            \li \image imagine/images/switchdelegate-indicator-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked
+            \li \image imagine/images/switchdelegate-indicator-checked.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, focused
+            \li \image imagine/images/switchdelegate-indicator-checked-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, hovered
+            \li \image imagine/images/switchdelegate-indicator-checked-hovered.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li checked, pressed
+            \li \image imagine/images/switchdelegate-indicator-checked-pressed.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li focused
+            \li \image imagine/images/switchdelegate-indicator-focused.png
+            \li
+        \row
+            \li
+            \li indicator
+            \li hovered
+            \li \image imagine/images/switchdelegate-indicator-hovered.png
+            \li
+        \row
+            \li
+            \li handle
+            \li
+            \li \image imagine/images/switchdelegate-handle.png
+            \li
+        \row
+            \li
+            \li handle
+            \li disabled
+            \li \image imagine/images/switchdelegate-handle-disabled.png
+            \li
+        \row
+            \li \l TabBar
+            \li background
+            \li
+            \li \image imagine/images/tabbar-background.png
+            \li
+        \row
+            \li \l TabButton
+            \li background
+            \li
+            \li \image imagine/images/tabbutton-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/tabbutton-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/tabbutton-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked
+            \li \image imagine/images/tabbutton-background-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/tabbutton-background-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled, checked
+            \li \image imagine/images/tabbutton-background-disabled-checked.9.png
+            \li
+        \row
+            \li \l TextArea
+            \li background
+            \li
+            \li \image imagine/images/textarea-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/textarea-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/textarea-background-focused.9.png
+            \li
+        \row
+            \li \l TextField
+            \li background
+            \li
+            \li \image imagine/images/textfield-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled
+            \li \image imagine/images/textfield-background-disabled.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/textfield-background-focused.9.png
+            \li
+        \row
+            \li \l ToolBar
+            \li background
+            \li
+            \li \image imagine/images/toolbar-background.png
+            \li
+        \row
+            \li \l ToolButton
+            \li background
+            \li
+            \li \image imagine/images/toolbutton-background.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li disabled, checked
+            \li \image imagine/images/toolbutton-background-disabled-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li focused
+            \li \image imagine/images/toolbutton-background-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li pressed
+            \li \image imagine/images/toolbutton-background-pressed.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked
+            \li \image imagine/images/toolbutton-background-checked.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, focused
+            \li \image imagine/images/toolbutton-background-checked-focused.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li checked, hovered
+            \li \image imagine/images/toolbutton-background-checked-hovered.9.png
+            \li
+        \row
+            \li
+            \li background
+            \li hovered
+            \li \image imagine/images/toolbutton-background-hovered.9.png
+            \li
+        \row
+            \li \l ToolSeparator
+            \li separator
+            \li horizontal
+            \li \image imagine/images/toolseparator-separator-horizontal.9.png
+            \li
+        \row
+            \li
+            \li separator
+            \li vertical
+            \li \image imagine/images/toolseparator-separator-vertical.9.png
+            \li
+        \row
+            \li \l ToolTip
+            \li background
+            \li
+            \li \image imagine/images/tooltip-background.9.png
+            \li
+    \endtable
+
+    \target sup1
+    \sup 1 A 1x1 image containing one color, stretched to fill the control.
+
+    \section2 9-Patch Images
+
+    The Imagine style uses \l
+    {https://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch}{9-patch
+    images} in order to give designers control over how a particular element
+    responds to being resized. Here is an example of a 9-patch image that
+    represents a \l {Button}'s \l {Control::}{background}, alongside a
+    magnified version (to make it easier to see the 9-patch lines):
+
+    \image qtquickcontrols2-imagine-9-patch-4x.png
+
+    The content of the image is 44 pixels wide by 32 pixels high. Every 9-patch
+    image needs a one pixel thick line (collectively referred to as
+    "9-patch lines") around every side, so the actual size of the image becomes
+    46 pixels wide by 34 pixels high. Note that the 9-patch lines must be one
+    pixel thick regardless of the target DPI of the image. For example,
+    the 9-patch lines for button-background.9.png and button-background@2x.9.png
+    must both be one pixel thick.
+
+    The 9-patch lines must be black, and the remaining areas must be transparent
+    or white:
+
+    \image qtquickcontrols2-imagine-9-patch-size.png
+
+    \section3 Stretchable Areas
+
+    The 9-patch lines on the top and left edges determine which parts of the
+    image are stretched when it is resized.
+
+    Below are examples of the 9-patch image being resized to one and a half
+    times its original size in various dimensions:
+
+    \image qtquickcontrols2-imagine-9-patch-resized-stretchable.png
+
+    Notice how the the rounded corners keep their original size, as they are
+    outside the range of the lines.
+
+    \section3 Padding Areas
+
+    The 9-patch lines on the right and bottom edges determine how much space
+    is available for the control's \l {Control::}{contentItem}, which means it
+    can also be thought of as controlling the \l {Control::}{padding}. For a
+    diagram that illustrates padding, see \l {Control Layout}.
+
+    Below are more examples of the 9-patch image being resized, but this time
+    demonstrating how the padding 9-patch lines work.
+
+    \image qtquickcontrols2-imagine-9-patch-resized-padding.png
+
+    The \c contentItem can take up as much space as it needs within the shaded
+    areas. If the padding lines are left out, the \c contentItem will take as
+    much space as it needs without exceeding the stretchable areas.
+
+    \section3 Inset Areas
+
+    In some cases it is necessary for a control to have a drop shadow, for
+    example. However, if we were to add a drop shadow to the button above, it
+    would affect its size, which presents problems for both layouting and
+    mouse/touch input boundaries.
+
+    Inset areas accounts for this by telling the control that a certain area of
+    the 9-patch image should go outside of the control:
+
+    \image qtquickcontrols2-imagine-9-patch-inset.png
+
+    In the image below, the dashed line represents the button's clickable area,
+    as well as the space that it will take up in a layout. The shadow is marked
+    by the striped area behind it:
+
+    \image qtquickcontrols2-imagine-9-patch-inset-boundaries.png
+
+    \section3 Exporting 9-Patch Images
+
+    Various vector and bitmap editors can be used to create 9-patch images
+    suitable for use with the Imagine style. The following sections briefly
+    explain the export process for each editor, and the last section explains
+    how to ensure the exported images are 9-patch-conformant.
+
+    \section4 Illustrator
+
+    See Adobe's
+    \l {https://helpx.adobe.com/in/illustrator/using/collect-assets-export-for-screens.html#panel}
+    {Asset Export panel} documentation.
+
+    \section4 Inkscape
+
+    The \l {https://github.com/mitchcurtis/inkscape-9-patch-export}
+    {Inkscape 9-Patch Export Extension} can be used to export assets with
+    Inkscape.
+
+    \section4 Photoshop
+
+    See Adobe's
+    \l {https://helpx.adobe.com/photoshop/using/generate-assets-layers.html}
+    {Generate image assets from layers} documentation.
+
+    \section4 Sketch
+
+    See Sketch's \l {https://sketchapp.com/docs/exporting/}{Exporting} documentation.
+
+    Qt Quick Controls 2 also provides a
+    \l {http://code.qt.io/cgit/qt/qtquickcontrols2.git/tree/src/imports/controls/imagine/design}
+    {plugin} for Sketch that automatically fixes the thickness of the 9-patch lines
+    after the assets are exported. To install this file, double-click on it.
+    Once Sketch has confirmed that the 9-patch export plugin has been installed,
+    the plugin will automatically process images when they are exported.
+
+    \section4 Fixing 9-Patch Lines
+
+    When exporting 9-patch images in several DPI variants (\c {@2x}, \c {@3x},
+    etc.), the 9-patch lines will typically be scaled up along with the image.
+    There are several ways to fix this, but perhaps the simplest approach is
+    to use \l {https://www.imagemagick.org/script/mogrify.php}{ImageMagick's mogrify}
+    tool. The tool has a \c -shave feature that can be used to crop the image
+    to reduce the thickness of the 9-patch lines:
+
+    \badcode
+    mogrify -shave 1x1 -path path/to/images *@2x.9.png
+    mogrify -shave 2x2 -path path/to/images *@3x.9.png
+    mogrify -shave 3x3 -path path/to/images *@4x.9.png
+    \endcode
+
+    Regular DPI images (those without the \c @Nx prefix) are not affected, so it
+    is only necessary to run the command on images intended for high DPI displays.
+
+    \section2 Animated Images
+
+    The \l {https://developers.google.com/speed/webp/}{WebP} and GIF animated
+    image formats are supported by the Imagine style.
+
+    \section2 Customization
+
+    \section3 Path
+
+    The Imagine style allows customizing the \l {imagine-path-attached-prop}{path}
+    that is used to do the image asset selection. The path can be specified for any
+    window or item, and it automatically propagates to children in the same manner as
+    \l {Control::font}{fonts}. In the following example, the window and all three radio
+    buttons appear with dark image assets (files that are located in "qrc:/themes/dark").
+
+    \table
+        \row
+            \li
+                \qml
+                import QtQuick 2.12
+                import QtQuick.Controls 2.12
+                import QtQuick.Controls.Imagine 2.12
+
+                ApplicationWindow {
+                    visible: true
+
+                    Imagine.path: "qrc:/themes/dark"
+
+                    Column {
+                        anchors.centerIn: parent
+
+                        RadioButton { text: qsTr("Small") }
+                        RadioButton { text: qsTr("Medium"); checked: true }
+                        RadioButton { text: qsTr("Large") }
+                    }
+                }
+                \endqml
+            \li
+                \image qtquickcontrols2-imagine-customization-dark.png
+    \endtable
+
+    In addition to specifying the path in QML, it is also possible to specify
+    it via an \l {imagine-customization-environment-variable}{environment variable}
+    or in a \l {imagine-customization-configuration-file}{configuration file}.
+    Attributes specified in QML take precedence over all other methods.
+
+    \section4 Configuration File
+    \target imagine-customization-configuration-file
+
+    \include qquickimaginestyle.qdocinc conf
+
+    See \l {Qt Quick Controls 2 Configuration File} for more details about the
+    configuration file.
+
+    \section4 Environment Variables
+    \target imagine-customization-environment-variable
+
+    \include qquickimaginestyle.qdocinc env
+
+    See \l {Supported Environment Variables in Qt Quick Controls 2} for the full
+    list of supported environment variables.
+
+    \section3 Palette
+
+    The Imagine style supports palette customization via the \l {Control::}{palette}
+    property and the \l {Palette Configuration}{qtquickcontrols2.conf} file.
+    As with other styles, the exact \l {palette QML Basic Type}{palette roles}
+    that the Imagine style uses are style-dependent. However, as most of the visual
+    appearance of controls (for example: backgrounds) are managed through image assets,
+    only the roles that are typically used for text will have an effect.
+
+    \section3 Font
+
+    Custom fonts can be set via the \l {Control::}{font} property and the
+    \l {Font Configuration}{configuration} file.
+
+    \section2 Dependency
+
+    The Imagine style must be separately imported to gain access to the
+    attributes that are specific to the Imagine style. It should be noted
+    that regardless of the references to the Imagine style, the same
+    application code runs with any other style. Imagine-specific attributes
+    only have an effect when the application is run with the Imagine style.
+
+    If the Imagine style is imported in a QML file that is always loaded, the
+    Imagine style must be deployed with the application in order to be able
+    to run the application regardless of which style the application is run with.
+    By using \l {Using File Selectors with Qt Quick Controls 2}{file selectors},
+    style-specific tweaks can be applied without creating a hard dependency to
+    a style.
+
+    \b {See also} \l {Styling Qt Quick Controls 2}
+
+    \section1 Attached Property Documentation
+
+    \styleproperty {Imagine.path} {string} {imagine-path-attached-prop}
+    \target imagine-path-attached-prop
+    This attached property holds the path to the image assets...
+
+    \code
+    Button {
+        Imagine.path: "qrc:/themes/dark"
+    }
+    \endcode
+
+    \endstyleproperty
+
+    \section1 Related Information
+
+    \list
+      \li \l{Styling Qt Quick Controls 2}
+      \li \l{Qt Quick Controls 2 - Imagine Style Example: Automotive}{Automotive Example}
+      \li \l{Qt Quick Controls 2 - Imagine Style Example: Music Player}{Music Player Example}
+    \endlist
+*/

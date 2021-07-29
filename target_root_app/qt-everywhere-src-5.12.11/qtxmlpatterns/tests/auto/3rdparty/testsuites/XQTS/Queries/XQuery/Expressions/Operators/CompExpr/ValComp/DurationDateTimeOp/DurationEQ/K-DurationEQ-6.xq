@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DurationEQ-6                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The xs:duration values P365D and P1Y are not equal. :)
+(:*******************************************************:)
+xs:duration("P1Y") ne xs:duration("P365D")

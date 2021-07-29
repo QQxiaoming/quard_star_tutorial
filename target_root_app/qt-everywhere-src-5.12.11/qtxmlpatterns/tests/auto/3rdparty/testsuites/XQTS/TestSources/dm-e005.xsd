@@ -1,0 +1,54 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:t="http://www.example.com/ns/test"
+           targetNamespace="http://www.example.com/ns/test"
+	   elementFormDefault="qualified">
+
+  <xs:element name="doc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="t:para1"/>
+          <xs:element ref="t:para2"/>
+          <xs:element ref="t:para3"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="para1">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="1">
+        <xs:element name="id">
+          <xs:simpleType>
+            <xs:restriction base="xs:ID"/>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="para2">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="1">
+        <xs:element name="id">
+          <xs:simpleType>
+            <xs:union memberTypes="xs:ID xs:string"/>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="para3">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="1">
+        <xs:element name="id">
+          <xs:simpleType>
+            <xs:list itemType="xs:ID"/>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

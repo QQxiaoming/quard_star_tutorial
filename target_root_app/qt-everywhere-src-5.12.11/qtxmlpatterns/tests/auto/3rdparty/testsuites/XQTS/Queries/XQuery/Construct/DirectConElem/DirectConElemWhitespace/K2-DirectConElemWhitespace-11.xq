@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemWhitespace-11                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure non-boundary characters, CDATA, are handled properly. :)
+(:*******************************************************:)
+string(<e> <![CDATA[ ]]> </e>)

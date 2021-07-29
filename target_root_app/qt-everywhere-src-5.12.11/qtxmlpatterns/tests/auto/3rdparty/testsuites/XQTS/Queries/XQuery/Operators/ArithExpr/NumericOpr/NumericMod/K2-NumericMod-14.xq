@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NumericMod-14                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Both ops are xs:double/NaN.                  :)
+(:*******************************************************:)
+xs:double("NaN") mod xs:double("NaN")

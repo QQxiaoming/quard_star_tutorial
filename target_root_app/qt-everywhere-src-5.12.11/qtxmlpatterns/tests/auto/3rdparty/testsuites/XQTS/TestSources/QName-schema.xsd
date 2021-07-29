@@ -1,0 +1,32 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    targetNamespace="http://www.example.com/QNameXSD" 
+	xmlns:xqo="http://www.example.com/QNameXSD" elementFormDefault="qualified">
+
+	<element name="root" type="xqo:rootType" />
+	<complexType name="rootType">
+		<sequence minOccurs="0" maxOccurs="unbounded">
+			<choice minOccurs="0" maxOccurs="1">
+				<element name="elemQN" type="xs:QName" />
+				<element name="derivQN" type="xqo:QNameDerivType" />
+				<element name="elemStr" type="xs:string" />
+				<element name="derivStr" type="xs:Name" />
+				<element name="derivStr1" type="xqo:StrDerivType" />
+			</choice>
+		</sequence>
+		<attribute name="attrQN" type="xs:QName" />
+		<attribute name="attrDerivQN" type="xs:QName" />
+		<attribute name="attrStr" type="xs:string" />
+		<attribute name="attrDerivStr" type="xs:ID" />
+	</complexType>
+
+	<simpleType name="StrDerivType">
+		<restriction base="xs:string"></restriction>
+	</simpleType>
+
+	<complexType name="QNameDerivType">
+		<simpleContent>
+			<extension base="xs:QName"/>
+		</simpleContent>
+	</complexType>
+</schema>

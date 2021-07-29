@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-less-than-11                           :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 15, 2005                                    :)
+(:Purpose: Evaluates The "boolean-less-than" function    :)
+(: with operands set to "(7 eq 7)", "false" respectively.:)
+(: Use of lt operator.                                   :)
+(:*******************************************************:)
+ 
+(7 eq 7) lt xs:boolean("false")

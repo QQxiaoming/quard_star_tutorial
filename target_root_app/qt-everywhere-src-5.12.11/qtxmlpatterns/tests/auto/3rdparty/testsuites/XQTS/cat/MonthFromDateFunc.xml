@@ -1,0 +1,190 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="MonthFromDateFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:month-from-date</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-month-from-date1args-1" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function with the arguments set as follows: $arg = xs:date(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date1args-2" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function with the arguments set as follows: $arg = xs:date(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date1args-3" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function with the arguments set as follows: $arg = xs:date(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-1" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function as per example 1 of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-1" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-2" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function as as per example 2 of the Functions and operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-2" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-3" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-less-than expression (lt operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-3" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-4" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-less-than expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-4" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-5" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function using empty sequence as argument. Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-5" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-6" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function with argument set so the function returns 1.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-6" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-7" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function with argument set so the function returns 12.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-7" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-8" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of an addition expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-8" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-9" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a subtraction expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-9" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-10" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a multiplication expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-10" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-11" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-11" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-12" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of an idiv expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-12" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-13" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a mod expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-13" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-14" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-unary-plus expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-14" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-15" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-unary-minus expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-15" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-16" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-16" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-17" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-17" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-18" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-18" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-month-from-date-19" FilePath="Functions/DurationDateTimeFunc/MonthFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "month-from-date" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.15" section-title="fn:month-from-date" section-pointer="func-month-from-date"/>
+      <query name="fn-month-from-date-19" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-month-from-date-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MonthFromDateFunc-1" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MonthFromDateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `month-from-date()`.</description>
+      <query name="K-MonthFromDateFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MonthFromDateFunc-2" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MonthFromDateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `month-from-date((), "Wrong param")`.</description>
+      <query name="K-MonthFromDateFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MonthFromDateFunc-3" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MonthFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(month-from-date(()))`.</description>
+      <query name="K-MonthFromDateFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-MonthFromDateFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MonthFromDateFunc-4" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MonthFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `month-from-date(()) instance of xs:integer?`.</description>
+      <query name="K-MonthFromDateFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-MonthFromDateFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-MonthFromDateFunc-5" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/MonthFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `month-from-date(xs:date("2000-02-03")) eq 2`.</description>
+      <query name="K-MonthFromDateFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-MonthFromDateFunc-5.txt</output-file>
+   </test-case>
+</test-group>

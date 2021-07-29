@@ -1,0 +1,214 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ancestor-or-selfAxis" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>ancestor-or-self Axis</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="ancestorself-1" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis for which the context node is not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-1" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-2" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis for which the given node does not exists.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-2" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-3" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "is" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-3" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-4" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "is" expression (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-4" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-5" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "node before" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-5" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-6" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "node before" expression and both operands are the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-6" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-7" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "node before" expression and operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-7" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-8" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "node-after" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-8" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-9" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "node-after" expression and both operands the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-9" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-10" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "node-after" expression operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-10" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-11" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "union" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-11" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">ancestorself-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-12" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "union" operation and both operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-12" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">ancestorself-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-13" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "intersect" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-13" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">ancestorself-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-14" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "except" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-14" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-15" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis that is part of an "except" operation and operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-15" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">ancestorself-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-16" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis as part of a boolean expression. Uses "and" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-16" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-17" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis as part of a boolean expression. Uses "and" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-17" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-18" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis as part of a boolean expression. Uses "or" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-18" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-19" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis as part of a boolean expression. Uses "or" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-19" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ancestorself-20" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis as an argument to fn:deep-equal function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-20" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">ancestorself-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ancestorself-21" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an ancestor-or-self axis used together with a newly constructed element.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="ancestorself-21" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">ancestorself-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-11" FilePath="FullAxis/ancestor-or-selfAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - ancestor-or-self::employee - Selects all the "employee" ancestors of the context node (selects employee, if the context node is "employee").</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-11" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-1" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply axis ancestor on a single element.</description>
+      <query name="K2-ancestor-or-selfAxis-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-2" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply axis ancestor to a single processing instruction.</description>
+      <query name="K2-ancestor-or-selfAxis-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-3" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="runtime-error">
+      <description>Apply axis ancestor to a single attribute.</description>
+      <query name="K2-ancestor-or-selfAxis-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>SENR0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-4" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply axis ancestor to a single comment.</description>
+      <query name="K2-ancestor-or-selfAxis-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-5" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply axis ancestor-or-self to a single document node.</description>
+      <query name="K2-ancestor-or-selfAxis-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-6" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply axis ancestor to a single text node.</description>
+      <query name="K2-ancestor-or-selfAxis-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-7" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply fn:count() to the result of axis ancestor-or-self.</description>
+      <query name="K2-ancestor-or-selfAxis-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-8" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Apply fn:count() to the result of axis ancestor-or-self(#2).</description>
+      <query name="K2-ancestor-or-selfAxis-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ancestor-or-selfAxis-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ancestor-or-selfAxis-9" FilePath="Optional/FullAxis/ancestor-or-selfAxis/" scenario="standard">
+      <description>Use positional predicates.</description>
+      <query name="K2-ancestor-or-selfAxis-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ancestor-or-selfAxis-9.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,56 @@
+Qt 5.12.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                QtLocation                                *
+****************************************************************************
+
+
+ - Exposed support for chinese maps in the MapboxGL plugin.
+ - Fixed unstable rotation gesture on some platforms.
+ - [QTBUG-71607] Fixed MapPolyline drawing incorrectly at high zoom levels.
+ - [QTBUG-71607] Fixed missing geometry update when changing map items
+   border width.
+ - [QTBUG-71264] Fixed MapItemView removing wrong indices on model changes.
+ - Added QAbstractNavigator::setTrackPosition.
+ - [QTBUG-70254] Improved the initialization behavior of CategoryModel.
+ - [QTBUG-69512] Fixed compilation with GCC < 5.0.
+ - [QTBUG-72180] Fixed a regression in error handling inside
+   QGeoServiceProvider.
+ - [QTBUG-72462] Introduced a plugin parameter to decide U-Turn direction.
+ - Fixed MapItemView attempting to instantiate items when map not set.
+
+****************************************************************************
+*                              QtPositioning                               *
+****************************************************************************
+
+ - [QTBUG-72291] Fixed horizontal accuracy comparison for competing position
+   results.
+ - [QTBUG-62682][QTBUG-68331] Enabled QVariant::save for QGeoCoordinate.
+ - Registered QGeoCoordinate debug streaming operator
+
+ - [QTBUG-64689] Android: Implemented collection of vertical accuracy data.
+ - [QTBUG-66427] Android: Fixed
+   QGeoPositionInfoSource::supportedPositioningMethods().
+
+ - WinRT: Fixed setting of verticalAccuracy.
+ - [QTBUG-71194] WinRT: Made sure that Co(Un)Initialize is called.
+ - WinRT: Added categorized logging.
+ - WinRT: Fixed namespaced builds
+ - WinRT: Implemented minimumUpdateInterval.

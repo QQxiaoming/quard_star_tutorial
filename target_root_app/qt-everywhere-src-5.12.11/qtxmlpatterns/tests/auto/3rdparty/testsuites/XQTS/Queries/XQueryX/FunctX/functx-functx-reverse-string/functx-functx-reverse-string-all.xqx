@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>functx</xqx:prefix>
+        <xqx:uri>http://www.example.com/</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="functx">reverse-string</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>arg</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+              <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName>codepoints-to-string</xqx:functionName>
+            <xqx:arguments>
+              <xqx:functionCallExpr>
+                <xqx:functionName>reverse</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName>string-to-codepoints</xqx:functionName>
+                    <xqx:arguments>
+                      <xqx:varRef>
+                        <xqx:name>arg</xqx:name>
+                      </xqx:varRef>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:sequenceExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">reverse-string</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>abc</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="functx">reverse-string</xqx:functionName>
+          <xqx:arguments>
+            <xqx:stringConstantExpr>
+              <xqx:value>a</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+      </xqx:sequenceExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

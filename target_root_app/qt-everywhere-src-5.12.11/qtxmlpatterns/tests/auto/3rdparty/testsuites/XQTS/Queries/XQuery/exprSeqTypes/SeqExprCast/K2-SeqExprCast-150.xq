@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-150                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Hexa-decimal notation isn't allowed in byte. :)
+(:*******************************************************:)
+xs:byte("-0x128")

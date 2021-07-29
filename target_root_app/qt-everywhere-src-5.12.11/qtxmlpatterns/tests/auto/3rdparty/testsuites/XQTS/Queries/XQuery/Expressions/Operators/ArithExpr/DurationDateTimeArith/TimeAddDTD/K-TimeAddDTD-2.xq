@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-TimeAddDTD-2                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple testing involving operator '+' between xs:dayTimeDuration and xs:time. :)
+(:*******************************************************:)
+xs:dayTimeDuration("P23DT09H32M59S") + xs:time("08:12:32")
+		                	 eq xs:time("17:45:31")

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-CondExpr-8                                    :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: An if-test which EBV cannot be extracted from. :)
+(:*******************************************************:)
+1 eq (if(xs:anyURI("example.com/")) then 1 else 0)

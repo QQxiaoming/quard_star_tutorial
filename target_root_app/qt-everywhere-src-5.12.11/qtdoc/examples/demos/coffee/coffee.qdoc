@@ -1,0 +1,114 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:BSD$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** BSD License Usage
+** Alternatively, you may use this file under the terms of the BSD license
+** as follows:
+**
+** "Redistribution and use in source and binary forms, with or without
+** modification, are permitted provided that the following conditions are
+** met:
+**   * Redistributions of source code must retain the above copyright
+**     notice, this list of conditions and the following disclaimer.
+**   * Redistributions in binary form must reproduce the above copyright
+**     notice, this list of conditions and the following disclaimer in
+**     the documentation and/or other materials provided with the
+**     distribution.
+**   * Neither the name of The Qt Company Ltd nor the names of its
+**     contributors may be used to endorse or promote products derived
+**     from this software without specific prior written permission.
+**
+**
+** THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+** "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+** LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+** A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+** OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+** SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+** LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+** DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+** THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+** (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+**
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+
+    \example demos/coffee
+    \title Coffee Machine Example
+    \ingroup examples-tutorials
+
+    \borderedimage coffee_machine_overview.png
+
+    The coffee machine application lets you choose a type of coffee on the
+    left side of the main screen. After selection, the app displays what
+    the coffee blend will contain (ratio coffee/hot milk/milk foam).
+    This can be modified with two sliders. When the brew has been started,
+    the app shows an animated display of the brewing process, then returns
+    to the start screen.
+
+    First the start screen \c Animationflowform is displayed, showing a
+    sidebar with several types of coffee, and an empty cup on the right
+    screen.
+
+    Selecting a coffee type - for example, cappuccino - triggers \c animation1
+    and \c animation2 in CoffeeButton.qml.  On the right side, you will see
+    the coffee blend you selected.
+
+    \snippet demos/coffee/CoffeeButton.qml 0
+
+    It also triggers cappuccinoButton.onClicked(), which sets the default
+    mix for the coffee type selected:
+
+    \snippet demos/coffee/SideBar.qml 0
+
+    \borderedimage coffee_machine_selection.png
+    \caption Coffee blend cappuccino
+
+    \c sideBar.coffeeSelected() \c sets applicationFlow.state to "selection"
+
+    If you click "Brew me a cup", choosingCoffee.brewButtonSelection.onClicked
+    is triggered:
+
+    \snippet demos/coffee/ApplicationFlow.qml 0
+
+    On the right side of the screen, you will see two sliders, one for
+    the amount of milk, and one for sugar. They will have default values,
+    but can be modified by the user.
+
+    \borderedimage coffee_machine_modify.png
+
+    If you click on \c Brew, \c choosingCoffee.brewButton.onClicked() is triggered,
+    which displays a screen with the message "Please insert cup into tray".
+
+    \snippet demos/coffee/ApplicationFlow.qml 2
+
+    \borderedimage coffee_machine_emptycup.png
+
+    Clicking on \c Continue starts the brewing of the coffee type you
+    selected.
+
+    \snippet demos/coffee/ApplicationFlow.qml 1
+
+    The brewing process is defined as follows in \c Brewing.qml:
+
+    \snippet demos/coffee/Brewing.qml 0
+
+    After completion, the application returns to the start screen.
+*/

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-323                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Testing timezone field in xs:dateTime: the minute component cannot be +60. :)
+(:*******************************************************:)
+xs:dateTime("1999-12-01T23:59:12.432+10:60")

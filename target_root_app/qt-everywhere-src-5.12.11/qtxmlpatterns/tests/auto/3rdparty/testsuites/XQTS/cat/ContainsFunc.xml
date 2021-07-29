@@ -1,0 +1,255 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ContainsFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:contains</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-contains2args-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = xs:string(lower bound) $arg2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains2args-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = xs:string(mid range) $arg2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains2args-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = xs:string(upper bound) $arg2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains2args-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = xs:string(lower bound) $arg2 = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains2args-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = xs:string(lower bound) $arg2 = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "" $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-1" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "" $arg2 = "A Character String".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-2" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-3" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = () $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-4" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "" $arg2 = ().</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-5" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = ().</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-6" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = () $arg2 = "A Character String".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-7" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "AAAAABBBBBCCCCC" $arg2 = "BBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-8" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "AAAAABBBBB" $arg2 = " ".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-9" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = " " $arg2 = "AAAAABBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-10" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-11" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function as an argument of another function (fn:not)- return false.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-11" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-12" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function as an argument of another function (fn:not) - return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-12" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-13" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = xs:string("A") $arg2 = "A".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-13" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-14" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "A" $arg2 = xs:string("A").</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-14" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-15" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "A" $arg2 = "a".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-15" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-contains-16" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "contains" function with the arguments set as follows: $arg1 = "a" $arg2 = "A".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.1" section-title="fn:contains" section-pointer="func-contains"/>
+      <query name="fn-contains-16" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-contains-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `contains()`.</description>
+      <query name="K-ContainsFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `contains(())`.</description>
+      <query name="K-ContainsFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `contains((), (), "http://www.w3.org/2005/xpath-functions/collation/codepoint", "wrong param")`.</description>
+      <query name="K-ContainsFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `contains("a string", "a string", "http://www.example.com/COLLATION/NOT/SUPPORTED")`.</description>
+      <query name="K-ContainsFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `contains("foo", "foo", "http://www.w3.org/2005/xpath-functions/collation/codepoint")`.</description>
+      <query name="K-ContainsFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `contains("tattoo", "t")`.</description>
+      <query name="K-ContainsFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `not(contains("tattoo", "ttt"))`.</description>
+      <query name="K-ContainsFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `contains("", ())`.</description>
+      <query name="K-ContainsFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `contains("a string", ())`.</description>
+      <query name="K-ContainsFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `contains("foo", "foo")`.</description>
+      <query name="K-ContainsFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContainsFunc-11" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>A test whose essence is: `not(contains("", "a string"))`.</description>
+      <query name="K-ContainsFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContainsFunc-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ContainsFunc-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>Compare two values returned from fn:lower-case().</description>
+      <query name="K2-ContainsFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ContainsFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ContainsFunc-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>Compare two values returned from fn:upper-case().</description>
+      <query name="K2-ContainsFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ContainsFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ContainsFunc-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case().</description>
+      <query name="K2-ContainsFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ContainsFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ContainsFunc-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:upper-case().</description>
+      <query name="K2-ContainsFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ContainsFunc-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ContainsFunc-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-ContainsFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ContainsFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ContainsFunc-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/ContainsFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-ContainsFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ContainsFunc-6.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,35 @@
+Further, the shader code must use multisampling sampler types and texelFetch() instead
+    of texture().
+
+\oldcode
+
+#version 150
+
+uniform sampler2D colorTexture;
+in vec2 texCoord;
+out vec4 fragColor;
+
+void main()
+{
+    fragColor = texture(colorTexture, texCoord);
+}
+
+\newcode
+
+#version 150
+
+uniform sampler2DMS colorTexture;
+in vec2 texCoord;
+out vec4 fragColor;
+
+void main()
+{
+    ivec2 tc = ivec2(floor(textureSize(colorTexture) * texCoord));
+    vec4 c = texelFetch(colorTexture, tc, 0) +
+                texelFetch(colorTexture, tc, 1) +
+                texelFetch(colorTexture, tc, 2) +
+                texelFetch(colorTexture, tc, 3);
+    fragColor = c / 4.0;
+}
+
+\endcode

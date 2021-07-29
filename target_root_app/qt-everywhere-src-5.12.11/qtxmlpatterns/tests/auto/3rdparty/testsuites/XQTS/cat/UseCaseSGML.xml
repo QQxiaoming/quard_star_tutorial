@@ -1,0 +1,84 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseSGML" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "SGML": Standard Generalized Markup Language</title>
+      <description>The example document and queries in this Use Case were first created for a 1992 conference on Standard Generalized Markup Language (SGML).</description>
+   </GroupInfo>
+   <test-case name="sgml-queries-results-q1" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Locate all paragraphs in the report (all "para" elements occurring anywhere within the "report" element).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.1" section-title="Q1" section-pointer="sgml-queries-results-q1"/>
+      <query name="sgml-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case name="sgml-queries-results-q2" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Locate all paragraph elements in an introduction (all "para" elements directly contained within an "intro" element).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.2" section-title="Q2" section-pointer="sgml-queries-results-q2"/>
+      <query name="sgml-queries-results-q2" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="sgml-queries-results-q3" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group">
+      <description>Locate all paragraphs in the introduction of a section that is in a chapter that has no introduction (all "para" elements directly contained within an "intro" element directly contained in a "section" element directly contained in a "chapter" element. The "chapter" element must not directly contain an "intro" element).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.3" section-title="Q3" section-pointer="sgml-queries-results-q3"/>
+      <query name="sgml-queries-results-q3" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q3.txt</output-file>
+   </test-case>
+   <test-case name="sgml-queries-results-q4" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Locate the second paragraph in the third section in the second chapter (the second "para" element occurring in the third "section" element occurring in the second "chapter" element occurring in the "report").</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.4" section-title="Q4" section-pointer="sgml-queries-results-q4"/>
+      <query name="sgml-queries-results-q4" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case name="sgml-queries-results-q5" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Locate all classified paragraphs (all "para" elements whose "security" attribute has the value "c").</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.5" section-title="Q5" section-pointer="sgml-queries-results-q5"/>
+      <query name="sgml-queries-results-q5" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="sgml-queries-results-q6" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group">
+      <description>List the short titles of all sections (the values of the "shorttitle" attributes of all "section" elements, expressing each short title as the value of a new element.).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.6" section-title="Q6" section-pointer="sgml-queries-results-q6"/>
+      <query name="sgml-queries-results-q6" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="sgml-queries-results-q7" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group">
+      <description>Locate the initial letter of the initial paragraph of all introductions (the first character in the content [character content as well as element content] of the first "para" element contained in an "intro" element).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.7" section-title="Q7" section-pointer="sgml-queries-results-q7"/>
+      <query name="sgml-queries-results-q7" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q7.txt</output-file>
+   </test-case>
+   <test-case name="sgml-queries-results-q8a" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Locate all sections with a title that has "is SGML" in it. The string may occur anywhere in the descendants of the title element, and markup boundaries are ignored.</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.8" section-title="Q8a" section-pointer="sgml-queries-results-q8a"/>
+      <query name="sgml-queries-results-q8a" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q8a.txt</output-file>
+   </test-case>
+   <test-case name="sgml-queries-results-q8b" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Same as (Q8a), but the string "is SGML" cannot be interrupted by sub-elements, and must appear in a single text node.</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.9" section-title="Q8b" section-pointer="sgml-queries-results-q8b"/>
+      <query name="sgml-queries-results-q8b" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q8b.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case name="sgml-queries-results-q9" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>Locate all the topics referenced by a cross-reference anywhere in the report (all the "topic" elements whose "topicid" attribute value is the same as an "xrefid" attribute value of any "xref" element).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.10" section-title="Q9" section-pointer="sgml-queries-results-q9"/>
+      <query name="sgml-queries-results-q9" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="sgml-queries-results-q10" FilePath="UseCase/UseCaseSGML/" scenario="standard" Creator="XML Query Group">
+      <description>Locate the closest title preceding the cross-reference ("xref") element whose "xrefid" attribute is "top4" (the "title" element that would be touched last before this "xref" element when touching each element in document order).</description>
+      <spec-citation spec="UseCases" section-number="1.5.4.11" section-title="Q10" section-pointer="sgml-queries-results-q10"/>
+      <query name="sgml-queries-results-q10" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">sgml</input-file>
+      <output-file role="principal" compare="XML">sgml-queries-results-q10.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,20 @@
+The following example uses the attached \l {Overlay::overlay}{Overlay.overlay}
+property to position a popup in the center of the window, despite the position
+of the button that opens the popup:
+
+\code
+Button {
+    onClicked: popup.open()
+
+    Popup {
+        id: popup
+
+        parent: Overlay.overlay
+
+        x: Math.round((parent.width - width) / 2)
+        y: Math.round((parent.height - height) / 2)
+        width: 100
+        height: 100
+    }
+}
+\endcode

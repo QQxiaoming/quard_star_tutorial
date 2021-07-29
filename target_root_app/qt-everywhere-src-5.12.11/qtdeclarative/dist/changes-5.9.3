@@ -1,0 +1,73 @@
+Qt 5.9.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.3 Changes                           *
+****************************************************************************
+
+QtQml
+-----
+
+ - [QTBUG-63464] Fix Number.isNaN() returning incorrect values with some
+   glibc versions.
+ - [QTBUG-52515] Qt.platform.os returns "qnx" when running on QNX
+   platforms.
+ - [QTBUG-63200] Deferred property assignments in inner contexts are now
+   executed properly
+ - [QTBUG-63733] Fixed a crash during object deletion due to a dangling
+   pointer
+ - [QTBUG-64017] Fixed a circular dependency problem which caused a
+   failure when using QML singletons
+
+QtQuick
+-------
+
+ - Global:
+   * [QTBUG-61679] Input method events now work in QQuickWidget
+   * Loader and Flickable use setSize() to resize the inner Item in one
+     transaction rather than setting width and height separately.
+     This makes the state consistent by the time the change signals are emitted.
+   * Optimized rendering of opaque pixmaps, 9-patches and layers in the
+     software renderer
+   * [QTBUG-61434] Fixed a crash on exit by ensuring that a PointerEvent
+     instance is created only in response to an actual incoming event,
+     not because of checking the mouseGrabberItem at shutdown, and by
+     explicitly destroying the instances at the right time.
+
+ - QQuickWidget:
+   * [QTBUG-61798] QQuickWidget is repainted properly when moving between
+     screens
+   * [QTBUG-45557] Mouse enter and leave events are now correctly forwarded
+     to MouseAreas inside a QQuickWidget
+
+ - Item Views:
+   * [QTBUG-62607] Fixed a crash and a memory leak related to moving Items
+     in Item Views
+   * [QTBUG-57225][QTBUG-57225] GridView's removeDisplaced animation
+     occurs reliably and at the right time
+   * [QTBUG-61269][QTBUG-62864] Changes in a ListView's model no longer
+     disrupt the movement of an animated highlight item
+   * [QTBUG-34576] ListView's calculated velocity remains correct during
+     index-based scrolling
+   * [QTBUG-63974] ListView.positionViewAtIndex now works correctly
+     in the presence of sticky headers and footers
+
+ - Platform Specific Changes:
+   * [QTBUG-63835] iOS selection handles are shown properly when selecting
+     all text in a TextEdit

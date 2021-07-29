@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-numeric-multiplynni2args-1                     :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:16 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:numeric-multiply" operator  :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:nonNegativeInteger(lower bound)             :)
+(:$arg2 = xs:nonNegativeInteger(lower bound)             :)
+(:*******************************************************:)
+
+xs:nonNegativeInteger("0") * xs:nonNegativeInteger("0")

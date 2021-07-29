@@ -1,0 +1,36 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ConstructSI">
+   <GroupInfo>
+      <title>Computed Element Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-1" FilePath="SchemaImport/ConstructSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip IDREFS type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-1" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmod-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-2" FilePath="SchemaImport/ConstructSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Preserve IDREFS type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-2" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmod-2.txt</output-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmodalt-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-5" FilePath="SchemaImport/ConstructSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip IDREFS type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-5" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmod-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compelem-constrmod-6" FilePath="SchemaImport/ConstructSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Preserve IDREFS type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.1" section-title="Computed Element Constructors" section-pointer="id-computedElements"/>
+      <query name="Constr-compelem-constrmod-6" date="2005-04-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmod-6.txt</output-file>
+      <output-file role="principal" compare="Text">Constr-compelem-constrmodalt-6.txt</output-file>
+   </test-case>
+</test-group>

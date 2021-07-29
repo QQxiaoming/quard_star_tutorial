@@ -1,0 +1,383 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="BooleanEqual" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:boolean-equal</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-boolean-equal2args-1" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the arguments set as follows: $value1 = xs:boolean(lower bound) $value2 = xs:boolean(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal2args-2" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the arguments set as follows: $value1 = xs:boolean(mid range) $value2 = xs:boolean(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal2args-3" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the arguments set as follows: $value1 = xs:boolean(upper bound) $value2 = xs:boolean(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal2args-4" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the arguments set as follows: $value1 = xs:boolean(lower bound) $value2 = xs:boolean(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal2args-5" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the arguments set as follows: $value1 = xs:boolean(lower bound) $value2 = xs:boolean(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-1" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(true)" and "true" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-1" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-2" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(true)" and "false" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-2" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-3" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(false)" and "false" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-3" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-4" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "true and true" and "false and false" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-4" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-5" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set as to "fn:not(true and true)" and "true" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-5" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-6" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(false and false)" and "true and true" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-6" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-7" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(false)" and "fn:not(false)" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-7" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-8" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(false and true)" and "fn:not(false and true)" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-8" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-9" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "(7 lt 7)" and "true" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-9" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-10" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "(7 eq 7)" and "false" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-10" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-11" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(7 lt 7)" and "true" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-11" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-12" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operators set to "fn:not(7 lt 7)" and "false" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-12" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-13" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operator using multiple "eq" operators and the "and" operator.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-13" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-14" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator with the operator using multiple "eq" operators and the "or" operator.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-14" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-15" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator using the "starts-with" function.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-15" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-16" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:boolean-equal" operator using the "ends-with" function.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-16" date="2005-06-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="op-boolean-equal-17" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates cardinality violation on "eq" operator and a sequence of two or more items.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <spec-citation spec="XQuery" section-number="2.3.4" section-title="Errors and Optimization" section-pointer="id-errors-and-opt"/>
+      <query name="op-boolean-equal-17" date="2006-03-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-001" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-001" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-001.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-002" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-002" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-002.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-003" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-003" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-003.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-004" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-004" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-004.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-005" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-005" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-005.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-006" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-006" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-006.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-007" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-007" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-007.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-008" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-008" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-008.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-009" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-009" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-009.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-010" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-010" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-010.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-011" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-011" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-011.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-012" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-012" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-012.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-013" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-013" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-013.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-014" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-014" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-014.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-015" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-015" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-015.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-016" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-016" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-016.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-017" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-017" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-017.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-018" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-018" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-018.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-boolean-equal-more-args-019" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>To check if args of Boolean type are equal.</description>
+      <spec-citation spec="FuncOps" section-number="9.2.1" section-title="op:boolean-equal" section-pointer="func-boolean-equal"/>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="op-boolean-equal-more-args-019" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-boolean-equal-more-args-019.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BooleanEqual-1" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard">
+      <description>Compare two xs:boolean values.</description>
+      <query name="K-BooleanEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BooleanEqual-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BooleanEqual-2" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard">
+      <description>Compare two xs:boolean values.</description>
+      <query name="K-BooleanEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BooleanEqual-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BooleanEqual-3" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard">
+      <description>Compare two xs:boolean values.</description>
+      <query name="K-BooleanEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BooleanEqual-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BooleanEqual-4" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard">
+      <description>Compare two xs:boolean values.</description>
+      <query name="K-BooleanEqual-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BooleanEqual-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BooleanEqual-5" FilePath="Expressions/Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="standard">
+      <description>A complex value-comparison involving xs:boolean.</description>
+      <query name="K-BooleanEqual-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BooleanEqual-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-BooleanEqual-1" FilePath="Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="runtime-error">
+      <description>Cannot compare xs:boolean and xs:untypedAtomic.</description>
+      <query name="K2-BooleanEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BooleanEqual-2" FilePath="Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="runtime-error">
+      <description>Cannot compare xs:boolean and xs:untypedAtomic.</description>
+      <query name="K2-BooleanEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BooleanEqual-3" FilePath="Operators/CompExpr/ValComp/BooleanOp/BooleanEqual/" scenario="runtime-error">
+      <description>Cannot compare xs:boolean and xs:untypedAtomic(#2).</description>
+      <query name="K2-BooleanEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

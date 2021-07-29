@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqEmptyFunc-9                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: fn:empty combined with fn:remove and fn:not. :)
+(:*******************************************************:)
+not(exists(remove(remove((current-time(), 1), 1), 1)))

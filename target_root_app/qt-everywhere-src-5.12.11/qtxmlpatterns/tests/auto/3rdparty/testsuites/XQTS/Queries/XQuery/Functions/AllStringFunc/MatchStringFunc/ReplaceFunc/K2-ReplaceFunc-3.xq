@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-ReplaceFunc-3                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a back reference that isn't preceeded by sufficiently many captures, and therefore match the empty sequence. :)
+(:*******************************************************:)
+replace("abcd", "(a)\2(b)", "")

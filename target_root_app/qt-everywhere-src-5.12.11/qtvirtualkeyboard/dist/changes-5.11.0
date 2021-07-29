@@ -1,0 +1,37 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+ -  Added support for displaying gestures in word suggestions
+   in T9 Write handwriting input mode.
+ -  Fixed an issue in the T9 Write input mode that caused the
+   current word suggestion to be rejected when a character was entered
+   through the keyboard.
+ -  Added support for the new UCR (Unconstrained Character
+   Recognition) mode introduced in T9 Write v8.0.0 handwriting input.
+   In the UCR mode it is possible to write the entire word with one
+   stroke. The UCR mode is enabled by default in English, French,
+   Italian, German, Spanish and Arabic languages.
+ -  Optimize UI performance by eliminating the need to wait
+   for previous results to be completed during T9 Write handwriting.
+ -  Add option to use external language dialog instead of
+   built-in language popup.
+ - [QTBUG-67510] Fix full screen edit mode with word candidate list always
+   visible.

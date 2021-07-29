@@ -1,0 +1,178 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example textfinder
+    \ingroup examples-qtuitools
+    \title Text Finder Example
+
+    \brief Dynamically loading .ui files using QUiLoader.
+
+    The TextFinder example shows how to load and setup a \c{.ui} file
+    dynamically using the \l{QUiLoader} class that is part of the
+    \l{Qt UI Tools} library.
+
+    The program allows the user to look up a particular word within the
+    contents of a text. The visual elements and layout of the user interface is
+    loaded at runtime, from a the program resources.
+
+    \table
+    \row \li \inlineimage textfinder-example-find.png
+         \li \inlineimage textfinder-example-find2.png
+    \endtable
+
+    \section1 Setting Up The Resource File
+
+    The resources required for the example are:
+    \list
+        \li \c{textfinder.ui} - the user interface file created in
+            \l{Qt Designer}
+        \li \c{input.txt} - a text file containing some text to be displayed in
+            a QTextEdit
+    \endlist
+
+    \c textfinder.ui contains all the necessary QWidget objects for the Text
+    Finder. A QLineEdit is used for the user input, a QTextEdit is used to
+    display the contents of \c input.txt, a QLabel is used to display the text
+    "Keyword", and a QPushButton is used for the \uicontrol Find button. Note
+    that all the widgets have sensible \c{objectName}'s assigned. These are
+    used in code to identify them.
+
+    The screenshot below shows the preview obtained in \l{Qt Designer}.
+
+    \image textfinder-example-userinterface.png
+
+    In this example, we store both resources in the applicaton's executable by
+    including the \c{textfinder.qrc} file. Alternatively, the files could also
+    be loaded at runtime from the file system, or from an external binary
+    resource \c{.rcc} file. For more information on resource files, see
+    \l{The Qt Resource System}.
+
+    The \c{textfinder.qrc} file lists all files that should be included as a
+    resource:
+
+    \quotefile textfinder/textfinder.qrc
+
+    To generate a form at run-time, the example is linked against the
+    \l{Qt Ui Tools} library. This is done in the \c{textfinder.pro} file:
+
+    \snippet textfinder/textfinder.pro 0
+
+    \section1 TextFinder Class Definition
+
+    The \c TextFinder class contains the main user interface. It declares
+    pointers to the QPushButton, QTextEdit and QLineEdit elements described
+    above. The QLabel in the user interface is not declared here as we do
+    not need to access it from code.
+
+    \snippet textfinder/textfinder.h 0
+
+    The slot \c{on_findButton_clicked()} is a slot named according to the
+    \l{Using a Designer UI File in Your Application#Automatic Connections}
+    {Automatic Connection} naming convention required
+    by \c uic.
+
+    \section1 Loading the Resources
+
+    We use QFile to load the data from the program resources at runtime. The
+    code for this is in two method methods on top of \c{textfinder.cpp}:
+    \c{loadUiFile} and \c{loadTextFile}.
+
+    The \c{loadUiFile} function loads the user interface file previously
+    created in \l{Qt Designer}. First, the content of the \c{textfinder.ui}
+    file is loaded from the resource system. Then a QUiLoader instance is
+    created, and the QUiLoader::load() function is called, with the first
+    argument being the open file, and the second argument being the pointer of
+    the widget that should be set as the parent. The created QWidget is
+    returned.
+
+    \snippet textfinder/textfinder.cpp 4
+
+    In a similar vein, the \c loadTextFile function loads \c{input.txt} from
+    the resources. Data is read using QTextStream into a QString with the
+    QTextStream::readAll() function. We explicitly set the encoding to
+    \e{UTF-8}, because QTextStream by default uses the current system locale.
+    Finally, the loaded text is returned.
+
+    \snippet textfinder/textfinder.cpp 5
+
+    \section1 TextFinder Class Implementation
+
+    The \c TextFinder class's constructor does not instantiate any child widgets
+    directly. Instead, it calls the \c loadUiFile() function, and then uses
+    QObject::findChild() to locate the created \l{QWidget}s by object name.
+
+    \snippet textfinder/textfinder.cpp 0
+
+    We then use QMetaObject::connectSlotsByName() to enable the automatic
+    calling of the \c on_findButton_clicked() slot.
+
+    \snippet textfinder/textfinder.cpp 2
+
+    The \c loadTextFile function is called to get the text to be shown in the
+    QTextEdit.
+
+    \snippet textfinder/textfinder.cpp 3a
+
+    The dynamically loaded user interface in \c formWidget is now properly set
+    up. We now embed \c formWidget through a \c QVBoxLayout.
+
+    \snippet textfinder/textfinder.cpp 3b
+
+    At the end of the constructor we set a window title.
+
+    \snippet textfinder/textfinder.cpp 3c
+
+    The \c{on_findButton_clicked()} function is a slot that is connected to
+    \c{ui_findButton}'s \c clicked() signal. The \c searchString is extracted
+    from the \c ui_lineEdit and the \c document is extracted from
+    \c ui_textEdit. If there is an empty \c searchString, a QMessageBox is
+    used, requesting the user to enter a word. Otherwise, we traverse through
+    the words in \c ui_textEdit, and highlight all ocurrences of the
+    \c searchString. Two QTextCursor objects are used: One to traverse through
+    the words in \c line and another to keep track of the edit blocks.
+
+    \snippet textfinder/textfinder.cpp 7
+
+    The \c found flag is used to indicate if the \c searchString was found
+    within the contents of \c ui_textEdit. If it was not found, a QMessageBox
+    is used to inform the user.
+
+    \snippet textfinder/textfinder.cpp 9
+
+    \section1 \c main() Function
+
+    The \c main() function instantiates and shows \c TextFinder.
+
+    \snippet textfinder/main.cpp 0
+
+    There are various approaches to include forms into applications. Using
+    QUILoader is just one of them. See \l{Using a Designer UI File in Your
+    Application} for more information on the other approaches available.
+
+    \sa {Calculator Builder Example}, {World Time Clock Builder Example}
+    */

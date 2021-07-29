@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-divide-yearMonthDuration-5                    :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 30, 2005                                    :)
+(:Purpose: Evaluates The "divide-yearMonthDuration" operator that  :)
+(:is used as an argument to the fn:boolean function.     :)
+(: Apply "fn:string" function to account for new EBV.     :)
+(:*******************************************************:)
+ 
+fn:boolean(fn:string(xs:yearMonthDuration("P05Y08M") div 2.0))

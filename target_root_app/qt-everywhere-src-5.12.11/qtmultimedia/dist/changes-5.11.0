@@ -1,0 +1,75 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+QtMultimedia
+------------
+
+ - Added customAudioRole string property to enable use of audio roles
+   beyond those available via the audioRole enum property.
+ - [QTBUG-45336] Added supportedFocusModes and supportedFocusPointModes
+   to QML CameraFocus.
+ - [QTBUG-45336] Added property supportedExposureModes to CameraExposure.
+ - [QTBUG-47606] Added mirrored API to QVideoSurfaceFormat.
+ - [QTBUG-45336] Added missing capability properties to CameraImageProcessing.
+ - [QTBUG-65207] Fixed setting QAudioEncoderSettings::bitRate.
+ - [QTBUG-30728] Made it possible to receive mouse move events in QVideoWidget.
+ - [QTBUG-60579] Added support for changing the volume on 24-bit audio samples.
+ - [QTBUG-53594] Fixed target rectangle coordinates while painting image
+   with QPainter.
+ - [QTBUG-51825] Fixed error reporting when QCamera::start() fails.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+PulseAudio
+----------
+
+ - [QTBUG-49569] Emitted QAudio::StoppedState on QAudio::OpenError.
+
+Gstreamer
+---------
+
+ - Fixed udpsrc timeout setting.
+ - [QTBUG-23761] Fixed setting vaapi sink properties.
+ - [QTBUG-64142] Fixed leak in prepare-window-handle message.
+
+DirectShow
+----------
+
+ - Added support for manual camera exposure control.
+ - Added support for setting the capture destination and format.
+ - Added support for video probes in the camera.
+ - Added camera zoom support.
+ - [QTBUG-55354] Setting an unsupported playback rate will now fallback to the previous set rate.
+ - [QTBUG-65780] Fixed blank QVideoWidget when it is paused.
+ - Improved matching, filter and connecting pins.
+
+QNX
+---
+
+ - Added support for QNX 7.0.0 audio management.
+ - Implemented QCustomAudioRoleControl for QNX.
+
+AVFoundation
+------------
+
+ - Added support for the buffer status.

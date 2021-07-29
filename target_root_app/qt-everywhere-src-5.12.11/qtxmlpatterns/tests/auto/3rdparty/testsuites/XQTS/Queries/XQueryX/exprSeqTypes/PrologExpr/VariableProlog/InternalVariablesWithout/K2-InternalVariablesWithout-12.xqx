@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="local">myVar</xqx:varName>
+        <xqx:varValue>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="local">thisFunctionDoesNotExist</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:varValue>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:varRef>
+        <xqx:name xqx:prefix="local">myVar</xqx:name>
+      </xqx:varRef>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

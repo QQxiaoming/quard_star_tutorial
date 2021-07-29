@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-WhereExpr-1                                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A for/where combination where the cardinality of the return statement is crucially affected by the binding sequence. :)
+(:*******************************************************:)
+(for $fo in (1, 2, 3) where $fo eq 3 return $fo)

@@ -1,0 +1,211 @@
+{
+    "module": "imageformats",
+    "depends": [
+            "gui"
+    ],
+    "condition": "module.gui",
+
+    "commandline": {
+        "options": {
+            "jasper": { "type": "boolean" },
+            "mng": { "type": "boolean" },
+            "tiff": { "type": "enum", "values": [ "no", "qt", "system" ] },
+            "webp": { "type": "enum", "values": [ "no", "qt", "system" ] }
+        }
+    },
+
+    "libraries": {
+        "jasper": {
+            "label": "jasper",
+            "test": {
+                "label": "Jasper(header in /usr/include)",
+                "type": "compile",
+                "test": {
+                    "include": [
+                        "string.h",
+                        "jasper/jasper.h"
+                    ],
+                    "qmake": [
+                        "msvc: LIBS += libjasper.lib",
+                        "else: LIBS += -ljasper"
+                    ],
+                    "main": [
+                        "// This version of Jasper is broken, according to the old Qt Solutions docs",
+                        "if (strcmp(JAS_VERSION, \"1.900.0\") == 0)",
+                        "    return 1;",
+                        "return 0;"
+                    ]
+                }
+            },
+            "sources": [
+                "-ljasper"
+            ]
+        },
+        "mng": {
+            "label": "mng",
+            "test": {
+                "label": "MNG(header in /usr/include)",
+                "type": "compile",
+                "test": {
+                    "include": [
+                        "stdio.h",
+                        "libmng.h"
+                    ],
+                    "qmake": [
+                        "LIBS += -lmng"
+                    ],
+                    "main": [
+                        "mng_handle hMNG;",
+                        "mng_cleanup(&hMNG);",
+                    "#if defined(MNG_VERSION_MAJOR)",
+                    "#if MNG_VERSION_MAJOR < 1 || (MNG_VERSION_MAJOR == 1 && MNG_VERSION_MINOR == 0 && MNG_VERSION_RELEASE < 9)",
+                    "#error System libmng version is less than 1.0.9",
+                    "#endif",
+                    "#endif",
+                        "return 0;"
+                    ]
+                }
+            },
+            "sources": [
+                "-lmng"
+            ]
+        },
+        "tiff": {
+            "label": "tiff",
+            "test": {
+                "label": "TIFF(header in /usr/include)",
+                "type": "compile",
+                "test": {
+                    "include": "tiffio.h",
+                    "qmake": [
+                        "unix|mingw: LIBS += -ltiff",
+                        "else:win32: LIBS += libtiff.lib"
+                    ],
+                    "main": [
+                        "#if !defined(TIFF_VERSION) && defined(TIFF_VERSION_CLASSIC)",
+                        "// libtiff 4.0 splits it into TIFF_VERSION_CLASSIC and TIFF_VERSION_BIG",
+                        "#    define TIFF_VERSION TIFF_VERSION_CLASSIC",
+                        "#endif",
+
+                        "#if !defined(TIFF_VERSION)",
+                        "#    error \"Required libtiff not found\"",
+                        "#elif TIFF_VERSION < 42",
+                        "#    error \"unsupported tiff version\"",
+                        "#endif",
+
+                        "tdata_t buffer = _TIFFmalloc(128);",
+                        "_TIFFfree(buffer);",
+
+                        "// some libtiff implementations where TIFF_VERSION >= 42 do not",
+                        "// have TIFFReadRGBAImageOriented(), so let's check for it",
+                        "TIFFReadRGBAImageOriented(0, 0, 0, 0, 0, 0);",
+
+                        "return 0;"
+                    ]
+                }
+            },
+            "sources": [
+                "-ltiff"
+            ]
+        },
+        "webp": {
+            "label": "webp",
+            "test": {
+                "label": "WebP(header in /usr/include)",
+                "type": "compile",
+                "test": {
+                    "include": [
+                        "webp/decode.h",
+                        "webp/encode.h",
+                        "webp/demux.h"
+                    ],
+                    "qmake": [
+                        "LIBS += -lwebp -lwebpdemux"
+                    ],
+                    "main": [
+                        "#if WEBP_ABI_IS_INCOMPATIBLE(WEBP_DECODER_ABI_VERSION, 0x0203) || WEBP_ABI_IS_INCOMPATIBLE(WEBP_ENCODER_ABI_VERSION, 0x0202)",
+                        "#error \"Incompatible libwebp version\"",
+                        "#endif",
+
+                        "WebPDecoderConfig config;",
+                        "WebPDecBuffer *output_buffer = &config.output;",
+                        "WebPBitstreamFeatures *bitstream = &config.input;",
+                        "WebPPicture picture;",
+                        "picture.use_argb = 0;",
+                        "WebPConfig config2;",
+                        "config2.lossless = 0;",
+                        "WebPData data = {};",
+                        "WebPDemuxer *demuxer = WebPDemux(&data);",
+                        "WebPIterator iter;",
+                        "iter.frame_num = 0;",
+
+                        "return 0;"
+                    ]
+                }
+            },
+            "sources": [
+                "-lwebp -lwebpdemux"
+            ]
+        }
+    },
+
+    "features": {
+        "jasper": {
+            "label": "JasPer",
+            "disable": "input.jasper == 'no'",
+            "condition": "features.imageformatplugin && libs.jasper",
+            "output": [
+                "privateFeature",
+                { "type": "define", "negative": true, "name": "QT_NO_IMAGEFORMAT_JASPER" }
+            ]
+        },
+        "mng": {
+            "label": "MNG",
+            "disable": "input.mng == 'no'",
+            "condition": "libs.mng",
+            "output": [ "privateFeature" ]
+        },
+        "tiff": {
+            "label": "TIFF",
+            "disable": "input.tiff == 'no'",
+            "condition": "features.imageformatplugin",
+            "output": [
+                "privateFeature"
+            ]
+        },
+        "system-tiff": {
+            "label": "  Using system libtiff",
+            "disable": "input.tiff == 'qt'",
+            "enable": "input.tiff == 'system'",
+            "condition": "features.tiff && libs.tiff",
+            "output": [ "privateFeature" ]
+        },
+        "webp": {
+            "label": "WEBP",
+            "disable": "input.webp == 'no'",
+            "condition": "features.imageformatplugin",
+            "output": [
+                "privateFeature"
+            ]
+        },
+        "system-webp": {
+            "label": "  Using system libwebp",
+            "disable": "input.webp == 'qt'",
+            "enable": "input.webp == 'system'",
+            "condition": "features.webp && libs.webp",
+            "output": [ "privateFeature" ]
+        }
+    },
+
+    "summary": [
+        {
+            "section": "Further Image Formats",
+            "entries": [
+                "jasper",
+                "mng",
+                "tiff", "system-tiff",
+                "webp", "system-webp"
+            ]
+        }
+    ]
+}

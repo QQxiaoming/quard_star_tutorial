@@ -1,0 +1,795 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="FilterExpr" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Filter Expressions</title>
+      <description>Simple tests to evaluate filter sequence expressions.</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="filterexpressionhc1" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter using data query from xml source and the "gt" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc1" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Fragment">filterexpressionhc1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc2" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression returning a sequence of integers between 1 and 25 divisible by 2.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc2" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc3" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression returning a single number.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc3" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc4" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression that queris xml source and uses a "|" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc4" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Fragment">filterexpressionhc4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc5" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression as a stept in aptah expression. It uses the "last" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc5" date="2005-02-14"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="XML">filterexpressionhc5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc6" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "ge" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc6" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc7" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "lt" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc7" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc8" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "le" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc8" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc9" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "eq" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc9" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc10" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "ne" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc10" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc11" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving a boolean "and" expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc11" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc12" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving a boolean "or" expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc12" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc13" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving a division expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc13" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc14" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving a multiplication expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc14" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc15" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving an addition expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc15" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc16" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving a subtraction expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc16" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc17" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving an integer division (idiv) expression.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc17" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc18" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the use of and "xs:string" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc18" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc19" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving two simple predicates.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc19" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc20" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving two complex predicates.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc20" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc21" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "fn:true" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc21" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="filterexpressionhc22" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple filter expression involving the "fn:false" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.2" section-title="Filter Expressions" section-pointer="id-filter-expr"/>
+      <query name="filterexpressionhc22" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">filterexpressionhc22.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-1" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="parse-error">
+      <description>Syntactically invalid predicate.</description>
+      <query name="K-FilterExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-2" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="parse-error">
+      <description>Syntactically invalid predicate.</description>
+      <query name="K-FilterExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-3" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="parse-error">
+      <description>Syntactically invalid predicate.</description>
+      <query name="K-FilterExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-4" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="parse-error">
+      <description>Syntactically invalid predicate.</description>
+      <query name="K-FilterExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-5" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="parse-error">
+      <description>Syntactically invalid predicate.</description>
+      <query name="K-FilterExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-6" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[0])`.</description>
+      <query name="K-FilterExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-7" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[4])`.</description>
+      <query name="K-FilterExpr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-8" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[0])`.</description>
+      <query name="K-FilterExpr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-9" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[4])`.</description>
+      <query name="K-FilterExpr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-10" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[0.1])`.</description>
+      <query name="K-FilterExpr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-11" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[1.1])`.</description>
+      <query name="K-FilterExpr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-12" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[1.01])`.</description>
+      <query name="K-FilterExpr-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-13" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[4])`.</description>
+      <query name="K-FilterExpr-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-14" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[4.1])`.</description>
+      <query name="K-FilterExpr-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-15" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[4.01])`.</description>
+      <query name="K-FilterExpr-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-16" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `not(empty((1, 2, 3)[1]))`.</description>
+      <query name="K-FilterExpr-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-17" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `not(empty((1, 2, 3)[3]))`.</description>
+      <query name="K-FilterExpr-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-18" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[1] eq 1`.</description>
+      <query name="K-FilterExpr-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-19" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[1.0] eq 1`.</description>
+      <query name="K-FilterExpr-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-20" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[1.0e0] eq 1`.</description>
+      <query name="K-FilterExpr-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-21" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[3] eq 3`.</description>
+      <query name="K-FilterExpr-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-22" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[3.0] eq 3`.</description>
+      <query name="K-FilterExpr-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-23" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[3.0e0] eq 3`.</description>
+      <query name="K-FilterExpr-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-24" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[1] eq 0`.</description>
+      <query name="K-FilterExpr-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-25" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[2] eq 1`.</description>
+      <query name="K-FilterExpr-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-26" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[3] eq 2`.</description>
+      <query name="K-FilterExpr-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-27" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0)[1] eq 0`.</description>
+      <query name="K-FilterExpr-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-28" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `0[1] eq 0`.</description>
+      <query name="K-FilterExpr-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-29" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1)[1] eq 0`.</description>
+      <query name="K-FilterExpr-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-30" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[false()])`.</description>
+      <query name="K-FilterExpr-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-30.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-31" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[true()])`.</description>
+      <query name="K-FilterExpr-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-32" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[. instance of xs:integer])`.</description>
+      <query name="K-FilterExpr-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-33" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>The context item is used as the predicate, leading to a truth predicate.</description>
+      <query name="K-FilterExpr-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-34" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>The context item is used as the predicate, leading to a numeric predicate.</description>
+      <query name="K-FilterExpr-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-35" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Source expression of a predicate doesn't have to use paranteses.</description>
+      <query name="K-FilterExpr-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-36" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Use fn:current-time() inside a predicate.</description>
+      <query name="K-FilterExpr-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-37" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>One xs:anyURI value is a valid predicate.</description>
+      <query name="K-FilterExpr-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-37.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-38" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>xs:anyURI values are invalid predicates.</description>
+      <query name="K-FilterExpr-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-39" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>xs:untypedAtomic literal as predicate.</description>
+      <query name="K-FilterExpr-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-40" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>Multiple xs:untypedAtomic values is an invalid predicate.</description>
+      <query name="K-FilterExpr-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-41" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[true()][1] eq 0`.</description>
+      <query name="K-FilterExpr-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-42" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[position() eq 2 or position() eq 3][2] eq 3`.</description>
+      <query name="K-FilterExpr-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-42.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-43" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[position() eq 2 or position() eq 3][3])`.</description>
+      <query name="K-FilterExpr-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-43.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-44" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[2 or 3])`.</description>
+      <query name="K-FilterExpr-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-44.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-45" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[3][2])`.</description>
+      <query name="K-FilterExpr-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-45.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-46" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3)[3][0])`.</description>
+      <query name="K-FilterExpr-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-46.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-47" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>An excessive nesting of various predicates.</description>
+      <query name="K-FilterExpr-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-47.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-48" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A large numeric xs:double predicate that evaluates to the empty sequence.</description>
+      <query name="K-FilterExpr-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-48.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-49" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((0, 1, 2)[false()][1])`.</description>
+      <query name="K-FilterExpr-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-49.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-50" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal(("a", "b", "c"), (0, 1, 2, "a", "b", "c")[. instance of xs:string])`.</description>
+      <query name="K-FilterExpr-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-50.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-51" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Filter a sequence with instance of and a second predicate.</description>
+      <query name="K-FilterExpr-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-51.txt</output-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-52" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Filter a sequence with instance of and a second predicate(#2).</description>
+      <query name="K-FilterExpr-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-52.txt</output-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-53" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>Two predicates, where one leading to an invalid operator mapping in the second.</description>
+      <query name="K-FilterExpr-53" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-54" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates in combination with the empty sequence.</description>
+      <query name="K-FilterExpr-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-54.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-55" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates in combination with the empty sequence.</description>
+      <query name="K-FilterExpr-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-55.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-56" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates in combination with the empty sequence.</description>
+      <query name="K-FilterExpr-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-56.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-57" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates in combination with the empty sequence.</description>
+      <query name="K-FilterExpr-57" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-57.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-58" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates in combination with the empty sequence.</description>
+      <query name="K-FilterExpr-58" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-58.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-59" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates in combination with the empty sequence.</description>
+      <query name="K-FilterExpr-59" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-59.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-60" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[position() &gt;= 1])`.</description>
+      <query name="K-FilterExpr-60" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-60.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-61" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[3 &gt;= position()])`.</description>
+      <query name="K-FilterExpr-61" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-61.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-62" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[position() ge 1])`.</description>
+      <query name="K-FilterExpr-62" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-62.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-63" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[3 ge position()])`.</description>
+      <query name="K-FilterExpr-63" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-63.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-64" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((0, 1, 2), (0, 1, 2)[position() eq position()])`.</description>
+      <query name="K-FilterExpr-64" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-64.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-65" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((0, 1, 2), (0, 1, 2)[position() = position()])`.</description>
+      <query name="K-FilterExpr-65" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-65.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-66" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[1 eq position()]`.</description>
+      <query name="K-FilterExpr-66" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-66.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-67" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[3 eq position()]`.</description>
+      <query name="K-FilterExpr-67" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-67.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-68" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[position() eq 3]`.</description>
+      <query name="K-FilterExpr-68" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-68.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-69" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3), (1, 2, 3)[number(.)])`.</description>
+      <query name="K-FilterExpr-69" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-69.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-70" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2), (0, 1, 2)[if(. eq 1) then 2 else 3])`.</description>
+      <query name="K-FilterExpr-70" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-70.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-71" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((0, 1, 2), (0, 1, 2)[if(. eq 8) then "str" else position()])`.</description>
+      <query name="K-FilterExpr-71" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-71.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-72" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((0, 1, 2), (0, 1, 2)[if(. eq 8) then 0 else position()])`.</description>
+      <query name="K-FilterExpr-72" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-72.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-73" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, 2)[last()]`.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4578</reflects-resolution>
+      <query name="K-FilterExpr-73" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-73.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-74" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `(0, 1, "2")[last()]`.</description>
+      <query name="K-FilterExpr-74" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-74.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-75" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>fn:last() in predicate, leading to invalid operator mapping.</description>
+      <query name="K-FilterExpr-75" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-76" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty((())[last()])`.</description>
+      <query name="K-FilterExpr-76" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-76.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-77" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(()[last()])`.</description>
+      <query name="K-FilterExpr-77" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-77.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-78" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates involving the focus' context item.</description>
+      <query name="K-FilterExpr-78" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-78.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-79" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates involving the focus' context item.</description>
+      <query name="K-FilterExpr-79" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-79.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-80" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates involving the focus' context item.</description>
+      <query name="K-FilterExpr-80" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-80.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-81" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Predicates involving the focus' context item.</description>
+      <query name="K-FilterExpr-81" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-81.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-82" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Type related predicate tests.</description>
+      <query name="K-FilterExpr-82" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-82.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-83" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Type related predicate tests.</description>
+      <query name="K-FilterExpr-83" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-83.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-84" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Type related predicate tests.</description>
+      <query name="K-FilterExpr-84" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-84.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-85" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Type related predicate tests.</description>
+      <query name="K-FilterExpr-85" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-85.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-86" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A predicate that never can match.</description>
+      <query name="K-FilterExpr-86" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-86.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-87" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A predicate that never can match.</description>
+      <query name="K-FilterExpr-87" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-87.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-88" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A truth predicate that never match.</description>
+      <query name="K-FilterExpr-88" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-88.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-89" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>A truth predicate that always match.</description>
+      <query name="K-FilterExpr-89" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-89.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-90" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="standard">
+      <description>Nested predicate with multiple calls to fn:last().</description>
+      <query name="K-FilterExpr-90" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-FilterExpr-90.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-91" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>A predicate whose expression EBV cannot be extracted from.</description>
+      <query name="K-FilterExpr-91" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-92" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>A predicate whose expression EBV cannot be extracted from.</description>
+      <query name="K-FilterExpr-92" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-93" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>A predicate whose expression EBV cannot be extracted from.</description>
+      <query name="K-FilterExpr-93" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FilterExpr-94" FilePath="Expressions/SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>A predicate whose expression EBV cannot be extracted from.</description>
+      <query name="K-FilterExpr-94" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-1" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>Apply a predicate combined with last(), on a sequence constructed with an element constructor.</description>
+      <query name="K2-FilterExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-FilterExpr-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-2" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>Apply a predicate combined with a numeric literal, on a sequence constructed with an element constructor.</description>
+      <query name="K2-FilterExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-FilterExpr-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FilterExpr-3" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>An numeric predicate that is xs:decimal.</description>
+      <query name="K2-FilterExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FilterExpr-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-4" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>An numeric predicate that is xs:decimal, as part of a path expression.</description>
+      <query name="K2-FilterExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FilterExpr-4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-5" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>Subsequent filter expressions, and node tests whose focus depends on where a variable is declared.</description>
+      <query name="K2-FilterExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-FilterExpr-5.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-6" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>Subsequent filter expressions, and node tests whose focus depends on where a variable is declared(#2).</description>
+      <query name="K2-FilterExpr-6" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-FilterExpr-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-7" FilePath="SeqExpr/FilterExpr/" scenario="standard">
+      <description>Use self::processing-instruction() in a filter predicate.</description>
+      <query name="K2-FilterExpr-7" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-FilterExpr-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FilterExpr-8" FilePath="SeqExpr/FilterExpr/" scenario="runtime-error">
+      <description>Use self::processing-instruction() in a filter predicate, combined with a treat as.</description>
+      <query name="K2-FilterExpr-8" static-name="K2-FilterExpr-8-static" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+</test-group>

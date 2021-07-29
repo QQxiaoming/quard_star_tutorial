@@ -1,0 +1,122 @@
+From 4a77ad1ebe17681765e9c03b01485ff970ad20c5 Mon Sep 17 00:00:00 2001
+From: Jarkko Koivikko <jarkko.koivikko@code-q.fi>
+Date: Wed, 31 Dec 2014 11:26:50 +0200
+Subject: [PATCH] Prepare Pinyin library for WIN32
+
+Build as static library in all platforms.
+On Windows the library uses Qt for platform abstraction.
+Fix compiler warnings.
+
+Change-Id: Icddba8f1f23daa220735c68a0998005a801c5d03
+Reviewed-by: Mitch Curtis <mitch.curtis@theqtcompany.com>
+---
+ .../3rdparty/pinyin/include/userdict.h             |  4 +++
+ .../3rdparty/pinyin/share/spellingtrie.cpp         |  4 +++
+ .../3rdparty/pinyin/share/userdict.cpp             | 31 ++++++++++++++++++++++
+ 3 files changed, 39 insertions(+)
+
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/include/userdict.h b/src/virtualkeyboard/3rdparty/pinyin/include/userdict.h
+index 51ca3b0..1b9673f 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/include/userdict.h
++++ b/src/virtualkeyboard/3rdparty/pinyin/include/userdict.h
+@@ -24,7 +24,11 @@
+ // Debug performance for operations
+ // #define ___DEBUG_PERF___
+ 
++#ifdef _WIN32
++#include <winsock.h> // timeval
++#else
+ #include <pthread.h>
++#endif
+ #include "atomdictbase.h"
+ 
+ namespace ime_pinyin {
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp b/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp
+index e15b66c..e01c89a 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp
++++ b/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp
+@@ -19,6 +19,10 @@
+ #include <assert.h>
+ #include "../include/dictdef.h"
+ 
++#ifdef _WIN32
++#define snprintf _snprintf
++#endif
++
+ #ifdef ___BUILD_MODEL___
+ #include "../include/spellingtable.h"
+ #endif
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/share/userdict.cpp b/src/virtualkeyboard/3rdparty/pinyin/share/userdict.cpp
+index 614180c..a3db888 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/share/userdict.cpp
++++ b/src/virtualkeyboard/3rdparty/pinyin/share/userdict.cpp
+@@ -23,19 +23,41 @@
+ #ifdef ___DEBUG_PERF___
+ #include <cutils/log.h>
+ #endif
++#ifdef _WIN32
++#include <io.h>
++#else
+ #include <unistd.h>
++#endif
+ #include <fcntl.h>
+ #include <sys/stat.h>
+ #include <assert.h>
+ #include <ctype.h>
+ #include <sys/types.h>
++#ifndef _WIN32
+ #include <sys/time.h>
++#endif
+ #include <time.h>
++#ifdef _WIN32
++#undef max
++#undef min
++#include <QDateTime>
++#include <QMutex>
++#else
+ #include <pthread.h>
++#endif
+ #include <math.h>
+ 
+ namespace ime_pinyin {
+ 
++#ifdef _WIN32
++static int gettimeofday(struct timeval *tp, void *) {
++    const qint64 current_msecs_since_epoch = QDateTime::currentMSecsSinceEpoch();
++    tp->tv_sec = (long)(current_msecs_since_epoch / 1000);
++    tp->tv_usec = (long)((current_msecs_since_epoch % 1000) * 1000);
++    return 0;
++}
++#endif
++
+ #ifdef ___DEBUG_PERF___
+ static uint64 _ellapse_ = 0;
+ static struct timeval _tv_start_, _tv_end_;
+@@ -58,7 +80,14 @@ static struct timeval _tv_start_, _tv_end_;
+ #endif
+ 
+ // XXX File load and write are thread-safe by g_mutex_
++#ifdef _WIN32
++static QMutex g_mutex_;
++#define pthread_mutex_lock(MUTEX) ((MUTEX)->lock())
++#define pthread_mutex_unlock(MUTEX) ((MUTEX)->unlock())
++#define pthread_mutex_trylock(MUTEX) (!(MUTEX)->tryLock(0))
++#else
+ static pthread_mutex_t g_mutex_ = PTHREAD_MUTEX_INITIALIZER;
++#endif
+ static struct timeval g_last_update_ = {0, 0};
+ 
+ inline uint32 UserDict::get_dict_file_size(UserDictInfo * info) {
+@@ -1267,7 +1296,9 @@ void UserDict::write_back() {
+   // It seems truncate is not need on Linux, Windows except Mac
+   // I am doing it here anyway for safety.
+   off_t cur = lseek(fd, 0, SEEK_CUR);
++#ifndef _WIN32
+   ftruncate(fd, cur);
++#endif
+   close(fd);
+   state_ = USER_DICT_SYNC;
+ }
+-- 
+2.14.1.windows.1
+

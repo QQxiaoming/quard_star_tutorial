@@ -1,0 +1,35 @@
+{
+    "module": "3drender",
+    "depends": [
+        "3dcore"
+    ],
+    "condition": "module.3dcore",
+    "testDir": "./config.tests",
+
+    "commandline": {
+        "options": {
+            "qt3d-opengl-renderer": "boolean"
+        }
+    },
+
+    "features": {
+        "qt3d-opengl-renderer": {
+            "label": "OpenGL Renderer",
+            "purpose": "Use the OpenGL renderer",
+            "section": "Qt 3D Renderers",
+            "output": [ "privateFeature" ]
+        }
+    },
+
+    "report": [
+    ],
+
+    "summary": [
+        {
+            "section": "Qt 3D Renderers",
+            "entries": [
+                "qt3d-opengl-renderer"
+            ]
+        }
+    ]
+}

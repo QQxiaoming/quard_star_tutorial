@@ -1,0 +1,6 @@
+SYNCQT.HEADER_FILES = kernel/qsqldatabase.h kernel/qsqldriver.h kernel/qsqldriverplugin.h kernel/qsqlerror.h kernel/qsqlfield.h kernel/qsqlindex.h kernel/qsqlquery.h kernel/qsqlrecord.h kernel/qsqlresult.h kernel/qtsqlglobal.h models/qsqlquerymodel.h models/qsqlrelationaldelegate.h models/qsqlrelationaltablemodel.h models/qsqltablemodel.h 
+SYNCQT.GENERATED_HEADER_FILES = QSqlDriverCreatorBase QSqlDriverCreator QSqlDatabase QSqlDriver QSqlDriverPlugin QSqlError QSqlField QSqlIndex QSqlQuery QSqlRecord QSqlResult QSql QSqlQueryModel QSqlRelationalDelegate QSqlRelation QSqlRelationalTableModel QSqlTableModel qsql.h qtsqlversion.h QtSqlVersion QtSql 
+SYNCQT.PRIVATE_HEADER_FILES = kernel/qsqlcachedresult_p.h kernel/qsqldriver_p.h kernel/qsqlnulldriver_p.h kernel/qsqlresult_p.h kernel/qtsqlglobal_p.h models/qsqlquerymodel_p.h models/qsqltablemodel_p.h 
+SYNCQT.QPA_HEADER_FILES = 
+SYNCQT.CLEAN_HEADER_FILES = kernel/qsqldatabase.h kernel/qsqldriver.h kernel/qsqldriverplugin.h kernel/qsqlerror.h kernel/qsqlfield.h kernel/qsqlindex.h kernel/qsqlquery.h kernel/qsqlrecord.h kernel/qsqlresult.h kernel/qtsqlglobal.h models/qsqlquerymodel.h:sqlmodel models/qsqlrelationaldelegate.h:sqlmodel models/qsqlrelationaltablemodel.h:sqlmodel models/qsqltablemodel.h:sqlmodel 
+SYNCQT.INJECTIONS = 

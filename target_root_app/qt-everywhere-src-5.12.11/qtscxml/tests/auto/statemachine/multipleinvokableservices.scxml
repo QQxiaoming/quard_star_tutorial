@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="MultipleInvokableServices.scxml" datamodel="ecmascript" initial="TopState">
+    <datamodel>
+        <data id="Var"/>
+    </datamodel>
+    <state id="TopState">
+        <state id="State1">
+            <invoke id="invoke1">
+                <content>
+                    <scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="anywhere">
+                        <state id="foo">
+                            <onentry>
+                                <send target="#_parent" event="running1"/>
+                            </onentry>
+                            <transition event="toChild">
+                                <send target="#_parent" event="received1"/>
+                            </transition>
+                        </state>
+                    </scxml>
+                </content>
+            </invoke>
+        </state>
+        <state id="State2">
+            <invoke id="invoke2">
+                <content>
+                    <scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" name="anywhere">
+                        <state id="foo">
+                            <onentry>
+                                <send target="#_parent" event="running2"/>
+                            </onentry>
+                        </state>
+                    </scxml>
+                </content>
+            </invoke>
+        </state>
+        <transition event="running1">
+            <send event="toChild" target="#_invoke1"/>
+        </transition>
+        <transition event="received1">
+            <assign location="Var" expr="1"/>
+            <send event="toChild" target="#_invoke2"/>
+        </transition>
+        <transition event="error.communication" cond="Var == 1" target="success"/>
+        <transition event="*" target="failure"/>
+    </state>
+    <final id="success"/>
+    <final id="failure"/>
+</scxml>

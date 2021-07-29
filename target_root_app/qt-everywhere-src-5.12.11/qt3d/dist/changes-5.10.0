@@ -1,0 +1,87 @@
+Qt 5.10 introduces many new features and improvements as well as bugfixes
+over the 5.9.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.10 series is binary compatible with the 5.9.x series.
+Applications compiled for 5.9 will continue to run with 5.10.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.10.0 Changes                          *
+****************************************************************************
+
+Qt3DAnimation
+-------------
+
+ - Added a tech preview of the skeletal animation system. Use the
+   QSkeletonMapping type to map animation clip channels onto joints of
+   a skeleton.
+
+ - Bugfix:
+   * The backend node (`Qt3DAnimation::Animation::Clock`) had an incorrect
+     return type specified (`int` instead of `float`) which was narrowing
+     the actual value during the evaluation of associated animation clips.
+
+ - General:
+   * Introduce the QClock frontend and backend nodes to control animator
+     playbackspeed.
+
+Qt3DCore
+--------
+
+ - General:
+  * Added support for SIMD instructions to accelerate matrix and vector
+    operations within Qt 3D. At present, SSE2 and AVX2 are supported. By
+    default, SSE2 instructions are enabled. To additionally enable the use
+    of AVX2 instructions, configure with the -qt3d-simd avx2 option.
+    Passing -no-sse2 disables SSE2 use in QtCore, QtGui and Qt3D.
+    Configuring with -no-qt3d-simd disables SIMD in Qt 3D only.
+
+  * Added support for loading skeletons from glTF 2 files.
+
+
+Qt3DRender
+----------
+
+ - New additions:
+  * Added a framebuffer blit frame graph node
+
+  * Added a promity filter frame graph node
+
+  * Added support for sprite sheets
+
+  * Added QCamera::viewAll()
+
+  * Introduced shader graphs: dynamically generate fragment shaders
+    from graph based description.
+
+  * Added Scene2D: embed Qt Quick content into Qt 3D and interact with
+    it.
+
+  * Added support for rendering skinned meshes via the new QArmature
+    component. Can be animated with the animation aspect and the
+    QSkeletonMapping type.
+
+  * Added support for loading mesh data from glTF 2 files.
+
+ - General:
+  * Improved QLayerFilter
+
+Qt3DInput
+---------
+ - Added support for point and line picking
+
+Qt3DExtras
+----------
+
+ - Added Qt3DExtras::QAbstractCameraController abstract base class to make
+   implementing new camera controllers easier.

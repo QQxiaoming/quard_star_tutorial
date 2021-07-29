@@ -1,0 +1,510 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ForExprWith" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>FOR Clause with TypeDeclaration</title>
+      <description>Tests for the FOR part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="ForExprType001" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (element type).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType001" date="2005-06-27">
+         <description>FLWOR expressions with type declaration (element type)</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType001.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType002" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (attribute type).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType002" date="2005-06-27">
+         <description>FLWOR expressions with type declaration (attribute type)</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType002.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType003" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (PI type).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType003" date="2005-06-27">
+         <description>FLWOR expressions with type declaration (PI type)</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType004" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (comment type).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType004" date="2005-06-27">
+         <description>FLWOR expressions with type declaration (comment type)</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType005" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (simple type).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType005" date="2005-06-27">
+         <description>FLWOR expressions with type declaration (simple type)</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType005.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType006" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Wrong order for positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType006" date="2005-06-27">
+         <description>Wrong order for positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExprType007" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Wrong order for positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType007" date="2005-06-27">
+         <description>Wrong order for positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExprType008" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Wrong order for positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType008" date="2005-06-27">
+         <description>Wrong order for positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType009" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR with type expression matching a user defined type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType009" date="2005-06-27">
+         <description>FLWOR with type expression matching a user defined type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">orderData</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType009.xml</output-file>
+      <output-file role="principal" compare="Fragment">ForExprType009-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType011" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR with type expression referencing an unknown type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType011" date="2005-06-27">
+         <description>FLWOR with type expression referencing an unknown type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">orderData</input-file>
+      <expected-error>XPST0051</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExprType012" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Missing type declaration on type expression.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType012" date="2005-06-27">
+         <description>Missing type declaration on type expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExprType013" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Type declaration containing multiple 'as' keywords.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType013" date="2005-06-28">
+         <description>Type declaration containing multiple 'as' keywords</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">orderData</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType014" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Type expression value is void. This will never match anything bound to a variable by a FLWOR statement.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType014" date="2005-06-28">
+         <description>Type expression value is void. This will never match anything bound to a variable by a FLWOR statement</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">orderData</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType015" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>Type declaration is a super type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType015" date="2005-06-28">
+         <description>Type declaration is a super type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType015.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType016" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>Type declaration is a super type of the union type bound to the variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType016" date="2005-06-28">
+         <description>Type declaration is a super type of the union type bound to the variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType016.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType017" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Bound sequence is a union type containing a single instance that does not match the type declaration.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType017" date="2005-06-28">
+         <description>Bound sequence is a union type containing a single instance that does not match the type declaration</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType018" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>Match a 'node' type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType018" date="2005-06-28">
+         <description>Match a 'node' type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType018.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType019" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>Match a text node type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType019" date="2005-06-28">
+         <description>Match a text node type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType019.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType020" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>Match a 'item' type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType020" date="2005-06-28">
+         <description>Match a 'item' type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType021" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>Match a 'document' type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType021" date="2005-06-28">
+         <description>Match a 'document' type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExprType021.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType022" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (attribute type). Simple attribute wildcard.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType022" date="2005-09-13">
+         <description>FLWOR expressions with type declaration (attribute type). Simple attribute wildcard</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <output-file role="principal" compare="Text">ForExprType022.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType023" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (attribute type). Simple attribute name test (no type).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType023" date="2005-09-13">
+         <description>FLWOR expressions with type declaration (attribute type). Simple attribute name test (no type)</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <output-file role="principal" compare="Text">ForExprType023.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType024" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (attribute type). anySimpleType attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType024" date="2005-09-13">
+         <description>FLWOR expressions with type declaration (attribute type). anySimpleType attribute</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <output-file role="principal" compare="Text">ForExprType024.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType028" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value subtype promotion: Numeric based types -&gt; integer.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType028" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value subtype promotion: Numeric based types -&gt; integer</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType028.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType029" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value subtype promotion: Numeric based types -&gt; decimal.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType029" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value subtype promotion: Numeric based types -&gt; decimal</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType029.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType030" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value subtype promotion: String based types -&gt; normalizedString.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType030" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value subtype promotion: String based types -&gt; normalizedString</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType030.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType031" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value subtype promotion: Time based types -&gt; anyAtomicType.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType031" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value subtype promotion: Time based types -&gt; anyAtomicType</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType031.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType032" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value based subtype promotion: 2nd level derived types.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType032" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value based subtype promotion: 2nd level derived types</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType032.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType033" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value based subtype promotion: Types from all levels.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType033" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value based subtype promotion: Types from all levels</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType033.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType034" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value based subtype promotion: numeric literal values -&gt; double.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType034" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value based subtype promotion: numeric literal values -&gt; double</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType034.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType035" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Value based subtype promotion: string and numeric literal values -&gt; anyAtomicType.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType035" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Value based subtype promotion: string and numeric literal values -&gt; anyAtomicType</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExprType035.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType036" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration (element type). Simple element wildcard.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType036" date="2005-09-13">
+         <description>FLWOR expressions with type declaration (element type). Simple element wildcard</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType036.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType045" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Unknown Type.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType045" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Unknown Type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <expected-error>XPST0051</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType046" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt to promote xs:decimal | xs:double | xs:integer - no common subtype.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType046" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt to promote xs:decimal | xs:double | xs:integer - no common subtype</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType047" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Test matching no atomic simple types.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType047" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Test matching no atomic simple types</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">SpecialTypes</input-file>
+      <expected-error>XPST0051</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType054" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matching item() values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType054" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matching item() values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Text">ForExprType054.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType055" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matching node() values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType055" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matching node() values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType055.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType056" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matching a document node.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType056" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matching a document node</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType056.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType057" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matcing text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType057" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matcing text nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Text">ForExprType057.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType058" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matcing XML comment nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType058" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matcing XML comment nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType058.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType059" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matcing PI nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType059" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matcing PI nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType059.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType060" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matcing named PI nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3946</reflects-resolution>
+      <query name="ForExprType060" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matcing named PI nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType060.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType061" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Type declaration matcing PI nodes - no matching PI found.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3946</reflects-resolution>
+      <query name="ForExprType061" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Type declaration matcing PI nodes - no matching PI found</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType062" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of item() on a set of nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType062" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of item() on a set of nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <output-file role="principal" compare="Fragment">ForExprType062.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType063" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of node() on a set of items.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType063" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of node() on a set of items</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType064" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of text() on a set of element nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType064" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of text() on a set of element nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType065" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of text() on a set of values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType065" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of text() on a set of values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType066" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of comment() on a set of element nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType066" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of comment() on a set of element nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType067" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of comment() on a set of values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType067" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of comment() on a set of values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType068" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() on a set of element nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType068" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() on a set of element nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType069" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() on a set of values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType069" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() on a set of values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType070" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() with name specifier, on a set of element nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType070" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() with name specifier, on a set of element nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType071" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() with name specifier, on a set of values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType071" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of processing-instruction() with name specifier, on a set of values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType072" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of document-node() on a set of element nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType072" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of document-node() on a set of element nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExprType073" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expressions with type declaration. Attempt type declaration of document-node() on a set of values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType073" date="2005-09-13">
+         <description>FLWOR expressions with type declaration. Attempt type declaration of document-node() on a set of values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWith-1" FilePath="FLWORExpr/ForExpr/ForExprWith/" scenario="runtime-error">
+      <description>For declarations does not cause type promotions to apply.</description>
+      <query name="K2-ForExprWith-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

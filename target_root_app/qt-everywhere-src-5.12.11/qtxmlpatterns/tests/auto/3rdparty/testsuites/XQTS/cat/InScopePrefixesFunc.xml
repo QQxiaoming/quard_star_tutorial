@@ -1,0 +1,340 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="InScopePrefixesFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:in-scope-prefixes</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-1" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function with incorrect arity .</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-1" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-in-scope-prefixes-2" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function with incorrect argument type.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-2" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-3" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node with no namesapces.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-3" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-4" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node with a namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-4" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-4.txt</output-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixesalt-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-5" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a computed constructed element node with no namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-5" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-6" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a computed constructed element node and a default namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-6" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-7" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node and a default namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-7" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-8" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node with xmlns and a prolog namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-8" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-8.txt</output-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixesalt-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-9" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node without xmlns and a prolog namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-9" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-10" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:string-length function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-10" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-11" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-11" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-12" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-12" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-13" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:string-to-codepoints function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-13" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-14" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to xs:string function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-14" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-15" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:substring-before function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-15" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-16" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:substring-after function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-16" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-17" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:concat function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-17" static-name="fn-in-scope-prefixes-17-static-cbcl" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-18" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:string-join function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-18" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-19" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:substring function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-19" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-in-scope-prefixes-20" FilePath="Functions/NodeFunc/InScopePrefixesFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "in-scope-prefixes" function for a directly constructed element node used as argument to fn:contains function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.6" section-title="fn:in-scope-prefixes" section-pointer="func-in-scope-prefixes"/>
+      <query name="fn-in-scope-prefixes-20" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-in-scope-prefixes-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-InScopePrefixesFunc-1" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `in-scope-prefixes()`.</description>
+      <query name="K-InScopePrefixesFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-InScopePrefixesFunc-2" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `in-scope-prefixes("string", "nodetest", "wrong param")`.</description>
+      <query name="K-InScopePrefixesFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-1" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>For a directly constructed element fn:in-scope-prefixes() returns 'xml' and the zero length string for the default element namespace.</description>
+      <query name="K2-InScopePrefixesFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-2" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>For a computed element fn:in-scope-prefixes() returns 'xml'.</description>
+      <query name="K2-InScopePrefixesFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-3" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="runtime-error">
+      <description>in-scope-prefixes() can't take text nodes.</description>
+      <query name="K2-InScopePrefixesFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-4" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="runtime-error">
+      <description>in-scope-prefixes() can't take text nodes.</description>
+      <query name="K2-InScopePrefixesFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-5" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="runtime-error">
+      <description>in-scope-prefixes() can't take processing instructions.</description>
+      <query name="K2-InScopePrefixesFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-6" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure the default element namespace is in-scope properly.</description>
+      <query name="K2-InScopePrefixesFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-7" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure the default namespace is properly handled.</description>
+      <query name="K2-InScopePrefixesFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-8" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure the in-scope prefixes dealt with correctly for double default namespace declarations of different kinds.</description>
+      <query name="K2-InScopePrefixesFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-9" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check that a prefix declaration is in scope in a sub-node.</description>
+      <query name="K2-InScopePrefixesFunc-9" static-name="K2-InScopePrefixesFunc-9-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-10" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check that a default namespace declaration is picked up.</description>
+      <query name="K2-InScopePrefixesFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-11" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check the in-scope namespaces of different elements, constructed with direct constructors.</description>
+      <query name="K2-InScopePrefixesFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-12" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check the in-scope namespaces of different elements, constructed with computed constructors.</description>
+      <query name="K2-InScopePrefixesFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-InScopePrefixesFunc-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-13" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure the in-scope prefixes are correct with computed constructors when combined with a default element namespace declaration.</description>
+      <query name="K2-InScopePrefixesFunc-13" static-name="K2-InScopePrefixesFunc-13-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-14" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check the in-scope namespaces of a single, computed element.</description>
+      <query name="K2-InScopePrefixesFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-15" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure the in-scope prefixes are correct with computed constructors.</description>
+      <query name="K2-InScopePrefixesFunc-15" static-name="K2-InScopePrefixesFunc-15-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-16" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check that a default namespace declaration attribute on a direct element constructor correctly affect a computed child constructor.</description>
+      <query name="K2-InScopePrefixesFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-17" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure the namespace used in the name is part of the in-scope prefixes.</description>
+      <query name="K2-InScopePrefixesFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-18" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure prefix namespace declarations are counted as in-scope bindings.</description>
+      <query name="K2-InScopePrefixesFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-InScopePrefixesFunc-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-19" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Count the in-scope namespaces of a node with name xml:space.</description>
+      <query name="K2-InScopePrefixesFunc-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-20" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Count the in-scope namespaces of a node with name fn:space.</description>
+      <query name="K2-InScopePrefixesFunc-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-21" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Count the in-scope namespaces of a node with name fn:space.</description>
+      <query name="K2-InScopePrefixesFunc-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-22" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Count the in-scope namespaces of a node with name fn:space(#2).</description>
+      <query name="K2-InScopePrefixesFunc-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-23" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Count the in-scope namespaces of a node with name fn:space(#2).</description>
+      <query name="K2-InScopePrefixesFunc-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-24" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Ensure a prolog namespace declaration isn't in the in-scope bindings unless it's used.</description>
+      <query name="K2-InScopePrefixesFunc-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-25" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check the in-scope namespaces of two nodes.</description>
+      <query name="K2-InScopePrefixesFunc-25" date="2008-01-04+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-26" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>.</description>
+      <query name="K2-InScopePrefixesFunc-26" date="2008-01-04+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-InScopePrefixesFunc-26.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-27" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check in scope namespaces.</description>
+      <query name="K2-InScopePrefixesFunc-27" date="2008-01-04+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-InScopePrefixesFunc-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-28" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Check in-scope declaration of a tree fragment overriding and undeclaration the default namespace.</description>
+      <query name="K2-InScopePrefixesFunc-28" date="2008-01-09+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-InScopePrefixesFunc-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-29" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Use a computed element constructor which undeclares the default namespace, as operand to a path expression.</description>
+      <query name="K2-InScopePrefixesFunc-29" date="2008-01-09+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-InScopePrefixesFunc-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-InScopePrefixesFunc-30" FilePath="Functions/QNameFunc/InScopePrefixesFunc/" scenario="standard">
+      <description>Use a computed element constructor which undeclares the default namespace, as operand to a path expression.</description>
+      <query name="K2-InScopePrefixesFunc-30" date="2008-01-09+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-InScopePrefixesFunc-30.txt</output-file>
+   </test-case>
+</test-group>

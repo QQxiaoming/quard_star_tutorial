@@ -1,0 +1,214 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="VersionProlog" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>Version Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="version_declaration-001" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-001" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">version_declaration-001.txt</output-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-002" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-002" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">version_declaration-002.txt</output-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-003" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-003" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">bib2</input-file>
+      <output-file role="principal" compare="Fragment">version_declaration-003.txt</output-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-004" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-004" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">bib2</input-file>
+      <output-file role="principal" compare="Fragment">version_declaration-004.txt</output-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-006" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration, the version "1.1" fails under 1.0, succeeds under 1.1.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-006" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment" spec-version="1.1">version_declaration-006.txt</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-007" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-007" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0031</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-008" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-008" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0031</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-009" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="parse-error" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-009" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="version_declaration-010" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of version declaration, for which the encoding does not conforms to "encName" from XML 1.0.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-010" date="2005-02-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0087</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-1" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version declaration with both version and encoding information (set to 1.0 and "UTF-8") respectively.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-1" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">prolog-version-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-2" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version declaration with both version and encoding information (set to 1.0 and "UTF-16") respectively.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-2" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">prolog-version-2.txt</output-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-3" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version declaration with both version and encoding information (set to 1.0 and "US-ASCII") respectively.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-3" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">prolog-version-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-4" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version as described in "version_declaration-001.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-4" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">prolog-version-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-5" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version as described in "version_declaration-002.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-5" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">prolog-version-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-6" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version as described in "version_declaration-003.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-6" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">bib2</input-file>
+      <output-file role="principal" compare="Fragment">prolog-version-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-7" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version as described in "version_declaration-004.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-7" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">bib2</input-file>
+      <output-file role="principal" compare="Fragment">prolog-version-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-9" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Pulkita Tyagi">
+      <description>Evaluation of prolog version as described in "version_declaration-006.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-9" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment" spec-version="1.1">prolog-version-9.txt</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-10" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Pulkita Tyagi">
+      <description>Evaluation of prolog version as described in "version_declaration-007.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-10" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0031</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-11" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error" Creator="Pulkita Tyagi">
+      <description>Evaluation of prolog version as described in "version_declaration-008.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-11" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0031</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-12" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="parse-error" Creator="Pulkita Tyagi">
+      <description>Evaluation of prolog version as described in "version_declaration-009.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-12" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-VersionProlog-1" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard">
+      <description>A simple version declaration including encoding. Since it's implementation defined how comments before the version declaration is handled, any error is allowed.</description>
+      <query name="K-VersionProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-VersionProlog-1.txt</output-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-VersionProlog-2" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard">
+      <description>A simple version declaration excluding encoding.</description>
+      <query name="K-VersionProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-VersionProlog-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-VersionProlog-3" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error">
+      <description>A version declaration with an encoding containing whitespace.</description>
+      <query name="K-VersionProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0087</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-VersionProlog-4" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="runtime-error">
+      <description>A version declaration with an encoding containing an disallowed character.</description>
+      <query name="K-VersionProlog-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0087</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-VersionProlog-5" FilePath="Expressions/PrologExpr/VersionProlog/" scenario="standard">
+      <description>A prolog containing many different declarations.</description>
+      <query name="K-VersionProlog-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-VersionProlog-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-VersionProlog-1" FilePath="exprSeqTypes/PrologExpr/VersionProlog/" scenario="standard">
+      <description>a string literal reminding of an xquery version declaration.</description>
+      <query name="K2-VersionProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-VersionProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-VersionProlog-2" FilePath="exprSeqTypes/PrologExpr/VersionProlog/" scenario="standard">
+      <description>a string literal reminding of an xquery version declaration.</description>
+      <query name="K2-VersionProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-VersionProlog-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-VersionProlog-3" FilePath="exprSeqTypes/PrologExpr/VersionProlog/" scenario="parse-error">
+      <description>Use an invalid keyword as encoding.</description>
+      <query name="K2-VersionProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-VersionProlog-4" FilePath="exprSeqTypes/PrologExpr/VersionProlog/" scenario="parse-error">
+      <description>Whitespace isn't allowed after a prefix in a QName.</description>
+      <query name="K2-VersionProlog-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-VersionProlog-5" FilePath="exprSeqTypes/PrologExpr/VersionProlog/" scenario="runtime-error">
+      <description>Check that the 'xquery' name test is parsed correctly.</description>
+      <query name="K2-VersionProlog-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

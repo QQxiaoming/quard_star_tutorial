@@ -1,0 +1,43 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+project = QtXmlPatterns
+description = Qt XML Patterns Reference Documentation
+version = $QT_VERSION
+
+examplesinstallpath = xmlpatterns
+
+exampledirs += ../../../examples/xmlpatterns \
+               ../ \
+               snippets
+
+headerdirs += ..
+imagedirs += images
+sourcedirs += .. \
+              ../../imports/xmllistmodel
+
+depends += qtcore qtxml qtwidgets qtdesigner qtdoc qmake qtquick
+
+qhp.projects = QtXmlPatterns
+
+qhp.QtXmlPatterns.file = qtxmlpatterns.qhp
+qhp.QtXmlPatterns.namespace = org.qt-project.qtxmlpatterns.$QT_VERSION_TAG
+qhp.QtXmlPatterns.indexTitle = Qt XML Patterns
+qhp.QtXmlPatterns.virtualFolder  = qtxmlpatterns
+
+qhp.QtXmlPatterns.subprojects = classes qmltypes
+qhp.QtXmlPatterns.subprojects.classes.title = C++ Classes
+qhp.QtXmlPatterns.subprojects.classes.indexTitle = Qt XML Patterns C++ Classes
+qhp.QtXmlPatterns.subprojects.classes.selectors = class fake:headerfile
+qhp.QtXmlPatterns.subprojects.classes.sortPages = true
+qhp.QtXmlPatterns.subprojects.qmltypes.title = QML Types
+qhp.QtXmlPatterns.subprojects.qmltypes.indexTitle = Qt XML Patterns QML Types
+qhp.QtXmlPatterns.subprojects.qmltypes.selectors = qmltype
+qhp.QtXmlPatterns.subprojects.qmltypes.sortPages = true
+
+tagfile                 = ../../../doc/qtxmlpatterns/qtxmlpatterns.tags
+
+# Use a generic thumbnail image for examples that have no images in their docs
+manifestmeta.thumbnail.names += "QtXmlPatterns/C++ Source Code Analyzer Example"
+
+navigation.landingpage = "Qt XML Patterns"
+navigation.cppclassespage = "Qt XML Patterns C++ Classes"

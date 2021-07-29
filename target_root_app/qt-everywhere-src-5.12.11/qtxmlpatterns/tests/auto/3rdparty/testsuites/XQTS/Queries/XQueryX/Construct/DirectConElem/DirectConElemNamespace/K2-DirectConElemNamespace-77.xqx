@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>t</xqx:prefix>
+        <xqx:uri>http://example.com/2</xqx:uri>
+      </xqx:namespaceDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:pathExpr>
+        <xqx:stepExpr>
+          <xqx:filterExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName xqx:prefix="p">a</xqx:tagName>
+              <xqx:attributeList>
+                <xqx:namespaceDeclaration>
+                  <xqx:prefix>p</xqx:prefix>
+                  <xqx:uri>http://example.com/</xqx:uri>
+                </xqx:namespaceDeclaration>
+              </xqx:attributeList>
+              <xqx:elementContent>
+                <xqx:elementConstructor>
+                  <xqx:tagName xqx:prefix="p">e</xqx:tagName>
+                  <xqx:attributeList>
+                    <xqx:namespaceDeclaration>
+                      <xqx:prefix>p</xqx:prefix>
+                      <xqx:uri>http://example.com/2</xqx:uri>
+                    </xqx:namespaceDeclaration>
+                  </xqx:attributeList>
+                </xqx:elementConstructor>
+              </xqx:elementContent>
+            </xqx:elementConstructor>
+          </xqx:filterExpr>
+        </xqx:stepExpr>
+        <xqx:stepExpr>
+          <xqx:xpathAxis>descendant-or-self</xqx:xpathAxis>
+          <xqx:anyKindTest/>
+        </xqx:stepExpr>
+        <xqx:stepExpr>
+          <xqx:xpathAxis>child</xqx:xpathAxis>
+          <xqx:nameTest xqx:prefix="t">e</xqx:nameTest>
+        </xqx:stepExpr>
+      </xqx:pathExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

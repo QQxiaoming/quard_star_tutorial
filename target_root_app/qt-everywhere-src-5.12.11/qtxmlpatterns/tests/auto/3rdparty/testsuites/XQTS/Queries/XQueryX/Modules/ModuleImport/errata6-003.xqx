@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>errata6_2</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/errata6-2</xqx:targetNamespace>
+      </xqx:moduleImport>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>a</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/userDefinedTypes</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="errata6_2">hatsize-add</xqx:functionName>
+        <xqx:arguments>
+          <xqx:integerConstantExpr>
+            <xqx:value>3</xqx:value>
+          </xqx:integerConstantExpr>
+          <xqx:integerConstantExpr>
+            <xqx:value>5</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

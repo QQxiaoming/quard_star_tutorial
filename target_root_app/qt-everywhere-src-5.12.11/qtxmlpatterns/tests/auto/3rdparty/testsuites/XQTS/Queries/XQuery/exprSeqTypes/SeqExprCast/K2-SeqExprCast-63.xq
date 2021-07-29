@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-63                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The plus sign is prohibited in nonPositiveInteger. :)
+(:*******************************************************:)
+xs:nonPositiveInteger("+1")

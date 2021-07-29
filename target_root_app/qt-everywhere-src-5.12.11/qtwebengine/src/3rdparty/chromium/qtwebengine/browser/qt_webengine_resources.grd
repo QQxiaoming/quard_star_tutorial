@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grit latest_public_release="0" current_release="1" output_all_resource_defines="false">
+  <outputs>
+    <output filename="grit/qt_webengine_resources.h" type="rc_header">
+      <emit emit_type='prepend'></emit>
+    </output>
+    <output filename="qt_webengine_resources.pak" type="data_package" />
+  </outputs>
+  <release seq="1">
+    <includes>
+      <if expr="not is_ios">
+        <include name="IDR_DEVTOOLS_DISCOVERY_PAGE_HTML" file="../../chrome/browser/devtools/frontend/devtools_discovery_page.html" type="BINDATA"/>
+      </if>
+      <include name="IDR_USER_ACTIONS_HTML" file="../../chrome/browser/resources/user_actions/user_actions.html" flattenhtml="true" allowexternalscript="true" type="BINDATA" />
+      <include name="IDR_USER_ACTIONS_CSS" file="../../chrome/browser/resources/user_actions/user_actions.css" type="BINDATA" />
+      <include name="IDR_USER_ACTIONS_JS" file="../../chrome/browser/resources/user_actions/user_actions.js" type="BINDATA" />
+      <if expr="is_android or is_linux">
+        <include name="IDR_SANDBOX_INTERNALS_HTML" file="../../chrome/browser/resources/sandbox_internals/sandbox_internals.html" flattenhtml="true" allowexternalscript="true" type="BINDATA" compress="gzip" />
+        <include name="IDR_SANDBOX_INTERNALS_JS" file="../../chrome/browser/resources/sandbox_internals/sandbox_internals.js" type="BINDATA" compress="gzip" />
+      </if>
+      <include name="IDR_QTWEBENGINE_RENDERER_SERVICE_MANIFEST" file="qtwebengine_renderer_manifest.json" type="BINDATA" />
+      <include name="IDR_QTWEBENGINE_CONTENT_RENDERER_MANIFEST_OVERLAY" file="gen\qtwebengine\browser\qtwebengine_content_renderer_manifest_overlay.json" use_base_dir="false" type="BINDATA" />
+      <include name="IDR_QTWEBENGINE_CONTENT_BROWSER_MANIFEST_OVERLAY" file="gen\qtwebengine\browser\qtwebengine_content_browser_manifest_overlay.json" use_base_dir="false" type="BINDATA" />
+      <include name="IDR_QTWEBENGINE_CONTENT_PACKAGED_SERVICES_MANIFEST_OVERLAY" use_base_dir="false" file="gen\qtwebengine\browser\qtwebengine_content_packaged_services_manifest_overlay.json" type="BINDATA" />
+    </includes>
+  </release>
+</grit>

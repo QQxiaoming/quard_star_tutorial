@@ -1,0 +1,184 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NilledFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:nilled</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-nilled-1" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-1" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-nilled-2" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a comment node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-2" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-nilled-3" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a non-nilled element node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-3" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-4" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a non-nilled directly constructed element node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-4" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-5" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a directly constructed element node with xs:nill="true".</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-5" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-6" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a directly constructed element node with xs:nill="false".</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-6" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-7" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a directly constructed element node with xs:nill="{fn:true()}".</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-7" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-8" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a directly constructed element node with xs:nill="{fn:false()}".</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-8" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-9" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with more than one argument.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-9" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-10" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as argument to fn:not function. Returns true.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-10" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-11" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as argument to fn:not function. Returns false.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-11" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-12" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as part of boolean expression ("and" operator and "fn:true" function).</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-12" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-13" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as part of boolean expression ("and" operator and "fn:false" function).</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-13" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-14" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as part of boolean expression ("or" operator and "fn:true" function).</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-14" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-15" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as part of boolean expression ("or" operator and "fn:false" function).</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-15" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-16" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as argument to fn:string function.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-16" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-17" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as argument to xs:boolean function. Returns true.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-17" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-18" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function as argument to xs:boolean function. Returns false.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-18" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-19" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a document node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-19" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-20" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to an attribute node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-20" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-21" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a comment node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-21" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-nilled-22" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "nilled" function with argument set to a Processing Instruction node.</description>
+      <spec-citation spec="FuncOps" section-number="2.2" section-title="fn:nilled" section-pointer="func-nilled"/>
+      <query name="fn-nilled-22" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-nilled-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NilledFunc-1" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `nilled()`.</description>
+      <query name="K-NilledFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NilledFunc-2" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `nilled((), "wrong param")`.</description>
+      <query name="K-NilledFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NilledFunc-3" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(nilled( () ))`.</description>
+      <query name="K-NilledFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NilledFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NilledFunc-4" FilePath="Functions/AccessorFunc/NilledFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `nilled(1)`.</description>
+      <query name="K-NilledFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

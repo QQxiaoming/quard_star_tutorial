@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-501                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast xs:duration to xs:language.             :)
+(:*******************************************************:)
+xs:language(xs:duration("P1M"))

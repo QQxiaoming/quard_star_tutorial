@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-divide-dayTimeDuration2args-4                  :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Tue Apr 12 16:29:08 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "op:divide-dayTimeDuration" operator:)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:dayTimeDuration(lower bound)               :)
+(:$arg2 = xs:double(mid range)                           :)
+(:*******************************************************:)
+
+xs:dayTimeDuration("P0DT0H0M0S") div xs:double("0.1")

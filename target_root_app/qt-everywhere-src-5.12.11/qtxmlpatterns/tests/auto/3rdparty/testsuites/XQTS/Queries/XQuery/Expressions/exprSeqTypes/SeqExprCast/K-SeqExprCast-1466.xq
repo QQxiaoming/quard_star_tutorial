@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-1466                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: 'castable as' involving xs:QName as sourceType and xs:NOTATION should fail due to it involving xs:NOTATION. :)
+(:*******************************************************:)
+not(xs:QName("ncname") castable as xs:NOTATION)

@@ -1,0 +1,670 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ComputeConAttr" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Computed Attribute Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-compattr-name-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>NCName for computed attribute constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-name-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-name-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-name-2" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>QName for computed element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-name-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-name-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-name-3" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>QName with undeclared prefix for computed attribute constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-name-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Empty computed name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-2" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two strings as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-3" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two untypedAtomic values as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-4" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Content of two nodes as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-5" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Two numeric values as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-5" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-6" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Numeric value as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-6" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-7" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>DataTime value as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-7" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-8" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>NCName as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-8" static-name="Constr-compattr-compname-8-static-cbcl" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-8.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-9" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>QName as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-9" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-9.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-10" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-10" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-10.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-11" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-11" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-11.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-12" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>String as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-12" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-12.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-13" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>String with prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-13" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-13.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-14" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>String with undeclared prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-14" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-15" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Untyped atomic as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-15" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-15.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-16" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Untyped atomic with prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-16" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-compname-16.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-17" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Untyped atomic with undeclared prefix as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-17" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-18" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Non-ncname string as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-18" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-compname-19" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Non-ncname untyped atomic as name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-compname-19" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-doc-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip document nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-doc-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-doc-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-parent-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-parent-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compattr-parent-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-string-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>String value of attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-string-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compattr-string-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-data-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Typed value of attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-data-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compattr-data-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-enclexpr-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - atomic values.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-enclexpr-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-enclexpr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-enclexpr-2" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-enclexpr-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-enclexpr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-enclexpr-3" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - empty string.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-enclexpr-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-enclexpr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-enclexpr-4" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-enclexpr-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-enclexpr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-id-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - xml:id attribute value is ncname.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-id-1" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-id-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compattr-id-2" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - xml:id attribute value must be further normalized.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="Constr-compattr-id-2" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compattr-id-2.xml</output-file>
+      <expected-error>XQDY0091</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="constattrerr-1" FilePath="Expressions/Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Computed attribute node with "xmlns" name.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <query name="constattrerr-1" date="2005-11-30"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ComputeConAttr-1" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="parse-error">
+      <description>The name can't be specified as a string literal.</description>
+      <query name="K2-ComputeConAttr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-2" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-3" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-4" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-5" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-6" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-7" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-8" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-9" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-10" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure XQTY0024 is not issued when appearing nested.</description>
+      <query name="K2-ComputeConAttr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-11" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure XQTY0024 is not issued when a predicate is used to filter the children.</description>
+      <query name="K2-ComputeConAttr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-12" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-13" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-14" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-15" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-16" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-17" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-18" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-19" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared, recursive function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-20" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared, recursive function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-21" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared, recursive function, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-22" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared variable, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-23" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure XQTY0024 is not issued when a predicate avoid the condition.</description>
+      <query name="K2-ComputeConAttr-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-24" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared variable, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-25" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add many attributes with a recursive user function.</description>
+      <query name="K2-ComputeConAttr-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-26" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add many attributes with a recursive user function.</description>
+      <query name="K2-ComputeConAttr-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-26.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-27" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add many attributes with a recursive user function.</description>
+      <query name="K2-ComputeConAttr-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-28" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared variable, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-29" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQTY0024 is issued when content, set via a user declared variable, appears before computed attributes.</description>
+      <query name="K2-ComputeConAttr-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-30" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add an attribute from a variable to an element.</description>
+      <query name="K2-ComputeConAttr-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-31" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add an attribute from a function to an element.</description>
+      <query name="K2-ComputeConAttr-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-32" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add two computed attributes, where one gets it content from an element.</description>
+      <query name="K2-ComputeConAttr-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-33" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add two computed attributes, where one gets it content from an atomic value.</description>
+      <query name="K2-ComputeConAttr-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-34" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Add two computed attributes, where one gets it content from an atomic value.</description>
+      <query name="K2-ComputeConAttr-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-34.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-35" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Empty CDATA sections generate no text nodes.</description>
+      <query name="K2-ComputeConAttr-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-35.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-36" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Empty CDATA sections generate no text nodes(#2).</description>
+      <query name="K2-ComputeConAttr-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConAttr-36.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-37" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>This query yields XPST0081 because the prefix 'xmlns' is unbound.</description>
+      <query name="K2-ComputeConAttr-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Frans Englich" name="K2-ComputeConAttr-38" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>This query yields XPST0081 because the prefix 'xmlns' is unbound(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="K2-ComputeConAttr-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0044</expected-error>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-39" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>This query yields XPST0081 because the prefix 'aPrefix' is unbound.</description>
+      <query name="K2-ComputeConAttr-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-40" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>An unbound prefix in a lexical QName yields QDY0074.</description>
+      <query name="K2-ComputeConAttr-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-41" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>An unbound prefix in a lexical QName yields QDY0074.</description>
+      <query name="K2-ComputeConAttr-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-42" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>It's not allowed to bind the xmlns to any prefix with computed attribute constructors.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="K2-ComputeConAttr-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-43" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>It's not allowed to bind the xmlns to any prefix with computed attribute constructors(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="K2-ComputeConAttr-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-44" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>One cannot create namespace declarations with computed attribute constructors.</description>
+      <query name="K2-ComputeConAttr-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-45" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>One cannot create namespace declarations with computed attribute constructors(#2).</description>
+      <query name="K2-ComputeConAttr-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-46" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>The default element namespace declaration doesn't affect attribute declarations.</description>
+      <query name="K2-ComputeConAttr-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-47" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure the typed value of computed, constructed attributes has the correct type.</description>
+      <query name="K2-ComputeConAttr-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConAttr-47.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-48" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure xml:id is properly normalized, and not done at the serialization stage.</description>
+      <query name="K2-ComputeConAttr-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConAttr-48.txt</output-file>
+      <expected-error>XQDY0091</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-49" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure XQDY0025 is issued when triggered by computed constructors.</description>
+      <query name="K2-ComputeConAttr-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0025</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-50" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Duplicate attributes whose names are non-prefixed while non-empty namespace URIs.</description>
+      <query name="K2-ComputeConAttr-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0025</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-51" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Construct an attribute with no prefix and a non-empty namespace URI.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4443</reflects-resolution>
+      <query name="K2-ComputeConAttr-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-52" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Duplicated attributes, but constructed from different kinds of constructors.</description>
+      <query name="K2-ComputeConAttr-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0025</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-53" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Serialize an attribute that has a namespace URI but no prefix. The implementation invents a prefix in this case.</description>
+      <query name="K2-ComputeConAttr-53" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-54" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure that a valid prefix has been constructed for a QName which the implementation is supposed to create a prefix for. See http://www.w3.org/Bugs/Public/show_bug.cgi?id=4443.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4443</reflects-resolution>
+      <query name="K2-ComputeConAttr-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConAttr-54.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-55" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure that the 'xml' prefix has been constructed for a QName which has the XML namespace.</description>
+      <query name="K2-ComputeConAttr-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConAttr-55.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-56" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Ensure that the 'xml' prefix is used for the XML namespace when no prefix is supplied.</description>
+      <query name="K2-ComputeConAttr-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-56.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-57" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Ensure the xmlns namespace is flagged as invalid even though no prefix is supplied.</description>
+      <query name="K2-ComputeConAttr-57" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-58" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>Serialize an attribute that has a namespace URI but no prefix, and whose namespace URI is already in scope.</description>
+      <query name="K2-ComputeConAttr-58" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-59" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>'1' is an invalid value for xml:id.</description>
+      <query name="K2-ComputeConAttr-59" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-59.txt</output-file>
+      <expected-error>XQDY0091</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-60" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="standard">
+      <description>'DEFAULT' is an invalid value for xml:space.</description>
+      <query name="K2-ComputeConAttr-60" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ComputeConAttr-60.txt</output-file>
+      <expected-error>XQDY0092</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConAttr-61" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>Trigger XQTY0024 in a query with a bit of complexity.</description>
+      <query name="K2-ComputeConAttr-61" date="2008-01-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-1" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace prefix is 'xmlns' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-1" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+	  <expected-error>XQDY0074</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-2" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace prefix is empty and local name is 'xmlns' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-2" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-3" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace URI is 'http://www.w3.org/2000/xmlns/' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-3" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-4" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace URI is 'http://www.w3.org/2000/xmlns/' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-4" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-5" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace prefix is 'xml' and namespace URI is not 'http://www.w3.org/XML/1998/namespace' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-5" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-6" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace prefix is 'xml' and namespace URI is not 'http://www.w3.org/XML/1998/namespace' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-6" date="2009-12-10"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+   </test-case>
+   <test-case Creator="Mary Holstege" is-XPath2="false" name="comp-attr-bad-name-7" FilePath="Construct/ComputeCon/ComputeConAttr/" scenario="runtime-error">
+      <description>XQ.E19 XQDY0044 if namespace prefix is 'xmlns' </description>
+      <spec-citation spec="XQuery" section-number="3.7.3.2" section-title="Computed Attribute Constructors" section-pointer="id-computedAttributes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="comp-attr-bad-name-7" date="2010-02-17"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+	  <expected-error>XQDY0044</expected-error>
+   </test-case>
+</test-group>

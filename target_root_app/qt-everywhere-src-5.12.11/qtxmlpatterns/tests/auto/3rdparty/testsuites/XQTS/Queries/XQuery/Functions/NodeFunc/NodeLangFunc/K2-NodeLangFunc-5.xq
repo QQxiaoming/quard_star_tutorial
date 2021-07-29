@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NodeLangFunc-5                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a single attribute node as input.        :)
+(:*******************************************************:)
+fn:lang("fr", attribute xml:lang {"fr"})

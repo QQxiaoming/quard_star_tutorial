@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-BaseURIFunc-30                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-10-03T14:53:33+01:00                       :)
+(: Purpose: Use an empty xml:base attribute.             :)
+(:*******************************************************:)
+fn:base-uri(exactly-one(<anElement xml:base="http://example.com/examples"><b xml:base=""/>Element content</anElement>/b))

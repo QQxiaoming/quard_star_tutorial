@@ -1,0 +1,161 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+Important Behavior Changes
+--------------------------
+
+ - [QTBUG-56295] CheckBox and CheckDelegate no longer force the tristate
+   property to true when setting checkState to Qt.PartiallyChecked. This
+   allows the controls to present a partially checked state without being
+   interactively tri-state.
+ - [QTBUG-56295] CheckBox and CheckDelegate no longer consider the partially
+   checked state as a checked state. This fixes check state cycling for non-
+   tri-state controls so that the check state goes from partially checked to
+   fully checked state.
+
+Controls
+--------
+
+ - AbstractButton:
+   * The autoRepeat property was promoted from Button to AbstractButton.
+   * Added autoRepeatDelay and autoRepeatInterval properties.
+   * [QTBUG-62811] Added pressX and pressY properties.
+   * [QTBUG-66625] Fixed the icon property group type registration.
+
+ - Action:
+   * [QTBUG-65193] Made AbstractButton's icon properties win over Action's
+     when both are set.
+   * [QTBUG-66625] Fixed the icon property group type registration.
+
+ - ButtonGroup:
+   * [QTBUG-56295][QTBUG-63782] Added checkState property that indicates
+     the combined check state of the entire group.
+
+ - CheckBox:
+   * [QTBUG-63238] Made it possible to implement nextCheckState() in QML.
+
+ - CheckDelegate:
+   * [QTBUG-63238] Made it possible to implement nextCheckState() in QML.
+
+ - ComboBox:
+   * [QTBUG-61348] Fixed key search in the popup.
+   * [QTBUG-66044] Fixed wheel event propagation.
+
+ - Control:
+   * [QTBUG-66133] Fixed focus scope controls, such as Frame, GroupBox,
+     Page, and Pane, to respect click focus policy by clearing a potential
+     sub-focus child. This makes it possible to close the virtual keyboard
+     by clicking the background of a Pane that has Qt.ClickFocus set as its
+     focusPolicy, for example.
+   * [QTBUG-66133] Fixed focus scope controls to respect wheel focus
+     policy.
+
+ - Dial:
+   * [QTBUG-66637] Fixed to keep mouse grab on mouse press.
+
+ - DialogButtonBox:
+   * [QTBUG-59719] Fixed implicit size calculation with one button.
+
+ - Drawer:
+   * [QTBUG-66637] Fixed to no steal mouse/touch grab when e.g. dragging a
+     horizontal Slider in a horizontal Drawer.
+
+ - Label:
+   * [QTBUG-65880] Fixed a background size regression caused by deferred
+     execution.
+
+ - Popup:
+   * [QTBUG-66113] Fixed restoring focus for popups that did not originally
+     request focus, but gained focus after opening.
+   * Fixed Shortcuts in Popups with window context not being activated.
+
+ - RangeSlider:
+   * [QTBUG-66637] Fixed to keep mouse grab on mouse press.
+
+ - ScrollBar:
+   * [QTBUG-56557] Added minimumSize, visualSize, and visualPosition
+     properties.
+
+ - ScrollIndicator:
+   * [QTBUG-56557] Added minimumSize, visualSize, and visualPosition
+     properties.
+
+ - Slider:
+   * [QTBUG-66637] Fixed to keep mouse grab on mouse press.
+
+ - SpinBox:
+   * Added a displayText property that allows styles to create a simple
+     and efficient QML binding to display the textual value instead of
+     calling the textFromValue() JS-function.
+   * [QTBUG-66044] Fixed wheel event propagation.
+
+ - StackView:
+   * [QTBUG-51321] Fixed to transfer focus to the current item.
+   * [QTBUG-67118] Fixed a crash with initialItem.
+
+ - TextArea:
+   * [QTBUG-67334] Fixed the background to not scroll when TextArea is
+     placed in a ScrollView.
+   * [QTBUG-65880] Fixed a background size regression caused by deferred
+     execution.
+
+ - TextField:
+   * [QTBUG-65880] Fixed a background size regression caused by deferred
+     execution.
+
+Styles
+------
+
+ - [QTBUG-66430] Fixed to not override/reset platform default fonts and
+   palettes if :/qtquickcontrols2.conf exists but doesn't define fonts
+   or palettes.
+
+ - Fusion:
+   * [QTBUG-66752] Fixed BusyIndicator to show up when running is set to
+     true after creation.
+   * [QTBUG-66276] Added missing plugins.qmltypes.
+
+ - Material:
+   * Decreased Dial's handle size from 14 to 10.
+   * [QTBUG-64872] Made BusyIndicator's line size adapt to the size of the
+     control.
+   * [QTBUG-58646] Fixed artifacts in ripple effects.
+   * [QTBUG-67442] Fixed CheckBox's, CheckDelegate's, RadioButton's and
+     RadioDelegate's indicator in disabled state.
+
+ - Universal:
+   * Decreased Dial's handle size from 20 to 14.
+
+Platform
+--------
+
+ - ColorDialog:
+   * [QT3DS-1363] Fixed currentColor to get correctly updated when opening
+     the dialog first time.
+
+ - Menu:
+   * [QTBUG-55251] Fixed positioning on high-DPI screens.
+   * [QTBUG-66876] Fixed menu titles not being visible if they were defined
+     using qsTr() or bindings.
+   * [QTBUG-66889] Fixed a crash on exist with sub-menus on Windows.
+
+ - MenuItem:
+   * [QTBUG-66386] Fixed checked state handling.

@@ -1,0 +1,27 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+project                 = QtDistanceFieldGenerator
+description             = Qt Distance Field Generator Manual
+
+qhp.projects            = QtDistanceFieldGenerator
+
+qhp.QtDistanceFieldGenerator.file                = qtdistancefieldgenerator.qhp
+qhp.QtDistanceFieldGenerator.namespace           = org.qt-project.qtdistancefieldgenerator.$QT_VERSION_TAG
+qhp.QtDistanceFieldGenerator.virtualFolder       = qtdistancefieldgenerator
+qhp.QtDistanceFieldGenerator.indexTitle          = Qt Distance Field Generator Manual
+
+qhp.QtDistanceFieldGenerator.filterAttributes    = qt $QT_VERSION tools qtdistancefieldgenerator
+qhp.QtDistanceFieldGenerator.customFilters.QtDistanceFieldGenerator.name = Qt Distance Field Generator Manual
+qhp.QtDistanceFieldGenerator.customFilters.QtDistanceFieldGenerator.filterAttributes = qt tools qtdistancefieldgenerator
+qhp.QtDistanceFieldGenerator.subprojects         = manual
+qhp.QtDistanceFieldGenerator.subprojects.manual.title = Manual
+qhp.QtDistanceFieldGenerator.subprojects.manual.indexTitle = Qt Distance Field Generator Manual
+qhp.QtDistanceFieldGenerator.subprojects.manual.type = manual
+
+language                = Cpp
+sourcedirs              = ..
+imagedirs               = images
+
+depends                 += qtdoc qtqml qtquick qtcore qtgui qmake
+
+navigation.landingpage = "Qt Distance Field Generator Manual"

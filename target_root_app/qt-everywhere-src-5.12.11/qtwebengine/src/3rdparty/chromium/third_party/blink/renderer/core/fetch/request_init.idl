@@ -1,0 +1,28 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// https://fetch.spec.whatwg.org/#requestinit
+
+// NOTE: Upon adding or removing any dictionary members here you must update
+// the AreAnyMembersPresent function in request.cc.
+
+dictionary RequestInit {
+    ByteString method;
+    HeadersInit headers;
+    // TODO(domfarolino): this should be of type BodyInit? when the IDL
+    // compiler can handle it.
+    any body;
+    USVString referrer;
+    ReferrerPolicy referrerPolicy;
+    RequestMode mode;
+    RequestCredentials credentials;
+    RequestCache cache;
+    RequestRedirect redirect;
+    DOMString integrity;
+    boolean keepalive;
+    [RuntimeEnabled=PriorityHints] RequestImportance importance;
+    AbortSignal? signal;
+    // TODO(domfarolino): add support for RequestInit window member.
+    //any window; // can only be set to null
+};

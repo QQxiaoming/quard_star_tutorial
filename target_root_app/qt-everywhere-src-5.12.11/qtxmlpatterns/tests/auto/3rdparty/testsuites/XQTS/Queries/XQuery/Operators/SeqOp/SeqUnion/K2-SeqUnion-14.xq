@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqUnion-14                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a node kind keyword, document, to test query parsing. :)
+(:*******************************************************:)
+empty(<e/>/(author union document))

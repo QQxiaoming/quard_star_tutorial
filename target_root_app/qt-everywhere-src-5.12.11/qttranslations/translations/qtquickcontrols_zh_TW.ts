@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
+<context>
+    <name>DefaultColorDialog</name>
+    <message>
+        <source>Hue</source>
+        <translation>色調</translation>
+    </message>
+    <message>
+        <source>Saturation</source>
+        <translation>飽和度</translation>
+    </message>
+    <message>
+        <source>Luminosity</source>
+        <translation>亮度</translation>
+    </message>
+    <message>
+        <source>Alpha</source>
+        <translation>透明度</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+</context>
+<context>
+    <name>DefaultDialogWrapper</name>
+    <message>
+        <source>Show Details...</source>
+        <translation>顯示詳情…</translation>
+    </message>
+</context>
+<context>
+    <name>DefaultFileDialog</name>
+    <message>
+        <source>Go up to the folder containing this one</source>
+        <translation>前往包含此檔案的資料夾</translation>
+    </message>
+    <message>
+        <source>Remove favorite</source>
+        <translation>移除最愛</translation>
+    </message>
+    <message>
+        <source>Add the current directory as a favorite</source>
+        <translation>將目前目錄加到最愛</translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation>檔名</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <comment>file type (extension)</comment>
+        <translation>種類</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <comment>file size</comment>
+        <translation>大小</translation>
+    </message>
+    <message>
+        <source>Modified</source>
+        <comment>last-modified time</comment>
+        <translation>變更時間</translation>
+    </message>
+    <message>
+        <source>Accessed</source>
+        <comment>last-accessed time</comment>
+        <translation>存取時間</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Choose</source>
+        <translation>選擇</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>開啟</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>儲存</translation>
+    </message>
+</context>
+<context>
+    <name>DefaultFontDialog</name>
+    <message>
+        <source>Font</source>
+        <translation>字體</translation>
+    </message>
+    <message>
+        <source>Weight</source>
+        <translation>字重</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation>大小</translation>
+    </message>
+    <message>
+        <source>Font Family</source>
+        <translation>字族</translation>
+    </message>
+    <message>
+        <source>Thin</source>
+        <translation>極細體</translation>
+    </message>
+    <message>
+        <source>ExtraLight</source>
+        <translation>極細體</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>細體</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>正常</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>中等</translation>
+    </message>
+    <message>
+        <source>DemiBold</source>
+        <translation>半粗體</translation>
+    </message>
+    <message>
+        <source>Bold</source>
+        <translation>粗體</translation>
+    </message>
+    <message>
+        <source>ExtraBold</source>
+        <translation>極粗體</translation>
+    </message>
+    <message>
+        <source>Black</source>
+        <translation>黑體</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>樣式</translation>
+    </message>
+    <message>
+        <source>Italic</source>
+        <translation>斜體</translation>
+    </message>
+    <message>
+        <source>Underline</source>
+        <translation>下底線</translation>
+    </message>
+    <message>
+        <source>Overline</source>
+        <translation>上劃線</translation>
+    </message>
+    <message>
+        <source>Strikeout</source>
+        <translation>刪除線</translation>
+    </message>
+    <message>
+        <source>Writing System</source>
+        <translation>編寫系統</translation>
+    </message>
+    <message>
+        <source>Sample</source>
+        <translation>樣本</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+</context>
+<context>
+    <name>DefaultMessageDialog</name>
+    <message>
+        <source>OK</source>
+        <translation>確認</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>開啟</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>儲存</translation>
+    </message>
+    <message>
+        <source>Save All</source>
+        <translation>全部儲存</translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation>重試</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation>忽略</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>套用</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <source>Yes to All</source>
+        <translation>全部皆是</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>否</translation>
+    </message>
+    <message>
+        <source>No to All</source>
+        <translation>全部皆否</translation>
+    </message>
+    <message>
+        <source>Discard</source>
+        <translation>丟棄</translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation>重設</translation>
+    </message>
+    <message>
+        <source>Restore Defaults</source>
+        <translation>還原到預設值</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Abort</source>
+        <translation>中止</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>關閉</translation>
+    </message>
+    <message>
+        <source>Show Details...</source>
+        <translation>顯示詳情…</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation>說明</translation>
+    </message>
+    <message>
+        <source>Hide Details</source>
+        <translation>隱藏詳情</translation>
+    </message>
+</context>
+<context>
+    <name>EditMenu_base</name>
+    <message>
+        <source>&amp;Undo</source>
+        <translation>復原(&amp;U)</translation>
+    </message>
+    <message>
+        <source>&amp;Redo</source>
+        <translation>重做(&amp;R)</translation>
+    </message>
+    <message>
+        <source>Cu&amp;t</source>
+        <translation>剪下(&amp;T)</translation>
+    </message>
+    <message>
+        <source>&amp;Copy</source>
+        <translation>複製(&amp;C)</translation>
+    </message>
+    <message>
+        <source>&amp;Paste</source>
+        <translation>貼上(&amp;P)</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>刪除</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>清空</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>全部選取</translation>
+    </message>
+</context>
+</TS>

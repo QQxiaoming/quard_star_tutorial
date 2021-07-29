@@ -1,0 +1,428 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ErrorFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>The Error Function</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-error-1" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function without arguments.</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-1" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-2" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function as per example 2 for this function from the Fncs. and Ops. Specifications.</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-2" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-3" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function with argument type.</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-3" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-4" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "FOCH0004".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-4" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOCH0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-5" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function with first argument of third signature set to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-5" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-6" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function with first argument of fourth signature set to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-6" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-7" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "FODT0001".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-7" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FODT0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-8" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "FORG0009".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-8" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0009</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-9" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "FOTY0012".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-9" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOTY0012</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-10" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SENR0001".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-10" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SENR0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-11" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SEPM0004".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-11" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SEPM0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-12" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SEPM0009".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-12" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SEPM0009</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-13" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SEPM0010".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-13" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SEPM0010</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-14" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SEPM0016".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-14" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SEPM0016</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-15" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SERE0003".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-15" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SERE0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-16" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SERE0005".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-16" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SERE0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-17" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SERE0006".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-17" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SERE0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-18" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SERE0008".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-18" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SERE0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-19" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SERE0012".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-19" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SERE0012</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-20" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SERE0014".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-20" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SERE0014</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-22" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SESU0007".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-22" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SESU0007</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-23" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "SESU0011".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-23" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>SESU0011</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-25" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XPDY0002".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-25" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-26" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XPST0010".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-26" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0010</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-27" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XPST0080".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-27" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0080</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-28" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XPTY0018".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-28" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-29" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQDY0027".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-29" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0027</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-30" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQDY0061".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-30" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0061</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-31" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQDY0084".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-31" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0084</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-32" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0009".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-32" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-33" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0012".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-33" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0012</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-34" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0013".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-34" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0013</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-35" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0016".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-35" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0016</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-36" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0035".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-36" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0035</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-37" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0036".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-37" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-38" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0046".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-38" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-39" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0047".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-39" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0047</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-40" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0048".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-40" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0048</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-41" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0054".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-41" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0054</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-42" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0055".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-42" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0055</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-43" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0057".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-43" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0057</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-44" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0058".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-44" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0058</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-45" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0060".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-45" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0060</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-46" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0073".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-46" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0073</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-47" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0075".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-47" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-48" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0076".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-48" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0076</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-49" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0079".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-49" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0079</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-50" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQST0087".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-50" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0087</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-error-51" FilePath="Functions/ErrorFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:error" function for error code "XQTY0030".</description>
+      <spec-citation spec="FuncOps" section-number="3" section-title="The Error Function" section-pointer="func-error"/>
+      <query name="fn-error-51" date="2005-12-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-1" FilePath="Functions/ErrorFunc/" scenario="standard">
+      <description>A test whose essence is: `if(true()) then true() else error()`.</description>
+      <query name="K-ErrorFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ErrorFunc-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-2" FilePath="Functions/ErrorFunc/" scenario="standard">
+      <description>A test whose essence is: `if(true()) then true() else error(QName("", "local"), "description")`.</description>
+      <query name="K-ErrorFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ErrorFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-3" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `error(QName("", "local"), "description", "object", "wrong param")`.</description>
+      <query name="K-ErrorFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-4" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `error( () )`.</description>
+      <query name="K-ErrorFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-5" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `error(QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000'))`.</description>
+      <query name="K-ErrorFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-6" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>When fn:error() is passed a description, the first argument may be an empty sequence.</description>
+      <query name="K-ErrorFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-7" FilePath="Functions/ErrorFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then error((), "description") else true()`.</description>
+      <query name="K-ErrorFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ErrorFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-8" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `error()`.</description>
+      <query name="K-ErrorFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-9" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `error(QName("", "XPDY6666"), "description", "error object")`.</description>
+      <query name="K-ErrorFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ErrorFunc-10" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `exactly-one((true(), error()))`.</description>
+      <query name="K-ErrorFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ErrorFunc-1" FilePath="Functions/ErrorFunc/" scenario="standard">
+      <description>Combine fn:error() with a predicate.</description>
+      <query name="K2-ErrorFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ErrorFunc-1.txt</output-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ErrorFunc-2" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>Using a QName with namespace 'none' as identifier.</description>
+      <query name="K2-ErrorFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ErrorFunc-3" FilePath="Functions/ErrorFunc/" scenario="runtime-error">
+      <description>Use a QName with no namespace URI.</description>
+      <query name="K2-ErrorFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>*</expected-error>
+   </test-case>
+</test-group>

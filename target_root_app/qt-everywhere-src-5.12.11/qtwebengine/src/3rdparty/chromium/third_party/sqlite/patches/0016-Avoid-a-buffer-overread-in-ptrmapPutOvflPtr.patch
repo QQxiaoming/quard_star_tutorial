@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Victor Costan <pwnall@chromium.org>
+Date: Fri, 11 Jan 2019 12:19:01 -0800
+Subject: [PATCH 16/17] Avoid a buffer overread in ptrmapPutOvflPtr().
+
+This backports https://sqlite.org/src/info/f8b781cf41800e9f
+
+Bug: 914407
+---
+ third_party/sqlite/src/src/btree.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/third_party/sqlite/src/src/btree.c b/third_party/sqlite/src/src/btree.c
+index 6b17bdee5c4f..14af51e15ab2 100644
+--- a/third_party/sqlite/src/src/btree.c
++++ b/third_party/sqlite/src/src/btree.c
+@@ -1364,7 +1364,12 @@ static void ptrmapPutOvflPtr(MemPage *pPage, u8 *pCell, int *pRC){
+   assert( pCell!=0 );
+   pPage->xParseCell(pPage, pCell, &info);
+   if( info.nLocal<info.nPayload ){
+-    Pgno ovfl = get4byte(&pCell[info.nSize-4]);
++    Pgno ovfl;
++    if( SQLITE_WITHIN(pPage->aDataEnd, pCell, pCell+info.nLocal) ){
++      *pRC = SQLITE_CORRUPT_BKPT;
++      return;
++    }
++    ovfl = get4byte(&pCell[info.nSize-4]);
+     ptrmapPut(pPage->pBt, ovfl, PTRMAP_OVERFLOW1, pPage->pgno, pRC);
+   }
+ }
+--
+2.18.0
+

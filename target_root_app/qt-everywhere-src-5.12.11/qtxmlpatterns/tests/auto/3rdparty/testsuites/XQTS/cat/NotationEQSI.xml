@@ -1,0 +1,162 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NotationEQSI">
+   <GroupInfo>
+      <title>op:NOTATION-equal</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="Comp-notation-1" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Notation comparison.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-1" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-2" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Notation comparison.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-2" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-2.txt</output-file>
+      <output-file role="principal" compare="Text">Comp-notationalt-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-3" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Andreas Behm">
+      <description>Notation comparison.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-3" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-4" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Notation comparison using "ne".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-4" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-5" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Notation comparison using "ne".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-5" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-6" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Notation comparison using "ne".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-6" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-7" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" and used with fn:not - returns false.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-7" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-8" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" and used with fn:not - returns true.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-8" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-9" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" and used with fn:not - returns true.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-9" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-10" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" and used with fn:not - returns false.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-10" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-11" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" and used with fn:boolean function.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-11" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-12" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" and used with fn:boolean function.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-12" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-13" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" used in boolean expression with "fn:true" and "and".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-13" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-14" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" used in boolean expression with "fn:true" and "and".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-14" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-15" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" used in boolean expression with "fn:true" and "or".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-15" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-16" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" used in boolean expression with "fn:true" and "or".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-16" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-17" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" used in boolean expression with "fn:false" and "and".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-17" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-18" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" used in boolean expression with "fn:false" and "and".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-18" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-19" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "eq" used in boolean expression with "fn:false" and "or".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-19" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-20" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of notation comparison using "ne" used in boolean expression with "fn:false" and "or".</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-20" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-21" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of expression for notation comparison using "eq" ar argument to "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-21" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Comp-notation-22" FilePath="SchemaImport/NotationEQSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of expression for notation comparison using "ne" ar argument to "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="13.1.1" section-title="op:NOTATION-equal" section-pointer="func-NOTATION-equal"/>
+      <query name="Comp-notation-22" date="2006-01-26"/>
+      <input-file role="principal-data" variable="input-context">notation</input-file>
+      <output-file role="principal" compare="Text">Comp-notation-22.txt</output-file>
+      <output-file role="principal" compare="Text">Comp-notationalt-22.txt</output-file>
+   </test-case>
+</test-group>

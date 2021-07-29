@@ -1,0 +1,745 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="DirectConElemNamespace" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Namespace Declaration Attributes</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-namespace-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Use undeclared namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-1" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Declare namespace with prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-2" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-3" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Declare default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-3" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-4" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Duplicate namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-4" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0071</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-5" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Duplicate default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-5" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0071</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-6" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Local part of declaration is xml.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-6" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-7" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Local part of declaration is xmlns.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-7" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-8" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Child inherits namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-8" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-8.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-9" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Overriding parents namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-9" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-9.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-10" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Overriding prolog namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-10" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-10.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-11" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Select child of element overriding parent namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-11" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-11.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-12" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Select child of element overriding prolog namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-12" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-12.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-13" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Undeclare namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-13" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-13.xml</output-file>
+      <expected-error>XQST0085</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-14" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Use undeclared parent prefix in child.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-14" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+      <expected-error>XQST0085</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-15" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Use undeclared prolog prefix in child.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-15" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+      <expected-error>XQST0085</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-16" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Select child of element overriding namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-16" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-16.xml</output-file>
+      <expected-error>XQST0085</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-17" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Child inherits default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-17" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-17.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-18" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Override parents default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-18" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-18.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-19" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Override prologs default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-19" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-19.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-20" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Child inherits overridden parents default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-20" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-20.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-21" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Child inherits overridden prologs default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-21" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-21.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-22" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Undeclare default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-22" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-22.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-23" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Child inherits undeclared default namespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-23" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-23.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-24" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Namespace Declarations - namespace URI is not string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="Constr-namespace-24" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-25" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Namespace Declarations - namespace URI is not string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="Constr-namespace-25" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-26" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Test namespace added to statically known namespaces: element content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-26" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">MixNS</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-26.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-27" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Andreas Behm">
+      <description>Test namespace added to statically known namespaces: attribute content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-27" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">MixNS</input-file>
+      <output-file role="principal" compare="XML">Constr-namespace-27.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-namespace-29" FilePath="Expressions/Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Test namespace removed from statically known namespaces after end of element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.2" section-title="Namespace Declaration Attributes" section-pointer="id-namespaces"/>
+      <query name="Constr-namespace-29" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">MixNS</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-1" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A namespace declaration inside a direct element constructor is not in-scope for the next operand of the comma operator.</description>
+      <query name="K2-DirectConElemNamespace-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-2" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>Element constructors aren't well-formed despite the namespace declarations.</description>
+      <query name="K2-DirectConElemNamespace-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-3" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>Element constructors aren't well-formed despite the namespace declarations.</description>
+      <query name="K2-DirectConElemNamespace-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-4" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>A namespace declaration binding to a a one-letter NCName.</description>
+      <query name="K2-DirectConElemNamespace-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-4.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-5" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Verify the 'xml' prefix is in scope in a direct constructor.</description>
+      <query name="K2-DirectConElemNamespace-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-6" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Verify the 'xml' prefix is in scope in a computed constructor.</description>
+      <query name="K2-DirectConElemNamespace-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-7" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Default namespace declarations does not affect the default function namespace.</description>
+      <query name="K2-DirectConElemNamespace-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-8" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Default namespace declarations does not affect the default function namespace(#2).</description>
+      <query name="K2-DirectConElemNamespace-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-9" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Default namespace declarations does not affect the default function namespace(#3).</description>
+      <query name="K2-DirectConElemNamespace-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-10" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Default namespace declarations does not affect the default function namespace(#4).</description>
+      <query name="K2-DirectConElemNamespace-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-11" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A name test whose namespace is declared with a default namespace attribute.</description>
+      <query name="K2-DirectConElemNamespace-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-12" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A name test whose namespace is declared with a default namespace attribute(#2).</description>
+      <query name="K2-DirectConElemNamespace-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-13" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A name test whose namespace is declared with a prefixed namespace attribute.</description>
+      <query name="K2-DirectConElemNamespace-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-14" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A name test whose namespace is declared with a prefixed namespace attribute(#2).</description>
+      <query name="K2-DirectConElemNamespace-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-15" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A namespace must be a literal.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-16" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A namespace must be a literal(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-17" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A namespace must be a literal, for which bracket-escapes are invalid.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-18" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>A namespace must be a literal, for which bracket-escapes are invalid(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-19" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct default element namespace is used, with 'instance of'.</description>
+      <query name="K2-DirectConElemNamespace-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-20" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct default element namespace is used, with 'treat as'.</description>
+      <query name="K2-DirectConElemNamespace-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-21" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct default element namespace is used, with 'cast as'.</description>
+      <query name="K2-DirectConElemNamespace-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-22" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct default element namespace is used, with 'cast as'.</description>
+      <query name="K2-DirectConElemNamespace-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-23" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct default element namespace is used, with an element name test.</description>
+      <query name="K2-DirectConElemNamespace-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-24" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct default element namespace is used, with an attribute name test.</description>
+      <query name="K2-DirectConElemNamespace-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-25" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Test that an empty namespace declaration is handled correctly.</description>
+      <query name="K2-DirectConElemNamespace-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-25.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-26" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Ensure that a declaration is only in-scope for the element constructor.</description>
+      <query name="K2-DirectConElemNamespace-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-27" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that when one namespace declaration goes out of scope, that the one above doesn't dissapear.</description>
+      <query name="K2-DirectConElemNamespace-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-28" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that when one namespace declaration goes out of scope, that the one above persists.</description>
+      <query name="K2-DirectConElemNamespace-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-29" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct namespace is used, with 'instance of'.</description>
+      <query name="K2-DirectConElemNamespace-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-30" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct namespace is used, with 'treat as'.</description>
+      <query name="K2-DirectConElemNamespace-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-31" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct namespace is used, with 'cast as'.</description>
+      <query name="K2-DirectConElemNamespace-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-32" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that the correct namespace is used, with 'cast as'.</description>
+      <query name="K2-DirectConElemNamespace-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-33" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use a namespace binding in range variables that appears after them in query order.</description>
+      <query name="K2-DirectConElemNamespace-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-34" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Use an enclosed expression inside an namespace declaration.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-35" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Use an enclosed expression inside an namespace declaration(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-36" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Use an enclosed expression inside an namespace declaration(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-37" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Use an enclosed expression inside an namespace declaration(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-38" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>Use an inproperly enclosed expression inside an namespace declaration.</description>
+      <query name="K2-DirectConElemNamespace-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-39" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Combine an empty default namespace, with a full namespace.</description>
+      <query name="K2-DirectConElemNamespace-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemNamespace-39.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-40" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure the namespaces in-scope are outputted.</description>
+      <query name="K2-DirectConElemNamespace-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-40.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-41" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure all namespaces in-scope, through a couple of elements, are found by in-scope-prefixes().</description>
+      <query name="K2-DirectConElemNamespace-41" static-name="K2-DirectConElemNamespace-41-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-41.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-42" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>A direct element constructor with a redundant, prefixed namespace declaration.</description>
+      <query name="K2-DirectConElemNamespace-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-42.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-43" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>A direct element constructor with a redundant namespace declaration.</description>
+      <query name="K2-DirectConElemNamespace-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-43.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-44" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>Use an inproperly enclosed expression inside an namespace declaration(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-45" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure the namespace declaration is output for a copied attribute.</description>
+      <query name="K2-DirectConElemNamespace-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-45.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-46" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure no declaration is output for the XML namespace.</description>
+      <query name="K2-DirectConElemNamespace-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-46.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-47" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use an empty-string namespace declaration.</description>
+      <query name="K2-DirectConElemNamespace-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-47.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-48" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Declare a prefix that isn't used.</description>
+      <query name="K2-DirectConElemNamespace-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-48.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-49" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use a 'declare default element namespace' in addition to binding to the empty prefix.</description>
+      <query name="K2-DirectConElemNamespace-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-49.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-50" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure undeclarations affect path expressions correctly.</description>
+      <query name="K2-DirectConElemNamespace-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-50.txt</output-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-50-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-51" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use an empty-string namespace declaration(#2).</description>
+      <query name="K2-DirectConElemNamespace-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-51.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-52" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use an empty-string namespace declaration(#3).</description>
+      <query name="K2-DirectConElemNamespace-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-52.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-53" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure a namespace undeclaration aren't counted as a namespace binding.</description>
+      <query name="K2-DirectConElemNamespace-53" static-name="K2-DirectConElemNamespace-53-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-53.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-54" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure an undeclaration is treated properly.</description>
+      <query name="K2-DirectConElemNamespace-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-54.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-55" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>A combination of computed and direct constructors with namespace undeclarations.</description>
+      <query name="K2-DirectConElemNamespace-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-55.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-56" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Check that an attribute name tests properly interact with namespace declarations.</description>
+      <query name="K2-DirectConElemNamespace-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-56.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-57" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Attempt an attribute node copy that never will happen.</description>
+      <query name="K2-DirectConElemNamespace-57" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-57.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-58" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use the pre-declared prefixes in element constructors.</description>
+      <query name="K2-DirectConElemNamespace-58" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-58.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-59" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use the {}-escape mechanism.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-59" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-59.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <!--
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-60" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Use the {}-escape mechanism.(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-60" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-60.txt</output-file>
+      <expected-error>XQST0046</expected-error>      
+      optional error: the namespace URI is illegal, processors MAY detect this
+   </test-case>
+   -->
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-61" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched { inside a namespace constructor.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-61" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-62" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched } inside a namespace constructor(#2).</description>
+      <query name="K2-DirectConElemNamespace-62" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-63" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched { inside a namespace constructor(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-63" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-64" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched } inside a namespace constructor(#4).</description>
+      <query name="K2-DirectConElemNamespace-64" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-65" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Extract an escaped namespace with fn:namespace-for-prefix().</description>
+      <query name="K2-DirectConElemNamespace-65" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-65.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <!--
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-66" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Extract an escaped namespace with fn:namespace-for-prefix()(#2).</description>
+      <query name="K2-DirectConElemNamespace-66" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-66.txt</output-file>
+   </test-case>
+   -->
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-67" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched { inside a namespace constructor with content afterwards.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-67" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-68" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched } inside a namespace constructor with content afterwards(#2).</description>
+      <query name="K2-DirectConElemNamespace-68" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-69" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched { inside a namespace constructor with content afterwards(#3).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-69" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemNamespace-70" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="parse-error">
+      <description>An non-matched } inside a namespace constructor with content afterwards(#4).</description>
+      <query name="K2-DirectConElemNamespace-70" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-71" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Enclosed expressions cannot be used.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-71" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-72" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Enclosed expressions cannot be used(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-72" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-73" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Enclosed expressions containing the empty sequence cannot be used.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-73" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-74" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Enclosed expressions containing the empty sequence cannot be used(#2).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-74" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0022</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-75" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Serialize a namespace that has braces.</description>
+      <query name="K2-DirectConElemNamespace-75" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemNamespace-75.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-76" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Serialize a prefixed namespace that has braces.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5343</reflects-resolution>
+      <query name="K2-DirectConElemNamespace-76" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-76.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-77" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Pull out a namespace prefix that shadows another.</description>
+      <query name="K2-DirectConElemNamespace-77" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-77.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-78" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard">
+      <description>Ensure that namespaces are expanded in the correct places(positive test).</description>
+      <query name="K2-DirectConElemNamespace-78" date="2009-02-05+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemNamespace-78.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemNamespace-79" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="runtime-error">
+      <description>Ensure that namespaces are expanded in the correct places(negative test).</description>
+      <query name="K2-DirectConElemNamespace-79" date="2009-02-05+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>   
+   <test-case is-XPath2="false" name="DirectConElemNamespace-3" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Use the ""-escape mechanism.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="DirectConElemNamespace-3" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">DirectConElemNamespace-3.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <test-case is-XPath2="false" name="DirectConElemNamespace-4" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Use the ""-escape mechanism.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="DirectConElemNamespace-4" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">DirectConElemNamespace-4.txt</output-file>
+      <expected-error>XQST0046</expected-error> <!-- optional error: the namespace URI is illegal, processors MAY detect this -->
+   </test-case>
+   <test-case is-XPath2="false" name="DirectConElemNamespace-5" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Use the ''-escape mechanism.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="DirectConElemNamespace-5" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">DirectConElemNamespace-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="DirectConElemNamespace-6" FilePath="Construct/DirectConElem/DirectConElemNamespace/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Use the ''-escape mechanism.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="DirectConElemNamespace-6" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">DirectConElemNamespace-6.txt</output-file>
+   </test-case>
+</test-group>

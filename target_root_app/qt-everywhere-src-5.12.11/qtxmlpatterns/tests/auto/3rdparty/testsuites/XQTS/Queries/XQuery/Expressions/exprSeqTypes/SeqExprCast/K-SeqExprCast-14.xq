@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-14                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A test whose essence is: `'1' cast as xs:boolean eq true()`. :)
+(:*******************************************************:)
+'1' cast as xs:boolean eq true()

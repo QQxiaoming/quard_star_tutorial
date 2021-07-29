@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: month-from-date-5                                :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 6, 2005                                     :)
+(:Purpose: Evaluates The "month-from-date" function      :)
+(:using the empty sequence as an argument. Use count     :) 
+(:function to avoid empty file.                          :)
+(:*******************************************************:)
+
+fn:count(fn:month-from-date(()))

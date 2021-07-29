@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>x</xqx:varName>
+        <xqx:varValue>
+          <xqx:sequenceExpr>
+            <xqx:functionCallExpr>
+              <xqx:functionName xqx:prefix="xs">string</xqx:functionName>
+              <xqx:arguments>
+                <xqx:stringConstantExpr>
+                  <xqx:value>a</xqx:value>
+                </xqx:stringConstantExpr>
+              </xqx:arguments>
+            </xqx:functionCallExpr>
+            <xqx:sequenceExpr/>
+            <xqx:stringConstantExpr>
+              <xqx:value>xyz</xqx:value>
+            </xqx:stringConstantExpr>
+          </xqx:sequenceExpr>
+        </xqx:varValue>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:varRef>
+        <xqx:name>x</xqx:name>
+      </xqx:varRef>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

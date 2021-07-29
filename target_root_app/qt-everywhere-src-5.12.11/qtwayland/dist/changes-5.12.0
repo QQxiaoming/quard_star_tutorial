@@ -1,0 +1,105 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                Compositor                                *
+****************************************************************************
+
+ - [QTBUG-66784] Added APIs for xdg-shell stable.
+ - xdg-shell unstable v5 is now deprecated. Existing compositors should
+   migrate to unstable v6 or stable.
+ - Features for server buffer integrations have been renamed.
+   "drm-egl-server" is now "wayland-drm-egl-server-buffer" and
+   "libhybris-egl-server" is "wayland-libhybris-egl-server-buffer".
+ - [QTBUG-49809] Added support for wl_subsurface.place_above and
+   place_below in WaylandQuickItem.
+ - QWaylandQuickItem::sendMouseMoveEvent was added to allow sending
+   generated mouse move events from QML.
+ - Added API for installing a socket on which bind() and listen() have
+   already been called into the event dispatch loop. This facilitates
+   socket-activated compositors.
+ - Added a new categorized logging namespace "qt.waylandcompositor" and
+   renamed "qt.compositor.input.methods" to
+   "qt.waylandcompositor.inputmethods".
+ - Fixed a bug where some signals on QWaylandSurface were emitted before
+   all double buffered state had been applied.
+ - [QTBUG-70163] Fixed a bug where destroying a WaylandQuickItem would
+   delete the OpenGL texture for all other WaylandQuickItems using that
+   surface.
+ - Fixed a bug that caused some clients to abort in libwayland when a
+   surface left an output.
+ - Fixed an issue where the WaylandOutput.window QML property had to be set
+   before the WaylandOutput.sizeFollowsWindow property.
+ - Fixed a bug where outputAdded was not emitted if a new output was added
+   through QWaylandCompositor::setDefaultOutput.
+
+ - xdg-shell v6:
+   * Requests to enter/exit fullscreen mode are now handled.
+   * Minimum and maximum sizes are now respected when resizing.
+   * Fixed an edge case in moving an initially maximized XdgShellV6 surface
+     to windowed mode.
+   * ShellSurfaceItems now re-issue configure requests with updated sizes
+     when the size or available geometry changes on an output used by a
+     maximized or fullscreen surface.
+
+ - wl-shell:
+   * ShellSurfaceItems now re-issue configure requests with updated sizes
+     when the size or available geometry changes on output used by a
+     maximized or fullscreen surface.
+
+****************************************************************************
+*                                QPA plugin                                *
+****************************************************************************
+
+ - [QTBUG-66783] Added support for xdg-shell stable.
+ - [QTBUG-69746] Added client-side support for the
+   xdg-decoration-unstable-v1 Wayland extension. Qt clients will now let
+   the compositor draw the window decorations if configured through this
+   extension.
+ - [QTBUG-68834] The window decorations have had a redesign, they now use
+   the window background color instead of the blue gradient.
+ - QT_WAYLAND_SHELL_INTEGRATION environment variable now accepts a
+   semicolon-separated list of shell integrations.
+ - [QTBUG-68838] Deprecated the shell integrations for
+   xdg-shell-unstable-v5 and wl-shell. The stable version of xdg-shell
+   should be used instead.
+ - All shell integrations have been moved to plugins.
+ - Window decorations are now automatically disabled for ivi-application.
+ - Added support for xdg-output-unstable-v1
+ - Font and UI scaling is now based on the screen scale factor rather than
+   the physical DPI. The logical DPI is set to 96 unless overridden by the
+   the environment variable QT_WAYLAND_FORCE_DPI, which may be set to a
+   specific DPI or to "physical" to get the old behavior.
+ - Cursors now follow the device pixel ratio of the current screen.
+ - Cursor themes are now loaded on-demand, leading to significant memory
+   savings in some cases.
+ - Fixed a bug where QSurfaceFormat::renderableType() was ignored when
+   creating an OpenGL context.
+ - Fixed a bug where the arrow cursor would be shown instead of the resize
+   cursor when hovering over the window decoration border.
+ - [QTBUG-70242][QTBUG-68605][QTBUG-67601] Fixed a bug where offscreen
+   surfaces would get surfaceless EGL contexts.
+
+ - xdg-shell v6:
+   * Fixed a bug where maximized windows would resize to their unmaximized
+     size if the compositor sent an invalid configure event.
+   * Fixed a bug where buffers were sometimes attached and committed before
+     the first configure event, causing protocol errors.
+   * [QTBUG-63417][QTBUG-63748] Implemented support for maximizing,
+     minimizing, and setting fullscreen with xdg-shell unstable v6.
+   * [QTBUG-53702] QWindow::isActive now follows configure events on
+     xdg-shell unstable v6 (like v5).

@@ -1,0 +1,673 @@
+<ui version="4.0" stdsetdef="1" >
+  <author></author>
+ <comment>*********************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the tools applications of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:GPL-EXCEPT$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU General Public License Usage
+** Alternatively, this file may be used under the terms of the GNU
+** General Public License version 3 as published by the Free Software
+** Foundation with exceptions as appearing in the file LICENSE.GPL3-EXCEPT
+** included in the packaging of this file. Please review the following
+** information to ensure the GNU General Public License requirements will
+** be met: https://www.gnu.org/licenses/gpl-3.0.html.
+**
+** $QT_END_LICENSE$
+**
+*********************************************************************</comment>
+  <exportmacro></exportmacro>
+  <class>MainWindow</class>
+  <widget class="QMainWindow" name="MainWindow" >
+    <property name="objectName" >
+      <string notr="true" >MainWindow</string>
+    </property>
+    <property name="windowTitle" >
+      <string>ActiveX Control Test Container</string>
+    </property>
+    <widget class="QWidget" name="centralWidget">
+    <layout class="QHBoxLayout" >
+      <property name="objectName" >
+        <string notr="true" >unnamed</string>
+      </property>
+      <property name="margin" >
+        <number>0</number>
+      </property>
+      <property name="spacing" >
+        <number>6</number>
+      </property>
+      <item>
+        <widget class="QFrame" name="Frame" >
+          <property name="objectName" >
+            <string notr="true" >Frame</string>
+          </property>
+          <property name="sizePolicy" >
+            <sizepolicy>
+              <hsizetype>5</hsizetype>
+              <vsizetype>7</vsizetype>
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+            </sizepolicy>
+          </property>
+          <property name="frameShape" >
+            <enum>StyledPanel</enum>
+          </property>
+          <property name="frameShadow" >
+            <enum>Sunken</enum>
+          </property>
+          <layout class="QVBoxLayout" >
+            <property name="objectName" >
+              <string notr="true" >unnamed</string>
+            </property>
+            <property name="margin" >
+              <number>0</number>
+            </property>
+            <property name="spacing" >
+              <number>0</number>
+            </property>
+            <item>
+              <widget class="QSplitter" name="Splitter2" >
+                <property name="objectName" >
+                  <string notr="true" >Splitter2</string>
+                </property>
+                <property name="orientation" >
+                  <enum>Qt::Vertical</enum>
+                </property>
+                <widget class="QFrame" name="Workbase" >
+                  <property name="objectName" >
+                    <string notr="true" >Workbase</string>
+                  </property>
+                  <property name="sizePolicy" >
+                    <sizepolicy>
+                      <hsizetype>5</hsizetype>
+                      <vsizetype>7</vsizetype>
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                    </sizepolicy>
+                  </property>
+                  <property name="frameShape" >
+                    <enum>NoFrame</enum>
+                  </property>
+                  <property name="frameShadow" >
+                    <enum>Raised</enum>
+                  </property>
+                </widget>
+                <widget class="QTabWidget" name="logTabWidget" >
+                  <property name="objectName" >
+                    <string notr="true" >logTabWidget</string>
+                  </property>
+                  <property name="sizePolicy" >
+                    <sizepolicy>
+                      <hsizetype>7</hsizetype>
+                      <vsizetype>4</vsizetype>
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                    </sizepolicy>
+                  </property>
+                  <widget class="QWidget" name="logSignalsTab" >
+                    <property name="objectName" >
+                      <string notr="true" >logSignalsTab</string>
+                    </property>
+                    <attribute name="title" >
+                      <string>Signal log</string>
+                    </attribute>
+                    <layout class="QHBoxLayout" >
+                      <property name="objectName" >
+                        <string notr="true" >unnamed</string>
+                      </property>
+                      <property name="margin" >
+                        <number>0</number>
+                      </property>
+                      <property name="spacing" >
+                        <number>6</number>
+                      </property>
+                      <item>
+                        <widget class="QTextEdit" name="logSignals" >
+                          <property name="objectName" >
+                            <string notr="true" >logSignals</string>
+                          </property>
+                          <property name="sizePolicy" >
+                            <sizepolicy>
+                              <hsizetype>7</hsizetype>
+                              <vsizetype>5</vsizetype>
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                            </sizepolicy>
+                          </property>
+                          <property name="readOnly" >
+                            <bool>true</bool>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </widget>
+                  <widget class="QWidget" name="logPropertiesTab" >
+                    <property name="objectName" >
+                      <string notr="true" >logPropertiesTab</string>
+                    </property>
+                    <attribute name="title" >
+                      <string>Property log</string>
+                    </attribute>
+                    <layout class="QHBoxLayout" >
+                      <property name="objectName" >
+                        <string notr="true" >unnamed</string>
+                      </property>
+                      <property name="margin" >
+                        <number>0</number>
+                      </property>
+                      <property name="spacing" >
+                        <number>6</number>
+                      </property>
+                      <item>
+                        <widget class="QTextEdit" name="logProperties" >
+                          <property name="objectName" >
+                            <string notr="true" >logProperties</string>
+                          </property>
+                          <property name="sizePolicy" >
+                            <sizepolicy>
+                              <hsizetype>7</hsizetype>
+                              <vsizetype>5</vsizetype>
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                            </sizepolicy>
+                          </property>
+                          <property name="readOnly" >
+                            <bool>true</bool>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </widget>
+                  <widget class="QWidget" name="TabPage" >
+                    <property name="objectName" >
+                      <string notr="true" >TabPage</string>
+                    </property>
+                    <attribute name="title" >
+                      <string>Macro Log</string>
+                    </attribute>
+                    <layout class="QHBoxLayout" >
+                      <property name="objectName" >
+                        <string notr="true" >unnamed</string>
+                      </property>
+                      <property name="margin" >
+                        <number>0</number>
+                      </property>
+                      <item>
+                        <widget class="QTextEdit" name="logMacros" >
+                          <property name="objectName" >
+                            <string notr="true" >logMacros</string>
+                          </property>
+                          <property name="sizePolicy" >
+                            <sizepolicy>
+                              <hsizetype>7</hsizetype>
+                              <vsizetype>5</vsizetype>
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                            </sizepolicy>
+                          </property>
+                          <property name="readOnly" >
+                            <bool>true</bool>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </widget>
+                  <widget class="QWidget" name="logDebugTab" >
+                    <property name="objectName" >
+                      <string notr="true" >logDebugTab</string>
+                    </property>
+                    <attribute name="title" >
+                      <string>Debug log</string>
+                    </attribute>
+                    <layout class="QHBoxLayout" >
+                      <property name="objectName" >
+                        <string notr="true" >unnamed</string>
+                      </property>
+                      <property name="margin" >
+                        <number>0</number>
+                      </property>
+                      <property name="spacing" >
+                        <number>6</number>
+                      </property>
+                      <item>
+                        <widget class="QTextEdit" name="logDebug" >
+                          <property name="objectName" >
+                            <string notr="true" >logDebug</string>
+                          </property>
+                          <property name="sizePolicy" >
+                            <sizepolicy>
+                              <hsizetype>7</hsizetype>
+                              <vsizetype>5</vsizetype>
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                            </sizepolicy>
+                          </property>
+                          <property name="readOnly" >
+                            <bool>true</bool>
+                          </property>
+                        </widget>
+                      </item>
+                    </layout>
+                  </widget>
+                </widget>
+              </widget>
+            </item>
+          </layout>
+        </widget>
+      </item>
+    </layout>
+    </widget>
+    <widget class="QToolBar" name="Toolbar_2" >
+      <property name="objectName" >
+        <string notr="true" >Toolbar_2</string>
+      </property>
+      <property name="windowTitle" >
+        <string>Toolbar_2</string>
+      </property>
+      <addaction name="actionFileNew" />
+      <addaction name="actionControlMethods" />
+      <addaction name="actionControlProperties" />
+    </widget>
+    <widget class="QMenuBar" name="menubar" >
+      <property name="objectName" >
+        <string notr="true" >menubar</string>
+      </property>
+      <widget class="QMenu" name="FileMenu" >
+        <property name="objectName" >
+          <string notr="true" >FileMenu</string>
+        </property>
+        <property name="title" >
+          <string>&amp;File</string>
+        </property>
+        <addaction name="actionFileNew" />
+        <addaction name="actionFileLoad" />
+        <addaction name="actionFileSave" />
+        <addaction name="separator" />
+        <addaction name="actionFileExit" />
+      </widget>
+      <widget class="QMenu" name="ContainerMenu" >
+        <property name="objectName" >
+          <string notr="true" >ContainerMenu</string>
+        </property>
+        <property name="title" >
+          <string>Con&amp;tainer</string>
+        </property>
+        <addaction name="actionContainerSet" />
+        <addaction name="actionContainerClear" />
+        <addaction name="separator" />
+        <addaction name="actionContainerProperties" />
+      </widget>
+      <widget class="QMenu" name="ControlMenu" >
+        <property name="objectName" >
+          <string notr="true" >ControlMenu</string>
+        </property>
+        <property name="title" >
+          <string>&amp;Control</string>
+        </property>
+        <widget class="QMenu" name="VerbMenu" >
+          <property name="objectName" >
+            <string notr="true" >VerbMenu</string>
+          </property>
+          <property name="title" >
+            <string>&amp;Verbs...</string>
+          </property>
+          <property name="enabled" >
+            <bool>false</bool>
+          </property>
+        </widget>
+        <addaction name="actionControlMethods" />
+        <addaction name="actionControlProperties" />
+        <addaction name="VerbMenu" />
+        <addaction name="separator" />
+        <addaction name="actionControlInfo" />
+        <addaction name="actionControlDocumentation" />
+        <addaction name="actionControlPixmap" />
+      </widget>
+      <widget class="QMenu" name="ScriptMenu" >
+        <property name="objectName" >
+          <string notr="true" >ScriptMenu</string>
+        </property>
+        <property name="title" >
+          <string>&amp;Scripting</string>
+        </property>
+        <addaction name="actionScriptingLoad" />
+        <addaction name="actionScriptingRun" />
+      </widget>
+      <widget class="QMenu" name="OptionsMenu" >
+        <property name="objectName" >
+          <string notr="true" >OptionsMenu</string>
+        </property>
+        <property name="title" >
+          <string>&amp;Options</string>
+        </property>
+        <widget class="QMenu" name="LoggingMenu" >
+          <property name="objectName" >
+            <string notr="true" >LoggingMenu</string>
+          </property>
+          <property name="title" >
+            <string>Log...</string>
+          </property>
+          <addaction name="actionLogSignals" />
+          <addaction name="actionLogProperties" />
+        </widget>
+        <addaction name="actionFreezeEvents" />
+        <addaction name="actionGroupLogging" />
+        <addaction name="LoggingMenu" />
+        <addaction name="actionFreeUnusedDLLs"/>
+      </widget>
+      <widget class="QMenu" name="menuHelp">
+       <property name="title">
+        <string>Help</string>
+       </property>
+       <addaction name="actionAbout_Testcon"/>
+       <addaction name="actionAbout_Qt"/>
+      </widget>
+      <addaction name="FileMenu" />
+      <addaction name="ContainerMenu" />
+      <addaction name="ControlMenu" />
+      <addaction name="ScriptMenu" />
+      <addaction name="OptionsMenu" />
+      <addaction name="menuHelp" />
+    </widget>
+    <action name="actionFileExit" >
+      <property name="objectName" >
+        <string>actionFileExit</string>
+      </property>
+      <property name="iconText" >
+        <string>Exit</string>
+      </property>
+      <property name="text" >
+        <string>E&amp;xit</string>
+      </property>
+    </action>
+    <action name="actionContainerSet" >
+      <property name="objectName" >
+        <string>actionContainerSet</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Set Control</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Set Control</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+S</string>
+      </property>
+    </action>
+    <action name="actionControlMethods" >
+      <property name="objectName" >
+        <string>actionControlMethods</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="icon" >
+        <iconset>:/images/controlmethods.png</iconset>
+      </property>
+      <property name="iconText" >
+        <string>Invoke Methods</string>
+      </property>
+      <property name="text" >
+        <string>Invoke &amp;Methods</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+M</string>
+      </property>
+    </action>
+    <action name="actionControlProperties" >
+      <property name="objectName" >
+        <string>actionControlProperties</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="icon" >
+        <iconset>:/images/controlproperties.png</iconset>
+      </property>
+      <property name="iconText" >
+        <string>Change Properties</string>
+      </property>
+      <property name="text" >
+        <string>Change &amp;Properties</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+P</string>
+      </property>
+    </action>
+    <action name="actionContainerClear" >
+      <property name="objectName" >
+        <string>actionContainerClear</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Clear Control</string>
+      </property>
+      <property name="text" >
+        <string>C&amp;lear Control</string>
+      </property>
+      <property name="shortcut" >
+        <string/>
+      </property>
+    </action>
+    <action name="actionContainerProperties" >
+      <property name="objectName" >
+        <string>actionContainerProperties</string>
+      </property>
+      <property name="iconText" >
+        <string>Ambient Properties</string>
+      </property>
+      <property name="text" >
+        <string>Ambient &amp;Properties</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+A</string>
+      </property>
+    </action>
+    <action name="actionControlInfo" >
+      <property name="objectName" >
+        <string>actionControlInfo</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Details</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Details</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+I</string>
+      </property>
+    </action>
+    <action name="actionFileSave" >
+      <property name="objectName" >
+        <string>actionFileSave</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Save Control</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Save Control</string>
+      </property>
+    </action>
+    <action name="actionFileLoad" >
+      <property name="objectName" >
+        <string>actionFileLoad</string>
+      </property>
+      <property name="iconText" >
+        <string>Load Control</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Load Control</string>
+      </property>
+    </action>
+    <action name="actionFreezeEvents" >
+      <property name="objectName" >
+        <string>actionFreezeEvents</string>
+      </property>
+      <property name="checkable" >
+        <bool>true</bool>
+      </property>
+      <property name="iconText" >
+        <string>Freeze Events</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Freeze Events</string>
+      </property>
+    </action>
+    <action name="actionFileNew" >
+      <property name="objectName" >
+        <string>actionFileNew</string>
+      </property>
+      <property name="icon" >
+        <iconset>:/images/filenew.png</iconset>
+      </property>
+      <property name="iconText" >
+        <string>Insert Control</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Insert Control</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+N</string>
+      </property>
+    </action>
+    <action name="actionControlDocumentation" >
+      <property name="objectName" >
+        <string>actionControlDocumentation</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Show Documentation</string>
+      </property>
+      <property name="text" >
+        <string>Show D&amp;ocumentation</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+D</string>
+      </property>
+    </action>
+    <action name="actionControlPixmap" >
+      <property name="objectName" >
+        <string>actionControlPixmap</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Render to Pixmap</string>
+      </property>
+      <property name="text" >
+        <string>Render to Pi&amp;xmap</string>
+      </property>
+      <property name="shortcut" >
+        <string>Ctrl+X</string>
+      </property>
+    </action>
+    <action name="actionScriptingLoad" >
+      <property name="objectName" >
+        <string>actionScriptingLoad</string>
+      </property>
+      <property name="iconText" >
+        <string>Load Script</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Load Script</string>
+      </property>
+    </action>
+    <action name="actionScriptingRun" >
+      <property name="objectName" >
+        <string>actionScriptingRun</string>
+      </property>
+      <property name="enabled" >
+        <bool>false</bool>
+      </property>
+      <property name="iconText" >
+        <string>Run Macro</string>
+      </property>
+      <property name="text" >
+        <string>&amp;Run Macro...</string>
+      </property>
+    </action>
+    <action name="actionFreeUnusedDLLs">
+      <property name="text" >
+        <string>Free Unused DLLs</string>
+      </property>
+    </action>
+    <action name="actionAbout_Testcon">
+     <property name="text">
+      <string>About Testcon</string>
+     </property>
+    </action>
+    <action name="actionAbout_Qt">
+     <property name="text">
+      <string>About Qt</string>
+     </property>
+    </action>
+    <actiongroup name="actionGroupLogging" >
+      <action name="actionLogSignals" >
+        <property name="objectName" >
+          <string>actionLogSignals</string>
+        </property>
+        <property name="checkable" >
+          <bool>true</bool>
+        </property>
+        <property name="checked" >
+          <bool>true</bool>
+        </property>
+        <property name="iconText" >
+          <string>Signals</string>
+        </property>
+        <property name="text" >
+          <string>&amp;Signals</string>
+        </property>
+      </action>
+      <action name="actionLogProperties" >
+        <property name="objectName" >
+          <string>actionLogProperties</string>
+        </property>
+        <property name="checkable" >
+          <bool>true</bool>
+        </property>
+        <property name="checked" >
+          <bool>true</bool>
+        </property>
+        <property name="iconText" >
+          <string>Properties</string>
+        </property>
+        <property name="text" >
+          <string>&amp;Properties</string>
+        </property>
+      </action>
+      <property name="objectName" >
+        <string>actionGroupLogging</string>
+      </property>
+      <property name="exclusive" >
+        <bool>false</bool>
+      </property>
+    </actiongroup>
+  </widget>
+  <layoutdefault spacing="6" margin="11" />
+</ui>

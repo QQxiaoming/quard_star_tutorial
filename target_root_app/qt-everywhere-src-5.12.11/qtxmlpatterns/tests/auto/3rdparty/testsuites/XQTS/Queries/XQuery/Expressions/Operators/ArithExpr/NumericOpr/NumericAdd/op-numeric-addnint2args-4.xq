@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-numeric-addnint2args-4                         :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:15 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:numeric-add" operator       :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:negativeInteger(lower bound)                :)
+(:$arg2 = xs:negativeInteger(upper bound)                :)
+(:*******************************************************:)
+
+xs:negativeInteger("-999999999999999999") + xs:negativeInteger("-1")

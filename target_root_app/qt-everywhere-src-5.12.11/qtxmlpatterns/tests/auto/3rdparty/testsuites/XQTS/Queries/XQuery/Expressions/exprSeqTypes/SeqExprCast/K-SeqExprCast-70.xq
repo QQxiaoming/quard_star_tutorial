@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-70                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Casting a xs:QName value to xs:QName is possible. :)
+(:*******************************************************:)
+(xs:QName("local-name") cast as xs:QName) eq xs:QName("local-name")

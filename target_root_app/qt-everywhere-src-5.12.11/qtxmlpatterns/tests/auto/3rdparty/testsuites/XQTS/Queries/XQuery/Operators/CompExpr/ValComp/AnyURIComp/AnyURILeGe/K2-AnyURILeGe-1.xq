@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-AnyURILeGe-1                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoked 'le' on xs:anyURI values.            :)
+(:*******************************************************:)
+xs:anyURI("http://example.com/A") le xs:anyURI("http://example.com/B")

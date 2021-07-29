@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ReplaceFunc-8                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A '\' cannot be used to escape whitespace.   :)
+(:*******************************************************:)
+replace("input", "in", "thisIsInvalid\ ")

@@ -1,0 +1,49 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:simple="http://www.w3.org/XQueryTest/simple" 
+           targetNamespace="http://www.w3.org/XQueryTest/simple" 
+           elementFormDefault="qualified" attributeFormDefault="qualified"
+>
+    <xs:element name="duration" type="xs:duration"/>
+    <xs:element name="dateTime" type="xs:dateTime"/>
+    <xs:element name="time" type="xs:time"/>
+    <xs:element name="date" type="xs:date"/>
+    <xs:element name="gYearMonth" type="xs:gYearMonth"/>
+    <xs:element name="gYear" type="xs:gYear"/>
+    <xs:element name="gMonthDay" type="xs:gMonthDay"/>
+    <xs:element name="gDay" type="xs:gDay"/>
+    <xs:element name="gMonth" type="xs:gMonth"/>
+    <xs:element name="boolean" type="xs:boolean"/>
+    <xs:element name="base64Binary" type="xs:base64Binary"/>
+    <xs:element name="hexBinary" type="xs:hexBinary"/>
+    <xs:element name="float" type="xs:float"/>
+    <xs:element name="double" type="xs:double"/>
+    <xs:element name="anyURI" type="xs:anyURI"/>
+    <xs:element name="NCName" type="xs:NCName"/>
+    <xs:element name="QName" type="xs:QName"/>
+    <xs:element name="string" type="xs:string"/>
+    <xs:element name="normalizedString" type="xs:normalizedString"/>
+    <xs:element name="language" type="xs:language"/>
+    <xs:element name="decimal" type="xs:decimal"/>
+    <xs:element name="integer" type="xs:integer"/>
+    <xs:element name="nonPositiveInteger" type="xs:nonPositiveInteger"/>
+    <xs:element name="long" type="xs:long"/>
+    <xs:element name="nonNegativeInteger" type="xs:nonNegativeInteger"/>
+    <xs:element name="negativeInteger" type="xs:negativeInteger"/>
+    <xs:element name="int" type="xs:int"/>
+    <xs:element name="unsignedLong" type="xs:unsignedLong"/>
+    <xs:element name="positiveInteger" type="xs:positiveInteger"/>
+    <xs:element name="short" type="xs:short"/>
+    <xs:element name="unsignedInt" type="xs:unsignedInt"/>
+    <xs:element name="byte" type="xs:byte"/>
+    <xs:element name="unsignedShort" type="xs:unsignedShort"/>
+    <xs:element name="unsignedByte" type="xs:unsignedByte"/>
+    <xs:element name="id1" type="xs:ID"/>
+    <xs:element name="id2" type="xs:ID"/>
+    <xs:element name="idrefs" type="xs:IDREFS"/>
+    <xs:simpleType name = "myType">
+     <xs:restriction base = "xs:int">
+      <xs:minInclusive value = "1"/>
+      <xs:maxInclusive value = "50"/>
+    </xs:restriction>
+   </xs:simpleType>    
+</xs:schema>

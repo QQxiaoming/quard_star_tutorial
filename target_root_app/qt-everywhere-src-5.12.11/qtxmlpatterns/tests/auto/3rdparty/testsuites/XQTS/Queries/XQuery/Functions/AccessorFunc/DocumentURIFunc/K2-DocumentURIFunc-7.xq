@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DocumentURIFunc-7                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoke on a single attribute node.           :)
+(:*******************************************************:)
+empty(document-uri(<elem attr="f"/>/@attr))

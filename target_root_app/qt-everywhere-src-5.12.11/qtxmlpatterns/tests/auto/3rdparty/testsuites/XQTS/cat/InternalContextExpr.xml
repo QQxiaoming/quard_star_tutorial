@@ -1,0 +1,154 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="InternalContextExpr" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Internal Context Item Expressions</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="internalcontextitem-1" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Context Item expression that just uses the "." and no context item defined.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-1" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-2" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as a string.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-2" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-3" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as an integer.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-3" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-4" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as a decimal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-4" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-5" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as a float.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-5" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-6" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as a double.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-6" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-7" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as a boolean value.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-7" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-8" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is used as aboolean with fn:not.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-8" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-9" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item is the empty sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-9" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-9.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-10" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of addition operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-10" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-11" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a subtraction operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-11" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-12" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a multiplication operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-12" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-13" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a modulus operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-13" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-14" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a divison (div operator) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-14" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-15" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a divison (idiv operator) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-15" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-16" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a boolean expression (and operator).</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-16" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-17" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as part of a boolean expression (or operator).</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-17" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-18" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as argument to string-length function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-18" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-19" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as argument to "avg" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-19" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-20" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as argument to "min" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-20" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="internalcontextitem-21" FilePath="Expressions/ContextExpr/InternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of Internal context item expression where context item used as argument to "max" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="internalcontextitem-21" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">internalcontextitem-21.txt</output-file>
+   </test-case>
+</test-group>

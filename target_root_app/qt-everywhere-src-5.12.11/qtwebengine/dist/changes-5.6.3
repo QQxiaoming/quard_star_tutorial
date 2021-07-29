@@ -1,0 +1,73 @@
+Qt 5.6.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.6.0.
+
+Qt WebEngine 5.6.3 contains a merge from Qt WebEngine 5.7.1 and all
+bug-fixes in Qt 5.7.1 are also in Qt 5.6.3. These are listed both here
+and in changes-5.7.1.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+  http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.6 series is binary compatible with the 5.5.x series.
+Applications compiled for 5.5 will continue to run with 5.6.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+  https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                             General                                      *
+****************************************************************************
+
+ - Chromium Snapshot:
+   * Updated the Chromium version to 49.0.2623.111.
+   * Backported security fixes from Chromium up to version 59.0.3071.104.
+    Including: CVE-2016-5133, CVE-2016-5147, CVE-2016-5153, CVE-2016-5155,
+      CVE-2016-5161, CVE-2016-5166, CVE-2016-5170, CVE-2016-5171,
+      CVE-2016-5172, CVE-2016-5181, CVE-2016-5185, CVE-2016-5186,
+      CVE-2016-5187, CVE-2016-5188, CVE-2016-5192, CVE-2016-5198.
+      CVE-2016-5205, CVE-2016-5207, CVE-2016-5208, CVE-2016-5214,
+      CVE-2016-5215, CVE-2016-5221, CVE-2016-5222, CVE-2016-5224,
+      CVE-2016-5225, CVE-2016-9650, CVE-2016-9651, CVE-2016-9652,
+      CVE-2017-5006, CVE-2017-5007, CVE-2017-5008, CVE-2017-5009,
+      CVE-2017-5010, CVE-2017-5012, CVE-2017-5015, CVE-2017-5016,
+      CVE-2017-5017, CVE-2017-5019, CVE-2017-5023, CVE-2017-5024,
+      CVE-2017-5025, CVE-2017-5026, CVE-2017-5027, CVE-2017-5029,
+      CVE-2017-5033, CVE-2017-5037, CVE-2017-5044, CVE-2017-5046,
+      CVE-2017-5047, CVE-2017-5048, CVE-2017-5049, CVE-2017-5050,
+      CVE-2017-5051, CVE-2017-5052, CVE-2017-5054, CVE-2017-5059,
+      CVE-2017-5061, CVE-2017-5062, CVE-2017-5065, CVE-2017-5067,
+      CVE-2017-5069, CVE-2017-5070, CVE-2017-5071, CVE-2017-5075,
+      CVE-2017-5076, CVE-2017-5078, CVE-2017-5083 and CVE-2017-5089
+   * Added support for macOS 10.12 Sierra.
+   * Backported various crash and assertion fixes.
+
+ - QtWebEngineCore:
+   * [QTBUG-51244, QTBUG-54795] Fixed select control issues.
+   * Fixed several focus issues.
+   * Fixed regression with fine-grained wheel events.
+   * [QTBUG-54221] Fixed editing short-cuts in plugins.
+   * [QTBUG-54222] Fixed potential infinite loop on history load.
+   * Fixed Flash plugin clipboard access.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+ - Linux:
+   * [QTBUG-55367] Fixed reading timezone when running sandboxed.
+   * Fixed crash when using Wayland QPA.
+   * Improved OpenGL check, so EGL/GLES2 mode can be used with Desktop
+     OpenGL if the driver has the ARB_ES2_compatibility extension.
+
+ - Windows:
+   * It is no longer possible to build on a 32-bit Windows host, but
+   32-bit binaries can still be built on a 64-bit host.
+   * [QTBUG-52201, QTBUG-55501, QTBUG-56020] Fixed crashes and asserts
+     upon initialization of the global shared OpenGL context.

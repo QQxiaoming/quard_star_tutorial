@@ -1,0 +1,170 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="PrefixFromQName" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:prefix-from-QName</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-prefix-from-qname-1" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function with wrong arity.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-1" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-prefix-from-qname-2" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function with wrong argument type.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-2" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-prefix-from-qname-3" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to fn:string function and no prefix.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-3" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-prefix-from-qname-4" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to xs:string function and no prefix.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-4" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-5" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to xs:string function and with prefix.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-5" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-6" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to fn:string function and with prefix.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-6" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-prefix-from-qname-7" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-7" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-prefix-from-qname-8" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function with prefix that is not defined.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-8" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FONS0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-9" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-9" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-10" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-10" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-11" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to concat function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-11" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-12" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to substring-before function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-12" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-13" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to substring-after function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-13" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-14" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to string-length function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-14" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-15" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to substring function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-15" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-16" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to string-join function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-16" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-17" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to starts-with function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-17" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-18" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to ends-with function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-18" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-19" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn-prefix-from-qname" function as argument to fn:contains function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-19" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-prefix-from-qname-20" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/PrefixFromQName/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-prefix-fromQName function with two namespaces declared with same namespace (different case).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.2" section-title="fn:prefix-from-QName" section-pointer="func-prefix-from-QName"/>
+      <query name="fn-prefix-from-qname-20" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-prefix-from-qname-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-PrefixFromQName-1" FilePath="Functions/QNameFunc/PrefixFromQName/" scenario="runtime-error">
+      <description>A test whose essence is: `prefix-from-QName()`.</description>
+      <query name="K-PrefixFromQName-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-PrefixFromQName-2" FilePath="Functions/QNameFunc/PrefixFromQName/" scenario="runtime-error">
+      <description>A test whose essence is: `prefix-from-QName(1, 2)`.</description>
+      <query name="K-PrefixFromQName-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-PrefixFromQName-3" FilePath="Functions/QNameFunc/PrefixFromQName/" scenario="standard">
+      <description>A test whose essence is: `empty(prefix-from-QName( () ))`.</description>
+      <query name="K-PrefixFromQName-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-PrefixFromQName-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-PrefixFromQName-4" FilePath="Functions/QNameFunc/PrefixFromQName/" scenario="standard">
+      <description>A test whose essence is: `prefix-from-QName( QName("example.com/", "pre:lname")) eq "pre"`.</description>
+      <query name="K-PrefixFromQName-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-PrefixFromQName-4.txt</output-file>
+   </test-case>
+</test-group>

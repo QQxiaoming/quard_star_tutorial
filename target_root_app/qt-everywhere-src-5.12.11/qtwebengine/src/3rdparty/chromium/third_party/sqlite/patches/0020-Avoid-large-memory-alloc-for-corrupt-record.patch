@@ -1,0 +1,72 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Tue, 7 Jan 2020 13:38:31 -0800
+Subject: [PATCH 20/25] Avoid large memory alloc for corrupt record
+
+Backports https://www.sqlite.org/src/info/9add58fe9688d5c1
+
+Bug: 1038213
+---
+ third_party/sqlite/patched/ext/fts3/fts3_write.c  | 12 +++++++++---
+ third_party/sqlite/patched/test/fts3corrupt4.test |  9 +++++++++
+ 2 files changed, 18 insertions(+), 3 deletions(-)
+
+diff --git a/third_party/sqlite/patched/ext/fts3/fts3_write.c b/third_party/sqlite/patched/ext/fts3/fts3_write.c
+index 8b6b729987c3..f30bf343635d 100644
+--- a/third_party/sqlite/patched/ext/fts3/fts3_write.c
++++ b/third_party/sqlite/patched/ext/fts3/fts3_write.c
+@@ -335,7 +335,7 @@ static int fts3SqlStmt(
+ ** returns zero rows.  */
+ /* 28 */ "SELECT level, count(*) AS cnt FROM %Q.'%q_segdir' "
+          "  GROUP BY level HAVING cnt>=?"
+-         "  ORDER BY (level %% 1024) ASC LIMIT 1",
++         "  ORDER BY (level %% 1024) ASC, 2 DESC LIMIT 1",
+ 
+ /* Estimate the upper limit on the number of leaf nodes in a new segment
+ ** created by merging the oldest :2 segments from absolute level :1. See
+@@ -4925,8 +4925,14 @@ int sqlite3Fts3Incrmerge(Fts3Table *p, int nMerge, int nMin){
+ 
+       rc = fts3IncrmergeHintPop(&hint, &iHintAbsLevel, &nHintSeg);
+       if( nSeg<0 || (iAbsLevel % nMod) >= (iHintAbsLevel % nMod) ){
++        /* Based on the scan in the block above, it is known that there
++        ** are no levels with a relative level smaller than that of
++        ** iAbsLevel with more than nSeg segments, or if nSeg is -1,
++        ** no levels with more than nMin segments. Use this to limit the
++        ** value of nHintSeg to avoid a large memory allocation in case the
++        ** merge-hint is corrupt*/
+         iAbsLevel = iHintAbsLevel;
+-        nSeg = nHintSeg;
++        nSeg = MIN(MAX(nMin,nSeg), nHintSeg);
+         bUseHint = 1;
+         bDirtyHint = 1;
+       }else{
+@@ -4939,7 +4945,7 @@ int sqlite3Fts3Incrmerge(Fts3Table *p, int nMerge, int nMin){
+     /* If nSeg is less that zero, then there is no level with at least
+     ** nMin segments and no hint in the %_stat table. No work to do.
+     ** Exit early in this case.  */
+-    if( nSeg<0 ) break;
++    if( nSeg<=0 ) break;
+ 
+     /* Open a cursor to iterate through the contents of the oldest nSeg
+     ** indexes of absolute level iAbsLevel. If this cursor is opened using
+diff --git a/third_party/sqlite/patched/test/fts3corrupt4.test b/third_party/sqlite/patched/test/fts3corrupt4.test
+index 45dd52fff29e..ed670c72223c 100644
+--- a/third_party/sqlite/patched/test/fts3corrupt4.test
++++ b/third_party/sqlite/patched/test/fts3corrupt4.test
+@@ -5589,4 +5589,13 @@ do_catchsql_test 35.1 {
+   INSERT INTO f(f) VALUES ('integrity-check');
+ } {1 {database disk image is malformed}}
+ 
++reset_db
++do_catchsql_test 36.0 {
++  CREATE VIRTUAL TABLE f USING fts3(a,tokenize=porter);
++  CREATE TABLE 'f_stat'(id INTEGER PRIMARY KEY, value BLOB);
++  INSERT INTO f VALUES (1);
++  INSERT INTO f_stat VALUES (1,x'00000000000101010119013d00ffff0400fa83717b71a69297979701f63d010101010101010101010101190000000000000000fa83717b71a601f63d01010101010101010101010119013d00ffffff0400fa83717b71a69297979701f63d010101010101010101010101190000000000000000fa83717b71a69201f63d010101f63d01010101010101010101010119013d00ffffff0400fa83717b71a6929797010101010101010101010119013d00ffff01f63d01010101010101010101010119013d00ffffff0400fa83717b71a69297979701f63d00fa03ffffffa69297979701f63d010101000000000101010101197e9797976567656565ffa63535354e');
++  INSERT INTO f(f) VALUES ('merge=53,216');
++} {0 {}}
++
+ finish_test
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

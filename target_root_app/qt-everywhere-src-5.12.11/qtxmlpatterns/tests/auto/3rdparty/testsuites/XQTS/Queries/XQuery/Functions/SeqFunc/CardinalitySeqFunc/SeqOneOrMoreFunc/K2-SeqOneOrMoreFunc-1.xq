@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqOneOrMoreFunc-1                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Have fn:one-or-more() as an operand to an expression that requires zero or more, that itself has cardinality zero or more. :)
+(:*******************************************************:)
+codepoints-to-string(one-or-more(string-to-codepoints("foo")))

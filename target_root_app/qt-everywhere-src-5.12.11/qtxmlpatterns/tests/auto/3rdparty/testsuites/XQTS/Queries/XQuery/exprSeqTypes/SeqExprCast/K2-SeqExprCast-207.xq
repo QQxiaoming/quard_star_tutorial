@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-207                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Construct an xs:anyURI from an invalid string. However, in F&O 17.1.1, it is said that "For xs:anyURI, the extent to which an implementation validates the lexical form of xs:anyURI is implementation dependent.". :)
+(:*******************************************************:)
+xs:anyURI("http:\\invalid>URI\someURI")

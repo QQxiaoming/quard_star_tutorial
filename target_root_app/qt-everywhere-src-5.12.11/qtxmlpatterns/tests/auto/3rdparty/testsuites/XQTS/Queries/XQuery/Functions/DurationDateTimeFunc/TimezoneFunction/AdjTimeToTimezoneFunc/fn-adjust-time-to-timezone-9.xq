@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: adjust-time-to-timezone-9                        :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: August 10, 2005                                  :)
+(:Test Description: Evaluates The "adjust-time-to-timezone" function   :)
+(:as part of a subtraction expression, whicg results on a negative number.:)
+(:Uses two adjust-time-to-timezone functions.            :)
+(:*******************************************************:)
+
+fn:adjust-time-to-timezone(xs:time("09:00:00Z"),()) - fn:adjust-time-to-timezone(xs:time("10:00:00Z"),())

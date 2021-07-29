@@ -1,0 +1,105 @@
+Qt 5.10 introduces many new features and improvements as well as bugfixes
+over the 5.9.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.10 series is binary compatible with the 5.9.x series.
+Applications compiled for 5.9 will continue to run with 5.10.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               General                                    *
+****************************************************************************
+
+Important Changes
+-----------------
+
+ - QtWebEngine / General:
+   * [QTBUG-60152][QTBUG-60149] Disabled by default the
+     focusOnNavigationEnabled setting, which allows controlling whether a
+     web view will receive focus on a navigation request.
+   * WebEngine Features are now configured as Qt features and
+     WEBENGINE_CONFIG has been removed.
+
+
+Chromium Snapshot
+-----------------
+
+ - Updated the Chromium version to 61.0.3163.140.
+ - Applied security fixes from Chromium up to version 62.0.3202.94.
+     Including fixes for: CVE-2017-5124, CVE-2017-5126, CVE-2017-5127,
+     CVE-2017-5128, CVE-2017-5129, CVE-2017-5132, CVE-2017-5133,
+     CVE-2017-15386, CVE-2017-15387, CVE-2017-15388, CVE-2017-15390,
+     CVE-2017-15392, CVE-2017-15394, CVE-2017-15396, CVE-2017-15398.
+
+
+QtWebEngineCore
+---------------
+
+ - [QTBUG-53134, QTBUG-54071, QTBUG-60381] Fixed interactions with selections,
+   text search, and javascript.
+ - [QTBUG-54221, QTBUG-54692, QTBUG-54812, QTBUG-59053] Fixed the passing of
+   several editor short-cuts to Chromium.
+ - [QTBUG-57729] Fixed an issue with NTLM login.
+ - [QTBUG-61503] Implemented setting custom drag data similarly to Chrome.
+ - [QTBUG-63579] Fixed that redirected links were not marked visisted.
+ - [QTBUG-64265] Fixed the missing mouseleave event.
+ - Fixed streaming QIODevices with custom URL scheme handlers.
+ - Made scrolling with touchpads more efficient by coalescing wheel events.
+
+
+Examples
+--------
+
+ - [QTBUG-59819] Removed the WebEngine Demo Browser example that was replaced
+   by the improved WebEngine Widgets Simple Browser.
+
+
+****************************************************************************
+*                                APIs                                      *
+****************************************************************************
+
+General
+-------
+
+ - Enabled the HTML 5 local storage by default (so that it is residing in
+   memory) in off-the-record profiles.
+ - [QTBUG-62236] Added the QTWEBENGINE_DICTIONARIES_PATH environment variable
+   that can be used to customize the location for spell checking dictionaries.
+ - Added the QWebEngineSettings::ShowScrollBars setting and
+   WebEngineSettings.showScrollBars property to show and hide scrollbars.
+ - [QTBUG-59307] Changed the linkUrl member of QWebEngineContextMenuData and
+   ContextMenuRequest that was previously returning with "about:blank" when
+   encountering non-standard URLs to contain the unvalidated URL. Also fixed the
+   CopyLinkToClipboard action to correctly handle URLs such as "javascript:".
+ - [QTBUG-60832] Added desktop capture as a feature permission request.
+
+QtWebEngineWidgets
+------------------
+
+ - QWebEnginePage:
+   * [QTBUG-55944] Added the QWebEnginePage::download() method that starts
+     custom downloads for a web page.
+   * [QTBUG-59221] Added several WebActions from QtWebKit related to editing.
+
+ - QWebEngineDownloadItem:
+   * [Qbug-56840] Added the pause and resume actions.
+
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+ - Linux:
+   * Made NSS/NSPR a hard dependency.
+
+ - macOS:
+   * [QTBUG-60605] Fixed the creation of shared OpenGL 3.2 contexts.

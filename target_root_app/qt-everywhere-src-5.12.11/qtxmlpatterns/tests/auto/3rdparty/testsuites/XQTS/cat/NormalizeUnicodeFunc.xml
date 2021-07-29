@@ -1,0 +1,263 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NormalizeUnicodeFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:normalize-unicode</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-normalize-unicode1args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-unicode with simple text input.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-1" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode1args-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-unicode with empty sequence argument.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-2" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-normalize-unicode1args-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test fn:normalize-unicode on combining characters for LATIN CAPITAL LETTER A WITH RING (w/ ACUTE) and ANGSTROM SIGN.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-3" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-normalize-unicode1args-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test fn:normalize-unicode on combining characters for LATIN CAPITAL LETTER A WITH RING (w/ ACUTE) and ANGSTROM SIGN.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-4" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode1args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-normalize-unicode1args-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test fn:normalize-unicode on combining characters for LATIN CAPITAL LETTER A WITH RING (w/ ACUTE) and ANGSTROM SIGN.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-5" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode1args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-normalize-unicode1args-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test fn:normalize-unicode on combining characters for LATIN CAPITAL LETTER A WITH RING (w/ ACUTE) and ANGSTROM SIGN.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-6" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode1args-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode1args-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test normalize-unicode with invalid argument types.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-7" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode1args-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test normalize-unicode with incorrect arity.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode1args-8" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode2args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-unicode with simple text input and stated "NFC".</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode2args-1" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode2args-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-unicode with simple text input and stated "nFc" (note case).</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode2args-2" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode2args-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-unicode with text set to empty sequence and stated "NFC".</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode2args-3" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode2args-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-unicode with second argument set to empty string. Nothing is normalized.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode2args-4" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode2args-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test normalize-unicode with invalid argument types. Normalization form set to empty sequence.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode2args-5" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode2args-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test normalize-unicode with invalid argument types. Normalization form set to integer.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode2args-6" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-normalize-unicode-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode to ensure that " NFC " is the same as "NFC".</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-1" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode with a normalization form that most likely is not supported.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-2" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <expected-error>FOCH0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode with nothing to normalize and used as argument to fn:upper-case.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-3" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode with nothing to normalize and used as argument to fn:lower-case.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-4" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode with nothing to normalize and used as argument to fn:string-length.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-5" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode with nothing to normalize and used as argument to fn:concat.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-6" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-unicode-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test fn:normalize-unicode with nothing to normalize and used as argument to fn:substring.</description>
+      <spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+      <query name="fn-normalize-unicode-7" date="2005-11-29"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-unicode-7.txt</output-file>
+   </test-case>
+	<test-case is-XPath2="false" name="fn-normalize-unicode-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Oliver Hallam">
+		<description>Evaluation of fn:normalize-unicode with noncharacter argument.</description>
+		<spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=7935</reflects-resolution>
+		<query name="fn-normalize-unicode-8" date="2009-12-08"/>
+		<input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+		<output-file compare="Text" role="principal">fn-normalize-unicode-8.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="fn-normalize-unicode-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Oliver Hallam">
+		<description> Evaluation of fn:normalize-unicode with noncharacters in argument</description>
+		<spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=7935</reflects-resolution>
+		<query name="fn-normalize-unicode-9" date="2009-12-08"/>
+		<input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+		<output-file compare="Text" role="principal">fn-normalize-unicode-9.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="fn-normalize-unicode-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Oliver Hallam">
+		<description>Evaluation of fn:normalize-unicode with noncharacters in argument</description>
+		<spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=7935</reflects-resolution>
+		<query name="fn-normalize-unicode-10" date="2009-12-08"/>
+		<input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+		<output-file compare="Text" role="principal">fn-normalize-unicode-10.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="fn-normalize-unicode-11" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard" Creator="Michael Kay">
+		<description>Evaluation of fn:normalize-unicode with noncharacters in argument</description>
+		<spec-citation section-number="7.4.6" spec="FuncOps" section-title="fn:normalize-unicode" section-pointer="func-normalize-unicode"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=7935</reflects-resolution>
+		<query name="fn-normalize-unicode-11" date="2010-01-12"/>
+		<output-file compare="Text" role="principal">fn-normalize-unicode-11.txt</output-file>
+	</test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `normalize-unicode()`.</description>
+      <query name="K-NormalizeUnicodeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `normalize-unicode("a string", "NFC", "wrong param")`.</description>
+      <query name="K-NormalizeUnicodeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `normalize-unicode("a string", "example.com/notSupported/")`.</description>
+      <query name="K-NormalizeUnicodeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCH0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("foo") eq "foo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("foo", "NFC") eq "foo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("foo", "NFD") eq "foo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("foo", "NFKD") eq "foo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("foo", "NFKC") eq "foo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("f oo", "") eq "f oo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("foo", "") eq "foo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-11" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("f oo") eq "f oo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-12" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-unicode("f oo", "NFC") eq "f oo"`.</description>
+      <query name="K-NormalizeUnicodeFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeUnicodeFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeUnicodeFunc-13" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeUnicodeFunc/" scenario="runtime-error">
+      <description>Static typing implementations may raise XPTY0004. See http://www.w3.org/Bugs/Public/show_bug.cgi?id=4551 for details.</description>
+      <query name="K-NormalizeUnicodeFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

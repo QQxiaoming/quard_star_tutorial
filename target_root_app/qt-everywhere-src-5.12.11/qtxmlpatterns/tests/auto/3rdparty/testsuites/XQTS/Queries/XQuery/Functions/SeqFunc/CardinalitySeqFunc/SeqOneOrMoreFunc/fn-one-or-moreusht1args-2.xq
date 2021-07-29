@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: one-or-moreusht1args-2                            :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:46 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "one-or-more" function          :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:unsignedShort(mid range)                     :)
+(:*******************************************************:)
+
+fn:one-or-more(xs:unsignedShort("44633"))

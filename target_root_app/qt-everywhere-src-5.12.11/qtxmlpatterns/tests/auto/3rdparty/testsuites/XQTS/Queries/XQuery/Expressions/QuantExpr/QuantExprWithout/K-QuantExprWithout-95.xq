@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-QuantExprWithout-95                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: It is a type error to try to extract the EBV value of two integers. :)
+(:*******************************************************:)
+some $i in (1, 2, 3) satisfies ($i, $i)

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:instanceOfExpr>
+        <xqx:argExpr>
+          <xqx:functionCallExpr>
+            <xqx:functionName>round</xqx:functionName>
+            <xqx:arguments>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">unsignedByte</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:elementConstructor>
+                    <xqx:tagName>e</xqx:tagName>
+                    <xqx:elementContent>
+                      <xqx:stringConstantExpr>
+                        <xqx:value>0</xqx:value>
+                      </xqx:stringConstantExpr>
+                    </xqx:elementContent>
+                  </xqx:elementConstructor>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:argExpr>
+        <xqx:sequenceType>
+          <xqx:atomicType xqx:prefix="xs">unsignedByte</xqx:atomicType>
+        </xqx:sequenceType>
+      </xqx:instanceOfExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

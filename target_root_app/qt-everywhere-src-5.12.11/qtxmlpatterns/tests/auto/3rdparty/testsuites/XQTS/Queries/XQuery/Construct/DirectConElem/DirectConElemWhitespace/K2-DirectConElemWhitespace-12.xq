@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemWhitespace-12                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure extracting the string value from mixed content involving elements is properly done. :)
+(:*******************************************************:)
+string(<e>123<b>XX</b>abc</e>)

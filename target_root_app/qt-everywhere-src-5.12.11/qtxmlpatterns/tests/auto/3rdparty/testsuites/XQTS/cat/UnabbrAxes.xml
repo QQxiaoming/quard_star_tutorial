@@ -1,0 +1,188 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UnabbrAxes" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Unabbreviated Syntax</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-1" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - child::empnum - select empnum children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-1" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-2" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - child::* - select all element children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-2" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-3" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - child::text() - select all text node children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-3" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">unabbreviatedSyntax-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-4" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - child::node() - select all children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-4" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-5" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - child::node() - select all children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-5" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-8" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - parent::node() - Selects the parent of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-8" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-9" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - descendant::empnum - Selects the "empnum" descendants of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-9" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-12" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - descendant-or-self::employee - Selects all the "employee" descendant of the context node (selects employee, if the context node is "employee").</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-12" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-13" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - self::employee - Selects the context node, if it is an "employee" element, otherwise returns empty sequence. This test retuns an "employee" element.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-13" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-14" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax - self::hours - Selects the context node, if it is an "hours" element, otherwise returns empty sequence. This test retuns the empty sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-14" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">unabbreviatedSyntax-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-15" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax child::employee/descendant:empnum- Selects the empnum element descendants of the employee element children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-15" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-16" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax child::*/child:pnum)- Selects the pnum grandchildren of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-16" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-18" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate /descendant::pnum - Selects all the pnum elements in the same document as the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-18" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-19" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate /descendant::employee/child::pnum selects all the pnum elements that have an "employee" parent and that are in the same document as the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-19" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-20" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[fn:position() = 1]". Selects the first employee child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-20" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-21" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[fn:position() = fn:last()]". Selects the last "employee" child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-21" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-22" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[fn:position() = fn:last()-1]. Selects the previous to the last one "employee" child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-22" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-23" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::hours[fn:position() &gt; 1]". Selects all the para children of the context node other than the first "hours" child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-23" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-26" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "/descendant::employee[fn:position() = 12]". Selects the twelfth employee element in the document containing the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-26" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-27" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "/child::works/child::employee[fn:position() = 5]/child::hours[fn:position() = 2]". Selects the second "hours" of the fifth "employee" of the "works" whose parent is the document node that contains the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-27" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-28" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[attribute::name eq "Jane Doe 11"]". Selects all "employee" children of the context node that have a "name" attribute with value "Jane Doe 11".</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-28" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-29" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[attribute::gender eq 'female'][fn:position() = 5]". Selects the fifth employee child of the context node that has a gender attribute with value "female".</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-29" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-30" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[child::empnum = 'E3']". Selects the employee children of the context node that have one or more empnum children whose typed value is equal to the string "E3".</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-30" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-31" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::employee[child::status]". Selects the employee children of the context node that have one or more status children.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-31" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-32" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::*[self::pnum or self::empnum]". Selects the pnum and empnum children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-32" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-33" FilePath="Expressions/PathExpr/UnabbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "child::*[self::empnum or self::pnum][fn:position() = fn:last()]". Selects the last empnum or pnum child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-33" date="2005-07-12"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-33.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-388                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Testing datezone field in xs:date: the minute field must always be present. :)
+(:*******************************************************:)
+xs:dateTime("1999-12-01-03")

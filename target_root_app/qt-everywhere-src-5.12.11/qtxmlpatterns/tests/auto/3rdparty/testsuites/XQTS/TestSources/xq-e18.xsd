@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:t="http://www.example.com/ns/test/xq-e18"
+           targetNamespace="http://www.example.com/ns/test/xq-e18"
+	   elementFormDefault="qualified">
+
+  <xs:element name="doc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="t:para1"/>
+          <xs:element ref="t:para2"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="onlyTwelveHours">
+    <xs:restriction base="xs:dayTimeDuration">
+      <xs:maxInclusive value="PT12H"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="para1" type="t:onlyTwelveHours"/>
+
+  <xs:simpleType name="onlySixMonths">
+    <xs:restriction base="xs:yearMonthDuration">
+      <xs:maxInclusive value="P6M"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="para2" type="t:onlySixMonths"/>
+
+</xs:schema>

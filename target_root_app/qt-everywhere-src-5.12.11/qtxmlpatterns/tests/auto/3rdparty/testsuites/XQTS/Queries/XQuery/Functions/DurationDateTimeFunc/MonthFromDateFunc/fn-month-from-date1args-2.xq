@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: month-from-date1args-2                            :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Wed Apr 13 09:47:38 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "month-from-date" function      :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:date(mid range)                              :)
+(:*******************************************************:)
+
+fn:month-from-date(xs:date("1983-11-17Z"))

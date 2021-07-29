@@ -1,0 +1,37 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+module blink.mojom;
+
+import "url/mojom/url.mojom";
+
+// Struct holding metrics of an anchor element extracted in the renderer
+// process.
+struct AnchorElementMetrics {
+  // The ratio between the clickable region area of an anchor element, and the
+  // viewport area. The value is capped at 1.
+  float ratio_area;
+
+  // The distance between the top of the clickable region of an anchor element
+  // and the top edge of the root frame, divided by the viewport height.
+  float ratio_distance_root_top;
+
+  // The distance between the center of the clickable region of an anchor
+  // element and the top edge of the visible region, divided by the viewport
+  // height.
+  float ratio_distance_center_to_visible_top;
+
+  // The host of the target link (href) specified by the anchor element.
+  // Url sent from a renderer process is not trustable, however it is intended
+  // here since it is only used for metrics calculation.
+  url.mojom.Url target_url;
+};
+
+// An interface to pass descriptive information about anchor elements from
+// the renderer process to the implementation of this interface living in the
+// browser process.
+interface AnchorElementMetricsHost {
+  // This is called when an anchor element is clicked.
+  UpdateAnchorElementMetrics(AnchorElementMetrics metrics);
+};

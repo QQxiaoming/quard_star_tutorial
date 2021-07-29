@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-subtract-times-12                             :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 28, 2005                                    :)
+(:Purpose: Evaluates The "subtract-times" operators used :)
+(:with a boolean expression and the "fn:true" function.   :)
+(: Uses the "fn:string" function to account for new EBV rules. :)
+(:*******************************************************:)
+ 
+fn:string((xs:time("17:00:00Z") - xs:time("13:00:00Z"))) and (fn:true())

@@ -1,0 +1,8 @@
+#include <QtCore>
+
+class PingPong
+{
+    SLOT(void ping(const QString &message));
+    SLOT(void quit());
+    SIGNAL(pong(const QString &message));
+};

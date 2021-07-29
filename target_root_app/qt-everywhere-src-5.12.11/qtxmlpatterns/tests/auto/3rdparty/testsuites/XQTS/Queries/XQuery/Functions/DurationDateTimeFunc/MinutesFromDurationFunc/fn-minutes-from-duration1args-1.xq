@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: minutes-from-duration1args-1                      :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Wed Apr 13 09:47:37 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "minutes-from-duration" function:)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:dayTimeDuration(lower bound)                :)
+(:*******************************************************:)
+
+fn:minutes-from-duration(xs:dayTimeDuration("P0DT0H0M0S"))

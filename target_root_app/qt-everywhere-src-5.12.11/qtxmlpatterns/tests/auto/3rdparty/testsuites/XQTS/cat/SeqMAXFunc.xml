@@ -1,0 +1,1196 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqMAXFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:max</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-maxint1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:int(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:int(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:int(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:integer(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:integer(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:integer(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:decimal(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:decimal(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:decimal(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:double(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:double(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:float(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:float(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:float(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:long(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:long(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:long(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:unsignedShort(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:unsignedShort(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:unsignedShort(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:negativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:negativeInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:negativeInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:positiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:positiveInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:positiveInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:unsignedLong(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:unsignedLong(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:unsignedLong(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:nonPositiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:nonPositiveInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:nonPositiveInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:nonNegativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:nonNegativeInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:nonNegativeInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht1args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:short(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht1args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:short(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht1args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg = xs:short(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:int(lower bound) $arg2 = xs:int(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:int(mid range) $arg2 = xs:int(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:int(upper bound) $arg2 = xs:int(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:int(lower bound) $arg2 = xs:int(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxint2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:int(lower bound) $arg2 = xs:int(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxint2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxint2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:integer(lower bound) $arg2 = xs:integer(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:integer(mid range) $arg2 = xs:integer(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:integer(upper bound) $arg2 = xs:integer(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:integer(lower bound) $arg2 = xs:integer(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxintg2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:integer(lower bound) $arg2 = xs:integer(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxintg2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxintg2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:decimal(lower bound) $arg2 = xs:decimal(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:decimal(mid range) $arg2 = xs:decimal(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:decimal(upper bound) $arg2 = xs:decimal(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:decimal(lower bound) $arg2 = xs:decimal(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdec2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:decimal(lower bound) $arg2 = xs:decimal(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdec2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdec2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:double(lower bound) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:double(mid range) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:double(upper bound) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:double(lower bound) $arg2 = xs:double(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxdbl2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:double(lower bound) $arg2 = xs:double(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxdbl2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxdbl2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:float(lower bound) $arg2 = xs:float(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:float(mid range) $arg2 = xs:float(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:float(upper bound) $arg2 = xs:float(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:float(lower bound) $arg2 = xs:float(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxflt2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:float(lower bound) $arg2 = xs:float(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxflt2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxflt2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:long(lower bound) $arg2 = xs:long(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:long(mid range) $arg2 = xs:long(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:long(upper bound) $arg2 = xs:long(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:long(lower bound) $arg2 = xs:long(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxlng2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:long(lower bound) $arg2 = xs:long(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxlng2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxlng2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedShort(lower bound) $arg2 = xs:unsignedShort(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedShort(mid range) $arg2 = xs:unsignedShort(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedShort(upper bound) $arg2 = xs:unsignedShort(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedShort(lower bound) $arg2 = xs:unsignedShort(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxusht2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedShort(lower bound) $arg2 = xs:unsignedShort(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxusht2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxusht2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:negativeInteger(lower bound) $arg2 = xs:negativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:negativeInteger(mid range) $arg2 = xs:negativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:negativeInteger(upper bound) $arg2 = xs:negativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:negativeInteger(lower bound) $arg2 = xs:negativeInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnint2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:negativeInteger(lower bound) $arg2 = xs:negativeInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnint2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnint2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:positiveInteger(lower bound) $arg2 = xs:positiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:positiveInteger(mid range) $arg2 = xs:positiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:positiveInteger(upper bound) $arg2 = xs:positiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:positiveInteger(lower bound) $arg2 = xs:positiveInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxpint2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:positiveInteger(lower bound) $arg2 = xs:positiveInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxpint2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxpint2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedLong(lower bound) $arg2 = xs:unsignedLong(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedLong(mid range) $arg2 = xs:unsignedLong(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedLong(upper bound) $arg2 = xs:unsignedLong(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedLong(lower bound) $arg2 = xs:unsignedLong(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxulng2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:unsignedLong(lower bound) $arg2 = xs:unsignedLong(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxulng2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxulng2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonPositiveInteger(lower bound) $arg2 = xs:nonPositiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonPositiveInteger(mid range) $arg2 = xs:nonPositiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonPositiveInteger(upper bound) $arg2 = xs:nonPositiveInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonPositiveInteger(lower bound) $arg2 = xs:nonPositiveInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnpi2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonPositiveInteger(lower bound) $arg2 = xs:nonPositiveInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnpi2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnpi2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonNegativeInteger(lower bound) $arg2 = xs:nonNegativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonNegativeInteger(mid range) $arg2 = xs:nonNegativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonNegativeInteger(upper bound) $arg2 = xs:nonNegativeInteger(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonNegativeInteger(lower bound) $arg2 = xs:nonNegativeInteger(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxnni2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:nonNegativeInteger(lower bound) $arg2 = xs:nonNegativeInteger(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxnni2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxnni2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht2args-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:short(lower bound) $arg2 = xs:short(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht2args-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:short(mid range) $arg2 = xs:short(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht2args-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:short(upper bound) $arg2 = xs:short(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht2args-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:short(lower bound) $arg2 = xs:short(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-maxsht2args-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "max" function with the arguments set as follows: $arg1 = xs:short(lower bound) $arg2 = xs:short(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+      <query name="fn-maxsht2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-maxsht2args-5.txt</output-file>
+   </test-case>
+    <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max()`.</description>
+      <query name="K-SeqMAXFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max("a string", "http://www.w3.org/2005/xpath-functions/collation/codepoint", "wrong param")`.</description>
+      <query name="K-SeqMAXFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(max(()))`.</description>
+      <query name="K-SeqMAXFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, 3, 3, 3, 3, 3)) eq 3`.</description>
+      <query name="K-SeqMAXFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, 1, 1, 1, 1, 1)) eq 3`.</description>
+      <query name="K-SeqMAXFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-6" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1, 1, 1, 1, 1, 3)) eq 3`.</description>
+      <query name="K-SeqMAXFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-7" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, 1, 5, 1, 1, 3)) eq 5`.</description>
+      <query name="K-SeqMAXFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-8" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, -5.0, 5, 1, -3, 3)) eq 5`.</description>
+      <query name="K-SeqMAXFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-9" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max(xs:untypedAtomic("3")) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-10" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max(xs:untypedAtomic("3")) eq 3`.</description>
+      <query name="K-SeqMAXFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-11" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((xs:untypedAtomic("3"), 1, 2)) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-12" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1, xs:float(2), xs:untypedAtomic("3"))) eq 3`.</description>
+      <query name="K-SeqMAXFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-13" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1, xs:float(2), xs:untypedAtomic("3"))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-14" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1, xs:float(2), xs:decimal(3))) instance of xs:float`.</description>
+      <query name="K-SeqMAXFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-15" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1, xs:untypedAtomic("3"), xs:float(2))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-16" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((1, xs:untypedAtomic("NaN"), xs:float(2)))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-17" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((xs:float("NaN"), xs:untypedAtomic("3"), xs:float(2)))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-18" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((xs:float("NaN"), xs:untypedAtomic("3"), xs:float(2))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-19" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((xs:float("NaN"), 1, 1, 2, xs:double("NaN"))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-20" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((xs:double("NaN"), 1, 1, 2, xs:float("NaN"))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-21" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>An xs:string cannot be compared to a numeric, even if a value is NaN.</description>
+      <query name="K-SeqMAXFunc-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-22" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>An xs:string cannot be compared to a numeric, even if a value is NaN.</description>
+      <query name="K-SeqMAXFunc-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-23" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A type error must be reported even if one of other values is NaN.</description>
+      <query name="K-SeqMAXFunc-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-24" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A type error must be reported even if one of other values is NaN.</description>
+      <query name="K-SeqMAXFunc-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-25" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((xs:double("NaN"), xs:double("NaN")))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-26" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((xs:float("NaN"), xs:float("NaN")))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-27" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((3, xs:double("NaN")))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-28" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((3, xs:float("NaN")))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-29" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, xs:double("NaN"))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-30" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, xs:float("NaN"))) instance of xs:float`.</description>
+      <query name="K-SeqMAXFunc-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-31" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max((xs:float(-3), xs:untypedAtomic("3"), xs:double("NaN")))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-32" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((xs:float(-3), xs:untypedAtomic("3"), xs:double("NaN"))) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-33" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max(xs:float("NaN"))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-34" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `string(max(xs:double("NaN"))) eq "NaN"`.</description>
+      <query name="K-SeqMAXFunc-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-35" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max(xs:untypedAtomic("three"))`.</description>
+      <query name="K-SeqMAXFunc-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-36" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max((xs:untypedAtomic("3"), "a string"))`.</description>
+      <query name="K-SeqMAXFunc-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-37" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max(("a string", xs:untypedAtomic("3")))`.</description>
+      <query name="K-SeqMAXFunc-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-38" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max(QName("example.com/", "ncname"))`.</description>
+      <query name="K-SeqMAXFunc-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-39" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max(xs:anyURI("example.com/")) eq xs:anyURI("example.com/")`.</description>
+      <query name="K-SeqMAXFunc-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-40" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((xs:anyURI("example.com/"), xs:anyURI("example.com/"))) eq xs:anyURI("example.com/")`.</description>
+      <query name="K-SeqMAXFunc-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-40.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-41" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max(("a string")) eq "a string"`.</description>
+      <query name="K-SeqMAXFunc-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-42" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max(("a string", QName("example.com/", "ncname")))`.</description>
+      <query name="K-SeqMAXFunc-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-43" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5, 5.0e0)) eq 5.0e0`.</description>
+      <query name="K-SeqMAXFunc-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-43.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-44" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5, 5.0e0)) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-44.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-45" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5, 3.0e0)) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-45.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-46" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5.0e0, 5)) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-46.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-47" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, 5.0e0)) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-47.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-48" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5.0e0, 3)) instance of xs:double`.</description>
+      <query name="K-SeqMAXFunc-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-48.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-49" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1, 1, 1, 1, 1.0)) instance of xs:decimal`.</description>
+      <query name="K-SeqMAXFunc-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-49.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-50" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1.0, 1, 1, 1, 1)) instance of xs:decimal`.</description>
+      <query name="K-SeqMAXFunc-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-50.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-51" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((1.0, 1, 1.0, 1, 1)) instance of xs:decimal`.</description>
+      <query name="K-SeqMAXFunc-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-51.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-52" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5.0e0, 5)) eq 5.0e0`.</description>
+      <query name="K-SeqMAXFunc-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-52.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-53" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3, 5.0e0)) eq 5.0e0`.</description>
+      <query name="K-SeqMAXFunc-53" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-53.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-54" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5.0e0, 3)) eq 5.0e0`.</description>
+      <query name="K-SeqMAXFunc-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-54.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-55" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>Testing max() with current-date().</description>
+      <query name="K-SeqMAXFunc-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-55.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-56" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((3,4,5)) eq 5`.</description>
+      <query name="K-SeqMAXFunc-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-56.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-57" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max((5, 5.0e0)) eq 5.0e0`.</description>
+      <query name="K-SeqMAXFunc-57" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-57.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-58" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `max((3,4, "Zero"))`.</description>
+      <query name="K-SeqMAXFunc-58" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-SeqMAXFunc-59" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>A test whose essence is: `max(("a", "b", "c")) eq "c"`.</description>
+      <query name="K-SeqMAXFunc-59" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-SeqMAXFunc-59.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqMAXFunc-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>Invoke fn:max() on two identical xs:anyURI values.</description>
+      <query name="K2-SeqMAXFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqMAXFunc-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqMAXFunc-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>Invoke fn:max() on two different xs:anyURI values.</description>
+      <query name="K2-SeqMAXFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqMAXFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqMAXFunc-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>Invoke fn:max() on two different xs:anyURI values(#2).</description>
+      <query name="K2-SeqMAXFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqMAXFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqMAXFunc-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>Invoke fn:max() with an unsupported collation.</description>
+      <query name="K2-SeqMAXFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqMAXFunc-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+      <description>Invoke fn:max() with too many arguments.</description>
+      <query name="K2-SeqMAXFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqMAXFunc-6" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>Invoke fn:max() with an unsupported collation and one xs:anyURI value.</description>
+      <query name="K2-SeqMAXFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqMAXFunc-6.txt</output-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqMAXFunc-7" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+      <description>Ensure the return type is properly inferred.</description>
+      <query name="K2-SeqMAXFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqMAXFunc-7.txt</output-file>
+   </test-case>
+	<test-case is-XPath2="true" name="fn-max-1" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+		<description>Evaluates the "max" function with the argument set to a sequence of different types.</description>
+		<spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+		<query name="fn-max-1" date="2005-09-20"/>
+		<input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+		<expected-error>FORG0006</expected-error>
+	</test-case>
+	<test-case is-XPath2="true" name="fn-max-2" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez">
+		<description>Evaluates type promotion with the fn:max function.</description>
+		<spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+		<query name="fn-max-2" date="2006-03-13"/>
+		<input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+		<output-file role="principal" compare="Text">fn-max-2.txt</output-file>
+	</test-case>
+	<test-case name="fn-max-3" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+		<description>Evaluates type promotion with the fn:max function.  Used derived types that should promote to least common type.</description>
+		<spec-citation spec="FuncOps" section-number="15.4.3" section-title="fn:max" section-pointer="func-max"/>
+		<query name="fn-max-3" date="2006-07-13"/>
+		<input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+		<output-file role="principal" compare="Text">fn-max-3.txt</output-file>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="true" name="fn-max-4" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+		<description>Test fn:max on a sequence of xs:dayTimeDuration arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-4" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">fn-max-4.txt</output-file>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="true" name="fn-max-5" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+		<description>Test fn:max on a sequence of xs:dayTimeDuration arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-5" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">fn-max-5.txt</output-file>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="true" name="fn-max-6" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+		<description>Test fn:max on a sequence of xs:yearMonthDuration arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-6" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">fn-max-6.txt</output-file>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="true" name="fn-max-7" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+		<description>Test fn:max on a sequence of xs:yearMonthDuration arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-7" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">fn-max-7.txt</output-file>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="true" name="fn-max-8" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+		<description>Test fn:max on a sequence of xs:yearMonthDuration and xs:dayTimeDuration arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-8" date="2010-03-15"/>
+		<expected-error>FORG0006</expected-error>
+		<expected-error>XPTY0004</expected-error>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="true" name="fn-max-9" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="runtime-error">
+		<description>Test fn:max on a sequence of xs:duration arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-9" date="2010-03-15"/>
+		<expected-error>FORG0006</expected-error>
+		<expected-error>XPTY0004</expected-error>
+	</test-case>
+	<test-case Creator="Oliver Hallam" is-XPath2="false" name="fn-max-10" FilePath="Functions/SeqFunc/AggregateSeqFunc/SeqMAXFunc/" scenario="standard">
+		<description>Test dynamic type of fn:max on a sequence of numeric arguments.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5459</reflects-resolution>
+		<query name="fn-max-10" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">fn-max-10.txt</output-file>
+	</test-case>
+</test-group>

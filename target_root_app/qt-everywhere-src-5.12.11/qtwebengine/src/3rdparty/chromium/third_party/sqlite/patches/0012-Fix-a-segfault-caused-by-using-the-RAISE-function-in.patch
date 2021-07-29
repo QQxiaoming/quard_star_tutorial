@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Victor Costan <pwnall@chromium.org>
+Date: Fri, 11 Jan 2019 03:52:20 -0800
+Subject: [PATCH 12/17] Fix a segfault caused by using the RAISE function
+ incorrectly.
+
+This backports https://sqlite.org/src/info/ddf06db702761d66
+
+Bug: 915479
+---
+ third_party/sqlite/src/src/expr.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/third_party/sqlite/src/src/expr.c b/third_party/sqlite/src/src/expr.c
+index 6b2c5a540a82..0aa11c43bf4a 100644
+--- a/third_party/sqlite/src/src/expr.c
++++ b/third_party/sqlite/src/src/expr.c
+@@ -4722,7 +4722,7 @@ int sqlite3ExprCompare(Parse *pParse, Expr *pA, Expr *pB, int iTab){
+     }
+     return 2;
+   }
+-  if( pA->op!=pB->op ){
++  if( pA->op!=pB->op || pA->op==TK_RAISE ){
+     if( pA->op==TK_COLLATE && sqlite3ExprCompare(pParse, pA->pLeft,pB,iTab)<2 ){
+       return 1;
+     }
+--
+2.18.0
+

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-399                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast xs:ID to xs:untypedAtomic.              :)
+(:*******************************************************:)
+xs:untypedAtomic(xs:ID("foo"))

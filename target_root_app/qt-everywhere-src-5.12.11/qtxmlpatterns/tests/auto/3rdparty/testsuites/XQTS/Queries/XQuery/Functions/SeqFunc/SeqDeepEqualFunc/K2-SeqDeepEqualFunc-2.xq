@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDeepEqualFunc-2                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A date and node value that never will compare equal. :)
+(:*******************************************************:)
+deep-equal(current-time(), <e/>)

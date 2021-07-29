@@ -1,0 +1,52 @@
+<xsd:schema xmlns:myns="http://www.example.com/notation" xmlns:foo="http://www.example.com/notation" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.com/notation">
+	<!-- Notation Declaration -->
+	<xsd:notation name="jpeg" public="image/jpeg" system="viewer.exe"/>
+	<xsd:notation name="png" public="image/png" system="viewer.exe"/>
+	<xsd:complexType name="allTypesType">
+		<xsd:sequence>
+			<xsd:element name="simpleElemType">
+				<xsd:complexType>
+					<xsd:sequence>
+						<!-- From XML Schema, "It is an error for NOTATION to be used directly 
+         in a schema. Only datatypes that are derived from NOTATION by 
+         specifying a value for enumeration can be used in a schema. 
+      -->
+						<xsd:element name="NOTATION1">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:NOTATION">
+									<xsd:enumeration value="myns:jpeg"/>
+									<xsd:enumeration value="myns:png"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="NOTATION2">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:NOTATION">
+									<xsd:enumeration value="foo:jpeg"/>
+									<xsd:enumeration value="foo:png"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="NOTATION3">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:NOTATION">
+									<xsd:enumeration value="myns:jpeg"/>
+									<xsd:enumeration value="myns:png"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="NOTATION4">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:NOTATION">
+									<xsd:enumeration value="myns:jpeg"/>
+									<xsd:enumeration value="myns:png"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="allTypes" type="myns:allTypesType"/>
+</xsd:schema>

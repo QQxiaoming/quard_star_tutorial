@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ForExprWithout-51                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure scanners/parsers accept small QNames in for-expressions(#2). :)
+(:*******************************************************:)
+1 eq (for $xs:a in 1 return $xs:a)

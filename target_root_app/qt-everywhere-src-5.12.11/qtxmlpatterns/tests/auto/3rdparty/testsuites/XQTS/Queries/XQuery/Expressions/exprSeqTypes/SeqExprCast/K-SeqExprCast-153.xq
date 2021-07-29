@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-153                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: 'P24H' is an invalid lexical representation for xs:duration. :)
+(:*******************************************************:)
+xs:duration("P24H")

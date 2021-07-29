@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-multiply-yearMonthDuration-4                  :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 30, 2005                                    :)
+(:Purpose: Evaluates The "multiply-yearMonthDuration" function that  :)
+(:return true and used together with fn:not.             :)
+(: Apply "fn:string" function to account for new EBV.     :)
+(:*******************************************************:)
+ 
+fn:not(fn:string(xs:yearMonthDuration("P11Y04M") * 2.0))

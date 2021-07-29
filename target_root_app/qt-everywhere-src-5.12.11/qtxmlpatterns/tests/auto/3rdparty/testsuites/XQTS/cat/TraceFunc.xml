@@ -1,0 +1,191 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="TraceFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>The Trace Function</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-trace-1" FilePath="Functions/TraceFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:trace" function with wrong arity.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-1" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-trace-2" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple call to the "fn:trace" function with an integer value.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-2" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-3" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with an addition operation.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-3" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-4" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with a subtraction operation.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-4" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-5" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with a multiplication operation.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-5" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-6" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with a division (div operator) operation.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-6" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-7" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with a division (idiv operator) operation.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-7" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-8" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with a modulus operation.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-8" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-trace-9" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with two variables, where the second one uses the first one in a more complex math expression.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-9" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-10" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used with string manipulation (fn:concat).</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-10" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-11" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used for numbers manipulation readed from an xml file.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-11" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-12" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used for numbers manipulation readed from an xml file. The entire query is inside the function.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-12" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-13" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used in a math expression using the "avg" function.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-13" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-14" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function involving casting (floats to integers).</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-14" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-15" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function that uses another fn:trace as part of its argument.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-15" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-16" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used in a math expression using the "fn:count" function.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-16" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-17" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used in a boolean expression ("and" and fn:true()).</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-17" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-18" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function used in a boolean expression ("or" and fn:true()).</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-18" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-19" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function where the first argument is the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-19" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-19.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-20" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function where the first argument is the zero length string.</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-20" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-trace-21" FilePath="Functions/TraceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the "fn:trace" function string manipulation (upper/lower case functions).</description>
+      <spec-citation spec="FuncOps" section-number="4" section-title="The Trace Function" section-pointer="func-trace"/>
+      <query name="fn-trace-21" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-trace-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TraceFunc-1" FilePath="Functions/TraceFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `trace()`.</description>
+      <query name="K-TraceFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TraceFunc-2" FilePath="Functions/TraceFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `trace(.)`.</description>
+      <query name="K-TraceFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TraceFunc-3" FilePath="Functions/TraceFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `trace(., "message", "wrong parameter")`.</description>
+      <query name="K-TraceFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TraceFunc-4" FilePath="Functions/TraceFunc/" scenario="standard">
+      <description>A test whose essence is: `trace("a string", "trace message")`.</description>
+      <query name="K-TraceFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TraceFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TraceFunc-5" FilePath="Functions/TraceFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(trace((), "trace message"))`.</description>
+      <query name="K-TraceFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TraceFunc-5.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TraceFunc-6" FilePath="Functions/TraceFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `empty(trace(error(), "trace message"))`.</description>
+      <query name="K-TraceFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOER0000</expected-error>
+   </test-case>
+</test-group>

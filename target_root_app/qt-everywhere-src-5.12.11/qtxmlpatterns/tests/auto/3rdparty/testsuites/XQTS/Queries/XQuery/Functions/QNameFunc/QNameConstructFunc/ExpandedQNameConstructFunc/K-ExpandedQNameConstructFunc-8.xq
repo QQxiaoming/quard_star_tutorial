@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ExpandedQNameConstructFunc-8                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: URI/QName arguments appearing in wrong order, leading to an invalid QName. :)
+(:*******************************************************:)
+QName("my:qName", "http://example.com/MyErrorNS")

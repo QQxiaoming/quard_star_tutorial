@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FunctionCallExpr-18                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: No function by name fn:format-date() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1). :)
+(:*******************************************************:)
+matches(format-dateTime(current-dateTime(), "[Y0001]-[M01]-[D01]"), "[0-9]{4}-[0-9]{2}-[0-9]{2}")

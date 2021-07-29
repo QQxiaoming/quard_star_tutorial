@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-subtract-times-4                              :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 27, 2005                                    :)
+(:Purpose: Evaluates The "subtract-times" function that  :)
+(:return true and used together with fn:not.             :)
+(: Uses the "fn:string" function to account for new EBV rules. :)
+(:*******************************************************:)
+ 
+fn:not(fn:string(xs:time("13:00:00Z") - xs:time("14:00:00Z")))

@@ -1,0 +1,75 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                          Library                                         *
+****************************************************************************
+
+QtBluetooth
+-----------
+
+ - Fixed several documentation issues in QML chat example.
+ - Improved QML BluetoothSocket type documentation.
+ - Fixed QML chat example not handling all socket states leading to wrong
+   state reports.
+ - [QTBUG-61542] Added workaround for QTBUG-61392 to QML chat example.
+ - [QTBUG-61392] Added Android platform bug workaround to all Bluetooth examples
+   requiring the workaround.
+ - Added various improvements to pingpong example.
+ - [QTBUG-57847] Ensured that QBluetoothDeviceDiscoveryAgent::deviceDiscovered()
+   is continuously emitted when the Low Energy search timeout is set to 0.
+ - [QTBUG-60131] Fixed never ending recursion in QBluetoothDeviceDiscoveryAgent::stop().
+
+QtNfc
+-----
+
+ - [QTBUG-60268] Fixed QNdefNfcActRecord::action for platforms with unsigned chat
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Android
+-------
+
+ - [QTBUG-58190] & [QTBUG-60830] Fixed concurrency bug in QBluetoothSocket::canReadLine().
+ - Addressed case whereby QBluetoothSocket::bytesWritten() was emitted even if
+   the write failed.
+ - [QTBUG-61755] Added ability to negotiate the MTU when communicating with
+   other BTLE devices.
+ - Fixed dead lock during QLowEnergyController's service discovery when the last
+   to be discovered characteristic or descriptor is read only.
+
+Linux/Bluez
+-----------
+
+ - [QTBUG-61554] Added the means to define GAP/GATT services for central roles.
+
+macOS
+-----
+
+ - [QTBUG-62658] Enabled macOS 10.13 in QtBluetooth.
+
+Windows UWP
+-----------
+
+ - Fixed several crashes when using QBluetoothSocket.
+ - Fixed crash in QBluetoothServer::nextPendingConnection().
+ - Fixed missing QBluetoothDeviceDiscoveryAgent::finished() signal when the
+   device scan only targets classic device search.

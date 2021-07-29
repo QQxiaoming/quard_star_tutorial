@@ -1,0 +1,201 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="TimeSubtract" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:subtract-times</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-subtract-times2args-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator with the arguments set as follows: $arg1 = xs:time(lower bound) $arg2 = xs:time(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times2args-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator with the arguments set as follows: $arg1 = xs:time(mid range) $arg2 = xs:time(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times2args-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator with the arguments set as follows: $arg1 = xs:time(upper bound) $arg2 = xs:time(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times2args-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator with the arguments set as follows: $arg1 = xs:time(lower bound) $arg2 = xs:time(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times2args-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator with the arguments set as follows: $arg1 = xs:time(lower bound) $arg2 = xs:time(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator as per example 1 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-1" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator as as per example 2 (for this function) of the Functions and operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-2" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" opeartor as per example 3 (for this function) from Functions and Operators specs.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-3" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator used in conjunction with the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-4" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-5" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator as an argument to the "fn:number" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-6" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-7" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-7" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-8" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator that returns a negative value.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-8" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-9" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator, which is part of an "and" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-9" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-10" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" operator as part of an "or" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-10" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-11" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-11" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-12" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" function used in conjunction with a boolean expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-12" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-13" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-13" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-14" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-14" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-15" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-15" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-times-16" FilePath="Expressions/Operators/ArithExpr/DurationArith/TimeSubtract/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-times" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.3" section-title="op:subtract-times" section-pointer="func-subtract-times"/>
+      <query name="op-subtract-times-16" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-times-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-1" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="standard">
+      <description>Simple testing involving operator '-' between xs:time and xs:time.</description>
+      <query name="K-TimeSubtract-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimeSubtract-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-2" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="standard">
+      <description>Simple testing involving operator '-' between xs:time and xs:time, that evaluates to zero.</description>
+      <query name="K-TimeSubtract-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimeSubtract-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-3" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="runtime-error">
+      <description>The '-' operator is not available between xs:yearMonthDuration and xs:time.</description>
+      <query name="K-TimeSubtract-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-4" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="runtime-error">
+      <description>The '-' operator is not available between xs:yearMonthDuration and xs:date.</description>
+      <query name="K-TimeSubtract-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-5" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="runtime-error">
+      <description>The '+' operator is not available between xs:time and xs:time.</description>
+      <query name="K-TimeSubtract-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-6" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="runtime-error">
+      <description>The '+' operator is not available between xs:time and xs:time.</description>
+      <query name="K-TimeSubtract-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-7" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="runtime-error">
+      <description>The '-' operator is not available between xs:time and xs:time.</description>
+      <query name="K-TimeSubtract-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimeSubtract-8" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/TimeSubtract/" scenario="runtime-error">
+      <description>The 'mod' operator is not available between xs:time and xs:time.</description>
+      <query name="K-TimeSubtract-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

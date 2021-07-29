@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:sequenceExpr>
+        <xqx:elementConstructor>
+          <xqx:tagName>e</xqx:tagName>
+          <xqx:attributeList>
+            <xqx:namespaceDeclaration>
+              <xqx:prefix>d</xqx:prefix>
+              <xqx:uri>http://www.example.com/</xqx:uri>
+            </xqx:namespaceDeclaration>
+          </xqx:attributeList>
+        </xqx:elementConstructor>
+        <xqx:pathExpr>
+          <xqx:stepExpr>
+            <xqx:xpathAxis>child</xqx:xpathAxis>
+            <xqx:nameTest xqx:prefix="d">d</xqx:nameTest>
+          </xqx:stepExpr>
+        </xqx:pathExpr>
+      </xqx:sequenceExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

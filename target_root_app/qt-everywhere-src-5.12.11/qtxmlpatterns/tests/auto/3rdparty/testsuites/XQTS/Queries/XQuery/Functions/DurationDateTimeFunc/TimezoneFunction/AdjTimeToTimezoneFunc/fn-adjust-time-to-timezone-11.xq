@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: adjust-time-to-timezone-11                       :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: August 10, 2005                                  :)
+(:Test Description: Evaluates The "adjust-time-to-timezone" function   :)
+(:as an argument to a string function.                  :)
+(:Use zulu timezone and empty sequence for 2nd argument. :)
+(:*******************************************************:)
+
+fn:string(fn:adjust-time-to-timezone(xs:time("10:00:00Z"),()))

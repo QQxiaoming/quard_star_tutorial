@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-WhereExpr-2                                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Get the string value of the return statement of a for expression after being filtered by a where clause. :)
+(:*******************************************************:)
+string(exactly-one((for $fo in (1, 2, 3) where $fo eq 3 return $fo)))

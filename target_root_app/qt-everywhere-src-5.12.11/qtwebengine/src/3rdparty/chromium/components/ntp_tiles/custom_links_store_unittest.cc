@@ -1,0 +1,83 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#include "components/ntp_tiles/custom_links_store.h"
+
+#include <stdint.h>
+
+#include <memory>
+
+#include "base/macros.h"
+#include "base/strings/utf_string_conversions.h"
+#include "components/sync_preferences/testing_pref_service_syncable.h"
+#include "testing/gtest/include/gtest/gtest.h"
+
+using sync_preferences::TestingPrefServiceSyncable;
+
+namespace ntp_tiles {
+
+namespace {
+
+const char kTestTitle1[] = "Foo1";
+const char kTestTitle2[] = "Foo2";
+const char kTestUrl1[] = "http://foo1.com/";
+const char kTestUrl2[] = "http://foo2.com/";
+
+}  // namespace
+
+class CustomLinksStoreTest : public testing::Test {
+ public:
+  CustomLinksStoreTest() : custom_links_store_(&prefs_) {
+    CustomLinksStore::RegisterProfilePrefs(prefs_.registry());
+  }
+
+ protected:
+  sync_preferences::TestingPrefServiceSyncable prefs_;
+  CustomLinksStore custom_links_store_;
+
+  DISALLOW_COPY_AND_ASSIGN(CustomLinksStoreTest);
+};
+
+TEST_F(CustomLinksStoreTest, StoreAndRetrieveLinks) {
+  std::vector<CustomLinksManager::Link> initial_links({CustomLinksManager::Link{
+      GURL(kTestUrl1), base::UTF8ToUTF16(kTestTitle1)}});
+
+  custom_links_store_.StoreLinks(initial_links);
+  std::vector<CustomLinksManager::Link> retrieved_links =
+      custom_links_store_.RetrieveLinks();
+  EXPECT_EQ(initial_links, retrieved_links);
+}
+
+TEST_F(CustomLinksStoreTest, StoreEmptyList) {
+  std::vector<CustomLinksManager::Link> populated_links(
+      {CustomLinksManager::Link{GURL(kTestUrl1),
+                                base::UTF8ToUTF16(kTestTitle1)},
+       CustomLinksManager::Link{GURL(kTestUrl2),
+                                base::UTF8ToUTF16(kTestTitle2)}});
+
+  custom_links_store_.StoreLinks(populated_links);
+  std::vector<CustomLinksManager::Link> retrieved_links =
+      custom_links_store_.RetrieveLinks();
+  ASSERT_EQ(populated_links, retrieved_links);
+
+  custom_links_store_.StoreLinks(std::vector<CustomLinksManager::Link>());
+  retrieved_links = custom_links_store_.RetrieveLinks();
+  EXPECT_TRUE(retrieved_links.empty());
+}
+
+TEST_F(CustomLinksStoreTest, ClearLinks) {
+  std::vector<CustomLinksManager::Link> initial_links({CustomLinksManager::Link{
+      GURL(kTestUrl1), base::UTF8ToUTF16(kTestTitle1)}});
+
+  custom_links_store_.StoreLinks(initial_links);
+  std::vector<CustomLinksManager::Link> retrieved_links =
+      custom_links_store_.RetrieveLinks();
+  ASSERT_EQ(initial_links, retrieved_links);
+
+  custom_links_store_.ClearLinks();
+  retrieved_links = custom_links_store_.RetrieveLinks();
+  EXPECT_TRUE(retrieved_links.empty());
+}
+
+}  // namespace ntp_tiles

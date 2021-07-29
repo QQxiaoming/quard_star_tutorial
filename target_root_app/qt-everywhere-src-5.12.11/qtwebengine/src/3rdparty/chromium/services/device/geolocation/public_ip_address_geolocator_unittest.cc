@@ -1,0 +1,157 @@
+// Copyright 2017 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#include "services/device/geolocation/public_ip_address_geolocator.h"
+
+#include "base/run_loop.h"
+#include "base/strings/string_util.h"
+#include "base/test/scoped_task_environment.h"
+#include "mojo/core/embedder/embedder.h"
+#include "mojo/public/cpp/bindings/strong_binding_set.h"
+#include "net/traffic_annotation/network_traffic_annotation_test_helper.h"
+#include "services/network/public/cpp/weak_wrapper_shared_url_loader_factory.h"
+#include "services/network/test/test_url_loader_factory.h"
+#include "testing/gmock/include/gmock/gmock.h"
+#include "testing/gtest/include/gtest/gtest.h"
+
+namespace device {
+namespace {
+
+const char kTestGeolocationApiKey[] = "";
+
+class PublicIpAddressGeolocatorTest : public testing::Test {
+ public:
+  PublicIpAddressGeolocatorTest()
+      : scoped_task_environment_(
+            base::test::ScopedTaskEnvironment::MainThreadType::IO) {
+    notifier_.reset(new PublicIpAddressLocationNotifier(
+        base::MakeRefCounted<network::WeakWrapperSharedURLLoaderFactory>(
+            &test_url_loader_factory_),
+        kTestGeolocationApiKey));
+  }
+
+  ~PublicIpAddressGeolocatorTest() override {}
+
+ protected:
+  void SetUp() override {
+    // Intercept Mojo bad-message errors.
+    mojo::core::SetDefaultProcessErrorCallback(
+        base::Bind(&PublicIpAddressGeolocatorTest::OnMojoBadMessage,
+                   base::Unretained(this)));
+
+    binding_set_.AddBinding(
+        std::make_unique<PublicIpAddressGeolocator>(
+            PARTIAL_TRAFFIC_ANNOTATION_FOR_TESTS, notifier_.get(),
+            base::Bind(&PublicIpAddressGeolocatorTest::OnGeolocatorBadMessage,
+                       base::Unretained(this))),
+        mojo::MakeRequest(&public_ip_address_geolocator_));
+  }
+
+  void TearDown() override {
+    // Stop intercepting Mojo bad-message errors.
+    mojo::core::SetDefaultProcessErrorCallback(
+        mojo::core::ProcessErrorCallback());
+  }
+
+  // Deal with mojo bad message.
+  void OnMojoBadMessage(const std::string& error) {
+    bad_messages_.push_back(error);
+  }
+
+  // Deal with PublicIpAddressGeolocator bad message.
+  void OnGeolocatorBadMessage(const std::string& message) {
+    binding_set_.ReportBadMessage(message);
+  }
+
+  // Invokes QueryNextPosition on |public_ip_address_geolocator_|, and runs
+  // |done_closure| when the response comes back.
+  void QueryNextPosition(base::Closure done_closure) {
+    public_ip_address_geolocator_->QueryNextPosition(base::BindOnce(
+        &PublicIpAddressGeolocatorTest::OnQueryNextPositionResponse,
+        base::Unretained(this), done_closure));
+  }
+
+  // Callback for QueryNextPosition() that records the result in |position_| and
+  // then invokes |done_closure|.
+  void OnQueryNextPositionResponse(base::Closure done_closure,
+                                   mojom::GeopositionPtr position) {
+    position_ = std::move(position);
+    done_closure.Run();
+  }
+
+  // Result of the latest completed call to QueryNextPosition.
+  mojom::GeopositionPtr position_;
+
+  // StrongBindingSet to mojom::Geolocation.
+  mojo::StrongBindingSet<mojom::Geolocation> binding_set_;
+
+  // Test task runner.
+  base::test::ScopedTaskEnvironment scoped_task_environment_;
+
+  // List of any Mojo bad-message errors raised.
+  std::vector<std::string> bad_messages_;
+
+  // PublicIpAddressGeolocator requires a notifier.
+  std::unique_ptr<PublicIpAddressLocationNotifier> notifier_;
+
+  // The object under test.
+  mojom::GeolocationPtr public_ip_address_geolocator_;
+
+  // Test URLLoaderFactory for handling requests to the geolocation API.
+  network::TestURLLoaderFactory test_url_loader_factory_;
+
+  DISALLOW_COPY_AND_ASSIGN(PublicIpAddressGeolocatorTest);
+};
+
+// Basic test of a client invoking QueryNextPosition.
+TEST_F(PublicIpAddressGeolocatorTest, BindAndQuery) {
+  // Invoke QueryNextPosition.
+  base::RunLoop loop;
+  QueryNextPosition(loop.QuitClosure());
+
+  ASSERT_EQ(1, test_url_loader_factory_.NumPending());
+  const std::string& request_url =
+      test_url_loader_factory_.pending_requests()->back().request.url.spec();
+  EXPECT_TRUE(
+      base::StartsWith("https://www.googleapis.com/geolocation/v1/geolocate",
+                       request_url, base::CompareCase::SENSITIVE));
+
+  // Issue a valid response.
+  test_url_loader_factory_.AddResponse(request_url, R"({
+        "accuracy": 100.0,
+        "location": {
+          "lat": 10.0,
+          "lng": 20.0
+        }
+      })", net::HTTP_OK);
+
+  // Wait for QueryNextPosition to return.
+  loop.Run();
+
+  EXPECT_THAT(position_->accuracy, testing::Eq(100.0));
+  EXPECT_THAT(position_->latitude, testing::Eq(10.0));
+  EXPECT_THAT(position_->longitude, testing::Eq(20.0));
+  EXPECT_THAT(bad_messages_, testing::IsEmpty());
+}
+
+// Tests that multiple overlapping calls to QueryNextPosition result in a
+// connection error and reports a bad message.
+TEST_F(PublicIpAddressGeolocatorTest, ProhibitedOverlappingCalls) {
+  base::RunLoop loop;
+  public_ip_address_geolocator_.set_connection_error_handler(
+      loop.QuitClosure());
+
+  // Issue two overlapping calls to QueryNextPosition.
+  QueryNextPosition(base::Closure());
+  QueryNextPosition(base::Closure());
+
+  // This terminates only in case of connection error, which we expect.
+  loop.Run();
+
+  // Verify that the geolocator reported a bad message.
+  EXPECT_THAT(bad_messages_, testing::SizeIs(1));
+}
+
+}  // namespace
+}  // namespace device

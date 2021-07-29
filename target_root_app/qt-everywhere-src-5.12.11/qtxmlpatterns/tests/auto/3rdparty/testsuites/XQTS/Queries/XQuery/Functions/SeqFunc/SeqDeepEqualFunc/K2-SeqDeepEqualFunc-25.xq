@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDeepEqualFunc-25                          :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Compare attribute nodes in a weird order.    :)
+(:*******************************************************:)
+deep-equal((attribute name2 {"content"}, attribute name {"content"}), (attribute name {"content"}, attribute name2 {"content"}))

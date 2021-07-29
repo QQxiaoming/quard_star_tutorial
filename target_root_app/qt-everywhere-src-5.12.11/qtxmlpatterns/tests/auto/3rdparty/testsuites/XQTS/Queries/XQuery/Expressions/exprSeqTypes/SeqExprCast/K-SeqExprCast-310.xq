@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-310                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: '00004-08-01T12:44:05' is an invalid lexical representation for xs:dateTime; if the year part has more than four digits, leading zeros are prohibited. :)
+(:*******************************************************:)
+xs:dateTime("00004-08-01T12:44:05")

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>x</xqx:varName>
+        <xqx:varValue>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">double</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>NaN</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:varValue>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:varRef>
+        <xqx:name>x</xqx:name>
+      </xqx:varRef>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

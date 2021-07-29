@@ -1,0 +1,15 @@
+{
+  "name": "cups_ipp_validator",
+  "display_name": "CUPS IPP Validator",
+  "sandbox_type": "utility",
+  "interface_provider_specs": {
+    "service_manager:connector": {
+      "provides": {
+        "ipp_validator": [ "chrome.mojom.IppValidator" ]
+       },
+       "requires": {
+         "service_manager": [ "service_manager:all_users" ]
+       }
+     }
+  }
+}

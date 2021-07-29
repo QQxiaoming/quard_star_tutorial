@@ -1,0 +1,229 @@
+<xs:schema
+   xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+   xmlns:ids = "http://www.w3.org/XQueryTest/ididrefs" 
+   targetNamespace = "http://www.w3.org/XQueryTest/ididrefs" 
+   elementFormDefault = "qualified">
+ 
+  <xs:element name = "IDS" type = "ids:rootContent"/>
+  
+   <xs:complexType name = "rootContent">
+    <xs:sequence>
+     <xs:element name="elementwithid-1" type = "ids:elementWithIDAttribute"/>
+     <xs:element name="elementwithid-2" type = "ids:elementWithIDAttribute"/>      
+     <xs:element name="elementwithid-3" type = "ids:elementWithIDAttribute"/>
+     <xs:element name="elementwithid-4" type = "ids:elementWithIDAttribute"/>
+     <xs:element name="elementwithid-5" type = "ids:elementWithIDAttribute"/>
+     <xs:element name="elementwithid-6" type = "ids:elementWithIDAttribute"/>
+     <xs:element name="elementwithidref-1" type = "xs:IDREF"/>    
+     <xs:element name="elementwithidref-2" type = "xs:IDREF"/>        
+     <xs:element name="elementwithidref-3" type = "xs:IDREF"/>      
+     <xs:element name="elementwithidref-4" type = "xs:IDREF"/>      
+     <xs:element name="elementwithidref-5" type = "xs:IDREF"/>      
+     <xs:element name="elementwithidref-6" type = "xs:IDREF"/>      
+    </xs:sequence>
+   </xs:complexType>
+  
+  <xs:complexType name="elementWithIDAttribute">
+     <xs:attribute name="anId" type="xs:ID" use="required" />  
+  </xs:complexType>
+  
+  <xs:element name="IDS2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any processContents="strict" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="IDREF" type="xs:IDREF"/>
+  
+  <xs:element name="IDREFS" type="xs:IDREFS"/>
+  
+  <xs:element name="IDREF-List" type="ids:IDREF-List"/>
+  
+  <xs:element name="IDREF-Union" type="ids:List-of-IDREF-Union"/>
+  
+  <xs:element name="Restricted-IDREF" type="ids:Restricted-IDREF"/>
+  
+  <xs:element name="List-of-Restricted-IDREF" type="ids:List-of-Restricted-IDREF"/>
+  
+  <xs:element name="IDREF-content">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:IDREF"/>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="IDREFS-content">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:IDREFS"/>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="IDREF-List-content">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="ids:IDREF-List"/>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="IDREF-Union-content">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="ids:List-of-IDREF-Union"/>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Restricted-IDREF-content">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="ids:List-of-Restricted-IDREF"/>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="List-of-Restricted-IDREF-content">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="ids:List-of-Restricted-IDREF"/>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+      
+  <xs:attribute name="IDREF" type="xs:IDREF"/>
+  
+  <xs:attribute name="IDREFS" type="xs:IDREFS"/>
+  
+  <xs:attribute name="IDREF-List" type="ids:IDREF-List"/>
+  
+  <xs:attribute name="IDREF-Union" type="ids:List-of-IDREF-Union"/>
+  
+  <xs:attribute name="Restricted-IDREF" type="ids:Restricted-IDREF"/>
+  
+  <xs:attribute name="List-of-Restricted-IDREF" type="ids:List-of-Restricted-IDREF"/>
+  
+  <xs:element name="Element-as-ID" type="xs:ID"/>
+  
+  <xs:element name="Element-as-Restricted-ID" type="ids:Restricted-ID"/>
+  
+  <xs:element name="Element-with-ID-child">
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="id" type="xs:ID"/>
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Element-with-complex-ID-child">
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="id">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="ids:Restricted-ID">
+                  <xs:attribute name="charmed" type="xs:boolean"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>  
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Element-with-ID-attribute">
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Element-with-Restricted-ID-child">
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="id" type="ids:Restricted-ID"/>
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Element-with-ID-list-child">
+    <!-- the ID is recognized only if the list is a singleton -->
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="id" type="ids:ID-List"/>
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="Element-with-ID-union-child">
+    <!-- the ID is recognized only if the right member of the Union is chosen -->
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="id" type="ids:ID-Union"/>
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+    </xs:complexType>
+  </xs:element>  
+
+  <xs:element name="Element-with-Restricted-ID-attribute">
+    <xs:complexType>
+        <xs:sequence>
+          <xs:element name="data" type="xs:anyType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="ids:Restricted-ID"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="W">
+    <xs:complexType>
+      <xs:anyAttribute processContents="strict"/>
+    </xs:complexType>
+  </xs:element>      
+  
+  <xs:simpleType name="IDREF-List">
+      <xs:list itemType="xs:IDREF"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="Restricted-IDREF">
+    <xs:restriction base="xs:IDREF">
+      <xs:pattern value="[a-z]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="List-of-Restricted-IDREF">
+    <xs:list itemType="ids:Restricted-IDREF"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="IDREF-Union">
+    <xs:union memberTypes="ids:Restricted-IDREF xs:integer"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="List-of-IDREF-Union">
+    <xs:list itemType="ids:IDREF-Union"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="ID-List">
+      <xs:list itemType="xs:ID"/>
+  </xs:simpleType>
+  
+  <xs:simpleType name="ID-Union">
+    <xs:union memberTypes="ids:Restricted-ID xs:integer"/>
+  </xs:simpleType>    
+  
+  <xs:simpleType name="Restricted-ID">
+    <xs:restriction base="xs:ID">
+      <xs:pattern value="[a-z]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+      
+</xs:schema>

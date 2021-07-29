@@ -1,0 +1,49 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="XMLEdition" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Conformance to the XML 1.0 3-5th edition and XML 1.1</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="XML10-3ed-Mixed-content" FilePath="XMLEdition/" scenario="standard" Creator="Tim Kraska">
+      <description>CDATA sections, comments and PIs may occur in ANY content in XML 1.0 3th edition and older </description>
+      <spec-citation spec="XQuery" section-number="E.1" section-title="E.1 Normative References" section-pointer="id-normative-references"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5347</reflects-resolution>
+      <query name="XML10-3ed-Mixed-content" date="2010-01-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">XML10-3ed-Mixed-content.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="XML10-4ed-Excluded-char-1" FilePath="XMLEdition/" scenario="standard" Creator="Nicolae Brinza">
+      <description>The character #x037E is excluded from the start of a Name in XML 1.0 4th edition and older.</description>
+      <spec-citation spec="XQuery" section-number="E.1" section-title="E.1 Normative References" section-pointer="id-normative-references"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5347</reflects-resolution>
+      <query name="XML10-4ed-Excluded-char-1" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">XML10-4ed-Excluded-char-1.xml</output-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="XML10-4ed-Excluded-char-2" FilePath="XMLEdition/" scenario="standard" Creator="Nicolae Brinza">
+      <description>The character #x0100 is excluded from the start of a Name in XML 1.0 4th edition and older.</description>
+      <spec-citation spec="XQuery" section-number="E.1" section-title="E.1 Normative References" section-pointer="id-normative-references"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5347</reflects-resolution>
+      <query name="XML10-4ed-Excluded-char-1" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">XML10-4ed-Excluded-char-2.xml</output-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>   
+   <test-case is-XPath2="false" name="XML10-5ed-Included-char-1" FilePath="XMLEdition/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Contains a DEL, legal in XML 1.0, a restricted character in XML 1.1 </description>
+      <spec-citation spec="XQuery" section-number="E.1" section-title="E.1 Normative References" section-pointer="id-normative-references"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5347</reflects-resolution>
+      <query name="XML10-5ed-Included-char-1" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">XML10-5ed-Included-char-1.xml</output-file>
+   </test-case>   
+   <test-case is-XPath2="false" name="XML11-1ed-Included-char-1" FilePath="XMLEdition/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Has a "long s" in a name, legal in XML 1.1, illegal in XML 1.0.</description>
+      <spec-citation spec="XQuery" section-number="E.1" section-title="E.1 Normative References" section-pointer="id-normative-references"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5347</reflects-resolution>
+      <query name="XML11-1ed-Included-char-1" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">XML11-1ed-Included-char-1.xml</output-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>   
+</test-group>

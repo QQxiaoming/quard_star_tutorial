@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:versionDecl>
+    <xqx:version>1.1</xqx:version>
+    <!-- encoding: null -->
+  </xqx:versionDecl>
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>mod</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/module-pub-priv</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:functionDecl xqx:private="true">
+        <xqx:functionName xqx:prefix="mod">f</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:functionBody>
+          <xqx:integerConstantExpr>
+            <xqx:value>23</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl xqx:private="false">
+        <xqx:functionName xqx:prefix="mod">g</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>a</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:functionBody>
+          <xqx:addOp>
+            <xqx:firstOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="mod">f</xqx:functionName>
+                <xqx:arguments>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:varRef>
+                <xqx:name>a</xqx:name>
+              </xqx:varRef>
+            </xqx:secondOperand>
+          </xqx:addOp>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

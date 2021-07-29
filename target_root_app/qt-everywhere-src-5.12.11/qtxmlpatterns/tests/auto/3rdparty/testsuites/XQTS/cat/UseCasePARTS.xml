@@ -1,0 +1,14 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCasePARTS" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "PARTS" - Recursive Parts Explosion</title>
+      <description>This use case is based on a "parts explosion" database that contains information about how parts are used in other parts.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="parts-queries-results-q1" FilePath="UseCase/UseCasePARTS/" scenario="standard" Creator="XML Query Group">
+      <description>Convert the sample document from "partlist" format to "parttree" format (see DTD section for definitions). In the result document, part containment is represented by containment of one "part" element inside another. Each part that is not part of any other part should appear as a separate top-level element in the output document.</description>
+      <spec-citation spec="UseCases" section-number="1.8.4.1" section-title="Q1" section-pointer="parts-queries-results-q1"/>
+      <query name="parts-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">partlist</input-file>
+      <output-file role="principal" compare="XML">parts-queries-results-q1.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

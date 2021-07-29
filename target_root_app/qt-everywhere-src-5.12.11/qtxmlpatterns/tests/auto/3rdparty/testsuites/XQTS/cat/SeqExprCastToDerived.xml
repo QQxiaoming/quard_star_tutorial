@@ -1,0 +1,157 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqExprCastToDerived" featureOwner="NIST">
+   <GroupInfo>
+      <title>Cast from Derived types</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="cast-derived-1" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to a decimal.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="cast-derived-1" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-2" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an integer.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="cast-derived-2" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-3" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to non positive integer.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-3" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">minus10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-4" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to a long.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-4" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-5" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to a nonNegativeInteger.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-5" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-6" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to negativeInteger.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-6" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">minus10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-7" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an int.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-7" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-8" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an unsignedLong.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-8" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-9" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an positiveInteger.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-9" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-10" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an short.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-10" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-11" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an unsignedInt.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-11" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-12" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an unsignedShort.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-12" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-13" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to an unsignedByte.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-13" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-14" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from float to a byte.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-14" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-15" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to a decimal.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="cast-derived-15" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-16" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to an integer.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="cast-derived-16" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-17" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to a positiveInteger.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-17" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-18" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to a long.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-18" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-19" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to a int.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-19" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-20" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to a unsignedLong.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-20" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="cast-derived-21" FilePath="Expressions/exprSeqTypes/SeqExprCastToDerived/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of cast from double to a short.</description>
+      <spec-citation spec="FuncOps" section-number="17.2" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <query name="cast-derived-21" date="2006-03-27"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">thousand.txt</output-file>
+   </test-case>
+</test-group>

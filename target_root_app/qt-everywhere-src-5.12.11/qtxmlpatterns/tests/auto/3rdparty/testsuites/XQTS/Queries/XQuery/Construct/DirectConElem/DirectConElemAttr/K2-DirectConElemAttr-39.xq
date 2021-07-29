@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemAttr-39                         :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract the string value from a directly constructed attribute whose content consists of a computed attribute constructor. :)
+(:*******************************************************:)
+string(<elem attr="{attribute name {" content "}}"/>/@attr)

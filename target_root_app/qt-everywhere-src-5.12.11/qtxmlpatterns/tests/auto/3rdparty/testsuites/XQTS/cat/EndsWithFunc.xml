@@ -1,0 +1,249 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="EndsWithFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:ends-with</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-ends-with2args-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = xs:string(lower bound) $arg2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with2args-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = xs:string(mid range) $arg2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with2args-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = xs:string(upper bound) $arg2 = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with2args-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = xs:string(lower bound) $arg2 = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with2args-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = xs:string(lower bound) $arg2 = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "" $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-1" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "" $arg2 = "A Character String".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-2" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-3" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = () $arg2 = "".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-4" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "" $arg2 = ().</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-5" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "A Character String" $arg2 = ().</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-6" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = () $arg2 = "A Character String".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-7" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "AAAAABBBBBCCCCC" $arg2 = "BBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-8" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "AAAAABBBBB" $arg2 = " ".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-9" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = " " $arg2 = "AAAAABBBBB".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-10" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-11" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function as an argument of another function (fn:not)- return false.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-11" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-12" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function as an argument of another function (fn:not) - return true.</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-12" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-13" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = xs:string("A") $arg2 = "A".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-13" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-14" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "A" $arg2 = xs:string("A").</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-14" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-15" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "A" $arg2 = "a".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-15" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-ends-with-16" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "ends-with" function with the arguments set as follows: $arg1 = "a" $arg2 = "A".</description>
+      <spec-citation spec="FuncOps" section-number="7.5.3" section-title="fn:ends-with" section-pointer="func-ends-with"/>
+      <query name="fn-ends-with-16" date="2005-05-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-ends-with-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `ends-with()`.</description>
+      <query name="K-EndsWithFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `ends-with(())`.</description>
+      <query name="K-EndsWithFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `ends-with((), (), "http://www.w3.org/2005/xpath-functions/collation/codepoint", "wrong param")`.</description>
+      <query name="K-EndsWithFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `ends-with("a string", "a string", "http://www.example.com/COLLATION/NOT/SUPPORTED")`.</description>
+      <query name="K-EndsWithFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCH0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>A test whose essence is: `ends-with("foo", "foo", "http://www.w3.org/2005/xpath-functions/collation/codepoint")`.</description>
+      <query name="K-EndsWithFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EndsWithFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>A test whose essence is: `ends-with("tattoo", "tattoo")`.</description>
+      <query name="K-EndsWithFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EndsWithFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-7" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>A test whose essence is: `not(ends-with("tattoo", "atto"))`.</description>
+      <query name="K-EndsWithFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EndsWithFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-8" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>A test whose essence is: `not(ends-with("tattoo", "atto"))`.</description>
+      <query name="K-EndsWithFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EndsWithFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-9" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>A test whose essence is: `ends-with((), ())`.</description>
+      <query name="K-EndsWithFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EndsWithFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EndsWithFunc-10" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>A test whose essence is: `not(ends-with ((), "a string"))`.</description>
+      <query name="K-EndsWithFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EndsWithFunc-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-EndsWithFunc-1" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>Compare two values returned from fn:lower-case().</description>
+      <query name="K2-EndsWithFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-EndsWithFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-EndsWithFunc-2" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>Compare two values returned from fn:upper-case().</description>
+      <query name="K2-EndsWithFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-EndsWithFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-EndsWithFunc-3" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case().</description>
+      <query name="K2-EndsWithFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-EndsWithFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-EndsWithFunc-4" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:upper-case().</description>
+      <query name="K2-EndsWithFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-EndsWithFunc-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-EndsWithFunc-5" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-EndsWithFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-EndsWithFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-EndsWithFunc-6" FilePath="Functions/AllStringFunc/SubstringStringFunc/EndsWithFunc/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-EndsWithFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-EndsWithFunc-6.txt</output-file>
+   </test-case>
+</test-group>

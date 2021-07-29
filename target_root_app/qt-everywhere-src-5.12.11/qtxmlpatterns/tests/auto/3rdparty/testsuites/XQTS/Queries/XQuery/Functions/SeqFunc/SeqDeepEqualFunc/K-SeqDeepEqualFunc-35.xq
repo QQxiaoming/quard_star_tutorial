@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqDeepEqualFunc-35                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal(index-of((20, 40, 20), 20), (1, 3))`. :)
+(:*******************************************************:)
+deep-equal(index-of((20, 40, 20), 20), (1, 3))

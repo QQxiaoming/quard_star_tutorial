@@ -1,0 +1,52 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Tue, 7 Jan 2020 13:34:37 -0800
+Subject: [PATCH 19/25] Fix fts3 UB uint64
+
+Backports https://sqlite.org/src/info/e1f12978b53683114ab0
+
+Bug: 1037786
+---
+ third_party/sqlite/patched/ext/fts3/fts3_snippet.c |  2 +-
+ third_party/sqlite/patched/test/fts3snippet.test   | 13 +++++++++++++
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/third_party/sqlite/patched/ext/fts3/fts3_snippet.c b/third_party/sqlite/patched/ext/fts3/fts3_snippet.c
+index dda71c3985af..6eae82dbc3ff 100644
+--- a/third_party/sqlite/patched/ext/fts3/fts3_snippet.c
++++ b/third_party/sqlite/patched/ext/fts3/fts3_snippet.c
+@@ -560,7 +560,7 @@ static int fts3BestSnippet(
+     /* Set the *pmSeen output variable. */
+     for(i=0; i<nList; i++){
+       if( sIter.aPhrase[i].pHead ){
+-        *pmSeen |= (u64)1 << i;
++        *pmSeen |= (u64)1 << (i%64);
+       }
+     }
+ 
+diff --git a/third_party/sqlite/patched/test/fts3snippet.test b/third_party/sqlite/patched/test/fts3snippet.test
+index ce565127b5a3..9ee37dc6263f 100644
+--- a/third_party/sqlite/patched/test/fts3snippet.test
++++ b/third_party/sqlite/patched/test/fts3snippet.test
+@@ -587,5 +587,18 @@ do_execsql_test 5.1 {
+   {[a70] [a71] [a72]}
+ }
+ 
++#-------------------------------------------------------------------------
++# Request a snippet from a query with more than 64 phrases.
++#
++reset_db
++do_execsql_test 6.0 {
++  CREATE VIRTUAL TABLE f USING fts3(b);
++  INSERT INTO f VALUES ( x'746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001380230018218');
++}
++
++do_execsql_test 6.1 {
++  SELECT  length(snippet(f))>0  FROM f WHERE b MATCH x'1065616e656d655a616c702a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e082a010f42014001380230018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a2f0a3d746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c2a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e082a011065616e656d655a616c702a2f65732e0f42014001380230018218021001081e0a3d746e6e6d64612e0f42';
++} {1}
++
+ set sqlite_fts3_enable_parentheses 0
+ finish_test
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

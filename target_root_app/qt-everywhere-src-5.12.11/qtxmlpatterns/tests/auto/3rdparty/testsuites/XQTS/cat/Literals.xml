@@ -1,0 +1,1045 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="Literals" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>Literals</title>
+      <description>
+                     Test string and numeric literals in XQuery.
+                  </description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="Literals001" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Simple use case for string literals.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals001" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals001.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals002" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Simple use case for string literals.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals002" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals002.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals003" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test case where string literal contains a new line.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals003" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals003.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals004" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test case where string literal contains a new line.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals004" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals004.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals005" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test case for a sequence of string literals.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals005" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Literals005.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals006" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Unterminated string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals006" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals007" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Unterminated string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals007" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals008" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Incorrectly terminated string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals008" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals009" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Incorrectly terminated string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals009" date="2004-11-23"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals010" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid interger literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals010" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals010.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals011" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid interger literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals011" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals011.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals012" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals012" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals012.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals013" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals013" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals013.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals014" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals014" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals014.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals015" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals015" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals015.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals016" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals016" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals016.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals017" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals017" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals017.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals018" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals018" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals018.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals019" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals019" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals019.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals020" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals020" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals021" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals021" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals021.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals022" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals022" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals022.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals023" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals023" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals023.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals024" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals024" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals024.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals025" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals025" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals025.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals026" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals026" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals026.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals027" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals027" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals027.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals028" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals028" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals028.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals029" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals029" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals029.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals030" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals030" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals030.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals031" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals031" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals031.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals032" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals032" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals032.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals033" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals033" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals033.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals034" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals034" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals034.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals035" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for valid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals035" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals035.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals036" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals036" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals037" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals037" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals038" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals038" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals039" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals039" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals040" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid decimal literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals040" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals041" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals041" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals042" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals042" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals043" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals043" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals044" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals044" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals045" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals045" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals046" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals046" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals047" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals047" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals048" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals048" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals049" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals049" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals050" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals050" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals051" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals051" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals052" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals052" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals053" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals053" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals054" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals054" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals055" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test for invalid double literal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals055" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals056" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for string literal containing the predefined entity reference '&amp;amp;'.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals056" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals056.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals057" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for string literal containing the predefined entity reference '&amp;quot;'.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals057" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals057.txt</output-file>
+      <output-file role="principal" compare="Text">Literals057-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals058" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for string literal containing the predefined entity reference '&amp;apos;'.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals058" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals058.txt</output-file>
+      <output-file role="principal" compare="Text">Literals058-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals059" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for string literal containing the predefined entity reference '&amp;lt;'.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals059" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals059.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals060" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for string literal containing the predefined entity reference '&amp;gt;'.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals060" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals060.txt</output-file>
+      <output-file role="principal" compare="Text">Literals060-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals061" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test for string literal containing the character reference '€' which transaltes into the 'Euro' currency symbol.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals061" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals061.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals062" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the " (quotation) character in XQuery.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals062" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals062.txt</output-file>
+      <output-file role="principal" compare="Text">Literals062-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals063" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) character in XQuery.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals063" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals063.txt</output-file>
+      <output-file role="principal" compare="Text">Literals063-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals064" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) and " (quotation) characters in XQuery.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals064" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals064.txt</output-file>
+      <output-file role="principal" compare="Text">Literals064-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Literals065" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) and " (quotation) characters in XQuery.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals065" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals065.txt</output-file>
+      <output-file role="principal" compare="Text">Literals065-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals066" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) and " (quotation) characters as part of an XML element constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals066" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Literals066.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals067" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) and " (quotation) characters as part of an XML attribute constructor. Notice that the " (quote) characters need to be entitized in the attribute content for XML validity.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals067" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Literals067.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals068" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) and " (quotation) characters as part of an XML text node constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals068" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals068.txt</output-file>
+      <output-file role="principal" compare="Text">Literals068-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Literals069" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard" Creator="Mike Rorke">
+      <description>Test the escaping of the ' (apostrophe) and " (quotation) characters as part of an XML text node constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.1.1" section-title="Literals" section-pointer="id-literals"/>
+      <query name="Literals069" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Literals069.txt</output-file>
+      <output-file role="principal" compare="Text">Literals069-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-1" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `'fo''o' eq 'fo''o'`.</description>
+      <query name="K-Literals-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-2" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `'foo' eq "foo"`.</description>
+      <query name="K-Literals-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-3" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A test whose essence is: `'f'oo'`.</description>
+      <query name="K-Literals-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-4" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>'""""' is a valid string literal.</description>
+      <query name="K-Literals-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-5" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>'''''' is a valid string literal.</description>
+      <query name="K-Literals-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-6" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>'"fo""""' is a valid string literal.</description>
+      <query name="K-Literals-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-7" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'"f"oo"' is an invalid string literal.</description>
+      <query name="K-Literals-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-8" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>'3.' is a valid number literal.</description>
+      <query name="K-Literals-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-9" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>'.3' is a valid number literal.</description>
+      <query name="K-Literals-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-10" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `1.3e-3 instance of xs:double`.</description>
+      <query name="K-Literals-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-11" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `1.e+3 instance of xs:double`.</description>
+      <query name="K-Literals-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-12" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `1.e3 instance of xs:double`.</description>
+      <query name="K-Literals-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-13" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `1231.123e3 instance of xs:double`.</description>
+      <query name="K-Literals-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-14" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `1.E3 instance of xs:double`.</description>
+      <query name="K-Literals-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-15" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `-1231.123e3 instance of xs:double`.</description>
+      <query name="K-Literals-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-16" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `3 instance of xs:integer`.</description>
+      <query name="K-Literals-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-17" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `3.3 instance of xs:decimal`.</description>
+      <query name="K-Literals-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-18" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `3.3e1 instance of xs:double`.</description>
+      <query name="K-Literals-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-19" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `"a xs:string" instance of xs:string`.</description>
+      <query name="K-Literals-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-20" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `not(xs:double("NaN"))`.</description>
+      <query name="K-Literals-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-21" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `not(xs:float("NaN"))`.</description>
+      <query name="K-Literals-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-22" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A test whose essence is: `xs:float("NaN") instance of xs:float`.</description>
+      <query name="K-Literals-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-23" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'3 &gt;E 2' is a syntatically invalid expression.</description>
+      <query name="K-Literals-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-24" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A syntactically invalid query, reminding of somekind of literal.</description>
+      <query name="K-Literals-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-25" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A syntactically invalid query.</description>
+      <query name="K-Literals-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-26" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'432f542' is a syntactically invalid expression.</description>
+      <query name="K-Literals-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-27" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'.54.45' is a syntactically invalid expression.</description>
+      <query name="K-Literals-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-28" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>'.3' is a valid literal.</description>
+      <query name="K-Literals-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-29" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An empty string is not a valid XPath/XQuery expression.</description>
+      <query name="K-Literals-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-30" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'{1}' is a syntactically invalid XQuery expression.</description>
+      <query name="K-Literals-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-31" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid character reference.</description>
+      <query name="K-Literals-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-32" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid decimal character reference.</description>
+      <query name="K-Literals-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-33" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid decimal character reference.</description>
+      <query name="K-Literals-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-34" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid decimal character reference.</description>
+      <query name="K-Literals-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-35" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid decimal character reference.</description>
+      <query name="K-Literals-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-36" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid decimal character reference, they cannot contain whitespace.</description>
+      <query name="K-Literals-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-37" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Simple test of a decimal character reference.</description>
+      <query name="K-Literals-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-37.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-38" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid hexa-decimal character reference.</description>
+      <query name="K-Literals-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-39" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid hexa-decimal character reference.</description>
+      <query name="K-Literals-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-40" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid hexa-decimal character reference.</description>
+      <query name="K-Literals-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-41" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid hexa-decimal character reference, they cannot contain whitespace.</description>
+      <query name="K-Literals-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-42" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'LT' is not a predefined character reference.</description>
+      <query name="K-Literals-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-43" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'lte' is not a predefined character reference.</description>
+      <query name="K-Literals-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-44" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'&amp;' must be escaped.</description>
+      <query name="K-Literals-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-45" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid hexa-decimal character reference.</description>
+      <query name="K-Literals-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-46" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Test containing all predefined character references and one hexa and decimal character reference.</description>
+      <query name="K-Literals-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-46.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-47" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Simple test of a hexa decimal character reference.</description>
+      <query name="K-Literals-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-47.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-Literals-48" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>The 'x' in a hexa decimal character reference must be lower case.</description>
+      <query name="K-Literals-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-49" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>An '&amp;' character reference embedded in other text.</description>
+      <query name="K-Literals-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-Literals-49.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-Literals-50" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>Character references are only allowed inside string literals.</description>
+      <query name="K-Literals-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-1" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>An invalid character reference.</description>
+      <query name="K2-Literals-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0090</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-2" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>An invalid character reference.</description>
+      <query name="K2-Literals-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-3" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Preceeding zeros are allowed in character references.</description>
+      <query name="K2-Literals-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-4" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Use a relatively large xs:integer literal.</description>
+      <query name="K2-Literals-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-4.txt</output-file>
+      <expected-error>FOAR0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-5" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Use a relatively small xs:integer literal.</description>
+      <query name="K2-Literals-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-5.txt</output-file>
+      <expected-error>FOAR0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-6" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Use a relatively large xs:decimal literal.</description>
+      <query name="K2-Literals-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-6.txt</output-file>
+      <output-file role="principal" compare="Text">K2-Literals-6-2.txt</output-file>
+      <expected-error>FOAR0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-7" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Use a relatively small xs:decimal literal, that might result in an underflow.</description>
+      <query name="K2-Literals-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-7.txt</output-file>
+      <output-file role="principal" compare="Text">K2-Literals-7-2.txt</output-file>
+      <expected-error>FOCA0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-8" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>An xs:double literal with a large significand.</description>
+      <query name="K2-Literals-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+      <expected-error>FOAR0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-9" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>An xs:double literal with a small significand.</description>
+      <query name="K2-Literals-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+      <expected-error>FOAR0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-10" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Attempt to trigger underflow in an xs:double literal.</description>
+      <query name="K2-Literals-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+      <expected-error>FOAR0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-11" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Negative zero, as a double.</description>
+      <query name="K2-Literals-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-12" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Zero, as a double.</description>
+      <query name="K2-Literals-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-13" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Negative zero, as a decimal.</description>
+      <query name="K2-Literals-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-14" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Zero, as a decimal.</description>
+      <query name="K2-Literals-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-15" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>A literal looking like a negative zero integer.</description>
+      <query name="K2-Literals-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-16" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>Use a character reference that is a decimal 32 bit overflow.</description>
+      <query name="K2-Literals-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0090</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-17" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>Use a character reference that is a hexa decimal 32 bit overflow.</description>
+      <query name="K2-Literals-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0090</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-18" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>Use a character reference that is a decimal 64 bit overflow.</description>
+      <query name="K2-Literals-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0090</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-19" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>Use a character reference that is a hexa decimal 64 bit overflow.</description>
+      <query name="K2-Literals-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0090</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-20" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>Expressions can't be separated by semi-colons.</description>
+      <query name="K2-Literals-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-21" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>XQuery doesn't have a syntax for expressing hexa decimals.</description>
+      <query name="K2-Literals-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-22" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A minus sign is not allowed in hexa character references.</description>
+      <query name="K2-Literals-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-23" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A minus sign is not allowed in decimal character references.</description>
+      <query name="K2-Literals-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-24" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A plus sign is not allowed in hexa character references.</description>
+      <query name="K2-Literals-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-25" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A plus sign is not allowed in decimal character references.</description>
+      <query name="K2-Literals-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-26" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>Only digits are allowed in decimal character references.</description>
+      <query name="K2-Literals-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-27" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>'W' is an invalid character in a hexa character reference.</description>
+      <query name="K2-Literals-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-28" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Ensure that EOLs are normalized in string literals.</description>
+      <query name="K2-Literals-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Literals-29" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A syntactically invalid character reference.</description>
+      <query name="K2-Literals-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-30" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Check EBNF 142.</description>
+      <query name="K2-Literals-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-31" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>Check EBNF 142(#2).</description>
+      <query name="K2-Literals-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-32" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Numeric literals can end with a dot.</description>
+      <query name="K2-Literals-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-33" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>Two subsequent right curlies.</description>
+      <query name="K2-Literals-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-34" FilePath="Expressions/PrimaryExpr/Literals/" scenario="parse-error">
+      <description>A main module without query body.</description>
+      <query name="K2-Literals-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-35" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Attempt to evaluate a library module. The specification does not specify what an implementation should do, so we allow any output and any error code.</description>
+      <query name="K2-Literals-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-36" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Attempt to evaluate a library module. The specification does not specify what an implementation should do, so we allow any output and any error code. This is a simpler version of the previous query.</description>
+      <query name="K2-Literals-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+      <expected-error>*</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-37" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>Ensure 'import' is properly parsed as a keyword.</description>
+      <query name="K2-Literals-37" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-38" FilePath="Expressions/PrimaryExpr/Literals/" scenario="runtime-error">
+      <description>Ensure 'schema' is properly parsed as a keyword.</description>
+      <query name="K2-Literals-38" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Literals-39" FilePath="Expressions/PrimaryExpr/Literals/" scenario="standard">
+      <description>Ensure that EOLs are normalized in string literals, using single quotes.</description>
+      <query name="K2-Literals-39" date="2008-01-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Literals-39.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,244 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NormalizeSpaceFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:normalize-space</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-normalize-space1args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "normalize-space" function with the arguments set as follows: $arg = notNormalizedString(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.5" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-normalize-space1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space1args-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "normalize-space" function with the arguments set as follows: $arg = notNormalizedString(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.5" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-normalize-space1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space1args-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "normalize-space" function with the arguments set as follows: $arg = notNormalizedString(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.5" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-normalize-space1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space1args-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-space with an empty sequence argument.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space1args-4" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space1args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space0args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test normalize-space without argument.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space0args-1" date="2005-09-23-04:00"/>
+      <input-file variable="input-context" role="principal-data">textWithSpaces</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space0args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function as per example 1 of the Functions and Operators specs for this function.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-1" date="2005-10-14"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-normalize-space-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with no arguments and no context node. Should raise an error.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-2" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument containing a single tab character.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-3" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument containing a single newline character.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-4" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument containing multiple tab characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-5" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument containing multiple newline characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-6" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument containing a single tab and a single newline character.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-7" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument containing multiple tab and newline characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-8" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only spaces.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-9" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only a single space.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-10" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-11" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing the zero length string.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-11" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-12" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only a single tab character.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-12" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-13" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only tab characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-13" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-14" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only a single newline character.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-14" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-15" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only multiple newline characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-15" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-16" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only spaces and tab characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-16" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-17" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only spaces and newline characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-17" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-18" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only tab and newline characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-18" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-19" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument string containing only tabs and numerical characters.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-19" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-20" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument set to invocation to fn:string function.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-20" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-normalize-space-21" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test normalize-space function with argument set another fn:normalize-space function.</description>
+      <spec-citation section-number="7.4.5" spec="FuncOps" section-title="fn:normalize-space" section-pointer="func-normalize-space"/>
+      <query name="fn-normalize-space-21" date="2005-10-18"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-normalize-space-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `normalize-space("a string", "wrong param")`.</description>
+      <query name="K-NormalizeSpaceFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then normalize-space() else true()`.</description>
+      <query name="K-NormalizeSpaceFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-2.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-space("foo") eq "foo"`.</description>
+      <query name="K-NormalizeSpaceFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-space(" foo") eq "foo"`.</description>
+      <query name="K-NormalizeSpaceFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-space("foo ") eq "foo"`.</description>
+      <query name="K-NormalizeSpaceFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-space(()) eq ""`.</description>
+      <query name="K-NormalizeSpaceFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-space("f o o ") eq "f o o"`.</description>
+      <query name="K-NormalizeSpaceFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>A test whose essence is: `normalize-space(" 143 1239 fhjkls ") eq "143 1239 fhjkls"`.</description>
+      <query name="K-NormalizeSpaceFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NormalizeSpaceFunc-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/NormalizeSpaceFunc/" scenario="standard">
+      <description>Invoke normalize-space on itself. Implementations supporting the static typing feature may raise XPTY0004.</description>
+      <query name="K-NormalizeSpaceFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NormalizeSpaceFunc-9.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

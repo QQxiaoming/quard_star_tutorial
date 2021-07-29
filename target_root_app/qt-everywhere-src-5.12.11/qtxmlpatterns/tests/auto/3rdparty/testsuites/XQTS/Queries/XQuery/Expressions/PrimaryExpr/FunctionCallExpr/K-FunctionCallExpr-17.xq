@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FunctionCallExpr-17                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: No function by name fn:format-time() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1). :)
+(:*******************************************************:)
+matches(format-time(current-time(), "[H01]:[m01]", (), (), ()), "..:..")

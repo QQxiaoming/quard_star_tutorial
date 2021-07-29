@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NameTest-29                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A element name cannot be a string literal, inside element(). :)
+(:*******************************************************:)
+<e/>/attribute("any"))

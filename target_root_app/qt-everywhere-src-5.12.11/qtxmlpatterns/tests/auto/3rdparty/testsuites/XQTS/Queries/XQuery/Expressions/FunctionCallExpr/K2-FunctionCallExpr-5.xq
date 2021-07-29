@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-FunctionCallExpr-5                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Function unparsed-entity-public-id() is not available in XQuery. :)
+(:*******************************************************:)
+unparsed-entity-public-id("str")

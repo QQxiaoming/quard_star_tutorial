@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-ComputeConAttr-55                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure that the 'xml' prefix has been constructed for a QName which has the XML namespace. :)
+(:*******************************************************:)
+prefix-from-QName(node-name(attribute {QName("http://www.w3.org/XML/1998/namespace", "attr")} {()}))

@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-string-join-6                                 :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri June 24, 2005                                :)
+(:Purpose: Evaluates The "string-join" function          :)
+(: with the arguments set as follows:                    :)
+(:$arg1 =  ""                                            :)
+(:$arg2 = "A Character String".                          :)
+(:*******************************************************:)
+
+fn:count(fn:string-join("","A Character String"))

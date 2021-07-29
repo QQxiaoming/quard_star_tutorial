@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-Axes-92                                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-10-03T14:53:32+01:00                       :)
+(: Purpose: Test parsing of 'gt'.                        :)
+(:*******************************************************:)
+empty(<e/>/(gt treat as xs:integer? gt gt treat as xs:integer?))

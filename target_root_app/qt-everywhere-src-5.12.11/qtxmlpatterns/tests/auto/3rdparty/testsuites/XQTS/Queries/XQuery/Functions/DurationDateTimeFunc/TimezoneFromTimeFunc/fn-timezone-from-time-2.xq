@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: fn-timezone-from-time-2                          :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 27, 2005                                    :)
+(:Purpose: Evaluates The "timezone-from-time" function   :)
+(:as per example 2 (for this function) from the F&O.     :)
+(:specs. Use fn:count to aoid empty file.                :)
+(:*******************************************************:)
+
+fn:count(fn:timezone-from-time(xs:time("13:20:00")))

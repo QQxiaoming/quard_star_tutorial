@@ -1,0 +1,190 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="HoursFromTimeFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:hours-from-time</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-hours-from-time1args-1" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function with the arguments set as follows: $arg = xs:time(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time1args-2" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function with the arguments set as follows: $arg = xs:time(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time1args-3" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function with the arguments set as follows: $arg = xs:time(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-1" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function as per example 1 (of this function) of the Functions Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-1" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-2" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function as per example 2 (of this function) of the Functions Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-2" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-3" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function as per example 3 (of this function) of the Functions Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-3" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-4" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function as per example 4 (of this function) of the Functions Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-4" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-5" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function using empty sequence as argument. Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-5" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-6" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function with argument set so the function returns 0.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-6" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-7" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function with argument set so the function returns 23.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-7" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-8" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of an addition expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-8" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-9" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a substraction expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-9" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-10" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a multiplication expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-10" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-11" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-11" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-12" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of an idiv expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-12" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-13" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a mod expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-13" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-14" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a numeric-unary-plus expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-14" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-15" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a numeric-unary-minus expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-15" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-16" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-16" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-17" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-17" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-18" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-18" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-hours-from-time-19" FilePath="Functions/DurationDateTimeFunc/HoursFromTimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "hours-from-time" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.18" section-title="fn:hours-from-time" section-pointer="func-hours-from-time"/>
+      <query name="fn-hours-from-time-19" date="2005-06-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-hours-from-time-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-HoursFromTimeFunc-1" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/HoursFromTimeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `hours-from-time()`.</description>
+      <query name="K-HoursFromTimeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-HoursFromTimeFunc-2" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/HoursFromTimeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `hours-from-time((), "Wrong param")`.</description>
+      <query name="K-HoursFromTimeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-HoursFromTimeFunc-3" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/HoursFromTimeFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(hours-from-time(()))`.</description>
+      <query name="K-HoursFromTimeFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-HoursFromTimeFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-HoursFromTimeFunc-4" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/HoursFromTimeFunc/" scenario="standard">
+      <description>A test whose essence is: `hours-from-time(()) instance of xs:integer?`.</description>
+      <query name="K-HoursFromTimeFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-HoursFromTimeFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-HoursFromTimeFunc-5" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/HoursFromTimeFunc/" scenario="standard">
+      <description>A test whose essence is: `hours-from-time(xs:time("23:11:12.43")) eq 23`.</description>
+      <query name="K-HoursFromTimeFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-HoursFromTimeFunc-5.txt</output-file>
+   </test-case>
+</test-group>

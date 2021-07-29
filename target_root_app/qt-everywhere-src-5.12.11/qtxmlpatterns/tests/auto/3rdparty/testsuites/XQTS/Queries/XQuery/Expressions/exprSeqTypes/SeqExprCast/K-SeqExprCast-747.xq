@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-747                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: It is not possible to extract an Effective Boolean Value from the type xs:dayTimeDuration, with the boolean() function. :)
+(:*******************************************************:)
+boolean(xs:dayTimeDuration("P3DT2H"))

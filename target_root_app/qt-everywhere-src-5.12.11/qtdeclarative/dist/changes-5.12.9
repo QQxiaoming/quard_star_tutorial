@@ -1,0 +1,46 @@
+Qt 5.12.9 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.8.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - [Coverity 175402] Refactored some code so that Coverity and future human
+   readers can understand it.
+ - [Coverity 190701] Standardized QV4_SHOW_BYTECODE output for JS classes.
+ - [Coverity 193545] Fixed a dangling pointer dereference when getting
+   QML property values from dynamic accessors.
+ - [QTBUG-81581][QTBUG-83384] Fixed various crashes related to the JavaScript
+   accumulator register.
+ - JavaScript's isSafeInteger() covers a sensible range now. Before it
+   flagged anything greater than 55 as unsafe.
+ - [QTBUG-84095] Fixed a crash on QML context destruction.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - [Coverity 218729] If setting a new root item on QQuickView fails, the
+   old one is no longer deleted.
+ - [QTBUG-73929][QTBUG-82474] Fixed a crash by releasing resources while
+   closing a window.
+ - [QTBUG-40220][QTBUG-83856] Recursive loops caused by items that call
+   polish() within updatePolish() are now detected and terminated earlier.
+ - [QTBUG-55879][QTBUG-79339] Fixed QQuickItem::grabToImage() with
+   QQuickWidget and QQuickRenderControl.

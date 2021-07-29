@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-LocalNameFromQNameFunc-2                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `local-name-from-QName(1, 2)`. :)
+(:*******************************************************:)
+local-name-from-QName(1, 2)

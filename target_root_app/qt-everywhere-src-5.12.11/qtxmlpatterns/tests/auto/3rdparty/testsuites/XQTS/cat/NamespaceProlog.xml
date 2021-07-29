@@ -1,0 +1,289 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="NamespaceProlog" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Namespace Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="namespaceDecl-1" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of multiple namespace declaration with same prefix.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-1" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0033</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-2" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of usage namespace prefix with no declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-2" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-3" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of redeclaration of xml prefix and its namespace uri.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-3" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-4" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of redeclaration of the namespace uri associated with "xml".</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="namespaceDecl-4" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-5" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of redeclaration of the "xmls" prefix.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-5" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-6" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of typical usage of namespace declaration as per exmaple 1 for this section in the query specs.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-6" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-7" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation usage of namespace declaration, different prefix bounded to same namespace uri and use of same local name (example 2 of this section from the query specs).</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-7" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-8" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="parse-error" Creator="Carmelo Montanez">
+      <description>Verify that during a namespace declaration, the prefix name should be an NCName.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-8" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-9" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the "xs" prefix can be redeclared.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-9" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-10" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the "xsi" prefix can be redeclared.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-10" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-11" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the "fn" prefix can be redeclared.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-11" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-12" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the "xdt" prefix can be redeclared.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-12" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-13" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the "local" prefix can be redeclared.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-13" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-14" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "XML" is different from "xml" as prefix for namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-14" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-15" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "XMLNS" is different from "xmlns" as prefix for namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-15" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-16" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that a query wide namespace declaration can be overriden by a loal declaration during element construction.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-16" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-17" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "abc" is a valid namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-17" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-18" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "ftp://ftp.is.co.za/rfc/somefile.txt" is a valid namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-18" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-19" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the same namespace URI can be bound to different prefixes.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-19" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-20" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the same namespace URI literal can contain digits.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-20" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-21" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the prefix name and the namespace URI can be the same.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-21" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-22" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "gopher://spinaltap.micro.umn.edu/00/Weather/California/somefile" is a valid namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-22" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-23" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "abc&amp;" is a valid namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-23" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="namespaceDecl-24" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that "mailto:someuser@someserver.com" is a valid namespace declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.12" section-title="Namespace Declaration" section-pointer="id-namespace-declaration"/>
+      <query name="namespaceDecl-24" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">namespaceDecl-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-NamespaceProlog-1" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard">
+      <description>A 'declare namespace' expression containing many comments, using apostrophes for the URILiteral.</description>
+      <query name="K-NamespaceProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NamespaceProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-NamespaceProlog-2" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="standard">
+      <description>A 'declare namespace' expression containing many comments, using quotes for the URILiteral.</description>
+      <query name="K-NamespaceProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NamespaceProlog-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-NamespaceProlog-3" FilePath="Expressions/PrologExpr/NamespaceProlog/" scenario="parse-error">
+      <description>':=' can't be used in 'declare namespace, '=' must be used.</description>
+      <query name="K-NamespaceProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-1" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>A namespace declaration cannot occur twice for the same prefix, no matter what.</description>
+      <query name="K2-NamespaceProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0033</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-2" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>A namespace declaration cannot occur twice for the same prefix, no matter what.</description>
+      <query name="K2-NamespaceProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0033</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-3" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>A namespace declaration cannot occur twice for the same prefix, no matter what.</description>
+      <query name="K2-NamespaceProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0033</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-4" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>When a pre-declared namespace prefix has been undeclared, it is not available.</description>
+      <query name="K2-NamespaceProlog-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-5" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="standard">
+      <description>It is ok to undeclare a non-bound namespace.</description>
+      <query name="K2-NamespaceProlog-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NamespaceProlog-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-6" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>It is not possible to undeclare the 'xml' prefix.</description>
+      <query name="K2-NamespaceProlog-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-7" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>It is not possible to undeclare the 'xmlns' prefix.</description>
+      <query name="K2-NamespaceProlog-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-8" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>Undeclare the 'xdt' prefix.</description>
+      <query name="K2-NamespaceProlog-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-9" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>Undeclare the 'xs' prefix.</description>
+      <query name="K2-NamespaceProlog-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-10" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>Undeclare the 'local' prefix.</description>
+      <query name="K2-NamespaceProlog-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-11" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>Undeclare the 'fn' prefix.</description>
+      <query name="K2-NamespaceProlog-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-12" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>Undeclare the 'xsi' prefix.</description>
+      <query name="K2-NamespaceProlog-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-13" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="standard">
+      <description>Use the focus from within a attribute value template.</description>
+      <query name="K2-NamespaceProlog-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NamespaceProlog-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-14" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="parse-error">
+      <description>Namespace declaration must appear before a variable declaration.</description>
+      <query name="K2-NamespaceProlog-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-15" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="runtime-error">
+      <description>Bind the prefix 'xml' to an invalid namespace.</description>
+      <query name="K2-NamespaceProlog-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceProlog-16" FilePath="exprSeqTypes/PrologExpr/NamespaceProlog/" scenario="parse-error">
+      <description>XQuery has no such expression.</description>
+      <query name="K2-NamespaceProlog-16" date="2008-06-12+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+</test-group>

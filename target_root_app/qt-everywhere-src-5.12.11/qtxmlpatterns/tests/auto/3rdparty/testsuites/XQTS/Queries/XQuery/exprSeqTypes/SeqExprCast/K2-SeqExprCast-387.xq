@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-387                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast xs:short to xs:untypedAtomic.           :)
+(:*******************************************************:)
+xs:untypedAtomic(xs:short(3))

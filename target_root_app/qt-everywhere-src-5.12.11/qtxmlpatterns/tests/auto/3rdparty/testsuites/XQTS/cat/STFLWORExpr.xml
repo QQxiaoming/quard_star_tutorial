@@ -1,0 +1,253 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="STFLWORExpr" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Static Typing of FLWOR expressions</title>
+      <description>Tests for expressions involving static type failures in FLWOR expressions</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="statictyping-21" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a let expression, where a variable is used and whose value is not set.</description>
+      <spec-citation spec="XQuery" section-number="2.1.1" section-title="Static Context" section-pointer="static_context"/>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-21" date="2006-04-11"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-22" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a let expression, where a variable is used in prolog and whose value is not set.</description>
+      <spec-citation spec="XQuery" section-number="2.2.3.1" section-title="Static Analysis Phase" section-pointer="id-static-analysis"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-22" date="2006-04-11"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-23" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a for expression, where a variable is used and whose value is not set.</description>
+      <spec-citation spec="XQuery" section-number="2.1.1" section-title="Static Context" section-pointer="static_context"/>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-23" date="2006-07-11"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-24" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Sorin Nasoi">
+      <description>Evaluation of static typing feature within a "where" clause. Wrong operand for expression (uses fn:not).</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5651</reflects-resolution>
+      <query name="statictyping-24" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ST-WhereExpr001" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test 'where' clause with heterogenous sequences. First item is a node.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-WhereExpr001" date="2005-06-24">
+         <description>Test 'where' clause with heterogenous sequences. First item is a node.</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ST-WhereExpr002" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test 'where' clause with heterogenous sequences. First item is a value.</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="ST-WhereExpr002" date="2005-06-24">
+         <description>Test 'where' clause with heterogenous sequences. First item is a value.</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-1" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (addition expression).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-1" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-2" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses fn:abs).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-2" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-3" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses fn:avg).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-3" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-4" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses fn:max).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-4" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-5" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses fn:min).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-5" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-6" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses fn:sum).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-6" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-7" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses fn:boolean).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-7" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-8" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses subtraction operation).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-8" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-9" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses multiplication operation).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-9" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-10" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses "div" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-10" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-11" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses "idiv" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-11" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-12" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong operand for expression (uses mod operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-12" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-13" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "eq" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-13" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-14" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "le" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-14" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-15" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "lt" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-15" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-16" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "gt" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-16" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-17" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "ne" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-17" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-18" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "+" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-18" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-19" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "-" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-19" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="statictyping-20" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test 'where' clause with expression that contains wrong cardinality for operator(uses "*" operator).</description>
+      <spec-citation spec="XQuery" section-number="3.8.2" section-title="Where Clause" section-pointer="id-where"/>
+      <spec-citation spec="XQuery" section-number="5.2.3" section-title="Static Typing Feature" section-pointer="id-static-typing-feature"/>
+      <query name="statictyping-20" date="2005-12-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ST-PITest-01" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Michael Dyck">
+      <description>
+         In LetClause, binding expr's ST must be subtype of variable's ST.
+         Under REC FS, both are 'processing-instruction?', so STA succeeds.
+         Under PER FS, former is 'processing-instruction filesystem?',
+            latter is 'processing-instruction filesytem', so STA fails, raises error.
+         (Note that an implementation that doesn't do STA will not raise an error.)
+      </description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3946</reflects-resolution>
+      <query name="ST-PITest-01" date="2010-02-08"/>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ST-PITest-02" FilePath="StaticTyping/STFLWORExpr/" scenario="runtime-error" Creator="Michael Dyck">
+      <description>
+         In LetClause, binding expr's ST must be subtype of variable's ST.
+         Under REC FS, both are 'processing-instruction?', so STA succeeds.
+         Under PER FS, former is 'processing-instruction nonexistent',
+            latter is 'processing-instruction filesytem', so STA fails, raises error.
+         (Note that an implementation that doesn't do STA will not raise an error,
+         because the LetClause isn't evaluated.)
+      </description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3946</reflects-resolution>
+      <query name="ST-PITest-02" date="2010-02-08"/>
+      <input-file role="principal-data" variable="input-context">fsx_NS</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

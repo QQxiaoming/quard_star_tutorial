@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ForExprWithout-12                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A test whose essence is: `4 eq (for $foo in 1, $bar in 2, $moo in 3 return 4)`. :)
+(:*******************************************************:)
+4 eq (for $foo in 1, $bar in 2, $moo in 3 return 4)

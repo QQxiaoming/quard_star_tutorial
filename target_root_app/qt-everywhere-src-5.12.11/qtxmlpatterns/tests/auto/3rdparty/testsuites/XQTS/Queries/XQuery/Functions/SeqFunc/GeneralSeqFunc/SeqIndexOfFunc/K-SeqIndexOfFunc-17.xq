@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqIndexOfFunc-17                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `index-of(xs:untypedAtomic("example.com/"), xs:anyURI("example.com/"))`. :)
+(:*******************************************************:)
+index-of(xs:untypedAtomic("example.com/"), xs:anyURI("example.com/"))

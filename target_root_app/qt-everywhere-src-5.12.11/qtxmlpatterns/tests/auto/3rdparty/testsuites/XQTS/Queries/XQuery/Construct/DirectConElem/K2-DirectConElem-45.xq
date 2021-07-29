@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElem-45                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract the typed value of a single element node. :)
+(:*******************************************************:)
+data(<e>text</e>)

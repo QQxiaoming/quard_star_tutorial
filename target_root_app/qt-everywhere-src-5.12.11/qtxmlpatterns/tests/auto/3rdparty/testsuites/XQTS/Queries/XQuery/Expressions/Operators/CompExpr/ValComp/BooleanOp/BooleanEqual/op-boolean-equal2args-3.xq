@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-boolean-equal2args-3                           :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:17 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:boolean-equal" operator     :)
+(: with the arguments set as follows:                    :)
+(:$value1 = xs:boolean(upper bound)                      :)
+(:$value2 = xs:boolean(lower bound)                      :)
+(:*******************************************************:)
+
+xs:boolean("0") eq xs:boolean("false")

@@ -1,0 +1,262 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="FunctionCallExpr" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Function Calls</title>
+      <description>Contains tests verifying the function calling mechanism; not a particular function implementation.</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-1" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `func-does-not-exist(1, 2, 3)`.</description>
+      <query name="K-FunctionCallExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-2" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `fn:func-does-not-exist(1, 2, 3)`.</description>
+      <query name="K-FunctionCallExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-3" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `xs:func-does-not-exist(1, 2, 3)`.</description>
+      <query name="K-FunctionCallExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-4" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `local:func-does-not-exist(1, 2, 3)`.</description>
+      <query name="K-FunctionCallExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-5" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `prefix-does-not-exist:func-does-not-exist(1, 2, 3)`.</description>
+      <query name="K-FunctionCallExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-6" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="parse-error">
+      <description>A function call containing an invalid QName as name.</description>
+      <query name="K-FunctionCallExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-7" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="parse-error">
+      <description>A function call containing an invalid QName as name.</description>
+      <query name="K-FunctionCallExpr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-8" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="parse-error">
+      <description>A function call containing an invalid QName as name.</description>
+      <query name="K-FunctionCallExpr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-9" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="parse-error">
+      <description>A function call containing an invalid QName as name.</description>
+      <query name="K-FunctionCallExpr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-10" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="parse-error">
+      <description>A function call containing an invalid QName as name.</description>
+      <query name="K-FunctionCallExpr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-11" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:document() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-12" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:unparsed-text() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-13" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:unparsed-text() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-14" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:key() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-15" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-number() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-15.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-16" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-time() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-16.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-17" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-time() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-17.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-18" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-date() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-18.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-19" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-dateTime() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-19.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-20" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-dateTime() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-20.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-21" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:format-date() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-21.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-22" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:current() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-23" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:unparsed-entity-uri() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-24" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:unparsed-entity-public-id() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-FunctionCallExpr-25" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:generate-id() exists in XQuery 1.0 (although one does in XSLT and XQuery 1.1).</description>
+      <query name="K-FunctionCallExpr-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text" spec-version="1.1">K-FunctionCallExpr-25.txt</output-file>
+      <expected-error spec-version="1.0">XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-26" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:system-property() exists(although one does in XSL-T).</description>
+      <query name="K-FunctionCallExpr-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-27" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:escape-uri() exists(although one did in older 'Functions &amp; Operators' drafts).</description>
+      <query name="K-FunctionCallExpr-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-FunctionCallExpr-28" FilePath="Expressions/PrimaryExpr/FunctionCallExpr/" scenario="runtime-error">
+      <description>No function by name fn:sub-sequence() exists(although one by name fn:subsequence does).</description>
+      <query name="K-FunctionCallExpr-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FunctionCallExpr-1" FilePath="Expressions/FunctionCallExpr/" scenario="standard">
+      <description>Two user functions with many arguments.</description>
+      <query name="K2-FunctionCallExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FunctionCallExpr-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-2" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function current-grouping-key() is not available in XQuery.</description>
+      <query name="K2-FunctionCallExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-3" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function current() is not available in XQuery.</description>
+      <query name="K2-FunctionCallExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-4" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function unparsed-entity-uri() is not available in XQuery.</description>
+      <query name="K2-FunctionCallExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-5" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function unparsed-entity-public-id() is not available in XQuery.</description>
+      <query name="K2-FunctionCallExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-6" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function generate-id() is not available in XQuery.</description>
+      <query name="K2-FunctionCallExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-7" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function generate-id() is not available in XQuery(#2).</description>
+      <query name="K2-FunctionCallExpr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-8" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function system-property() is not available in XQuery(#2).</description>
+      <query name="K2-FunctionCallExpr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-FunctionCallExpr-9" FilePath="Expressions/FunctionCallExpr/" scenario="runtime-error">
+      <description>Function key() is not available in XQuery.</description>
+      <query name="K2-FunctionCallExpr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FunctionCallExpr-10" FilePath="Expressions/FunctionCallExpr/" scenario="standard">
+      <description>Check that nodes, when passed through function arguments, have proper node identities.</description>
+      <query name="K2-FunctionCallExpr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FunctionCallExpr-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FunctionCallExpr-11" FilePath="Expressions/FunctionCallExpr/" scenario="standard">
+      <description>A very simple string-difference function.</description>
+      <query name="K2-FunctionCallExpr-11" static-name="K2-FunctionCallExpr-11-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FunctionCallExpr-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FunctionCallExpr-12" FilePath="Expressions/FunctionCallExpr/" scenario="standard">
+      <description>Trigger an infinite recursion in one implementation.</description>
+      <query name="K2-FunctionCallExpr-12" date="2008-05-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FunctionCallExpr-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-FunctionCallExpr-13" FilePath="Expressions/FunctionCallExpr/" scenario="standard">
+      <description>Have a function which recurses infintely, but which never is called.</description>
+      <query name="K2-FunctionCallExpr-13" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-FunctionCallExpr-13.txt</output-file>
+   </test-case>
+</test-group>

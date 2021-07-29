@@ -1,0 +1,238 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ConText" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Text Node Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-text-enclexpr-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in text node content - atomic values.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-enclexpr-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-enclexpr-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-enclexpr-2" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in text node content - nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-enclexpr-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-enclexpr-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-enclexpr-3" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in text node content - empty string.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-enclexpr-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-enclexpr-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-enclexpr-4" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in text node content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-enclexpr-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-enclexpr-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-enclexpr-5" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in text node content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-enclexpr-5" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Text">Constr-text-enclexpr-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-doc-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip document nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-doc-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Text">Constr-text-doc-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-parent-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-parent-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-parent-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-string-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>String value of text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-string-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-string-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-data-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Typed value of text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-data-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-data-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-count-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Count text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-count-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-count-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-count-2" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Count text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-count-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-count-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-count-3" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Count text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-count-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-count-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-count-4" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Count text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-count-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-count-4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-count-5" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Count text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-count-5" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-count-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-count-6" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Count text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-count-6" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-count-6.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-adjtext-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description/>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-adjtext-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-adjtext-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-adjtext-2" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description/>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-adjtext-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-adjtext-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-nested-1" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested text node constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-nested-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-text-nested-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-nested-2" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested text node constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-nested-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-text-nested-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-text-nested-3" FilePath="Expressions/Construct/ComputeCon/ConText/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested text node constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.4" section-title="Text Node Constructors" section-pointer="id-textConstructors"/>
+      <query name="Constr-text-nested-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-text-nested-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConText-1" FilePath="Construct/ComputeCon/ConText/" scenario="parse-error">
+      <description>Text constructors cannot specify a name.</description>
+      <query name="K2-ConText-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConText-2" FilePath="Construct/ComputeCon/ConText/" scenario="parse-error">
+      <description>Text constructors cannot specify a name(#2).</description>
+      <query name="K2-ConText-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-3" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>An empty text node is nevertheless a text node, not the empty sequence.</description>
+      <query name="K2-ConText-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConText-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-4" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>Construct from an empty sequence.</description>
+      <query name="K2-ConText-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConText-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConText-5" FilePath="Construct/ComputeCon/ConText/" scenario="parse-error">
+      <description>The enclosed expression isn't optional.</description>
+      <query name="K2-ConText-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-6" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>Test the atomized type.</description>
+      <query name="K2-ConText-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConText-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-7" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>The end of content in a CDATA section may end with ']'.</description>
+      <query name="K2-ConText-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConText-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-8" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>The end of content in a CDATA section may end with many ']'(#2).</description>
+      <query name="K2-ConText-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConText-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-9" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>The end of content in a CDATA section may end with ']'(#3).</description>
+      <query name="K2-ConText-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConText-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-10" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>The end of content in a CDATA section may end with many ']'(#4).</description>
+      <query name="K2-ConText-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConText-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConText-11" FilePath="Construct/ComputeCon/ConText/" scenario="parse-error">
+      <description>A CDATA section ending incorrectly.</description>
+      <query name="K2-ConText-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConText-12" FilePath="Construct/ComputeCon/ConText/" scenario="parse-error">
+      <description>A CDATA section ending incorrectly(#2).</description>
+      <query name="K2-ConText-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConText-13" FilePath="Construct/ComputeCon/ConText/" scenario="parse-error">
+      <description>An element ending incorrectly.</description>
+      <query name="K2-ConText-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-14" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>Ensure that an empty text node between two atomic values are serialized correctly.</description>
+      <query name="K2-ConText-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ConText-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConText-15" FilePath="Construct/ComputeCon/ConText/" scenario="standard">
+      <description>Ensure that an empty text node between two atomic values are serialized correctly(#2).</description>
+      <query name="K2-ConText-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConText-15.txt</output-file>
+   </test-case>
+</test-group>

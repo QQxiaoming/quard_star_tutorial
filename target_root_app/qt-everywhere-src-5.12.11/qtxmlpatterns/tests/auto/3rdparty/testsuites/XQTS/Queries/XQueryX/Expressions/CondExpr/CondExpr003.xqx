@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:ifThenElseExpr>
+        <xqx:ifClause>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">false</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:ifClause>
+        <xqx:thenClause>
+          <xqx:elementConstructor>
+            <xqx:tagName>elem1</xqx:tagName>
+          </xqx:elementConstructor>
+        </xqx:thenClause>
+        <xqx:elseClause>
+          <xqx:elementConstructor>
+            <xqx:tagName>elem2</xqx:tagName>
+          </xqx:elementConstructor>
+        </xqx:elseClause>
+      </xqx:ifThenElseExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

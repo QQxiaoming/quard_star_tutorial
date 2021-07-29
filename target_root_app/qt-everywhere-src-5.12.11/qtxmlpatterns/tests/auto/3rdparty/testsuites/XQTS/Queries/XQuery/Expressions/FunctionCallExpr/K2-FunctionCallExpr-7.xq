@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-FunctionCallExpr-7                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Function generate-id() is not available in XQuery(#2). :)
+(:*******************************************************:)
+generate-id()

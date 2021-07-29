@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprTreat-15                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A complex 'treat as' expression, stressing parser and evaluation logic. Implementations supporting the static typing feature may issue XPTY0004. :)
+(:*******************************************************:)
+(4 treat as item() + - 5) = ((4 treat as item()+) - 5)

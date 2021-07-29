@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-107                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Fractions are disallowed in negativeInteger. :)
+(:*******************************************************:)
+xs:negativeInteger("-3.0")

@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: deep-equallng2args-2                              :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "deep-equal" function           :)
+(: with the arguments set as follows:                    :)
+(:$parameter1 = xs:long(mid range)                       :)
+(:$parameter2 = xs:long(lower bound)                     :)
+(:*******************************************************:)
+
+fn:deep-equal((xs:long("-47175562203048468")),(xs:long("-92233720368547758")))

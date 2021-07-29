@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NumericLT-1                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Compare two xs:unsignedLong values.          :)
+(:*******************************************************:)
+xs:unsignedLong("100") lt xs:unsignedLong("18446744073709551615")

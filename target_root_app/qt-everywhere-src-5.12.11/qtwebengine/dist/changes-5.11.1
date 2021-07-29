@@ -1,0 +1,97 @@
+Qt 5.11.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.1 Changes                           *
+****************************************************************************
+
+Behavior Changes
+----------------
+
+ - [QTBUG-57516] Drag&Drop is now disabled for QML based applications, when
+   platform does not support multiple top-level windows (like EGLFS).
+
+
+Chromium
+--------
+
+ - Updated Chromium to 65.0.3325.230
+ - Security fixes from Chromium up to version 67.0.3396.87, including:
+     * CVE-2018-6120
+     * CVE-2018-6123
+     * CVE-2018-6124
+     * CVE-2018-6126
+     * CVE-2018-6127
+     * CVE-2018-6129
+     * CVE-2018-6130
+     * CVE-2018-6132
+     * CVE-2018-6133
+     * CVE-2018-6134
+     * CVE-2018-6135
+     * CVE-2018-6137
+     * CVE-2018-6142
+     * CVE-2018-6143
+     * CVE-2018-6144
+     * CVE-2018-6145
+     * CVE-2018-6148
+     * CVE-2018-6149
+     * Security Bug 826946
+     * Security Bug 826193
+     * Security Bug 825524
+     * Security Bug 823864
+     * Security Bug 835184
+     * Security Bug 835371
+     * Security Bug 836511
+  - Fix build with GCC 8.1
+
+
+General
+-------
+
+    * [QTBUG-68699] Fix crash with non-integer Qt scaling
+    * [QTBUG-68376] Fix WebCursor scaling and hotspot
+    * [QTBUG-68224] Remove old focusProxy widget from layout in RWHVQDW::initAsChild
+    * [QTBUG-68076] Fix keyboard focus for speculative RenderFrameHosts
+    * [QTBUG-61969] Replace invalid characters in WebChannel messages
+    * [QTBUG-66656] Keep settings synchronized when RVH swaps
+    * [QTBUG-64071] Only add the first found widevine CDM
+    * [QTBUG-68354] Fix overeager disabling of QActions in QWebEnginePage
+    * [QTBUG-68174] Fix color space conversion of YUV video nodes
+    * [QTBUG-66656, QTBUG-68424] Apply settings on pending RVH too
+    * [QTBUG-67726] Fix handling of bad @match directives
+    * [QTBUG-66046] Fix finishing IME composition
+
+
+Build
+-----
+
+    * [QTBUG-68752] Fix compilation with opengl es2
+    * [QTBUG-68244] Narrow include
+    * [QTBUG-67977] Cleanup pdfium_document_wrapper_qt.h include
+    * [QTBUG-68439] Do make freetype checks in Qt Gui and Qt WebEngine orthogonal
+    * [QTBUG-67983] Fix hostcompiler test for qt 'root' build
+    * [QTBUG-68464] Workaround long path issue on Windows
+    * Fix build without qtlocation
+
+
+Documentation
+-------------
+
+    * [QTBUG-64816] Improve user experience in stylesheet example
+    * [QTBUG-68364] Doc: Add examples of enabling proprietary codecs

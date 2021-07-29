@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DataFunc-2                                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: fn:data() must be passed at most one argument. :)
+(:*******************************************************:)
+data(1, 2)

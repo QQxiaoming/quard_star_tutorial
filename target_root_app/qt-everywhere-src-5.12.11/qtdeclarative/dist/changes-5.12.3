@@ -1,0 +1,75 @@
+Qt 5.12.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.2.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - [QTBUG-74677] Avoid redundant slashes and handle redundant enums when
+   converting resource URLs.
+ - [QTBUG-74190] Fixed a crash related to freezing properties.
+ - [QTBUG-58559] Fixed a memory leak when deleting dynamic properties on
+   JS objects (trigger garbage collection).
+ - [QTBUG-74532] qmlcachegen output is now independent of TranslationData
+   and thus more deterministic.
+ - [QTBUG-69898] Made several performance improvements with property lookups.
+ - [QTBUG-74476] Fixed a logic bug involving inversion of non-reflexive
+   comparison binops, which resulted in incorrect evaluation of some if statements.
+ - [QTBUG-73843] When QQmlAbstractUrlInterceptor intercepts the loading of
+   the qmldir file, we now use the intercepted URL to load additional files
+   in that import.
+ - [QTBUG-74058] Fixed a GC bug resulting in invalid memory read.
+ - [QTBUG-74148] Fixed a propertyCache memory leak with Loader and PageIndicator.
+ - [QTBUG-74087] Deeper recursion is now possible, and less stack space is used
+   during code generation.  The "Maximum statement or expression depth exceeded"
+   error is now less likely when using 3rd party JavaScript libraries.
+ - [QTBUG-74188] Fixed a crash when deleting properties, due to shared ownership
+   of SparseArrayNode.
+ - [QTBUG-72807] Disabled tail calls for functions called with more arguments
+   than formals.
+ - [QTBUG-73999] Fixed number to string conversion with radix.
+ - [QTBUG-73985] Fixed a crash during unwinding in QJSEngine::evaluate.
+ - [QTBUG-33179] QML revisioning now works for grouped properties.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - [QT3DS-3238] Fixed a surface format bug on macOS.
+ - [QTBUG-74508] Fixed incorrect PathView.currentIndex assignment with
+   StrictlyEnforceRange.
+ - [QTBUG-72457] Text now renders HTML table cell background colors properly,
+   and does correct layout of table cells with percentage-based widths.
+ - [QDS-263] qmlpreview now does better window placement on Windows.
+ - [QTBUG-71042] Fixed a bug in setting dynamic anchors to parents
+   in PropertyChanges.
+ - [QTBUG-73723] Fixed leaking of QML QQuickItemGrabResult objects
+   afterQQuickItem::grabToImage() is called from QML.
+ - [QTBUG-74008] Fixed a crash when one touch event contains a point that
+   begins acting as the synthetic mouse, and then that point is missing
+   from a subsequent event. (This is unexpected from most touchscreens.)
+ - [QTBUG-74128] Fixed binding loop warnings while using bi-directional
+   property bindings with Flickable contentX/Y properties.
+ - [QTBUG-73819] Fixed a crash when Loader unloads an Item or Event Handler
+   that currently has a grab.
+ - [QTBUG-41045] When a window is hidden and the visible content under
+   the mouse cursor in another window has a different cursor, it will
+   now change as it should.
+ - [QTBUG-70031] Fixed issues caused by adding the new row and column
+   properties in QQmlDelegateModel.

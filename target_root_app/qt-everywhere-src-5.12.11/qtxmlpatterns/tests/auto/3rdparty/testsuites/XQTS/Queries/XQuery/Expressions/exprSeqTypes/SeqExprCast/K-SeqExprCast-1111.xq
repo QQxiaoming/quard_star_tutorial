@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-1111                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: It is not possible to extract an Effective Boolean Value from the type xs:gDay, with the boolean() function. :)
+(:*******************************************************:)
+boolean(xs:gDay("---03"))

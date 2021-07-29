@@ -1,0 +1,84 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example graphicsview/simpleanchorlayout
+    \title Simple Anchor Layout Example
+    \ingroup examples-graphicsview-layout
+    \brief Demonstrates anchor layout on a graphics view scene.
+
+    The Simple Anchor Layout example shows the basic use of the
+    QGraphicsAnchorLayout class.
+
+    \image graphicssimpleanchorlayout-example.png
+
+    The example starts by creating a QGraphicsScene (\c scene), 3 widgets
+    (\c a, \c b, and \c c), and a QGraphicsAnchorlayout (\c layout).
+
+    \quotefromfile graphicsview/simpleanchorlayout/main.cpp
+    \skipto QGraphicsScene
+    \printuntil QGraphicsAnchorLayout
+
+    First it anchors the top left corner of item \c a to the top left
+    corner of \c layout. This can be done in two steps:
+
+    \skipto layout->addAnchor(a
+    \printto adding
+
+    Or in one step:
+
+    \skipuntil [adding a corner anchor]
+    \printline layout->addCornerAnchors(a, Qt::T
+
+    Then the right anchor of \c a is anchored to the left anchor of
+    \c b, and the top of item \c b is anchored to the bottom of \c a.
+
+    \skipuntil [adding anchors]
+    \printto adding anchors
+
+    Place a third widget \c c under widget \c b:
+
+    \skipuntil third widget
+    \printline AnchorBottom
+
+    Items \c b and \c c are anchored to each other horizontally:
+
+    \skipto Qt::Horizontal
+    \printline Qt::Horizontal
+
+    Item c is anchored to the bottom right point of \c layout
+
+    \skipuntil corner of the layout
+    \printline Qt::BottomRightCorner
+
+    Finally, QGraphicsWidget \c w is displayed in QGraphicsView \c view.
+
+    \skipto QGraphicsWidget
+    \printuntil app.exec()
+
+    \sa {Anchor Layout Example}
+*/

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FunctionCallExpr-5                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: A test whose essence is: `prefix-does-not-exist:func-does-not-exist(1, 2, 3)`. :)
+(:*******************************************************:)
+prefix-does-not-exist:func-does-not-exist(1, 2, 3)

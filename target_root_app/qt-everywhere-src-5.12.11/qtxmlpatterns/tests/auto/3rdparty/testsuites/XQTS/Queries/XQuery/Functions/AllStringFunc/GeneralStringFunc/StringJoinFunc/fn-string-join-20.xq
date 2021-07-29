@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-string-join-20                                :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri Jun 24, 2005                                 :)
+(:Purpose: Evaluates The "string-join" function          :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "12345"                                        :)
+(:$arg2 = "1234"                                         :)
+(:*******************************************************:)
+
+fn:string-join("12345","1234")

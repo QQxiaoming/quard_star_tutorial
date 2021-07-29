@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: avglng1args-3                                     :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "avg" function                  :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:long(upper bound)                            :)
+(:*******************************************************:)
+
+fn:avg((xs:long("92233720368547758")))

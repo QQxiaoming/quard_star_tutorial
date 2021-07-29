@@ -1,0 +1,16 @@
+{
+  "name": "qtwebengine_renderer",
+  "display_name": "QtWebEngine Renderer",
+  "interface_provider_specs": {
+    "service_manager:connector": {
+      "provides": {
+        "browser": [
+          "spellcheck.mojom.SpellChecker"
+        ]
+      },
+      "requires": {
+        "qtwebengine": [ "renderer" ]
+      }
+    }
+  }
+}

@@ -1,0 +1,275 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+
+\page qtvirtualkeyboard-deployment-guide.html
+\contentspage {Deployment Guide} {Contents}
+
+\title Deployment Guide
+
+\section1 Overview
+
+This document describes how to deploy and use the Qt Virtual Keyboard plugin
+with Qt 5 applications.
+
+\section1 Deployment
+
+The various Qt Virtual Keyboard plugins and files are deployed in the following
+locations:
+
+\table
+\header
+    \li Item
+    \li Desktop install path
+    \li Boot2Qt install path
+\row
+    \li qtvirtualkeyboardplugin
+    \li \c $$[QT_INSTALL_PLUGINS]/platforminputcontexts
+    \li \c /system/plugins/platforminputcontexts
+\row
+    \li qtvirtualkeyboardextensionplugin
+    \li \c $$[QT_INSTALL_PLUGINS]/virtualkeyboard
+    \li \c /system/plugins/virtualkeyboard
+\row
+    \li qtvirtualkeyboardplugin QML files
+    \li \c $$[QT_INSTALL_QML]/QtQuick/VirtualKeyboard
+    \li \c /system/qml/QtQuick/VirtualKeyboard
+\row
+    \li qtvirtualkeyboardstylesplugin
+    \li \c $$[QT_INSTALL_QML]/QtQuick/VirtualKeyboard/Styles
+    \li \c /system/qml/QtQuick/VirtualKeyboard/Styles
+\endtable
+
+\section1 Integration Method
+
+Qt Virtual Keyboard currently supports two alternative integration methods
+for using the plugin:
+
+\list
+    \li \c Desktop: requires no changes to existing applications.
+        The virtual keyboard is available to all of the Qt 5 applications
+        in the system.
+
+        In this integration method, the keyboard is shown in a dedicated
+        top-level window.
+    \li \c Application: the virtual keyboard is embedded within the Qt
+        application itself by instantiating an \l InputPanel item in QML.
+
+        This method is mandatory in environments where there is no support
+        for multiple top-level windows (such as embedded devices), but can
+        be used in desktop applications too.
+
+        This method can also be used by Qt Wayland compositors in order to
+        provide a server-side virtual keyboard. See the section below for details.
+\endlist
+
+The integration method is automatically selected by the project files.
+However, in desktop environments, it is possible to override the desktop
+integration method and use the application integration method instead,
+by adding \c CONFIG+=disable-desktop to the \c qmake command line.
+
+\section2 Using Qt Virtual Keyboard with Qt Wayland
+
+This section explains how to use Qt Virtual Keyboard to interact with the
+\l {Line Edits Example}{Qt Widgets Line Edits example} using the
+\l {Qt Wayland Compositor Examples - Pure QML}{Pure QML example}
+as a compositor.
+
+We will be using Ubuntu 18.04 to run the example, using the X11 as the
+windowing system. The example compositor (\c pure-qml) will open
+as a window within an X11 session.
+
+\list 1
+    \li Start the compositor:
+        \badcode
+QT_XCB_GL_INTEGRATION=xcb_egl QT_WAYLAND_CLIENT_BUFFER_INTEGRATION=xcomposite-egl QT_IM_MODULE=qtvirtualkeyboard ./pure-qml -platform xcb
+        \endcode
+    \li Before running the client application, ensure that QT_IM_MODULE is unset:
+        \badcode
+unset QT_IM_MODULE
+        \endcode
+    \li Start the Line Edits example as the client:
+        \badcode
+./lineedits -platform wayland
+        \endcode
+    \li Click on a line edit and Qt Virtual Keyboard's input panel will open.
+\endlist
+
+If issues are encountered, the following environment variables can be set
+when running the compositor to get debug output that can help diagnose the issue:
+
+\badcode
+WAYLAND_DEBUG=1
+QT_LOGGING_RULES="qt.virtualkeyboard=true;qt.qpa.wayland*=true"
+\endcode
+
+\section1 Loading the Plugin
+
+In both integration methods, the application must use the \c QT_IM_MODULE
+environment variable to load the plugin. For example:
+
+\code
+$ QT_IM_MODULE=qtvirtualkeyboard myapp
+\endcode
+
+or in the main() function:
+
+\code
+qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+\endcode
+
+In the desktop integration method, this step is all that is required to
+use Qt Virtual Keyboard. In the application integration method, the application
+is required to create an instance of InputPanel as explained in the
+following chapter.
+
+\section1 Creating InputPanel
+
+The following example shows how to create an InputPanel and how to
+divide the screen area with the application container.
+
+\code
+import QtQuick 2.0
+import QtQuick.VirtualKeyboard 2.1
+
+Item {
+    id: root
+    Item {
+        id: appContainer
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.bottom: inputPanel.top
+        ...
+    }
+    InputPanel {
+        id: inputPanel
+        y: Qt.inputMethod.visible ? parent.height - inputPanel.height : parent.height
+        anchors.left: parent.left
+        anchors.right: parent.right
+    }
+}
+\endcode
+
+The input panel must be a sibling element next to the application container.
+It is important not to put the input panel within the application container,
+as it would then overlap with the contents of the application. Also, the
+input panel height will be automatically updated according to the available
+width; the aspect ratio of the input panel is constant.
+
+\section1 Environment Variables
+
+There are several environment variables defined by the module that are listed below:
+
+\table
+    \header
+        \li Variable
+        \li Purpose
+    \row
+        \li QT_VIRTUALKEYBOARD_HUNSPELL_DATA_PATH
+        \li Overrides the location of the Hunspell data files.
+
+            The default location depends on the value of
+            \c {QLibraryInfo::location(QLibraryInfo::DataPath)}.
+            For example, for Qt libraries built from source,
+            it could be \c {qtbase/qtvirtualkeyboard/hunspell}.
+
+            See \l {Hunspell Integration} for more information.
+    \row
+        \li QT_VIRTUALKEYBOARD_PINYIN_DICTIONARY
+        \li Overrides the location of the Pinyin dictionary.
+
+            By default, the dictionary is bundled into the plugin's resources.
+
+            To disable resource bundling, add \c CONFIG+=no-bundle-pinyin in the
+            plugin's qmake command line. In this scenario, the default location
+            depends on the value of \c {QLibraryInfo::location(QLibraryInfo::DataPath)}.
+            For example, for Qt libraries built from source,
+            it could be \c {qtbase/qtvirtualkeyboard/pinyin/dict_pinyin.dat}.
+    \row
+        \li QT_VIRTUALKEYBOARD_CANGJIE_DICTIONARY
+        \li Overrides the location of the Cangjie dictionary.
+
+            By default, the dictionary is bundled into the plugin's resources.
+
+            To disable resource bundling, add \c CONFIG+=no-bundle-tcime in the
+            plugin's qmake command line. In this scenario, the default location
+            depends on the value of \c {QLibraryInfo::location(QLibraryInfo::DataPath)}.
+            For example, for Qt libraries built from source,
+            it could be \c {qtbase/qtvirtualkeyboard/tcime/dict_cangjie.dat}.
+    \row
+        \li QT_VIRTUALKEYBOARD_ZHUYIN_DICTIONARY
+        \li Overrides the location of the Zhuyin dictionary.
+
+            By default, the dictionary is bundled into the plugin's resources.
+
+            To disable resource bundling, add \c CONFIG+=no-bundle-tcime in the
+            plugin's qmake command line. In this scenario, the default location
+            depends on the value of \c {QLibraryInfo::location(QLibraryInfo::DataPath)}.
+            For example, for Qt libraries built from source,
+            it could be \c {qtbase/qtvirtualkeyboard/tcime/dict_zhuyin.dat}.
+    \row
+        \li QT_VIRTUALKEYBOARD_PHRASE_DICTIONARY
+        \li Overrides the location of the phrase dictionary.
+
+            By default, the dictionary is bundled into the plugin's resources.
+
+            To disable resource bundling, add \c CONFIG+=no-bundle-tcime in the
+            plugin's qmake command line. In this scenario, the default location
+            depends on the value of \c {QLibraryInfo::location(QLibraryInfo::DataPath)}.
+            For example, for Qt libraries built from source,
+            it could be \c {qtbase/qtvirtualkeyboard/tcime/dict_phrases.dat}.
+    \row
+        \li QT_VIRTUALKEYBOARD_STYLE
+        \li Specifies the location of the style to use with the virtual keyboard.
+
+            This can also be specified in QML by setting \l {VirtualKeyboardSettings::styleName},
+            or at build time by using the \l {Advanced Configuration Options}{qmake configuration options}.
+    \row
+        \li QT_VIRTUALKEYBOARD_LAYOUT_PATH
+        \li Specifies the location of the layouts to be used with the virtual keyboard.
+    \row
+        \li LIPI_ROOT
+        \li Specifies the location of lipi-toolkit.
+
+            The default location depends on the value of
+            \c {QLibraryInfo::location(QLibraryInfo::DataPath)}.
+            For example, for Qt libraries built from source,
+            it could be \c {qtbase/qtvirtualkeyboard/lipi_toolkit}.
+    \row
+        \li LIPI_LIB
+        \li Specifies the location of lipi-toolkit plugins.
+
+            The default location depends on \c LIPI_ROOT:
+            \list
+            \li \c {LIPI_ROOT + "/lib"} if \c LIPI_ROOT is set.
+            \li \c {QLibraryInfo::location(QLibraryInfo::PluginsPath) + "/lipi_toolkit"} if \c LIPI_ROOT is not set.
+            \endlist
+\endtable
+
+*/

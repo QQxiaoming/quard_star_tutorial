@@ -1,0 +1,52 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                QtLocation                                *
+****************************************************************************
+
+
+ - Added QDeclarativeGeoRoute::equals to perform deep comparisons in QML.
+ - MapItemView now exposes add and remove transitions, so that they can
+   be changed (defaults are none for add, and item fade out for remove).
+ - Enabled incremental updates in PlaceSearchModel, which prevents previousPage or
+   nextPage from resetting the model, but rather appending the new data to it.
+ - [QTBUG-68966] Added Map.visibleArea property.
+ - [QTBUG-62683][QTBUG-62397] Enabled nesting of MapItemView. This required
+   a behavioral change, as MapItemView is now a MapItemGroup, not anymore a
+   plain QObject. Due to a bug, MapItemView was previously not a Qt Quick
+   Item, making it possible to create it as a child of any QObject. This
+   has now been fixed, so if you happen to have a MapItemView in your scene
+   which is not a child of a Qt Quick Item, you will get an error message.
+ - Enabled asynchronous incremental updates of QPlaceReply.
+ - Changed QDeclarativeGeoMapItemBase::geoShape property from read-only into R/W.
+ - Added support for route legs.
+ - [QTBUG-70499] Fixed HERE plugin requesting the route incorrectly.
+ - Added ESRI place search manager to the ESRI plugin.
+
+****************************************************************************
+*                              QtPositioning                               *
+****************************************************************************
+
+ - Exposed mercatorToCoord and coordToMercator to QML.
+ - [QTBUG-62875] QGeoPath can now be cleared directly using clearPath.
+ - Added QGeoPolygon::perimeter property.
+ - Added holes support to QGeoPolygon. Currently visualized only when using
+   in a MapPolygon with the MapboxGL plugin.
+ - [QTBUG-43435] Added Geoclue2 position plugin.
+ - [QTBUG-52660] QtPositioning now properly checks for authorization on iOS.
+

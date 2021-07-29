@@ -1,0 +1,52 @@
+<link rel="import" href="chrome://resources/html/polymer.html">
+
+<link rel="import" href="chrome://resources/cr_elements/shared_vars_css.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-slider/paper-slider.html">
+
+<dom-module id="cr-slider">
+  <template>
+    <style>
+      paper-slider {
+        --paper-slider-active-color: var(--google-blue-600);
+        --paper-slider-container-color: var(--google-blue-600-opacity-24);
+        --paper-slider-knob-color: var(--google-blue-600);
+        --paper-slider-knob-start-color: var(--google-blue-600);
+        --paper-slider-knob-start-border-color: var(--google-blue-600);
+        --paper-slider-pin-color: var(--google-blue-600);
+        --paper-slider-pin-start-color: var(--google-blue-600);
+        --paper-slider-markers-color: rgba(255, 255, 255, 0.54);
+        --paper-slider-disabled-active-color: var(--google-grey-600);
+        --paper-slider-disabled-knob-color: var(--google-grey-600);
+        width: 100%;
+
+        --paper-slider-pin-text: {
+          font-family:  Roboto;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 14px;
+        };
+      }
+
+      :host-context([dir=rtl]) paper-slider {
+        --paper-slider-pin-text: {
+          font-family:  Roboto;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 14px;
+          transform: scale(-1, 1) translate(0, -17px);
+        };
+      }
+
+      paper-slider[disabled] {
+        --paper-slider-container-color: var(--google-grey-600-opacity-24);
+      }
+    </style>
+    <paper-slider id="slider"
+        disabled$="[[disabled]]" snaps="[[snaps]]" on-change="onChange_"
+        max="[[max]]" min="[[min]]" on-up="resetTrackLock_" value="{{value}}"
+        max-markers="[[maxMarkers]]" immediate-value="{{immediateValue}}"
+        dragging="{{dragging}}">
+    </paper-slider>
+  </template>
+  <script src="cr_slider.js"></script>
+</dom-module>

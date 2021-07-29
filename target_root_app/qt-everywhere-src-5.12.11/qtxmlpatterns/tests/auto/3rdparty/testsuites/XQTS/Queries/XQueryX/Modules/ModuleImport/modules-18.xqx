@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>mod1</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/module1</xqx:targetNamespace>
+      </xqx:moduleImport>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>mod2</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/module2</xqx:targetNamespace>
+      </xqx:moduleImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:sequenceExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="mod1">x</xqx:functionName>
+          <xqx:arguments>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="mod2">y</xqx:functionName>
+          <xqx:arguments>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+      </xqx:sequenceExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

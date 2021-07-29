@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dynamic iframe</title>
+    </head>
+    <body>
+        <script>
+         const ifr = document.createElement("iframe");
+         ifr.setAttribute("src", "invalid");
+         document.body.appendChild(ifr);
+         ifr.contentWindow.document.open("text/html", "replace");
+         ifr.contentWindow.document.write("foo");
+         ifr.contentWindow.document.close();
+        </script>
+    </body>
+</html>

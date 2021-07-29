@@ -1,0 +1,228 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ResolveURIFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:resolve-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-resolve-uri-1" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with first argument (relative) set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-1" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-1.txt</output-file>
+   </test-case>
+   <test-case name="fn-resolve-uri-2" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluation of "fn:resolve-uri" function with first argument (relative) set to zero length string. Use base-uri property, which is set.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-2" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-3" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with first argument set to an invalid uri.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-3" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-4" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with second argument set to an invalid uri.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-4" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-5" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with first argument (relative) set to an absolute URI. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-5" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-6" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-6" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-7" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to xs:string. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-7" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-8" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:string. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-8" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-9" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:upper-case. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-9" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-10" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:lower-case. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-10" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-11" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:substring function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-11" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-12" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:string-join function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-12" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-13" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:concat function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-13" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-14" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:substring-before function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-14" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-15" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:substring-after function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-15" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-16" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:string function. Second argument set to zero length stringTwo argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-16" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-17" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:upper-case function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-17" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-18" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:lower-case function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-18" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-19" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:substring function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-19" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-20" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:string-join function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-20" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-21" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:concat function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-21" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-22" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:substring-before function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-22" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-23" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:resolve-uri" function with argument (relative) set to an absolute URI and given as argument to fn:substring-after function. Two argument version of the function.</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="fn-resolve-uri-23" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-uri-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-24"
+              FilePath="Functions/URIFunc/ResolveURIFunc/"
+              scenario="runtime-error"
+              Creator="Michael Kay">
+      <description>Evaluation of "fn:resolve-uri" function with second argument ($base) being a relative URI. See erratum FO.E1</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri"
+                     section-pointer="func-resolve-uri"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4373</reflects-resolution>               
+      <query name="fn-resolve-uri-24" date="2010-01-04"/>
+      <expected-error>FORG0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-resolve-uri-25"
+              FilePath="Functions/URIFunc/ResolveURIFunc/"
+              scenario="standard"
+              Creator="Michael Kay">
+      <description>Evaluation of "fn:resolve-uri" function with first argument ($relative) being an absolute URI and
+                   second argument ($base) being a relative URI. See erratum FO.E1</description>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri"
+                     section-pointer="func-resolve-uri"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4373</reflects-resolution>               
+      <query name="fn-resolve-uri-25" date="2010-01-04"/>
+      <output-file role="principal" compare="Text">fn-resolve-uri-25.txt</output-file>
+   </test-case>   
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ResolveURIFunc-1"
+              FilePath="Functions/URIFunc/ResolveURIFunc/"
+              scenario="runtime-error">
+      <description>A test whose essence is: `resolve-uri()`.</description>
+      <query name="K-ResolveURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveURIFunc-2" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `resolve-uri("http://www.example.com/", "relative/uri.ext", "wrong param")`.</description>
+      <query name="K-ResolveURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveURIFunc-3" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard">
+      <description>A test whose essence is: `resolve-uri("relative/uri.ext", "http://www.example.com/") eq xs:anyURI("http://www.example.com/relative/uri.ext")`.</description>
+      <query name="K-ResolveURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ResolveURIFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveURIFunc-4" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard">
+      <description>A test whose essence is: `resolve-uri("", "http://www.example.com/") eq xs:anyURI("http://www.example.com/")`.</description>
+      <query name="K-ResolveURIFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ResolveURIFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveURIFunc-5" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(resolve-uri((), "http://www.example.com/"))`.</description>
+      <query name="K-ResolveURIFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ResolveURIFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveURIFunc-6" FilePath="Functions/URIFunc/ResolveURIFunc/" scenario="standard">
+      <description>A test whose essence is: `resolve-uri("http://www.example.com/absolute", "http://www.example.com/") eq xs:anyURI("http://www.example.com/absolute")`.</description>
+      <query name="K-ResolveURIFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ResolveURIFunc-6.txt</output-file>
+   </test-case>
+</test-group>

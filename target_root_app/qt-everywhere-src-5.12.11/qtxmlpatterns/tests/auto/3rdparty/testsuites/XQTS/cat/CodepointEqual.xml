@@ -1,0 +1,189 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="CodepointEqual">
+   <GroupInfo>
+      <title>fn:codepoint-equal</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-1" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-codepoint-equal with wrong arity.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-1" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-2" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-codepoint-equal with arguments set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-2" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-3" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-codepoint-equal with arguments set to zero length string.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-3" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-4" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" with arguments set to same value "a".</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-4" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-5" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" with arguments set to different values "a" and "b" respectively.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-5" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-6" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as argument to fn:not. Returns true.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-6" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-7" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as argument to fn:not. Returns false.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-7" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-8" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" whose arguments use fn:string() for a number.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-8" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-9" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" whose arguments use fn:string() for a string.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-9" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-10" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-codepoint-equal with wrong argument type.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-10" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-11" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-codepoint-equal with wrong argument type (only second argument).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-11" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-12" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" whose arguments are "aa" "AA" strings respectively.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-12" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-13" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" with arguments set to "aa" and lower-case("AA") respectively.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-13" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-14" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" with arguments set to "aa" and upper-case("aa") respectively.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-14" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-15" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as an argument to xs:boolean.</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-15" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-16" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as part of a boolean expression ("and" operator and "fn:true()").</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-16" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-17" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as part of a boolean expression ("and" operator and "fn:false()").</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-17" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-18" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as part of a boolean expression ("or" operator and "fn:true()").</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-18" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-19" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as part of a boolean expression ("or" operator and "fn:false()").</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-19" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-20" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as part of a boolean expression involving two fn:codepoint-equal functions ("and" operator).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-20" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-codepoint-equal-21" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqualFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an "fn:codepoint-equal" as part of a boolean expression involving two fn:codepoint-equal functions ("or" operator).</description>
+      <spec-citation spec="FuncOps" section-number="7.3.3" section-title="fn:codepoint-equal" section-pointer="func-codepoint-equal"/>
+      <query name="fn-codepoint-equal-21" date="2006-02-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-codepoint-equal-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CodepointEqual-1" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqual/" scenario="standard">
+      <description>Compare two values returned from fn:lower-case().</description>
+      <query name="K2-CodepointEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CodepointEqual-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CodepointEqual-2" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqual/" scenario="standard">
+      <description>Compare two values returned from fn:upper-case().</description>
+      <query name="K2-CodepointEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CodepointEqual-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CodepointEqual-3" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case().</description>
+      <query name="K2-CodepointEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CodepointEqual-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CodepointEqual-4" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:upper-case().</description>
+      <query name="K2-CodepointEqual-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CodepointEqual-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CodepointEqual-5" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-CodepointEqual-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CodepointEqual-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CodepointEqual-6" FilePath="Functions/AllStringFunc/CompStringFunc/CodepointEqual/" scenario="standard">
+      <description>Compare two non-matching values returned from fn:lower-case() and fn:upper-case().</description>
+      <query name="K2-CodepointEqual-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CodepointEqual-6.txt</output-file>
+   </test-case>
+</test-group>

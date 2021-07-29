@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:defaultNamespaceDecl>
+        <xqx:defaultNamespaceCategory>element</xqx:defaultNamespaceCategory>
+        <xqx:uri>http://www.w3.org/XQueryTestOrderBy</xqx:uri>
+      </xqx:defaultNamespaceDecl>
+      <xqx:schemaImport>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTestOrderBy</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:validateExpr>
+        <xqx:validationMode>lax</xqx:validationMode>
+        <xqx:argExpr>
+          <xqx:typeswitchExpr>
+            <xqx:argExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>A String</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:argExpr>
+            <xqx:typeswitchExprCaseClause>
+              <xqx:variableBinding>i</xqx:variableBinding>
+              <xqx:sequenceType>
+                <xqx:atomicType xqx:prefix="xs">decimal</xqx:atomicType>
+              </xqx:sequenceType>
+              <xqx:resultExpr>
+                <xqx:elementConstructor>
+                  <xqx:tagName>wrap</xqx:tagName>
+                  <xqx:elementContent>
+                    <xqx:stringConstantExpr>
+                      <xqx:value>test failed</xqx:value>
+                    </xqx:stringConstantExpr>
+                  </xqx:elementContent>
+                </xqx:elementConstructor>
+              </xqx:resultExpr>
+            </xqx:typeswitchExprCaseClause>
+            <xqx:typeswitchExprCaseClause>
+              <xqx:variableBinding>i</xqx:variableBinding>
+              <xqx:sequenceType>
+                <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+              </xqx:sequenceType>
+              <xqx:resultExpr>
+                <xqx:elementConstructor>
+                  <xqx:tagName>Strings</xqx:tagName>
+                  <xqx:elementContent>
+                    <xqx:elementConstructor>
+                      <xqx:tagName>orderData</xqx:tagName>
+                      <xqx:elementContent>
+                        <xqx:stringConstantExpr>
+                          <xqx:value>A String</xqx:value>
+                        </xqx:stringConstantExpr>
+                      </xqx:elementContent>
+                    </xqx:elementConstructor>
+                  </xqx:elementContent>
+                </xqx:elementConstructor>
+              </xqx:resultExpr>
+            </xqx:typeswitchExprCaseClause>
+            <xqx:typeswitchExprDefaultClause>
+              <xqx:resultExpr>
+                <xqx:elementConstructor>
+                  <xqx:tagName>Failed</xqx:tagName>
+                  <xqx:elementContent>
+                    <xqx:stringConstantExpr>
+                      <xqx:value>This test failed</xqx:value>
+                    </xqx:stringConstantExpr>
+                  </xqx:elementContent>
+                </xqx:elementConstructor>
+              </xqx:resultExpr>
+            </xqx:typeswitchExprDefaultClause>
+          </xqx:typeswitchExpr>
+        </xqx:argExpr>
+      </xqx:validateExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

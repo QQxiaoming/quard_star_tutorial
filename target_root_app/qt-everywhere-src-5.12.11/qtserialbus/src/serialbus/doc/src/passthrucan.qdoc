@@ -1,0 +1,159 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 Ford Motor Company.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+    \page qtserialbus-passthrucan-overview.html
+    \title Using PassThruCAN Plugin
+
+    \brief Overview of how to use the J2534 Pass-Thru CAN plugin.
+
+    The Pass-Thru CAN plugin accesses CAN adapters via the SAE J2534 Pass-Thru API.
+    SAE J2534 is a standard for accessing vehicle busses from an x86 Windows PC.
+    Although the API is specified only for 32-bit Windows, some vendors also provide
+    implementations for 64-bit Windows and other operating systems such as Linux.
+
+    \section1 PassThruCAN usage
+
+    To use PassThruCAN, the corresponding vendor drivers for the CAN adapter must
+    be installed. The vendor must also provide an implementation of the J2534 API
+    by way of a shared library. Currently, only version 04.04 of the Pass-Thru API
+    is supported.
+
+    When using an x64 build of Qt, this plugin only works if the CAN device vendor
+    also provides a 64-bit version of the J2534 Pass-Thru interface library. If the
+    vendor provides only a 32-bit J2534 interface, a 32-bit build of Qt is required
+    to make use of it.
+
+    For automatic device discovery, the vendor software must also list and describe
+    the available adapters in the Windows registry. On systems other than Windows,
+    automatic discovery is currently not supported.
+
+    \section1 Creating CAN Bus Devices
+
+    At first it is necessary to check that QCanBus provides the desired plugin:
+
+    \code
+        if (QCanBus::instance()->plugins().contains(QStringLiteral("passthrucan"))) {
+            // plugin available
+        }
+    \endcode
+
+    Where \e passthrucan is the plugin name.
+
+    On Windows, automatic device discovery should be used to list the available
+    CAN adapters accessible via the Pass-Thru API:
+
+    \code
+        const auto adapters = QCanBus::instance()->
+                availableDevices(QStringLiteral("passthrucan"));
+        for (const QCanBusDeviceInfo &info : adapters) {
+            // List available adapter in the user interface.
+            uiListBox->addItem(info.name());
+        }
+    \endcode
+
+    On other operating systems, the list of discovered adapters will be empty.
+    Instead, the full path to the vendor-provided J2534 interface library
+    should be provided in lieu of the device name:
+
+    \code
+        QCanBusDevice *device = QCanBus::instance()->createDevice(
+            QStringLiteral("passthrucan"), QStringLiteral("/path/to/libj2534-vendor.so"));
+    \endcode
+
+    For special needs, it is also possible to pass a vendor-specific device
+    name argument when opening the Pass-Thru adapter:
+
+    \code
+        QCanBusDevice *device = QCanBus::instance()->createDevice(
+            QStringLiteral("passthrucan"), info.name() + QChar::fromLatin1('%') + deviceName);
+    \endcode
+
+    All operations on the Pass-Thru CAN bus device are executed asynchronously,
+    including connect and disconnect. In order to be notified when the device
+    is ready for reading and writing CAN frames, connect to the
+    \l {QCanBusDevice::}{stateChanged(QCanBusDevice::CanBusDeviceState state)}
+    signal:
+
+    \code
+        if (!device) {
+            // Error handling goes here
+        } else {
+            connect(device, &QCanBusDevice::stateChanged,
+                    this, &MyClass::canStateChanged);
+            device->connectDevice();
+        }
+    \endcode
+
+    \l {QCanBusDevice::}{state()} will return \l {QCanBusDevice::}{ConnectedState}
+    once the CAN adapter has been successfully connected to. The device is then
+    open for writing and reading CAN frames:
+
+    \code
+        QCanBusFrame frame;
+        frame.setFrameId(8);
+        frame.setPayload(QByteArray("\xA3\x6E\x74\x9C", 4));
+        device->writeFrame(frame);
+    \endcode
+
+    The reading can be done using the \l {QCanBusDevice::}{readFrame()} method. The
+    \l {QCanBusDevice::}{framesReceived()} signal is emitted when at least one new frame
+    is available for reading:
+
+    \code
+        QCanBusFrame frame = device->readFrame();
+    \endcode
+
+    The Pass-Thru CAN plugin supports the following configuration options
+    controllable via \l {QCanBusDevice::}{setConfigurationParameter()}:
+
+    \table
+        \header
+            \li Configuration parameter key
+            \li Description
+        \row
+            \li QCanBusDevice::LoopbackKey
+            \li When enabled, if a CAN frame is transmitted on the CAN bus, a local
+                echo of this frame will be received by the CAN adapter. The echo
+                frames are marked with QCanBusFrame::hasLocalEcho(). By default,
+                loopback mode is disabled.
+        \row
+            \li QCanBusDevice::RawFilterKey
+            \li This option allows setting up filters for incoming CAN bus messages.
+                If provided, the value should be a \l {QList}<\l{QCanBusDevice::Filter}>.
+                Only data frame ID filters are supported. By default, data frames
+                with any ID are accepted.
+        \row
+            \li QCanBusDevice::BitRateKey
+            \li The bit rate of the CAN bus as an unsigned integer, in bit/s. The
+                default bit rate is 500000 (500 kbit/s). Setting the bit rate after
+                the device has already been connected may trigger an implicit
+                reinitialization of the CAN interface.
+    \endtable
+
+    The Pass-Thru CAN plugin supports extended frame format (29-bit IDs), but not
+    flexible data-rate (CAN FD).
+ */

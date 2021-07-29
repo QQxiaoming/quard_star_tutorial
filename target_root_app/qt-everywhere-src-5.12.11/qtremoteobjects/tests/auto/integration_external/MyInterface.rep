@@ -1,0 +1,18 @@
+#include <QtCore>
+
+class MyInterface
+{
+    ENUM Enum1 { First, Second, Third }
+    PROP(Enum1 enum1 = First READWRITE)
+
+    PROP(bool started = false)
+
+    SLOT(bool start())
+    SLOT(bool stop())
+    SLOT(bool quit())
+    SLOT(bool next())
+    SLOT(void testEnumParamsInSlots(Enum1 enumSlotParam, bool slotParam2, int))
+
+    SIGNAL(advance())
+    SIGNAL(testEnumParamsInSignals(Enum1 enumSignalParam, bool signalParam2, QString))
+};

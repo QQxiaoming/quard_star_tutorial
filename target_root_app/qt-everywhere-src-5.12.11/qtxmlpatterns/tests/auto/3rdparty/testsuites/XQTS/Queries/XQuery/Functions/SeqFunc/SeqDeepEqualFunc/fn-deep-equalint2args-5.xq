@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: deep-equalint2args-5                              :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "deep-equal" function           :)
+(: with the arguments set as follows:                    :)
+(:$parameter1 = xs:int(lower bound)                      :)
+(:$parameter2 = xs:int(upper bound)                      :)
+(:*******************************************************:)
+
+fn:deep-equal((xs:int("-2147483648")),(xs:int("2147483647")))

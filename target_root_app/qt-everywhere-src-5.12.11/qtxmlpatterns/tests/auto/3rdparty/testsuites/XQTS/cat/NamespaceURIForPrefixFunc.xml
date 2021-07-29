@@ -1,0 +1,183 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NamespaceURIForPrefixFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:namespace-uri-for-prefix</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-1" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element, for which the namespace prefix is set.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-1" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-2" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element, for which the namespace prefix does not exists.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-2" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-3" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element, for which the namespace prefix is set to zero length string.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-3" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-4" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element, for which the namespace prefix is set to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-4" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-5" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix is set.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-5" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-6" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix is not set.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-6" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-7" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the xs:string function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-7" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-8" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:string function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-8" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-9" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-9" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-10" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-10" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-11" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:substring function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-11" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-12" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:concat function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-12" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-13" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:string-join function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-13" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-14" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:substring-before function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-14" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-15" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument, for which the namespace prefix uses the fn:substring-after function.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-15" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-16" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a direct element given as argument with no namespace defined.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-16" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-17" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a computed element given as argument with no namespace defined.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-17" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-18" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a computed element as variable (via let) with no namespace defined.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-18" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-19" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a computed element as variable (via for) with no namespace defined.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-19" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-20" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a computed element as variable (via declare variable) with no namespace defined.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-20" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-for-prefix-21" FilePath="Functions/NodeFunc/NamespaceURIForPrefixFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri-for-prefix function with a directly constructed element with multiple namespace definitions.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.5" section-title="fn:namespace-uri-for-prefix" section-pointer="func-namespace-uri-for-prefix"/>
+      <query name="fn-namespace-uri-for-prefix-21" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-for-prefix-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIForPrefixFunc-1" FilePath="Functions/QNameFunc/NamespaceURIForPrefixFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `namespace-uri-for-prefix()`.</description>
+      <query name="K-NamespaceURIForPrefixFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIForPrefixFunc-2" FilePath="Functions/QNameFunc/NamespaceURIForPrefixFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `namespace-uri-for-prefix("string", (), "wrong param")`.</description>
+      <query name="K-NamespaceURIForPrefixFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIForPrefixFunc-1" FilePath="Functions/QNameFunc/NamespaceURIForPrefixFunc/" scenario="standard">
+      <description>Test that the correct default namespace is picked up.</description>
+      <query name="K2-NamespaceURIForPrefixFunc-1" static-name="K2-NamespaceURIForPrefixFunc-1-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NamespaceURIForPrefixFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIForPrefixFunc-2" FilePath="Functions/QNameFunc/NamespaceURIForPrefixFunc/" scenario="standard">
+      <description>Test that the correct default namespace is picked up(#2).</description>
+      <query name="K2-NamespaceURIForPrefixFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NamespaceURIForPrefixFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIForPrefixFunc-3" FilePath="Functions/QNameFunc/NamespaceURIForPrefixFunc/" scenario="standard">
+      <description>Test that the correct default namespace is picked up(#3).</description>
+      <query name="K2-NamespaceURIForPrefixFunc-3" static-name="K2-NamespaceURIForPrefixFunc-3-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NamespaceURIForPrefixFunc-3.txt</output-file>
+   </test-case>
+</test-group>

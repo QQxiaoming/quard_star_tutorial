@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DateTimeFunc-5                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: Passing the empty sequence as first argument is allowed(recent change in the specification). :)
+(:*******************************************************:)
+empty(dateTime((), xs:time("08:05:23")))

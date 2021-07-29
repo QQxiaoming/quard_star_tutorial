@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(:Test: timezone-from-date-1                             :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 27, 2005                                    :)
+(:Purpose: Evaluates The "timezone-from-date" function   :)
+(:As per example 1 of the F&O  specs                     :)
+(:*******************************************************:)
+fn:timezone-from-date(xs:date("1999-05-31-05:00")) 

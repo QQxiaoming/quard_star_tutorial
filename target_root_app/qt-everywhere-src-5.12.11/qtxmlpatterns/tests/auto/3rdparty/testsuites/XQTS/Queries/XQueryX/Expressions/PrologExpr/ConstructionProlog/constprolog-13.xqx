@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:constructionDecl>preserve</xqx:constructionDecl>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="fn">not</xqx:functionName>
+        <xqx:arguments>
+          <xqx:instanceOfExpr>
+            <xqx:argExpr>
+              <xqx:computedElementConstructor>
+                <xqx:tagName>someElement</xqx:tagName>
+                <xqx:contentExpr>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>some content</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:contentExpr>
+              </xqx:computedElementConstructor>
+            </xqx:argExpr>
+            <xqx:sequenceType>
+              <xqx:elementTest>
+                <xqx:elementName>
+                  <xqx:star/>
+                </xqx:elementName>
+                <xqx:typeName xqx:prefix="xs">anyType</xqx:typeName>
+              </xqx:elementTest>
+            </xqx:sequenceType>
+          </xqx:instanceOfExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

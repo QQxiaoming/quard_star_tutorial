@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDeepEqualFunc-4                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Time values that never will compare equal.   :)
+(:*******************************************************:)
+deep-equal((current-time(), current-time(), current-time()), (current-time(), current-time()))

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>Guidelines for Submitting XML Query Test Suite Results</title>
+  <meta name="generator" content="amaya 8.7, see http://www.w3.org/Amaya/" />
+  <link
+  href="http://www.w3.org/XML/Group/xquery-test/TestSuiteStagingArea/XQTSCatalog.xml"
+  rel="stylesheet" type="text/css" />
+</head>
+
+<body xml:lang="en" lang="en">
+<p><img alt="W3C" src="http://www.w3.org/Icons/WWW/w3c_home.gif" /></p>
+
+<h1 style="text-align: center;">Guidelines for Submitting XML Query Test
+Suite Results</h1>
+
+<p style="text-align: center;"></p>
+
+<h1>Overview</h1>
+
+<p>Having downloaded the XML Query Test Suite (XQTS), constructed your test
+harness, and executed the test cases, we ask that you send us your results.
+As we will be generating reports from all of the results that are submitted,
+we ask that you send us your results in an XML document with a very specific
+format.</p>
+
+<h1>The XML Result Document</h1>
+
+<p>We have included several documents in the XQTS zip file that you
+downloaded:</p>
+
+<blockquote>
+  <pre><em>YourDirectory</em>
+   ReportingResults
+      Build.xml
+      Results.xml
+      XQTSReport.html
+      XQTSReportSimple.html
+      XQTSResult.xsd
+      XQTSResults.xsl
+      XQTSSampleResult.xml</pre>
+</blockquote>
+
+<p>We ask that the document that you send us begin with a test-suite-result
+element and validate using the schema defined by XQTSResult.xsd. We have
+provided a sample result file for you to look at, XQTSSampleResult.xml. This
+document has the following structure:</p>
+
+<blockquote>
+  <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;test-suite-result
+   xmlns='http://www.w3.org/2005/02/query-test-XQTSResult'
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+
+   &lt;implementation ...&gt;
+      &lt;organization ... /&gt;
+      &lt;submittor ... /&gt;
+      &lt;description&gt; ... &lt;/description&gt;
+      &lt;implementation-defined-items&gt; ... &lt;/implementation-defined-items&gt;
+      &lt;features&gt; ... &lt;/features&gt;
+      &lt;context-properties&gt; ... &lt;/context-properties&gt;
+   &lt;/implementation&gt;
+
+   &lt;test-run ... &gt;
+      &lt;transformation&gt; ... &lt;/transformation&gt;
+      &lt;comparison&gt; ... &lt;/comparison&gt;
+      &lt;otherComments&gt; ... &lt;/otherComments&gt;
+   &lt;/test-run&gt;
+
+   &lt;test-case ... /&gt;
+   .
+   .
+   .
+
+&lt;/test-suite-result&gt;
+  </pre>
+</blockquote>
+
+<h2>Information about your Implementation</h2>
+
+<p>You can provide information about your implementation using the
+implementation element. You can tell us about your organization and who is
+submitting these results.</p>
+
+<p>The implementation element also allows you to tell us which features of
+XQuery your implementation supports, the values of implementation-defined
+items, and whether you have augmented or overwritten properties in the static
+and dynamic context. The names of all of these items are provided in the
+feature, implementation-defined-item, and context-property elements of
+XQTSCatalog.xml, respectively.</p>
+
+<p>You might wish information about the results you submit to be anonymous.
+If you set the anonymous-result-column attribute to 'true', then the column
+that contains your results will have the heading 'Anonymous'. If the
+anonymous attribute in the organization element is set to 'true', then the
+reports that we generate will not contain any header information that
+identifies your implementation.</p>
+
+<h2>Information about running XQTS</h2>
+
+<p>You may provide information about how you transformed the queries and how
+you compared your results with the expected results in the test-run element.
+These elements, along with the otherComments element, allow you to provide
+free text within one or more p elements.</p>
+
+<h2>Results for each Test Case</h2>
+
+<p>For each test case in XQTSCatalog.xml, you should report your result in a
+test-case element. Results can be pass, fail, not applicable, not tested, or
+cannot tell. You can provide a comment with each result, if you desire. This
+looks something like the following:</p>
+
+<blockquote>
+  <pre>&lt;test-case name="Axes001-1" result='pass' /&gt;
+&lt;test-case name="Axes001-2" result='fail' /&gt;
+&lt;test-case name="Axes001-3" result='not tested' comment='This was hard.' /&gt;</pre>
+</blockquote>
+
+<h1>Generating Your Own Report</h1>
+
+<p>We have provided the XQTSResults.xsl style sheet, so that you can generate
+your own report from the XML result document that you have produced. We have
+provided the Build.xml Ant script that invokes the transformation for you.
+The Results.xml document contains a result element for each test result that
+is to be included in the report. The result element contains the URL of the
+XML document that contains the test results. XQTSReport.html and
+XQTSReportSimple.html were produced from the sample report document that we
+provided.</p>
+
+<p></p>
+<hr />
+<address>
+  <a href="http://www.w3.org/Help/Webmaster">Webmaster</a> · Last modified:
+  $Date: 2005/08/02 18:42:58 $ by $Author: aeisenbe2 $
+</address>
+
+<p><a rel="Copyright"
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+© 1994-2005 <a href="http://www.w3.org/"><acronym
+title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a
+href="http://www.csail.mit.edu/"><acronym
+title="Massachusetts Institute of Technology">MIT</acronym></a>, <a
+href="http://www.ercim.org/"><acronym
+title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a
+href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+<a
+href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>,
+<a rel="Copyright"
+href="http://www.w3.org/Consortium/Legal/copyright-documents">document
+use</a> and <a rel="Copyright"
+href="http://www.w3.org/Consortium/Legal/copyright-software">software
+licensing</a> rules apply. Your interactions with this site are in accordance
+with our <a
+href="http://www.w3.org/Consortium/Legal/privacy-statement#Public">public</a>
+and <a
+href="http://www.w3.org/Consortium/Legal/privacy-statement#Members">Member</a>
+privacy statements.</p>
+
+<p></p>
+</body>
+</html>

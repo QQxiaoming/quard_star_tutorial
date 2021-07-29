@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:baseUriDecl>http://example.com/level/file.ext</xqx:baseUriDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>e</xqx:tagName>
+        <xqx:attributeList>
+          <xqx:attributeConstructor>
+            <xqx:attributeName xqx:prefix="xml">base</xqx:attributeName>
+            <xqx:attributeValue>../</xqx:attributeValue>
+          </xqx:attributeConstructor>
+        </xqx:attributeList>
+        <xqx:elementContent>
+          <xqx:functionCallExpr>
+            <xqx:functionName>static-base-uri</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

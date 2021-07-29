@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-71                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Multiple minus signs is disallowed in nonNegativeInteger. :)
+(:*******************************************************:)
+xs:nonNegativeInteger("--0")

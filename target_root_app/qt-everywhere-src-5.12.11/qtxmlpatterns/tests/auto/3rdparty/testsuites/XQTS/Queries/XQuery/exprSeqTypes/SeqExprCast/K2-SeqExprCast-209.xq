@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-209                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure that a large Unicode codepoint is handled correctly in xs:anyURI. :)
+(:*******************************************************:)
+xs:anyURI("&#12316;")

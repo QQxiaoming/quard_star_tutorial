@@ -1,0 +1,13 @@
+This directory contains test data to be used by tst_bic to check that we don't
+introduce binary incompatible changes between releases. The bic test is run
+after every successful integration on Linux only. This data is generated after
+each minor release. The generated BC files contain virtual tables, and the bic
+test checks new content against the old data.
+
+See the following README for an explanation of how to generate this data:
+
+http://code.qt.io/cgit/qt/qtqa.git/tree/tests/postbuild/bic/README
+
+The test itself can be found here:
+
+http://code.qt.io/cgit/qt/qtqa.git/tree/tests/postbuild/bic

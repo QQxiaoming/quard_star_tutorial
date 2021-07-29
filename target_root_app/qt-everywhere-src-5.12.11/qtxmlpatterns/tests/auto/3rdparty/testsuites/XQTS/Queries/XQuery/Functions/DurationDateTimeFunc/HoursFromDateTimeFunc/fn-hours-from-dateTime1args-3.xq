@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: hours-from-dateTime1args-3                        :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "hours-from-dateTime" function  :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:dateTime(upper bound)                        :)
+(:*******************************************************:)
+
+fn:hours-from-dateTime(xs:dateTime("2030-12-31T23:59:59"))

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqZeroOrOneFunc-1                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: A test whose essence is: `zero-or-one(1, 2)`. :)
+(:*******************************************************:)
+zero-or-one(1, 2)

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExcept-29                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a name test that is the descendant-or-self axis as right operand. :)
+(:*******************************************************:)
+empty(<e/>/(a except descendant-or-self))

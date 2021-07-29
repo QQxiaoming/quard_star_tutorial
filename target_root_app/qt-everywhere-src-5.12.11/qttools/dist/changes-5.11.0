@@ -1,0 +1,65 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+Licensing
+---------
+
+ - The Qt UI Tools library got relicensed to commercial + BSD.
+
+Qt Designer
+-----------
+
+ - [QTBUG-34610] Qt Designer now supports id-based translations.
+
+Qt Linguist
+-----------
+
+ - [QTBUG-35652] Fixed special whitespace characters getting lost.
+ - [QTBUG-43519] Language labels are now country-qualified when necessary.
+ - [QTBUG-56376] The language selection dialog now displays each country
+   and language in both english and the language itself.
+ - Language labels are now displayed in the target language itself.
+ - The phrase view now shows the source context of guesses.
+ - The maximal number of guesses in the phrase view can be changed now.
+ - The message count fields gained tooltips that show the number of
+   remaining unfinished messages.
+ - It is now possible to mark a message as done without jumping to the
+   next unfinished one.
+ - The search dialog now supports regular expressions.
+
+lupdate
+-------
+
+ - [QTBUG-67278] -tr-function-alias may now specify QML member expressions.
+
+lrelease
+--------
+
+ - [QTBUG-64317][CMake] Fixed qt5_add_translation() mishandling of filenames
+   with multiple dots.
+ - [QTBUG-44323][CMake] Added OPTIONS parameter to qt5_add_translation().
+
+macdeployqt
+-----------
+
+ - [QTBUG-65844] Added support for selecting the file system type to use
+   when building a .dmg file. Defaults to HFS+ to support a wider range
+   of macOS versions.

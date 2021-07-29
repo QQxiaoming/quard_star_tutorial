@@ -1,0 +1,606 @@
+/*
+ * Copyright (C) 2010 Google Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1.  Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ * 2.  Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in the
+ *     documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY APPLE AND ITS CONTRIBUTORS "AS IS" AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL APPLE OR ITS CONTRIBUTORS BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+#include "third_party/blink/renderer/modules/webaudio/audio_param.h"
+
+#include "build/build_config.h"
+#include "third_party/blink/renderer/core/inspector/console_message.h"
+#include "third_party/blink/renderer/modules/webaudio/audio_node.h"
+#include "third_party/blink/renderer/modules/webaudio/audio_node_output.h"
+#include "third_party/blink/renderer/platform/audio/audio_utilities.h"
+#include "third_party/blink/renderer/platform/audio/vector_math.h"
+#include "third_party/blink/renderer/platform/bindings/exception_state.h"
+#include "third_party/blink/renderer/platform/histogram.h"
+#include "third_party/blink/renderer/platform/wtf/math_extras.h"
+
+#if defined(ARCH_CPU_X86_FAMILY)
+#include <emmintrin.h>
+#endif
+
+namespace blink {
+
+const double AudioParamHandler::kDefaultSmoothingConstant = 0.05;
+const double AudioParamHandler::kSnapThreshold = 0.001;
+
+AudioParamHandler::AudioParamHandler(BaseAudioContext& context,
+                                     AudioParamType param_type,
+                                     double default_value,
+                                     AutomationRate rate,
+                                     AutomationRateMode rate_mode,
+                                     float min_value,
+                                     float max_value)
+    : AudioSummingJunction(context.GetDeferredTaskHandler()),
+      param_type_(param_type),
+      intrinsic_value_(default_value),
+      default_value_(default_value),
+      automation_rate_(rate),
+      rate_mode_(rate_mode),
+      min_value_(min_value),
+      max_value_(max_value) {
+  // The destination MUST exist because we need the destination handler for the
+  // AudioParam.
+  CHECK(context.destination());
+
+  destination_handler_ = &context.destination()->GetAudioDestinationHandler();
+  timeline_.SetSmoothedValue(default_value);
+}
+
+AudioDestinationHandler& AudioParamHandler::DestinationHandler() const {
+  return *destination_handler_;
+}
+
+void AudioParamHandler::SetParamType(AudioParamType param_type) {
+  param_type_ = param_type;
+}
+
+void AudioParamHandler::SetCustomParamName(const String name) {
+  DCHECK(param_type_ == kParamTypeAudioWorklet);
+  custom_param_name_ = name;
+}
+
+String AudioParamHandler::GetParamName() const {
+  switch (GetParamType()) {
+    case kParamTypeAudioBufferSourcePlaybackRate:
+      return "AudioBufferSource.playbackRate";
+    case kParamTypeAudioBufferSourceDetune:
+      return "AudioBufferSource.detune";
+    case kParamTypeBiquadFilterFrequency:
+      return "BiquadFilter.frequency";
+    case kParamTypeBiquadFilterQ:
+      return "BiquadFilter.Q";
+    case kParamTypeBiquadFilterGain:
+      return "BiquadFilter.Gain";
+    case kParamTypeBiquadFilterDetune:
+      return "BiquadFilter.detune";
+    case kParamTypeDelayDelayTime:
+      return "Delay.delayTime";
+    case kParamTypeDynamicsCompressorThreshold:
+      return "DynamicsCompressor.threshold";
+    case kParamTypeDynamicsCompressorKnee:
+      return "DynamicsCompressor.knee";
+    case kParamTypeDynamicsCompressorRatio:
+      return "DynamicsCompressor.ratio";
+    case kParamTypeDynamicsCompressorAttack:
+      return "DynamicsCompressor.attack";
+    case kParamTypeDynamicsCompressorRelease:
+      return "DynamicsCompressor.release";
+    case kParamTypeGainGain:
+      return "Gain.gain";
+    case kParamTypeOscillatorFrequency:
+      return "Oscillator.frequency";
+    case kParamTypeOscillatorDetune:
+      return "Oscillator.detune";
+    case kParamTypeStereoPannerPan:
+      return "StereoPanner.pan";
+    case kParamTypePannerPositionX:
+      return "Panner.positionX";
+    case kParamTypePannerPositionY:
+      return "Panner.positionY";
+    case kParamTypePannerPositionZ:
+      return "Panner.positionZ";
+    case kParamTypePannerOrientationX:
+      return "Panner.orientationX";
+    case kParamTypePannerOrientationY:
+      return "Panner.orientationY";
+    case kParamTypePannerOrientationZ:
+      return "Panner.orientationZ";
+    case kParamTypeAudioListenerPositionX:
+      return "AudioListener.positionX";
+    case kParamTypeAudioListenerPositionY:
+      return "AudioListener.positionY";
+    case kParamTypeAudioListenerPositionZ:
+      return "AudioListener.positionZ";
+    case kParamTypeAudioListenerForwardX:
+      return "AudioListener.forwardX";
+    case kParamTypeAudioListenerForwardY:
+      return "AudioListener.forwardY";
+    case kParamTypeAudioListenerForwardZ:
+      return "AudioListener.forwardZ";
+    case kParamTypeAudioListenerUpX:
+      return "AudioListener.upX";
+    case kParamTypeAudioListenerUpY:
+      return "AudioListener.upY";
+    case kParamTypeAudioListenerUpZ:
+      return "AudioListener.upZ";
+    case kParamTypeConstantSourceOffset:
+      return "ConstantSource.offset";
+    case kParamTypeAudioWorklet:
+      return custom_param_name_;
+    default:
+      NOTREACHED();
+  }
+}
+
+float AudioParamHandler::Value() {
+  // Update value for timeline.
+  float v = IntrinsicValue();
+  if (GetDeferredTaskHandler().IsAudioThread()) {
+    bool has_value;
+    float timeline_value = timeline_.ValueForContextTime(
+        DestinationHandler(), v, has_value, MinValue(), MaxValue());
+
+    if (has_value)
+      v = timeline_value;
+  }
+
+  SetIntrinsicValue(v);
+  return v;
+}
+
+void AudioParamHandler::SetIntrinsicValue(float new_value) {
+  new_value = clampTo(new_value, min_value_, max_value_);
+  NoBarrierStore(&intrinsic_value_, new_value);
+}
+
+void AudioParamHandler::SetValue(float value) {
+  SetIntrinsicValue(value);
+}
+
+float AudioParamHandler::SmoothedValue() {
+  return timeline_.SmoothedValue();
+}
+
+bool AudioParamHandler::Smooth() {
+  // If values have been explicitly scheduled on the timeline, then use the
+  // exact value.  Smoothing effectively is performed by the timeline.
+  bool use_timeline_value = false;
+  float value =
+      timeline_.ValueForContextTime(DestinationHandler(), IntrinsicValue(),
+                                    use_timeline_value, MinValue(), MaxValue());
+
+  float smoothed_value = timeline_.SmoothedValue();
+  if (smoothed_value == value) {
+    // Smoothed value has already approached and snapped to value.
+    SetIntrinsicValue(value);
+    return true;
+  }
+
+  if (use_timeline_value) {
+    timeline_.SetSmoothedValue(value);
+  } else {
+    // Dezipper - exponential approach.
+    smoothed_value += (value - smoothed_value) * kDefaultSmoothingConstant;
+
+    // If we get close enough then snap to actual value.
+    // FIXME: the threshold needs to be adjustable depending on range - but
+    // this is OK general purpose value.
+    if (fabs(smoothed_value - value) < kSnapThreshold)
+      smoothed_value = value;
+    timeline_.SetSmoothedValue(smoothed_value);
+  }
+
+  SetIntrinsicValue(value);
+  return false;
+}
+
+float AudioParamHandler::FinalValue() {
+  float value = IntrinsicValue();
+  CalculateFinalValues(&value, 1, false);
+  return value;
+}
+
+void AudioParamHandler::CalculateSampleAccurateValues(
+    float* values,
+    unsigned number_of_values) {
+  bool is_safe =
+      GetDeferredTaskHandler().IsAudioThread() && values && number_of_values;
+  DCHECK(is_safe);
+  if (!is_safe)
+    return;
+
+  CalculateFinalValues(values, number_of_values, IsAudioRate());
+}
+
+// Replace NaN values in |values| with |default_value|.
+static void HandleNaNValues(float* values,
+                            unsigned number_of_values,
+                            float default_value) {
+  unsigned k = 0;
+#if defined(ARCH_CPU_X86_FAMILY)
+  if (number_of_values >= 4) {
+    __m128 defaults = _mm_set1_ps(default_value);
+    for (k = 0; k < number_of_values; k += 4) {
+      __m128 v = _mm_loadu_ps(values + k);
+      // cmpuord returns all 1's if v is NaN for each elmeent of v.
+      __m128 isnan = _mm_cmpunord_ps(v, v);
+      // Replace NaN parts with default.
+      __m128 result = _mm_and_ps(isnan, defaults);
+      // Merge in the parts that aren't NaN
+      result = _mm_or_ps(_mm_andnot_ps(isnan, v), result);
+      _mm_storeu_ps(values + k, result);
+    }
+  }
+#elif defined(CPU_ARM_NEON)
+  if (number_of_values >= 4) {
+    uint32x4_t defaults = vreinterpretq_u32_f32(vdupq_n_f32(default_value));
+    for (k = 0; k < number_of_values; k += 4) {
+      float32x4_t v = vld1q_f32(values + k);
+      // Returns true (all ones) if v is not NaN
+      uint32x4_t is_not_nan = vceqq_f32(v, v);
+      // Get the parts that are not NaN
+      uint32x4_t result = vandq_u32(is_not_nan, vreinterpretq_u32_f32(v));
+      // Replace the parts that are NaN with the default and merge with previous
+      // result.  (Note: vbic_u32(x, y) = x and not y)
+      result = vorrq_u32(result, vbicq_u32(defaults, is_not_nan));
+      vst1q_f32(values + k, vreinterpretq_f32_u32(result));
+    }
+  }
+#endif
+  for (; k < number_of_values; ++k) {
+    if (std::isnan(values[k])) {
+      values[k] = default_value;
+    }
+  }
+}
+
+void AudioParamHandler::CalculateFinalValues(float* values,
+                                             unsigned number_of_values,
+                                             bool sample_accurate) {
+  bool is_good =
+      GetDeferredTaskHandler().IsAudioThread() && values && number_of_values;
+  DCHECK(is_good);
+  if (!is_good)
+    return;
+
+  // The calculated result will be the "intrinsic" value summed with all
+  // audio-rate connections.
+
+  if (sample_accurate) {
+    // Calculate sample-accurate (a-rate) intrinsic values.
+    CalculateTimelineValues(values, number_of_values);
+  } else {
+    // Calculate control-rate (k-rate) intrinsic value.
+    bool has_value;
+    float value = IntrinsicValue();
+    float timeline_value = timeline_.ValueForContextTime(
+        DestinationHandler(), value, has_value, MinValue(), MaxValue());
+
+    if (has_value)
+      value = timeline_value;
+
+    for (unsigned k = 0; k < number_of_values; ++k) {
+      values[k] = value;
+    }
+    SetIntrinsicValue(value);
+  }
+
+  // Now sum all of the audio-rate connections together (unity-gain summing
+  // junction).  Note that connections would normally be mono, but we mix down
+  // to mono if necessary.
+  scoped_refptr<AudioBus> summing_bus =
+      AudioBus::Create(1, number_of_values, false);
+  summing_bus->SetChannelMemory(0, values, number_of_values);
+
+  for (unsigned i = 0; i < NumberOfRenderingConnections(); ++i) {
+    AudioNodeOutput* output = RenderingOutput(i);
+    DCHECK(output);
+
+    // Render audio from this output.
+    AudioBus* connection_bus =
+        output->Pull(nullptr, AudioUtilities::kRenderQuantumFrames);
+
+    // Sum, with unity-gain.
+    summing_bus->SumFrom(*connection_bus);
+  }
+
+    float min_value = MinValue();
+    float max_value = MaxValue();
+
+    if (NumberOfRenderingConnections() > 0) {
+      // AudioParams by themselves don't produce NaN because of the finite min
+      // and max values.  But an input to an AudioParam could have NaNs.
+      //
+      // NaN values in AudioParams must be replaced by the AudioParam's
+      // defaultValue.  Then these values must be clamped to lie in the nominal
+      // range between the AudioParam's minValue and maxValue.
+      //
+      // See https://webaudio.github.io/web-audio-api/#computation-of-value.
+      HandleNaNValues(values, number_of_values, DefaultValue());
+    }
+
+    VectorMath::Vclip(values, 1, &min_value, &max_value, values, 1,
+                       number_of_values);
+
+}
+
+void AudioParamHandler::CalculateTimelineValues(float* values,
+                                                unsigned number_of_values) {
+  // Calculate values for this render quantum.  Normally
+  // |numberOfValues| will equal to
+  // AudioUtilities::kRenderQuantumFrames (the render quantum size).
+  double sample_rate = DestinationHandler().SampleRate();
+  size_t start_frame = DestinationHandler().CurrentSampleFrame();
+  size_t end_frame = start_frame + number_of_values;
+
+  // Note we're running control rate at the sample-rate.
+  // Pass in the current value as default value.
+  SetIntrinsicValue(timeline_.ValuesForFrameRange(
+      start_frame, end_frame, IntrinsicValue(), values, number_of_values,
+      sample_rate, sample_rate, MinValue(), MaxValue()));
+}
+
+void AudioParamHandler::Connect(AudioNodeOutput& output) {
+  DCHECK(GetDeferredTaskHandler().IsGraphOwner());
+
+  if (outputs_.Contains(&output))
+    return;
+
+  output.AddParam(*this);
+  outputs_.insert(&output);
+  ChangedOutputs();
+}
+
+void AudioParamHandler::Disconnect(AudioNodeOutput& output) {
+  DCHECK(GetDeferredTaskHandler().IsGraphOwner());
+
+  if (outputs_.Contains(&output)) {
+    outputs_.erase(&output);
+    ChangedOutputs();
+    output.RemoveParam(*this);
+  }
+}
+
+int AudioParamHandler::ComputeQHistogramValue(float new_value) const {
+  // For the Q value, assume a useful range is [0, 25] and that 0.25 dB
+  // resolution is good enough.  Then, we can map the floating point Q value (in
+  // dB) to an integer just by multipling by 4 and rounding.
+  new_value = clampTo(new_value, 0.0, 25.0);
+  return static_cast<int>(4 * new_value + 0.5);
+}
+
+// ----------------------------------------------------------------
+
+AudioParam::AudioParam(BaseAudioContext& context,
+                       AudioParamType param_type,
+                       double default_value,
+                       AudioParamHandler::AutomationRate rate,
+                       AudioParamHandler::AutomationRateMode rate_mode,
+                       float min_value,
+                       float max_value)
+    : handler_(AudioParamHandler::Create(context,
+                                         param_type,
+                                         default_value,
+                                         rate,
+                                         rate_mode,
+                                         min_value,
+                                         max_value)),
+      context_(context) {}
+
+AudioParam* AudioParam::Create(BaseAudioContext& context,
+                               AudioParamType param_type,
+                               double default_value) {
+  return new AudioParam(context, param_type, default_value,
+                        AudioParamHandler::AutomationRate::kAudio,
+                        AudioParamHandler::AutomationRateMode::kVariable,
+                        -std::numeric_limits<float>::max(),
+                        std::numeric_limits<float>::max());
+}
+
+AudioParam* AudioParam::Create(BaseAudioContext& context,
+                               AudioParamType param_type,
+                               double default_value,
+                               AudioParamHandler::AutomationRate rate,
+                               AudioParamHandler::AutomationRateMode rate_mode,
+                               float min_value,
+                               float max_value) {
+  DCHECK_LE(min_value, max_value);
+
+  return new AudioParam(context, param_type, default_value, rate, rate_mode,
+                        min_value, max_value);
+}
+
+void AudioParam::Trace(blink::Visitor* visitor) {
+  visitor->Trace(context_);
+  ScriptWrappable::Trace(visitor);
+}
+
+float AudioParam::value() const {
+  return Handler().Value();
+}
+
+void AudioParam::WarnIfOutsideRange(const String& param_method, float value) {
+  if (value < minValue() || value > maxValue()) {
+    Context()->GetExecutionContext()->AddConsoleMessage(ConsoleMessage::Create(
+        kJSMessageSource, kWarningMessageLevel,
+        Handler().GetParamName() + "." + param_method + " " +
+            String::Number(value) + " outside nominal range [" +
+            String::Number(minValue()) + ", " + String::Number(maxValue()) +
+            "]; value will be clamped."));
+  }
+}
+
+void AudioParam::setValue(float value) {
+  WarnIfOutsideRange("value", value);
+  Handler().SetValue(value);
+}
+
+void AudioParam::setValue(float value, ExceptionState& exception_state) {
+  WarnIfOutsideRange("value", value);
+
+  // This is to signal any errors, if necessary, about conflicting
+  // automations.
+  setValueAtTime(value, Context()->currentTime(), exception_state);
+  // This is to change the value so that an immediate query for the
+  // value returns the expected values.
+  Handler().SetValue(value);
+}
+
+float AudioParam::defaultValue() const {
+  return Handler().DefaultValue();
+}
+
+float AudioParam::minValue() const {
+  return Handler().MinValue();
+}
+
+float AudioParam::maxValue() const {
+  return Handler().MaxValue();
+}
+
+void AudioParam::SetParamType(AudioParamType param_type) {
+  Handler().SetParamType(param_type);
+}
+
+void AudioParam::SetCustomParamName(const String name) {
+  Handler().SetCustomParamName(name);
+}
+
+String AudioParam::automationRate() const {
+  switch (Handler().GetAutomationRate()) {
+    case AudioParamHandler::AutomationRate::kAudio:
+      return "a-rate";
+    case AudioParamHandler::AutomationRate::kControl:
+      return "k-rate";
+    default:
+      NOTREACHED();
+      return "a-rate";
+  }
+}
+
+void AudioParam::setAutomationRate(const String& rate,
+                                   ExceptionState& exception_state) {
+  if (Handler().IsAutomationRateFixed()) {
+    exception_state.ThrowDOMException(
+        DOMExceptionCode::kInvalidStateError,
+        Handler().GetParamName() +
+            ".automationRate is fixed and cannot be changed to \"" + rate +
+            "\"");
+    return;
+  }
+
+  if (rate == "a-rate") {
+    Handler().SetAutomationRate(AudioParamHandler::AutomationRate::kAudio);
+  } else if (rate == "k-rate") {
+    Handler().SetAutomationRate(AudioParamHandler::AutomationRate::kControl);
+  }
+}
+
+AudioParam* AudioParam::setValueAtTime(float value,
+                                       double time,
+                                       ExceptionState& exception_state) {
+  WarnIfOutsideRange("setValueAtTime value", value);
+  Handler().Timeline().SetValueAtTime(value, time, exception_state);
+  return this;
+}
+
+AudioParam* AudioParam::linearRampToValueAtTime(
+    float value,
+    double time,
+    ExceptionState& exception_state) {
+  WarnIfOutsideRange("linearRampToValueAtTime value", value);
+  Handler().Timeline().LinearRampToValueAtTime(
+      value, time, Handler().IntrinsicValue(), Context()->currentTime(),
+      exception_state);
+
+  return this;
+}
+
+AudioParam* AudioParam::exponentialRampToValueAtTime(
+    float value,
+    double time,
+    ExceptionState& exception_state) {
+  WarnIfOutsideRange("exponentialRampToValue value", value);
+  Handler().Timeline().ExponentialRampToValueAtTime(
+      value, time, Handler().IntrinsicValue(), Context()->currentTime(),
+      exception_state);
+
+  return this;
+}
+
+AudioParam* AudioParam::setTargetAtTime(float target,
+                                        double time,
+                                        double time_constant,
+                                        ExceptionState& exception_state) {
+  WarnIfOutsideRange("setTargetAtTime value", target);
+  Handler().Timeline().SetTargetAtTime(target, time, time_constant,
+                                       exception_state);
+
+  // Don't update the histogram here.  It's not clear in normal usage if the
+  // parameter value will actually reach |target|.
+  return this;
+}
+
+AudioParam* AudioParam::setValueCurveAtTime(const Vector<float>& curve,
+                                            double time,
+                                            double duration,
+                                            ExceptionState& exception_state) {
+  float min = minValue();
+  float max = maxValue();
+
+  // Find the first value in the curve (if any) that is outside the
+  // nominal range.  It's probably not necessary to produce a warning
+  // on every value outside the nominal range.
+  for (unsigned k = 0; k < curve.size(); ++k) {
+    float value = curve[k];
+
+    if (value < min || value > max) {
+      WarnIfOutsideRange("setValueCurveAtTime value", value);
+      break;
+    }
+  }
+
+  Handler().Timeline().SetValueCurveAtTime(curve, time, duration,
+                                           exception_state);
+
+  // We could update the histogram with every value in the curve, due to
+  // interpolation, we'll probably be missing many values.  So we don't update
+  // the histogram.  setValueCurveAtTime is probably a fairly rare method
+  // anyway.
+  return this;
+}
+
+AudioParam* AudioParam::cancelScheduledValues(double start_time,
+                                              ExceptionState& exception_state) {
+  Handler().Timeline().CancelScheduledValues(start_time, exception_state);
+  return this;
+}
+
+AudioParam* AudioParam::cancelAndHoldAtTime(double start_time,
+                                            ExceptionState& exception_state) {
+  Handler().Timeline().CancelAndHoldAtTime(start_time, exception_state);
+  return this;
+}
+
+}  // namespace blink

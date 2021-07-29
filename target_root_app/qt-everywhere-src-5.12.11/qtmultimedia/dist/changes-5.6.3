@@ -1,0 +1,66 @@
+Qt 5.6.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.6.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+  http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.6 series is binary compatible with the 5.5.x series.
+Applications compiled for 5.5 will continue to run with 5.6.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+  https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                          Library                                         *
+****************************************************************************
+
+QtMultimedia
+------------
+
+- [QTBUG-55007] Fixed Playlist's documentation to include signals that were
+  wrongly listed under the Audio element.
+
+- [QTBUG-54849] Optimized QMediaPlaylistPrivate::readItems() to pass items
+  to the backend in bulk instead of doing it one item at a time.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Windows
+-------
+
+- Enabled DirectShow plugin on WinCE.
+
+- Made it possible to build the audio decode service from the WMF as a
+  standalone service, making it possible to use the audio decode service even
+  when DirectShow is used as the media player backend.
+
+- [QTBUG-43765] Fixed setting volume per stream when using multiple
+  QAudioOutputs.
+
+- [QTBUG-55359] Added support for MJPEG cameras in DirectShow.
+
+Android
+-------
+
+- [QTBUG-49578] Fixed mediaStatus signal reporting to work as documented.
+
+Linux
+-----
+
+- [QTBUG-49578] Fixed mediaStatus signal reporting to work as documented.
+
+- [QTBUG-50775] Improved handling of missing camerabin plugin.
+
+QNX
+---
+
+ - [QTBUG-50775] Fixed static linking.

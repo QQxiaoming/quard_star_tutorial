@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>myType</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/userDefinedTypes</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:castableExpr>
+        <xqx:argExpr>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="myType">sizeType</xqx:functionName>
+            <xqx:arguments>
+              <xqx:integerConstantExpr>
+                <xqx:value>2</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:argExpr>
+        <xqx:singleType>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+        </xqx:singleType>
+      </xqx:castableExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

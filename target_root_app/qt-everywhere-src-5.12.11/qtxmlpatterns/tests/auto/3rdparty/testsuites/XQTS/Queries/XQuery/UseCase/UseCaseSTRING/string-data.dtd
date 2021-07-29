@@ -1,0 +1,26 @@
+<!ELEMENT company (name, ticker_symbol?, description?,
+          business_code, partners?, competitors?)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT ticker_symbol (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT business_code (#PCDATA)>
+<!ELEMENT partners (partner+)>
+<!ELEMENT partner (#PCDATA)>
+<!ELEMENT competitors (competitor+)>
+<!ELEMENT competitor (#PCDATA)>
+
+<!ELEMENT news (news_item*)>
+<!ELEMENT news_item (title, content, date, author?, news_agent)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT content (par | figure)+ >
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT news_agent (#PCDATA)>
+<!ELEMENT par (#PCDATA | quote | footnote)*>
+<!ELEMENT quote (#PCDATA)>
+<!ELEMENT footnote (#PCDATA)>
+<!ELEMENT figure (title, image)>
+<!ELEMENT image EMPTY>
+<!ATTLIST image
+    source  CDATA  #REQUIRED >
+

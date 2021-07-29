@@ -1,0 +1,113 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+    \title Qt Quick TableView examples - Conway’s Game of Life
+    \example tableview/gameoflife
+    \brief The \e{Conway’s Game of Life} example shows how the QML TableView
+    type can be used to display a C++ model that the user can pan around.
+
+    \image gameoflife.png
+    \ingroup qtquickexamples
+
+    \include examples-run.qdocinc
+
+    \section1 The QML User Interface
+
+    \snippet tableview/gameoflife/main.qml tableview
+    The example uses the TableView component to display a grid of cells. Each
+    of these cells is drawn on the screen by the TableView’s delegate, which is
+    a Rectangle QML component. We read the cell’s value and we change it
+    using \c{model.value} when the user clicks it.
+
+    \snippet tableview/gameoflife/main.qml scroll
+    When the application starts, the TableView is scrolled to its center
+    by using its \c{contentX} and \c{contentY} properties to update the scroll
+    position, and the \c{contentWidth} and \c{contentHeight} to compute where
+    the view should be scrolled to.
+
+    \snippet tableview/gameoflife/main.qml model
+    The model that we use is a custom C++ class that we register
+    in the QML system:
+    \snippet tableview/gameoflife/main.cpp registertype
+
+    \section1 The C++ Model
+
+    \snippet tableview/gameoflife/gameoflifemodel.h modelclass
+    The \c{GameOfLifeModel} class extends QAbstractTableModel so it can be
+    used as the model of our TableView component. Therefore, it needs to
+    implement some functions so the TableView component can interact with
+    the model. As you can see in the \c private part of the class, the model
+    uses a fixed-size array to store the current state of all the cells.
+
+    \snippet tableview/gameoflife/gameoflifemodel.cpp modelsize
+    Here, the \c rowCount and \c columnCount methods are implemented so
+    the TableView component can know the size of the table. It simply returns
+    the values of the \c width and \c height constants.
+
+    \snippet tableview/gameoflife/gameoflifemodel.cpp read
+    This method is called when the TableView component requests some data from
+    the model. In our example, we only have one piece of data by cell: whether
+    it is alive or not. This information is represented by the \c CellRole value
+    of the \c Roles enum in our C++ code; this corresponds to the \c value
+    property in the QML code (the link between these two is made by the
+    \c{roleNames()} function of our C++ class).
+
+    The \c GameOfLifeModel class can identify which cell was the data requested
+    from with the \c index parameter, which is a QModelIndex that contains
+    a row and a column.
+
+    \section1 Updating the Data
+
+    \snippet tableview/gameoflife/gameoflifemodel.cpp write
+    The \c setData method is called when a property’s value is set from the
+    QML interface: in our example, it toggles a cell’s state when it is clicked.
+    In the same way as the \c{data()} function does, this method receives an
+    \c index and a \c role parameter. Additionally, the new value is passed
+    as a QVariant, that we convert to a boolean using the \c toBool function.
+
+    When we update the internal state of our model object, we need to emit a
+    \c dataChanged signal to tell the TableView component that it needs to update the
+    displayed data. In this case, only the cell that was clicked is affected, thus
+    the range of the table that has to be updated begins and ends at the cell’s index.
+
+    \snippet tableview/gameoflife/gameoflifemodel.cpp update
+    This function can be called directly from the QML code, because it contains the
+    Q_INVOKABLE macro in its definition. It plays an iteration of the game, either when
+    the user clicks the \e{Next} button or when the Timer emits a \c{triggered()} signal.
+
+    Following the \e{Conway’s Game of Life} rules, a new state is computed for each
+    cell depending on the current state of its neighbors. When the new state has
+    been computed for the whole grid, it replaces the current state and a
+    \e dataChanged signal is emitted for the whole table.
+
+    \snippet tableview/gameoflife/gameoflifemodel.cpp loader
+    When the application opens, a pattern is loaded to demonstrate how
+    \e{Conway’s Game of Life} works. These two functions load the file where
+    the pattern is stored and parse it. As in the \c nextStep function, a
+    \c dataChanged signal is emitted for the whole table once the pattern
+    has been fully loaded.
+*/

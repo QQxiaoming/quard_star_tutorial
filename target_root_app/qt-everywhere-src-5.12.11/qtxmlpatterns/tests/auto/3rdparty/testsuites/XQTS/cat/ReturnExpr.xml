@@ -1,0 +1,194 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ReturnExpr" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>RETURN Clause</title>
+      <description>Tests for the RETURN part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="ReturnExpr001" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - use element's text to construct new element.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr001" date="2003-02-10">
+         <description>For+Return - use element's text to construct new element</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr001.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ReturnExpr002" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - use existing attribute to generate new attribute for new element.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr002" date="2003-02-10">
+         <description>For+Return - use existing attribute to generate new attribute for new element</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr002.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ReturnExpr003" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - one For+Return expr contains another one For+Return expr.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr003" date="2003-02-10">
+         <description>For+Return - one For+Return expr contains another one For+Return expr</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ReturnExpr003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ReturnExpr004" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - filters in 'Where' expr and in 'Return' expr using predicate.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr004" date="2003-02-10">
+         <description>For+Where+Return - filters in 'Where' expr and in 'Return' expr using predicate</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ReturnExpr004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr005" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression returns selected element nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr005" date="2005-06-24">
+         <description>FLWOR expression returns selected element nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr005.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr006" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression returns selected values.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr006" date="2005-06-24">
+         <description>FLWOR expression returns selected values</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ReturnExpr006.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr007" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression return parent of select nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr007" date="2005-06-24">
+         <description>FLWOR expression return parent of select nodes</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr008" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression returns constant value, independent of input bindings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr008" date="2005-06-24">
+         <description>FLWOR expression returns constant value, independent of input bindings</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ReturnExpr008.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr009" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression returns node from document, independent of input bindings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr009" date="2005-06-24">
+         <description>FLWOR expression returns node from document, independent of input bindings</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr009.xml</output-file>
+   </test-case>
+   <test-case name="ReturnExpr010" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke" is-XPath2="false">
+      <description>FLWOR expression returns empty sequence literal.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr010" date="2005-06-24">
+         <description>FLWOR expression returns empty sequence literal</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr010.xml</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr011" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression returns a constructed sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr011" date="2005-06-24">
+         <description>FLWOR expression returns a constructed sequence</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr011.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr012" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Multiple return statements.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr012" date="2005-06-24">
+         <description>Multiple return statements</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr013" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Missing 'return' statement in FLWOR expression.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr013" date="2005-06-24">
+         <description>Missing 'return' statement in FLWOR expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ReturnExpr014" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>FLWOR expression return statement depends on undefined variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr014" date="2005-06-24">
+         <description>FLWOR expression return statement depends on undefined variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr015" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Variable bound to value from return statement.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr015" date="2005-06-24">
+         <description>Variable bound to value from return statement</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr015.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ReturnExpr016" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Return value of positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr016" date="2005-06-24">
+         <description>Return value of positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ReturnExpr016.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr017" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Apply arithmetic operator inside 'return' statement.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr017" date="2005-06-24">
+         <description>Apply arithmetic operator inside 'return' statement</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ReturnExpr017.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr018" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Apply comparison operator inside 'return' statement.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr018" date="2005-06-24">
+         <description>Apply comparison operator inside 'return' statement</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ReturnExpr018.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr019" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Multiple 'return' statements.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr019" date="2005-06-24">
+         <description>Multiple 'return' statements</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ReturnExpr020" FilePath="Expressions/FLWORExpr/ReturnExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>'return' expression containing a typed value constructor function.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="ReturnExpr020" date="2005-06-24">
+         <description>'return' expression containing a typed value constructor function</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ReturnExpr020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ReturnExpr-1" FilePath="FLWORExpr/ReturnExpr/" scenario="parse-error">
+      <description>Only a return clause is syntactically invalid.</description>
+      <query name="K2-ReturnExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

@@ -1,0 +1,198 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="preceding-siblingAxis" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>preceding-sibling Axis</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="preceding-sibling-1" FilePath="FullAxis/preceding-siblingAxis/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis for which the context node is not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-1" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-2" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis for which the given node does not exists.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-2" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-3" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "is" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-3" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-4" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "is" expression (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-4" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-5" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "node before" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-5" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-6" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "node before" expression and both operands are the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-6" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-7" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "node before" expression and operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-7" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-8" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "node-after" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-8" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-9" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "node-after" expression and both operands the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-9" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-10" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "node-after" expression operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-10" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-11" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "union" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-11" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-sibling-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-12" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "union" operation and both operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-12" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-sibling-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-13" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "intersect" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-13" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-sibling-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-14" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "except" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-14" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-15" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis that is part of an "except" operation and operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-15" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-sibling-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-16" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis as part of a boolean expression. Uses "and" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-16" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-17" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis as part of a boolean expression. Uses "and" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-17" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-18" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis as part of a boolean expression. Uses "or" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-18" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-19" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis as part of a boolean expression. Uses "or" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-19" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-sibling-20" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis as an argument to fn:deep-equal function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-20" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="preceding-sibling-21" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding-sibling axis used together with a newly constructed element.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-sibling-21" date="2005-12-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="unabbreviatedSyntax-25" FilePath="FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates unabbreviated syntax. Evaluate "preceding-sibling::employee[fn:position() = 1]". Selects the previous employee sibling of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.3" section-title="Unabbreviated Syntax" section-pointer="unabbrev"/>
+      <query name="unabbreviatedSyntax-25" date="2005-07-11"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">unabbreviatedSyntax-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-preceding-siblingAxis-1" FilePath="Optional/FullAxis/preceding-siblingAxis/" scenario="standard">
+      <description>Iterate from the root node.</description>
+      <query name="K2-preceding-siblingAxis-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-preceding-siblingAxis-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-preceding-siblingAxis-2" FilePath="Optional/FullAxis/preceding-siblingAxis/" scenario="standard">
+      <description>Iterate from the root node.</description>
+      <query name="K2-preceding-siblingAxis-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-preceding-siblingAxis-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-preceding-siblingAxis-3" FilePath="Optional/FullAxis/preceding-siblingAxis/" scenario="standard">
+      <description>Apply fn:count() to the result of axis preceding.</description>
+      <query name="K2-preceding-siblingAxis-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-preceding-siblingAxis-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-preceding-siblingAxis-4" FilePath="Optional/FullAxis/preceding-siblingAxis/" scenario="standard">
+      <description>Apply fn:count() to the result of axis preceding.</description>
+      <query name="K2-preceding-siblingAxis-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-preceding-siblingAxis-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-preceding-siblingAxis-5" FilePath="Optional/FullAxis/preceding-siblingAxis/" scenario="standard">
+      <description>Apply fn:count() to the result of axis preceding.</description>
+      <query name="K2-preceding-siblingAxis-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-preceding-siblingAxis-5.txt</output-file>
+   </test-case>
+   <test-case name="preceding-sibling-attr" FilePath="Optional/FullAxis/preceding-siblingAxis/" scenario="standard" Creator="Michael Dyck">
+      <description>Apply the preceding-sibling axis to an attribute node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6538</reflects-resolution>
+      <query name="preceding-sibling-attr" date="2009-03-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">preceding-sibling-attr.txt</output-file>
+   </test-case>
+</test-group>

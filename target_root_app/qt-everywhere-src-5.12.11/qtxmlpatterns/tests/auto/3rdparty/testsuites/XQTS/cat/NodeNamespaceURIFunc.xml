@@ -1,0 +1,225 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeNamespaceURIFunc" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>fn:namespace-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-namespace-uri-1" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with no argument and no context node. Should raise an error.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-1" date="2005-09-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-2" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with more than one argument (2 arguments).</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-2" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-namespace-uri-3" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with context node not being a node.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-3" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-namespace-uri-4" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-4" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-5" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a directly constructed comment node.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-5" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-6" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed comment node.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-6" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-7" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct processing instruction node.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-7" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-8" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed processing instruction node.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-8" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-9" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed text node.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-9" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-10" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct element node with no namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-10" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-11" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed element node with no namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-11" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-12" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct attribute node with no namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-12" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-13" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed attribute node with no namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-13" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-namespace-uri-14" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to an element node with no namespace queried from an xml file.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-14" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-namespace-uri-15" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to an attribute node with no namespace queried from an xml file.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-15" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-16" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with no argument. Use an element node with no namespace queried from an xml file.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-16" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-17" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct element node with a namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-17" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-18" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed element node (with prefix) that uses a declared namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-18" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-19" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed element node (with no prefix), that should not use a declared namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-19" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-20" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct element node (with no prefix), that should not use a declared namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-20" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-21" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct element node with prefix, that should use a declared namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-21" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-22" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct element node with no prefix, that should use a declared default namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-22" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-23" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a direct element node with a prefix, that should not use a declared default namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-23" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-24" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed element node with a prefix, that should not use a declared default namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-24" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-25" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argument set to a computed element node with no prefix, that should use a declared default namespace.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-25" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-namespace-uri-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-namespace-uri-26" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:namespace-uri function with argumen set to "." and no context node. Should raise an error.</description>
+      <spec-citation spec="FuncOps" section-number="14.3" section-title="fn:namespace-uri" section-pointer="func-namespace-uri"/>
+      <query name="fn-namespace-uri-26" date="2006-02-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeNamespaceURIFunc-1" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `namespace-uri((), "wrong param")`.</description>
+      <query name="K-NodeNamespaceURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeNamespaceURIFunc-2" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then namespace-uri() else true()`.</description>
+      <query name="K-NodeNamespaceURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeNamespaceURIFunc-2.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeNamespaceURIFunc-3" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard">
+      <description>A test whose essence is: `namespace-uri(()) eq xs:anyURI("")`.</description>
+      <query name="K-NodeNamespaceURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeNamespaceURIFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeNamespaceURIFunc-1" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard">
+      <description>Extract the namespace URI from a processing instruction node.</description>
+      <query name="K2-NodeNamespaceURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NodeNamespaceURIFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeNamespaceURIFunc-2" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard">
+      <description>Extract the namespace URI from a comment node.</description>
+      <query name="K2-NodeNamespaceURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NodeNamespaceURIFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeNamespaceURIFunc-3" FilePath="Functions/NodeFunc/NodeNamespaceURIFunc/" scenario="standard">
+      <description>Extract the namespace URI from a text node.</description>
+      <query name="K2-NodeNamespaceURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NodeNamespaceURIFunc-3.txt</output-file>
+   </test-case>
+</test-group>

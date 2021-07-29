@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-HexBinaryEQ-5                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Complex comparison test of wrapped hexBinary/base64Binary constructor functions. :)
+(:*******************************************************:)
+xs:hexBinary(xs:base64Binary(xs:hexBinary("03")))
+		ne xs:hexBinary("13")

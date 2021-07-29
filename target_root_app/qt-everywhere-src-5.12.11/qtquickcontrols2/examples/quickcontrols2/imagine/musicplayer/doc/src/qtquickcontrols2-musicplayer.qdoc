@@ -1,0 +1,59 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example imagine/musicplayer
+    \keyword Qt Quick Controls - Imagine Style Example: Music Player
+    \title Qt Quick Controls - Imagine Style Example: Music Player
+    \keyword Qt Quick Controls 2 - Imagine Style Example: Music Player
+    \ingroup qtquickcontrols2-examples
+    \brief An audio player user interface using custom Imagine style assets.
+
+    This example demonstrates how custom Imagine style assets
+    can be used to style a user interface for an audio player application.
+
+    \image qtquickcontrols2-musicplayer.png
+
+    \omit
+    The assets are generated from a Photoshop file: \e musicplayer.psd.
+    This file can found in the \e design folder in the example directory.
+    All objects related to a particular asset are collected in a layer group.
+    For example, the assets for Button's background element are under a layer group with the following name:
+
+    \badcode
+    100% button-background.9.png, 200% button-background@2x.9.png, 300% button-background@3x.9.png, 400% button-background@4x.9.png
+    \endcode
+
+    Using Photoshop's \l {Generate Image Assets}{https://helpx.adobe.com/photoshop/using/generate-assets-layers.html} feature,
+    the size and name for each asset are encoded into the name of the layer group.
+
+    Where applicable, \l {Smart Objects}{https://helpx.adobe.com/photoshop/using/create-smart-objects.html}
+    are used to reduce duplication for common objects such as 9-patch lines.
+    \endomit
+
+    \include examples-run.qdocinc
+*/

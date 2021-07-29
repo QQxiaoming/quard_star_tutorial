@@ -1,0 +1,197 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="YearMonthDurationDivide" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:divide-yearMonthDuration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration2args-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(lower bound) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration2args-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(mid range) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration2args-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(upper bound) $arg2 = xs:double(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration2args-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(lower bound) $arg2 = xs:double(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration2args-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator with the arguments set as follows: $arg1 = xs:yearMonthDuration(lower bound) $arg2 = xs:double(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator as per example 1 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-1" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator as part of a boolean expression (and operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-2" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" opeartor as part of a boolean expression (or operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-3" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator used in conjunction with the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-4" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-5" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator as an argument to the "fn:number" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-6" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-7" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-7" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-8" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator that returns a negative value.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-8" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-9" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator, which is part of an "and" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-9" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-10" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" operator as part of an "or" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-10" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-11" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-11" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-12" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" function used in conjunction with a boolean expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-12" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-13" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-13" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-14" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-14" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-15" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-15" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-16" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:divide-yearMonthDuration" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <query name="op-divide-yearMonthDuration-16" date="2005-06-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-divide-yearMonthDuration-17" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard" Creator="Michael Kay">
+      <description>Tests rounding behaviour for the "op:divide-yearMonthDuration" function, see erratum FO.E12.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.4" section-title="op:divide-yearMonthDuration" section-pointer="func-divide-yearMonthDuration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4621</reflects-resolution>
+      <query name="op-divide-yearMonthDuration-17" date="2009-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-divide-yearMonthDuration-17.txt</output-file>
+   </test-case>   
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationDivide-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard">
+      <description>Simple test of dividing a xs:yearMonthDuration with 3.</description>
+      <query name="K-YearMonthDurationDivide-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationDivide-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationDivide-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard">
+      <description>Simple test of dividing a xs:yearMonthDuration with xs:double('-INF').</description>
+      <query name="K-YearMonthDurationDivide-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationDivide-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationDivide-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="standard">
+      <description>Simple test of dividing a xs:yearMonthDuration with xs:double('INF').</description>
+      <query name="K-YearMonthDurationDivide-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-YearMonthDurationDivide-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationDivide-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="runtime-error">
+      <description>Simple test of dividing a xs:yearMonthDuration with 0.</description>
+      <query name="K-YearMonthDurationDivide-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationDivide-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="runtime-error">
+      <description>Simple test of dividing a xs:yearMonthDuration with NaN.</description>
+      <query name="K-YearMonthDurationDivide-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-YearMonthDurationDivide-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/YearMonthDurationDivide/" scenario="runtime-error">
+      <description>Simple test of dividing a xs:yearMonthDuration with xs:double('-0').</description>
+      <query name="K-YearMonthDurationDivide-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODT0002</expected-error>
+   </test-case>
+</test-group>

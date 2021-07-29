@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-424                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: An URI without scheme, combined with a relative directory. :)
+(:*******************************************************:)
+xs:anyURI(":/images/cut.png")

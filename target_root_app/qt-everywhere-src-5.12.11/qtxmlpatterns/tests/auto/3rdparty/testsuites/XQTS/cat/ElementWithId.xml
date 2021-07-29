@@ -1,0 +1,55 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ElementWithId2">
+   <GroupInfo>
+      <title>Tests for element-with-id() function, introduced by erratum. Depends entirely on schema validation.</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-element-with-id-1" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Compares the new element-with-id() function with the id() function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6028</reflects-resolution>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6591</reflects-resolution>
+      <query name="fn-element-with-id-1" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-element-with-id-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-element-with-id-2" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Compares the new element-with-id() function with the id() function.
+                   Uses elements whose type is derived from xs:ID by restriction</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6028</reflects-resolution>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6591</reflects-resolution>
+      <query name="fn-element-with-id-2" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-element-with-id-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-element-with-id-3" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Compares the new element-with-id() function with the id() function.
+                   Uses elements whose type is a complex type with simple xs:ID content</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6028</reflects-resolution>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6591</reflects-resolution>
+      <query name="fn-element-with-id-3" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-element-with-id-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-element-with-id-4" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Compares the new element-with-id() function with the id() function.
+                   Uses elements whose type is derived from xs:ID by list</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6028</reflects-resolution>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6591</reflects-resolution>
+      <query name="fn-element-with-id-4" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-element-with-id-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-element-with-id-5" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Compares the new element-with-id() function with the id() function.
+                   Uses elements whose type is derived from xs:ID by union</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6028</reflects-resolution>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6591</reflects-resolution>
+      <query name="fn-element-with-id-5" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-element-with-id-5.txt</output-file>
+   </test-case>
+</test-group>

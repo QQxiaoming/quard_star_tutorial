@@ -1,0 +1,47 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://www.example.com/typedecl" targetNamespace="http://www.example.com/typedecl" elementFormDefault="qualified">
+	<xs:complexType name="InterleaveType">
+		<xs:all>
+			<xs:element name="integer" type="xs:integer"/>
+			<xs:element name="decimal" type="xs:decimal"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:simpleType name="Enumeration">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ok"/>
+			<xs:enumeration value="error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="InterleaveType" type="ns:InterleaveType"/>
+				<xs:element name="InterleaveType2">
+					<xs:complexType>
+						<xs:attribute name="integer" type="xs:integer"/>
+						<xs:attribute name="decimal" type="xs:decimal"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="UnionType">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="integer" type="xs:integer"/>
+							<xs:element name="decimal" type="xs:decimal"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="anyAtomicType">
+					<xs:complexType>
+						<xs:attribute name="att"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ListType" type="xs:string"/>
+				<xs:element name="UserDefinedSimpleType" type="ns:Enumeration"/>
+				<xs:element name="UserDefinedSimpleTypeAttribute">
+					<xs:complexType>
+						<xs:attribute name="att" type="ns:Enumeration"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

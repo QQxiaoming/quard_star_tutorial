@@ -1,0 +1,14 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="STFunctions" featureOwner="OliverHallam">
+   <GroupInfo>
+      <title>Static Typing of Functions</title>
+      <description>Tests dealing with the static typing of functions</description>
+   </GroupInfo>
+	<test-case is-XPath2="false" Creator="Oliver Hallam" name="ST-Data001" FilePath="StaticTyping/STFunctions/" scenario="runtime-error">
+		<description>Evaluates The "data" function with the argument set to a complex element with a mixed content type.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4273</reflects-resolution>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=9327</reflects-resolution>
+		<query name="ST-Data001" date="2010-06-08"/>
+		<input-file role="principal-data" variable="input-context">mixed</input-file>
+		<expected-error>FOTY0012</expected-error>
+	</test-case>
+</test-group>

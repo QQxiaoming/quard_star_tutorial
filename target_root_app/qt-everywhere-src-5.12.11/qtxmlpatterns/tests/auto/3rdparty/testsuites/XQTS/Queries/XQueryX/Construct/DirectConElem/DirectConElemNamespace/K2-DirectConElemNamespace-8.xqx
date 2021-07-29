@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:defaultNamespaceDecl>
+        <xqx:defaultNamespaceCategory>function</xqx:defaultNamespaceCategory>
+        <xqx:uri>http://example.com</xqx:uri>
+      </xqx:defaultNamespaceDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>e</xqx:tagName>
+        <xqx:attributeList>
+          <xqx:attributeConstructor>
+            <xqx:attributeName>a</xqx:attributeName>
+            <xqx:attributeValueExpr>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="p">count</xqx:functionName>
+                <xqx:arguments>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:attributeValueExpr>
+          </xqx:attributeConstructor>
+          <xqx:namespaceDeclaration>
+            <xqx:prefix>p</xqx:prefix>
+            <xqx:uri>http://www.w3.org/2001/XMLSchema</xqx:uri>
+          </xqx:namespaceDeclaration>
+        </xqx:attributeList>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

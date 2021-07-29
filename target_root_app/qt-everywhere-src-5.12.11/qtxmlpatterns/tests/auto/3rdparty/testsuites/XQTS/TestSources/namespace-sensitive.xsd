@@ -1,0 +1,33 @@
+<xs:schema targetNamespace="http://www.example.com/test/namespace-sensitive"
+				xmlns="http://www.example.com/test/namespace-sensitive"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xs:simpleType name="myString">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="union">
+		<xs:union memberTypes="xs:QName myString" />
+	</xs:simpleType>
+
+	<xs:simpleType name="list">
+		<xs:list itemType="union" />
+	</xs:simpleType>
+
+	<xs:element name="namespace-sensitive">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="sensitive" type="xs:QName" />
+
+				<xs:element name="insensitive" type="union" />
+
+				<xs:element name="sensitive-attribute">
+					<xs:complexType>
+						<xs:attribute name="sensitive" type="xs:QName" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

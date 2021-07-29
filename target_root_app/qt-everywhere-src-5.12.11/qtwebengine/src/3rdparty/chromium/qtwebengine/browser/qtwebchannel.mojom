@@ -1,0 +1,18 @@
+module qtwebchannel.mojom;
+
+// Render process interface exposed to the browser
+// There is one instance of this interface per render frame host in the browser process
+
+interface WebChannelTransportRender {
+  SetWorldId(uint32 worldId);
+  ResetWorldId();
+  DispatchWebChannelMessage(array<uint8> binaryJson, uint32 worldId);
+};
+
+// Browser process interface exposed to the renderer
+// There is one instance of this interface per render frame in the render process
+
+interface WebChannelTransportHost {
+  DispatchWebChannelMessage(array<uint8> binaryJson);
+};
+

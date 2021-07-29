@@ -1,0 +1,296 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqDocFunc" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>fn:doc</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-doc-1" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc function with an invalid argument.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-1" date="2005-11-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0005</expected-error>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-2" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc function with wrong arity.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-2" date="2005-11-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-3" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc, for a non existent resource.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-3" date="2005-12-02"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-4" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-4" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-doc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-5" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc as per example 1 from the Functions and Operators specs for the function (usage of "is" operator).</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-5" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-6" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc (two different resources) with "is" operator.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-6" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context1">works-mod</input-URI>
+      <input-URI role="principal-data" variable="input-context2">works</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-7" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc (normal usage) and retrieve part of the resources.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-7" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Fragment">fn-doc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-15" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc as an argument to the fn:nilled function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-15" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-16" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc as an argument to the fn:node-name function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-16" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-17" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc with argument set to an invalid URI.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-17" date="2006-01-25"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-18" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc used together with "is" operator and a the fn:not function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-18" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-19" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc used together with "is" operator and a the fn:true() function and the "and" operator.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-19" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-20" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc used together with "is" operator and a the fn:false() function and the "and" operator.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-20" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-21" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc used together with "is" operator and a the fn:true() function and the "or" operator.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-21" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-22" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc used together with "is" operator and a the fn:false() function and the "or" operator.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.4" section-title="fn:doc" section-pointer="func-doc"/>
+      <query name="fn-doc-22" date="2006-01-25"/>
+      <input-URI role="principal-data" variable="input-context">works-mod</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-22.txt</output-file>
+   </test-case>
+<!--
+   <test-case is-XPath2="true" name="fn-doc-23" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Load a document that contains many different combinations of whitespace.</description>
+      <query name="fn-doc-23" date="2007-06-16"/>
+      <input-URI role="principal-data" variable="input-context">ComplexWhitespace</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-23.txt</output-file>
+   </test-case>
+-->
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-1" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="standard">
+      <description>Invoke fn:doc() on the empty sequence.</description>
+      <query name="K2-SeqDocFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqDocFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-2" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="standard">
+      <description>Invoke fn:doc() on the empty sequence(#2).</description>
+      <query name="K2-SeqDocFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-SeqDocFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-3" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>Load an unexisting file via the file:// protocol.</description>
+      <query name="K2-SeqDocFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-4" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>Invoke fn:doc with a relative, Unix-like URI. Since it's relative, and the base-uri may be undefined, XPST0001 is allowed.</description>
+      <query name="K2-SeqDocFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+      <expected-error>XPST0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-5" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>Invoke fn:doc with a relative, Unix-like URI and a declared base-uri.</description>
+      <query name="K2-SeqDocFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-6" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>Invoke fn:doc with a relative, Unix-like URI and a declared base-uri.</description>
+      <query name="K2-SeqDocFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-7" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>A windows file path is an invalid URI to fn:doc().</description>
+      <query name="K2-SeqDocFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-8" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>A windows file path is an invalid URI to fn:doc()(#2).</description>
+      <query name="K2-SeqDocFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-9" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>A windows file path is an invalid URI to fn:doc()(#3).</description>
+      <query name="K2-SeqDocFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+      <expected-error>FODC0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-10" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>Invoke fn:doc() with a static base-uri that is complete, but doesn't point to a file.</description>
+      <query name="K2-SeqDocFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-11" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>Invoke fn:doc() with a static base-uri that points to a non-existent directory.</description>
+      <query name="K2-SeqDocFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-12" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="standard">
+      <description>General query complexity, combined with a call to fn:doc() that is never evaluated.</description>
+      <query name="K2-SeqDocFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqDocFunc-12.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-SeqDocFunc-13" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="standard">
+      <description>Never use the result of calls to fn:doc. Since implementations are allowed to dereference the sources in any case, an error is allowed.</description>
+      <query name="K2-SeqDocFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqDocFunc-13.txt</output-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-24" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Open an XML file that contains ' ]' as a text node.</description>
+      <query name="fn-doc-24" date="2007-12-20"/>
+      <input-URI role="principal-data" variable="input-context">SpaceBracket</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-25" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Open a file with corner case Unicode codepoints.</description>
+      <query name="fn-doc-25" date="2007-12-20"/>
+      <input-URI role="principal-data" variable="input-context">HighUnicode</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-26" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Open a file with corner case Unicode codepoints.</description>
+      <query name="fn-doc-26" date="2007-12-21"/>
+      <input-URI role="principal-data" variable="input-context">HighUnicode2</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-27" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Frans Englich">
+      <description>Open a file with corner case Unicode codepoints.</description>
+      <query name="fn-doc-27" date="2007-12-21"/>
+      <input-URI role="principal-data" variable="input-context">BCIsInvalid</input-URI>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-28" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Frans Englich">
+      <description>Open a file containing the codepoint 188 in an NCName.</description>
+      <query name="fn-doc-28" date="2007-12-27"/>
+      <input-URI role="principal-data" variable="input-context">InvalidUmlaut</input-URI>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-29" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>A namespace declared with a namespace declaration, as well as in the internal subset.</description>
+      <query name="fn-doc-29" date="2007-12-27"/>
+      <input-URI role="principal-data" variable="input-context">NamespaceSuppliedInternally</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-30" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Frans Englich">
+      <description>Open an XML document that has an xml:id attribute duplicated.</description>
+      <query name="fn-doc-30" date="2008-01-15"/>
+      <input-URI role="principal-data" variable="input-context">XMLIdDuplicated</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-30.txt</output-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-31" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Frans Englich">
+      <description>Open an XML document that has an invalid xml:id attribute.</description>
+      <query name="fn-doc-31" date="2008-01-15"/>
+      <input-URI role="principal-data" variable="input-context">InvalidXMLId</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-31.txt</output-file>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocFunc-14" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error">
+      <description>':/' is an invalid URI, no scheme.</description>
+      <query name="K2-SeqDocFunc-14" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FODC0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-32" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Open an XML document in ISO-8859-1 encoding.</description>
+      <query name="fn-doc-32" date="2008-01-15"/>
+      <input-URI role="principal-data" variable="input-context">Books2</input-URI>
+      <output-file role="principal" compare="Fragment">fn-doc-32-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-doc-33" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>A moderately complex query.</description>
+      <query name="fn-doc-33" static-name="fn-doc-33-static-cbcl" date="2008-02-19"/>
+      <input-URI role="principal-data" variable="input-context">QObject</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-34" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>A moderately complex query.</description>
+      <query name="fn-doc-34" date="2008-02-28"/>
+      <input-URI role="principal-data" variable="input-context">Char010D</input-URI>
+      <output-file role="principal" compare="XML">fn-doc-34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-35" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="runtime-error" Creator="Frans Englich">
+      <description>Load a not well-formed XML file.</description>
+      <query name="fn-doc-35" date="2008-02-28"/>
+      <input-URI role="principal-data" variable="input-context">badxml</input-URI>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-36" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Count text nodes in a document containing character references.</description>
+      <query name="fn-doc-36" date="2008-02-28"/>
+      <input-URI role="principal-data" variable="input-context">builtinEntities</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-doc-37" FilePath="Functions/NodeSeqFunc/SeqDocFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Use an xml:id attribute that has whitespace, whitespace normalization is performed.</description>
+      <query name="fn-doc-37" date="2008-05-27"/>
+      <input-URI role="principal-data" variable="input-context">XMLIdWhitespace</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-37.txt</output-file>
+      <output-file role="principal" compare="Fragment">fn-doc-37-2.txt</output-file>
+   </test-case>
+</test-group>

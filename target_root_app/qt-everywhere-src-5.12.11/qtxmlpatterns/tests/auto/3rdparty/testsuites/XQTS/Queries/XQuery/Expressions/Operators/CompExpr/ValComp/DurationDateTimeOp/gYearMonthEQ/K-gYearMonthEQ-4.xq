@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-gYearMonthEQ-4                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple test of 'ne' for xs:gYearMonth.       :)
+(:*******************************************************:)
+not(xs:gYearMonth("1995-11") ne xs:gYearMonth("1995-11"))

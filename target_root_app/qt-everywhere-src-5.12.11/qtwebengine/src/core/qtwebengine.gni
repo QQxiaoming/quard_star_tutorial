@@ -1,0 +1,62 @@
+import("//build/config/ui.gni")
+import("//media/media_options.gni")
+import("//third_party/widevine/cdm/widevine.gni")
+
+chromium_version = exec_script("//build/util/version.py", [ "-f", rebase_path("//chrome/VERSION"),
+                                                            "-t", "@MAJOR@.@MINOR@.@BUILD@.@PATCH@"],
+                                                            "list lines")
+
+include_dirs = [
+  "//skia/config",
+  "//third_party",
+  "//third_party/skia/include/core"
+]
+
+deps = [
+  "//base",
+  "//components/cdm/renderer",
+  "//components/error_page/common",
+  "//components/keyed_service/content",
+  "//components/network_hints/browser",
+  "//components/network_hints/common",
+  "//components/network_hints/renderer",
+  "//components/visitedlink/browser",
+  "//components/visitedlink/renderer",
+  "//components/web_cache/browser",
+  "//components/web_cache/renderer",
+  "//components/spellcheck:buildflags",
+  "//content/public/app:browser",
+  "//content/public/browser",
+  "//content/public/common",
+  "//content/public/renderer",
+  "//media:media_buildflags",
+  "//net:net_with_v8",
+  "//services/proxy_resolver:lib",
+  "//skia",
+  "//third_party/blink/public:blink",
+  "//third_party/mesa:mesa_headers",
+  "//ui/accessibility",
+  "//qtwebengine/browser:interfaces",
+  ":qtwebengine_sources",
+  ":qtwebengine_resources"
+]
+
+if (enable_webrtc) {
+  deps += [ "//third_party/webrtc_overrides" ]
+}
+
+if (is_linux && !is_desktop_linux) {
+  deps += [ "//ui/events/ozone:events_ozone_evdev"]
+}
+
+if (use_ozone) {
+  deps += [
+    "//ui/ozone/common"
+  ]
+}
+
+data_deps = [ "//qtwebengine/browser:service_manifests" ]
+
+defines = [
+  "CHROMIUM_VERSION=\"" + chromium_version[0] + "\""
+]

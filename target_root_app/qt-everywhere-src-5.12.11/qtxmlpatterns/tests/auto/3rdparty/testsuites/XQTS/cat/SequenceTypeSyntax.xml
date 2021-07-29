@@ -1,0 +1,158 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SequenceTypeSyntax" featureOwner="NIST">
+   <GroupInfo>
+      <title>XQuery Sequence Type Syntax</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="sequence-type-1" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of integers.</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-1" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-2" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of doubles.</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-2" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-3" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of decimal.</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-3" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-4" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of strings.</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-4" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-5" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of strings. (uses integer*).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-5" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-6" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of one integer (Uses integer?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-6" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-7" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of integers. (Uses integer?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-7" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-8" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of integers. (Uses integer+).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-8" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-9" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of one integer. (Uses integer?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-9" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-10" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of two integers. (Uses integer?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5747</reflects-resolution>
+      <query name="sequence-type-10" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-11" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of one double. (Uses double?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-11" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-12" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of two double. (Uses double?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5747</reflects-resolution>
+      <query name="sequence-type-12" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-13" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of one decimal. (Uses decimal?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-13" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-14" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of two decimals. (Uses decimal?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5747</reflects-resolution>
+      <query name="sequence-type-14" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-15" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of one string. (Uses string?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-15" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-16" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of two strings. (Uses string?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5747</reflects-resolution>
+      <query name="sequence-type-16" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-17" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of one string. (Uses integer?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-17" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-18" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving castable as and a sequence of two strings. (Uses integer?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5747</reflects-resolution>
+      <query name="sequence-type-18" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-19" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of two booleans. (Uses xs:boolean*).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-19" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-20" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of two booleans. (Uses xs:boolean?).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-20" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">falsevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="sequence-type-21" FilePath="Basics/Types/SequenceTypeSyntax/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple evaluation of sequence type matching involving instance of and a sequence of two booleans. (Uses xs:boolean+).</description>
+      <spec-citation spec="XQuery" section-number="2.5.4" section-title="SequenceType Matching" section-pointer="id-sequencetype-matching"/>
+      <query name="sequence-type-21" date="2006-03-29"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,311 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="CondExpr" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>Conditional Expressions</title>
+      <description>Tests in this group focus on the conditional expressions in XQuery 3.10.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="CondExpr002" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>Simple if expression where boolean is a constant true.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr002" date="2003-02-10">
+         <description>Simple if expression where boolean is a constant true</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">CondExpr002.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="CondExpr003" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>Simple if expression where boolean is a constant false.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr003" date="2003-02-10">
+         <description>Simple if expression where boolean is a constant false</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">CondExpr003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="CondExpr004" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>Node set from a path expression as test condition.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr004" date="2003-02-10">
+         <description>Node set from a path expression as test condition</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">nw_Customers</input-file>
+      <output-file role="principal" compare="XML">CondExpr004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="CondExpr005" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>Empty node set from a path expression as test condition.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr005" date="2003-02-10">
+         <description>Empty node set from a path expression as test condition</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">nw_Customers</input-file>
+      <output-file role="principal" compare="XML">CondExpr005.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr006" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>Then-expression has another if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr006" date="2003-02-10">
+         <description>then-expression has another if expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">CondExpr006.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="CondExpr007" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>Else-expr has another if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr007" date="2003-02-10">
+         <description>else-expr has another if expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">nw_Customers</input-file>
+      <output-file role="principal" compare="XML">CondExpr007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="CondExpr008" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>And-expression in test expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr008" date="2003-02-10">
+         <description>and-expression in test expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">nw_Customers</input-file>
+      <output-file role="principal" compare="XML">CondExpr008.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="CondExpr009" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Asad Jawahar">
+      <description>Or-expression in test expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr009" date="2003-02-10">
+         <description>or-expression in test expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">nw_Customers</input-file>
+      <output-file role="principal" compare="XML">CondExpr009.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr010" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>A true expression in if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr010" date="2003-02-10">
+         <description>a true expression in if expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">CondExpr010.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr011" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>If expression as argument to a function.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr011" date="2003-02-10">
+         <description>If expression as argument to a function</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">CondExpr011.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr012" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>Adapted from example in spec; test expression is a relational expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr012" date="2003-02-10">
+         <description>Adapted from example in spec; test expression is a relational expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">xq311A</input-file>
+      <output-file role="principal" compare="XML">CondExpr012.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr013" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>Test expression has another if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr013" date="2003-02-10">
+         <description>test expression has another if expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">xq311A</input-file>
+      <output-file role="principal" compare="XML">CondExpr013.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr014" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>Test expression has another if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr014" date="2003-02-10">
+         <description>test expression has another if expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">xq311A</input-file>
+      <output-file role="principal" compare="XML">CondExpr014.xml</output-file>
+   </test-case>
+   <test-case name="CondExpr015" FilePath="Expressions/CondExpr/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>Two if expressions at same depth in larger expression.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr015" date="2003-02-10">
+         <description>Two if expressions at same depth in larger expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">CondExpr015.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr016" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>If where branches return different valid types.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr016" date="2005-03-17">
+         <description>if where branches return different valid types</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">CondExpr016.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr017" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>If where branches return different valid types.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr017" date="2005-03-17">
+         <description>if where branches return different valid types</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">CondExpr017.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr018" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>If where branches return different valid types.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr018" date="2005-03-17">
+         <description>if where branches return different valid types</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">CondExpr018.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr019" FilePath="Expressions/CondExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Test with test expression not contained in ( ... ).</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr019" date="2005-03-17">
+         <description>Test with test expression not contained in ( ... )</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr20" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test case where then-expression raises a dynamic error, but test-expression selects else-expression so no error is raised.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr020" date="2005-03-17">
+         <description>Test case where then-expression raises a dynamic error, but test-expression selects else-expression so no error is raised</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">CondExpr020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr21" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test case where else-expression raises a dynamic error, but test-expression selects then-expression so no error is raised.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <query name="CondExpr021" date="2005-03-17">
+         <description>Test case where else-expression raises a dynamic error, but test-expression selects then-expression so no error is raised</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">CondExpr021.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="CondExpr022" FilePath="Expressions/CondExpr/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Test case where then-expression raises a dynamic error, but test-expression selects else-expression so no error is raised.</description>
+      <spec-citation spec="XQuery" section-number="3.10" section-title="Conditional Expressions" section-pointer="id-conditionals"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4446</reflects-resolution>
+      <query name="CondExpr022" date="2009-04-01">
+         <description>Test case where else-expression raises a dynamic error, but test-expression selects then-expression so no error is raised.</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">CondExpr022.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-1" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>A test whose essence is: `(if(2) then 1 else 0) eq 1`.</description>
+      <query name="K-CondExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-2" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>A test whose essence is: `if(()) then false() else true()`.</description>
+      <query name="K-CondExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-3" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An expression involving the if expression that trigger certain optimization paths in some implementations.</description>
+      <query name="K-CondExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-4" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An expression involving the if expression that trigger certain optimization paths in some implementations(#2).</description>
+      <query name="K-CondExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-5" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An expression involving the if expression that trigger certain optimization paths in some implementations(#2).</description>
+      <query name="K-CondExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-6" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An expression involving the if expression that trigger certain optimization paths in some implementations(#3).</description>
+      <query name="K-CondExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-7" FilePath="Expressions/CondExpr/" scenario="runtime-error">
+      <description>An if-test which EBV cannot be extracted from.</description>
+      <query name="K-CondExpr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-8" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An if-test which EBV cannot be extracted from.</description>
+      <query name="K-CondExpr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-9" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An if-test which EBV cannot be extracted from.</description>
+      <query name="K-CondExpr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-10" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An if-test applied on fn:count().</description>
+      <query name="K-CondExpr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-11" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>An if-test applied on fn:count() combined with fn:not().</description>
+      <query name="K-CondExpr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CondExpr-12" FilePath="Expressions/CondExpr/" scenario="standard">
+      <description>if-then clause combined with fn:boolean().</description>
+      <query name="K-CondExpr-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-CondExpr-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CondExpr-1" FilePath="CondExpr/" scenario="standard">
+      <description>An expression that can be rewritten to the empty sequence, no matter the test branch.</description>
+      <query name="K2-CondExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CondExpr-1.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CondExpr-2" FilePath="CondExpr/" scenario="standard">
+      <description>An expression that can be simplified to any of the result branches, no matter the test branch.</description>
+      <query name="K2-CondExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CondExpr-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CondExpr-3" FilePath="CondExpr/" scenario="standard">
+      <description>It is ok to name a function 'unordered'.</description>
+      <query name="K2-CondExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CondExpr-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-CondExpr-4" FilePath="CondExpr/" scenario="standard">
+      <description>Extract the EBV from a node sequence. Sorting and deduplication isn't necessary in that case.</description>
+      <query name="K2-CondExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context1">acme_corp</input-file>
+      <output-file role="principal" compare="Text">K2-CondExpr-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-CondExpr-5" FilePath="CondExpr/" scenario="parse-error">
+      <description>There is no exclamation mark operator in XQuery.</description>
+      <query name="K2-CondExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-CondExpr-6" FilePath="CondExpr/" scenario="parse-error">
+      <description>An if expression cannot directly be an axis step.</description>
+      <query name="K2-CondExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-CondExpr-7" FilePath="CondExpr/" scenario="standard">
+      <description>Use a set of expressions that trigger a bug in some parsers.</description>
+      <query name="K2-CondExpr-7" date="2008-05-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-CondExpr-7.txt</output-file>
+   </test-case>
+</test-group>

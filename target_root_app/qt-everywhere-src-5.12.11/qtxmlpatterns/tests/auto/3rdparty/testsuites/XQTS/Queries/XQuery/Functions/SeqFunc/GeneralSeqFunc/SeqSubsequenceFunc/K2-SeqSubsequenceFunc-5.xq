@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqSubsequenceFunc-5                         :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure rounding is done properly, 1.8.       :)
+(:*******************************************************:)
+fn:subsequence((1,2,3), 1.8, 1)

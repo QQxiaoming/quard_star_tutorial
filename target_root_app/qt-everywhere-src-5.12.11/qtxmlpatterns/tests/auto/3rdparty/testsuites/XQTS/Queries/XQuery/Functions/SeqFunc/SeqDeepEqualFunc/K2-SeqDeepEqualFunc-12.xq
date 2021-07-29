@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDeepEqualFunc-12                          :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: fn:deep-equal() with two sequence of nodes(#3). :)
+(:*******************************************************:)
+deep-equal((<a/>, <b/>), (<a/>, <b/>, <c/>))

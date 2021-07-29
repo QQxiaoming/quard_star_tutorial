@@ -1,0 +1,53 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+This release contains all fixes included in the Qt 5.9.4, 5.9.5 and 5.10.1
+releases.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+CAN bus
+-------
+
+ - Introduced categorized logging to the module which can be enabled
+   by the "qt.canbus" and "qt.canbus.plugins.<pluginname>" filters.
+
+ - Added description, serial number and channel to QCanBusDeviceInfo, as
+   far as supported by the various plugins.
+
+ - [QTBUG-63294] QCanBusFrame::isValid() now checks for invalid CAN FD
+   payload lengths. E.g. 24 is a valid CAN FD payload length, but 28
+   is not. Frames with invalid data field size may therefore be discarded
+   by QCanBusDevice::writeFrame() as it is impossible to transmit them on
+   a real CAN bus.
+
+ - All CAN bus plugins that don't support CAN FD now also discard CAN FD
+   frames with payload length <= 8.
+
+ - Added a J2534 Pass-Thru CAN bus plugin.
+
+ - [QTBUG-67030] Fixed a receive problem in the VectorCAN plugin. When
+   multiple channels were open, only the first one could receive frames.
+
+MOD bus
+------
+
+ - [QTBUG-66648] Ensure that QModbusDevice::close() handles being already
+   unconnected. Before, an unconnected device could hang in closing state
+   forever.

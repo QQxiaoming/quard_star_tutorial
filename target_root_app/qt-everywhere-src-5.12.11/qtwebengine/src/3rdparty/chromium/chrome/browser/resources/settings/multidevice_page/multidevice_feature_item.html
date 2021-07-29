@@ -1,0 +1,44 @@
+<link rel="import" href="chrome://resources/html/polymer.html">
+
+<link rel="import" href="chrome://resources/cr_elements/cr_toggle/cr_toggle.html">
+<link rel="import" href="chrome://resources/html/cr.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/iron-icon/iron-icon.html">
+<link rel="import" href="chrome://resources/polymer/v1_0/paper-icon-button/paper-icon-button-light.html">
+<link rel="import" href="../icons.html">
+<link rel="import" href="../route.html">
+<link rel="import" href="../settings_shared_css.html">
+
+<dom-module id="settings-multidevice-feature-item">
+  <template>
+    <style include="settings-shared">
+      iron-icon {
+        padding: 2px;
+      }
+
+      #item-text-container {
+        -webkit-padding-start: 18px;
+      }
+    </style>
+    <div class="settings-box two-line first"
+        on-click="handleItemClick_"
+        actionable$="[[hasSubpageClickHandler_(subpageRoute)]]">
+      <iron-icon icon="[[iconName]]"></iron-icon>
+      <div id="item-text-container" class="middle">
+        [[featureName]]
+        <div class="secondary"
+            id="featureSecondary"
+            inner-h-t-m-l="[[featureSummaryHtml]]">
+        </div>
+      </div>
+      <template is="dom-if" if="[[hasSubpageClickHandler_(subpageRoute)]]">
+        <paper-icon-button-light class="subpage-arrow">
+            <button aria-label="[[featureName]]"
+                aria-describedby="featureSecondary"></button>
+        </paper-icon-button-light>
+        <div class="separator"></div>
+      </template>
+      <cr-toggle on-change="onChangeToggle_"></cr-toggle>
+    </div>
+  </template>
+  <script src="multidevice_feature_item.js"></script>
+</dom-module>

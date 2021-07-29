@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K2-SeqMAXFunc-2                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoke fn:max() on two different xs:anyURI values. :)
+(:*******************************************************:)
+max((xs:anyURI("http://example.com/B"), xs:anyURI("http://example.com/A")))
+            eq xs:anyURI("http://example.com/B")

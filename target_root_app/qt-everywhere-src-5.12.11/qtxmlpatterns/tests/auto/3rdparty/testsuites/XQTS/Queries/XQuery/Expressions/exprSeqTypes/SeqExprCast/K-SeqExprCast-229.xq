@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-229                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: '02004' is an invalid lexical representation for xs:gYear. :)
+(:*******************************************************:)
+xs:gYear("02004")

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqDeepEqualFunc-14                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `not(deep-equal(xs:double(0), xs:double("NaN")))`. :)
+(:*******************************************************:)
+not(deep-equal(xs:double(0), xs:double("NaN")))

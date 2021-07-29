@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: fn-current-dateTime-9                            :)
+(:Written By: Carmelo Montanez                           :)
+(:dateTime: December 5, 2005                             :)
+(:Purpose: Evaluates The "current-dateTime" function as part of:)
+(:of a subtraction expression.  Both operands are the    :) 
+(:equal to "current-dateTime".                           :)
+(:*******************************************************:)
+
+fn:current-dateTime() - fn:current-dateTime()

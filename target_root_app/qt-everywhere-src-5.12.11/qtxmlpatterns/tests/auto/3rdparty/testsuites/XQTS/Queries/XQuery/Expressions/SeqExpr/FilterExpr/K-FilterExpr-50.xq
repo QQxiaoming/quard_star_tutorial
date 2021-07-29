@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FilterExpr-50                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal(("a", "b", "c"), (0, 1, 2, "a", "b", "c")[. instance of xs:string])`. :)
+(:*******************************************************:)
+deep-equal(("a", "b", "c"), (0, 1, 2, "a", "b", "c")[. instance of xs:string])

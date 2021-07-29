@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-308                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: '+2004-08-01T12:44:05' is an invalid lexical representation, a preceding '+' sign is not allowed for xs:dateTime. :)
+(:*******************************************************:)
+xs:dateTime("+2004-08-01T12:44:05")

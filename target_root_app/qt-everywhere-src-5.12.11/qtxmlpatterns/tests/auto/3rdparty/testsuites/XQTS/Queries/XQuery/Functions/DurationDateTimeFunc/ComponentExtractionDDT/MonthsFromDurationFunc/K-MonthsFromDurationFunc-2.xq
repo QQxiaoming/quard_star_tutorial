@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-MonthsFromDurationFunc-2                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `months-from-duration((), "Wrong param")`. :)
+(:*******************************************************:)
+months-from-duration((), "Wrong param")

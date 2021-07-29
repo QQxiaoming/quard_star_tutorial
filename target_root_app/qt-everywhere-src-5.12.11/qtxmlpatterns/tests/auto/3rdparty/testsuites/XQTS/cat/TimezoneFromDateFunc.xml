@@ -1,0 +1,188 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="TimezoneFromDateFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:timezone-from-date</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-1" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function as per example 1 of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-1" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-2" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function as as per example 2 of the Functions and operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-2" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-3" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a numeric-less-than expression (lt operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-3" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-4" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a numeric-less-than expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-4" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-5" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function using empty sequence as argument. Use of fn:count to avoid empty file.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-5" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-6" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function with argument set so the function returns a dayTimeDuration of 0.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-6" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-7" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function that uses a timezone of "-00:00".</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-7" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-8" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of an addition expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-8" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-9" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a subtraction expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-9" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-10" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function as an argument to the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-10" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-11" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-11" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-12" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function as an argument to the fn:number function. Should return NaN.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-12" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-13" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function used as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-13" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-14" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-14" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-15" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of an "and" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-15" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-16" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-16" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-17" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-17" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-18" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-18" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-19" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-19" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-timezone-from-date-20" FilePath="Functions/DurationDateTimeFunc/TimezoneFromDateFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "timezone-from-date" function, which is part of an "or" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.5.17" section-title="fn:timezone-from-date" section-pointer="func-timezone-from-date"/>
+      <query name="fn-timezone-from-date-20" date="2005-06-27"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-timezone-from-date-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-1" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `timezone-from-date()`.</description>
+      <query name="K-TimezoneFromDateFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-2" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `timezone-from-date((), "Wrong param")`.</description>
+      <query name="K-TimezoneFromDateFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-3" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(timezone-from-date(()))`.</description>
+      <query name="K-TimezoneFromDateFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimezoneFromDateFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-4" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `timezone-from-date(()) instance of xs:dayTimeDuration?`.</description>
+      <query name="K-TimezoneFromDateFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimezoneFromDateFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-5" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `timezone-from-date(xs:date("2004-10-12Z")) eq xs:dayTimeDuration("PT0S")`.</description>
+      <query name="K-TimezoneFromDateFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimezoneFromDateFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-6" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `timezone-from-date(xs:date("2004-10-12-08:23")) eq xs:dayTimeDuration("-PT8H23M")`.</description>
+      <query name="K-TimezoneFromDateFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimezoneFromDateFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-TimezoneFromDateFunc-7" FilePath="Functions/DurationDateTimeFunc/ComponentExtractionDDT/TimezoneFromDateFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(timezone-from-date(xs:date("2004-10-12")))`.</description>
+      <query name="K-TimezoneFromDateFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-TimezoneFromDateFunc-7.txt</output-file>
+   </test-case>
+</test-group>

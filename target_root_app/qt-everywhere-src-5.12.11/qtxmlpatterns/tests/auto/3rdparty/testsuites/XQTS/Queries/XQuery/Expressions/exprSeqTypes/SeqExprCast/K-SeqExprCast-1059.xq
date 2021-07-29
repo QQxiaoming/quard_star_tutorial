@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-1059                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: It is not possible to extract an Effective Boolean Value from the type xs:gMonthDay, with the boolean() function. :)
+(:*******************************************************:)
+boolean(xs:gMonthDay("--11-13"))

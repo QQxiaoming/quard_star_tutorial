@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(:Test: fn-string-join-2                                 :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri June 24, 2005                                :)
+(:Purpose: Evaluates The "string-join" function as per   :)
+(:example 2 for this function in the F&O specs.          :)
+(:*******************************************************:)
+fn:string-join(('Blow, ', 'blow, ', 'thou ', 'winter ', 'wind!'), '')

@@ -1,0 +1,293 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example dialogs/findfiles
+    \title Find Files Example
+    \ingroup examples-dialogs
+
+    \brief A dialog for finding files in a specified folder.
+
+    The Find Files application allows the user to search for files in a
+    specified directory, matching a given file name or wildcard,
+    and containing a specified string (if filled in). The search
+    result is displayed in a table containing the names of the files
+    and their sizes. The application also shows the number of files found.
+
+    The Find Files example illustrates the use of several classes:
+
+    \table
+    \row
+       \li QProgressDialog
+       \li Provide feedback on the progress of a search operation
+    \row
+       \li QFileDialog
+       \li Browse through a file list
+    \row
+       \li QTextStream
+       \li Use stream operators to read a file
+    \row
+       \li QTableWidget
+       \li Browse through the search results in a table
+    \row
+       \li QDesktopServices
+       \li Open files in the result list in a suitable application
+    \endtable
+
+    \image findfiles-example.png Screenshot of the Find Files example
+
+
+    \section1 Window Class Definition
+
+    The \c Window class inherits QWidget, and is the main application
+    widget. It shows the search options and displays the search
+    results.
+
+    \snippet dialogs/findfiles/window.h 0
+
+    The application has two private slots:
+    \table
+    \row
+        \li The \c browse() slot
+        \li Called whenever the user wants to browse for a directory to search in
+    \row
+        \li The \c find() slot
+        \li Called whenever the user launches a search with the \uicontrol Find button
+    \endtable
+
+    In addition we declare several private functions:
+
+    \table
+        \row
+            \li findFiles()
+            \li Search for files matching the search parameters
+        \row
+            \li showFiles()
+            \li Display the search result
+        \row
+            \li ceateButton()
+            \li Construct the widget
+        \row
+            \li createComboBox()
+            \li Construct the widget
+        \row
+            \li createFilesTable()
+            \li Construct the widget
+    \endtable
+
+    \section1 Window Class Implementation
+
+    In the constructor we first create the application's widgets.
+
+    \snippet dialogs/findfiles/window.cpp 0
+
+    We create the widgets to build up the UI, and we add them to a main layout
+    using QGridLayout. We have, however, put the \c Find and \c Quit buttons
+    and a stretchable space in a separate \l QHBoxLayout first, to make the
+    buttons appear in the \c Window widget's bottom right corner.
+
+    Alternatively, we could have used Qt Designer to construct a UI file,
+    and \l {uic} to generate this code.
+
+    \snippet dialogs/findfiles/window.cpp 1
+
+    We did not create a \l QMenuBar with a \uicontrol Quit menu item; but we
+    would still like to have a keyboard shortcut for quitting. Since we
+    construct a \l QShortcut with \l QKeySequence::Quit, and connect it to
+    \l QApplication::quit(), on most platforms it will be possible to press
+    Control-Q to quit (or whichever standard Quit key is configured on that platform).
+    (On \macos, this is redundant, because every application gets a
+    \uicontrol Quit menu item automatically; but it helps to make the application portable.)
+
+    \snippet dialogs/findfiles/window.cpp 2
+
+    The \c browse() slot presents a file dialog to the user, using the
+    QFileDialog class. QFileDialog enables a user to traverse the file
+    system in order to select one or many files or a directory. The
+    easiest way to create a QFileDialog is to use the convenience
+    static functions.
+
+    Here we use the static QFileDialog::getExistingDirectory()
+    function which returns an existing directory selected by the
+    user. Then we display the directory in the directory combobox
+    using the QComboBox::addItem() function and update the current
+    index.
+
+    QComboBox::addItem() adds an item to the combobox with the given
+    text (if not already present in the list), and containing
+    the specified userData. The item is appended to the list of
+    existing items.
+
+    \snippet dialogs/findfiles/window.cpp 3
+
+    The \c find() slot is called whenever the user requests a new
+    search by pressing the \uicontrol Find button.
+
+    First we eliminate any previous search results by setting the
+    table widgets row count to zero. Then we retrieve the
+    specified file name, text, and directory path from the respective
+    comboboxes.
+
+    \snippet dialogs/findfiles/window.cpp 4
+
+    We use the directory's path to create a QDir; the QDir class
+    provides access to the directory structure and its contents.
+
+    We use QDirIterator to iterate over the files that match the
+    specified file name and build a QStringList of paths.
+
+    Then we search through all the files in the list, using the private
+    \c findFiles() function, eliminating the ones that don't contain the
+    specified text. We sort them (because QDirIterator did not). And finally,
+    we display the results using the private \c showFiles() function.
+
+    If the user didn't specify any text, there is no reason to search
+    through the files, so we sort and display the results immediately.
+
+    \image findfiles_progress_dialog.png Screenshot of the Progress Dialog
+
+    \snippet dialogs/findfiles/window.cpp 5
+
+    In the private \c findFiles() function we search through a list of
+    files, looking for the ones that contain a specified text. This
+    can be a very slow operation depending on the number of files as
+    well as their sizes. QProgressDialog displays a progress dialog
+    if the application has to search through a large number of files,
+    or if some of the files have a large size. QProgressDialog can
+    also allow the user to abort the operation if it takes too much
+    time.
+
+    \snippet dialogs/findfiles/window.cpp 6
+
+    We run through the files, one at a time, and for each file we
+    update the QProgressDialog value. This property holds the current
+    amount of progress made. We also update the progress dialog's
+    label.
+
+    Then we call the QCoreApplication::processEvents() function using
+    the QApplication object. In this way we interleave the display of
+    the progress made with the process of searching through the files
+    so the application doesn't appear to be frozen.
+
+    The QApplication class manages the GUI application's control flow
+    and main settings. It contains the main event loop, where all
+    events from the window system and other sources are processed and
+    dispatched. QApplication inherits QCoreApplication.  The
+    QCoreApplication::processEvents() function processes all pending
+    events according to the specified QEventLoop::ProcessEventFlags
+    until there are no more events to process. The default flags are
+    QEventLoop::AllEvents.
+
+    \snippet dialogs/findfiles/window.cpp 7
+
+    After updating the QProgressDialog, we open the file in read-only
+    mode, and read one line at a time using QTextStream.
+
+    The QTextStream class provides a convenient interface for reading
+    and writing text. Using QTextStream's streaming operators, you can
+    conveniently read and write words, lines and numbers.
+
+    For each line we read we check if the QProgressDialog has been
+    canceled. If it has, we abort the operation, otherwise we check if
+    the line contains the specified text. When we find the text within
+    one of the files, we add the file's name to a list of found files
+    that contain the specified text, and start searching a new file.
+
+    Finally, we return the list of the files found.
+
+    \snippet dialogs/findfiles/window.cpp 8
+
+    Both the \c findFiles() and \c showFiles() functions are called from
+    the \c find() slot. In the \c showFiles() function we run through
+    the provided list of file names, adding each relative file name to the
+    first column in the table widget and retrieving the file's size using
+    QFileInfo for the second column. We use \l QLocale::formattedDataSize()
+    to format the file size in a human-readable form. For later use, we set
+    the absolute path as a data on the QTableWidget using the
+    the role absoluteFileNameRole defined to be Qt::UserRole + 1.
+
+    \snippet dialogs/findfiles/window.cpp 17
+
+    This allows for retrieving the name of an item using a
+    convenience function:
+
+    \snippet dialogs/findfiles/window.cpp 18
+
+    We also update the total number of files found.
+
+    \snippet dialogs/findfiles/window.cpp 10
+
+    The private \c createComboBox() function is also called from the
+    contructor. We create a QComboBox with the given text, and make it
+    editable.
+
+    When the user enters a new string in an editable combobox, the
+    widget may or may not insert it, and it can insert it in several
+    locations, depending on the QComboBox::InsertPolicy. The default
+    policy is is QComboBox::InsertAtBottom.
+
+    Then we add the provided text to the combobox, and specify the
+    widget's size policies, before we return a pointer to the
+    combobox.
+
+    \snippet dialogs/findfiles/window.cpp 11
+
+    The private \c createFilesTable() function is called from the
+    constructor. In this function we create the QTableWidget that
+    will display the search results. We set its horizontal headers and
+    their resize mode.
+
+    QTableWidget inherits QTableView which provides a default
+    model/view implementation of a table view. The
+    QTableView::horizontalHeader() function returns the table view's
+    horizontal header as a QHeaderView. The QHeaderView class provides
+    a header row or header column for item views, and the
+    QHeaderView::setResizeMode() function sets the constraints on how
+    the section in the header can be resized.
+
+    Finally, we hide the QTableWidget's vertical headers using the
+    QWidget::hide() function, and remove the default grid drawn for
+    the table using the QTableView::setShowGrid() function.
+
+    \snippet dialogs/findfiles/window.cpp 12
+
+    \snippet dialogs/findfiles/window.cpp 14
+
+    The \c openFileOfItem() slot is invoked when the user double
+    clicks on a cell in the table. The QDesktopServices::openUrl()
+    knows how to open a file given the file name.
+
+    \snippet dialogs/findfiles/window.cpp 15
+    \snippet dialogs/findfiles/window.cpp 16
+
+    We set the context menu policy to of the table view to Qt::CustomContextMenu
+    and connect a slot contextMenu() to its signal
+    customContextMenuRequested(). We retrieve the absolute file name
+    from the data of the QTableWidgetItem and populate the context menu
+    with actions offering to copy the file name and to open the file.
+*/
+

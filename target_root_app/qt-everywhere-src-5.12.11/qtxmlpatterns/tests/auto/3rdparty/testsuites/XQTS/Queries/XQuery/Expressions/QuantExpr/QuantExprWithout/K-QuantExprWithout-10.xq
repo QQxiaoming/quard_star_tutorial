@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-QuantExprWithout-10                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: some-quantification combined with empty variable binding. :)
+(:*******************************************************:)
+not(some $i in () satisfies $i)

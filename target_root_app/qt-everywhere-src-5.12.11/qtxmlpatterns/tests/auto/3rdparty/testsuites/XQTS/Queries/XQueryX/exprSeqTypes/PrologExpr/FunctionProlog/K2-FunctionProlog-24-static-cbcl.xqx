@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">distinct-nodes-stable</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>arg</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:anyKindTest/>
+              <xqx:occurrenceIndicator>*</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">boolean</xqx:atomicType>
+          <xqx:occurrenceIndicator>*</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:flworExpr>
+            <xqx:forClause>
+              <xqx:forClauseItem>
+                <xqx:typedVariableBinding>
+                  <xqx:varName>a</xqx:varName>
+                </xqx:typedVariableBinding>
+                <xqx:forExpr>
+                  <xqx:varRef>
+                    <xqx:name>arg</xqx:name>
+                  </xqx:varRef>
+                </xqx:forExpr>
+              </xqx:forClauseItem>
+            </xqx:forClause>
+            <xqx:returnClause>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">boolean</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:varRef>
+                    <xqx:name>a</xqx:name>
+                  </xqx:varRef>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:returnClause>
+          </xqx:flworExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="local">distinct-nodes-stable</xqx:functionName>
+        <xqx:arguments>
+          <xqx:sequenceExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName>element1</xqx:tagName>
+            </xqx:elementConstructor>
+            <xqx:elementConstructor>
+              <xqx:tagName>element2</xqx:tagName>
+            </xqx:elementConstructor>
+          </xqx:sequenceExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

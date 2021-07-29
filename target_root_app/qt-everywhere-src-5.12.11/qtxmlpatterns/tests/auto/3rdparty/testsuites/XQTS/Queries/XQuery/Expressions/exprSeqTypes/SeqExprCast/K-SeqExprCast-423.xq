@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-423                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: 'castable as' involving xs:untypedAtomic as source type and xs:QName as target type should always evaluate to false. :)
+(:*******************************************************:)
+not(xs:untypedAtomic("an arbitrary string(untypedAtomic source)") castable as xs:QName)

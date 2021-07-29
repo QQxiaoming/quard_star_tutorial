@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="fn">count</xqx:functionName>
+        <xqx:arguments>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">substring</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>12345</xqx:value>
+              </xqx:stringConstantExpr>
+              <xqx:divOp>
+                <xqx:firstOperand>
+                  <xqx:integerConstantExpr>
+                    <xqx:value>0</xqx:value>
+                  </xqx:integerConstantExpr>
+                </xqx:firstOperand>
+                <xqx:secondOperand>
+                  <xqx:doubleConstantExpr>
+                    <xqx:value>0E0</xqx:value>
+                  </xqx:doubleConstantExpr>
+                </xqx:secondOperand>
+              </xqx:divOp>
+              <xqx:integerConstantExpr>
+                <xqx:value>3</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,138 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="AnyURIEqual" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>xs:anyURI eq/ne xs:anyURI</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-1" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:anyURI("example.com/") eq xs:anyURI("example.com/")`.</description>
+      <query name="K-AnyURIEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-2" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:anyURI("example.com/") ne xs:anyURI("example.com/No")`.</description>
+      <query name="K-AnyURIEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-3" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:anyURI("example.com/") eq xs:string("example.com/")`.</description>
+      <query name="K-AnyURIEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-4" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:string("example.com/") eq xs:anyURI("example.com/")`.</description>
+      <query name="K-AnyURIEqual-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-5" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:anyURI("example.com/") ne xs:string("example.com/No")`.</description>
+      <query name="K-AnyURIEqual-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-6" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:string("example.com/") ne xs:anyURI("example.com/No")`.</description>
+      <query name="K-AnyURIEqual-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-7" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:anyURI("example.com/") eq xs:untypedAtomic("example.com/")`.</description>
+      <query name="K-AnyURIEqual-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-8" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:untypedAtomic("example.com/") eq xs:anyURI("example.com/")`.</description>
+      <query name="K-AnyURIEqual-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-9" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:anyURI("example.com/") ne xs:untypedAtomic("example.com/No")`.</description>
+      <query name="K-AnyURIEqual-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-AnyURIEqual-10" FilePath="Expressions/Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>A test whose essence is: `xs:untypedAtomic("example.com/") ne xs:anyURI("example.com/No")`.</description>
+      <query name="K-AnyURIEqual-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-AnyURIEqual-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-1" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'eq' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-2" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'eq' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-3" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'eq' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-4" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'eq' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-5" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'eq' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-6" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'eq' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-7" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'ne' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-8" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'ne' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-9" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'ne' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-10" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'ne' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-11" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'ne' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-AnyURIEqual-12" FilePath="Operators/CompExpr/ValComp/AnyURIComp/AnyURIEqual/" scenario="standard">
+      <description>Invoked 'ne' on xs:anyURI values.</description>
+      <query name="K2-AnyURIEqual-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-AnyURIEqual-12.txt</output-file>
+   </test-case>
+</test-group>

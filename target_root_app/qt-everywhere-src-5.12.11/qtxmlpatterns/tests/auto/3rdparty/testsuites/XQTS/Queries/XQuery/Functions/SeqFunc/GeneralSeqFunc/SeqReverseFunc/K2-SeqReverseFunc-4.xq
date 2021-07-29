@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqReverseFunc-4                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: fn:reverse() takes only one argument.        :)
+(:*******************************************************:)
+fn:reverse(1, 2)

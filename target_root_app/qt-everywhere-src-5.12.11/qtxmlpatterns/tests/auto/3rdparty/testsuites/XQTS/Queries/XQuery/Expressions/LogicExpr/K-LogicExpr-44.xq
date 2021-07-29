@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-LogicExpr-44                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: and-expression combined with fn:boolean().   :)
+(:*******************************************************:)
+true() and boolean((1, 2, 3, current-time())[1] treat as xs:integer)

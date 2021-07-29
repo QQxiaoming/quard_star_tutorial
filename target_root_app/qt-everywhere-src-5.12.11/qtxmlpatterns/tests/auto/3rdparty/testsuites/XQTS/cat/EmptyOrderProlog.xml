@@ -1,0 +1,227 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="EmptyOrderProlog" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Empty Order Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="emptyorderdecl-1" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a prolog with two empty order declarations.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-1" date="2005-10-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0069</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-2" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (one empty) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-2" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-3" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (two empty) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-3" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-4" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set numbers (one set to NaN Expression) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-4" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-5" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set numbers (two set to NaN Expressions) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-5" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-6" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (one empty) with no order by clause.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-6" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-7" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (one empty) with no order by clause.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-7" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-8" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of numbers (one NaN expresssion) with no order by clause.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-8" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-9" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (two NaN expressions) with no order by clause.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-9" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-10" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (one empty) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-10" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-11" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (two of them empty) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-11" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-12" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of numbers (one of them set to a NaN expression) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-12" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-13" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of numbers (two of them set to a NaN expression) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-13" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-14" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (one empty) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-14" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-15" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (two of them empty) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-15" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-16" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (one of them set to a NaN expression) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-16" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-17" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (two of them set to a NaN expression) sorted in ascending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-17" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-18" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (one empty) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-18" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-19" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (two of them empty) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-19" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-20" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (one of them set to a NaN expression) sorted in descending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-20" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-21" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (two of them set to a NaN expression) sorted indescending order.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-21" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-22" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (one of them set to empty) sorted in ascending order and local order by clause overrides empty order declaration in prolog (empty least).</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-22" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-23" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of numbers (one of them set to NaN expression) sorted in ascending order and local order by clause overrides empty order declaration in prolog (empty least).</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-23" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-24" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of nodes (one of them set to empty) sorted in ascending order and local order by clause set to empty greatest.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-24" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-25" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty greatest" and a set of numbers (one of them set to NaN expression) sorted in ascending order and local order by clause set to empty greatest.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-25" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-26" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (one of them set to empty) sorted in ascending order and local order by clause overriddes prolog.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-26" static-name="emptyorderdecl-26-static-cbcl" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-27" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (one of them set to NaN expression) sorted in ascending order and local order by clause overriddes declaration in prolog.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-27" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-28" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of nodes (one of them set to empty) sorted in ascending order and local order by clause set the same value.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-28" static-name="emptyorderdecl-28-static-cbcl" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">emptyorderdecl-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="emptyorderdecl-29" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of empty order declaration set to "empty least" and a set of numbers (one of them set to NaN expression) sorted in ascending order and local order by clause set to same value.</description>
+      <spec-citation spec="XQuery" section-number="4.8" section-title="Empty Order Declaration" section-pointer="id-empty-order-decl"/>
+      <query name="emptyorderdecl-29" date="2005-12-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">emptyorderdecl-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-EmptyOrderProlog-1" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard">
+      <description>A simple 'declare default order empty' declaration, specifying 'greatest'.</description>
+      <query name="K-EmptyOrderProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EmptyOrderProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-EmptyOrderProlog-2" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="standard">
+      <description>A simple 'declare default order empty' declaration, specifying 'strip'.</description>
+      <query name="K-EmptyOrderProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EmptyOrderProlog-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-EmptyOrderProlog-3" FilePath="Expressions/PrologExpr/EmptyOrderProlog/" scenario="runtime-error">
+      <description>Two 'declare default order empty' declarations are invalid.</description>
+      <query name="K-EmptyOrderProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0069</expected-error>
+   </test-case>
+</test-group>

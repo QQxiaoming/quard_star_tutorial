@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-less-than-10                           :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 15, 2005                                    :)
+(:Purpose: Evaluates The "boolean-less-than" function    :)
+(: with operands set to "(7 eq 7)", "true" respectively.:)
+(: Use of ge operator.                                   :)
+(:*******************************************************:)
+ 
+(7 eq 7) ge xs:boolean("true")

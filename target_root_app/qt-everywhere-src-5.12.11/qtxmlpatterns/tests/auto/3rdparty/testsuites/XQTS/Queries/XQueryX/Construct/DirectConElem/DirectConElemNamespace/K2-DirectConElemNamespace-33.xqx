@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>a</xqx:tagName>
+        <xqx:attributeList>
+          <xqx:attributeConstructor>
+            <xqx:attributeName>attr</xqx:attributeName>
+            <xqx:attributeValueExpr>
+              <xqx:flworExpr>
+                <xqx:letClause>
+                  <xqx:letClauseItem>
+                    <xqx:typedVariableBinding>
+                      <xqx:varName xqx:prefix="p">name</xqx:varName>
+                    </xqx:typedVariableBinding>
+                    <xqx:letExpr>
+                      <xqx:integerConstantExpr>
+                        <xqx:value>3</xqx:value>
+                      </xqx:integerConstantExpr>
+                    </xqx:letExpr>
+                  </xqx:letClauseItem>
+                </xqx:letClause>
+                <xqx:returnClause>
+                  <xqx:varRef>
+                    <xqx:name xqx:prefix="p">name</xqx:name>
+                  </xqx:varRef>
+                </xqx:returnClause>
+              </xqx:flworExpr>
+            </xqx:attributeValueExpr>
+          </xqx:attributeConstructor>
+          <xqx:namespaceDeclaration>
+            <xqx:prefix>p</xqx:prefix>
+            <xqx:uri>http://www.example.com/</xqx:uri>
+          </xqx:namespaceDeclaration>
+        </xqx:attributeList>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

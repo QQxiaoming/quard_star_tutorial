@@ -1,0 +1,58 @@
+Qt 5.11.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0 through 5.11.2.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.3 Changes                           *
+****************************************************************************
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - [QTBUG-69973] Fixed QML comma operator property lookup failure.
+ - [QTBUG-70350] Fixed allocation of multi-page executable memory for
+   INTEGRITY.
+ - [QTBUG-69996] Fixed undefined behavior in MASM on 64bit architectures.
+ - [QTBUG-70460] Fixed deadlock in qmlplugindump.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - Accessibility: The StaticText role for Text items is now only used if
+   there is no explicit role set.
+ - Scene Graph: Fixed Leaking of resources in the OpenVG backend.
+ - [QTBUG-69290] Fixed leaking of textures and animation resources in
+   software backend.
+ - [QTBUG-58924] Added a warning message for the case of too many tiles in
+   a BorderImage.
+ - [QTBUG-70898] Fixed a crash on nested delivery of mouse or touch presses.
+ - [QTBUG-64402] Fixed a crash in QQuickAnimatorProxyJob.
+ - [QTBUG-69059][QTBUG-61144] Fixed confusion about mouse grabbing when
+   delivering  pointer events to a QQuickWindow.
+ - [QTBUG-59620] Prevented PathView's parent from stealing mouse grabs
+   during double-flick.
+
+****************************************************************************
+*                                Building                                  *
+****************************************************************************
+
+ - [QTBUG-70414] Disabled building of XmlListModel if the "qml-network"
+   feature is unavailable.
+ - Enabled building without the "filesystemwatcher" feature.

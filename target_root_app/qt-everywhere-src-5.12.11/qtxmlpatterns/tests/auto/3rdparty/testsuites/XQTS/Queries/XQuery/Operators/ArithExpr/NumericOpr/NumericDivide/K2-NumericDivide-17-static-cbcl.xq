@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NumericDivide-17                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-10-03T14:53:32+01:00                       :)
+(: Purpose: Ensure the 'div' keyword is parsed correctly. :)
+(:*******************************************************:)
+empty(<e/>/(div treat as xs:integer? div div treat as xs:integer?))

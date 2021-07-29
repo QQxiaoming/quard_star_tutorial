@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-Axes-60                                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Apply the child axis on a document whose last nodes are attributes. :)
+(:*******************************************************:)
+empty(<element attr="foo" attr2="foo"/>/*)

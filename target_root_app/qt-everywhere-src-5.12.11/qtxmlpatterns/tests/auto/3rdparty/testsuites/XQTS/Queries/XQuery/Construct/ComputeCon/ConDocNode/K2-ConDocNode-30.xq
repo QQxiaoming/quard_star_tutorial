@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-ConDocNode-30                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Ensure two text nodes appearing after a document constructor are merged properly. :)
+(:*******************************************************:)
+count(<a>{document {text{'a'}}}b</a>/node())

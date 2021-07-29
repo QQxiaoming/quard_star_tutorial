@@ -1,0 +1,295 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="BaseURIProlog" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Base URI Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="base-URI-1" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the declaration of two base-uri in the prolog.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <query name="base-URI-1" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0032</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-2" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates that a declaration containing "abc&lt;" is a valid base-uri declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <query name="base-URI-2" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-2.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-3" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates that a declaration containing "abc&gt;" is a valid base-uri declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <query name="base-URI-3" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-3.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-4" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates that a declaration containing "abc&amp;" is a valid base-uri declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <query name="base-URI-4" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-5" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates that a declaration containing "abc"" is a valid base-uri declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <query name="base-URI-5" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-5.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-6" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates that a declaration containing "abc'" is a valid base-uri declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <query name="base-URI-6" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-7" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates base-uri property with the resolve-uri function. Typical usage.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="base-URI-7" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-8" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates usage of base-uri property with resolve-uri function. base-usi not defined.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="8.1" section-title="fn:resolve-uri" section-pointer="func-resolve-uri"/>
+      <query name="base-URI-8" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-8.txt</output-file>
+      <expected-error>FONS0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-9" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates base-uri property with the static-base-uri function. Typical usage.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-9" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-10" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates base-uri property with the static-base-uri function. base-uri property not defined.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-10" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-10.txt</output-file>
+      <output-file role="principal" compare="Text">base-URIalt-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-11" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can have numbers. Used with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-11" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-12" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can have an escape quote. Used with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-12" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-12.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-13" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can have an escape apostrophe. Used with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-13" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-14" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can have a "ampersand pound pound 0 semi "(spaces removed)pattern on it. Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-14" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-14.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-15" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can be a single character. Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-15" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-18" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can contain the string "ampersand pound a ;". Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-18" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-18.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-19" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can bet set to the string "declare base-uri". Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-19" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-19.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-20" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can bet set to the string "base-uri". Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-20" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-21" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that the value of the base-uri can bet set to the string "BASE-URI". Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-21" date="2005-11-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-22" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify normalization of xs:anyURI (leading whitespace). Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-22" date="2006-01-24"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-23" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify normalization of xs:anyURI (trailing whitespace). Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-23" date="2006-01-24"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-URI-24" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify normalization of xs:anyURI (whitespace in the middle). Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-URI-24" date="2006-01-24"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-24.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="base-uri-25" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify normalization of xs:anyURI (encoded whitespace in the middle). Use with the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-uri-25" date="2006-03-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-uri-26" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of base-uri declaration set to a relative value.  It uses the static-base-uri function.</description>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-uri-26" date="2006-09-25"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-URI-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-uri-27" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>relative base-uri</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.3" section-title="Content" section-pointer="id-content"/>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-uri-27" date="2006-09-26"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-uri-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-uri-28" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>relative base-uri through parent</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.3" section-title="Content" section-pointer="id-content"/>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-uri-28" date="2006-09-26"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-uri-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="base-uri-29" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>relative base-uri through parent</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.3" section-title="Content" section-pointer="id-content"/>
+      <spec-citation spec="XQuery" section-number="4.5" section-title="Base URI Declaration" section-pointer="id-base-uri-decl"/>
+      <spec-citation spec="FuncOps" section-number="16.8" section-title="fn:static-base-uri" section-pointer="func-static-base-uri"/>
+      <query name="base-uri-29" date="2006-09-26"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">base-uri-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-BaseURIProlog-1" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="standard">
+      <description>Test 'declare base-uri' with fn:static-base-uri().</description>
+      <query name="K-BaseURIProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BaseURIProlog-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-BaseURIProlog-2" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="runtime-error">
+      <description>Two 'declare base-uri' expressions, where the URIs differs.</description>
+      <query name="K-BaseURIProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0032</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-BaseURIProlog-3" FilePath="Expressions/PrologExpr/BaseURIProlog/" scenario="runtime-error">
+      <description>Two 'declare base-uri' expressions, where the URIs are equal.</description>
+      <query name="K-BaseURIProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0032</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-1" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="standard">
+      <description>Specify an invalid URI.</description>
+      <query name="K2-BaseURIProlog-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIProlog-1.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-2" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="standard">
+      <description>A base-uri declaration with a Windows file path which is invalid.</description>
+      <query name="K2-BaseURIProlog-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIProlog-2.txt</output-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-3" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="runtime-error">
+      <description>A base-uri declaration with a Windows file path which is invalid, and which is being used by a call to fn:doc().</description>
+      <query name="K2-BaseURIProlog-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0046</expected-error>
+      <expected-error>FODC0005</expected-error>
+      <expected-error>FODC0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-4" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="standard">
+      <description>The static base-uri must be absolute. Since the declaration supplies a relative URI, an implementation may fail with computing an absolute URI, hence XPST0001 is allowed. The test checks that the static base-uri is absolute.</description>
+      <query name="K2-BaseURIProlog-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIProlog-4.txt</output-file>
+      <expected-error>XPST0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-5" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="standard">
+      <description>Use an empty use as base-uri. Since the implementation may fail with determining the base-uri, XPST0001 is allowed.</description>
+      <query name="K2-BaseURIProlog-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+      <expected-error>XPST0001</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-6" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="standard">
+      <description>The static base-uri is not affected by xml:base declarations on direct element constructors.</description>
+      <query name="K2-BaseURIProlog-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-BaseURIProlog-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIProlog-7" FilePath="exprSeqTypes/PrologExpr/BaseURIProlog/" scenario="runtime-error">
+      <description>Ensure the 'base-uri' keyword is parsed correctly.</description>
+      <query name="K2-BaseURIProlog-7" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

@@ -1,0 +1,15 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ForExprTypeSI" featureOwner="Microsoft">
+   <GroupInfo>
+      <title>FOR Clause with TypeDeclaration</title>
+      <description>Tests for the FOR part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="ForExprType010" FilePath="Expressions/FLWORExpr/ForExprType/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR with type expression matching a type from the schema.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExprType010" date="2005-06-27">
+         <description>FLWOR with type expression matching a type from the schema</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">orderData</input-file>
+      <output-file role="principal" compare="Text">ForExprType010.txt</output-file>
+   </test-case>
+</test-group>

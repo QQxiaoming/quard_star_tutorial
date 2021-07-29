@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ContextPositionFunc-27                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: position() combined with a comparison operator inside a predicate. :)
+(:*******************************************************:)
+deep-equal((1, 2, 4), (1, 2, current-time(), 4)[3 != position()])

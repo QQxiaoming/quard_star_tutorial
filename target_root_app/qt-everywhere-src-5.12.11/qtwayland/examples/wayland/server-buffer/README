@@ -1,0 +1,29 @@
+This is the example to demonstrate the server buffer interfaces
+
+Compile up both compositor and client.
+
+If you have the dmabuf-server buffer integration (and you are running Mesa)
+then start the compositor with:
+
+$ QT_WAYLAND_SERVER_BUFFER_INTEGRATION=dmabuf-server ./compositor
+
+
+Note: if you are running a compositor on an X11 desktop, you also need to
+set QT_XCB_GL_INTEGRATION=xcb_egl as usual.
+
+The compositor broadcasts the name of the server buffer integration to
+all clients through the hardware integration extension. Therefore,
+all you need to do is to start the client with
+
+$ ./cpp-client -platform wayland
+
+The client will show all the buffers shared by the compositor.
+
+For testing on desktop, there is also a shared memory based server buffer
+integration that works with any graphics hardware:
+
+$ QT_WAYLAND_SERVER_BUFFER_INTEGRATION=shm-emulation-server QT_XCB_GL_INTEGRATION=xcb_egl ./compositor
+
+Note: the shm-emulation-server integration does not actually share graphics
+buffers, so it will not give any graphics memory savings. It is intended solely
+for testing during development and should never be used in production.

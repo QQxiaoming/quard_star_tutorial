@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-CondExpr-5                                    :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: An expression involving the if expression that trigger certain optimization paths in some implementations(#2). :)
+(:*******************************************************:)
+if((1, 2, 3, hours-from-time(current-time()))[1])
+		then true() else false()

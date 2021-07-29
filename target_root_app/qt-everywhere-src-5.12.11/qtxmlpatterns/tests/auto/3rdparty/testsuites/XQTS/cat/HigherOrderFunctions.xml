@@ -1,0 +1,941 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="HigherOrderFunctions" featureOwner="Michael Kay">
+
+    <GroupInfo>
+        <title>Higher Order Functions</title>
+        <description>Test cases for higher order functions in XQuery 1.1</description>
+    </GroupInfo>
+
+    <test-case is-XPath2="false" name="hof-001" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for user-defined function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-001" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-002" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for user-defined function, two functions with different
+            arity</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-002" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-003" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for user-defined function, imported
+            function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-003" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-004" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for system function round()</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-004" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-005" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for system function concat()</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-005" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-006" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for user function with default function
+            namespace</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-006" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-007" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for constructor function with default function
+            namespace</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-007" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-008" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for constructor function with non default function
+            namespace</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-008" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-008.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-009" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Inline function literal for constructor function fofr user-defined atomic
+            type</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-009" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-009.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-010" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>SequenceType function()</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-010" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-010.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-011" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>SequenceType function(x) as y</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-011" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-011.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-012" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>SequenceType function(x,y) as z</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-012" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-012.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-013" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Selecting from a sequence of functions</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-013" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-013.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-014" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function returning a function, abbreviated signature</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-014" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-014.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-015" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function returning a function, full signature</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-015" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-015.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-016" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function expecting a function, abbreviated signature, system function
+            supplied</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-016" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-016.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-017" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function expecting a function, full signature, system function
+            supplied</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-017" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-017.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-018" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function expecting a function, user function supplied</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-018" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-018.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-019" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function expecting a function, user function supplied</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-019" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-019.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-020" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function expecting a function, inline function supplied</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-020" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-020.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-021" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function expecting a function, inline function supplied. Needs function
+            coercion</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-021" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-021.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-022" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function name and arity of a user-defined function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-022" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-022.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-023" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function name and arity of a system function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-023" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-023.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-024" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function name and arity of a constructor function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-024" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-024.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-025" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function name and arity of a concat() function with many args</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-025" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-025.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-026" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Function name and arity of an inline function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-026" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-026.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-027" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Curry a system function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-027" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-027.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-028" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Return an inline function from another function. Needs function
+            coercion</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-028" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-028.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-029" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>An inline function that declares internal variables. Needs function
+            coercion</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-029" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-029.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-030" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>An inline function that accesses global variables</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-030" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-030.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-031" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>An inline function that accesses a local variable in the calling environment.
+            SAXON RESTRICTION: this doesn't yet work</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-031" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-031.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-032" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Bracketed conditional calculating the function item in a call</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-032" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-032.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-033" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Context item as a function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-033" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-033.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-034" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>ordered{} applied to a function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-034" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-034.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-035" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>unordered{} applied to a function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-035" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-035.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-036" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>mixing atomics and functions on rhs of "/" (is this allowed?)</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-036" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-036.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-037" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>instance-of tests on user-defined function, varying the argument types - all
+            true</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-037" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-037.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-038" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>instance-of tests on user-defined function, varying the argument types - all
+            false</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-038" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-038.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-039" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>instance-of tests on user-defined function, varying the result
+            type</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-039" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-039.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-040" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Supply a sequence of function items that require coercion in different
+            ways</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-040" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-040.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-041" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Return a sequence of function items that require coercion in different
+            ways</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-041" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-041.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-042" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Atomization is applied when calling various kinds of function
+            item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-042" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-042.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-043" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>untypedAtomic conversion is applied when calling various kinds of function
+            item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-043" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-043.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-044" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>numeric promotion is applied when calling various kinds of function
+            item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-044" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-044.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-045" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>partial-apply supplying an argument of type function()</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-045" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-045.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-046" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>return an inline function using inner and outer local variables</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-046" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-046.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-047" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Nested inline functions including references to "grandfather"
+            variables</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-047" date="2009-03-01"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-047.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-048" FilePath="Expressions/HigherOrder/" scenario="standard" Creator="Michael Kay">
+        <description>Forward reference in literal function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-048" date="2010-08-14"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">hof-048.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+
+
+    <test-case is-XPath2="false" name="hof-901" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>Literal function item, unknown function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-901" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPST0017</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-902" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>Literal function item, unknown function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-902" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPST0017</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-903" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>Literal function item, unknown constructor function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-903" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPST0017</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-904" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>Literal function item, unknown system function</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-904" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPST0017</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-905" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Applying string() to a function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-905" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOTY0014</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-906" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Applying data() to a function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-906" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOTY0013</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-907" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Applying deep-equal() to a function item</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-907" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOTY0015</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-908" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Atomize a function item implicitly</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-908" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOTY0013</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-909" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Atomize a function item implicitly</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-909" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOTY0013</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-910" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>in SequenceType, result type must be given if an item type is
+            given</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-910" date="2009-03-01"/>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error>XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-911" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Heterogeneous sequence on rhs of "/"</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-911" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPTY0018</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-912" FilePath="Expressions/HigherOrder/" scenario="parse-error" Creator="Michael Kay">
+        <description>Function coercion: Supplied function has wrong number of
+            arguments</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-912" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-913" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function coercion: Supplied function has wrong result type</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-913" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-914" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function coercion: Supplied function has wrong argument type</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-914" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-915" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>partial-apply(): bind non-existent argument</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-915" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOFU0001</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-916" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>partial-apply(): bind non-existent argument</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-916" date="2009-03-01"/>
+        <expected-error spec-version="1.1">FOFU0001</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-917" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>partial-apply(): bind value of wrong type</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-917" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="hof-918" FilePath="Expressions/HigherOrder/" scenario="runtime-error" Creator="Michael Kay">
+        <description>partial-apply(): bind value of wrong function type</description>
+        <spec-citation spec="XQuery" section-number="__HOFSEC" section-title="XQuery" section-pointer="__HOF"/>
+        <query name="hof-918" date="2009-03-01"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    
+    
+    <test-case is-XPath2="false" name="map-001" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>One-to-one mapping</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-001" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-002" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>One-to-many mapping</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-002" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-003" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>Mapping sometimes delivers empty sequence</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-003" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-004" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>Creating nodes with a mapping function</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-004" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-005" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>Double mapping, creating and accessing nodes</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-005" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-006" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>Mapping using a complex user-created anonymous function</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-006" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-007" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>Map an empty sequence</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-007" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-008" FilePath="Functions/HigherOrder/Map/" scenario="standard" Creator="Michael Kay">
+        <description>Partial application of map() function</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-008" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-008.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-901" FilePath="Functions/HigherOrder/Map/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function supplied to map() has wrong arity</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-901" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-902" FilePath="Functions/HigherOrder/Map/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function supplied to map() can't handle type of input item</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-902" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-903" FilePath="Functions/HigherOrder/Map/" scenario="runtime-error" Creator="Michael Kay">
+        <description>First argument to map() isn't a function</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPSEC" section-title="fn:map" section-pointer="func-map"/>
+        <query name="map-903" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    
+    
+    <test-case is-XPath2="false" name="filter-001" FilePath="Functions/HigherOrder/Filter/" scenario="standard" Creator="Michael Kay">
+        <description>Filter using a partially-applied system function</description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-001" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">filter-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-002" FilePath="Functions/HigherOrder/Filter/" scenario="standard" Creator="Michael Kay">
+        <description>Filter using an inline function</description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-002" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">filter-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-003" FilePath="Functions/HigherOrder/Filter/" scenario="standard" Creator="Michael Kay">
+        <description>Filter a sequence of nodes</description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-003" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">filter-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-004" FilePath="Functions/HigherOrder/Filter/" scenario="standard" Creator="Michael Kay">
+        <description>Filter involving context and position</description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-004" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">filter-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-005" FilePath="Functions/HigherOrder/Filter/" scenario="standard" Creator="Michael Kay">
+        <description>Test examples function eg:index-of-node</description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-005" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">filter-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    
+    <test-case is-XPath2="false" name="filter-901" FilePath="Functions/HigherOrder/Filter/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function supplied to filter() returns a string</description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-901" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-902" FilePath="Functions/HigherOrder/Filter/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function supplied to filter() returns an empty sequence </description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-902" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-903" FilePath="Functions/HigherOrder/Filter/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Function supplied to filter() returns a non-singleton sequence </description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-903" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="filter-904" FilePath="Functions/HigherOrder/Filter/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Item in sequence supplied to filter() is of wrong type for the function </description>
+        <spec-citation spec="FuncOps" section-number="__FNFILTERSEC" section-title="fn:filter" section-pointer="func-filter"/>
+        <query name="filter-904" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    
+    
+    <test-case is-XPath2="false" name="map-pairs-001" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, equal length sequences</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-001" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-002" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, unequal length sequences</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-002" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-003" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, unequal length sequences</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-003" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-004" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, partially-applied function</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-004" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-005" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, inline function</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-005" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-006" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, inline function with closure</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-006" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-007" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, inline function returning variable number of items including none</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-007" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="true" name="map-pairs-008" FilePath="Functions/HigherOrder/MapPairs/" scenario="standard" Creator="Michael Kay">
+        <description>Map pairs of values, solution to exercise at XML Prague 2010</description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-008" date="2010-03-14"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">map-pairs-008.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>    
+    <test-case is-XPath2="false" name="map-pairs-901" FilePath="Functions/HigherOrder/MapPairs/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Map pairs of values, wrong arity function </description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-901" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="map-pairs-902" FilePath="Functions/HigherOrder/MapPairs/" scenario="runtime-error" Creator="Michael Kay">
+        <description>Map pairs of values, wrong input to function </description>
+        <spec-citation spec="FuncOps" section-number="__FNMAPPAIRSSEC" section-title="fn:map-pairs" section-pointer="func-map-pairs"/>
+        <query name="map-pairs-902" date="2010-02-10"/>
+        <expected-error spec-version="1.1">XPTY0004</expected-error>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    
+    
+    <test-case is-XPath2="false" name="fold-left-001" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over addition</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-001" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-002" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over multiplication</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-002" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-003" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over boolean or</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-003" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-004" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over boolean and</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-004" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-005" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over swap position</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-005" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-006" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over concat</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-006" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-007" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold over concat</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-007" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-008" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold-left used to implement eg:highest</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-008" date="2010-02-10"/>
+        <input-file role="principal-data" variable="input-context">works-mod</input-file>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-008.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-left-009" FilePath="Functions/HigherOrder/FoldLeft/" scenario="standard" Creator="Michael Kay">
+        <description>fold-left used to implement eg:distinct-nodes-stable</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDLEFTSEC" section-title="fn:fold-left" section-pointer="func-fold-left"/>
+        <query name="fold-left-009" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-left-009.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    
+    
+    <test-case is-XPath2="false" name="fold-right-001" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over addition</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-001" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-001.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-right-002" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over multiplication</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-002" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-002.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-right-003" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over boolean or</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-003" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-003.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-right-004" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over boolean and</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-004" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-004.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-right-005" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over swap position</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-005" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-005.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-right-006" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over concat</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-006" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-006.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>
+    <test-case is-XPath2="false" name="fold-right-007" FilePath="Functions/HigherOrder/FoldRight/" scenario="standard" Creator="Michael Kay">
+        <description>fold over concat</description>
+        <spec-citation spec="FuncOps" section-number="__FNFOLDRIGHTSEC" section-title="fn:fold-right" section-pointer="func-fold-right"/>
+        <query name="fold-right-007" date="2010-02-10"/>
+        <output-file spec-version="1.1" role="principal" compare="XML">fold-right-007.out</output-file>
+        <expected-error spec-version="1.0">XQST0031</expected-error>
+        <expected-error spec-version="1.0">XPST0003</expected-error>
+    </test-case>            
+
+</test-group>

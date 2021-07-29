@@ -1,0 +1,74 @@
+Qt 5.12.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.1.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.12.2 Changes                           *
+****************************************************************************
+
+Behavior Changes
+----------------
+
+ - Deleting a download item will now also cancel the download if it is
+   still in progress.
+
+
+Chromium
+--------
+
+ - Security fixes from Chromium up to version 72.0.3626.121, including:
+     * CVE-2019-5754
+     * CVE-2019-5755
+     * CVE-2019-5756
+     * CVE-2019-5757
+     * CVE-2019-5758
+     * CVE-2019-5759
+     * CVE-2019-5760
+     * CVE-2019-5762
+     * CVE-2019-5763
+     * CVE-2019-5764
+     * CVE-2019-5769
+     * CVE-2019-5770
+     * CVE-2019-5775
+     * CVE-2019-5776
+     * CVE-2019-5777
+     * CVE-2019-5779
+     * CVE-2019-5781
+     * CVE-2019-5782
+     * CVE-2019-5783
+     * CVE-2019-5784
+     * CVE-2019-5786
+     * Security issue 895117
+     * Security issue 895970
+     * Security issue 899689
+     * Security issue 901677
+     * Security issue 903500
+     * Security issue 907047
+     * Security issue 908358
+     * Security issue 911253
+     * Security issue 912508
+     * Security issue 912520
+     * Security issue 922677
+
+General
+-------
+
+ - [QTBUG-72021] Improved tooltip wrapping to match other browsers.
+ - [QTBUG-72714] Fixed clipboard API not being permitted when settings allowed it.
+ - [QTBUG-73839] Fixed minor memory leak per download.
+ - Fixed regression in certificate transparency checking.

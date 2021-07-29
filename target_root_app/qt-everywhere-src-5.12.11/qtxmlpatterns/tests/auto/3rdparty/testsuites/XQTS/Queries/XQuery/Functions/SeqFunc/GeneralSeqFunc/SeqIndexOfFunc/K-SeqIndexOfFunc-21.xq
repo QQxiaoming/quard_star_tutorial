@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqIndexOfFunc-21                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal(index-of(("a", "sport", "and", "a", "pastime"), "a"), (1, 4))`. :)
+(:*******************************************************:)
+deep-equal(index-of(("a", "sport", "and", "a", "pastime"), "a"), (1, 4))

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>errata8_2a</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/errata8_2a</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>errata8_2b</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/errata8_2b</xqx:targetNamespace>
+      </xqx:moduleImport>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="errata8_2a">fun</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:functionBody>
+          <xqx:varRef>
+            <xqx:name xqx:prefix="errata8_2b">var</xqx:name>
+          </xqx:varRef>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="errata8_2a">fun2</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:functionBody>
+          <xqx:integerConstantExpr>
+            <xqx:value>10</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

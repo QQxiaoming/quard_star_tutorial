@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-NotFunc-10                                    :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: fn:not() combined with fn:boolean().         :)
+(:*******************************************************:)
+not(fn:boolean((1, 2, 3, current-time())[1] treat as xs:integer)) eq false()

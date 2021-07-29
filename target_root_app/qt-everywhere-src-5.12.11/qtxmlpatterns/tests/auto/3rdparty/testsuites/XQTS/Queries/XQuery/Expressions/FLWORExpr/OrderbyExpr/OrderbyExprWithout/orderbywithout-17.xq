@@ -1,0 +1,13 @@
+(: name : orderbywithout-17 :)
+(: description : Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "($x * -1) ", where $x is a set of negative numbers. :)
+(: Use a locally defined sequence. :)
+
+(: insert-start :)
+declare variable $input-context1 external;
+(: insert-end :)
+
+<results> {
+for $x in (-100000000000000000,-10000000000000000,-1000000000000000,-100000000000000,-10000000000000,-1000000000000,-100000000000,-10000000000,-1000000000,-100000000,-10000000,-1000000,-100000,-10000,-1000,-100,-10,-1,-0)
+ order by (xs:decimal($x) * -1) return (xs:decimal($x) * -1)
+}
+</results>

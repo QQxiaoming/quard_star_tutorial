@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-contains-14                                      :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri May 27, 2005                                 :)
+(:Purpose: Evaluates The "contains" function             :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "A"                                            :)
+(:$arg2 = xs:string("A")                                 :)
+(:*******************************************************:)
+
+fn:contains("A",xs:string("A"))

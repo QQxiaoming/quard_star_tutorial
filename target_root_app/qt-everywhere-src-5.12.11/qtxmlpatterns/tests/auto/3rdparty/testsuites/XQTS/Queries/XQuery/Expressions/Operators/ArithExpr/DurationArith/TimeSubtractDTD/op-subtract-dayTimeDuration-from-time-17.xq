@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-subtract-dayTimeDuration-from-time-17         :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: July 1, 2005                                     :)
+(:Purpose: Evaluates The "subtract-dayTimeDuration-from-time" operator :)
+(:used as part of a boolean expression (and operator) and the "fn:false" function. :)
+(: Should raise a type error.                            :)
+(:*******************************************************:)
+
+fn:string(xs:time("12:07:08Z") - xs:dayTimeDuration("P12DT10H07M")) and fn:false()

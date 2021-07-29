@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-ancestorAxis-6                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Apply the ancestor axis to a single document node with content. :)
+(:*******************************************************:)
+empty(document {<e><f/><f/>text</e>}/ancestor::node())

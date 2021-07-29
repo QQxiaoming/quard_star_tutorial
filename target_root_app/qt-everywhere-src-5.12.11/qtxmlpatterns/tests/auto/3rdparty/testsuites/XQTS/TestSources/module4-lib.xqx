@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>defs</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/module4</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>sample</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/sample</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="defs">var</xqx:varName>
+        <xqx:typeDeclaration>
+          <xqx:schemaAttributeTest xqx:prefix="sample">attrib</xqx:schemaAttributeTest>
+          <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:varValue>
+          <xqx:sequenceExpr/>
+        </xqx:varValue>
+      </xqx:varDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="defs">function1</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:schemaAttributeTest xqx:prefix="sample">attrib</xqx:schemaAttributeTest>
+          <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:sequenceExpr/>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="defs">function2</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>param</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:schemaAttributeTest xqx:prefix="sample">attrib</xqx:schemaAttributeTest>
+              <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+          <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:addOp>
+            <xqx:firstOperand>
+              <xqx:castExpr>
+                <xqx:argExpr>
+                  <xqx:varRef>
+                    <xqx:name>param</xqx:name>
+                  </xqx:varRef>
+                </xqx:argExpr>
+                <xqx:singleType>
+                  <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+                  <xqx:optional/>
+                </xqx:singleType>
+              </xqx:castExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:secondOperand>
+          </xqx:addOp>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

@@ -1,0 +1,523 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ModuleImport" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Module Import</title>
+      <description/>
+   </GroupInfo>
+   <test-case name="modules-simple" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Mary Holstege">
+      <description>Import simple library module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-simple" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">modules-simple.xml</output-file>
+   </test-case>
+   <test-case name="modules-bad-ns" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Import library module with wrong namespace.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-bad-ns" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test2">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case name="modules-none" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Import non-existent library module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-none" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/none">empty-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case name="modules-two-import" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Import two library module (wrong way).</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-two-import" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1a-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0047</expected-error>
+   </test-case>
+   <test-case name="modules-two-import-ok" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Mary Holstege">
+      <description>Import two library module (right way).</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-two-import-ok" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1a-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">modules-two-import-ok.xml</output-file>
+   </test-case>
+   <test-case name="modules-collide-var-001" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Imports with colliding variables.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-collide-var-001" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1collide1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0049</expected-error>
+   </test-case>
+   <test-case name="modules-collide-var-002" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Imports with colliding variables.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-collide-var-002" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0049</expected-error>
+   </test-case>
+   <test-case name="modules-collide-fn-001" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Colliding functions.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-collide-fn-001" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1collide2-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0034</expected-error>
+   </test-case>
+   <test-case name="modules-collide-fn-002" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Colliding functions.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-collide-fn-002" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0034</expected-error>
+   </test-case>
+   <test-case name="modules-emptyns" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Mary Holstege">
+      <description>Colliding imports.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-emptyns" date="2005-12-05"/>
+      <module namespace="">emptyns-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0088</expected-error>
+   </test-case>
+   <test-case name="modules-circular" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Mary Holstege">
+      <description>Circular imports.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-circular" date="2005-12-05"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1c1-lib</module>
+      <module namespace="http://www.w3.org/TestModules/test2">test2c1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">modules-circular.txt</output-file>
+   </test-case>
+   <test-case name="modules-1" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Namespaces from imported modules are not visible.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-1" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/defs">module-defs</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case name="modules-2" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of same namespace used in importing/imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-2" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/defs">module-defs</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">modules-2.txt</output-file>
+   </test-case>
+   <test-case name="modules-3" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates that module imports are not transitive.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-3" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/defs">module-defs</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case name="modules-4" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of actual usage of variable from imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-4" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/defs">module-defs</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-4.txt</output-file>
+   </test-case>
+   <test-case name="modules-5" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of module that uses a variable from an imported module and modifies a variable. The importing module in turn uses that modified value.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-5" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/defs">module-defs</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-5.txt</output-file>
+   </test-case>
+   <test-case name="modules-6" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of usage of variable from imported module and usage of variable with same name in importing module, but with different namespace prefix.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-6" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-6.txt</output-file>
+   </test-case>
+   <test-case name="modules-7" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of of an importing module that uses both a variable and a function from an importing module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-7" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-7.txt</output-file>
+   </test-case>
+   <test-case name="modules-8" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of usage of same function name from imported/importing module, but different namespaces.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-8" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-8.txt</output-file>
+   </test-case>
+   <test-case name="modules-9" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of import module feature that applies the upper case function to a value from an imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-9" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-9.txt</output-file>
+   </test-case>
+   <test-case name="modules-10" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of import module feature that applies the lower case function to a value from an imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-10" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-10.txt</output-file>
+   </test-case>
+   <test-case name="modules-11" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of import module feature that applies the string-length function to a value from an imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-11" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-11.txt</output-file>
+   </test-case>
+   <test-case name="modules-12" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of import module feature that performs an addition operation to a value from an imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-12" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-12.txt</output-file>
+   </test-case>
+   <test-case name="modules-13" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of import module feature that performs a subtraction operation to a value from an imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-13" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-13.txt</output-file>
+   </test-case>
+   <test-case name="modules-14" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of import module feature that applies the xs:integer function to a value from an imported module.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-14" date="2006-01-06"/>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-14.txt</output-file>
+   </test-case>
+   <test-case name="modules-15" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of importing a library module whose namespace URI is se to to the empty string.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-15" date="2006-01-19"/>
+      <module namespace="http://www.w3.org/TestModules/test2">test2-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0088</expected-error>
+   </test-case>
+   <test-case name="modules-16" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of importing a library module with invalid namespace("xml").</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-16" date="2006-03-21"/>
+      <module namespace="http://www.w3.org/TestModules/test1">modulewrongprefix-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0070</expected-error>
+   </test-case>
+   <test-case name="modules-17" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of importing a library module where variable has different namespace from target namespsce.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-17" date="2006-04-11"/>
+      <module namespace="http://www.w3.org/TestModules/diffns">modulesdiffns</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0048</expected-error>
+   </test-case>
+   <test-case name="modules-18" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Import module, which import two modules, one of which import the other module with interesting function calling.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-18" date="2006-07-13"/>
+      <module namespace="http://www.w3.org/TestModules/module1">module1-lib</module>
+      <module namespace="http://www.w3.org/TestModules/module2">module2-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">modules-18.txt</output-file>
+   </test-case>
+   <test-case name="modules-19" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-19" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module3">module3-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-20" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-20" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module3">module3-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-21" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-21" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module3">module3-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-22" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-22" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module3">module3-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-23" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-23" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module3">module3-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-24" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-24" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module3">module3-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-25" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-25" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module4">module4-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-26" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-26" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module4">module4-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-27" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Load a library but do not import the schema.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-27" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/module4">module4-lib</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="modules-28" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Cyclic module imports.</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="modules-28" date="2009-04-01"/>
+      <module namespace="http://www.w3.org/TestModules/defs1">modules-recursive1</module>
+      <module namespace="http://www.w3.org/TestModules/defs2">modules-recursive2</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0093</expected-error>
+   </test-case>               
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ModuleImport-1" FilePath="Optional/Modules/ModuleImport/" scenario="runtime-error">
+      <description>Module import with empty target namespace.</description>
+      <query name="K-ModuleImport-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0088</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ModuleImport-2" FilePath="Optional/Modules/ModuleImport/" scenario="runtime-error">
+      <description>Module import with empty target namespace, and two location hints.</description>
+      <query name="K-ModuleImport-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0088</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ModuleImport-3" FilePath="Optional/Modules/ModuleImport/" scenario="parse-error">
+      <description>':=' cannot be used to assing namespaces in 'import module'.</description>
+      <query name="K-ModuleImport-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ModuleImport-1" FilePath="Optional/Modules/ModuleImport/" scenario="runtime-error">
+      <description>Ensure that a start looking like an import, isn't treated as so.</description>
+      <query name="K2-ModuleImport-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+
+   <!-- ************************************************** -->
+   <test-case name="errata6-001" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test XQST0036 for unknown simple type in imported function parameter type</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-001" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-1">errata6-module1</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="errata6-002" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test XQST0036 for unknown simple type in imported function return type</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-002" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-2">errata6-module2</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="errata6-003" FilePath="Modules/ModuleImport/" scenario="standard" Creator="John Snelson">
+      <description>Test XQST0036 for known simple type in imported function return type</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-003" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-2">errata6-module2</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">errata6-003.txt</output-file>
+   </test-case>
+   <test-case name="errata6-004" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test of XQST0036 for unknown simple type in imported global variable</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-004" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-4">errata6-module4</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="errata6-005" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test of XQST0036 for unknown element declaration in imported function parameter type</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-005" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-5">errata6-module5</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="errata6-006" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test of XQST0036 for unknown attribute declaration in imported function parameter type</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-006" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-6">errata6-module6</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+   <test-case name="errata6-007" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test of XQST0036 for unknown complex type in imported function parameter type</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4321</reflects-resolution>
+      <query name="errata6-007" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata6-7">errata6-module7</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0036</expected-error>
+   </test-case>
+
+   <test-case name="errata8-001" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test XQST0093 by importing a module with a circular dependency</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="errata8-001" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata8_1a">errata8-module1a</module>
+      <module namespace="http://www.w3.org/TestModules/errata8_1b">errata8-module1b</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0093</expected-error>
+   </test-case>
+   <test-case name="errata8-002" FilePath="Modules/ModuleImport/" scenario="runtime-error" Creator="John Snelson">
+      <description>Test XQST0093 by importing a module with a more complex circular dependency</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="errata8-002" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata8_2a">errata8-module2a</module>
+      <module namespace="http://www.w3.org/TestModules/errata8_2b">errata8-module2b</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0093</expected-error>
+   </test-case>
+   <test-case name="errata8-003" FilePath="Modules/ModuleImport/" scenario="standard" Creator="John Snelson">
+      <description>Test lack of XQST0093 by importing a module without a circular dependency</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4418</reflects-resolution>
+      <query name="errata8-003" date="2009-10-01"/>
+      <module namespace="http://www.w3.org/TestModules/errata8_3a">errata8-module3a</module>
+      <module namespace="http://www.w3.org/TestModules/errata8_3b">errata8-module3b</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">errata8-003.txt</output-file>
+   </test-case>
+   <test-case name="modules-pub-priv-1" FilePath="Modules/ModuleImport/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Public functions can be imported (XQuery 1.1).</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-pub-priv-1" date="2009-10-28"/>
+      <module namespace="http://www.w3.org/TestModules/module-pub-priv">module-pub-priv</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file spec-version="1.1" role="principal" compare="XML">modules-pub-priv-1.txt</output-file>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0003</expected-error>
+   </test-case>
+   <test-case name="modules-pub-priv-2" FilePath="Modules/ModuleImport/" scenario="parse-error" Creator="Michael Kay, Saxonica">
+      <description>Private functions from imported modules are not visible (XQuery 1.1).</description>
+      <spec-citation spec="XQuery" section-number="4.11" section-title="Module Import" section-pointer="id-module-import"/>
+      <spec-citation spec="XQuery" section-number="4.2" section-title="Module Declaration" section-pointer="id-module-declaration"/>
+      <query name="modules-pub-priv-2" date="2009-10-28"/>
+      <module namespace="http://www.w3.org/TestModules/module-pub-priv">module-pub-priv</module>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error spec-version="1.1">XPST0017</expected-error>
+      <expected-error spec-version="1.0">XQST0031</expected-error>
+      <expected-error spec-version="1.0">XPST0003</expected-error>
+   </test-case>
+</test-group>

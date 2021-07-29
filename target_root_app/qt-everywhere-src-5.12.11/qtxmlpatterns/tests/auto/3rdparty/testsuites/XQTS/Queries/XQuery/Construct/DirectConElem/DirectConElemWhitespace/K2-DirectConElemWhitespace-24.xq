@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemWhitespace-24                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract the string value of mixed content(#2). :)
+(:*******************************************************:)
+string(<elem> content <![CDATA[ content ]]> content </elem>)

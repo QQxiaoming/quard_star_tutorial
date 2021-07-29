@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-equal-4                               :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 24, 2005                                    :)
+(:Purpose: Evaluates The "boolean-equal" function        :)
+(: with both operands set to "and" expressions respectively.:)
+(: Use of eq operator.                                   :)
+(:*******************************************************:)
+ 
+(xs:boolean("true") and xs:boolean("true")) eq (xs:boolean("false") and xs:boolean("false"))

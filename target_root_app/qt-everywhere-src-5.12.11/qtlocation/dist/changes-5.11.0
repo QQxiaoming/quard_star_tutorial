@@ -1,0 +1,116 @@
+Qt 5.11 introduces many new features and improvements as well as bugfixes
+over the 5.10.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.11.0 Changes                             *
+****************************************************************************
+
+QtLocation
+----------
+
+ - Qt.labs.location
+   * A new experimental QML plugin introduced, Qt.labs.location, which
+     offers two new categories of QML elements: Map Objects and the
+     Navigator type. Both are experimental, not supposed to work in every
+     setup (check documentation). This plugin can be disabled at configure
+     time, through the location-labs-plugin feature.
+   * Map objects are supposed to be QQuickItem-less equivalents of
+     Map Items. They are supposed to be easy to implement in plugins, and
+     to introduce minimal overhead. They come with a reference
+     implementation based on QSGNodes, that is supposed to work in all of the
+     currently offered raster based plugins.
+     At the present, the MapboxGL plugin does not offer map objects support.
+   * The Navigator type is a new QML api to expose turn-by-turn navigation
+     functions present in plugins. It requires a plugin supporting
+     one of the Navigation capabilities to actually work.
+     At the present, none of the open source plugins have these capabilities.
+
+  - MapParameter
+    * MapParameter type now deprecated and re-registered under the DynamicParameter
+      name.
+
+ - QGeoServiceProvider/QGeoServiceProviderFactory
+   * Added QGeoServiceProviderFactoryV2, capable of producing
+     QNavigationManagerEngine objects.
+     Note: QNavigationManagerEngine is private API.
+
+ - QGeoPath
+   * The path property changed type, from QList<QGeoCoordinate> to
+     QVariantList. This is binary-compatible with the previous release,
+     and source-compatible in QML.
+     It may, however, introduce source incompatibilities when using
+     the QObject property API in C++ (::property and ::setProperty), for
+     example in the generation of language bindings.
+     For the regular user-code, the use case was deemed as rare enough
+     (since QGeoShape has a public setter/getter for the path) to not cause
+     any problem.
+     As the beta phase passed without issues, this change was therefore left in place.
+
+ - QGeoRoute
+   * QGeoRoute, QGeoRouteSegment and QGeoManeuver private implementation are
+     now (privately) exported and can be subclassed in plugins to provide
+     custom private implementations.
+   * QGeoRouteRequest now allows to specify extra parameters in QVariantMap form.
+   * RouteQuery (QDeclarativeGeoRouteQuery) now allows to specify extra parameters
+     through Map/DynamicParameters.
+   * Added extended attributes to QGeoManeuver/QDeclarativeGeoManeuver.
+   * [QTBUG-64066] Introduced new Waypoint QML type, intended to replace
+     QGeoCoordinate as mean to specify waypoints in a RouteQuery.
+
+ - QPlace
+   * QPlace private implementation is now (privately) exported and can be
+     subclassed in plugins to provide custom private implementations.
+   * QPlaceContent::Type has a new value, CustomType.
+
+ - QDeclarativeGeoMap
+   * [QTBUG-66315] Fixed a crash calling Map.clearMapItems before Map is
+     initialized.
+   * Fixed MapGestureArea not emitting when controlled with scroll wheel.
+   * [QTBUG-66880] Fixed clearData not triggering scene update.
+   * [QTBUG-67580] Fixed crash in QQuickGeoMapGestureArea.
+   * [QTBUG-67759] Fixed crash when calling clearData at startup.
+
+ - Map Items
+   * [QTBUG-66758] Fixed re-set map items rendering stale geometry.
+   * [QTBUG-38459] Fixed the geometry of map items so that, if layers.enabled
+     is set to true, the scene graph renderer will not cut the items borders
+     anymore.
+   * [QTBUG-66692, QTBUG-66830] Fixed polyline geometry generation.
+   * [QTBUG-62086, QTBUG-65833] Fixed MapItemView not setting context data
+     upon item deletion.
+   * [QTBUG-67765] Fixed interaction with Map Items borders.
+
+ - Plugins
+   * Mapbox: Added OnlinePlacesFeature, PlaceRecommendationsFeature, SearchSuggestionsFeature
+     and LocalizedPlacesFeature.
+   * Mapbox: Added OnlineGeocodingFeature, ReverseGeocodingFeature and LocalizedGeocodingFeature.
+   * Mapbox/OSM: OSRM backend now returns extended attributes for the maneuvers, such as
+     bearing_before, bearing_after, instruction, type and modifier.
+   * Mapbox/OSM: OSRM backend now uses Waypoint's bearing when sending a route request.
+   * Mapbox/OSM: Added OSRM's {leg,step}_index extra attribute to QGeoManeuver.
+   * Mapbox: Supported Mapbox Directions API voice & banner instructions.
+   * MapboxGL: Added map margins support via 'margins' map parameter.
+   * HERE: the plugin now uses Waypoint's bearing when sending a route request.
+   * OSM: supported the query limit parameter in the nominatim backend.
+
+
+QtPositioning
+----------
+
+   * [QTBUG-65937] Metatype for QGeoPositionInfo is now declared and registered.
+     This change introduces a potential source incompatibility, as existing user code may
+     contain the type registration already.

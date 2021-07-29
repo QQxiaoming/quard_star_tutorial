@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>defs1</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/defs1</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>defs2</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/defs2</xqx:targetNamespace>
+        <xqx:targetLocation>modules-recursive2.xq</xqx:targetLocation>
+      </xqx:moduleImport>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="defs1">var</xqx:varName>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:varValue>
+          <xqx:varRef>
+            <xqx:name xqx:prefix="defs2">var</xqx:name>
+          </xqx:varRef>
+        </xqx:varValue>
+      </xqx:varDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

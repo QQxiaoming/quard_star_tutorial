@@ -1,0 +1,323 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page qtqml-syntax-signals.html
+
+\title Signal and Handler Event System
+\brief the event system in QML
+
+Application and user interface components need to communicate with each other. For
+example, a button needs to know that the user has clicked on it.
+The button may change colors to indicate its state or perform some logic. As
+well, application needs to know whether the user is clicking the button. The
+application may need to relay this clicking event to other applications.
+
+QML has a signal and handler mechanism, where the \e signal is the event
+and the signal is responded to through a \e {signal handler}. When a signal
+is emitted, the corresponding signal handler is invoked. Placing logic such as
+a script or other operations in the handler allows the component to respond to
+the event.
+
+\target qml-signals-and-handlers
+\section1 Receiving signals with signal handlers
+
+To receive a notification when a particular signal is emitted for a particular
+object, the object definition should declare a signal handler named
+\e on<Signal>, where \e <Signal> is the name of the signal, with the first
+letter capitalized. The signal handler should contain the JavaScript code to be
+executed when the signal handler is invoked.
+
+For example, the \l [QtQuickControls]{Button} type from the
+\l{Qt Quick Controls} module has a \c clicked signal, which
+is emitted whenever the button is clicked. In this case, the signal handler for
+receiving this signal should be \c onClicked. In the example below, whenever
+the button is clicked, the \c onClicked handler is invoked, applying a random
+color to the parent \l Rectangle:
+
+\qml \QtMinorVersion
+import QtQuick 2.\1
+import QtQuick.Controls 2.\1
+
+Rectangle {
+    id: rect
+    width: 250; height: 250
+
+    Button {
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Change color!"
+        onClicked: {
+            rect.color = Qt.rgba(Math.random(), Math.random(), Math.random(), 1);
+        }
+    }
+}
+\endqml
+
+\section2 Property change signal handlers
+
+A signal is automatically emitted when the value of a QML property changes.
+This type of signal is a \e {property change signal} and signal handlers for
+these signals are written in the form \e on<Property>Changed, where
+\e <Property> is the name of the property, with the first letter capitalized.
+
+For example, the \l MouseArea type has a \l {MouseArea::pressed}{pressed} property. To receive a notification whenever this property changes, write a signal handler named \c onPressedChanged:
+
+\qml \QtMinorVersion
+import QtQuick 2.\1
+
+Rectangle {
+    id: rect
+    width: 100; height: 100
+
+    TapHandler {
+        onPressedChanged: console.log("taphandler pressed?", pressed)
+    }
+}
+\endqml
+
+Even though the \l TapHandler documentation does not document a signal handler
+named \c onPressedChanged, the signal is implicitly provided by the fact that
+the \c pressed property exists.
+
+\section2 Using the Connections type
+
+In some cases it may be desirable to access a signal outside of the object that
+emits it. For these purposes, the \c QtQuick module provides the \l Connections
+type for connecting to signals of arbitrary objects. A \l Connections object
+can receive any signal from its specified \l {Connections::target}{target}.
+
+For example, the \c onClicked handler in the earlier example could have been
+received by the root \l Rectangle instead, by placing the \c onClicked handler
+in a \l Connections object that has its \l {Connections::target}{target} set to
+the \c button:
+
+\qml \QtMinorVersion
+import QtQuick 2.\1
+import QtQuick.Controls 2.\1
+
+Rectangle {
+    id: rect
+    width: 250; height: 250
+
+    Button {
+        id: button
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: "Change color!"
+    }
+
+    Connections {
+        target: button
+        onClicked: {
+            rect.color = Qt.rgba(Math.random(), Math.random(), Math.random(), 1);
+        }
+    }
+}
+\endqml
+
+
+\section2 Attached signal handlers
+
+An \l {Attached Properties and Attached Signal Handlers}{attached signal handler}
+receives a signal from an \e {attaching type} rather than the object within which
+the handler is declared.
+
+For example, \l{Component::completed}{Component.onCompleted} is an attached
+signal handler. It is often used to execute some JavaScript code when its
+creation process is complete. Here is an example:
+
+\qml \QtMinorVersion
+import QtQuick 2.\1
+
+Rectangle {
+    width: 200; height: 200
+    color: Qt.rgba(Qt.random(), Qt.random(), Qt.random(), 1)
+
+    Component.onCompleted: {
+        console.log("The rectangle's color is", color)
+    }
+}
+\endqml
+
+The \c onCompleted handler is not responding to a \c completed signal from
+the \l Rectangle type. Instead, an object of the \c Component \e{attaching type}
+with a \c completed signal has automatically been \e attached to the \l Rectangle
+object by the QML engine. The engine emits this signal when the Rectangle object is
+created, thus triggering the \c Component.onCompleted signal handler.
+
+Attached signal handlers allow objects to be notified of particular signals that are
+significant to each individual object. If there was no \c Component.onCompleted
+attached signal handler, for example, an object could not receive this notification
+without registering for some special signal from some special object.
+The \e {attached signal handler} mechanism enables objects to receive particular
+signals without extra code.
+
+See \l {Attached properties and attached signal handlers} for more information on
+attached signal handlers.
+
+\section1 Adding signals to custom QML types
+
+Signals can be added to custom QML types through the \c signal keyword.
+
+The syntax for defining a new signal is:
+
+\tt{signal <name>[([<type> <parameter name>[, ...]])]}
+
+A signal is emitted by invoking the signal as a method.
+
+For example, the code below is defined in a file named \c SquareButton.qml. The
+root \l Rectangle object has an \c activated signal, which is emitted whenever the
+child \l TapHandler is \c tapped. In this particular example the activated signal
+is emitted with the x and y coordinates of the mouse click:
+
+\qml \QtMinorVersion
+// SquareButton.qml
+import QtQuick 2.\1
+
+Rectangle {
+    id: root
+
+    signal activated(real xPosition, real yPosition)
+    property point mouseXY
+    property int side: 100
+    width: side; height: side
+
+    TapHandler {
+        id: handler
+        onTapped: root.activated(mouseXY.x, mouseXY.y)
+        onPressedChanged: mouseXY = handler.point.position
+    }
+}
+\endqml
+
+Now any objects of the \c SquareButton can connect to the \c activated signal using an \c onActivated signal handler:
+
+\qml
+// myapplication.qml
+SquareButton {
+    onActivated: console.log("Activated at " + xPosition + "," + yPosition)
+}
+\endqml
+
+See \l {Signal Attributes} for more details on writing signals for custom QML types.
+
+
+\target qml-connect-signals-to-method
+\section1 Connecting signals to methods and signals
+
+Signal objects have a \c connect() method to a connect a signal either to a
+method or another signal. When a signal is connected to a method, the method is
+automatically invoked whenever the signal is emitted. This mechanism enables a
+signal to be received by a method instead of a signal handler.
+
+Below, the \c messageReceived signal is connected to three methods using the \c connect() method:
+
+\qml \QtMinorVersion
+import QtQuick 2.\1
+
+Rectangle {
+    id: relay
+
+    signal messageReceived(string person, string notice)
+
+    Component.onCompleted: {
+        relay.messageReceived.connect(sendToPost)
+        relay.messageReceived.connect(sendToTelegraph)
+        relay.messageReceived.connect(sendToEmail)
+        relay.messageReceived("Tom", "Happy Birthday")
+    }
+
+    function sendToPost(person, notice) {
+        console.log("Sending to post: " + person + ", " + notice)
+    }
+    function sendToTelegraph(person, notice) {
+        console.log("Sending to telegraph: " + person + ", " + notice)
+    }
+    function sendToEmail(person, notice) {
+        console.log("Sending to email: " + person + ", " + notice)
+    }
+}
+\endqml
+
+In many cases it is sufficient to receive signals through signal handlers
+rather than using the connect() function. However, using the \c connect
+method allows a signal to be received by multiple methods as shown earlier,
+which would not be possible with signal handlers as they must be uniquely
+named. Also, the \c connect method is useful when connecting signals to
+\l {Dynamic QML Object Creation from JavaScript}{dynamically created objects}.
+
+There is a corresponding \c disconnect() method for removing connected signals:
+
+\qml
+Rectangle {
+    id: relay
+    //...
+
+    function removeTelegraphSignal() {
+        relay.messageReceived.disconnect(sendToTelegraph)
+    }
+}
+\endqml
+
+\section3 Signal to signal connect
+
+By connecting signals to other signals, the \c connect() method can form different
+signal chains.
+
+\qml \QtMinorVersion
+import QtQuick 2.\1
+
+Rectangle {
+    id: forwarder
+    width: 100; height: 100
+
+    signal send()
+    onSend: console.log("Send clicked")
+
+    TapHandler {
+        id: mousearea
+        anchors.fill: parent
+        onTapped: console.log("Mouse clicked")
+    }
+
+    Component.onCompleted: {
+        mousearea.tapped.connect(send)
+    }
+}
+\endqml
+
+
+Whenever the \l TapHandler's \c tapped signal is emitted, the \c send
+signal will automatically be emitted as well.
+
+\code
+output:
+    MouseArea clicked
+    Send clicked
+\endcode
+*/

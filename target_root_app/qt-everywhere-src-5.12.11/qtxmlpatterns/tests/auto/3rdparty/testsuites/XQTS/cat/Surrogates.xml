@@ -1,0 +1,111 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="Surrogates">
+   <GroupInfo>
+      <title>surrogate values for various string functions.</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="surrogates01" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>String-length() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates01" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates01.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates02" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Substring() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates02" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates02.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates03" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Substring() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates03" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates03.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="surrogates04" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Translate() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates04" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates04.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="surrogates05" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Translate() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates05" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates05.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates06" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Translate() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates06" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates06.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates07" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>String-to-codepoints() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates07" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates07.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="surrogates08" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Codepoints-to-string() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates08" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates08.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="surrogates09" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Substring-before() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates09" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates09.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates10" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Substring-before() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates10" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="surrogates11" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Substring-after() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates11" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates12" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>matches() when non-BMP characters are present</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates12" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates13" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Matches() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates13" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates14" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Replace() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates14" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="surrogates15" FilePath="Functions/AllStringFunc/Surrogates/" scenario="standard" Creator="Michael Kay, Saxonica">
+      <description>Replace() when non-BMP characters are present.</description>
+      <spec-citation spec="FuncOps" section-number="7.1" section-title="String Types" section-pointer="string-types"/>
+      <query name="surrogates15" date="2006-02-01"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">surrogates15.txt</output-file>
+   </test-case>
+</test-group>

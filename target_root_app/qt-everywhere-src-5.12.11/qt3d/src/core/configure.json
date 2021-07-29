@@ -1,0 +1,132 @@
+{
+    "module": "3dcore",
+    "depends": [
+        "gui"
+    ],
+    "condition": "module.gui && features.opengl && !config.wasm",
+    "testDir": "../../config.tests",
+
+    "commandline": {
+        "options": {
+            "assimp": { "type": "enum", "values": [ "qt", "system", "no" ] },
+            "qt3d-profile-jobs": "boolean",
+            "qt3d-profile-gl": "boolean",
+            "qt3d-render": "boolean",
+            "qt3d-input": "boolean",
+            "qt3d-logic": "boolean",
+            "qt3d-extras": "boolean",
+            "qt3d-animation": "boolean",
+            "qt3d-simd": { "type": "optionalString", "values": [ "no", "sse2", "avx2" ] }
+        }
+    },
+
+    "libraries": {
+        "assimp": {
+            "label": "Assimp",
+            "test": "assimp",
+            "sources": [
+                { "type": "pkgConfig", "args": "assimp > 3.3.1" },
+                "-lassimp"
+            ]
+        }
+    },
+
+    "features": {
+        "assimp": {
+            "label": "Assimp",
+            "output": [ "privateFeature", "feature" ]
+        },
+        "system-assimp": {
+            "label": "System Assimp",
+            "enable": "input.assimp == 'system'",
+            "disable": "input.assimp == 'qt'",
+            "condition": "features.assimp && libs.assimp",
+            "output": [ "privateFeature" ]
+        },
+        "qt3d-profile-jobs": {
+            "label": "Output Qt3D Job traces",
+            "autoDetect": false,
+            "output": [ "privateFeature" ]
+        },
+        "qt3d-profile-gl": {
+            "label": "Output Qt3D GL traces",
+            "autoDetect": false,
+            "output": [ "privateFeature" ]
+        },
+        "qt3d-render": {
+            "label": "Render aspect",
+            "purpose": "Use the 3D Render Aspect library",
+            "section": "Aspects",
+            "output": [ "publicFeature" ]
+        },
+        "qt3d-input": {
+            "label": "Input aspect",
+            "purpose": "Use the 3D Input Aspect library",
+            "section": "Aspects",
+            "output": [ "publicFeature" ]
+        },
+        "qt3d-logic": {
+            "label": "Logic aspect",
+            "purpose": "Use the 3D Logic Aspect library",
+            "section": "Aspects",
+            "output": [ "publicFeature" ]
+        },
+        "qt3d-extras": {
+            "label": "Extras aspect",
+            "purpose": "Use the 3D Extra library",
+            "section": "Aspects",
+            "condition": "features.qt3d-render && features.qt3d-input && features.qt3d-logic",
+            "output": [ "publicFeature" ]
+        },
+        "qt3d-animation": {
+            "label": "Animation aspect",
+            "purpose": "Use the 3D Animation Aspect library",
+            "section": "Aspects",
+            "condition": "features.qt3d-render",
+            "output": [ "publicFeature" ]
+        },
+        "qt3d-simd-sse2": {
+            "label": "Use SSE2 instructions",
+            "purpose": "Use SSE2 SIMD instructions to accelerate matrix operations",
+            "autoDetect": "features.sse2",
+            "enable": "input.qt3d-simd == 'sse2' || input.qt3d-simd == 'avx2'",
+            "disable": "input.qt3d-simd == 'no' || arch.i386",
+            "output": [ "privateFeature" ]
+        },
+        "qt3d-simd-avx2": {
+            "label": "Use AVX2 instructions",
+            "purpose": "Use AVX2 SIMD instructions to accelerate matrix operations",
+            "autoDetect": "subarch.avx2",
+            "enable": "input.qt3d-simd == 'avx2'",
+            "disable": "input.qt3d-simd == 'sse2' || input.qt3d-simd == 'no' || arch.i386",
+            "output": [ "privateFeature" ]
+        }
+    },
+
+    "report": [
+    ],
+
+    "summary": [
+        {
+            "section": "Qt 3D",
+            "entries": [
+                "assimp",
+                "system-assimp",
+                "qt3d-profile-jobs",
+                "qt3d-profile-gl",
+                "qt3d-simd-sse2",
+                "qt3d-simd-avx2",
+                {
+                    "section": "Aspects",
+                    "entries": [
+                        "qt3d-render",
+                        "qt3d-input",
+                        "qt3d-logic",
+                        "qt3d-animation",
+                        "qt3d-extras"
+                    ]
+                }
+            ]
+        }
+    ]
+}

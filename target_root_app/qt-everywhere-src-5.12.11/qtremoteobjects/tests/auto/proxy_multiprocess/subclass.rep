@@ -1,0 +1,39 @@
+#include <QPoint>
+#include "../namespace.h"
+
+USE_ENUM(Qt::DateFormat)
+USE_ENUM(NS::NamespaceEnum)
+USE_ENUM(NS2::NamespaceEnum)
+
+POD MyPOD(int i, float f, QString s)
+POD VariantPOD(int i, int j)
+
+class SubClass
+{
+    PROP(MyPOD myPOD)
+    PROP(int i)
+}
+
+class ParentClass
+{
+    ENUM MyEnum {foo=1, bar=3, foobar=6}
+    PROP(bool started = false)
+    PROP(MyEnum myEnum=foo)
+    PROP(QVariant variant)
+    PROP(Qt::DateFormat date = Qt::ISODate)
+    PROP(NS::NamespaceEnum nsEnum = NS::Alpha)
+    PROP(NS2::NamespaceEnum ns2Enum = NS2::NamespaceEnum::Alpha)
+
+    SLOT(bool start())
+    SLOT(bool quit())
+    SIGNAL(advance())
+    SIGNAL(enum2(MyEnum myEnum1, MyEnum myEnum2))
+    SLOT(MyEnum enumSlot(QPoint point, MyEnum myEnum))
+
+    SIGNAL(updateDate(Qt::DateFormat date1, Qt::DateFormat date2))
+    SLOT(Qt::DateFormat dateSlot(Qt::DateFormat date))
+
+    CLASS subClass(SubClass)
+    MODEL tracks(display)
+}
+

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ContextImplicitTimezoneFunc-3                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: Test that implicit-timezone() do return a value. :)
+(:*******************************************************:)
+exists(seconds-from-duration(implicit-timezone()))

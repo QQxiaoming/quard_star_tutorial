@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-119                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Space between the sign and the digits is disallowed for nonPositiveInteger(#2). :)
+(:*******************************************************:)
+xs:nonPositiveInteger("+ 0")

@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-gDay-equal2args-9                              :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Tue Apr 12 16:29:08 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "op:gDay-equal" operator        :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:gDay(lower bound)                           :)
+(:$arg2 = xs:gDay(mid range)                             :)
+(:*******************************************************:)
+
+xs:gDay("---01Z") ne xs:gDay("---14Z")

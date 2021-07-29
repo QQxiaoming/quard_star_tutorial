@@ -1,0 +1,188 @@
+Qt 5.10 introduces many new features and improvements as well as bugfixes
+over the 5.9.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.10 series is binary compatible with the 5.9.x series.
+Applications compiled for 5.9 will continue to run with 5.10.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                           General                                        *
+****************************************************************************
+
+ - Added the QtQuick.Shapes plugin providing the Shape and ShapePath
+   types for rendering geometry-based stroked and filled paths.
+   Various types of Path existed already for defining movement trajectories
+   in PathView, but now they can be rendered too.
+   * PathLine, PathQuad, PathCubic, PathArc, PathCurve, and PathSvg
+   * Fill: solid color, linear, radial or conical gradients
+   * Stroke: colored and dashed lines
+   * Uses GL_NV_path_rendering on recent nVidia GPUs
+
+ - Added the Qt.labs.handlers plugin, providing a Tech Preview version
+   of Pointer Handlers.  These are intended as an improved way of handling
+   gestures and events from pointing devices (mouse, touchpad, and
+   touchscreen so far; stylus devices are coming in a future release).
+   Properties acceptedButtons, acceptedModifiers, acceptedDevices, and
+   acceptedPointerTypes enable scoping their reaction for specific use
+   cases, but by default, they work equally well with mouse (as applicable)
+   and touch devices. So far we have four of them available in QML:
+   * TapHandler is for detecting clicks and taps, double-clicks,
+     multi-clicks and taps, and long presses.
+   * DragHandler provides a way of declaring an Item draggable, and also
+     has properties which can be used for bindings to achieve
+     less-mainstream use cases.
+   * PinchHandler can react to a pinch gesture using two or more fingers
+     (as configured via properties) or to a native pinch gesture from the OS.
+     Declaring an instance inside an Item is enough to support pinching to
+     scale, rotate and move that Item; and it also has properties available
+     for bindings to enable other use cases.
+   * PointHandler does not directly manipulate an Item, but just provides
+     information about individual touchpoints or the mouse, for binding
+     purposes. It is intended mainly for interactive feedback, orthogonal
+     to whichever Handler or Item currently has the exclusive grab.
+   Along with this, control over grabbing has gotten more fine-grained:
+   the grabPermissions property in a Pointer Handler sets rules for how
+   Pointer Handlers and Items negotiate for the exclusive grab; and some
+   Pointer Handlers are able to handle some kinds of interaction with a new
+   type of grab, the passive grab. There are several new logging categories
+   you can enable to see how event delivery is done, the grab transitions,
+   and so on.
+
+   As usual with Tech Preview material, we reserve the right to change it
+   substantially in future releases.
+
+****************************************************************************
+*                          Library                                         *
+****************************************************************************
+
+QmlTest
+-------
+
+ - The returned object from TestCase::grabImage now has 'width', 'height',
+   and 'size' properties for additional verification. In addition, there is
+   a save() method to be able to persist the grabbed image to disk (for
+   diagnostics purposes, for example).
+
+Qt Quick
+--------
+
+ - [QTBUG-58945] Added the properties ShaderEffectSource.samples and
+   Item.layer.samples to allow requesting MSAA rendering of an item
+   subtree, without enabling multisampling for the entire scene.
+ - [QTBUG-59462] Added support for samplerExternalOES sampler type in
+   ShaderEffect
+ - [QTBUG-60268] Added Qt.platform.pluginName property.
+ - [QTBUG-60268] Selecting software as default renderer moved from build
+   time to run time
+ - Resizing is done by setSize() in a couple of places, such that
+   the widthChanged() and heightChanged() are emitted after both
+   properties are updated.
+
+ - Flickable:
+   * [QTBUG-38515] Added a boundsMovement property that allows disabling
+     the default bounce effect and implementing custom edge effects.
+
+ - Item Views:
+   * [QTBUG-34576] ListView velocities remain correct during index-based
+     programmatic scrolling
+
+ - Important Behavior Change:
+   * [QTCREATORBUG-15000] The implicitWidthChanged2 and
+     implicitHeightChanged2 signals of QQuickImplicitSizeItem have been
+     removed. Although these were undocumented and hence private API, any
+     applications currently using them should use the public
+     implicitWidthChanged and implicitHeightChanged signals.
+
+ - Item:
+   * Add QQuickItem::size() and document QQuickItem::setSize().
+   * When subclassing QQuickItem, you should call setAcceptTouchEvents(true)
+     if you need the item to receive touch events. It will be required later on.
+   * Added a ItemEnabledHasChanged value to the ItemChange enum.
+     QQuickItem::itemChange(ItemEnabledHasChanged) gets called when the
+     item's effective enabled state has changed. The new enabled state is
+     stored in ItemChangeData::boolValue.
+
+ - Window:
+   * It is now possible to set the default render type of text-like
+     elements globally via the QQuickWindow::setTextRenderType() function.
+     If you were using the (undocumented) QT_QUICK_DEFAULT_TEXT_RENDER_TYPE
+     macro when building Qt Quick for the same purpose, note that the macro
+     value needs now to be set to the "NativeTextRendering" value, instead
+     of "NativeRendering".
+
+ - Screen:
+   * Added manufacturer, model and serial number.
+
+ - TextEdit:
+   * Added tabStopDistance property
+
+ - Text:
+   * [QTBUG-56728] Added "advance" property to Text element.
+   * [QTBUG-56728] Added "font.preferShaping" property to Text, TextEdit
+     and TextInput. This makes it possible to improve performance at the
+     expense of some cosmetic font features.
+   * [QTBUG-56728] Added "kerning" property to the font type to support
+     disabling kerning on text.
+   * [QTBUG-61984] Fixed an issue when the family of an application font
+     was hardcoded and applied to text before the font itself was loaded.
+
+ - Image:
+   * [QTBUG-59872][QTBUG-29451] Allow direct loading of pkm texture files
+     into Image. For example: Image { source: "myImage.pkm" }
+
+ - QtTest:
+   * [QTBUG-53381] Added keySequence() function in TestCase.
+
+QtQml
+-----
+
+ - [QTBUG-58493] "const" variable declarations are now available in JS as
+   well as QML mode.
+ - [QTBUG-58493] "const" variable declarations now require an initializer,
+   bringing them closer to the required spec behavior.
+ - [QTBUG-58493] "const" variable declarations now throw a SyntaxError if
+   multiple attempts to declare the same variable name are found. Note that
+   "const" is still not fully spec-compliant (i.e. reassignment at runtime
+   is not disallowed).
+ - Object.assign from the ES6 specification is now implemented.
+ - Number now contains the MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, isInteger
+   and isSafeInteger properties from the ES6 specification.
+ - [QTBUG-24799] The instanceof keyword in JavaScript has been extended to
+   work on QML types and instances. This means that you are now able to use
+   it to verify that a var is indeed the type you expect (e.g. someVar
+   instanceof Rectangle).
+ - [QTBUG-54961] Support C++11 scoped enums in QML. These can now be
+   accessed as <TypeName>.<EnumName>.<EnumValue>
+ - The QML engine can now emit informational messages (in the
+   "qt.qml.binding.removal" logging category) whenever a binding is lost
+   due to an imperative assignment. This can be used to debug issues due to
+   broken bindings.
+ - [QTBUG-61599] Allow sending binary data, encoded as ArrayBuffer objects,
+   via XMLHttpRequest's send() method.
+ - [QTBUG-14861] Enums can now be declared directly in QML.
+ - [QTBUG-63464] Fix Number.isNaN() returning incorrect values with some
+   glibc versions.
+ - [QTBUG-52515] Qt.platform.os returns "qnx" when running on QNX
+   platforms.
+ - [QTBUG-60133] std::vector and QVector are now on par with QList as a
+   Q_INVOKABLE return type and as a property type
+
+ - QQmlEngine:
+   * [QTBUG-15602] Added retranslate() slot and QEvent::LanguageChange
+     support to refresh bindings when changing the language at runtime.
+
+qmlscene
+--------
+ - Added --core-profile option to request that type of OpenGL context
+ - Added --apptype option to set the application class (like the qml
+   runtime tool already had)

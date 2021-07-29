@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: string-to-codepoints1args-3                       :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:46 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "string-to-codepoints" function :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:string(upper bound)                          :)
+(:*******************************************************:)
+
+fn:string-to-codepoints(xs:string("This is a characte"))

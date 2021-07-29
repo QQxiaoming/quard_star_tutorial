@@ -1,0 +1,62 @@
+<xs:schema
+   xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+   xmlns:myType = "http://www.w3.org/XQueryTest/userDefinedTypes" 
+   targetNamespace = "http://www.w3.org/XQueryTest/userDefinedTypes" 
+   elementFormDefault = "qualified">
+   
+ <xs:notation name="value1" public="image/jpeg" system="viewer.exe"/>
+ <xs:notation name="value2" public="image/png" system="viewer.exe"/> 
+ 
+  <xs:simpleType name = "sizeType">
+   <xs:restriction base = "xs:integer">
+    <xs:minInclusive value = "1"/>
+    <xs:maxInclusive value = "19"/>
+   </xs:restriction>
+  </xs:simpleType>  
+  
+  <xs:simpleType name = "floatBased">
+   <xs:restriction base = "xs:float">
+    <xs:minInclusive value = "15"/>
+    <xs:maxInclusive value = "20"/>
+   </xs:restriction>
+  </xs:simpleType> 
+    
+  <xs:simpleType name = "stringBased">
+   <xs:restriction base = "xs:string">
+      <xs:enumeration value="valid value 1" />
+      <xs:enumeration value="valid value 2" />
+      <xs:enumeration value="valid value 3" />
+      <xs:enumeration value="valid value 4" />
+      <xs:enumeration value="valid value 5" />
+   </xs:restriction>
+  </xs:simpleType>    
+
+  <xs:simpleType name = "hatsize">
+   <xs:restriction base = "xs:integer">
+    <xs:minInclusive value = "1"/>
+    <xs:maxInclusive value = "10"/>
+   </xs:restriction>
+  </xs:simpleType>    
+ 
+  <xs:simpleType name = "shoesize">
+   <xs:restriction base = "xs:float">
+    <xs:minInclusive value = "2"/>
+    <xs:maxInclusive value = "15"/>
+   </xs:restriction>
+  </xs:simpleType> 
+
+  <xs:simpleType name = "QNameBased">
+   <xs:restriction base = "xs:QName">
+     <xs:enumeration value="value1" />
+     <xs:enumeration value="value2" />
+   </xs:restriction>
+  </xs:simpleType> 
+  
+  <xs:simpleType name="NOTATIONBased">
+     <xs:restriction base = "xs:NOTATION">
+      <xs:enumeration value="myType:value1"/>
+      <xs:enumeration value="myType:value2"/>
+     </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

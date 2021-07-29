@@ -1,0 +1,33 @@
+// Copyright (C) 2017 Caio Lima. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+desc: >
+    Rest object contains just unextracted data
+template: default
+esid: pending
+includes: [propertyHelper.js]
+features: [object-rest]
+---*/
+
+//- elems
+{a, b, ...rest}
+//- vals
+{x: 1, y: 2, a: 5, b: 3}
+//- body
+assert.sameValue(rest.a, undefined);
+assert.sameValue(rest.b, undefined);
+
+verifyProperty(rest, "x", {
+  enumerable: true,
+  writable: true,
+  configurable: true,
+  value: 1
+});
+
+verifyProperty(rest, "y", {
+  enumerable: true,
+  writable: true,
+  configurable: true,
+  value: 2
+});

@@ -1,0 +1,893 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ForExprWithout" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>FOR Clause without TypeDeclaration</title>
+      <description>Tests for the FOR part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="ForExpr001" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - to iterate a constant sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr001" date="2003-02-10">
+         <description>For+Return - to iterate a constant sequence</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExpr001.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr002" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="runtime-error" Creator="Jinghao Liu">
+      <description>For+Return - error, undefined variable in 'IN' Expr.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr002" date="2003-02-10">
+         <description>For+Return - error, undefined variable in 'IN' Expr</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr003" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - use predicate in 'IN' Expr.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr003" date="2003-02-10">
+         <description>For+Return - use predicate in 'IN' Expr</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ForExpr003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr004" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - use more than one predicates in 'IN' Expr.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr004" date="2003-02-10">
+         <description>For+Return - use more than one predicates in 'IN' Expr</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ForExpr004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr005" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - use sequence(security/right) as the predicate.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr005" date="2003-02-10">
+         <description>For+Return - use sequence(security/right) as the predicate</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ForExpr005.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr006" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - 2 For will generate two iterations.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr006" date="2003-02-10">
+         <description>For+Return - 2 For will generate two iterations</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ForExpr006.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr007" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Return - use special character in variable name.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr007" date="2003-02-10">
+         <description>For+Return - use special character in variable name</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ForExpr007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr008" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Jinghao Liu">
+      <description>For+Where+Return - use special characters in variable name.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr008" date="2003-02-10">
+         <description>For+Where+Return - use special characters in variable name</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ForExpr008.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr009" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="runtime-error" Creator="Jinghao Liu">
+      <description>For+Return - error, use variable in it's own declaration.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr009" date="2003-02-10">
+         <description>For+Return - error, use variable in it's own declaration</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr010" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression with multiple, interdependent variables.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr010" date="2003-02-10">
+         <description>FLWOR expression with multiple, interdependent variables</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExpr010.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr011" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression with multiple, interdependent variables.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr011" date="2003-02-10">
+         <description>FLWOR expression with multiple, interdependent variables</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExpr011.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr012" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Nested FLWOR expressions.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr012" date="2003-02-10">
+         <description>Nested FLWOR expressions</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExpr012.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr013" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Multiple variables based off the same input context.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr013" date="2003-02-10">
+         <description>Multiple variables based off the same input context</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExpr013.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr014" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Incorrect syntax for nested loop. Multiple return statements at the same level.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr014" date="2003-02-10">
+         <description>Incorrect syntax for nested loop. Multiple return statements at the same level</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr015" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Return expression contains nested for expression.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr015" date="2003-02-10">
+         <description>Return expression contains nested for expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExpr015.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr016" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Interate over nodes in document and constant sequence. Return value based on both.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr016" date="2003-02-10">
+         <description>Interate over nodes in document and constant sequence. Return value based on both</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExpr016.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr017" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Multiple return statements from single for expression.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr017" date="2003-02-10">
+         <description>Multiple return statements from single for expression</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr018" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Multiple in statements for single variable binding.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr018" date="2003-02-10">
+         <description>Multiple in statements for single variable binding</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr019" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Multiple for statements for single variable binding.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr019" date="2003-02-10">
+         <description>Multiple for statements for single variable binding</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr020" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Multiple variable bindings followed by a trailing ,.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr020" date="2003-02-10">
+         <description>Multiple variable bindings followed by a trailing ,</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr021" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Test order of iteration between two variables in the same 'for' statement.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr021" date="2005-06-20">
+         <description>Test order of iteration between two variables in the same 'for' statement</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExpr021.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr022" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expressions with positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr022" date="2005-06-27">
+         <description>FLWOR expressions with positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExpr022.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr023" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Use positional variable in binding for new variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr023" date="2005-06-27">
+         <description>Use positional variable in binding for new variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Text">ForExpr023.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr024" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Reuse existing variable name for positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr024" date="2005-06-27">
+         <description>Reuse existing variable name for positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XQST0089</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr025" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>Redefine existing bound variable. Second binding overrides first.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr025" date="2005-06-27">
+         <description>Redefine existing bound variable. Second binding overrides first</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExpr025.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr026" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Missing 'in'.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr026" date="2005-06-27">
+         <description>Missing 'in'</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr027" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="parse-error" Creator="Mike Rorke">
+      <description>Wrong order for positional variable.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr027" date="2005-06-27">
+         <description>Wrong order for positional variable</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr028" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="Mike Rorke">
+      <description>FLWOR expression iterating over constructed XML.</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr028" date="2005-06-27">
+         <description>FLWOR expression iterating over constructed XML</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="Fragment">ForExpr028.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr029" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="NIST">
+      <description>Embedded FLOWR expression that binds same variable on both expressions (two for clauses).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr029" date="2006-01-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExpr029.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="ForExpr030" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="standard" Creator="NIST">
+      <description>Embedded FLOWR expression that binds same variable on both expressions (Use two commas).</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr030" date="2006-01-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">ForExpr030.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ForExpr031" FilePath="Expressions/FLWORExpr/ForExpr/" scenario="runtime-error" Creator="NIST">
+      <description>FLOWR expression that binds the same variable on both ends of "at".</description>
+      <spec-citation spec="XQuery" section-number="3.8.1" section-title="For and Let Clauses" section-pointer="id-for-let"/>
+      <query name="ForExpr031" date="2006-01-24"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0089</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-1" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="parse-error">
+      <description>Syntactically invalid for-expression.</description>
+      <query name="K-ForExprWithout-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-2" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="parse-error">
+      <description>Syntactically invalid for-expression.</description>
+      <query name="K-ForExprWithout-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-3" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="parse-error">
+      <description>Syntactically invalid for-expression.</description>
+      <query name="K-ForExprWithout-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-4" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="parse-error">
+      <description>Syntactically invalid for-expression.</description>
+      <query name="K-ForExprWithout-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-5" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `deep-equal(1 to 5, (for $i in (1,2,3,4,5) return $i))`.</description>
+      <query name="K-ForExprWithout-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-6" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `3 eq (for $foo in 1 return 3)`.</description>
+      <query name="K-ForExprWithout-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-7" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `1 eq (for $foo in 1 return $foo)`.</description>
+      <query name="K-ForExprWithout-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-8" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `2 eq (for $foo in 1 return $foo + 1)`.</description>
+      <query name="K-ForExprWithout-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-9" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `3 eq (for $foo in 1 return for $foo in 3 return $foo)`.</description>
+      <query name="K-ForExprWithout-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-10" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((for $var in (1, 2, 3) return $var), (1, 2, 3))`.</description>
+      <query name="K-ForExprWithout-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-11" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((2, 2), (for $foo in (1, 1) return 1 + $foo))`.</description>
+      <query name="K-ForExprWithout-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-12" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `4 eq (for $foo in 1, $bar in 2, $moo in 3 return 4)`.</description>
+      <query name="K-ForExprWithout-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-13" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `3 eq (for $foo in 1 return for $bar in 2 return $bar + $foo)`.</description>
+      <query name="K-ForExprWithout-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-14" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `3 eq (for $foo in 1 return for $bar in 2 return $bar + $foo)`.</description>
+      <query name="K-ForExprWithout-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-15" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `3 eq (for $foo in 1, $foo in 3 return $foo)`.</description>
+      <query name="K-ForExprWithout-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-16" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `8 eq (for $foo in 1, $foo in 3, $moo in 5 return $moo + $foo)`.</description>
+      <query name="K-ForExprWithout-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-17" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `6 eq (for $foo in 1, $foo in 3 return $foo + $foo)`.</description>
+      <query name="K-ForExprWithout-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-18" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for variable binding to the empty sequence.</description>
+      <query name="K-ForExprWithout-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-18.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-19" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for variable binding to the empty sequence.</description>
+      <query name="K-ForExprWithout-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-19.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-20" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for variable binding to the empty sequence, combined with value comparison.</description>
+      <query name="K-ForExprWithout-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-20.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-21" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for variable binding to the empty sequence, combined with value comparison.</description>
+      <query name="K-ForExprWithout-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-21.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-22" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for variable binding to the empty sequence, combined with value comparison.</description>
+      <query name="K-ForExprWithout-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-23" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>An for-return expression which only is the binding variable.</description>
+      <query name="K-ForExprWithout-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-24" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `(for $fn:name in (1, 1) return $fn:name) instance of xs:integer+`.</description>
+      <query name="K-ForExprWithout-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-25" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A test whose essence is: `(for $xs:name in (1, 1) return $xs:name) instance of xs:integer+`.</description>
+      <query name="K-ForExprWithout-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-26" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-27" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-28" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-29" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-30" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-31" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-32" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-33" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-34" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-35" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-36" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-37" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-38" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-39" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-40" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-41" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-42" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-43" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-44" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-45" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Variable which is not in scope.</description>
+      <query name="K-ForExprWithout-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-46" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Type check: $foo is of type xs:string, which cannot be added to xs:integer 1.</description>
+      <query name="K-ForExprWithout-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-47" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>A variable's for expression causes type error in a value comparison.</description>
+      <query name="K-ForExprWithout-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-48" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Parser test: variable names in a for expression that only exist of one character are valid.</description>
+      <query name="K-ForExprWithout-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-48.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-49" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>For-expression involving a simple return statement that in some implementations trigger optimization paths.</description>
+      <query name="K-ForExprWithout-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-49.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-50" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Ensure scanners/parsers accept small QNames in for-expressions.</description>
+      <query name="K-ForExprWithout-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-50.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-51" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Ensure scanners/parsers accept small QNames in for-expressions(#2).</description>
+      <query name="K-ForExprWithout-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-51.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-52" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A binding in a for-expression shadows global variables.</description>
+      <query name="K-ForExprWithout-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-52.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-53" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Ensure the correct variable is used in an for-expression whose return sequence is only a variable reference.</description>
+      <query name="K-ForExprWithout-53" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-53.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-ForExprWithout-54" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Ensure the correct variable is used in an for-expression whose return sequence is only a variable reference(#2).</description>
+      <query name="K-ForExprWithout-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-54.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-55" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Apply fn:count() to a for-expression.</description>
+      <query name="K-ForExprWithout-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-55.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ForExprWithout-56" FilePath="Expressions/FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Apply fn:count() to a for-expression(#2).</description>
+      <query name="K-ForExprWithout-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ForExprWithout-56.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ForExprWithout-1" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="parse-error">
+      <description>Keywords are case sensitive.</description>
+      <query name="K2-ForExprWithout-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-2" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>A for-expression doesn't create a focus.</description>
+      <query name="K2-ForExprWithout-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-3" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for-expression doesn't create a focus(#2).</description>
+      <query name="K2-ForExprWithout-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-3.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-4" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>A for-expression with a positional variable doesn't create a focus.</description>
+      <query name="K2-ForExprWithout-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-5" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A for-expression with a positional variable doesn't create a focus(#2).</description>
+      <query name="K2-ForExprWithout-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-5.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-6" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>A query that performs up-transformation of dates.</description>
+		 <query name="K2-ForExprWithout-6" date="2007-11-26+01:00"/>
+		 <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ForExprWithout-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ForExprWithout-7" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Ensure use of the undefined focus gets flagged.</description>
+      <query name="K2-ForExprWithout-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-8" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Wrap a path expression.</description>
+		  <query name="K2-ForExprWithout-8" date="2007-11-26+01:00"/>
+		  <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ForExprWithout-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-9" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Ensure positional variables and bindings handles nesting.</description>
+      <query name="K2-ForExprWithout-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-10" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Make use of many syntactical combinations.</description>
+      <query name="K2-ForExprWithout-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-10.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-11" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>The return expression does not depend on the for iteration.</description>
+      <query name="K2-ForExprWithout-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-12" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>The order by expression does not depend on the for iteration.</description>
+      <query name="K2-ForExprWithout-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-13" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use the focus from within a for-expression.</description>
+      <query name="K2-ForExprWithout-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ForExprWithout-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-14" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use the focus from within a for tail-expression.</description>
+      <query name="K2-ForExprWithout-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ForExprWithout-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-15" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'node' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-15" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-16" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'document' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-16" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-17" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'document' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-17" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-18" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'attribute' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-18" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-19" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'comment' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-19" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-20" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'processing-instruction' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-20" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-21" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'processing-instruction' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-21" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-22" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'text' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-22" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-23" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'typeswitch' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-23" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-24" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'if' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-24" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-25" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'for' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-25" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-26" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'let' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-26" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-26.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-27" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'declare' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-27" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-28" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'some' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-28" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-29" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'child' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-29" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-30" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'ordered' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-30" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-31" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'unordered' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-31" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-32" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'schema-attribute' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-32" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-33" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'schema-attribute' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-33" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-34" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'item' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-34" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-34.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-35" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'following-sibling' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-35" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-35.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-36" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'validate' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-36" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-36.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-37" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'instance' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-37" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-37.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-38" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'castable' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-38" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-38.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-39" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a name test named 'import' inside a for loop, inside a user function.</description>
+      <query name="K2-ForExprWithout-39" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ForExprWithout-40" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Use a name test named 'import' inside a for loop.</description>
+      <query name="K2-ForExprWithout-40" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ForExprWithout-41" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="runtime-error">
+      <description>Use a name test named 'document' inside a for loop.</description>
+      <query name="K2-ForExprWithout-41" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-42" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a computed attribute constructor with name return, inside a for loop.</description>
+      <query name="K2-ForExprWithout-42" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-42.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-43" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a computed element constructor with name return, inside a for loop.</description>
+      <query name="K2-ForExprWithout-43" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-43.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ForExprWithout-44" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use a computed processing-instruction constructor with name return, inside a for loop.</description>
+      <query name="K2-ForExprWithout-44" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-44.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ForExprWithout-45" FilePath="FLWORExpr/ForExpr/ForExprWithout/" scenario="standard">
+      <description>Use name test 'attribute' constructor with name return, inside a for loop.</description>
+      <query name="K2-ForExprWithout-45" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ForExprWithout-45.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

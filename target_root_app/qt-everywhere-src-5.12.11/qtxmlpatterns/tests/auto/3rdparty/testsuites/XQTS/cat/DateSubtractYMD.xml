@@ -1,0 +1,167 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="DateSubtractYMD" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:subtract-yearMonthDuration-from-date</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date2args-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator with the arguments set as follows: $arg1 = xs:date(lower bound) $arg2 = xs:yearMonthDuration(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date2args-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator with the arguments set as follows: $arg1 = xs:date(mid range) $arg2 = xs:yearMonthDuration(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date2args-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator with the arguments set as follows: $arg1 = xs:date(upper bound) $arg2 = xs:yearMonthDuration(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date2args-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator with the arguments set as follows: $arg1 = xs:date(lower bound) $arg2 = xs:yearMonthDuration(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date2args-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator with the arguments set as follows: $arg1 = xs:date(lower bound) $arg2 = xs:yearMonthDuration(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date2args-5.txt</output-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date2argsalt-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as per example 1 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-1" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as per example 2 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-2" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as per example 3 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-3" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator used in conjunction with the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-4" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-5" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as an argument to the "fn:number" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-6" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-7" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-7" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-8" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator that returns a negative value.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-8" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-9" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator, which is part of an "and" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-9" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-10" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as part of an "or" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-10" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-12" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator used in conjunction with a boolean expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-12" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-13" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-13" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-14" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-14" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-15" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-15" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-16" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-16" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-17" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as part of a boolean expression (and operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-17" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-subtract-yearMonthDuration-from-date-18" FilePath="Expressions/Operators/ArithExpr/DurationArith/DateSubtractYMD/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:subtract-yearMonthDuration-from-date" operator as part of a boolean expression (or operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.8.10" section-title="op:subtract-yearMonthDuration-from-date" section-pointer="func-subtract-yearMonthDuration-from-date"/>
+      <query name="op-subtract-yearMonthDuration-from-date-18" date="2005-07-06"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-subtract-yearMonthDuration-from-date-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DateSubtractYMD-1" FilePath="Expressions/Operators/ArithExpr/DurationDateTimeArith/DateSubtractYMD/" scenario="standard">
+      <description>Simple testing involving operator '-' between xs:date and xs:yearMonthDuration.</description>
+      <query name="K-DateSubtractYMD-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DateSubtractYMD-1.txt</output-file>
+   </test-case>
+</test-group>

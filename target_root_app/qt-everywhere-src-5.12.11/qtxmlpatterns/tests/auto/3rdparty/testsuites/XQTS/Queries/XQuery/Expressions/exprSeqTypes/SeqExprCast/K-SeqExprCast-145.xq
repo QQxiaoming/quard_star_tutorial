@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-145                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Casting where the cardinality of the source value is wrong. :)
+(:*******************************************************:)
+xs:decimal(remove((1, 2, 3), 1))

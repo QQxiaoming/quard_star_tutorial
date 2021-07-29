@@ -1,0 +1,10 @@
+(: Name: fn-id-dtd-23 :)
+(: Description: Evaluation of fn:id together with declare ordering. :)
+
+declare ordering ordered;
+
+(: insert-start :)
+declare variable $input-context1 as node() external;
+(: insert-end :)
+
+fn:id("id1 id2", exactly-one($input-context1/IDS[1]))

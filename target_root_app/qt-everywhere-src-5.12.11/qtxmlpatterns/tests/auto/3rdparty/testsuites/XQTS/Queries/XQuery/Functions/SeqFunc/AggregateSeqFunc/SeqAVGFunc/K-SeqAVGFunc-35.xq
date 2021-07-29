@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqAVGFunc-35                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: A test whose essence is: `avg((xs:untypedAtomic(3), xs:integer(3), xs:string(1)))`. :)
+(:*******************************************************:)
+avg((xs:untypedAtomic(3), xs:integer(3), xs:string(1)))

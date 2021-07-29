@@ -1,0 +1,200 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NamespaceURIFromQNameFunc" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>fn:namespace-uri-from-QName</title>
+      <description>Function Returns an xs:NCName representing the namespace-URI part of of the single xs:QName argument</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc001" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Using QName element as input.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc001" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc001.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc002" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Using QName attribute as input.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc002" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc002.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc003" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Using element derived from QName as input.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc003" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc003.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc004" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Using attribute derived from QName as input.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc004" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc004.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc005" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Check return type of function is xs:NCName.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc005" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc005.txt</output-file>
+   </test-case>
+   <test-case name="NamespaceURIFromQNameFunc006" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke" is-XPath2="false">
+      <description>Test function fn:namespace-uri-from-QName. Empty sequence literal as input.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc006" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">NamespaceURIFromQNameFunc006.xml</output-file>
+   </test-case>
+   <test-case name="NamespaceURIFromQNameFunc007" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke" is-XPath2="false">
+      <description>Test function fn:namespace-uri-from-QName. Empty sequence literal as input.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc007" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">NamespaceURIFromQNameFunc007.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="NamespaceURIFromQNameFunc009" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - invalid parameter type (string).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc009" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc010" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - multiple input values.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc010" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="NamespaceURIFromQNameFunc011" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - no input parameter.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc011" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc012" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - typo in function name.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc012" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc013" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - typo in function name.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc013" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc014" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - typo in function name.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc014" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="NamespaceURIFromQNameFunc015" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - invalid parameter type (simple type).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc015" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="NamespaceURIFromQNameFunc016" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - invalid parameter type (integer).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc016" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="NamespaceURIFromQNameFunc017" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Error case - invalid parameter type (time).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc017" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc018" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Explicit call to data to extract simple typed QName value.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc018" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc018.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc019" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Conditional expression as parameter where both branches result in QName value.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc019" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc019.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc020" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Conditional expression as parameter where both branches result in QName value.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc020" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <output-file role="principal" compare="Text">NamespaceURIFromQNameFunc020.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="NamespaceURIFromQNameFunc021" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:namespace-uri-from-QName. Conditional expression as parameter where one branch does NOT result in a QName value.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.4" section-title="fn:namespace-uri-from-QName" section-pointer="func-namespace-uri-from-QName"/>
+      <query name="NamespaceURIFromQNameFunc021" date="2005-09-28"/>
+      <input-file role="principal-data" variable="input-context">QNameSource</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIFromQNameFunc-1" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `namespace-uri-from-QName()`.</description>
+      <query name="K-NamespaceURIFromQNameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIFromQNameFunc-2" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `namespace-uri-from-QName(1, 2)`.</description>
+      <query name="K-NamespaceURIFromQNameFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIFromQNameFunc-3" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(namespace-uri-from-QName( () ))`.</description>
+      <query name="K-NamespaceURIFromQNameFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NamespaceURIFromQNameFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIFromQNameFunc-4" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>A test whose essence is: `namespace-uri-from-QName( QName("example.com/", "pre:lname")) eq xs:anyURI("example.com/")`.</description>
+      <query name="K-NamespaceURIFromQNameFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NamespaceURIFromQNameFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NamespaceURIFromQNameFunc-5" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>A test whose essence is: `namespace-uri-from-QName( QName("example.com/", "pre:lname")) instance of xs:anyURI`.</description>
+      <query name="K-NamespaceURIFromQNameFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NamespaceURIFromQNameFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIFromQNameFunc-1" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>Test that xmlns declarations in direct element constructors are honored in embedded expressions.</description>
+      <query name="K2-NamespaceURIFromQNameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NamespaceURIFromQNameFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIFromQNameFunc-2" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>Check that the default element namespace is picked up with computed element constructors.</description>
+      <query name="K2-NamespaceURIFromQNameFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NamespaceURIFromQNameFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIFromQNameFunc-3" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>Check that xmlns declarations overrides.</description>
+      <query name="K2-NamespaceURIFromQNameFunc-3" date="2008-01-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NamespaceURIFromQNameFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NamespaceURIFromQNameFunc-4" FilePath="Functions/QNameFunc/NamespaceURIFromQNameFunc/" scenario="standard">
+      <description>Check that xmlns declarations overrides(#2).</description>
+      <query name="K2-NamespaceURIFromQNameFunc-4" date="2008-01-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NamespaceURIFromQNameFunc-4.txt</output-file>
+   </test-case>
+</test-group>

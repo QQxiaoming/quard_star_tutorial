@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-147                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A preceding plus sign('+') is disallowed for xs:duration. :)
+(:*******************************************************:)
+xs:duration("+P1Y2M123DT10H30M99S")

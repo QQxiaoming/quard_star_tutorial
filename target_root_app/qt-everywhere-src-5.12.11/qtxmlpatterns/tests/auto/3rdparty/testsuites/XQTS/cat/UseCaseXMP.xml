@@ -1,0 +1,91 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseXMP" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "XMP": Experiences and Exemplars</title>
+      <description>example queries that illustrate requirements gathered from the database and document communities.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="xmp-queries-results-q1" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>List books published by Addison-Wesley after 1991, including their year and title.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.1" section-title="Q1" section-pointer="xmp-queries-results-q1"/>
+      <query name="xmp-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q2" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>Create a flat list of all the title-author pairs, with each pair enclosed in a "result" element.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.2" section-title="Q2" section-pointer="xmp-queries-results-q2"/>
+      <query name="xmp-queries-results-q2" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q3" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>For each book in the bibliography, list the title and authors, grouped inside a "result" element.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.3" section-title="Q3" section-pointer="xmp-queries-results-q3"/>
+      <query name="xmp-queries-results-q3" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q4" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>For each author in the bibliography, list the author's name and the titles of all books by that author, grouped inside a "result" element.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.4" section-title="Q4" section-pointer="xmp-queries-results-q4"/>
+      <query name="xmp-queries-results-q4" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q5" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>For each book found at both bstore1.example.com and bstore2.example.com, list the title of the book and its price from each source.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.5" section-title="Q5" section-pointer="xmp-queries-results-q5"/>
+      <query name="xmp-queries-results-q5" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">bib</input-file>
+      <input-file role="principal-data" variable="input-context2">reviews</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q6" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>For each book that has at least one author, list the title and first two authors, and an empty "et-al" element if the book has additional authors.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.6" section-title="Q6" section-pointer="xmp-queries-results-q6"/>
+      <query name="xmp-queries-results-q6" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q7" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>List the titles and years of all books published by Addison-Wesley after 1991, in alphabetic order.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.7" section-title="Q7" section-pointer="xmp-queries-results-q7"/>
+      <query name="xmp-queries-results-q7" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q8" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>Find books in which the name of some element ends with the string "or" and the same element contains the string "Suciu" somewhere in its content. For each such book, return the title and the qualifying element.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.8" section-title="Q8" section-pointer="xmp-queries-results-q8"/>
+      <query name="xmp-queries-results-q8" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q9" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>In the document "books.xml", find all section or chapter titles that contain the word "XML", regardless of the level of nesting.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.9" section-title="Q9" section-pointer="xmp-queries-results-q9"/>
+      <query name="xmp-queries-results-q9" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">books</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q10" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>In the document "prices.xml", find the minimum price for each book, in the form of a "minprice" element with the book title as its title attribute.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.10" section-title="Q10" section-pointer="xmp-queries-results-q10"/>
+      <query name="xmp-queries-results-q10" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">prices</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q11" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>For each book with an author, return the book with its title and authors. For each book with an editor, return a reference with the book title and the editor's affiliation.</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.11" section-title="Q11" section-pointer="xmp-queries-results-q11"/>
+      <query name="xmp-queries-results-q11" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="xmp-queries-results-q12" FilePath="UseCase/UseCaseXMP/" scenario="standard" Creator="XML Query Group">
+      <description>Find pairs of books that have different titles but the same set of authors (possibly in a different order).</description>
+      <spec-citation spec="UseCases" section-number="1.1.9.12" section-title="Q12" section-pointer="xmp-queries-results-q12"/>
+      <query name="xmp-queries-results-q12" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">xmp-queries-results-q12.txt</output-file>
+   </test-case>
+</test-group>

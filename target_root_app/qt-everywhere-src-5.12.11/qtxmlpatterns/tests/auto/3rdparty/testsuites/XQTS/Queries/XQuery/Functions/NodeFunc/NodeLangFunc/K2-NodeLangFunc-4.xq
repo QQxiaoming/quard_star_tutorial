@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NodeLangFunc-4                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Sub-languages must be separated with dashes. :)
+(:*******************************************************:)
+lang("en", <e xml:lang="ene"/>)

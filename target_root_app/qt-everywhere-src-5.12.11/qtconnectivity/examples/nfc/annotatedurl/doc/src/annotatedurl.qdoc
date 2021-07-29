@@ -1,0 +1,83 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt local connectivty modules.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\example annotatedurl
+\title Annotated URL Example
+\brief An example showing reading from formatted NFC Data Exchange Format (NDEF) messages.
+
+The Annotated URL example displays the contents of specifically
+formatted NFC Data Exchange Format (NDEF) messages read from an NFC
+Tag. The NDEF message should contain a URI record, an optional \c
+image/* MIME record, and one or more localized Text records.
+
+This is the initial state of the example:
+\image annotatedurl.png
+
+In this example the NFC Tag used contains a text record. The UI
+gets updated accordingly to:
+
+\image annotatedurl2.png
+
+\section1 AnnotatedUrl Class Definition
+
+The \c AnnotatedUrl class wraps the \c QNearFieldManager, the class
+providing the NFC Tag detection functionality. NDEF messages are read
+by the QNearFieldManager and forwarded to a handler contained in the
+\c AnnotatedUrl class. After parsing the NDEF message the class emits
+the signal AnnotatedUrl::annotatedUrl(const QUrl &url, const QString
+&title, const QPixmap &pixmap). The UI reacts to the signal displaying
+the contents of the NDEF message.
+
+\snippet annotatedurl/annotatedurl.h 0
+
+\section1 AnnotatedUrl Handler Implementation
+
+NFC messages read by the \c QNearFieldManager are forwarded to
+AnnotatedUrl::handleMessage. The callback signature details can be
+read in \l{QNearFieldManager::registerNdefMessageHandler}.
+
+\snippet annotatedurl/annotatedurl.cpp handleMessage 1
+
+Because NFC messages are composed of several NDEF records, looping
+through all of the records allows the extraction of the 3 parameters
+to be displayed in the UI: the Uri, the Title and the Pixmap:
+
+
+\snippet annotatedurl/annotatedurl.cpp handleMessage 2
+\snippet annotatedurl/annotatedurl.cpp handleMessage 3
+
+Finally after having extracted the parameters of the NFC message the
+corresponding signal is emitted so that the UI can handle it.
+
+\snippet annotatedurl/annotatedurl.cpp handleMessage 4
+
+
+\include examples-run.qdocinc
+
+\sa {Qt NFC}
+*/

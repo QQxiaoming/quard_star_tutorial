@@ -1,0 +1,186 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ContextCurrentDatetimeFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:current-dateTime</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-current-dateTime-1" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation simple call to "fn:current-dateTime" function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-1" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-2" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as argument to year-from-date function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-2" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-3" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as argument to month-from-date function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-3" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-4" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as argument to day-from-date function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-4" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-5" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-time" function as part of a subtraction operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-5" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-6" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as part of an addition operation and a dayTimeDuration.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-6" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-datetime-7" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as part of a subtraction operation and a dayTimeDuration.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-datetime-7" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-8" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-8" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-9" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as part of a subtration operation both operands are equal to current-time function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-9" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-10" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as an argument to the xs:string function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-10" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-11" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as an argument to the timezone-from-time function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-11" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-12" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of an equal comparison (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-12" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-13" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of an equal comparison (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-13" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-14" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of an equal comparison (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-14" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-15" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of an equal comparison (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-15" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-16" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of a boolean expression ("and" operator and fn:true function).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-16" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-17" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of a boolean expression ("and" operator and fn:false function).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-17" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-18" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of a boolean expression ("or" operator and fn:true function).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-18" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-19" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as part of a boolean expression ("or" operator and fn:false function).</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-19" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-20" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function (string value) as an argument to the fn:not function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-20" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-current-dateTime-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-21" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as part of a subtraction operation and a yearMonthDuration type.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-21" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-22" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as argument to hours-from-date function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-22" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-23" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as argument to minutes-from-date function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-23" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-current-dateTime-24" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:current-dateTime" function as argument to seconds-from-date function.</description>
+      <spec-citation spec="FuncOps" section-number="16.3" section-title="fn:current-dateTime" section-pointer="func-current-dateTime"/>
+      <query name="fn-current-dateTime-24" date="2005-12-05"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-current-dateTime-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextCurrentDatetimeFunc-1" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `current-dateTime("WRONG PARAM")`.</description>
+      <query name="K-ContextCurrentDatetimeFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextCurrentDatetimeFunc-2" FilePath="Functions/ContextFunc/ContextCurrentDatetimeFunc/" scenario="standard">
+      <description>Test that the Dynamic Context property 'current dateTime' when presented as a xs:dateTime is stable during execution.</description>
+      <query name="K-ContextCurrentDatetimeFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextCurrentDatetimeFunc-2.txt</output-file>
+   </test-case>
+</test-group>

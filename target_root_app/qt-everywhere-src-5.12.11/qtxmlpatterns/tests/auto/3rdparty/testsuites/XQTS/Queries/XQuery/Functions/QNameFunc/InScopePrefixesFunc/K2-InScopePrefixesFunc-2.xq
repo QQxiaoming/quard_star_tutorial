@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-InScopePrefixesFunc-2                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: For a computed element fn:in-scope-prefixes() returns 'xml'. :)
+(:*******************************************************:)
+count(in-scope-prefixes(element name {7}))

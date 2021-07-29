@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-Axes-61                                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Apply the child axis on an element that has attributes only. :)
+(:*******************************************************:)
+empty(<element attr="foo" attr2="foo"/>/*)

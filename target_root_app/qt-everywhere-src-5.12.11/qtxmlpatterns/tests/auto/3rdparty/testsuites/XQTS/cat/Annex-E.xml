@@ -1,0 +1,72 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="Annex-E" featureOwner="NIST">
+   <GroupInfo>
+      <title>Various User defined functions from annex "E" of the F and O specs.</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="annex-1" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 1 of annex "E" from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="E.1.1" section-title="eg:if-empty" section-pointer="if-empty"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-1" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-2" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 2 of annex "E" from the F and O s.pecs.</description>
+      <spec-citation spec="FuncOps" section-number="E.1.2" section-title="eg:if-absent" section-pointer="if-absent"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-2" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-3" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 3 of annex "E" from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="E.2.1" section-title="eg:value-union" section-pointer="value-union"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-3" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-4" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 4 of annex "E" from the F and O specs. Implementations supporting the static typing feature, may raise XPTY0004.</description>
+      <spec-citation spec="FuncOps" section-number="E.2.2" section-title="eg:value-intersect" section-pointer="value-intersect"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-4" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-4.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-5" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 5 of annex "E" from the F and O specs. Implementations supporting the static typing feature, may raise XPTY0004.</description>
+      <spec-citation spec="FuncOps" section-number="E.2.3" section-title="eg:value-except" section-pointer="value-except"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-5" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-5.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-6" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 6 of annex "E" from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="E.3" section-title="eg:index-of-node" section-pointer="index-of-node"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-6" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-7" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 7 of annex "E" from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="E.4" section-title="eg:string-pad" section-pointer="string-pad"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-7" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">annex-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="annex-8" FilePath="Appendices/Annex-E/" scenario="standard" Creator="XML Query Working Group">
+      <description>User defined function as described on example 8 of annex "E" from the F and O specs.</description>
+      <spec-citation spec="FuncOps" section-number="E.5" section-title="eg:distinct-nodes-stable" section-pointer="func-distinct-nodes-stable"/>
+      <spec-citation spec="XQuery" section-number="3.1.5" section-title="Function Calls" section-pointer="id-function-calls"/>
+      <query name="annex-8" date="2006-03-12"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">annex-8.txt</output-file>
+   </test-case>
+</test-group>

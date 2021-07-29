@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-ValCompTypeChecking-34                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Test that fn:count combined with expressions that might disable compile time evaluations(optimization) as well as the '=' operator, is conformant. :)
+(:*******************************************************:)
+not(count((1, 2, current-time())) eq 0)

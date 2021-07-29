@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-numeric-less-thannni2args-8                    :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:16 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:numeric-less-than" operator :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:nonNegativeInteger(upper bound)             :)
+(:$arg2 = xs:nonNegativeInteger(lower bound)             :)
+(:*******************************************************:)
+
+xs:nonNegativeInteger("999999999999999999") ge xs:nonNegativeInteger("0")

@@ -1,0 +1,243 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeLangFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:lang</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-lang1args-1" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lang" function with the arguments set as follows: $testlang = "en" and context node not containing "xml-lang" attribute.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang1args-1" static-name="fn-lang1args-1-static-cbcl" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <output-file role="principal" compare="Text">fn-lang1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang1args-2" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lang" function with the arguments set as follows: $testlang = Evaluates The "lang" function with the arguments set as follows: $testlang = "EN" and context node not containing "xml-lang" attribute.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang1args-2" static-name="fn-lang1args-2-static-cbcl" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <output-file role="principal" compare="Text">fn-lang1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang1args-3" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "lang" function with the arguments set as follows: $testlang = Evaluates The "lang" function with the arguments set as follows: $testlang = "eN" and context node not containing "xml-lang" attribute.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang1args-3" static-name="fn-lang1args-3-static-cbcl" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">atomicns</input-file>
+      <output-file role="principal" compare="Text">fn-lang1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-lang-1" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "lang" function with the second argument not set and no context item defined.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-1" date="2005-09-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-2" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-2" static-name="fn-lang-2-static-cbcl" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-3" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "en" and context node having an "xml:lang" attribute set to "en".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-3" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-4" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to "en". Immediate ancestor have the "xml:lang" attribute set to "en".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-4" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-5" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "en" and context node having an "xml:lang" attribute set to "EN".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-5" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-6" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "En" and context node having an "xml:lang" attribute set to "EN".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-6" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-7" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "eN" and context node having an "xml:lang" attribute set to "EN".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-7" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-8" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "en" and context node having an "xml:lang" attribute set to "EN".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-8" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-9" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "en" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-9" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-10" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "EN" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-10" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-11" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "En" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-11" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-12" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "eN" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-12" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-13" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "en" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-13" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-14" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "en-us" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-14" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-15" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "lang" function with the context item not being a node.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-15" date="2005-09-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-16" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang "us-en" and context node having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-16" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-17" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to "fr" and context node having an "xml:lang" attribute set to "EN".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-17" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-18" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to "en" and specified node (second argument) having an "xml:lang" attribute set to "en".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-18" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-19" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to "fr" and specified node (second argument) having an "xml:lang" attribute set to "en".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-19" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-20" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to "en" and specified node (second argument) having an "xml:lang" attribute set to "en-us".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-20" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-21" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:lang function with testlang set to "en" and specified node (second argument) having an "xml:lang" attribute set to "EN".</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-21" date="2005-10-19"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Text">fn-lang-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-lang-22" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "lang" function with the second argument set to "." and no context item defined.</description>
+      <spec-citation spec="FuncOps" section-number="14.5" section-title="fn:lang" section-pointer="func-lang"/>
+      <query name="fn-lang-22" date="2006-02-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLangFunc-1" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `lang()`.</description>
+      <query name="K-NodeLangFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLangFunc-2" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then lang("en", .) else true()`.</description>
+      <query name="K-NodeLangFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeLangFunc-2.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLangFunc-3" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then lang("en") else true()`.</description>
+      <query name="K-NodeLangFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeLangFunc-3.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLangFunc-4" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `lang("en", 2)`.</description>
+      <query name="K-NodeLangFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLangFunc-1" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>Invoke fn:lang from the top and bottom of a tree.</description>
+      <query name="K2-NodeLangFunc-1" static-name="K2-NodeLangFunc-1-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLangFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLangFunc-2" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>Start navigating from the actual attribute node.</description>
+      <query name="K2-NodeLangFunc-2" static-name="K2-NodeLangFunc-2-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLangFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLangFunc-3" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>Navigate a single, empty attribute.</description>
+      <query name="K2-NodeLangFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLangFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLangFunc-4" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>Sub-languages must be separated with dashes.</description>
+      <query name="K2-NodeLangFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLangFunc-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLangFunc-5" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>Use a single attribute node as input.</description>
+      <query name="K2-NodeLangFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLangFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLangFunc-6" FilePath="Functions/NodeFunc/NodeLangFunc/" scenario="standard">
+      <description>Use a single attribute node as input.</description>
+      <query name="K2-NodeLangFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLangFunc-6.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqMAXFunc-4                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoke fn:max() with an unsupported collation. :)
+(:*******************************************************:)
+max(("str1", "str2"), "http://example.com/UNSUPPORTED_COLLATION")

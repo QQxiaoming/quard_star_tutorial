@@ -1,0 +1,69 @@
+Qt 5.9.5 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.9.5 Changes                              *
+****************************************************************************
+
+Platform Specific Changes
+-------------------------
+
+ - [QTBUG-58223] Android: qmlc files are stored only in the cache path
+ - Enabled x86-64 JIT for QNX
+ - Enabled ARM64 JIT for QNX7
+
+Qml
+---
+
+ - [QTBUG-66067] Fix -1 as enum value in QML exposed C++ singletons showing
+   up as undefined.
+ - [QTBUG-65924] Fixed the build when -no-qml-debug and -qtnamespace
+   configure options are used together
+ - [QTBUG-43567] Fixed a crash when using a property alias to an object with
+   a lowercase type name.  Registration of such types is no longer allowed.
+ - [QTBUG-65998] Fixed a crash when a NaN value was misinterpreted as a
+   pointer
+ - [QTBUG-66189] Fixed memory leaks with deferred properties
+ - [QTBUG-65881] Fixed a crash: attempting to send events to deleted objects
+ - [QTBUG-62087] Fixed stack overflow when using huge arrays in JS
+ - [QTBUG-66732] Fixed an issue with allocating huge objects in the memory manager
+ - [QTBUG-66090] Fixed a memory leak with Image inside MapQuickItem
+ - [QTBUG-59357] Fixed the "this" object when calling scope/context functions
+ - [QTBUG-65828] Fixed a crash when changing from a simple to a sparse array
+ - [QTBUG-56600] It's now allowed to set values in value type group properties
+   in "on" assignments such as ColorAnimation on color { easing.type: ... }
+
+QtQuick
+-------
+
+ - [QTBUG-64616] Input validators prevent entry of invalid characters even
+   when an input mask is set.
+ - [QTBUG-52944] When a Window is declared inside another Item or Window,
+   the window will not be created until the parent window is created.
+   This allows it to have the correct transientParent and be managed as a
+   transient window.
+ - [QTBUG-65800] Fixed coordinates of mouse events sent to QQuickWidget
+   at an offset position within the window
+ - [QTBUG-64311] Fixed transition animations when removing the last item
+   from a ListView or GridView
+ - [QTBUG-66159] The qmlprofiler tool now exits properly when an application
+   to which it is attached exits
+ - [QTBUG-66381] Fixed a double-deletion crash when a Loader unloads a window
+   being rendered by the software renderer
+ - [QTBUG-52017] Fixed equality of return values from ListModel.get(idx)

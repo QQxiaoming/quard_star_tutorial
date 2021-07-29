@@ -1,0 +1,152 @@
+/****************************************************************************
+**
+** Copyright (C) 2012 Klarälvdalens Datakonsult AB, a KDAB Group company, info@kdab.com, author Stephen Kelly <stephen.kelly@kdab.com>
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+
+
+/*!
+    \page cmake-manual.html
+    \target CMake Manual
+    \title Building with CMake
+
+    \c {CMake} is a tool that helps simplify the build process for
+    development projects across different platforms.  \c{CMake}
+    automates the generation of buildsystems such as Makefiles and Visual Studio project
+    files.
+
+    \c{CMake} is a 3rd party tool with its own \l{CMake Documentation}{documentation}.
+    The rest of this topic details the specifics of how to use Qt 5 with \c{CMake}.
+    The minimum version required to use Qt5 is \c{CMake} 3.1.0.
+
+    \section1 Getting Started
+
+    The first requirement when using \c{CMake} is to use \c{find_package} to locate the libraries
+    and header files shipped with Qt. These libraries and header files can then be used
+    to build libraries and applications based on Qt.
+
+    The recommended way to use Qt libraries and headers with \c{CMake} is to use
+    the \c{target_link_libraries} command. This
+    command automatically adds appropriate include directories, compile definitions, the
+    position-independent-code flag, and links to the qtmain.lib library on Windows.
+
+    To build a helloworld GUI executable, typical usage would be:
+
+    \snippet snippets/cmake/examples.cmake 0
+
+    In order for \c{find_package} to be successful, Qt 5 must be found below the CMAKE_PREFIX_PATH,
+    or the \c{Qt5_DIR} must be set in the \c{CMake} cache to the location of the
+    \c{Qt5Config.cmake} file. The easiest way to use \c{CMake} is to set the CMAKE_PREFIX_PATH
+    environment variable to the install prefix of Qt 5.
+
+    The CMAKE_AUTOMOC setting runs moc automatically when required. For more on this feature see
+    the \l{CMake AUTOMOC documentation}
+
+    \section2 Imported targets
+
+    Imported targets are created for each Qt module. Imported target names should be preferred instead of
+    using a variable like Qt5<Module>_LIBRARIES in CMake commands such as \c{target_link_libraries}.
+    The actual path to the library can be obtained using the \l{CMake LOCATION Documentation}{LOCATION property}:
+
+    \snippet snippets/cmake/examples.cmake 1
+
+    Note however that it is rare to require the full location to the library in \c{CMake} code. Most
+    \c{CMake} APIs are aware of imported targets and can automatically use them instead of the full path.
+
+    Each module in Qt 5 has a library target with the naming convention Qt5::<Module> which can be used for
+    this purpose.
+
+    Imported targets are created with the configurations Qt was configured with. That is, if Qt was
+    configured with the -debug switch, an imported target with the configuration DEBUG will be created. If
+    Qt was configured with the -release switch an imported target with the configuration RELEASE will be
+    created. If Qt was configured with the -debug-and-release switch (the default on windows), then
+    imported targets will be created with both RELEASE and DEBUG configurations.
+
+    If your project has custom CMake build configurations, it may be necessary to set a mapping from your
+    custom configuration to either the debug or release Qt configuration.
+
+    \snippet snippets/cmake/examples.cmake 2
+
+    Plugins are also available as \c IMPORTED targets in CMake. The \l{Qt
+    Network}, \l{Qt SQL}, \l{Qt GUI}, and \l{Qt Widgets} modules have plugins
+    associated. They provide a list of plugins in the
+    \c{Qt5}\e{<Module>}\c{_PLUGINS} variable.
+
+    \snippet snippets/cmake/examples.cmake 5
+
+    \section1 Variable Reference
+
+    \section2 Module variables
+
+    The result of a \c{find_package} call is that imported targets will be created for
+    use with \c{target_link_libraries}, some variables will be populated with
+    information required to configure the build, and macros will be made available
+    for use. The name of the imported target for each module matches the name of the module with a
+    prefix of 'Qt5::', for example Qt5::Widgets. All of the package-specific variables have a
+    consistent name with a prefix of the name of the package. For example,
+    \c{find_package(Qt5 COMPONENTS Widgets)} will make the following variables available
+    if successfully found:
+
+    \list
+    \li Qt5Widgets_VERSION String describing the version of the module.
+    \li Qt5Widgets_LIBRARIES List of libraries for use with the target_link_libraries command.
+    \li Qt5Widgets_INCLUDE_DIRS List of directories for use with the include_directories command.
+    \li Qt5Widgets_DEFINITIONS List of definitions for use with add_definitions.
+    \li Qt5Widgets_COMPILE_DEFINITIONS List of definitions for use with the COMPILE_DEFINITIONS target property.
+    \li Qt5Widgets_FOUND Boolean describing whether the module was found successfully.
+    \li Qt5Widgets_EXECUTABLE_COMPILE_FLAGS String of flags to be used when building executables.
+    \endlist
+
+    Equivalents of those variables will be available for all packages found with a \c{find_package} call. Note
+    that the variables are case-sensitive.
+
+    \section2 Installation variables
+
+    Additionally, several other variables are available which do not relate to a particular package, but to the
+    Qt installation itself.
+
+    \list
+    \li QT_VISIBILITY_AVAILABLE Boolean describing whether Qt was built with hidden visibility.
+    \li QT_LIBINFIX String containing the infix used in library names.
+    \endlist
+
+    \section1 Command Reference
+
+    \section2 Qt5::Core
+
+    \annotatedlist cmake-macros-qtcore
+
+    \section2 Qt5::Widgets
+
+    \annotatedlist cmake-macros-qtwidgets
+
+    \section2 Qt5::DBus
+
+    \annotatedlist cmake-commands-qtdbus
+
+    \section2 Qt5::LinguistTools
+
+    \annotatedlist cmake-macros-qtlinguisttools
+*/

@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-equal-11                              :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 24, 2005                                    :)
+(:Purpose: Evaluates The "boolean-equal" function        :)
+(: with operands set to "not(7 lt 7)", "true" respectively.:)
+(: Use of lt operator.                                   :)
+(:*******************************************************:)
+ 
+fn:not(7 lt 7) eq xs:boolean("true")

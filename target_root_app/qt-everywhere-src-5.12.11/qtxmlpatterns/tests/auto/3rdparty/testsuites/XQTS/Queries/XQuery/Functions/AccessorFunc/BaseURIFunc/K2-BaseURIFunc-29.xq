@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K2-BaseURIFunc-29                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use an URI in an xml:base element that is a valid URI, but an invalid HTTP URL. Since implementations aren't required to validate specific schemes but allowed to, this may either raise an error or return the URI. :)
+(:*******************************************************:)
+let $i := fn:base-uri(<anElement xml:base="http:\\example.com\\examples">Element content</anElement>)
+return $i eq "http:\\example.com\\examples" or empty($i)

@@ -1,0 +1,5 @@
+(: Name: fn-matches-40                                                        :)
+(: Description: Test for bug fix of 5348 in Errata for F&O.                   :)
+(: Expect FORX0002 err  because \1 reference is made before the closing       :)
+(: right parenthesis of 1st reference                                         :)
+fn:matches('aa', '(a\1)')

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:orOp>
+        <xqx:firstOperand>
+          <xqx:gtOp>
+            <xqx:firstOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">dateTime</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>2002-06-02T12:00:10Z</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">dateTime</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>2000-04-04T12:00:00Z</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:secondOperand>
+          </xqx:gtOp>
+        </xqx:firstOperand>
+        <xqx:secondOperand>
+          <xqx:gtOp>
+            <xqx:firstOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">dateTime</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>2002-04-02T13:00:10Z</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">dateTime</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>2001-04-02T10:00:00Z</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:secondOperand>
+          </xqx:gtOp>
+        </xqx:secondOperand>
+      </xqx:orOp>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

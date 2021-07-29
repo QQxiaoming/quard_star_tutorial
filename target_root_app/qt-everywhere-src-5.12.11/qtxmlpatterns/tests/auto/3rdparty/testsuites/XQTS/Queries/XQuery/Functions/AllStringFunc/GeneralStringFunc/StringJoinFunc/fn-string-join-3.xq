@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: fn-string-join-3                                 :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri June 24, 2005                                :)
+(:Purpose: Evaluates The "string-join" function as per   :)
+(:example 3 for this function in the F&O specs. Use of   :)
+(:fn:count to avoid empty file.                          :)
+(:*******************************************************:)
+
+fn:count(fn:string-join((), 'separator'))

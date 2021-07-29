@@ -1,0 +1,24 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="versionPrologSI" featureOwner="Oracle">
+   <GroupInfo>
+      <title>Version Declaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="version_declaration-005" FilePath="SchemaImport/versionPrologSI/" scenario="standard" Creator="Pulkita Tyagi">
+      <description>Demonstrates version declaration,the version.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="version_declaration-005" date="2005-10-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">version_declaration-005.txt</output-file>
+      <expected-error>XQST0038</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="prolog-version-8" FilePath="SchemaImport/versionPrologSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of prolog version as described in "version_declaration-005.xq". However comments here are after version declaration.</description>
+      <spec-citation spec="XQuery" section-number="4.1" section-title="Version Declaration" section-pointer="id-version-declaration"/>
+      <query name="prolog-version-8" date="2006-02-15"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">prolog-version-8.txt</output-file>
+      <expected-error>XQST0038</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+</test-group>

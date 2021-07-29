@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-36                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invalid casting combination, combined with value comparison. :)
+(:*******************************************************:)
+'12312' cast as xs:boolean eq false()

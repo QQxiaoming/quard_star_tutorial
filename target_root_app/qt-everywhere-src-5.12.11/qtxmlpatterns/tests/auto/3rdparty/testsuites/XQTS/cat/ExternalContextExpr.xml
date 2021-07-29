@@ -1,0 +1,175 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ExternalContextExpr" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>External Context Item Expressions</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="externalcontextitem-1" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Context Item expression that just uses the "name" element and no context item defined.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-1" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-2" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as a string.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-2" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-3" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as an integer.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-3" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-4" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as a decimal.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-4" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-5" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used a float.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-5" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-6" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as a double.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-6" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-7" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as a boolean value.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-7" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-8" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as a boolean with fn:not.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-8" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-9" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item is used as argument to sum function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-9" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-10" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of addition operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-10" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-11" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a subtraction operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-11" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-12" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a multiplication operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-12" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-13" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a modulus operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-13" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-14" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a divison (div operator) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-14" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-15" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a divison (idiv operator) operation.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-15" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-16" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a boolean expression (and operator).</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-16" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-17" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as part of a boolean expression (or operator).</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-17" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-18" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as argument to string-length function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-18" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-19" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as argument to "avg" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-19" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-20" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as argument to "min" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-20" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-21" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of external context item expression where context item used as argument to "max" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-21" date="2006-02-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">externalcontextitem-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-22" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Evaluation of external context item expression where context item used as argument to "max" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-22" date="2006-08-02"/>
+      <contextItem role="principal-data">works-mod</contextItem>
+      <output-file role="principal" compare="Fragment">externalcontextitem-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-23" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="runtime-error" Creator="Andrew Eisenberg">
+      <description>Reference to a context item that has not been bound.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-23" date="2006-08-02"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="externalcontextitem-24" FilePath="Expressions/ContextExpr/ExternalContextExpr/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Evaluation of external context item expression where context item used as argument to "max" function.</description>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="externalcontextitem-24" date="2006-08-02"/>
+      <contextItem role="principal-data">works-mod</contextItem>
+      <output-file role="principal" compare="Fragment">externalcontextitem-22.txt</output-file>
+   </test-case>
+</test-group>

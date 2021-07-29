@@ -1,0 +1,156 @@
+
+#ifndef DECLARE_WIDGET_1
+#  define DECLARE_WIDGET_1(a,b) DECLARE_WIDGET(a,b)
+#endif
+
+// widgets
+#if QT_CONFIG(checkbox)
+DECLARE_WIDGET(QCheckBox, "text")
+#endif
+#if QT_CONFIG(combobox)
+DECLARE_WIDGET(QComboBox, "")
+#endif
+#if QT_CONFIG(datetimeedit)
+DECLARE_WIDGET(QDateTimeEdit, "")
+DECLARE_WIDGET(QDateEdit, "")
+DECLARE_WIDGET(QTimeEdit, "")
+#endif
+#if QT_CONFIG(dial)
+DECLARE_WIDGET(QDial, "")
+#endif
+DECLARE_WIDGET(QDialog, "")
+#if QT_CONFIG(dockwidget)
+DECLARE_WIDGET(QDockWidget, "")
+#endif
+DECLARE_WIDGET(QFrame, "")
+#if QT_CONFIG(groupbox)
+DECLARE_WIDGET(QGroupBox, "")
+#endif
+#if QT_CONFIG(scrollarea)
+DECLARE_WIDGET(QScrollArea, "")
+#endif
+#if QT_CONFIG(lcdnumber)
+DECLARE_WIDGET(QLCDNumber, "")
+#endif
+DECLARE_WIDGET(QLabel, "")
+#if QT_CONFIG(lineedit)
+DECLARE_WIDGET(QLineEdit, "")
+#endif
+#if QT_CONFIG(listview)
+DECLARE_WIDGET(QListView, "")
+#endif
+#if QT_CONFIG(listwidget)
+DECLARE_WIDGET(QListWidget, "")
+#endif
+#if QT_CONFIG(mainwindow)
+DECLARE_WIDGET(QMainWindow, "")
+#endif
+#if QT_CONFIG(mdiarea)
+DECLARE_WIDGET(QMdiArea, "")
+#endif
+#if QT_CONFIG(menu)
+DECLARE_WIDGET(QMenu, "")
+#endif
+#if QT_CONFIG(menubar)
+DECLARE_WIDGET(QMenuBar, "")
+#endif
+#if QT_CONFIG(progressbar)
+DECLARE_WIDGET(QProgressBar, "")
+#endif
+#if QT_CONFIG(pushbutton)
+DECLARE_WIDGET(QPushButton, "text")
+#endif
+#if QT_CONFIG(radiobutton)
+DECLARE_WIDGET(QRadioButton, "text")
+#endif
+#if QT_CONFIG(commandlinkbutton)
+DECLARE_WIDGET(QCommandLinkButton, "text")
+#endif
+#if QT_CONFIG(scrollbar)
+DECLARE_WIDGET(QScrollBar, "")
+#endif
+#if QT_CONFIG(slider)
+DECLARE_WIDGET(QSlider, "")
+#endif
+#if QT_CONFIG(spinbox)
+DECLARE_WIDGET(QSpinBox, "")
+DECLARE_WIDGET(QDoubleSpinBox, "")
+#endif
+#if QT_CONFIG(tabwidget)
+DECLARE_WIDGET(QTabWidget, "")
+#endif
+#if QT_CONFIG(tableview)
+DECLARE_WIDGET(QTableView, "")
+#endif
+#if QT_CONFIG(tablewidget)
+DECLARE_WIDGET(QTableWidget, "")
+#endif
+#if QT_CONFIG(textbrowser)
+DECLARE_WIDGET(QTextBrowser, "")
+#endif
+#if QT_CONFIG(textedit)
+DECLARE_WIDGET(QTextEdit, "")
+DECLARE_WIDGET(QPlainTextEdit, "")
+#endif
+#if QT_CONFIG(toolbar)
+DECLARE_WIDGET(QToolBar, "")
+#endif
+#if QT_CONFIG(toolbox)
+DECLARE_WIDGET(QToolBox, "")
+#endif
+#if QT_CONFIG(toolbutton)
+DECLARE_WIDGET(QToolButton, "text")
+#endif
+#if QT_CONFIG(treeview)
+DECLARE_WIDGET(QTreeView, "")
+#endif
+#if QT_CONFIG(treewidget)
+DECLARE_WIDGET(QTreeWidget, "")
+#endif
+DECLARE_WIDGET(QWidget, "")
+#if QT_CONFIG(keysequenceedit)
+DECLARE_WIDGET(QKeySequenceEdit, "")
+#endif
+#if QT_CONFIG(opengl)
+DECLARE_WIDGET(QOpenGLWidget, "")
+#endif
+#if QT_CONFIG(splitter)
+DECLARE_WIDGET(QSplitter, "")
+#endif
+#if QT_CONFIG(stackedwidget)
+DECLARE_WIDGET(QStackedWidget, "")
+#endif
+#if QT_CONFIG(statusbar)
+DECLARE_WIDGET(QStatusBar, "")
+#endif
+DECLARE_WIDGET(QDialogButtonBox, "")
+#if QT_CONFIG(fontcombobox)
+DECLARE_WIDGET(QFontComboBox, "")
+#endif
+#if QT_CONFIG(calendarwidget)
+DECLARE_WIDGET(QCalendarWidget, "")
+#endif
+#if QT_CONFIG(columnview)
+DECLARE_WIDGET(QColumnView, "")
+#endif
+#if QT_CONFIG(undoview)
+DECLARE_WIDGET(QUndoView, "")
+#endif
+
+#if QT_CONFIG(wizard)
+DECLARE_WIDGET(QWizard, "")
+DECLARE_WIDGET(QWizardPage, "")
+#endif
+
+#if !defined(QT_NO_GRAPHICSVIEW)
+DECLARE_WIDGET_1(QGraphicsView, "")
+#endif
+
+// layouts
+DECLARE_LAYOUT(QGridLayout, "")
+DECLARE_LAYOUT(QHBoxLayout, "")
+DECLARE_LAYOUT(QStackedLayout, "")
+DECLARE_LAYOUT(QVBoxLayout, "")
+#if QT_CONFIG(formlayout)
+DECLARE_LAYOUT(QFormLayout, "")
+#endif

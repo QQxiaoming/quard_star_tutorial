@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(: Test: K2-SeqExcept-39                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Extract the boolean value from an except expression. :)
+(:*******************************************************:)
+(: insert-start :)
+    declare variable $input-context1 external;
+    (: insert-end :)
+    boolean($input-context1//employee[location = "Denver"] except $input-context1//employee[last()])

@@ -1,0 +1,1136 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:test="http://www.w3.org/2005/02/query-test-XQTSCatalog"
+   targetNamespace="http://www.w3.org/2005/02/query-test-XQTSCatalog" elementFormDefault="qualified">
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- History:                                                             -->
+   <!--                                                                      -->
+   <!-- 2008-07-29 - reflects-resolution                                     -->
+   <!--                                                                      -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- test-suite - top level element                                       -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="test-suite">
+      <xs:annotation>
+         <xs:documentation>
+            This is the top level element for documents that use this schema.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="test:test-suite-info"/>
+            <xs:element ref="test:citations"/>
+            <xs:element ref="test:comparisons"/>
+            <xs:element ref="test:roles"/>
+            <xs:element ref="test:scenarios"/>
+            <xs:element ref="test:sources"/>
+            <xs:element ref="test:implementation-defined-items"/>
+            <xs:element ref="test:features"/>
+            <xs:element ref="test:context-properties"/>
+            <xs:element ref="test:test-group" maxOccurs="unbounded"/>
+         </xs:sequence>
+
+         <xs:attribute name="CatalogDesignDate" type="xs:date" use="required"/>
+
+         <!-- XQTS version -->
+         <xs:attribute name="version" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  XQTS version
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+         <!-- not used -->
+         <xs:attribute name="targetLanguage" type="test:targetLanguage" use="optional">
+            <xs:annotation>
+               <xs:documentation>
+                  not used
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+         <!-- offset from XQTS root to source documents and schemas -->
+         <xs:attribute name="SourceOffsetPath" type="test:SimplifiedRelativeFilePath" use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  offset from XQTS root to source documents and schemas
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+
+         <!-- offset from XQTS root to result documents -->
+         <xs:attribute name="ResultOffsetPath" type="test:SimplifiedRelativeFilePath" use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  offset from XQTS root to result documents
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+
+         <!-- offset from XQTS root to XQuery expression files -->
+         <xs:attribute name="XQueryQueryOffsetPath" type="test:SimplifiedRelativeFilePath"
+            use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  offset from XQTS root to XQuery expression files
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+
+         <!-- offset from XQTS root to XQueryX documents -->
+         <xs:attribute name="XQueryXQueryOffsetPath" type="test:SimplifiedRelativeFilePath"
+            use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  offset from XQTS root to XQueryX documents
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+
+         <!-- file extension for XQuery expression files -->
+         <xs:attribute name="XQueryFileExtension" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  file extension for XQuery expression files
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+
+         <!-- file extension for XQueryX documents -->
+         <xs:attribute name="XQueryXFileExtension" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>
+                  file extension for XQueryX documents
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+
+      </xs:complexType>
+
+      <xs:unique name="unique-test-group">
+         <xs:selector xpath=".//test:test-group"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+      <xs:unique name="unique-test-case">
+         <xs:selector xpath=".//test:test-case"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+
+   </xs:element>
+
+
+   <!-- targetLanguage type                                                  -->
+
+   <xs:simpleType name="targetLanguage">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="XQuery"/>
+         <xs:enumeration value="XQueryX"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- SimplifiedRelativeFilePath type                                      -->
+
+   <xs:simpleType name="SimplifiedRelativeFilePath">
+      <xs:restriction base="xs:anyURI">
+         <xs:pattern value="([a-zA-Z0-9\-\.]+/)+"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- test-suite-info                                                      -->
+   <!--                                                                      -->
+   <!-- Identify the test suite.                                             -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="test-suite-info">
+      <xs:annotation>
+         <xs:documentation>
+            Identify the test suite.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- citations                                                            -->
+   <!--                                                                      -->
+   <!-- Identify each of the XQuery documents.                               -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="citations">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the XQuery documents.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:choice maxOccurs="unbounded">
+            <xs:element name="citation-spec" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:sequence>
+                           <xs:element name="spec-URI" type="xs:anyURI"/>
+                        </xs:sequence>
+                        <xs:attribute name="name" type="test:citation-spec-enum" use="required"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:choice>
+      </xs:complexType>
+
+      <xs:unique name="unique-citation-specs">
+         <xs:selector xpath=".//test:citation-spec"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- comparisons                                                          -->
+   <!--                                                                      -->
+   <!-- Identify each of the comparisons that will be used in test cases.    -->
+   <!--                                                                      -->
+   <!-- This is provided for the purpose of documentation and is not needed  -->
+   <!-- by implementors.                                                     -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="comparisons">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the comparisons that will be used in test cases.            
+            This is provided for the purpose of documentation and is not needed by implementors.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="comparison" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="name" type="test:comparison-enum" use="required"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:unique name="unique-comparisons">
+         <xs:selector xpath=".//test:comparison"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- roles                                                                -->
+   <!--                                                                      -->
+   <!-- Identify each of the roles that will be used in test cases.          -->
+   <!--                                                                      -->
+   <!-- This is provided for the purpose of documentation and is not needed  -->
+   <!-- by implementors.                                                     -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="roles">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the roles that will be used in test cases.
+            This is provided for the purpose of documentation and is not needed by implementors.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="role">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="name" type="test:role-enum" use="required"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:unique name="unique-roles">
+         <xs:selector xpath=".//test:role"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- scenarios                                                            -->
+   <!--                                                                      -->
+   <!-- Identify each of the scenarios that will be used in test cases.      -->
+   <!--                                                                      -->
+   <!-- This is provided for the purpose of documentation and is not needed  -->
+   <!-- by implementors.                                                     -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="scenarios">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the scenarios that will be used in test cases.
+            This is provided for the purpose of documentation and is not needed by implementors.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="scenario">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="name" type="test:scenarios-enum" use="required"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:unique name="unique-scenarios">
+         <xs:selector xpath=".//test:scenario"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- sources                                                              -->
+   <!--                                                                      -->
+   <!-- Identify each of the sources that will be used in test cases.        -->
+   <!--                                                                      -->
+   <!-- Test cases will use these ID's to identify their source documents,   -->
+   <!-- collections, schemas, and modules.                                   -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="sources">
+      <xs:complexType>
+         <xs:annotation>
+            <xs:documentation>
+               Identify each of the sources that will be used in test cases.
+               Test cases will use these ID's to identify their source documents, collections, schemas, and modules.
+            </xs:documentation>
+         </xs:annotation>
+
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="source" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="ID" type="xs:ID" use="required"/>
+                        <xs:attribute name="FileName" type="xs:anyURI" use="required"/>
+                        <xs:attribute name="Creator" type="xs:string" use="required"/>
+                        <xs:attribute name="schema" type="xs:IDREF" use="optional"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+
+            <xs:element name="schema" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="ID" type="xs:ID" use="required"/>
+                        <xs:attribute name="uri" type="xs:anyURI" use="required"/>
+                        <xs:attribute name="FileName" type="xs:anyURI" use="required"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+
+            <xs:element name="collection" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:sequence>
+                           <xs:element name="input-document" maxOccurs="unbounded">
+                              <xs:annotation>
+                                 <xs:documentation>
+                                    One or more input files that will be used by this query.
+                                 </xs:documentation>
+                              </xs:annotation>
+                              <xs:complexType>
+                                 <xs:simpleContent>
+                                    <xs:extension base="xs:IDREF">
+                                       <!-- this attribute contains only principal-data -->
+                                    </xs:extension>
+                                 </xs:simpleContent>
+                              </xs:complexType>
+                           </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ID" type="xs:ID" use="required"/>
+                        <xs:attribute name="Creator" type="xs:string" use="required"/>
+
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+
+            <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="ID" type="xs:ID" use="required"/>
+                        <xs:attribute name="FileName" type="xs:anyURI" use="required"/>
+                        <xs:attribute name="Creator" type="xs:string" use="required"/>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- implementation-defined-items                                         -->
+   <!--                                                                      -->
+   <!-- Identify each of the implementation-defined-items that occur in the  -->
+   <!-- XQuery specifications.                                               -->
+   <!--                                                                      -->
+   <!-- These item names will be used when an implementor submits his test   -->
+   <!-- results.                                                             -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="implementation-defined-items">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the implementation-defined-items that occur in the XQuery specifications.
+            These item names will be used when an implementor submits his test results.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="implementation-defined-item" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="test:infoBase">
+                        <xs:attribute name="name" type="xs:string" use="required"/>
+                        <xs:attribute name="spec" type="test:citation-spec-enum" use="required"/>
+                        <xs:attribute name="spec-version" type="test:spec-version-list-type" use="optional">
+                           <xs:annotation>
+                              <xs:documentation>
+                                 Identifies the versions of the specification to which this item
+                                 applies. If the attribute is absent or empty, the item apply to all
+                                 versions of the specification.
+                              </xs:documentation>
+                           </xs:annotation>
+                        </xs:attribute>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:unique name="unique-implementation-defined-item">
+         <xs:selector xpath=".//test:implementation-defined-item"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- features                                                             -->
+   <!--                                                                      -->
+   <!-- Identify each of the features that occur in the XQuery               -->
+   <!-- specification.                                                       -->
+   <!--                                                                      -->
+   <!-- These feature names will be used when an implementor submits his     -->
+   <!-- test results.                                                        -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="features">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the features that occur in the XQuery specification.
+            These feature names will be used when an implementor submits his test results.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="feature" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="spec-version" type="test:spec-version-list-type" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>
+                           Identifies the versions of the specification to which this featire
+                           applies. If the attribute is absent or empty, the item applies to all
+                           versions of the specification.
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:unique name="unique-feature">
+         <xs:selector xpath=".//test:feature"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- context-properties                                                   -->
+   <!--                                                                      -->
+   <!-- Identify each of the properties that occur in the XQuery             -->
+   <!-- specification.                                                       -->
+   <!--                                                                      -->
+   <!-- These feature names will be used when an implementor submits his     -->
+   <!-- test results.                                                        -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="context-properties">
+      <xs:annotation>
+         <xs:documentation>
+            Identify each of the properties that occur in the XQuery specification.
+            These feature names will be used when an implementor submits his test results.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence maxOccurs="unbounded">
+            <xs:element name="context-property" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required"/>
+                  <xs:attribute name="context-type" use="required">
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:enumeration value="static"/>
+                           <xs:enumeration value="dynamic"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="spec-version" type="test:spec-version-list-type" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>
+                           Identifies the versions of the specification to which this context property
+                           applies. If the attribute is absent or empty, the property applies to all
+                           versions of the specification.
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+
+      <xs:unique name="unique-context-property">
+         <xs:selector xpath=".//test:context-property"/>
+         <xs:field xpath="@name"/>
+      </xs:unique>
+
+   </xs:element>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- test-group                                                           -->
+   <!--                                                                      -->
+   <!-- Group of test cases and test groups.                                 -->
+   <!--                                                                      -->
+   <!-- The grouping of the tests helps the XML Query WG organize its work   -->
+   <!-- and is used when reporting our results. Implementors need only       -->
+   <!-- execute the test contained in these groups.                          -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:element name="test-group">
+      <xs:annotation>
+         <xs:documentation>
+            Group of test cases and test groups.
+            The grouping of the tests helps the XML Query WG organize its work 
+            and is used when reporting our results. Implementors need only 
+            execute the test contained in these groups.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="GroupInfo" type="test:GroupInfo"/>
+            <xs:element name="test-case" type="test:test-case" minOccurs="0" maxOccurs="unbounded">
+               <xs:unique name="unique-expected-error">
+                  <xs:selector xpath=".//test:expected-error"/>
+                  <xs:field xpath="."/>
+               </xs:unique>
+            </xs:element>
+
+            <xs:element ref="test:test-group" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+         <xs:attribute name="name" type="xs:string" use="required"/>
+         <xs:attribute name="featureOwner" type="xs:string" use="optional"/>
+         <xs:attribute name="is-XPath2" type="xs:boolean" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+
+
+   <!-- GroupInfo type                                                       -->
+
+   <xs:complexType name="GroupInfo">
+      <xs:sequence>
+         <xs:element name="title" type="xs:string"/>
+         <xs:element name="description" type="test:description"/>
+         <xs:element name="note" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+   <!-- test-case                                                            -->
+   <!--                                                                      -->
+   <!-- A test case to be run.                                               -->
+   <!--                                                                      -->
+   <!-- All test cases that are not parse-error's are provided in both       -->
+   <!-- XQuery and XQueryX formats. An implementor should use the            -->
+   <!-- appropriate path offsets and file extensions to locate each version. -->
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+   <xs:complexType name="test-case">
+      <xs:annotation>
+         <xs:documentation>
+            A test case to be run.
+            All test cases that are not parse-error's are provided in both
+            XQuery and XQueryX formats. An implementor should use the
+            appropriate path offsets and file extensions to locate each version.
+         </xs:documentation>
+
+         <xs:documentation>
+            The filename for this query can be constructed from:
+            the XQueryQueryOffsetPath or XQueryXQueryOffsetPath, the FilePath,
+            the name, the XQueryFileExtension or XQueryXFileExtension
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:sequence>
+         <xs:element name="description" type="test:description"/>
+         <xs:element name="note" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+
+         <!-- Identify the parts of the XQuery specifications that are       -->
+         <!-- being tested                                                   -->
+
+         <xs:element name="spec-citation" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  Identify the parts of the XQuery specifications that are being tested.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                     <xs:attribute name="section-number" type="xs:string" use="required"/>
+                     <xs:attribute name="spec" type="test:citation-spec-enum" use="required"/>
+                     <xs:attribute name="section-title" type="xs:string" use="required"/>
+                     <xs:attribute name="section-pointer" type="xs:string" use="required"/>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Allow references to resolved Bugzilla Bugs -->
+
+         <xs:element name="reflects-resolution" minOccurs="0" maxOccurs="unbounded" type="xs:anyURI">
+            <xs:annotation>
+               <xs:documentation>
+                  Identify Bugzilla Bugs whose resolution is reflected in this test case.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:element>
+
+         <!-- Description of the query -->
+
+         <xs:element name="query">
+            <xs:annotation>
+               <xs:documentation>
+                  Description of the query.
+               </xs:documentation>
+            </xs:annotation>
+
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="description" type="test:description" minOccurs="0"/>
+                  <xs:element name="note" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+
+               <!-- This name is always equal to the name of the test case -->
+               <xs:attribute name="name" type="xs:string" use="required">
+                  <xs:annotation>
+                     <xs:documentation>
+                        This name is always equal to the name of the test case.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="static-name" type="xs:string" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>
+                        If present, specifies the name of the query file that should be used for an implementation running with the Static Typing Feature enabled.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="date" type="xs:date" use="required"/>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or more modules that will be used by this query -->
+
+         <xs:element name="module" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  Zero or more modules that will be used by this query.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:IDREF">
+                     <xs:attribute name="namespace" type="xs:anyURI" use="required"/>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or more input files that will be used by this query -->
+
+         <xs:element name="input-file" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  One or more input files that will be used by this query.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:IDREF">
+                     <!-- this attribute contains only principal-data -->
+                     <xs:attribute name="role" type="test:role-enum" use="required">
+                        <xs:annotation>
+                           <xs:documentation>
+                              this attribute contains only principal-data
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="variable" type="xs:string" use="required"/>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or more input URIs that will be used by this query -->
+
+         <xs:element name="input-URI" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  One or more input URIs that will be used by this query.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:IDREF">
+                     <!-- this attribute contains only principal-data -->
+                     <xs:attribute name="role" type="test:role-enum" use="required">
+                        <xs:annotation>
+                           <xs:documentation>
+                              this attribute contains only principal-data
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="variable" type="xs:string" use="required"/>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or one default collections that will be used by this query -->
+
+         <xs:element name="defaultCollection" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>
+                  Zero or one default collection that will be used by this query.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:IDREF">
+                     <!-- this attribute contains only principal-data -->
+                     <xs:attribute name="role" type="test:role-enum" use="required">
+                        <xs:annotation>
+                           <xs:documentation>
+                              this attribute contains only principal-data
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or one context nodes that will be used by this query -->
+
+         <xs:element name="contextItem" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+               <xs:documentation>
+                  Zero or one context item that will be used by this query.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:IDREF">
+                     <!-- this attribute contains only principal-data -->
+                     <xs:attribute name="role" type="test:role-enum" use="required">
+                        <xs:annotation>
+                           <xs:documentation>
+                              this attribute contains only principal-data
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or more input queries that will be used to bind values to -->
+         <!-- external variables                                             -->
+
+         <xs:element name="input-query" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  Zero or more input queries that will be used to bind values to 
+                  external variables.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="description" type="test:description" minOccurs="0"/>
+                  <xs:element name="note" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+               <xs:attribute name="variable" type="xs:string" use="required"/>
+               <xs:attribute name="name" type="xs:string" use="required"/>
+               <xs:attribute name="date" type="xs:date" use="required"/>
+            </xs:complexType>
+         </xs:element>
+
+         <!-- Zero or more files containing expected results for this query -->
+
+         <xs:element name="output-file" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  Zero or more files containing expected results for this query.
+               </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:string">
+                     <xs:attribute name="role" type="test:role-enum" use="required"/>
+                     <xs:attribute name="compare" type="test:comparison-enum" use="required"/>
+
+                     <!-- can identify a results as being specific to typed or untyped  -->
+                     <!-- documents                                                     -->
+
+                     <xs:attribute name="input-document" type="test:input-document-enum"
+                        use="optional">
+                        <xs:annotation>
+                           <xs:documentation>
+                              can identify a results as being specific to typed or untyped documents
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+
+                     <xs:attribute name="spec-version" type="test:spec-version-list-type" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>
+                              identifies the versions of the specification to which these test results
+                              apply. If the attribute is absent or empty, the test results apply to all
+                              versions of the specification.
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+
+         <!-- Zero or more expected errors for this query -->
+
+         <xs:element name="expected-error" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+               <xs:documentation>
+                  Zero or more expected errors for this query.
+               </xs:documentation>
+            </xs:annotation>
+
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="test:XQueryErrorCode">
+
+                     <!-- can identify an error as being specific to typed or untyped  -->
+                     <!-- documents                                                    -->
+
+                     <xs:attribute name="input-document" type="test:input-document-enum"
+                        use="optional">
+                        <xs:annotation>
+                           <xs:documentation>
+                              can identify an error as being specific to typed or untyped documents
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+
+                     <xs:attribute name="spec-version" type="test:spec-version-list-type" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>
+                              identifies the versions of the specification to which this error response
+                              applies. If the attribute is absent or empty, the error response applies to all
+                              versions of the specification.
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
+         </xs:element>
+
+      </xs:sequence>
+
+      <!-- The filename for this query can be constructed from:              -->
+      <!--    the XQueryQueryOffsetPath or XQueryXQueryOffsetPath            -->
+      <!--    the FilePath                                                   -->
+      <!--    the name                                                       -->
+      <!--    the XQueryFileExtension or XQueryXFileExtension                -->
+
+      <xs:attribute name="name" type="xs:string" use="required"/>
+      <xs:attribute name="FilePath" type="test:SimplifiedRelativeFilePath" use="required"/>
+      <xs:attribute name="scenario" type="test:scenarios-enum" use="required"/>
+      <xs:attribute name="Creator" type="xs:string" use="required"/>
+      <xs:attribute name="version-drop" type="xs:date">
+         <xs:annotation>
+            <xs:documentation>
+               not being used
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!-- identify tests that are applicable to XPath 2.0 -->
+      <xs:attribute name="is-XPath2" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation>
+               identify tests that are applicable to XPath 2.0
+            </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+
+
+
+   <!-- citation-spec-enum type                                              -->
+   <!--    Identify the document being cited                                 -->
+
+   <xs:simpleType name="citation-spec-enum">
+      <xs:annotation>
+         <xs:documentation>
+            Identify the document being cited.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="XQuery"/>
+         <xs:enumeration value="FuncOps"/>
+         <xs:enumeration value="DataModel"/>
+         <xs:enumeration value="FormalSemantics"/>
+         <xs:enumeration value="SchemaPart2"/>
+         <xs:enumeration value="Schema-Errata"/>
+         <xs:enumeration value="UseCases"/>
+         <xs:enumeration value="Serialization"/>
+         <xs:enumeration value="XQueryX"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- comparison-enum type                                                 -->
+   <!--    Identify the type of comparison used to determine whether an      -->
+   <!--    expected result and an actual result match.                       -->
+
+   <xs:simpleType name="comparison-enum">
+      <xs:annotation>
+         <xs:documentation>
+            Identify the type of comparison used to determine whether an
+            expected result and an actual result match.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="XML"/>
+         <xs:enumeration value="Fragment"/>
+         <xs:enumeration value="Text"/>
+         <xs:enumeration value="Inspect"/>
+         <xs:enumeration value="Ignore"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- role-enum type                                                       -->
+   <!--    Identify how a document is being used.                            -->
+
+   <xs:simpleType name="role-enum">
+      <xs:annotation>
+         <xs:documentation>
+            Identify how a document is being used.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="principal-data"/>
+         <xs:enumeration value="supplemental-data"/>
+         <xs:enumeration value="schema"/>
+         <xs:enumeration value="principal"/>
+         <xs:enumeration value="console-log"/>
+         <xs:enumeration value="dtd"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- scenarios-enum type                                                  -->
+   <!--     Identify whether a test should execute normally, cause a parse   -->
+   <!--     error, or cause a runtime error.                                 -->
+
+   <xs:simpleType name="scenarios-enum">
+      <xs:annotation>
+         <xs:documentation>
+            Identify whether a test should execute normally, cause a parse 
+            error, or cause a runtime error.
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="standard"/>
+         <xs:enumeration value="parse-error"/>
+         <xs:enumeration value="runtime-error"/>
+         <xs:enumeration value="trivial"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- input-document-enum type                                             -->
+   <!--    Identify expected results that are specific to either typed or    -->
+   <!--    untyped input documents.                                          -->
+
+   <xs:simpleType name="input-document-enum">
+      <xs:annotation>
+         <xs:documentation>
+            Identify expected results that are specific to either typed or
+            untyped input documents.                  
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="typed"/>
+         <xs:enumeration value="untyped"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- description type                                                     -->
+
+   <xs:complexType name="description">
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute name="last-mod" type="xs:date"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+
+
+   <!-- XQueryErrorCode type                                                 -->
+   <!--   * is used to mean that any error code is acceptable                -->
+
+   <xs:simpleType name="XQueryErrorCode">
+      <xs:annotation>
+         <xs:documentation>
+            * is used to mean that any error code is acceptable
+         </xs:documentation>
+      </xs:annotation>
+
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\*|([A-Z]{4}[0-9]{4})"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   <xs:simpleType name="spec-version-list-type">
+      <xs:annotation>
+         <xs:documentation>
+            A list of specification versions to which expected results (actual results or error outcome) apply
+         </xs:documentation>
+      </xs:annotation>
+      <xs:list itemType="test:spec-version-type"/>
+   </xs:simpleType>
+   
+   <xs:simpleType name="spec-version-type">
+      <xs:annotation>
+         <xs:documentation>
+            A specification version. Currently "1.0" or "1.1". Could be extended to allow for example
+            "1.1+ST" to imply "XQuery 1.1 with Static Typing Feature".
+         </xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="1.0"/>
+         <xs:enumeration value="1.1"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+
+   <!-- infoBase type                                                        -->
+
+   <xs:complexType name="infoBase">
+      <xs:sequence>
+         <xs:element name="description" type="test:description"/>
+         <xs:element name="note" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+
+</xs:schema>

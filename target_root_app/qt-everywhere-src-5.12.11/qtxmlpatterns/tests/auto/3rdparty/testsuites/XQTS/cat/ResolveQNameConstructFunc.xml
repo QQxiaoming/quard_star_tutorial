@@ -1,0 +1,185 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ResolveQNameConstructFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:resolve-QName</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-resolve-qname-1" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname does not have the correct lexical form.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-1" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-2" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname have a prefix that and there is no namespace binding for the element.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-2" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FONS0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-3" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname is the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-3" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-4" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix and the element have a matching namespace declaration (same prefix). Second argument is a direct element, use local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-4" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-5" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix and the element have a matching namespace declaration (same prefix). Second argument is a direct element, use namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-5" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-6" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix and the element have a matching namespace declaration (multiple prefixes). Second argument is a direct element, use local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-6" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-7" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix and the element have a matching namespace declaration (multiple prefixes). Second argument is a direct element, use namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-7" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-8" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has no prefix and the element have namespace declaration. Second argument is a direct element, use local-name-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-8" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-9" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has no prefix and the element have namespace declaration. Second argument is a direct element, use namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-9" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-10" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has no prefix and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-10" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-11" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with xs:string and the element have namespace declaration with prefix. Second argument is a direct element, use local-name-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-11" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-12" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with xs:string and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-12" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-13" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:concat and the element have namespace declaration with prefix. Second argument is a direct element, use local-name-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-13" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-14" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:concat and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-14" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-15" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:string-join and the element have namespace declaration with prefix. Second argument is a direct element, use local-name-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-15" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-16" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:string-join and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-16" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-17" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:substring-before and the element have namespace declaration with prefix. Second argument is a direct element, use local-name-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-17" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-18" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:substring-before and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-18" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-19" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:substring-after and the element have namespace declaration with prefix. Second argument is a direct element, use local-name-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-19" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-20" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:substring-after and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-20" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-21" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:substring and the element have namespace declaration with prefix. Second argument is a direct element, use local-name-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-21" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-resolve-qname-22" FilePath="Functions/QNameFunc/ResolveQNameConstructFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn-resolve-QName, where the given qname has a prefix used together with fn:substring and the element have namespace declaration with prefix. Second argument is a direct element, use namespace-uri-from-Qname.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.1" section-title="fn:resolve-QName" section-pointer="func-resolve-QName"/>
+      <query name="fn-resolve-qname-22" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-resolve-qname-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveQNameConstructFunc-1" FilePath="Functions/QNameFunc/QNameConstructFunc/ResolveQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `resolve-QName()`.</description>
+      <query name="K-ResolveQNameConstructFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveQNameConstructFunc-2" FilePath="Functions/QNameFunc/QNameConstructFunc/ResolveQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `resolve-QName("wrongparam")`.</description>
+      <query name="K-ResolveQNameConstructFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveQNameConstructFunc-3" FilePath="Functions/QNameFunc/QNameConstructFunc/ResolveQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `resolve-QName("wrongparam", "takes a node", "wrong")`.</description>
+      <query name="K-ResolveQNameConstructFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ResolveQNameConstructFunc-4" FilePath="Functions/QNameFunc/QNameConstructFunc/ResolveQNameConstructFunc/" scenario="standard">
+      <description>Although the second argument contains a type error(because an element is expected), it is also valid to return the empty sequence because one must not evaluate all arguments.</description>
+      <query name="K-ResolveQNameConstructFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ResolveQNameConstructFunc-4.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

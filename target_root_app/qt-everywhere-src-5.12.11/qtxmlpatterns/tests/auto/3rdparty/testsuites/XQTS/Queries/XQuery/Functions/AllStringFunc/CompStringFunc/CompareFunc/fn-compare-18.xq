@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-compare-18                                    :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Jun 1, 2005                                      :)
+(:Purpose: Evaluates The "compare" function              :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "comparecompare"                               :)
+(:$arg2 = "compare"                                      :)
+(:*******************************************************:)
+
+fn:compare("comparecompare","compare")

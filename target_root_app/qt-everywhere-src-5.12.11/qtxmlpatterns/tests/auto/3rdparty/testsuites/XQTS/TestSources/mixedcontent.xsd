@@ -1,0 +1,36 @@
+<xs:schema
+   xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+   xmlns:mixedcontent = "http://www.w3.org/XQueryTest/mixedcontent" 
+   targetNamespace = "http://www.w3.org/XQueryTest/mixedcontent" 
+   elementFormDefault = "qualified">
+
+  <xs:element name="weather">
+    <xs:complexType mixed="false">
+     <xs:sequence>
+      <xs:element name="temperature" type= "xs:string"/>   
+      <xs:element name="precipitation" type = "xs:string"/>
+     </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+	<xs:complexType name="mixedType" mixed="true">
+		<xs:sequence>
+			<xs:element name="element" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="elementOnlyType">
+		<xs:complexContent mixed="false">
+			<xs:restriction base="mixedcontent:mixedType">
+				<xs:sequence>
+					<xs:element name="element" type="xs:string" />
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="mixed" type="mixedcontent:mixedType" />
+
+	<xs:element name="elementOnly" type="mixedcontent:elementOnlyType" />
+
+</xs:schema>

@@ -1,0 +1,248 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeRootFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:root</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-root-1" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with no arguments set and no context item defined.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-1" date="2005-09-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-root-2" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function that uses context item that is not a node.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-2" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-root-3" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-3" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-3.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-4" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a comment node (via variable).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-4" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-5" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a comment node, which is set directly as argument.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-5" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-6" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to an element node (via variable).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-6" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-7" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a element node, which is set directly as argument.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-7" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-8" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a processing instruction node (via variable).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-8" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-9" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a processing instruction node, which is set directly as argument.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-9" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-10" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a element node with attribute (via variable).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-10" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-11" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to an element node with attribute, which is set directly as argument.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-11" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-12" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a document node via a variable.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-12" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-13" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a document node, which is set directly as argument.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-13" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-root-14" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to an element node, which is query from an xml file.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-14" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-root-15" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to an attribute node, which is query from an xml file.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-15" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">lang</input-file>
+      <output-file role="principal" compare="Fragment">fn-root-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-16" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a text node via a variable.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-16" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-17" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to a text node, which is set directly as argument.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-17" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-18" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function used in conjunction with "is" operator (returns true).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-18" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-19" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function used in conjunction with "is" operator (returns false).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-19" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-20" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function used as argument to namespace-uri (use a node element).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-20" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-21" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function used as argument to namespace-uri (use a comment node).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-21" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-22" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function used as argument to namespace-uri (use a processing instruction).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-22" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-root-23" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function used as argument to namespace-uri (use a text node).</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-23" date="2005-11-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-root-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-root-24" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "fn:root" function with argument set to "." and no context item defined.</description>
+      <spec-citation spec="FuncOps" section-number="14.9" section-title="fn:root" section-pointer="func-root"/>
+      <query name="fn-root-24" date="2006-02-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeRootFunc-1" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `Root(2)`.</description>
+      <query name="K-NodeRootFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeRootFunc-2" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `(1, 2, 3)[root()]`.</description>
+      <query name="K-NodeRootFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeRootFunc-3" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `root(2)`.</description>
+      <query name="K-NodeRootFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeRootFunc-4" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(root(()))`.</description>
+      <query name="K-NodeRootFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeRootFunc-4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-1" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Apply fn:root() to a directly constructed element.</description>
+      <query name="K2-NodeRootFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NodeRootFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-2" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Apply fn:root() to an empty sequence coming from a parent axis.</description>
+      <query name="K2-NodeRootFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeRootFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-3" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Invoke on a comment node.</description>
+      <query name="K2-NodeRootFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-NodeRootFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-4" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Invoke on an attribute node.</description>
+      <query name="K2-NodeRootFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NodeRootFunc-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-5" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-NodeRootFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-NodeRootFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-6" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-NodeRootFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeRootFunc-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-7" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-NodeRootFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeRootFunc-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeRootFunc-8" FilePath="Functions/NodeFunc/NodeRootFunc/" scenario="standard">
+      <description>Invoke on a single document node.</description>
+      <query name="K2-NodeRootFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeRootFunc-8.txt</output-file>
+   </test-case>
+</test-group>

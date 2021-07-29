@@ -1,0 +1,73 @@
+Qt 5.11.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.1 Changes                           *
+****************************************************************************
+
+QtMultimedia
+------------
+
+ - Made it possible for QSound to play source files using the qrc schema.
+ - [QTBUG-54680] Added a fix to show content
+   when the renderer beackend got recreated.
+ - [QTBUG-54262] QAudioOutput is now properly released when a new source is set.
+ - [QTBUG-66754] Fixed possible double release of QSoundEffect's network
+   access manager.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+WinRT
+-----
+
+ - [QTBUG-67614] Prevented deadlock when playing mp3 with QMediaPlayer.
+ - [QTBUG-67417] Fixed white screen for camera output.
+ - [QTBUG-63016] Avoided a crash when QImage is being destroyed within capturing.
+ - [QTBUG-63014] Fixed rotation of camera image.
+ - [QTBUG-68054] Fixed to keep camera as uninitialized when an error.
+ - [QTBUG-68054] Fixed a crash when using IMFMediaSink from IMFStreamSink.
+
+WasAPI
+------
+
+ - [QTBUG-67353] The WasAPI backend will now always use the multithreaded
+   concurrency model.
+
+Gstreamer
+---------
+
+ - [QTBUG-67920] Postponeed fetching supported viewfinder camerabin settings.
+ - [QTBUG-67706] Added better error and warning reporting in QGstreamerRecorderControl.
+
+WindowsAudio
+------------
+
+ - [QTBUG-61920] Fixed adjusting volume for the default device.
+
+DirectShow
+----------
+
+ - [QTBUG-64931] Fixed crackling sound when playing with a custom sample rate.
+
+QNX
+---
+
+ - Switched WindowGrabber to a private parent window.

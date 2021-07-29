@@ -1,0 +1,248 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="QNameEQ" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:QName-equal</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-qname-equal-1" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with simple identical qname values (uses the eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-1" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qName-equal-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-2" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with simple identical qname values (uses the ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-2" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qName-equal-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-3" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with simple different qname values (different namespace URI values, same local part). Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-3" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qName-equal-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-4" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with simple different qname values (different namespace URI values, same local part). Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-4" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qName-equal-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-5" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with simple different qname values (same namespace URI values, different local part). Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-5" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qName-equal-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-6" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with simple different qname values (same namespace URI values, different local part). Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-6" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qName-equal-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-7" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with same namespace URI value, same local part and same prefix. Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-7" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-8" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with same namespace URI value, same local part and same prefix. Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-8" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-9" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with same namespace URI value, same local part and different prefix (should ignore prefix). Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-9" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-10" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with same namespace URI value, same local part and different prefix (should ignore prefix). Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-10" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-11" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with same namespace URI value, different local part and different prefix (should ignore prefix). Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-11" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-12" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with same namespace URI value, different local part and different prefix (should ignore prefix). Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-12" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-13" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with different namespace URI value, different local part and different prefix (should ignore prefix). Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-13" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-14" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with different namespace URI value, different local part and different prefix (should ignore prefix). Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-14" date="2005-11-15"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-15" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with first namespace URI set to empty string, same local part and no prefix. Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-15" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-16" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with first namespace URI set to empty string, same local part and no prefix. Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-16" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-17" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with second namespace URI set to empty string, same local part and no prefix. Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-17" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-18" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with second namespace URI set to empty string, same local part and no prefix. Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-18" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-19" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with both namespace URI set to empty string, same local part and no prefix. Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-19" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-20" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used with both namespace URI set to empty string, same local part and no prefix. Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-20" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-21" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used as an argument to the fn:not function. Uses the eq operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-21" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-22" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used as an argument to the fn:not function. Uses the ne operator.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-22" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-23" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used as part of a boolean expression. Uses the "eq" and "and" operators.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-23" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-qname-equal-24" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:qname-equal" operator used as part of a boolean expression. Uses the "ne" and "and" operators.</description>
+      <spec-citation spec="FuncOps" section-number="11.2.1" section-title="op:QName-equal" section-pointer="func-QName-equal"/>
+      <query name="op-qname-equal-24" date="2005-11-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-qname-equal-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="value-comparison-1" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates value comparison between string and QName. Uses "eq" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="value-comparison-1" date="2006-04-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value-comparison-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="value-comparison-2" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates value comparison between string and QName. Uses "ne" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.5.1" section-title="Value Comparisons" section-pointer="id-value-comparisons"/>
+      <query name="value-comparison-2" date="2006-04-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">value-comparison-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-1" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard">
+      <description>A test whose essence is: `QName("example.com/", "p:ncname") eq QName("example.com/", "p:ncname")`.</description>
+      <query name="K-QNameEQ-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QNameEQ-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-2" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard">
+      <description>A test whose essence is: `QName("example.com/", "p:ncname") eq QName("example.com/", "pdifferent:ncname")`.</description>
+      <query name="K-QNameEQ-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QNameEQ-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-3" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard">
+      <description>A test whose essence is: `QName("example.com/", "p:ncname") ne QName("example.com/Nope", "p:ncname")`.</description>
+      <query name="K-QNameEQ-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QNameEQ-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-4" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="standard">
+      <description>A test whose essence is: `QName("example.com/", "p:ncname") ne QName("example.com/", "p:ncnameNope")`.</description>
+      <query name="K-QNameEQ-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QNameEQ-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-5" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="runtime-error">
+      <description>Operator 'lt' is not available between xs:QName and xs:integer.</description>
+      <query name="K-QNameEQ-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-6" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="runtime-error">
+      <description>Operator 'eq' is not available between xs:anyURI and xs:QName.</description>
+      <query name="K-QNameEQ-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-7" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="runtime-error">
+      <description>Operator 'lt' is not available between values of type xs:QName.</description>
+      <query name="K-QNameEQ-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-8" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="runtime-error">
+      <description>Operator 'le' is not available between values of type xs:QName.</description>
+      <query name="K-QNameEQ-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-9" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="runtime-error">
+      <description>Operator 'gt' is not available between values of type xs:QName.</description>
+      <query name="K-QNameEQ-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QNameEQ-10" FilePath="Expressions/Operators/CompExpr/ValComp/QNameOp/QNameEQ/" scenario="runtime-error">
+      <description>Operator 'ge' is not available between values of type xs:QName.</description>
+      <query name="K-QNameEQ-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

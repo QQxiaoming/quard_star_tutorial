@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>elem</xqx:tagName>
+        <xqx:attributeList>
+          <xqx:namespaceDeclaration>
+            <xqx:prefix>foo</xqx:prefix>
+            <xqx:uri>http://www.w3.org/XQueryTest/Construct</xqx:uri>
+          </xqx:namespaceDeclaration>
+          <xqx:namespaceDeclaration>
+            <xqx:prefix>bar</xqx:prefix>
+            <xqx:uri>http://www.w3.org/XQueryTest/Construct</xqx:uri>
+          </xqx:namespaceDeclaration>
+          <xqx:attributeConstructor>
+            <xqx:attributeName xqx:prefix="foo">attr</xqx:attributeName>
+            <xqx:attributeValue>val1</xqx:attributeValue>
+          </xqx:attributeConstructor>
+          <xqx:attributeConstructor>
+            <xqx:attributeName xqx:prefix="bar">attr</xqx:attributeName>
+            <xqx:attributeValue>val2</xqx:attributeValue>
+          </xqx:attributeConstructor>
+        </xqx:attributeList>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDocFunc-1                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Invoke fn:doc() on the empty sequence.       :)
+(:*******************************************************:)
+empty(fn:doc(()))

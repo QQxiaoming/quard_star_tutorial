@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqUnion-32                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a name test that is the self axis as right operand. :)
+(:*******************************************************:)
+empty(<e/>/(a union self))

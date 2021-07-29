@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqRemoveFunc-15                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: Combine fn:remove() with operator 'eq'.      :)
+(:*******************************************************:)
+5 eq remove((5, 1e0), 2)

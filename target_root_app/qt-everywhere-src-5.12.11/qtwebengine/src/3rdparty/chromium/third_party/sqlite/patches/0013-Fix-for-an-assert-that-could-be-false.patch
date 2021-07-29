@@ -1,0 +1,33 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Victor Costan <pwnall@chromium.org>
+Date: Fri, 11 Jan 2019 04:18:45 -0800
+Subject: [PATCH 13/17] Fix for an assert() that could be false.
+
+This backports https://www.sqlite.org/src/info/23b62fb160d86dc9 /
+https://www.sqlite.org/src/info/bc891ac6b62fe7d9
+
+Bug: 911255
+---
+ third_party/sqlite/src/src/expr.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/third_party/sqlite/src/src/expr.c b/third_party/sqlite/src/src/expr.c
+index 0aa11c43bf4a..05c9521b2030 100644
+--- a/third_party/sqlite/src/src/expr.c
++++ b/third_party/sqlite/src/src/expr.c
+@@ -4761,8 +4761,10 @@ int sqlite3ExprCompare(Parse *pParse, Expr *pA, Expr *pB, int iTab){
+      && sqlite3ExprCompare(pParse, pA->pLeft, pB->pLeft, iTab) ) return 2;
+     if( sqlite3ExprCompare(pParse, pA->pRight, pB->pRight, iTab) ) return 2;
+     if( sqlite3ExprListCompare(pA->x.pList, pB->x.pList, iTab) ) return 2;
+-    assert( (combinedFlags & EP_Reduced)==0 );
+-    if( pA->op!=TK_STRING && pA->op!=TK_TRUEFALSE ){
++    if( pA->op!=TK_STRING
++     && pA->op!=TK_TRUEFALSE
++     && (combinedFlags & EP_Reduced)==0
++    ){
+       if( pA->iColumn!=pB->iColumn ) return 2;
+       if( pA->iTable!=pB->iTable
+        && (pA->iTable!=iTab || NEVER(pB->iTable>=0)) ) return 2;
+--
+2.18.0
+

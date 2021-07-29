@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NameTest-76                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use element() with xs:anyType.               :)
+(:*******************************************************:)
+<e><b/></e>/element(b, xs:anyType)

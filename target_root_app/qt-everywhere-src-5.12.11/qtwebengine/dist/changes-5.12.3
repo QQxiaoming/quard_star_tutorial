@@ -1,0 +1,79 @@
+Qt 5.12.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.2.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.12.3 Changes                           *
+****************************************************************************
+
+Behavior Changes
+----------------
+
+ - [QTBUG-74490] Client side redirects are no longer reported as link clicked.
+
+Chromium
+--------
+
+ - Security fixes from Chromium up to version 73.0.3683.75, including:
+
+    * CVE-2019-5787
+    * CVE-2019-5789
+    * CVE-2019-5790
+    * CVE-2019-5791
+    * CVE-2019-5792
+    * CVE-2019-5793
+    * CVE-2019-5794
+    * CVE-2019-5795
+    * CVE-2019-5797
+    * CVE-2019-5802
+    * CVE-2019-5803
+    * Security issue 905509
+    * Security issue 906437
+    * Security issue 906652
+    * Security issue 906739
+    * Security issue 913212
+    * Security issue 914511
+    * Security issue 916874
+    * Security issue 917608
+    * Security issue 917707
+    * Security issue 919340
+    * Security issue 919572
+    * Security issue 924905
+    * Security issue 929088
+    * Security issue 931640
+    * Security issue 938251
+    * Security issue 933743
+
+
+General
+-------
+
+ - [QTBUG-73833] Fixed crash with dynamic_cast in event filter.
+ - [QTBUG-74021] Fixed crash on exit if the app leaked a page.
+ - [QTBUG-74116] Fixed crash on exit for rare QML setup.
+ - [QTBUG-74484] Fixed default style of media controls for audio playback.
+ - [QTBUG-74519] Fixed regression in setting background colors.
+ - [QTBUG-74659] Fixed quotes and other characters being escaped in tooltips.
+ - [QTBUG-74764] Fixed deduplication naming of 100+ downloads on Windows.
+
+
+Examples
+--------
+
+ - Quicknanobrowser status bubble hid correctly.
+ - Recipebrowser rendering and tabbing fixed.

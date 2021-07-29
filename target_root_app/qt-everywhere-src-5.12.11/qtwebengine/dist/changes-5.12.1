@@ -1,0 +1,78 @@
+Qt 5.12.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.12.1 Changes                           *
+****************************************************************************
+
+Chromium
+--------
+
+ - Security fixes from Chromium up to version 71.0.3578.94, including:
+     * CVE-2018-17480
+     * CVE-2018-17481
+     * CVE-2018-18335
+     * CVE-2018-18336
+     * CVE-2018-18337
+     * CVE-2018-18338
+     * CVE-2018-18339
+     * CVE-2018-18340
+     * CVE-2018-18341
+     * CVE-2018-18342
+     * CVE-2018-18343
+     * CVE-2018-18345
+     * CVE-2018-18347
+     * CVE-2018-18349
+     * CVE-2018-18350
+     * CVE-2018-18355
+     * CVE-2018-18356
+     * CVE-2018-18357
+     * CVE-2018-18358
+     * CVE-2018-18359
+     * Security Bug 839250
+     * Security Bug 851821
+     * Security Bug 869067
+     * Security Bug 877843
+     * Security Bug 879965
+     * Security Bug 880665
+     * Security Bug 882270
+     * Security Bug 892643
+     * Security Bug 895885
+     * Security Bug 900910
+ - Fixed x86-32 builds on GCC 8.
+ - Fixed building on ARM hosts.
+
+
+General
+-------
+
+  * Enabled idle detection and sleep inhibition on Linux and macOS.
+  * [QTBUG-66262] Improved suggested file name of downloads when conflicts arise.
+  * [QTBUG-71322] Enabled bilinear filtering of textures in software rendering mode.
+  * [QTBUG-71370] Fixed autoscrolling regression.
+  * [QTBUG-71895] Fixed crash when calling clearHttpCache().
+  * [QTBUG-72260] Fixed crash on requestInterceptor changes.
+  * [QTBUG-72654] Fixed Event.timeStamp being 0.
+  * [QTBUG-72655] Fixed some JS properties of dead key event.
+
+
+QtQuickWebEngine
+----------------
+
+  * [QTBUG-72299] Fixed problem with blank view after reuse.

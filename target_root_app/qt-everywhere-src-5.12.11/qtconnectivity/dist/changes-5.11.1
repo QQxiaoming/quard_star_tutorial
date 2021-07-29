@@ -1,0 +1,54 @@
+Qt 5.11.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.1 Changes                           *
+****************************************************************************
+
+QtBluetooth
+-----------
+
+ - [QTBUG-67672] Addressed missing emission of readChannelFinished() in
+   QBluetoothSocket as required by QIODevice.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Android
+-------
+
+ - [QTBUG-65826] Fixed crash in QLowEnergyController during service discovery.
+
+iOS/macOS
+---------
+
+ - [QTBUG-68422] Fixed never-ending QLowEnergyController service discovery due
+   to remote peripheral devices not responding properly to requests. A timeout
+   was added to catch such cases.
+
+Linux/BlueZ
+-----------
+
+ - [QTBUG-64735] Fixed blocking QBluetoothLocalDevice::requestPairing() call
+   which should not block.
+
+ - Fixed missing service invalidation when calling
+   QLowEnergyController::disconnectService().
+

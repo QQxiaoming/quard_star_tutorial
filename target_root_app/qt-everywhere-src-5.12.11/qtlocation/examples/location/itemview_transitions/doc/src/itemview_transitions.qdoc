@@ -1,0 +1,62 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\example itemview_transitions
+\title MapItemView Transitions (QML)
+\ingroup qtlocation-examples
+\brief How to use transitions together with MapItemView
+\image itemview_transitions.jpg
+
+\e {MapItemView Transitions} demonstrates how to use the \l{Map} item to render a map.
+It shows the minimum amount of code needed to display the map, and can be used
+as a basis for further experimentation.
+
+\include examples-run.qdocinc
+
+\section1 QML Code
+
+In \c main.qml, two \e {MapItemView} elements are used, to add to the
+map the administrative districts for the Oslo region, and to add a marker
+upon long-press.
+
+\snippet itemview_transitions/main.qml MarkerView
+
+The marker view specifies both the add and the remove transition, to
+create a bouncing marker effect.
+
+\snippet itemview_transitions/main.qml OsloAdministrativeRegions
+
+The administrative districts view specifies only the add transition,
+to create a district growing effect.
+
+\section1 Requirements
+
+The example requires a working internet connection to download
+\c OpenStreetMap map tiles. An optional system proxy should be picked
+up automatically.
+*/

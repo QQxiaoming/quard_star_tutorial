@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-equal-14                              :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 24, 2005                                    :)
+(:Purpose: Evaluates The "boolean-equal" function        :)
+(: with both operands set to expressions unsing multiple :)
+(: "eq" operators connected by an "or" expression.      :)
+(:*******************************************************:)
+ 
+((7 eq 7) eq xs:boolean("true")) or (xs:boolean("false") eq xs:boolean("true"))

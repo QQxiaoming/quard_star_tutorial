@@ -1,0 +1,143 @@
+{
+    "module": "qml",
+    "depends": [
+        "core-private",
+        "network-private"
+    ],
+
+    "commandline": {
+        "options": {
+            "qml-network": "boolean",
+            "qml-debug": "boolean"
+        }
+    },
+
+    "tests": {
+        "cxx14_make_unique": {
+            "label": "C++14 make_unique()",
+            "type": "compile",
+            "test": {
+                "include": "memory",
+                "main": [
+                    "std::unique_ptr<int> ptr = std::make_unique<int>();"
+                ],
+                "qmake": "CONFIG += c++11"
+            }
+        }
+    },
+
+    "features": {
+        "cxx14_make_unique": {
+            "label": "C++14 make_unique",
+            "condition": "features.c++14 || tests.cxx14_make_unique",
+            "output": [ "privateFeature" ]
+        },
+        "qml-network": {
+            "label": "QML network support",
+            "purpose": "Provides network transparency.",
+            "section": "QML",
+            "condition": "features.network",
+            "output": [ "publicFeature" ]
+        },
+        "qml-debug": {
+            "label": "QML debugging and profiling support",
+            "purpose": "Provides infrastructure and plugins for debugging and profiling.",
+            "section": "QML",
+            "output": [ "publicFeature" ]
+        },
+        "qml-profiler": {
+            "label": "Command line QML Profiler",
+            "purpose": "Supports retrieving QML tracing data from an application.",
+            "section": "QML",
+            "condition": [
+                "features.commandlineparser",
+                "features.qml-debug",
+                "features.qml-network && features.localserver",
+                "features.xmlstreamwriter"
+            ],
+            "output": [ "privateFeature" ]
+        },
+        "qml-preview": {
+            "label": "Command line QML Preview tool",
+            "purpose": "Updates QML documents in your application live as you change them on disk",
+            "section": "QML",
+            "condition": [
+                "features.commandlineparser",
+                "features.filesystemwatcher",
+                "features.qml-network && features.localserver",
+                "features.process",
+                "features.qml-debug"
+            ],
+            "output": [ "privateFeature" ]
+        },
+        "qml-devtools": {
+            "label": "QML Development Tools",
+            "purpose": "Provides the QmlDevtools library and various utilities.",
+            "section": "QML",
+            "output": [ "privateFeature" ]
+        },
+        "qml-sequence-object": {
+            "label": "QML sequence object",
+            "purpose": "Supports mapping sequence types into QML.",
+            "section": "QML",
+            "output": [ "privateFeature" ]
+        },
+        "qml-list-model": {
+            "label": "QML list model",
+            "purpose": "Provides the ListModel QML type.",
+            "section": "QML",
+            "output": [ "privateFeature" ]
+        },
+        "qml-xml-http-request": {
+            "label": "QML XML http request",
+            "purpose": "Provides support for sending XML http requests.",
+            "section": "QML",
+            "condition": [
+                "features.xmlstreamreader",
+                "features.qml-network"
+            ],
+            "output": [ "privateFeature" ]
+        },
+        "qml-locale": {
+            "label": "QML Locale",
+            "purpose": "Provides support for locales in QML.",
+            "section": "QML",
+            "output": [ "privateFeature" ]
+        },
+        "qml-animation": {
+            "label": "QML Animations",
+            "purpose": "Provides support for animations and timers in QML.",
+            "section": "QML",
+            "condition": "features.animation",
+            "output": [ "privateFeature" ]
+        },
+        "qml-delegate-model": {
+            "label": "QML delegate model",
+            "purpose": "Provides the DelegateModel QML type.",
+            "section": "QML",
+            "output": [ "privateFeature" ]
+        },
+        "qml-worker-script": {
+            "label": "QML WorkerScript",
+            "purpose": "Enables the use of threads in QML.",
+            "section": "QML",
+            "condition": "features.thread",
+            "output": [ "privateFeature" ]
+        }
+    },
+
+    "summary": [
+        {
+            "section": "Qt QML",
+            "entries": [
+                "qml-network",
+                "qml-debug",
+                "qml-sequence-object",
+                "qml-list-model",
+                "qml-xml-http-request",
+                "qml-locale",
+                "qml-delegate-model"
+            ]
+        }
+    ]
+}

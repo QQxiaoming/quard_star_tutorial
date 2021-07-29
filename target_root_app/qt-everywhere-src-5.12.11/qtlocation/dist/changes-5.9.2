@@ -1,0 +1,56 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.2 Changes                           *
+****************************************************************************
+
+QtLocation
+----------
+ - [QTBUG-61070] mapQuickItems aren't drawn any longer if coordinate is invalid
+ - [QTBUG-61813] Fixed Map.toCoordinate always clamping y values to 0
+ - [QTBUG-61727] Fixed dragging items out of map bounds
+ - [QTBUG-62098] Fixed plugins build dependency
+ - [QTBUG-62122] Fixed potential memleak on QDeclarativeGeoMap destruction
+ - [QTBUG-62154] Fixed MapCircle artifacts with small radiuses
+ - Restored usage of setProperty on Map.fitViewportToGeoShape
+ - [QTBUG-57690] Fixed visible region computation in QGeoProjectionWebMercator
+ - Fixed QDeclarativeGeoMap::populateMap duplicating items
+ - Fixed GeocodeModel not autoUpdating if plugin attaches late
+ - [QTBUG-62075] Fixed PluginParameter not working with script as property values
+ - Added a configure feature for each geoservice plugin
+ - Fixed file tile cache not honoring disk cache size of 0
+ - [QTBUG-63124] Fixed wrong clipper dependency due to incorrect qmake syntax
+ - [QTBUG-63251] Fixed Map.fromCoordinate returning wrong values during tilting
+
+ - OSM
+   * [QTBUG-61637] Fixed OSM plugin not working with providersrepository.disabled = true
+   * [QTBUG-63033] Fixed disabling redirection for providers that have no local fallback
+
+ - MapboxGL:
+   * [QTBUG-61442] Fixed MapParameter dynamic usage
+   * [QTBUG-62454] Bumped Mapbox GL to v1.1.0 to prevent a crash
+   * [QTBUG-62861] Fixed broken native text rendering with Mapbox GL plugin
+   * [QTBUG-58869] Fixed Mapbox GL not rendering circles natively
+   * Fixed Mapbox GL plugin not respecting MapItem visibility and opacity
+
+
+QtPositioning
+-------------
+ - [QTBUG-62778] Fixed PositionSource never turning active on Android in some cases

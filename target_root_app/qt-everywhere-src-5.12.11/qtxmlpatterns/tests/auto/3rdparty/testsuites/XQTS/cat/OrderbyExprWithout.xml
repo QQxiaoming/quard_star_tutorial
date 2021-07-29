@@ -1,0 +1,604 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="OrderbyExprWithout" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>ORDER BY Clause without OrderModifier</title>
+      <description>Tests for the ORDER BY part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="orderbywithout-1" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-1" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-2" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"()") ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-2" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-3" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "concat($x,"another String After") ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-3" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-4" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "concat("another String Before",$x) ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-4" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-5" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "concat($x,"") ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-5" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-6" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "concat("",$x) ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-6" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-7" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x is $x ", where $x is a set of nodes with strings as content.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-7" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-8" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "concat($x,$x) ", where $x is a set of Strings.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-8" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-9" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "string-length($x) ", where $x is a set of Nodes with strings as content.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-9" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-10" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "count($x) ", where $x is a set of node with strings as content.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-10" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-11" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x ", where $x is a set of negative numbers casted as decimals.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-11" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-12" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "($x + $x) ", where $x is a set of negative numbers casted as decimals.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-12" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-13" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x is $x ", where $x is a set of nodes with negative numbers as content.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-13" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-14" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:float($x) ", where $x is a set of negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-14" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-15" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:double($x) ", where $x is a set of negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-15" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-16" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:integer($x) ", where $x is a set of negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-16" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-17" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "($x * -1) ", where $x is a set of negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-17" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-18" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x ", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-18" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-19" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "($x + $x) ", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-19" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-20" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x is $x ", where $x is a set of nodes with positive numbers as content.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-20" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-21" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:float($x) ", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-21" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-22" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x)", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-22" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-23" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:double($x)", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-23" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-24" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:integer($x)", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-24" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-25" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "string($x)", where $x is a set of positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-25" date="2005-12-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-26" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x", where $x is a set of small positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-26" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-27" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x", where $x is a set of small positive numbers casted as decimals.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-27" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-28" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "($x + $x) ", where $x is a set of small positive numbers casted as decimals.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-28" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-29" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x is $x ", where $x is a set nodes with small positive numbers as content.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-29" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-30" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:float($x) ", where $x is a set of small positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-30" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-31" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:decimal($x) ", where $x is a set of small positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-31" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-32" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:double($x) ", where $x is a set of small positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-32" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-33" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "string($x) ", where $x is a set of small positive numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-33" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-34" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x ", where $x is a set of small negative numbers casted as decimals.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-34" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-35" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "($x + $x) ", where $x is a set of small negative numbers casted as decimals.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-35" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-36" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "$x is $x ", where $x is a set of nodes with small negative numbers as argument.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-36" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-37" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:float($x) ", where $x is a set of small negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-37" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-37.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-38" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:decimal($x) ", where $x is a set of small negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-38" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-38.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-39" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "xs:double($x) ", where $x is a set of small negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-39" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbywithout-40" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWOR expression set to "string($x) ", where $x is a set of small negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbywithout-40" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbywithout-40.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-1" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Use a relative, valid collation.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5290</reflects-resolution>
+      <query name="K2-OrderbyExprWithout-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-2" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Use a relative, invalid collation.</description>
+      <query name="K2-OrderbyExprWithout-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0076</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-3" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Use a relative, unknown collation.</description>
+      <query name="K2-OrderbyExprWithout-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0076</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-4" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Use an absolute, invalid collation.</description>
+      <query name="K2-OrderbyExprWithout-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0046</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-5" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A simple sorting of integers.</description>
+      <query name="K2-OrderbyExprWithout-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-6" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A simple sorting of integers(#2).</description>
+      <query name="K2-OrderbyExprWithout-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-OrderbyExprWithout-7" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="parse-error">
+      <description>A simple sorting of integers(#2).</description>
+      <query name="K2-OrderbyExprWithout-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-8" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sorting only involving a let-binding, no for-clause.</description>
+      <query name="K2-OrderbyExprWithout-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-8.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-9" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sorting of 4 6 5.</description>
+      <query name="K2-OrderbyExprWithout-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-9.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-10" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Cardinality error in the order spec.</description>
+      <query name="K2-OrderbyExprWithout-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-11" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A sort where the for-binding is only used as a sort key.</description>
+      <query name="K2-OrderbyExprWithout-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-12" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A sort with an unused for-binding.</description>
+      <query name="K2-OrderbyExprWithout-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-13" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A sort with a for-binding whose only purpose is sorting.</description>
+      <query name="K2-OrderbyExprWithout-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-14" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Apply fn:avg() to the return value of a for clause with sorting.</description>
+      <query name="K2-OrderbyExprWithout-14" static-name="K2-OrderbyExprWithout-14-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-OrderbyExprWithout-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-15" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Ensure that cardinality checks are effective on the return value of a .</description>
+      <query name="K2-OrderbyExprWithout-15" static-name="K2-OrderbyExprWithout-15-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FORG0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-16" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort booleans.</description>
+      <query name="K2-OrderbyExprWithout-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-17" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Extract the effective boolean value from a order by expression.</description>
+      <query name="K2-OrderbyExprWithout-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-18" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort a single atomic value.</description>
+      <query name="K2-OrderbyExprWithout-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-19" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Multiple atomic values as sort key trigger a type error.</description>
+      <query name="K2-OrderbyExprWithout-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-19.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-20" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Multiple nodes as sort key trigger a type error.</description>
+      <query name="K2-OrderbyExprWithout-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-20.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-21" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A sort key that doesn't affect the result.</description>
+      <query name="K2-OrderbyExprWithout-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-OrderbyExprWithout-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Frans Englich" name="K2-OrderbyExprWithout-22" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>order by preceded by an unused let binding.</description>
+      <query name="K2-OrderbyExprWithout-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-22.txt</output-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-22-2.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-23" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Multiple atomic values as sort key trigger a type error(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-23.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-24" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Multiple nodes as sort key trigger a type error(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-24.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-25" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>xs:hexBinary values cannot be compared(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-25.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-26" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>xs:hexBinary values cannot be compared.</description>
+      <query name="K2-OrderbyExprWithout-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-26.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-27" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>xs:time and xs:date values cannot be compared(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-27.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-28" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>xs:time and xs:date values cannot be compared.</description>
+      <query name="K2-OrderbyExprWithout-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-28.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-29" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>An empty order by and an empty return clause, with node constructor.</description>
+      <query name="K2-OrderbyExprWithout-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-OrderbyExprWithout-29.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-30" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>An empty order by and an empty return clause, with atomic value.</description>
+      <query name="K2-OrderbyExprWithout-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-OrderbyExprWithout-30.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-31" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A type error in order by, but without for clause(unstable sort).</description>
+      <query name="K2-OrderbyExprWithout-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-31.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-32" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>A type error in order by, but without for clause(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-32.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-33" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Uncomparable values in order by, but without for clause(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-33.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-34" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Uncomparable values in order by, but without for clause(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-34.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-35" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Uncomparable values in order by, but without for clause(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-35.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-36" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Uncomparable values in order by, but without for clause(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-36.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Frans Englich" name="K2-OrderbyExprWithout-37" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Unused order by.</description>
+      <query name="K2-OrderbyExprWithout-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-37.txt</output-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-37-2.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Frans Englich" name="K2-OrderbyExprWithout-38" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>'order by' combined with reverse().</description>
+      <query name="K2-OrderbyExprWithout-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-38.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-39" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Contains a type error, but the result can be computed without evaluation.</description>
+      <query name="K2-OrderbyExprWithout-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-39.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-40" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="runtime-error">
+      <description>Overshadowing variable that leads to type error.</description>
+      <query name="K2-OrderbyExprWithout-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-41" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>order by, with many let bindings inbetween.</description>
+      <query name="K2-OrderbyExprWithout-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-41.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-42" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Apply fn:string() on a for clause that only produces on item, and that cannot easily constant propagate.</description>
+      <query name="K2-OrderbyExprWithout-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Ignore"/>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-43" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Extract the effective boolean value from the result of order by.</description>
+      <query name="K2-OrderbyExprWithout-43" static-name="K2-OrderbyExprWithout-43-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-43.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-44" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort, with a where and let clause in between.</description>
+      <query name="K2-OrderbyExprWithout-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-44.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-45" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Short key-for involved in sorting.</description>
+      <query name="K2-OrderbyExprWithout-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-45.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-46" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort special floating point values.</description>
+      <query name="K2-OrderbyExprWithout-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-46.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-47" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort special floating point values(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-47.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-48" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort special floating point values.</description>
+      <query name="K2-OrderbyExprWithout-48" static-name="K2-OrderbyExprWithout-48-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-48.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-OrderbyExprWithout-49" FilePath="FLWORExpr/OrderbyExpr/OrderbyExprWithout/" scenario="standard">
+      <description>Sort special floating point values(stable sort).</description>
+      <query name="K2-OrderbyExprWithout-49" static-name="K2-OrderbyExprWithout-49-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-OrderbyExprWithout-49.txt</output-file>
+   </test-case>
+</test-group>

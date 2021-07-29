@@ -1,0 +1,360 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="Steps" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Steps</title>
+      <description/>
+   </GroupInfo>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-1" FilePath="PathExpr/Steps/" scenario="runtime-error">
+      <description>A 'first-item' predicate combined with a name test inside a function.</description>
+      <query name="K2-Steps-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-2" FilePath="PathExpr/Steps/" scenario="runtime-error">
+      <description>A numeric predicate combined with a name test inside a function.</description>
+      <query static-name="K2-Steps-2-static" name="K2-Steps-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-3" FilePath="PathExpr/Steps/" scenario="runtime-error">
+      <description>A truth predicate combined with a name test inside a function.</description>
+      <query name="K2-Steps-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-4" FilePath="PathExpr/Steps/" scenario="runtime-error">
+      <description>A predicate with last() combined with a name test inside a function.</description>
+      <query name="K2-Steps-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-5" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>A direct element constructor as step, followed by a name test.</description>
+      <query name="K2-Steps-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Steps-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-6" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>A direct element constructor as step, followed by the context item.</description>
+      <query name="K2-Steps-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-7" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Apply fn:count to an atomic step.</description>
+      <query name="K2-Steps-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Steps-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Steps-8" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>'//' by itself is a syntax error.</description>
+      <query name="K2-Steps-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Steps-9" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>A syntax error in a path step.</description>
+      <query name="K2-Steps-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-10" FilePath="PathExpr/Steps/" scenario="runtime-error">
+      <description>The last step containing a mixture of nodes and atomic values.</description>
+      <query name="K2-Steps-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Steps-11" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>'///' is an invalid expression.</description>
+      <query name="K2-Steps-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-12" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Combine variables, the context item and path expressions.</description>
+      <query name="K2-Steps-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-12.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-13" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Ensure the focus is available through a for-expression.</description>
+      <query name="K2-Steps-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Steps-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-14" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Ensure sorting and de-duplication is applied to variables when appearing in paths.</description>
+      <query name="K2-Steps-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-14.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-15" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Ensure sorting and de-duplication is applied to variables when appearing in paths(#2).</description>
+      <query name="K2-Steps-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-16" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Ensure sorting and de-duplication is applied to variables when appearing in paths(#3).</description>
+      <query name="K2-Steps-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-17" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Ensure sorting and de-duplication is applied to variables when appearing in paths(#4).</description>
+      <query name="K2-Steps-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-18" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Trigger node sorting of a peculiar case.</description>
+      <query name="K2-Steps-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-19" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Trigger node sorting of a peculiar case(#2).</description>
+      <query name="K2-Steps-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-20" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Use nested name tests.</description>
+      <query name="K2-Steps-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Steps-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-21" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls.</description>
+      <query static-name="K2-Steps-21-static" name="K2-Steps-21" date="2008-02-14+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-22" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses, function calls, and a cardinality check.</description>
+      <query static-name="K2-Steps-22-static" name="K2-Steps-22" date="2008-02-14+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-23" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#2).</description>
+      <query static-name="K2-Steps-23-static" name="K2-Steps-23" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-24" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#2).</description>
+      <query static-name="K2-Steps-24-static" name="K2-Steps-24" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-25" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#3).</description>
+      <query static-name="K2-Steps-25" name="K2-Steps-25" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-26" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#4).</description>
+      <query static-name="K2-Steps-26" name="K2-Steps-26" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-26.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-27" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#5).</description>
+      <query static-name="K2-Steps-27" name="K2-Steps-27" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-28" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#5).</description>
+      <query static-name="K2-Steps-28" name="K2-Steps-28" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-29" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#6).</description>
+      <query static-name="K2-Steps-29" name="K2-Steps-29" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-30" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#7).</description>
+      <query name="K2-Steps-30" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-31" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focuses and function calls(#7).</description>
+      <query name="K2-Steps-31" date="2008-02-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-32" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focus and a recursive function call.</description>
+      <query name="K2-Steps-32" date="2008-02-18+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-33" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focus and a recursive function call.</description>
+      <query name="K2-Steps-33" date="2008-03-05+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Steps-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-34" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Tricky combination of focus and a recursive function call(#3).</description>
+      <query name="K2-Steps-34" date="2008-03-05+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-Steps-34.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Steps-35" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Combine predicate with an element and text node constructor.</description>
+      <query name="K2-Steps-35" date="2008-05-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Steps-35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-1" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-1" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+  </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-1a" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-1a" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-1a.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-2" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-2" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-2a" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-2a" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-2a.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-3" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-3" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-3a" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-3a" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-3a.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-4" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-4" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-5" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-5" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-5a" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-5a" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-5a.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-6" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-6" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-7" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-7" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-7a" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-7a" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-7a.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-8" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; parse error.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-8" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-8a" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-8a" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-8a.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Jim Melton" name="Steps-leading-lone-slash-9" FilePath="PathExpr/Steps/" scenario="parse-error">
+      <description>Verify xgc:leading-lone-slash implementation; valid path expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-9" date="2009-10-01"/>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-10" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid path expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-10" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-11" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid path expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-11" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-12" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid path expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-12" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-13" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid path expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-13" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-14" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid path expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-14" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-15" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-15" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-16" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-16" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Jim Melton" is-XPath2="false" name="Steps-leading-lone-slash-17" FilePath="PathExpr/Steps/" scenario="standard">
+      <description>Verify xgc:leading-lone-slash implementation; valid expression.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="Steps-leading-lone-slash-17" date="2009-10-01"/>
+      <output-file role="principal" compare="Text">Steps-leading-lone-slash-17.txt</output-file>
+   </test-case>
+
+</test-group>

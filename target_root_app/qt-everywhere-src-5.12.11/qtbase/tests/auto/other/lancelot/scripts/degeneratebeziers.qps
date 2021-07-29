@@ -1,0 +1,47 @@
+# Version: 1
+# CheckVsReference: 5%
+
+path_moveTo degenerate 3427.0918499999997948 3872.1318999999998596
+path_cubicTo degenerate 3427.0918499999997948 3872.1318999999994048 4729.4590867905308187 5176.8613451144155988 5389.9325499999995372 5837.8072499999998399
+
+scale 0.05 0.05
+translate -2500 -3000
+setPen black 800
+drawPath degenerate
+
+resetMatrix
+path_moveTo revbez 0 20
+path_cubicTo revbez 0 0 120 0 120 -20
+
+path_moveTo revbez 0 80
+path_cubicTo revbez 0 100 120 100 120 120
+
+translate 50 250
+
+setPen blue 40 solidline flatcap
+drawPath revbez
+setPen red 0
+drawPath revbez
+
+translate 200 0
+setPen blue 40 solidline squarecap
+drawPath revbez
+setPen red 0
+drawPath revbez
+
+translate 200 0
+setPen blue 40 solidline roundcap
+drawPath revbez
+setPen red 0
+drawPath revbez
+
+resetMatrix
+path_lineTo tightJoin 60 10
+path_cubicTo tightJoin 50 0 100 0 100 50
+
+translate 50 500
+
+setPen green 40 solidline roundcap roundjoin
+drawPath tightJoin
+setPen red 0
+drawPath tightJoin

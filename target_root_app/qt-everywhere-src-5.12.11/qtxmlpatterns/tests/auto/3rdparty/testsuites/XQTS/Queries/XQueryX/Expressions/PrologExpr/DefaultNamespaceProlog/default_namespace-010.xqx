@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:defaultNamespaceDecl>
+        <xqx:defaultNamespaceCategory>function</xqx:defaultNamespaceCategory>
+        <xqx:uri>http://example.org</xqx:uri>
+      </xqx:defaultNamespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName>prnt</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>n</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+          <xqx:param>
+            <xqx:varName>n2</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+          <xqx:param>
+            <xqx:varName>n3</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">date</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+          <xqx:param>
+            <xqx:varName>n4</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">long</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+          <xqx:param>
+            <xqx:varName>n5</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+          <xqx:param>
+            <xqx:varName>n6</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">decimal</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:functionBody>
+          <xqx:ifThenElseExpr>
+            <xqx:ifClause>
+              <xqx:lessThanOp>
+                <xqx:firstOperand>
+                  <xqx:varRef>
+                    <xqx:name>n</xqx:name>
+                  </xqx:varRef>
+                </xqx:firstOperand>
+                <xqx:secondOperand>
+                  <xqx:integerConstantExpr>
+                    <xqx:value>2</xqx:value>
+                  </xqx:integerConstantExpr>
+                </xqx:secondOperand>
+              </xqx:lessThanOp>
+            </xqx:ifClause>
+            <xqx:thenClause>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:thenClause>
+            <xqx:elseClause>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="fn">concat</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:varRef>
+                    <xqx:name>n</xqx:name>
+                  </xqx:varRef>
+                  <xqx:stringConstantExpr>
+                    <xqx:value> </xqx:value>
+                  </xqx:stringConstantExpr>
+                  <xqx:varRef>
+                    <xqx:name>n2</xqx:name>
+                  </xqx:varRef>
+                  <xqx:stringConstantExpr>
+                    <xqx:value> </xqx:value>
+                  </xqx:stringConstantExpr>
+                  <xqx:varRef>
+                    <xqx:name>n3</xqx:name>
+                  </xqx:varRef>
+                  <xqx:stringConstantExpr>
+                    <xqx:value> </xqx:value>
+                  </xqx:stringConstantExpr>
+                  <xqx:varRef>
+                    <xqx:name>n4</xqx:name>
+                  </xqx:varRef>
+                  <xqx:stringConstantExpr>
+                    <xqx:value> </xqx:value>
+                  </xqx:stringConstantExpr>
+                  <xqx:varRef>
+                    <xqx:name>n5</xqx:name>
+                  </xqx:varRef>
+                  <xqx:stringConstantExpr>
+                    <xqx:value> </xqx:value>
+                  </xqx:stringConstantExpr>
+                  <xqx:varRef>
+                    <xqx:name>n6</xqx:name>
+                  </xqx:varRef>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:elseClause>
+          </xqx:ifThenElseExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>table</xqx:tagName>
+        <xqx:elementContent>
+          <xqx:sequenceExpr>
+            <xqx:elementConstructor>
+              <xqx:tagName>td</xqx:tagName>
+              <xqx:elementContent>
+                <xqx:stringConstantExpr>
+                  <xqx:value>Value is =  </xqx:value>
+                </xqx:stringConstantExpr>
+                <xqx:functionCallExpr>
+                  <xqx:functionName>prnt</xqx:functionName>
+                  <xqx:arguments>
+                    <xqx:integerConstantExpr>
+                      <xqx:value>4</xqx:value>
+                    </xqx:integerConstantExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="xs">string</xqx:functionName>
+                      <xqx:arguments>
+                        <xqx:stringConstantExpr>
+                          <xqx:value>hello</xqx:value>
+                        </xqx:stringConstantExpr>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="xs">date</xqx:functionName>
+                      <xqx:arguments>
+                        <xqx:stringConstantExpr>
+                          <xqx:value>2005-02-22</xqx:value>
+                        </xqx:stringConstantExpr>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="xs">long</xqx:functionName>
+                      <xqx:arguments>
+                        <xqx:integerConstantExpr>
+                          <xqx:value>5</xqx:value>
+                        </xqx:integerConstantExpr>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="xs">string</xqx:functionName>
+                      <xqx:arguments>
+                        <xqx:stringConstantExpr>
+                          <xqx:value>well</xqx:value>
+                        </xqx:stringConstantExpr>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="xs">decimal</xqx:functionName>
+                      <xqx:arguments>
+                        <xqx:decimalConstantExpr>
+                          <xqx:value>1.2</xqx:value>
+                        </xqx:decimalConstantExpr>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                  </xqx:arguments>
+                </xqx:functionCallExpr>
+              </xqx:elementContent>
+            </xqx:elementConstructor>
+          </xqx:sequenceExpr>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

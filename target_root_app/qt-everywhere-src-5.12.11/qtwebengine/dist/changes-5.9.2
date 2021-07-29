@@ -1,0 +1,72 @@
+Qt 5.9.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                             General                                      *
+****************************************************************************
+
+ - Chromium Snapshot:
+   * Security fixes from Chromium up to version 61.0.3163.79
+    Including: CVE-2017-5092, CVE-2017-5093, CVE-2017-5095, CVE-2017-5097,
+        CVE-2017-5099, CVE-2017-5102, CVE-2017-5103, CVE-2017-5107,
+        CVE-2017-5112, CVE-2017-5114, CVE-2017-5117 and CVE-2017-5118
+   * Fixed Skia to to render text correctly with FreeType 2.8.1
+   * [QTBUG-50389] Fixed assert on some flash content
+
+ - QtWebEngine:
+   * [QTBUG-57505] Handle --force-webrtc-ip-handling-policy on command-line
+   * [QTBUG-58306] Fixed handling of menu key
+   * [QTBUG-60790] Fixed dragging images to desktop
+   * [QTBUG-61354] Set referrer on download requests
+   * [QTBUG-61429] Fixed cancelling IME composition
+   * [QTBUG-61506] Stop searching when navigating away
+   * [QTBUG-61910] Fixed an issue where system proxy settings were not
+     picked up correctly
+   * [QTBUG-62112] Fixed upside-down rendering in software rendering mode
+   * [QTBUG-62112] Fixed rendering of content with preserve-3d in CSS
+   * [QTBUG-62311] Fixed hang when exiting with open combobox
+   * [QTBUG-62808] Handle --explicitly-allowed-ports on command-line
+   * [QTBUG-62898] Fixed accessing webchannels from document-creation
+     user-scripts after navigation.
+   * [QTBUG-62942] Fixed committing IME composition on touch events
+
+ - QWebEngineView:
+   * [QTBUG-61621] Fixed propagation of unhandled key press events
+
+ - WebEngineView:
+   * The callback version of printToPdf is now called with a proper
+     bytearray result instead of a PDF data in a javascript string.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+ - Linux:
+   * [QTBUG-61528, QTBUG-62673] Fixed various multilib build configurations
+   * [QTBUG-61846] Fixed host builds on Arm and MIPS
+
+ - Windows:
+   * [QTBUG-60334] Fixed location of IME window
+   * [QTBUG-62146] Fixed following system font configuration
+   * [QTBUG-62200] Fixed assert on hover
+   * Allow WebGL to work with software OpenGL using the new command-line
+     argument --enable-webgl-software-rendering
+
+ - macOS:
+   * [QTBUG-60605] Use OpenGL core-profile when the main application does

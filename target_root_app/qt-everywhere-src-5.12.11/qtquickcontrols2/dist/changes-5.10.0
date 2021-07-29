@@ -1,0 +1,166 @@
+Qt 5.10 introduces many new features and improvements as well as bugfixes
+over the 5.9.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.10 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.9 will continue to run with 5.10.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                        Important Behavior Changes                        *
+****************************************************************************
+
+ - [QTBUG-58060] DialogButtonBox with Material style now uses the Android
+   button layout.
+
+****************************************************************************
+*                                 Controls                                 *
+****************************************************************************
+
+ - AbstractButton:
+   * [QTBUG-49820] Added support for icons. The following properties are
+     now available for derived types to use: icon.name, icon.source,
+     icon.width, icon.height, icon.color.
+   * [QTBUG-49820] Added display property to allow control over how icons
+     and text are displayed within buttons, without having to implement
+     custom delegates.
+   * [QTBUG-50705] Added AbstractButton::action property.
+
+ - Action:
+   * [QTBUG-50705] Introduced Action, an abstract user interface action
+     that can have shortcuts and be assigned to buttons.
+
+ - ActionGroup:
+   * [QTBUG-50705] Introduced ActionGroup, a non-visual group of actions
+     that is mutually exclusive by default.
+
+ - ApplicationWindow:
+   * [QTBUG-61336] The attached activeFocusControl property has been made
+     functional with a plain QML Window to make the functionality available
+     when using QQuickWindow/View/Widget instead of ApplicationWindow.
+   * [QTBUG-61336] Deprecated the overlay grouped property in favor of the
+     newly introduced Overlay attached properties.
+
+ - ButtonGroup:
+   * Added exclusive property to allow creating non-exclusive button
+     groups.
+
+ - Container:
+   * Deprecated removeItem(int) in favor of removeItem(Item) and
+     takeItem(int) with clearer semantics. The former destroys the item,
+     whereas the latter transfers ownership to the caller.
+
+ - Dialog:
+   * Added "result" property that holds whether the dialog was previously
+     accepted or rejected.
+   * Added a standardButton() method for accessing the standard buttons in
+     the dialog's button box.
+   * [QTBUG-59423] Added missing applied(), discarded(), helpRequested(),
+     and reset() signals that are emitted when the respective standard
+     buttons are clicked.
+
+ - DialogButtonBox:
+   * [QTBUG-59423] Added missing applied(), reset(), and discarded()
+     signals.
+
+ - Menu:
+   * [QTBUG-50471] Added a popup() method that opens a menu at the mouse
+     cursor on desktop platforms that have a mouse cursor available, and
+     otherwise centers the menu over its parent item.
+   * Added support for declaring Actions. The new "delegate" property is
+     used to define a Component that is used to create menu items that
+     present the actions.
+   * Deprecated removeItem(int) in favor of removeItem(Item) and
+     takeItem(int) with clearer semantics. The former destroys the item,
+     whereas the latter transfers ownership to the caller.
+   * [QTBUG-60351] Added support for cascading sub-menus.
+   * Added addMenu(), insertMenu(), removeMenu(), and takeMenu() methods
+     for adding and removing sub-menus programmatically.
+   * Added addAction(), insertAction(), removeAction(), and takeAction()
+     methods for adding and removing actions programmatically.
+   * Added currentIndex property for styling purposes.
+   * Added actionAt() and menuAt() accessors.
+   * Added a dismiss() method. Unlike close() that only closes a menu and
+     its sub-menus, dismiss() closes the whole hierarchy of menus,
+     including the parent menus.
+   * Added "count" property.
+
+ - MenuBar:
+   * [QTBUG-60350] Introduced a MenuBar control.
+
+ - MenuItem:
+   * Added a "menu" property that provides access to the menu that contains
+     the menu item.
+   * Menu has been fixed to highlight its items while key navigating and
+     mouse hovering to ensure seamless item highlight between mouse hover
+     and key navigation. In order to provide appropriate highlighting that
+     works for key navigation and mouse hover, styles should bind their
+     visual highlight to MenuItem::highlighted instead of
+     Control::activeFocus or Control::hovered.
+
+ - Overlay:
+   * [QTBUG-61336] Introduced Overlay attached properties and signals that
+     supersede the overlay grouped property in Application Window. The
+     Overlay attached type allows providing background dimming for popups
+     without requiring an ApplicationWindow instance.
+
+ - Popup:
+   * Added an "opened" boolean property that holds whether a popup is fully
+     open. That is, the popup is visible and neither the enter nor exit
+     transitions are running.
+   * Added "enabled" property.
+   * Added a read-only "mirrored" property that is true when the popup's
+     locale is right-to-left.
+
+ - RangeSlider:
+   * Added horizontal and vertical properties to make it more convenient to
+     create orientation-dependent bindings in styles.
+
+ - ScrollBar:
+   * Added horizontal and vertical properties to make it more convenient to
+     create orientation-dependent bindings in styles.
+
+ - ScrollIndicator:
+   * Added horizontal and vertical properties to make it more convenient to
+     create orientation-dependent bindings in styles.
+
+ - Slider:
+   * Added horizontal and vertical properties to make it more convenient to
+     create orientation-dependent bindings in styles.
+
+ - SpinBox:
+   * [QTBUG-58760] Added wrap-property to allow wrapping circular
+     spinboxes.
+
+ - StackView:
+   * Allowed specifying a transition when clearing the stack view.
+
+ - SwipeView:
+   * Added horizontal and vertical properties to make it more convenient to
+     create orientation-dependent bindings in styles.
+
+ - TabBar:
+   * Added index/tabBar/position attached properties.
+
+****************************************************************************
+*                                  Styles                                  *
+****************************************************************************
+
+ - Introduced a Fusion style that offers a platform agnostic
+   desktop-oriented look'n'feel.
+ - Added the Imagine style, which is based on image assets that can be
+   provided using a predefined naming convention.
+ - Added support for specifying the default font for different styles in
+   qtquickcontrols2.conf.
+ - Fixed the style selection mechanism so that now it is possible to
+   organize platform and locale-specific files into sub-directories, such
+   as "+linux", "+macos", and "+windows".

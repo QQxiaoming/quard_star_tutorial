@@ -1,0 +1,27 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Thu, 16 Jan 2020 15:42:55 -0800
+Subject: [PATCH 25/25] Abort early in sqlite3WindowRewrite
+
+Backports https://sqlite.org/src/info/cba2a2a44cdf138a629109bb0ad088ed4ef67fc66bed3e0373554681a39615d2
+
+Bug: 1042700
+---
+ third_party/sqlite/patched/src/select.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/third_party/sqlite/patched/src/select.c b/third_party/sqlite/patched/src/select.c
+index ec764996fb1a..2c9b4d9e01a7 100644
+--- a/third_party/sqlite/patched/src/select.c
++++ b/third_party/sqlite/patched/src/select.c
+@@ -2805,6 +2805,7 @@ static int multiSelect(
+     }
+   #endif
+   }
++  if( pParse->nErr ) goto multi_select_end;
+ 
+   /* Compute collating sequences used by
+   ** temporary tables needed to implement the compound select.
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

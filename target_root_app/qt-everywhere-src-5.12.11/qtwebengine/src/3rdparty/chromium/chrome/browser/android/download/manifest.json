@@ -1,0 +1,15 @@
+// This is a thin service manager service facade for Android Chrome's in-process
+// DownloadManagerService object.
+{
+  "name": "download_manager",
+  "display_name": "Download Manager",
+  "interface_provider_specs": {
+    "service_manager:connector": {
+      "provides": {},
+      "requires": {
+        "network": [ "network_service"],
+        "service_manager": [ "service_manager:singleton" ]
+      }
+    }
+  }
+}

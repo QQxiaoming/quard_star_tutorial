@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:andOp>
+        <xqx:firstOperand>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">string</xqx:functionName>
+            <xqx:arguments>
+              <xqx:subtractOp>
+                <xqx:firstOperand>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName xqx:prefix="xs">dateTime</xqx:functionName>
+                    <xqx:arguments>
+                      <xqx:stringConstantExpr>
+                        <xqx:value>1980-03-02T02:02:02Z</xqx:value>
+                      </xqx:stringConstantExpr>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:firstOperand>
+                <xqx:secondOperand>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName xqx:prefix="xs">yearMonthDuration</xqx:functionName>
+                    <xqx:arguments>
+                      <xqx:stringConstantExpr>
+                        <xqx:value>P05Y05M</xqx:value>
+                      </xqx:stringConstantExpr>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:secondOperand>
+              </xqx:subtractOp>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:firstOperand>
+        <xqx:secondOperand>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">true</xqx:functionName>
+            <xqx:arguments>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:secondOperand>
+      </xqx:andOp>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

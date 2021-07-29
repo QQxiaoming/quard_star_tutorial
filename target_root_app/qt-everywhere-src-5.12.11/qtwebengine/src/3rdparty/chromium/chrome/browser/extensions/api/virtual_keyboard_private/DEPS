@@ -1,0 +1,11 @@
+include_rules = [
+  "+media/audio"
+  "+services/audio/public/cpp"
+]
+
+specific_include_rules = {
+  # TODO(mash): Fix. https://crbug.com/646565
+  "chrome_virtual_keyboard_delegate\.cc": [
+    "+ash/shell.h",
+  ]
+}

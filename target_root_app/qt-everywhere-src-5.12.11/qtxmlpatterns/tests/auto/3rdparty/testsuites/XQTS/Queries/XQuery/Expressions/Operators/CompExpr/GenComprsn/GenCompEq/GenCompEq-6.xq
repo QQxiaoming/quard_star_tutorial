@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(: Test: GenCompEq-6                                     :)
+(: Written by: Sorin Nasoi                               :)
+(: Date: 2009-05-01+02:00                                :)
+(: Purpose: General comparison where one of the types is :)
+(: xs:untypedAtomic and the other xs:yearMonthDuration   :)
+(: Expected error FORG0001.                              :)
+(:*******************************************************:)
+
+xs:yearMonthDuration("P1999Y") = xs:untypedAtomic("1999")

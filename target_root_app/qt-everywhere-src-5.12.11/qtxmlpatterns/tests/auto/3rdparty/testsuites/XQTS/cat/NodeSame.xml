@@ -1,0 +1,272 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeSame" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:is-same-node</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="nodeexpression1" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: empty Sequence is empty Sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression1" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">nodeexpression1.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression2" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: empty Sequence is Single Element Constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression2" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">nodeexpression2.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression3" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: empty Sequence is Single Node Element.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3818</reflects-resolution>
+      <query name="nodeexpression3" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Text">nodeexpression3.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression4" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: empty Sequence is Sequence of single Element Node.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression4" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression5" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Element Constructor is empty Sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression5" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">nodeexpression5.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression6" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Element Constructor is Single Element Constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression6" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">nodeexpression6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression7" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Element Constructor is Single Node Element.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression7" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Text">nodeexpression7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression8" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Element Constructor is Sequence of single Element Node.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression8" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression9" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Node Element is empty Sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression9" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Text">nodeexpression9.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression10" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Node Element is Single Element Constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression10" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Text">nodeexpression10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression11" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Node Element is Single Node Element.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression11" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <output-file role="principal" compare="Text">nodeexpression11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression12" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Single Node Element is Sequence of single Element Node.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression12" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression13" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Sequence of single Element Node is empty Sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression13" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression13.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="nodeexpression14" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Sequence of single Element Node is Single Element Constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression14" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression15" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Sequence of single Element Node is Single Node Element.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression15" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context1">works</input-file>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpression16" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a Node expression With the operands/operator set with the following format: Sequence of single Element Node is Sequence of single Element Node.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpression16" date="2005-05-16"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpression16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpressionhc1" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a node expression used as argument to a fn:not function.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpressionhc1" date="2005-06-07"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpressionhc1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpressionhc2" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a node expression used as part of a boolean less than expression (lt operator).</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpressionhc2" date="2005-06-07"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpressionhc2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpressionhc3" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a node expression used as part of a boolean less than expression (ge operator).</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpressionhc3" date="2005-06-07"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpressionhc3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpressionhc4" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a node expression used as part of a boolean greater than expression (gt operator).</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpressionhc4" date="2005-06-07"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpressionhc4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodeexpressionhc5" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of a node expression used as part of a boolean greater than expression (ge operator).</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodeexpressionhc5" date="2005-06-07"/>
+      <input-file role="principal-data" variable="input-context2">staff</input-file>
+      <output-file role="principal" compare="Text">nodeexpressionhc5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="nodecomparisonerr-1" FilePath="Expressions/Operators/NodeOp/NodeSame/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of the "is-same-node" operator with one of the operands is not a single node or the empty sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.5.3" section-title="Node Comparisons" section-pointer="id-node-comparisons"/>
+      <spec-citation spec="FuncOps" section-number="14.6" section-title="op:is-same-node" section-pointer="func-is-same-node"/>
+      <query name="nodecomparisonerr-1" date="2005-11-23"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">nodecomparisonerr-1.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeSame-1" FilePath="Expressions/Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>A test whose essence is: `empty(1 is ())`.</description>
+      <query name="K-NodeSame-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeSame-1.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeSame-2" FilePath="Expressions/Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>A test whose essence is: `empty(() is 1)`.</description>
+      <query name="K-NodeSame-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeSame-2.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeSame-3" FilePath="Expressions/Operators/CompExpr/NodeComp/NodeSame/" scenario="runtime-error">
+      <description>A test whose essence is: `1 is 1`.</description>
+      <query name="K-NodeSame-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeSame-4" FilePath="Expressions/Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>A test whose essence is: `empty(() is ())`.</description>
+      <query name="K-NodeSame-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeSame-4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeSame-5" FilePath="Expressions/Operators/CompExpr/NodeComp/NodeSame/" scenario="parse-error">
+      <description>A syntactically invalid expression.</description>
+      <query name="K-NodeSame-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeSame-6" FilePath="Expressions/Operators/CompExpr/NodeComp/NodeSame/" scenario="runtime-error">
+      <description>A query reminding of an invokation of 'is' operator. However, this is not a parse error(XPST0003), because it is a valid function call, although to a non-existant function. 'is' is not a reserved function name.</description>
+      <query name="K-NodeSame-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeSame-1" FilePath="Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>Ensure node identity is is correct for variables and element constructors.</description>
+      <query name="K2-NodeSame-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeSame-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeSame-2" FilePath="Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>Ensure node identity is is correct between variable references.</description>
+      <query name="K2-NodeSame-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeSame-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeSame-3" FilePath="Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>Ensure node identity is is correct for variables and element constructors(#2).</description>
+      <query name="K2-NodeSame-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeSame-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeSame-4" FilePath="Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>Ensure node identity of nodes used with node constructors.</description>
+      <query name="K2-NodeSame-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeSame-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeSame-5" FilePath="Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>exactly-one() to is, that fails. Inferrence may conclude that it will always evaluate to false, so that is valid as well.</description>
+      <query name="K2-NodeSame-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeSame-5.txt</output-file>
+      <expected-error>FORG0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeSame-6" FilePath="Operators/CompExpr/NodeComp/NodeSame/" scenario="standard">
+      <description>Compare two empty sequences, that are tricky to infer at compile time.</description>
+      <query name="K2-NodeSame-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeSame-6.txt</output-file>
+   </test-case>
+</test-group>

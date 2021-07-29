@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqIntersect-17                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a node kind keyword, schema-element, to test query parsing. :)
+(:*******************************************************:)
+empty(<e/>/(author intersect schema-element))

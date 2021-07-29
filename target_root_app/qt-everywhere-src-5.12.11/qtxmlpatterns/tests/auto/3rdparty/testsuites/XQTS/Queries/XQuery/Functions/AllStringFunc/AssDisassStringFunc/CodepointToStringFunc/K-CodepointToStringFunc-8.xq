@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-CodepointToStringFunc-8                       :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: Codepoint 8 is invalid in XML 1.0 but valid in XML 1.1. :)
+(:*******************************************************:)
+codepoints-to-string(8)

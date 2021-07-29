@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:computedElementConstructor>
+        <xqx:tagNameExpr>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">QName</xqx:functionName>
+            <xqx:arguments>
+              <xqx:stringConstantExpr>
+                <xqx:value>aQname</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:tagNameExpr>
+        <xqx:contentExpr>
+          <xqx:stringConstantExpr>
+            <xqx:value>text</xqx:value>
+          </xqx:stringConstantExpr>
+        </xqx:contentExpr>
+      </xqx:computedElementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

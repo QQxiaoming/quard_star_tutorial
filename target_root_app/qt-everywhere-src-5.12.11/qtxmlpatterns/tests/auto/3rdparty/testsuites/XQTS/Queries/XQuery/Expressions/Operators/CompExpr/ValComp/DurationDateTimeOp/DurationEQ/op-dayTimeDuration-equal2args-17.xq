@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-dayTimeDuration-equal2args-17                 :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 3, 2005                                     :)
+(:Purpose: Evaluates The "op:dayTimeDuration-equal" operator (ge) :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:dayTimeDuration(mid range)                 :)
+(:$arg2 = xs:dayTimeDuration(lower bound)               :)
+(:*******************************************************:)
+
+xs:dayTimeDuration("P15DT11H59M59S") ge xs:dayTimeDuration("P0DT0H0M0S")

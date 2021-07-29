@@ -1,0 +1,14 @@
+{
+  "name": "ax_host_service",
+  "display_name": "Accessibility Host Service",
+  "interface_provider_specs": {
+    "service_manager:connector": {
+      "provides": {
+        // Provide accessibility support to any mojo app that asks for it.
+        "app" : [
+          "ax.mojom.AXHost"
+        ]
+      }
+    }
+  }
+}

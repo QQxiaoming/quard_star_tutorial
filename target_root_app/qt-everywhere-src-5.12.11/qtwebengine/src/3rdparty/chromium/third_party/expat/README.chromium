@@ -1,0 +1,31 @@
+Name: Expat XML Parser
+Short Name: expat
+URL: https://github.com/libexpat/libexpat
+Version: R_2_2_8-5-g4f23e05
+License: MIT
+License File: files/COPYING
+Security Critical: yes
+
+Description:
+  This is Expat XML parser - very lightweight C library for parsing XML.
+  Expat is distributed under an MIT license detailed in files/COPYING.
+
+  We include it here because libjingle depends on it.
+
+Import process:
+  git clone https://github.com/libexpat/libexpat.git
+  cd libexpat/expat
+  ./buildconf.sh
+  ./configure
+  cp expat_config.h $CHROMIUM_SRC/third_party/expat/files/lib
+  cd lib
+  cp *.c *.def *.h $CHROMIUM_SRC/third_party/expat/files/lib
+  cd $CHROMIUM_SRC/third_party/expat
+  patch -p3 < 0001-Do-not-claim-getrandom.patch
+
+Patches:
+    0001-Do-not-claim-getrandom.patch:
+      * Not all platforms have getrandom.
+
+Added files:
+  lib/expat_config.h (a generated config file)

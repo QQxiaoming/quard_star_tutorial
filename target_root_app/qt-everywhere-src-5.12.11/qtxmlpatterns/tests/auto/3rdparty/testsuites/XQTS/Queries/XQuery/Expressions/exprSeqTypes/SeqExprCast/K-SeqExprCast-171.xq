@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-171                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A preceding 'P' must always exist in a xs:dayTimeDuration value. :)
+(:*******************************************************:)
+xs:dayTimeDuration("3DT10H")

@@ -1,0 +1,185 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ContextImplicitTimezoneFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:implicit-timezone</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-1" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" function with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-1" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-2" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Normal call to "fn:implicit-timezone" function.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-2" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-3" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of an addition operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-3" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-4" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a subtraction operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-4" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-implicit-timezone-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-5" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a multiplication operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-5" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-6" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of multiplication operation, where second argument is expression that results in Nan.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-6" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOCA0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-7" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a multiplication operation. Second argument is 0.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-7" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-implicit-timezone-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-8" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a multiplication operation. Second argument is -0.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-8" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-implicit-timezone-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-9" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a division operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-9" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-10" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a division operation. Second argument results in NaN.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-10" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FOCA0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-11" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a division operation. Second argument is 0.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-11" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FODT0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-12" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a division operation. Second argument is -0.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-12" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FODT0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-13" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a division operation. Both operands are the fn:implicit-timezone.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-13" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-implicit-timezone-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-14" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a division operation. Second operand is a call to xs:dayTimeDuration.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-14" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-15" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of an addition operation. First operand is an xs:time() type.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-15" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-16" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a subtraction operation. First operand is an xs:time() type.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-16" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-17" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a subtraction operation. First operand is an xs:date() type.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-17" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-18" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of an addition operation. First operand is an xs:date() type.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-18" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-19" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of a subtraction operation. First operand is an xs:dateTime() type.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-19" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-20" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as part of an addition operation. First operand is an xs:dateTime() type.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-20" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-21" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as an argument to adjust-date-to-timezone function.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-21" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-22" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as an argument to adjust-time-to-timezone function.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-22" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-implicit-timezone-23" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:implicit-timezone" as an argument to adjust-dateTime-to-timezone function.</description>
+      <spec-citation spec="FuncOps" section-number="16.6" section-title="fn:implicit-timezone" section-pointer="func-implicit-timezone"/>
+      <query name="fn-implicit-timezone-23" date="2005-12-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Inspect">fn-implicit-timezone-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextImplicitTimezoneFunc-1" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `implicit-timezone("WRONG PARAM")`.</description>
+      <query name="K-ContextImplicitTimezoneFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextImplicitTimezoneFunc-2" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard">
+      <description>Simple test of implicit-timezone().</description>
+      <query name="K-ContextImplicitTimezoneFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextImplicitTimezoneFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextImplicitTimezoneFunc-3" FilePath="Functions/ContextFunc/ContextImplicitTimezoneFunc/" scenario="standard">
+      <description>Test that implicit-timezone() do return a value.</description>
+      <query name="K-ContextImplicitTimezoneFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextImplicitTimezoneFunc-3.txt</output-file>
+   </test-case>
+</test-group>

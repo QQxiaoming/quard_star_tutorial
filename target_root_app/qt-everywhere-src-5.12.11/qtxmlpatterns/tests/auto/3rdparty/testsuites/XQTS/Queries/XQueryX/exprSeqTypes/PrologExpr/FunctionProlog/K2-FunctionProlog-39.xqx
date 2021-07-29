@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>A</xqx:varName>
+        <xqx:varValue>
+          <xqx:elementConstructor>
+            <xqx:tagName>A</xqx:tagName>
+            <xqx:elementContent>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="local">functionA</xqx:functionName>
+                <xqx:arguments>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:elementContent>
+          </xqx:elementConstructor>
+        </xqx:varValue>
+      </xqx:varDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">functionA</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:elementTest/>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:elementConstructor>
+            <xqx:tagName>input</xqx:tagName>
+            <xqx:elementContent>
+              <xqx:stringConstantExpr>
+                <xqx:value>testing ...</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:elementContent>
+          </xqx:elementConstructor>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">functionB</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="xs">string</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>A</xqx:name>
+              </xqx:varRef>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="local">functionB</xqx:functionName>
+        <xqx:arguments>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

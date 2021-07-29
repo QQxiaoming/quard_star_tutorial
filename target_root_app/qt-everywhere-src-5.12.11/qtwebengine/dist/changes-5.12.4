@@ -1,0 +1,77 @@
+Qt 5.12.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.3.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.12.4 Changes                           *
+****************************************************************************
+
+General
+-------
+
+ - [QTBUG-57729, QTBUG-75539] Fixed automatic NTLM authentication, and added
+   support for --auth-server-whitelist.
+ - [QTBUG-60203] Fixed setting referer HTTP header in request interceptor.
+ - [QTBUG-74251, QTBUG-74698] Normalize download paths on Windows.
+ - [QTBUG-74864] Fixed resolving relative URLs with custom schemes.
+ - [QTBUG-75092] Fixed printing in landscape orientation.
+ - [QTBUG-75212] Added support for building with VS 2019.
+ - [QTBUG-75304] Fixed running non-MainWorld DocumentCreations scripts when
+   JavaScript is disabled.
+ - [QTBUG-75465] Fixed -no-gui builds.
+ - [QTBUG-75629] Fixed crash on Linux when pulseaudio had no devices.
+ - [QTBUG-76045] Fixed desktop capture on macOS.
+ - [QTBUG-73799] Try different versions when creating a CoreProfile context on macOS
+
+Chromium
+--------
+
+ - Security fixes from Chromium up to version 74.0.3729.157, including:
+
+    - CVE-2019-5805
+    - CVE-2019-5806
+    - CVE-2019-5808
+    - CVE-2019-5814
+    - CVE-2019-5815
+    - CVE-2019-5818
+    - CVE-2019-5819
+    - CVE-2019-5820
+    - CVE-2019-5821
+    - CVE-2019-5822
+    - CVE-2019-5823
+    - CVE-2019-5824
+    - CVE-2019-5825
+    - CVE-2019-5826
+    - CVE-2019-5827
+    - security issue 894933
+    - security issue 908669
+    - security issue 931949
+    - security issue 937663
+    - security issue 939316
+    - security issue 940205
+    - security issue 949015
+    - security issue 951322
+
+Qt WebEngine Widgets
+--------------------
+
+ - [QTBUG-75131, QTBUG-75175] Fixed QWebEngineView::setPage not deleting
+   old page.
+ - [QTBUG-75547] Fixed crash on exit when page and profile were deleted in
+   the wrong order.
+ - [QTBUG-75566] Added path validation to QWebEngineDownloadItem::setPath().

@@ -1,0 +1,7 @@
+specific_include_rules = {
+  # TODO(mash): Fix. https://crbug.com/758061
+  "window_manager_handler\.cc": [
+    "+ash/shell.h",
+    "+ash/wm/overview/window_selector_controller.h",
+  ]
+}

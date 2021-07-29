@@ -1,0 +1,19 @@
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//ios/web/js_compile.gni")
+
+source_set("manualfill") {
+  sources = [
+    "accessory_provider.h",
+    "accessory_provider.mm",
+  ]
+  deps = [
+    "//base",
+    "//ios/chrome/browser/autofill",
+    "//ios/chrome/browser/ui/autofill/manualfill",
+  ]
+  libs = [ "UIKit.framework" ]
+  configs += [ "//build/config/compiler:enable_arc" ]
+}

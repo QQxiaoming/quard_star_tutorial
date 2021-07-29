@@ -1,0 +1,57 @@
+Qt 5.9.4 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.4 Changes                           *
+****************************************************************************
+
+QtMultimedia
+------------
+- [QTBUG-64407] Fixed memory leak in QSoundEffect. The sample cache didn't
+  release all the resources that where allocated by its worker thread.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Windows
+-------
+
+- [QTBUG-51405] Fixed bad rendering when a video widget got overlapped by
+  a MDI subwindow.
+- [QTBUG-64044] Fixed calculation of pixel aspect ratio due to precision loss.
+- [QTBUG-52713] Fixed memory leak in the DirectShow filter graph.
+- [QTBUG-61407] Fixed video rendering in QML when using ANGLE.
+- [QTBUG-54242] Fixed crash in QAudioDeviceInfo::availableDevices() that could
+  happen if one of the device returned an empty list for its supported formats.
+- [QTBUG-35916] Removed unneeded delay in the audio output, which caused an
+  unnecessary long wait when stopping the QSoundEffect.
+- [QTBUG-53534] Fixed potential deadlock in the media player when attempting
+  to load a new resource while the media player was in loading state.
+
+iOS
+---
+- [QTBUG-37955] Fixed front facing camera's orientation.
+
+Android
+-------
+- [QTBUG-52366] Fixed a crash in the camera the could happen when an
+  application got suspended while it still was processing a captured image.
+- [QTBUG-64764] Fixed regression that would cause the video output to be shown
+  upside down.

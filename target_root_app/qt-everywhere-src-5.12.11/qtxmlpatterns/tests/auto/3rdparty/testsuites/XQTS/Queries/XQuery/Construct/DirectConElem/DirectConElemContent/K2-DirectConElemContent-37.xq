@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-DirectConElemContent-37                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Check that a directly constructed element gets the right type, and that the name test fails. :)
+(:*******************************************************:)
+<e/> instance of element(a, xs:anyType)

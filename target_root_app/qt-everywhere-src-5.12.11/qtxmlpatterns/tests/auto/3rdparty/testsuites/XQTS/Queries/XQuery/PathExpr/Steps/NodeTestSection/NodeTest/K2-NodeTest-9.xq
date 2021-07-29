@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NodeTest-9                                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: '*' is not allowed inside schema-element().  :)
+(:*******************************************************:)
+schema-element(*)

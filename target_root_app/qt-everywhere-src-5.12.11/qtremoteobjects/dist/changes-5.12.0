@@ -1,0 +1,46 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+Note: Tech Preview modules are able to change APIs to refine or enhance the
+module's functionality.  Thus Qt's binary compatibility quarantees aren't
+applicable.  Code switching to 5.12.0 from earlier versions of Qt Remote
+Objects will need to be recompiled.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.12.0 Changes                             *
+****************************************************************************
+ - General
+   * [QTBUG-68678] Graduate Qt Remote Objects from TP to fully supported
+     module of Qt
+   * [QTBUG-65727] QtRemoteObjects: Documentation doesn't match the code
+
+ - QRemoteObjectNode
+   * Support externally created QIODevices, including SSL sockets.
+   * Added proxy() method to support use-cases like having a single node
+     provide a (for instance) tcp url for a device allowing access from
+     other devices, while using internal connections (like "local:*") on
+     the device.
+
+ - repc
+   * [QTBUG-68976] Cannot add comments in .rep file
+   * [QTBUG-68975] Support multiline PODs and ENUMs in repc
+   * [QTBUG-67770] repc should be able to use tab characters as a normal
+     whitespace
+
+****************************************************************************
+*                                   QML                                    *
+****************************************************************************
+
+ - Updated import statement to better match typical module pattern. From
+   QML "import QtRemoteObjects 5.12" should now be used.

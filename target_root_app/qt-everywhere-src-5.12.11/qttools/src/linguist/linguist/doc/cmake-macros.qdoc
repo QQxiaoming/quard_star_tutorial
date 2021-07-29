@@ -1,0 +1,114 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+\page qtlinguist-cmake-qt5-add-translation.html
+\ingroup cmake-macros-qtlinguisttools
+
+\title qt5_add_translation
+
+\brief Compiles Qt Linguist .ts files into .qm files.
+
+\section1 Synopsis
+
+\badcode
+qt5_add_translation(<VAR> file1.ts [file2.ts ...]
+                    [OPTIONS ...])
+\endcode
+
+\section1 Description
+
+Calls \c{lrelease} on each \c{.ts} file passed as an argument, generating
+\c{.qm} files. The paths of the generated files are added to \c{<VAR>}.
+
+\section1 Options
+
+You can set additional \c{OPTIONS} that should be passed when \c{lrelease} is
+invoked. You can find possible options in the \l{lrelease}{lrelease documentation}.
+
+By default, the \c{qm} files will be placed in the root level of the build
+directory. To change this, you can set \c{OUTPUT_LOCATION} as a property
+of the source \c{.ts} file.
+
+\section1 Examples
+
+Generating \c{helloworld_en.qm}, \c{helloworld_de.qm} in the build
+directory:
+
+\snippet cmake-macros/examples.cmake qt5_add_translation
+
+Generating \c{helloworld_en.qm}, \c{helloworld_de.qm} in a \c{l10n}
+sub-directory:
+
+\snippet cmake-macros/examples.cmake qt5_add_translation_output_location
+*/
+
+/*!
+\page qtlinguist-cmake-qt5-create-translation.html
+\ingroup cmake-macros-qtlinguisttools
+
+\title qt5_create_translation
+
+\brief Sets up the Qt Linguist translation toolchain.
+
+\section1 Synopsis
+
+\badcode
+qt5_create_translation(<VAR> ts-file-or-sources [ts-file-or-sources2 ...]
+                       [OPTIONS ...])
+\endcode
+
+\section1 Description
+
+Processes given sources (directories or individual files) to generate
+Qt Linguist \c{.ts} files. The \c{.ts} files are in turn compiled into \c{.qm}
+files of the same base name that are stored in the build
+directory. Paths to the generated \c{.qm} files are added to \c{<VAR>}.
+
+The translation files to create or update need to have a \c{.ts} suffix. If
+the given file path is not absolute it is resolved relative to the current
+source directory. If no \c{.ts} file is passed as an argument, the macro
+does nothing.
+
+Any arguments that do not have a \c{.ts} suffix are passed as input to the
+\c{lupdate}. \c{lupdate} accepts directories and source files as input.
+See also the \l{lupdate}{lupdate documentation} on further details.
+
+\section1 Options
+
+You can set additional \c{OPTIONS} that should be passed when \c{lupdate} is
+invoked. You can find possible options in the \l{lupdate}{lupdate documentation}.
+
+\section1 Examples
+
+Recursively look up Qt translations from source files in current directory and
+generate or update \c{helloworld_en.ts} and \c{helloworld_de.ts} file using
+\c{lupdate}. Compile said files into \c{helloworld_en.qm} and \c{helloworld.de.qm}
+files in the build directory:
+
+\snippet cmake-macros/examples.cmake qt5_create_translation
+*/

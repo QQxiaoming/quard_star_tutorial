@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:moduleImport>
+        <xqx:namespacePrefix>mod3</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/TestModules/module3</xqx:targetNamespace>
+      </xqx:moduleImport>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="mod3">function4</xqx:functionName>
+        <xqx:arguments>
+          <xqx:elementConstructor>
+            <xqx:tagName xqx:prefix="simple">integer</xqx:tagName>
+            <xqx:elementContent>
+              <xqx:stringConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:elementContent>
+          </xqx:elementConstructor>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

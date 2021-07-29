@@ -1,0 +1,784 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="OrderbyExprWith" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>ORDER BY Clause with OrderModifier</title>
+      <description>Tests for the ORDER BY part of the FLWOR expression syntax</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="orderBy1" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy1" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy2" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy2" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy3" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"()") ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy3" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy4" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"()") ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy4" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy5" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"another String After") ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy5" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy6" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"another String After") ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy6" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy7" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"another String Before") ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy7" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy8" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"another String Before") ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy8" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy9" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"") ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy9" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy10" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"") ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy10" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy11" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("",$x) ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy11" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy12" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("",$x) ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy12" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy13" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("",$x) ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy13" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy14" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy14" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy15" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of Strings and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy15" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy16" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,$x) ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy16" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy17" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string-length($x) ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy17" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy18" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "count($x) ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy18" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy19" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string-length($x) ", where $x is a set of Strings and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy19" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy20" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of negative numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy20" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy20.txt</output-file>
+      <output-file role="principal" compare="XML">orderBy20alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy21" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy21" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy21.txt</output-file>
+      <output-file role="principal" compare="XML">orderBy21alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy22" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy22" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy22.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy22alt.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy22alt2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy23" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of negative numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy23" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy24" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy24" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy25" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy25" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy25.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy25alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy26" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy26" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy27" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy27" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy27.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy27alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy28" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:integer($x) ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy28" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy29" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x * -1) ", where $x is a set of negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy29" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy29.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy29alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy30" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of positive numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy30" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy31" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy31" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy32" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy32" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy32.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy32alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy33" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of positive numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy33" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy34" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy34" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy35" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy35" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy36" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy36" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy37" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy37" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy37.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy38" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:integer($x) ", where $x is a set of positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy38" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy38.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy39" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string($x) ", where $x is a set of positive numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy39" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy40" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small positive numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy40" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy40.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy41" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy41" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy42" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of small positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy42" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy42.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy42alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy43" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of small positive numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy43" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy43.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy44" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of small positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy44" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy44.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy45" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of small positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy45" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy45.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy46" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of small positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy46" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy46.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy47" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of small positive numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy47" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy47.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy49" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string($x) ", where $x is a set of small positive numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy49" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy49.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy50" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small negative numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy50" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy50.txt</output-file>
+      <output-file role="principal" compare="XML">orderBy50alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy51" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy51" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy51.txt</output-file>
+      <output-file role="principal" compare="XML">orderBy51alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy52" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of small negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy52" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy52.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy52alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy53" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of small negative numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy53" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy53.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy54" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of small negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy54" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy54.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy55" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of small negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy55" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy55.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy55alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy56" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of small negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy56" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy56.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy57" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of small negative numbers and the ordering mode set to descending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy57" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy57.txt</output-file>
+      <output-file role="principal" compare="Fragment">orderBy57alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy59" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string($x) ", where $x is a set of small negative numbers and the ordering mode set to ascending.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderBy59" date="2005-06-01"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy59.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy60" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Evaluation of "order by" clause using a relative, valid collation.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5290</reflects-resolution>
+      <query name="orderBy60" date="2009-05-01+02:00"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy60.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderBy61" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Evaluation of "order by" clause using a relative, valid collation.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5290</reflects-resolution>
+      <query name="orderBy61" date="2009-05-01+02:00"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="XML">orderBy61.txt</output-file>
+   </test-case>
+   <test-case Creator="Benjamin NGUYEN &amp; Bogdan BUTNARU" name="orderBy62" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard">
+      <description>Evaluation of a FLOWR over a sequence of decimals, with an orderspec specifying a collation but comparing xs:decimal values. XQ.E17 specifies the collation should be ignored.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5290</reflects-resolution>
+      <query name="orderBy62" date="2009-11-18"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">orderBy62.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-1" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-1" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-2" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of Strings and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-2" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-3" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"()") ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-3" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-4" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"()") ", where $x is a set of Strings and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-4" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-5" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"another String After") ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-5" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-6" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"another String After") ", where $x is a set of Strings and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-6" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-7" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("another String Before",$x) ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-7" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-8" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("another String Before",$x) ", where $x is a set of Strings and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-8" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-9" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"") ", where $x is a set of Strings and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-9" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-10" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,"") ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-10" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-11" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("",$x) ", where $x is a set of Strings and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-11" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-12" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat("",$x) ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-12" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-16" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "concat($x,$x) ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-16" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-17" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string-length($x) ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-17" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-18" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "count($x) ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-18" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-19" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string-length($x) ", where $x is a set of Strings and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-19" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-20" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of negative numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-20" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-21" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-21" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-22" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-22" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-25" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-25" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-26" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-26" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-27" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-27" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-28" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:integer($x) ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-28" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-29" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x * -1) ", where $x is a set of negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-29" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-30" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of positive numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-30" date="2005-11-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-31" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-31" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-32" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-32" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-35" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-35" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-36" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-36" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-37" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-37" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-37.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-38" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:integer($x) ", where $x is a set of positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-38" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-38.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-39" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string($x) ", where $x is a set of positive numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-39" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-40" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small positive numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-40" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-40.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-41" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-41" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-42" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of small positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-42" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-42.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-43" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of small positive numbers and the ordering mode set to ascending.  Use local sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-43" date="2006-07-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-43.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-44" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x is $x ", where $x is a set of small positive numbers and the ordering mode set to descending.  Use local sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-44" date="2006-07-18"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-44.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-45" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of small positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-45" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-45.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-46" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of small positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-46" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-46.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-47" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of small positive numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-47" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-47.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-49" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string($x) ", where $x is a set of small positive numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-49" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-49.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-50" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small negative numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-50" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-50.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-51" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "$x ", where $x is a set of small negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-51" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-51.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-52" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "($x + $x) ", where $x is a set of small negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-52" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-52.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-55" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:float($x) ", where $x is a set of small negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-55" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-55.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-56" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:decimal($x) ", where $x is a set of small negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-56" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-56.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-57" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "xs:double($x) ", where $x is a set of small negative numbers and the ordering mode set to descending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-57" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-57.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-59" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="standard" Creator="Carmelo Montanez (Automatic Generation)">
+      <description>Evaluation of "order by" clause with the "order by" clause of a FLWR expression set to "string($x) ", where $x is a set of small negative numbers and the ordering mode set to ascending. Use a locally defined sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-59" date="2005-11-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">orderbylocal-59.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="orderbylocal-60" FilePath="Expressions/FLWORExpr/OrderbyExpr/OrderbyExprWith/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "order by" clause with an unknown collation.</description>
+      <spec-citation spec="XQuery" section-number="3.8.3" section-title="Order By and Return Clauses" section-pointer="id-orderby-return"/>
+      <query name="orderbylocal-60" date="2006-02-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQST0076</expected-error>
+   </test-case>
+</test-group>

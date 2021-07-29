@@ -1,0 +1,12 @@
+(:*******************************************************:)
+(:Test: fn-string-join-21                                :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Fri Jun 24, 2005                                 :)
+(:Purpose: Evaluates The "string-join" function          :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "string-join                                   :)
+(:$arg2 = "nioj-gnirts                                   :)
+(:("string-join" backwards)                              :)
+(:*******************************************************:)
+
+fn:string-join("string-join","nioj-gnirts")

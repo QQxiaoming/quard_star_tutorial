@@ -1,0 +1,1 @@
+<elem><!----><!--content--></elem>

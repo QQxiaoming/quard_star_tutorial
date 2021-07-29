@@ -1,0 +1,93 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtquickcontrols2-fusion.html
+    \title Fusion Style
+
+    The Fusion style is a desktop-oriented style.
+
+    The Fusion style is a platform-agnostic style that offers a desktop-oriented
+    look'n'feel. It implements the same design language as the \l {Qt Widget Gallery}
+    {Fusion style for Qt Widgets}.
+
+    \image qtquickcontrols2-fusion.png
+
+    To run an application with the Fusion style, see
+    \l {Using Styles in Qt Quick Controls 2}.
+
+    \note The Fusion style is not a native desktop style. The style runs on any
+    platform, and looks similar everywhere. Minor differences may occur due to
+    differences in the standard system palettes, available fonts, and font
+    rendering engines.
+
+    \section2 Customization
+
+    The Fusion style uses the standard system \l {Control::palette}{palettes}
+    to provide colors that match the desktop environment.
+
+    \image qtquickcontrols2-fusion-palettes.png
+
+    Custom palettes can be specified for any \l {Control::palette}{control},
+    \l {Popup::palette}{popup}, or \l {ApplicationWindow::palette}{application window}.
+    Explicit palette attributes are automatically propagated from parent to children,
+    overriding any system defaults for that attribute. In the following example,
+    the window and all three switches appear with a violet highlight color:
+
+    \table
+        \row
+            \li
+                \qml
+                import QtQuick 2.12
+                import QtQuick.Controls 2.12
+
+                ApplicationWindow {
+                    visible: true
+
+                    palette.highlight: "violet"
+
+                    Column {
+                        anchors.centerIn: parent
+
+                        Switch { text: qsTr("First"); checked: true }
+                        Switch { text: qsTr("Second"); checked: true }
+                        Switch { text: qsTr("Third") }
+                    }
+                }
+                \endqml
+            \li
+                \image qtquickcontrols2-fusion-violet.png
+    \endtable
+
+    \b {See also} \l {Default Style}, \l {Material Style}, \l {Universal Style}
+
+    \section1 Related Information
+
+    \list
+      \li \l{Styling Qt Quick Controls 2}
+    \endlist
+*/

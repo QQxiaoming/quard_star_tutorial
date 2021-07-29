@@ -1,0 +1,787 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="DirectConElemAttr" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Attributes</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Single attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Multiple attributes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-3" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Single quotes for attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-3" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-4" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Escaped single quote.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-4" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-5" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Escaped double quote.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-5" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-attr-syntax-6" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Mismatched quotes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-6" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-attr-syntax-7" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Mismatched quotes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-7" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-8" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Whitespace between attributes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-8" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-8.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-9" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Whitespace in attribute definition.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-9" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-9.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-syntax-10" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Whitespace after last attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-syntax-10" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-syntax-10.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-parent-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute parent element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-parent-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-attr-parent-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-nsdecl-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Namespace declaration does not count as attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-nsdecl-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-attr-nsdecl-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-nsdecl-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Namespace default declaration does not count as attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-nsdecl-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-attr-nsdecl-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-nspre-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute prefix declared in prolog.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-nspre-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-nspre-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-nspre-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute prefix declared in parent element.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-nspre-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-nspre-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-nsprein-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute prefix declared in same element before.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-nsprein-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-nsprein-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-nsprein-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute prefix declared in same element after.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-nsprein-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-nsprein-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-distnames-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attributes with identical local names.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-distnames-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0040</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-distnames-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attributes with identical local names.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-distnames-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0040</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-distnames-3" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attributes with identical local names.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-distnames-3" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0040</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-distnames-4" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attributes with identical local name and URI.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-distnames-4" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0040</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-content-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Direct attribute content characters.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-content-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-content-1.xml</output-file>
+      <output-file role="principal" compare="XML">Constr-attr-content-1b.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-attr-content-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Illegal attribute content {.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-content-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-attr-content-3" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Illegal attribute content }.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-content-3" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-attr-content-4" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Illegal attribute content &lt;.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-content-4" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-attr-content-5" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Illegal attribute content &amp;.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-content-5" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-ws-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute normalization line feed.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-ws-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-ws-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-ws-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute normalization tab.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-ws-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-ws-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-ws-3" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute normalization char ref.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-ws-3" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-ws-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-ws-4" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute normalization char ref.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-ws-4" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-ws-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-ws-5" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Attribute normalization char ref.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-ws-5" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-ws-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-entref-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Entity references in attribute content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-entref-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-entref-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-entref-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Entity references in attribute content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-entref-2" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-attr-entref-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-charref-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Character references in attribute content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-charref-1" date="2005-01-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-charref-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - atomic values.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-1" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-2" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-3" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - empty string.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-3" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-4" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-4" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-5" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - mix direct content and enclosed expressions.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-5" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-6" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - mix direct content and enclosed expressions.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-6" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-6.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-enclexpr-7" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - mix direct content and enclosed expressions.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-enclexpr-7" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-enclexpr-7.xml</output-file>
+   </test-case>
+	<test-case is-XPath2="false" name="Constr-attr-enclexpr-8" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+		<description>Multiple content units in attribute content.</description>
+		<spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3771</reflects-resolution>
+		<query name="Constr-attr-enclexpr-8" date="2010-03-16"/>
+		<output-file role="principal" compare="XML">Constr-attr-enclexpr-8.xml</output-file>
+	</test-case>
+   <test-case is-XPath2="false" name="Constr-attr-id-1" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - xml:id attribute value is ncname.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-id-1" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-id-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-attr-id-2" FilePath="Expressions/Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in attribute content - xml:id attribute value must be further normalized.</description>
+      <spec-citation spec="XQuery" section-number="3.7.1.1" section-title="Attributes" section-pointer="id-attributes"/>
+      <query name="Constr-attr-id-2" date="2005-03-05"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-attr-id-2.xml</output-file>
+      <expected-error>XQDY0091</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-1" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments cannot appear inside direct element constructors.</description>
+      <query name="K2-DirectConElemAttr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-2" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments cannot appear inside direct element constructors.</description>
+      <query name="K2-DirectConElemAttr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-3" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Space is not allowed between '&lt;/' and the element name.</description>
+      <query name="K2-DirectConElemAttr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-4" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments are not allowed where whitespace is, in direct element constructors.</description>
+      <query name="K2-DirectConElemAttr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-5" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Whitespace is allowed in the end tag after the QName.</description>
+      <query name="K2-DirectConElemAttr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-6" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>XML tags must be balanced.</description>
+      <query name="K2-DirectConElemAttr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-7" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>CDATA sections can only appear inside element constructors.</description>
+      <query name="K2-DirectConElemAttr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-8" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-9" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-10" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-11" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-12" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-13" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-14" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-15" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-16" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-17" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-18" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-19" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-20" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-21" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-22" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-23" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-24" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Syntax error in direct attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-25" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments cannot appear inside direct element/attribute constructors.</description>
+      <query name="K2-DirectConElemAttr-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-26" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments cannot appear inside direct element/attribute constructors.</description>
+      <query name="K2-DirectConElemAttr-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-27" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments cannot appear inside direct element/attribute constructors.</description>
+      <query name="K2-DirectConElemAttr-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-28" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>Comments cannot appear inside direct element/attribute constructors.</description>
+      <query name="K2-DirectConElemAttr-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-29" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Attribute containing two quotes.</description>
+      <query name="K2-DirectConElemAttr-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemAttr-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-30" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Attribute containing two quotes(#2).</description>
+      <query name="K2-DirectConElemAttr-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemAttr-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-31" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Attribute containing two apostrophes.</description>
+      <query name="K2-DirectConElemAttr-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemAttr-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-32" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Attribute containing two apostrophes(#2).</description>
+      <query name="K2-DirectConElemAttr-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemAttr-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-33" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Test that simple content computation is done properly with complex input sequence.</description>
+      <query name="K2-DirectConElemAttr-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-34" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Extract the string value from a directly constructed attribute whose content consists of a computed comment constructor.</description>
+      <query name="K2-DirectConElemAttr-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-34.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-35" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Extract the string value from a directly constructed attribute whose content consists of a computed comment constructor.</description>
+      <query name="K2-DirectConElemAttr-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-35.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-36" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Extract the string value from a directly constructed attribute whose content consists of a computed processing-instruction constructor.</description>
+      <query name="K2-DirectConElemAttr-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-36.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-37" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Extract the local-name from a directly constructed attribute whose content consists of a computed processing-instruction constructor.</description>
+      <query name="K2-DirectConElemAttr-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-37.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-38" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Extract the string value from a directly constructed attribute whose content consists of a computed attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-38.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-39" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Extract the string value from a directly constructed attribute whose content consists of a computed attribute constructor.</description>
+      <query name="K2-DirectConElemAttr-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-39.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-40" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Attributes with many apostrophes and quotes.</description>
+      <query name="K2-DirectConElemAttr-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-40.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-41" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>A direct attribute constructor taking a direct element constructor as input.</description>
+      <query name="K2-DirectConElemAttr-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-41.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-42" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>A direct attribute constructor taking a direct comment constructor as input.</description>
+      <query name="K2-DirectConElemAttr-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-42.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-43" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>A direct attribute constructor taking a direct PI constructor as input.</description>
+      <query name="K2-DirectConElemAttr-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-43.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-44" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>xml:base attributes do not affect the static base-uri.</description>
+      <query name="K2-DirectConElemAttr-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemAttr-44.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-45" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>xml:base attributes do not affect the static base-uri(#2).</description>
+      <query name="K2-DirectConElemAttr-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConElemAttr-45.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-46" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Copy attributes from one element to another.</description>
+      <query name="K2-DirectConElemAttr-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-46.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-47" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Ensure the typed value of directly constructed attributes has the correct type.</description>
+      <query name="K2-DirectConElemAttr-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-47.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-48" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>There must be space between attributes.</description>
+      <query name="K2-DirectConElemAttr-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-49" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>A newline is a valid separator between two attributes.</description>
+      <query name="K2-DirectConElemAttr-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-49.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-50" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>A tab is a valid separator between two attributes.</description>
+      <query name="K2-DirectConElemAttr-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-50.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-51" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>There must be space between attributes(using apostrophes).</description>
+      <query name="K2-DirectConElemAttr-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-52" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>A tab is a valid separator between two attributes(using apostrophes).</description>
+      <query name="K2-DirectConElemAttr-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-52.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-53" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>'/' is an invalid separator between two attributes.</description>
+      <query name="K2-DirectConElemAttr-53" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-54" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>'/' is an invalid separator between two attributes(using apostrophes).</description>
+      <query name="K2-DirectConElemAttr-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-55" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>'/' is an invalid separator between two attributes.</description>
+      <query name="K2-DirectConElemAttr-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-56" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>'/' is an invalid separator between two attributes(using apostrophes).</description>
+      <query name="K2-DirectConElemAttr-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-57" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor.</description>
+      <query name="K2-DirectConElemAttr-57" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-58" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#2).</description>
+      <query name="K2-DirectConElemAttr-58" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-59" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#3).</description>
+      <query name="K2-DirectConElemAttr-59" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-60" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#4).</description>
+      <query name="K2-DirectConElemAttr-60" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-61" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#5).</description>
+      <query name="K2-DirectConElemAttr-61" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-62" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#6).</description>
+      <query name="K2-DirectConElemAttr-62" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-63" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#7).</description>
+      <query name="K2-DirectConElemAttr-63" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-64" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#8).</description>
+      <query name="K2-DirectConElemAttr-64" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-65" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#9).</description>
+      <query name="K2-DirectConElemAttr-65" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-66" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#10).</description>
+      <query name="K2-DirectConElemAttr-66" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConElemAttr-67" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="parse-error">
+      <description>End unexpectedly inside a direct element constructor(#10).</description>
+      <query name="K2-DirectConElemAttr-67" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-68" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="runtime-error">
+      <description>Use two namespace declarations with the same name.</description>
+      <query name="K2-DirectConElemAttr-68" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0071</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-69" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="runtime-error">
+      <description>Use two namespace declarations with the same name, in addition to doing invalid bindings.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4463</reflects-resolution>
+      <query name="K2-DirectConElemAttr-69" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0071</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-70" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Ensure that attributes constructed with direct constructors doesn't pick up the default namespace.</description>
+      <query name="K2-DirectConElemAttr-70" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-70.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-71" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Ensure that attributes constructed with computed constructors doesn't pick up the default namespace.</description>
+      <query name="K2-DirectConElemAttr-71" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-71.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-72" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Ensure that attributes constructed with computed constructors doesn't pick up the default namespace.</description>
+      <query name="K2-DirectConElemAttr-72" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-72.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-73" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Ensure that attributes constructed with computed constructors doesn't pick up the default namespace(#2).</description>
+      <query name="K2-DirectConElemAttr-73" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConElemAttr-73.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-74" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Check that character references next to embedded expressions are parsed correctly.</description>
+      <query name="K2-DirectConElemAttr-74" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-74.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-75" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Mix several ways for creating text for various kinds of nodes. This test is useful if an implementation is performing normalization of such constructors.</description>
+      <query name="K2-DirectConElemAttr-75" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-75.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConElemAttr-76" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard">
+      <description>Pass text nodes through a function and variable, into AVTs.</description>
+      <query name="K2-DirectConElemAttr-76" date="2009-01-08+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConElemAttr-76.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="DirectConElemAttr-1" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Namespace declaration attributes in direct element constructors.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="DirectConElemAttr-1" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">DirectConElemAttr-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="DirectConElemAttr-2" FilePath="Construct/DirectConElem/DirectConElemAttr/" scenario="standard" Creator="Sorin Nasoi">
+      <description>Namespace declaration attributes in direct element constructors.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5083</reflects-resolution>
+      <query name="DirectConElemAttr-2" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">DirectConElemAttr-2.txt</output-file>
+   </test-case>
+</test-group>

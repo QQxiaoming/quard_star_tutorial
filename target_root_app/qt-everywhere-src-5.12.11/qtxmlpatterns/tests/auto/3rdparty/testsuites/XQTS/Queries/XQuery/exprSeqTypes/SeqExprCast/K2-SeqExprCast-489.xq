@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-489                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Cast xs:base64Binary to xs:language.         :)
+(:*******************************************************:)
+xs:language(xs:base64Binary("1111"))

@@ -1,0 +1,15 @@
+include_rules = [
+  "-services",
+  "-third_party",
+
+  "+third_party/blink/renderer/platform/scheduler/base",
+  "+third_party/blink/renderer/platform/platform_export.h",
+  "+base",
+]
+
+specific_include_rules = {
+  "sequence_manager_fuzzer_processor_unittest.cc": [
+    "+third_party/protobuf/src/google/protobuf/text_format.h",
+    "+third_party/protobuf/src/google/protobuf/util/message_differencer.h",
+  ],
+}

@@ -1,0 +1,78 @@
+{
+    "module": "location",
+    "depends": [
+        "gui"
+    ],
+
+    "features": {
+        "location-labs-plugin": {
+            "label": "Qt.labs.location experimental QML plugin",
+            "purpose": "Provides experimental QtLocation QML types",
+            "section": "Location",
+            "output": [ "privateFeature" ]
+        },
+        "geoservices_osm": {
+            "label": "OpenStreetMap",
+            "purpose": "Provides access to OpenStreetMap geoservices",
+            "section": "Location",
+            "condition": "features.concurrent",
+            "output": [ "privateFeature" ]
+        },
+        "geoservices_here": {
+            "label": "HERE",
+            "purpose": "Provides access to HERE geoservices",
+            "section": "Location",
+            "output": [ "privateFeature" ]
+        },
+        "geoservices_esri": {
+            "label": "Esri",
+            "purpose": "Provides access to Esri geoservices",
+            "section": "Location",
+            "output": [ "privateFeature" ]
+        },
+        "geoservices_mapbox": {
+            "label": "Mapbox",
+            "purpose": "Provides access to Mapbox geoservices",
+            "section": "Location",
+            "output": [ "privateFeature" ]
+        },
+        "geoservices_mapboxgl": {
+            "label": "MapboxGL",
+            "purpose": "Provides access to the Mapbox vector maps",
+            "section": "Location",
+            "condition": [
+                "features.gui",
+                "features.opengl",
+                "features.c++14",
+                "!config.intel_icc && (!config.win32 || config.mingw)"
+            ],
+            "output": [ "privateFeature" ]
+        },
+        "geoservices_itemsoverlay": {
+            "label": "Itemsoverlay",
+            "purpose": "Provides access to the itemsoverlay maps",
+            "section": "Location",
+            "output": [ "privateFeature" ]
+        }
+    },
+
+    "summary": [
+        {
+            "section": "Qt Location",
+            "entries": [
+                "location-labs-plugin",
+                {
+                    "section": "Geoservice plugins",
+                    "entries": [
+                        "geoservices_osm",
+                        "geoservices_here",
+                        "geoservices_esri",
+                        "geoservices_mapbox",
+                        "geoservices_mapboxgl",
+                        "geoservices_itemsoverlay"
+                    ]
+                }
+            ]
+        }
+    ]
+}

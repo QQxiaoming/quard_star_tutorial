@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqDeepEqualFunc-19                          :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: fn:deep-equal() with mixed content(#2).      :)
+(:*******************************************************:)
+deep-equal(1, <e>1</e>)

@@ -1,0 +1,75 @@
+# Copyright 2018 The Chromium Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+import("//extensions/buildflags/buildflags.gni")
+
+source_set("web_applications") {
+  sources = [
+    "web_app_provider.cc",
+    "web_app_provider.h",
+    "web_app_provider_factory.cc",
+    "web_app_provider_factory.h",
+
+    # TODO(loyso): move this code (and everything other than "KEEP") elsewhere.
+    "web_app.cc",
+    "web_app.h",
+    "web_app_chromeos.cc",
+    "web_app_mac.h",
+    "web_app_mac.mm",
+    "web_app_win.cc",
+    "web_app_win.h",
+  ]
+
+  if (is_desktop_linux) {
+    # Desktop linux, doesn't count ChromeOS.
+    sources += [ "web_app_linux.cc" ]
+  }
+
+  configs += [ "//build/config/compiler:wexit_time_destructors" ]
+
+  # TODO(loyso): Break this dependency cycle.
+  allow_circular_includes_from = [ "//chrome/browser/extensions" ]
+
+  deps = [
+    # TODO(loyso): KEEP.
+    "//chrome/browser/web_applications/bookmark_apps",
+    "//chrome/common",
+    "//skia",
+
+    # TODO(loyso): move this code elsewhere.
+    "//base",
+    "//chrome/browser/extensions",
+    "//chrome/browser/web_applications/components",
+    "//components/keyed_service/content",
+    "//components/prefs",
+    "//extensions/browser",
+    "//url",
+  ]
+}
+
+source_set("web_applications_unit_tests") {
+  testonly = true
+
+  sources = [
+    "web_app_mac_unittest.mm",
+    "web_app_unittest.cc",
+  ]
+
+  deps = [
+    ":web_applications",
+    "//chrome/browser/extensions",
+    "//extensions/browser",
+    "//skia",
+    "//testing/gmock",
+  ]
+}
+
+source_set("unit_tests") {
+  testonly = true
+  deps = [
+    ":web_applications_unit_tests",
+    "//chrome/browser/web_applications/bookmark_apps:unit_tests",
+    "//chrome/browser/web_applications/components:components_unit_tests",
+  ]
+}

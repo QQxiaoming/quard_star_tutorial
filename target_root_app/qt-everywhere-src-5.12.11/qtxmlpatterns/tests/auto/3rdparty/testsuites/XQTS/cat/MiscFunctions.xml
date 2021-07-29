@@ -1,0 +1,283 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="MiscFunctions">
+   <GroupInfo>
+      <title>Misc Functions that depends entirely on schema validation.</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-id-5" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given IDREF matching a single element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-5" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-6" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given IDREF does not match any element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-6" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-id-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-7" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with given IDREF matches same element (Eliminates duplicates).</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-7" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-8" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF matching more than one element (Eliminates duplicates).</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-8" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-8.txt</output-file>
+      <output-file role="principal" compare="Fragment">fn-idalt-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-9" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF, but only one matching element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-9" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-10" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF, and none matching an element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-10" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-id-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-11" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id with multiple IDREF set to empty string.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-11" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-id-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-12" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id function, where first argument is given as part of fn:substring function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-12" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-13" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id, where the same IDREF makes reference to the same element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-13" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-14" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for for which the given the given IDREF contains a prefix.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-14" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-id-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-15" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which all members of the IDREF list having the same value.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-15" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-16" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which all members of the IDREF list having the same value (but different cases).</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-16" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-17" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-17" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-18" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-18" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-19" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the fn:concat function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-19" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-20" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the xs:string function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-20" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-21" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id for which the give IDREF uses the fn:string-join function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-21" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-id-23" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:id together with declare ordering.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.2" section-title="fn:id" section-pointer="func-id"/>
+      <query name="fn-id-23" date="2005-11-27"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-id-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-5" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given ID matching a single element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-5" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-6" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given ID not matching a single element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-6" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-idref-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-7" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given ID matching multiple elements.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-7" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-8" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with multiple ID matching multiple elements.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-8" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-9" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with multiple ID, but only one matching one element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-9" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-10" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with multiple ID, but none matching one element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-10" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-idref-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-11" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with ID set to empty string.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-11" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-idref-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-12" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref used as ar argument to function fn:node-name().</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-12" static-name="fn-idref-12-static-cbcl" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-idref-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-13" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref used as part of a node expression ("is" operand). Compare same elements.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-13" static-name="fn-idref-13-static-cbcl" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-idref-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-14" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref used as part of a node expression ("is" operand). Compare different elements.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-14" static-name="fn-idref-14-static-cbcl" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Text">fn-idref-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-15" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID list have the same value for all its members.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-15" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-16" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID list have the same value for all its members but different case.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-16" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-17" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID uses the fn lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-17" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-18" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID uses the fn:upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-18" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-19" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which $arg uses the fn:concat function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-19" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-20" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which $arg uses the xs:string function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-20" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-21" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which $arg uses the fn:string-join function.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-21" date="2006-02-10"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-23" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref together with declare ordering (ordered).</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-23" date="2006-03-14"/>
+      <input-file role="principal-data" variable="input-context1">id-idref</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-30" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Evaluation of fn:idref using IDREF values derived from xs:IDREF by restriction, union, and list.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6306</reflects-resolution>
+      <query name="fn-idref-30" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-31" FilePath="SchemaImport/MiscFunctions/" scenario="standard" Creator="Michael Kay">
+      <description>Evaluation of fn:idref using IDREF values derived from xs:IDREF by restriction, union, and list.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6306</reflects-resolution>
+      <query name="fn-idref-31" date="2009-03-06"/>
+      <input-file role="principal-data" variable="input-context1">id-idref2</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-data-1" FilePath="SchemaImport/MiscFunctions/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:data whose argument is a complex type with element only content.</description>
+      <spec-citation spec="FuncOps" section-number="2.4" section-title="fn:data" section-pointer="func-data"/>
+      <query name="fn-data-1" date="2006-04-11"/>
+      <input-file role="principal-data" variable="input-context1">examples</input-file>
+      <output-file role="principal" compare="Text">fn-data-1.txt</output-file>
+      <expected-error>FOTY0012</expected-error>
+   </test-case>
+</test-group>

@@ -1,0 +1,65 @@
+// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#ifndef COMPONENTS_DOM_DISTILLER_CORE_DISTILLER_URL_FETCHER_H_
+#define COMPONENTS_DOM_DISTILLER_CORE_DISTILLER_URL_FETCHER_H_
+
+#include <string>
+
+#include "base/callback.h"
+#include "base/macros.h"
+
+namespace network {
+class SharedURLLoaderFactory;
+class SimpleURLLoader;
+}  // namespace network
+
+namespace dom_distiller {
+
+class DistillerURLFetcher;
+
+// Class for creating a DistillerURLFetcher.
+class DistillerURLFetcherFactory {
+ public:
+  DistillerURLFetcherFactory(
+      scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory);
+  virtual ~DistillerURLFetcherFactory();
+  virtual DistillerURLFetcher* CreateDistillerURLFetcher() const;
+
+ private:
+  friend class TestDistillerURLFetcherFactory;
+  scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory_;
+};
+
+// This class loads a URL, and notifies the caller when the operation
+// completes or fails. If the request fails, an empty string will be returned.
+class DistillerURLFetcher {
+ public:
+  explicit DistillerURLFetcher(
+      scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory);
+  virtual ~DistillerURLFetcher();
+
+  // Indicates when a fetch is done.
+  typedef base::Callback<void(const std::string& data)> URLFetcherCallback;
+
+  // Fetches a |url|. Notifies when the fetch is done via |callback|.
+  virtual void FetchURL(const std::string& url,
+                        const URLFetcherCallback& callback);
+
+ protected:
+  virtual std::unique_ptr<network::SimpleURLLoader> CreateURLFetcher(
+      const std::string& url);
+
+ private:
+  void OnURLLoadComplete(std::unique_ptr<std::string> response_body);
+
+  std::unique_ptr<network::SimpleURLLoader> url_loader_;
+  URLFetcherCallback callback_;
+  scoped_refptr<network::SharedURLLoaderFactory> url_loader_factory_;
+  DISALLOW_COPY_AND_ASSIGN(DistillerURLFetcher);
+};
+
+}  //  namespace dom_distiller
+
+#endif  // COMPONENTS_DOM_DISTILLER_CORE_DISTILLER_URL_FETCHER_H_

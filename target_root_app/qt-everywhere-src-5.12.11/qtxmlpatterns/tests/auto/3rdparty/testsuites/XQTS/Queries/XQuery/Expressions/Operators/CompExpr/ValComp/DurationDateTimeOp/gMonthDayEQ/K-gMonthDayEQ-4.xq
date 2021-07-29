@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-gMonthDayEQ-4                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple test of 'ne' for xs:gMonthDay.        :)
+(:*******************************************************:)
+not(xs:gMonthDay("--04-11") ne xs:gMonthDay("--04-11"))

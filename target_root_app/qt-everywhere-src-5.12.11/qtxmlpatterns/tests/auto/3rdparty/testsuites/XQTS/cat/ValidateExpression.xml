@@ -1,0 +1,349 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ValidateExpression" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Validate Expression</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="validateexpr-1" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with improper operand for operation.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-1" date="2005-12-19"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-2" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with newly constructed Element node and strict validation.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-2" date="2005-12-19"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-3" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with newly constructed Element node and strict validation.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-3" date="2005-12-19"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-4" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with implicit strict mode for a comment node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-4" date="2005-12-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-5" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with "lax" mode for a comment node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-5" date="2005-12-19"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-6" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with explicit strict mode for a PI node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-6" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-7" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with explicit lax mode for a PI node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-7" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-8" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with explicit strict mode for a text node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-8" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-9" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of a validate expression with lax mode for a text node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-9" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-10" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that a validate expression of a node readed from an xml file does not have a parent. strict mode.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-10" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Text">validateexpr-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-11" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that a validate expression of a node readed from an xml file does not have a parent. lax mode.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-11" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">orderData</input-file>
+      <output-file role="principal" compare="Text">validateexpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-12" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that a validate expression of a newly constructed node does not have a parent. strict mode.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-12" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">validateexpr-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-13" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Verify that a validate expression of a newly constructed node does not have a parent. lax mode.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-13" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">validateexpr-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-14" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (strict) of a newly constructed node used with an if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-14" static-name="validateexpr-14-static-cbcl" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-15" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with an if expression.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-15" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-16" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with an if expression. (uses else part of expression).</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-16" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-17" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with an "or" expression.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-17" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-18" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with quantifed expression expression ("every" operand).</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-18" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-19" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with quantifed expression expression ("some" operand).</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-19" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-20" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with typeswitch expression expression.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-20" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-21" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate a validate expression (lax) of a newly constructed node used with FLWOR expression expression.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-21" date="2005-12-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-23" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evalauation of strict validated expression for constructed element node for which there is no declaration.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-23" date="2006-04-11"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0084</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-24" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Test for the correct typed value when a list of union types is used.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+      <query name="validateexpr-24" date="2006-06-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">validateexpr-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-25" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test for Error condition XQDY0027.  Dynamic error during validation.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-25" date="2006-07-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0027</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-26" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test for error condition XQDY0061 using a document node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-26" date="2006-07-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XQDY0061</expected-error>
+      <expected-error>XQDY0027</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ValidateExpression-1" FilePath="Optional/SchemaValidation/ValidateExpression/" scenario="runtime-error">
+      <description>Ensure the validate keyword is parsed correclty.</description>
+      <query name="K2-ValidateExpression-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Nicolae Brinza" name="validate-constraints-1" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error">
+      <description>Test validation of elements with unique/id/idref schema constraints.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4353</reflects-resolution>
+      <query name="validate-constraints-1" date="2009-04-01+02:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0027</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Nicolae Brinza" name="validate-constraints-2" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error">
+       <description>Test validation of elements with unique/id/idref schema constraints.</description>
+       <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4353</reflects-resolution>
+       <query name="validate-constraints-2" date="2009-04-01+02:00"/>
+       <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+       <expected-error>XQDY0027</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Nicolae Brinza" name="validate-constraints-3" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error">
+       <description>Test validation of elements with unique/id/idref schema constraints.</description>
+       <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4353</reflects-resolution>
+       <query name="validate-constraints-3" date="2009-04-01+02:00"/>
+       <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+       <expected-error>XQDY0027</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Andrew Eisenberg" name="validate-constraints-4" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+       <description>Test validation of elements with unique/id/idref schema constraints.</description>
+       <query name="validate-constraints-4" date="2009-12-24"/>
+       <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+       <output-file role="principal" compare="XML">validate-constraints-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validate-sc-1" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-1" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-2" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-2" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-2.txt</output-file>
+   </test-case>
+   <!-- Removed validateexpr-sc-3: extension is invalid anyway -->
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-4" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-4" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-5" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-5" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-6" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-6" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-7" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-7" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-8" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-8" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" Creator="Mary Holstege" name="validateexpr-sc-9" FilePath="SchemaValidation/ValidateExpression/" scenario="standard">
+     <description>Test validation of elements of simple content</description>
+     <spec-citation spec="DataModel" section-number="3.3.1.2" section-title="Typed Value Determination" section-pointer="TypedValueDetermination"/>
+     <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4413</reflects-resolution>
+     <query name="validateexpr-sc-9" date="2009-11-20"/>
+     <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+     <!-- role=schema forbidden by DTD, but this is the schema to use:
+     <input-file role="schema" variable="dummy">simpleContent</input-file> -->
+     <output-file role="principal" compare="Fragment">validateexpr-sc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-27" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Norm Walsh">
+      <description>Test Bug 4519, [DM] Definition of is-id property</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <spec-citation spec="DataModel" section-number="6.3.4" section-title="Construction from a PSVI" section-pointer="const-psvi-attribute"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4519</reflects-resolution>
+      <query name="validateexpr-27" date="2010-03-10"/>
+      <input-file role="principal-data" variable="input-context">dm-e005</input-file>
+      <output-file role="principal" compare="XML">validateexpr-27.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-28" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Norm Walsh">
+      <description>Test Bug 5223, [XPath] Casting rules in 3.5.2 General Comparisons (editorial)</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5223</reflects-resolution>
+      <query name="validateexpr-28" date="2010-03-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">validateexpr-28.xml</output-file>
+      <expected-error>XQST0012</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="validateexpr-29" FilePath="SchemaValidation/ValidateExpression/" scenario="runtime-error" Creator="Tim Mills">
+      <description>Test for error condition XQDY0061 using a document node.</description>
+      <spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+      <query name="validateexpr-29" date="2010-03-15"/>
+      <expected-error>XQDY0061</expected-error>
+   </test-case>
+	<test-case is-XPath2="false" name="validateexpr-30" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Oliver Hallam">
+		<description>Test that validating a document node (with processing instructions and comments) does not throw a type error in static typing implementations when used as an expression of type document().</description>
+		<spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5254</reflects-resolution>
+		<query name="validateexpr-30" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">validateexpr-30.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="validateexpr-31" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Oliver Hallam">
+		<description>Description: Test that validating a union of element nodes does not raise a type error.</description>
+		<spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5254</reflects-resolution>
+		<query name="validateexpr-31" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">validateexpr-31.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="validateexpr-32" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Oliver Hallam">
+		<description>Description: Test that validating a union of document nodes does not raise a type error.</description>
+		<spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5254</reflects-resolution>
+		<query name="validateexpr-32" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">validateexpr-32.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="validateexpr-33" FilePath="SchemaValidation/ValidateExpression/" scenario="standard" Creator="Oliver Hallam">
+		<description>Description: Test that validating a union of element and document nodes does not raise a type error.</description>
+		<spec-citation spec="XQuery" section-number="3.13" section-title="Validate Expressions" section-pointer="id-validate"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5254</reflects-resolution>
+		<query name="validateexpr-33" date="2010-03-15"/>
+		<output-file role="principal" compare="Text">validateexpr-33.txt</output-file>
+	</test-case>
+</test-group>

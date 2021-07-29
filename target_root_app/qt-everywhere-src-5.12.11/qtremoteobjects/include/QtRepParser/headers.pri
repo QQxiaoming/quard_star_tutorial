@@ -1,0 +1,6 @@
+SYNCQT.HEADER_FILES = qregexparser.h 
+SYNCQT.GENERATED_HEADER_FILES = QRegexParser qtrepparserversion.h QtRepParserVersion QtRepParser 
+SYNCQT.PRIVATE_HEADER_FILES = 
+SYNCQT.QPA_HEADER_FILES = 
+SYNCQT.CLEAN_HEADER_FILES = qregexparser.h 
+SYNCQT.INJECTIONS = 

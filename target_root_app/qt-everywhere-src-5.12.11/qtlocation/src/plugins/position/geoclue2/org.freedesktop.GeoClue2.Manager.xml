@@ -1,0 +1,60 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+    GeoClue 2.0 Interface Specification
+
+    Copyright 2013 Red Hat, Inc.
+-->
+
+<node>
+
+  <!--
+      org.freedesktop.GeoClue2.Manager:
+      @short_description: The GeoClue service manager
+
+      This is the interface you use to talk to main GeoClue2 manager object at
+      path "/org/freedesktop/GeoClue2/Manager". The only thing you do with this
+      interface is to call org.freedesktop.GeoClue2.Manager.GetClient() on it
+      to get your application specific client object.
+  -->
+  <interface name="org.freedesktop.GeoClue2.Manager">
+    <!--
+        InUse:
+
+        Whether service is currently is use by any application.
+    -->
+    <property name="InUse" type="b" access="read"/>
+
+    <!--
+        AvailableAccuracyLevel:
+
+        The level of available accuracy, as
+        <link linkend="GClueAccuracyLevel">GClueAccuracyLevel</link>.
+    -->
+    <property name="AvailableAccuracyLevel" type="u" access="read"/>
+
+    <!--
+        GetClient:
+        @client: The path for newly created client object
+
+        Retrieves a client object which can only be used by the calling
+        application only.
+    -->
+    <method name="GetClient">
+      <arg name="client" type="o" direction="out"/>
+    </method>
+
+    <!--
+        AddAgent:
+        @id: The Desktop ID (excluding .desktop) of the agent
+
+        An API for user authorization agents to register themselves. Each agent
+        is responsible for the user it is running as. Application developers
+        can and should simply ignore this API.
+    -->
+    <method name="AddAgent">
+      <arg name="id" type="s" direction="in"/>
+    </method>
+  </interface>
+</node>

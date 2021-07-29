@@ -1,0 +1,183 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ComputeConComment" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Computed Comment Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-compcomment-enclexpr-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in comment node content - atomic values.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-enclexpr-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-enclexpr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-enclexpr-2" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in comment node content - nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-enclexpr-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-enclexpr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-enclexpr-3" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in comment node content - empty string.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-enclexpr-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-enclexpr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-enclexpr-4" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in comment node content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-enclexpr-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-enclexpr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-enclexpr-5" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Enclosed expression in comment node content - empty node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-enclexpr-5" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-enclexpr-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-doc-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip document nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-doc-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-doc-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-parent-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-parent-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compcomment-parent-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-string-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>String value of text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-string-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compcomment-string-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-data-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Typed value of text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-data-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-compcomment-data-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-nested-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested comment constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-nested-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-nested-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-nested-2" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested comment constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-nested-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-compcomment-nested-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-nested-3" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested comment constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-nested-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-nested-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-dash-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Dash as comment.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-dash-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-dash-2" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Comment ends with a dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-dash-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-dash-3" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Character ref as dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-dash-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-dash-4" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Dash at the end of content -</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-dash-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">XQTSCatalog</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-doubledash-1" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Double dash as comment.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-doubledash-1" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-doubledash-2" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Comment contains double dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-doubledash-2" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-doubledash-3" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Character ref as double dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-doubledash-3" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-doubledash-4" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Double dash -- in content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-doubledash-4" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">XQTSCatalog</input-file>
+      <expected-error>XQDY0072</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-compcomment-doubledash-5" FilePath="Expressions/Construct/ComputeCon/ComputeConComment/" scenario="standard" Creator="Andreas Behm">
+      <description>Dash at the end of content -.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.6" section-title="Computed Comment Constructors" section-pointer="id-computed-comments"/>
+      <query name="Constr-compcomment-doubledash-5" date="2005-05-20"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-compcomment-doubledash-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ComputeConComment-1" FilePath="Construct/ComputeCon/ComputeConComment/" scenario="parse-error">
+      <description>Comment constructors cannot specify a name.</description>
+      <query name="K2-ComputeConComment-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ComputeConComment-2" FilePath="Construct/ComputeCon/ComputeConComment/" scenario="parse-error">
+      <description>Comment constructors cannot specify a name.</description>
+      <query name="K2-ComputeConComment-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConComment-3" FilePath="Construct/ComputeCon/ComputeConComment/" scenario="standard">
+      <description>A computed comment constructor having an empty sequence as input.</description>
+      <query name="K2-ComputeConComment-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ComputeConComment-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ComputeConComment-4" FilePath="Construct/ComputeCon/ComputeConComment/" scenario="parse-error">
+      <description>The enclosed expression isn't optional.</description>
+      <query name="K2-ComputeConComment-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ComputeConComment-5" FilePath="Construct/ComputeCon/ComputeConComment/" scenario="standard">
+      <description>Test the atomized type.</description>
+      <query name="K2-ComputeConComment-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ComputeConComment-5.txt</output-file>
+   </test-case>
+</test-group>

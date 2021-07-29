@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-NodeTest-1                                   :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Check the child count of an empty direct element constructor. :)
+(:*******************************************************:)
+count(<a></a>/node())

@@ -1,0 +1,61 @@
+Qt 5.12.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.1.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+***************************************************************************
+*                              Qt 5.12.2 Changes                          *
+***************************************************************************
+
+QtBluetooth
+-----------
+
+ - Added documentation improvements to QBluetoothServiceDiscoveryAgent.
+
+QtNfc
+-----
+
+ - Fixed exceptions on Android WearOS devices because those devices not
+   supporting NFC.
+
+***************************************************************************
+*                      Platform Specific Changes                          *
+***************************************************************************
+
+Android
+-------
+
+ - [QTBUG-72681] Fixed wrong reversing of service uuids when calling
+   QBLuetoothSocket::connectToService().
+
+ - Fixed a crash when destroying QBluetoothDeviceDisocveryAgent during an
+   ongoing scan.
+
+ - [QTBUG-73571] Fixed tst_QBluetoothServiceDiscoveryAgent::tst_invalidBtAddress()
+   which was failing on Android.
+
+iOS/macOS
+---------
+
+ - [QTBUG-73140] Fixed a crash in QBluetoothDeviceDiscoveryAgent when the user
+   turns off Bluetooth while a scan is running.
+
+Linux/BlueZ
+-----------
+
+ - [QTBUG-72800] Addressed bug where a discovered custom uuid was not returned
+   via BluetoothServiceInfo::serviceUuid() but as serviceClassUuids().

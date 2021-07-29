@@ -1,0 +1,96 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UserDefinedSI">
+   <GroupInfo>
+      <title>Constructor Functions for User Defined Functions</title>
+      <description/>
+   </GroupInfo>
+   <test-case name="user-defined-1" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluation of simple constructor function for user defined data type derived from xs:integer.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-1" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-1.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case name="user-defined-2" FilePath="SchemaImport/UserDefinedSI/" scenario="runtime-error" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluation of simple constructor function violation for user defined data type derived from xs:integer.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-2" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0001</expected-error>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case name="user-defined-3" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluation of simple constructor function for used in addition operation. Type derived from xs:integer.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-3" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-3.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case name="user-defined-4" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluation of simple constructor function for user defined data type derived from xs:string.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-4" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-4.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="user-defined-5" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of usage of fn:concat on constructor function for user defined data type derived from xs:string.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-5" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-5.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="user-defined-6" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Use constructor function to cast a value to its base type (xs:integer).</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-6" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-6.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="user-defined-7" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Use constructor function to check if user defined type is castable as its base type (xs:integer).</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-7" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-7.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="user-defined-8" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Use constructor function to evaluate if two user defined types can be casted to another user defined type.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-8" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-8.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="user-defined-9" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Use constructor function to evaluate if two user defined types are castable to another user defined type.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-9" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-9.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="user-defined-10" FilePath="SchemaImport/UserDefinedSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Use constructor functions on addition operation on two user defined types.</description>
+      <spec-citation spec="FuncOps" section-number="5.4" section-title="Constructor Functions for User-Defined Types" section-pointer="constructor-functions-for-user-defined-types"/>
+      <query name="user-defined-10" date="2006-04-03"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">user-defined-10.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+</test-group>

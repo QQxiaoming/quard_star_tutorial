@@ -1,0 +1,65 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Thu, 16 Jan 2020 15:41:01 -0800
+Subject: [PATCH 24/25] Back away from LEFT JOIN optimization
+
+Backports https://sqlite.org/src/info/862974312edf00e9d1068115d1a39b7235b7db68b6d86b81d38a12f025a4748e
+
+Bug: 1042578
+---
+ third_party/sqlite/patched/src/select.c   |  8 ++++++--
+ third_party/sqlite/patched/test/join.test | 13 +++++++++++++
+ 2 files changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/third_party/sqlite/patched/src/select.c b/third_party/sqlite/patched/src/select.c
+index 4ed359800a2b..ec764996fb1a 100644
+--- a/third_party/sqlite/patched/src/select.c
++++ b/third_party/sqlite/patched/src/select.c
+@@ -3596,6 +3596,7 @@ static void substSelect(
+ **        (3b) the FROM clause of the subquery may not contain a virtual
+ **             table and
+ **        (3c) the outer query may not be an aggregate.
++**        (3d) the outer query may not be DISTINCT.
+ **
+ **   (4)  The subquery can not be DISTINCT.
+ **
+@@ -3792,8 +3793,11 @@ static int flattenSubquery(
+   */
+   if( (pSubitem->fg.jointype & JT_OUTER)!=0 ){
+     isLeftJoin = 1;
+-    if( pSubSrc->nSrc>1 || isAgg || IsVirtual(pSubSrc->a[0].pTab) ){
+-      /*  (3a)             (3c)     (3b) */
++    if( pSubSrc->nSrc>1                   /* (3a) */
++     || isAgg                             /* (3b) */
++     || IsVirtual(pSubSrc->a[0].pTab)     /* (3c) */
++     || (p->selFlags & SF_Distinct)!=0    /* (3d) */
++    ){
+       return 0;
+     }
+   }
+diff --git a/third_party/sqlite/patched/test/join.test b/third_party/sqlite/patched/test/join.test
+index c6c615f1351c..1c75041eb5ea 100644
+--- a/third_party/sqlite/patched/test/join.test
++++ b/third_party/sqlite/patched/test/join.test
+@@ -905,5 +905,18 @@ do_execsql_test join-18.4 {
+   SELECT NOT(v0.a IS FALSE) FROM v0
+ } {1}
+ 
++# 2019-12-18 problem with a LEFT JOIN where the RHS is a view.
++# Detected by Yongheng and Rui.
++# Follows from the optimization attempt of check-in 41c27bc0ff1d3135
++# on 2017-04-18
++#
++reset_db
++do_execsql_test join-22.10 {
++  CREATE TABLE t0(a, b);
++  CREATE INDEX t0a ON t0(a);
++  INSERT INTO t0 VALUES(10,10),(10,11),(10,12);
++  SELECT DISTINCT c FROM t0 LEFT JOIN (SELECT a+1 AS c FROM t0) ORDER BY c ;
++} {11}
++
+ finish_test
+ 
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

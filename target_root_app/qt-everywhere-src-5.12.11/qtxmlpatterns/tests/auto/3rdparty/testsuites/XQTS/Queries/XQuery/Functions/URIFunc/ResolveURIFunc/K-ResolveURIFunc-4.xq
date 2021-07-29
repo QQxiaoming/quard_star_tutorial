@@ -1,0 +1,8 @@
+(:*******************************************************:)
+(: Test: K-ResolveURIFunc-4                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `resolve-uri("", "http://www.example.com/") eq xs:anyURI("http://www.example.com/")`. :)
+(:*******************************************************:)
+resolve-uri("", "http://www.example.com/") 
+			eq xs:anyURI("http://www.example.com/")

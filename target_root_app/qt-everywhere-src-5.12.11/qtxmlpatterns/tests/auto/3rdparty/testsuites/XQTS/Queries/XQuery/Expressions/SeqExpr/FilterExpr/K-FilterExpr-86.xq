@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FilterExpr-86                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: A predicate that never can match.            :)
+(:*******************************************************:)
+empty(current-time()[2])

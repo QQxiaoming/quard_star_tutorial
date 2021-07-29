@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-string-join-14                                :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 24, 2005                                    :)
+(:Purpose: Evaluates The "string-join" function          :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "A"                                            :)
+(:$arg2 = xs:string("A")                                 :)
+(:*******************************************************:)
+
+fn:string-join(("A"),xs:string("A"))

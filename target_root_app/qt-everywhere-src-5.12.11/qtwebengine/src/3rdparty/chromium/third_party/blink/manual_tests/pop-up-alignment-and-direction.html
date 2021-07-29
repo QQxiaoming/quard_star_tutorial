@@ -1,0 +1,65 @@
+﻿<style>
+    select { display: block; font-size: 16px; }
+    label { display: block; font: 13px "Lucida Grande"; }
+    #reflection { font: 13px "Lucida Grande"; padding: 10px; width: 245px; }
+</style>
+
+<p>
+    For each of the direction settings below, and for each item in the pop-up menu below, verify that
+    the alignment and content match between the pop-up button, the menu item, and the value as it is
+    reflected below the pop-up button, and that the checkmarks appear on the start side of the item.
+</p>
+
+<label><input type="radio" name="direction" value="ltr" checked onchange="directionChanged(event)"> Left to right</label>
+<label><input type="radio" name="direction" value="rtl" onchange="directionChanged(event)"> Right to left</label>
+
+<select id="menu">
+    <option style="direction: ltr;">
+        First שניה (03) רביעית fifth
+    </option>
+    <option style="direction: rtl;">
+        First שניה (03) רביעית fifth
+    </option>
+    <option style="direction: ltr; unicode-bidi: bidi-override;">
+        First שניה (03) רביעית fifth
+    </option>
+    <option style="direction: rtl; unicode-bidi: bidi-override;">
+        First שניה (03) רביעית fifth
+    </option>
+    <option>
+        משהו עם נִקּוּד
+    </option>
+    <option>
+        اللغة العربية
+    </option>
+    <option>
+        Et volia&#x0300: ATSUI!
+    </option>
+    <option>
+        Directional &#x202e;overrides&#x202c; are confusing.
+    </option>
+    <option>
+        She said &ldquo;&#x202b;יש TNT במזוודה!&#x202c;&rdquo; and ran off
+    </option>
+</select>
+<div id="reflection">
+    First שניה (03) רביעית fifth
+</div>
+<script>
+    var reflection = document.getElementById("reflection");
+
+    document.getElementById("menu").onchange = function(event) {
+        var option = event.target.item(event.target.selectedIndex);
+        reflection.innerHTML = option.innerHTML;
+        optionStyle = getComputedStyle(option);
+        reflection.style.direction = optionStyle.direction;
+        reflection.style.unicodeBidi = optionStyle.unicodeBidi;
+        reflection.style.textAlign = getComputedStyle(event.target).direction === "ltr" ? "left" : "right";
+    }
+
+    function directionChanged(event)
+    {
+        document.getElementById('menu').style.direction = event.target.value;
+        reflection.style.textAlign = event.target.value === "ltr" ? "left" : "right";
+    }
+</script>

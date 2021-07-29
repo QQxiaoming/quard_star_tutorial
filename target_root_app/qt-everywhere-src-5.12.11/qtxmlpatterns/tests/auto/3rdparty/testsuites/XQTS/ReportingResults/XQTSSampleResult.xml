@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-suite-result
+   xmlns='http://www.w3.org/2005/02/query-test-XQTSResult'
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+   <implementation
+      name='XQuery Anihilator'
+      version='12.8'
+      anonymous-result-column="false">
+
+      <organization
+         name='Anihilation Competencies, Inc.'
+         website="http://www.example.com/ac"
+         anonymous="false" />
+
+      <submittor
+         name="Sara Flowers"
+         email="sf@ac.com" />
+
+      <description>
+         <p>XQuery Anihilator is fast, cheap, and robust.</p>
+      </description>
+
+      <implementation-defined-items>
+         <implementation-defined-item
+            name="implicit timezone"
+            value="Z" />
+         <implementation-defined-item
+            name="DTD validation or schema validation for fn:doc"
+            value="schema validation" />
+      </implementation-defined-items>
+
+      <features>
+         <feature
+            name='Minimum Conformance'
+            supported='true' />
+      </features>
+
+      <context-properties>
+         <context-property
+            name="Default collation"
+            context-type='static'
+            value="not overwritten" />
+         <context-property
+            name="Statically known namespaces"
+            context-type='static'
+            value="augmented with xmlns:ac='http://www.ac.com/xquery'" />
+      </context-properties>
+
+   </implementation>
+
+   <syntax>XQuery</syntax>
+
+   <test-run dateRun='2005-04-16'>
+      <test-suite version="0.1" />
+      <transformation>
+         <p>No unusual transformations.</p>
+         <p>Really!</p>
+      </transformation>
+      <comparison>
+         <p>No unusual comparisons</p>
+      </comparison>
+      <otherComments>
+         <p>The test run took 100 seconds.</p>
+      </otherComments>
+   </test-run>
+
+   <test-case
+      name="Literals001"
+      result='pass' />
+   <test-case
+      name="Literals002"
+      result='pass' />
+   <test-case
+      name="Literals003"
+      result='fail' />
+   <test-case
+      name="Axes001-1"
+      result='pass' />
+   <test-case
+      name="Axes001-2"
+      result='fail' />
+   <test-case
+      name="Axes001-3"
+      result='not tested'
+      comment='This was hard.' />
+</test-suite-result>

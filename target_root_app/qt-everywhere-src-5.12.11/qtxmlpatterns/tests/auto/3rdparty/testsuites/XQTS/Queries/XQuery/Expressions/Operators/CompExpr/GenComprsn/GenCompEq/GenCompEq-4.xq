@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(: Test: GenCompEq-4                                     :)
+(: Written by: Sorin Nasoi                               :)
+(: Date: 2009-05-01+02:00                                :)
+(: Purpose: General comparison where one of the types is :)
+(: xs:untypedAtomic and the other xs:dayTimeDuration     :)
+(: Expected error FORG0001.                              :)
+(:*******************************************************:)
+
+xs:untypedAtomic("0") = xs:dayTimeDuration("PT0S")

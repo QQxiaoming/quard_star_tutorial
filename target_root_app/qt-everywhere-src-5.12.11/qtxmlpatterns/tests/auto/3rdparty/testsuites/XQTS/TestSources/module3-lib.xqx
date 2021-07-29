@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>mod3</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/module3</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>simple</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/simple</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="mod3">var1</xqx:varName>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="simple">myType</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:varValue>
+          <xqx:castExpr>
+            <xqx:argExpr>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:argExpr>
+            <xqx:singleType>
+              <xqx:atomicType xqx:prefix="simple">myType</xqx:atomicType>
+            </xqx:singleType>
+          </xqx:castExpr>
+        </xqx:varValue>
+      </xqx:varDecl>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="mod3">var2</xqx:varName>
+        <xqx:typeDeclaration>
+          <xqx:schemaElementTest xqx:prefix="simple">integer</xqx:schemaElementTest>
+        </xqx:typeDeclaration>
+        <xqx:varValue>
+          <xqx:elementConstructor>
+            <xqx:tagName xqx:prefix="simple">integer</xqx:tagName>
+            <xqx:elementContent>
+              <xqx:stringConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:elementContent>
+          </xqx:elementConstructor>
+        </xqx:varValue>
+      </xqx:varDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="mod3">function1</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="simple">myType</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:castExpr>
+            <xqx:argExpr>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:argExpr>
+            <xqx:singleType>
+              <xqx:atomicType xqx:prefix="simple">myType</xqx:atomicType>
+            </xqx:singleType>
+          </xqx:castExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="mod3">function2</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>param</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="simple">myType</xqx:atomicType>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:addOp>
+            <xqx:firstOperand>
+              <xqx:varRef>
+                <xqx:name>param</xqx:name>
+              </xqx:varRef>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:secondOperand>
+          </xqx:addOp>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="mod3">function3</xqx:functionName>
+        <xqx:paramList/>
+        <xqx:typeDeclaration>
+          <xqx:schemaElementTest xqx:prefix="simple">integer</xqx:schemaElementTest>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:elementConstructor>
+            <xqx:tagName xqx:prefix="simple">integer</xqx:tagName>
+            <xqx:elementContent>
+              <xqx:stringConstantExpr>
+                <xqx:value>2</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:elementContent>
+          </xqx:elementConstructor>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="mod3">function4</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>param</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:schemaElementTest xqx:prefix="simple">integer</xqx:schemaElementTest>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:addOp>
+            <xqx:firstOperand>
+              <xqx:castExpr>
+                <xqx:argExpr>
+                  <xqx:varRef>
+                    <xqx:name>param</xqx:name>
+                  </xqx:varRef>
+                </xqx:argExpr>
+                <xqx:singleType>
+                  <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+                </xqx:singleType>
+              </xqx:castExpr>
+            </xqx:firstOperand>
+            <xqx:secondOperand>
+              <xqx:integerConstantExpr>
+                <xqx:value>1</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:secondOperand>
+          </xqx:addOp>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

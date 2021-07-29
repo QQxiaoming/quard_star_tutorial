@@ -1,0 +1,38 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ContextDefaultCollationFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:default-collation</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-default-collation-1" FilePath="Functions/ContextFunc/ContextDefaultCollationFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:default-collation" function with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="16.7" section-title="fn:default-collation" section-pointer="func-default-collation"/>
+      <query name="fn-default-collation-1" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-default-collation-2" FilePath="Functions/ContextFunc/ContextDefaultCollationFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:default-collation" function that fetches the default collation.</description>
+      <spec-citation spec="FuncOps" section-number="16.7" section-title="fn:default-collation" section-pointer="func-default-collation"/>
+      <query name="fn-default-collation-2" date="2005-12-09"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-default-collation-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextDefaultCollationFunc-1" FilePath="Functions/ContextFunc/ContextDefaultCollationFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `default-collation(.)`.</description>
+      <query name="K-ContextDefaultCollationFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextDefaultCollationFunc-2" FilePath="Functions/ContextFunc/ContextDefaultCollationFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `default-collation(1, 2)`.</description>
+      <query name="K-ContextDefaultCollationFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextDefaultCollationFunc-3" FilePath="Functions/ContextFunc/ContextDefaultCollationFunc/" scenario="standard">
+      <description>A test whose essence is: `default-collation() eq "http://www.w3.org/2005/xpath-functions/collation/codepoint"`.</description>
+      <query name="K-ContextDefaultCollationFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextDefaultCollationFunc-3.txt</output-file>
+   </test-case>
+</test-group>

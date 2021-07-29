@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>PrintMe</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script>
+      function printNow() {
+         window.print();
+      }
+      </script>
+   </head>
+   <body>
+      <form class="form">
+         <img class="logo" src="icon.svg" alt="qtwebengine">
+         <div class="header">
+            <h1>Hello Paper World!</h1>
+            <h2>Press Ctrl+p to print with print preview</h2>
+            <h2>Press Ctrl+Shift+p to print without print preview</h2>
+            <h2>Click the button to print using JavaScript</h2>
+            <p class="button" onclick="printNow()">Print Now</p>
+      </form>
+   </body>
+</html>

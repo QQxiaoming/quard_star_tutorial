@@ -1,0 +1,56 @@
+Qt 5.11.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.1 Changes                           *
+****************************************************************************
+
+QtQml
+-----
+
+ - Fix regression with .import in .js files not working when using
+   CONFIG+=qtquickcompiler.
+ - Fix QML declared enums with CONFIG+=qtquickcompiler.
+ - Enabled JIT on INTEGRITY ARM64.
+ - [QTBUG-68416] Fixed a crash when incubating objects with non-existent
+   initial properties.
+ - [QTBUG-68369] Fixed a crash when modifying objects used as prototypes.
+ - [QTBUG-68513] Fixed a crash in the modulus operation.
+ - [QTBUG-68522][QTBUG-68463][QTBUG-68474][QTBUG-68474] Fixed several QML
+   debugging issues.
+ - [QTBUG-68025] Fixed loading of composite singletons from resources.
+ - [QTBUG-65723] Fixed repeated loading of resources with slightly
+   different URLs.
+
+QtQuick
+-------
+
+ - [QTBUG-68490][QTBUG-68582] Fixed incorrect high-DPI scaling in the
+   sprite engine which was causing AnimatedSprite to render the wrong
+   region of the source image, or not at all.
+ - [QTBUG-65648][QTBUG-68030] Ungrabbing the touch or mouse event is now
+   more reliable in certain situations.
+ - [QTBUG-67960] Fixed an issue with Canvas Context2D createRadialGradient.
+ - [QTBUG-67427] Fixed a crash when changing the source of AnimatedImage
+   after a frame change.
+ - [QTBUG-40366] Fixed BorderImage high-DPI with the software renderer.
+ - [QTBUG-67024] Fixed a crash in mapToGlobal().
+ - [QTBUG-44976] Fixed a DnD crash with Drag.Automatic when dragging
+   on a touchscreen.
+ - [QTBUG-59852] Fixed ListView.snapMode with non-zero ListView.spacing.

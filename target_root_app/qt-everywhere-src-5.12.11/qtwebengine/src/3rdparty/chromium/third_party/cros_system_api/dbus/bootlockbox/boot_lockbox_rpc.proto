@@ -1,0 +1,46 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// The messages in this file comprise the DBus/Proto interface for bootlockboxd.
+
+syntax = "proto2";
+
+option optimize_for = LITE_RUNTIME;
+
+package cryptohome;
+
+enum BootLockboxErrorCode {
+  BOOTLOCKBOX_ERROR_NOT_SET = 0;
+  BOOTLOCKBOX_ERROR_CANNOT_STORE = 1;
+  BOOTLOCKBOX_ERROR_CANNOT_READ = 2;
+  BOOTLOCKBOX_ERROR_TPM_COMM_ERROR = 3;
+}
+
+message BootLockboxBaseReply {
+  optional BootLockboxErrorCode error = 1;
+
+  extensions 1000 to max;
+}
+
+message StoreBootLockboxRequest {
+  // The key for the data.
+  optional bytes key = 1;
+  // The data to be stored.
+  optional bytes data = 2;
+}
+
+message ReadBootLockboxRequest {
+  // The key for the data to read.
+  optional bytes key = 1;
+}
+
+message ReadBootLockboxReply {
+  extend BootLockboxBaseReply {
+    optional ReadBootLockboxReply reply = 1001;
+  }
+  optional bytes data = 1;
+}
+
+message LockBootLockboxRequest {
+}

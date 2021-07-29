@@ -1,0 +1,419 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ContextPositionFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:position</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="position-1" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple position test, where the context node is an element node and position is first.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-1" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="position-2" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position", for which no context node is defined.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-2" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="position-3" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position", where the last node is selected.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-3" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-4" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" together with the fn:last function (format position() = last()).</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-4" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-5" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" together with the fn:last function (format last() = position()).</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-5" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-6" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" together with a variable of type integer.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-6" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-7" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" together with a variable of type string casted to integer inside the predicate.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-7" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-8" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position", where two position functions are used inside the predicate.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-8" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-9" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position", where the position function is part of a second predicate.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-9" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-10" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position", where the position function is part of the first of two predicates.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-10" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-11" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used in conjunction with the fn:not function.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-11" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-12" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used as part of a predicate to a wildcrard (*).</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-12" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-13" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with an addition operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-13" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-14" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with a subtraction operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-14" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-15" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with a multiplication operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-15" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-16" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with a division operation (div).</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-16" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-17" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with a division operation (idiv).</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-17" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-18" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with logical operation ("and" operand and "fn:true").</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-18" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-19" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with logical operation ("and" operand and "fn:false").</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-19" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">position-19.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="position-20" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with logical operation ("or" operand and "fn:true").</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-20" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-21" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used together with logical operation ("or" operand and "fn:false").</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-21" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="position-22" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:position" used in the middle of a path expression.</description>
+      <spec-citation spec="FuncOps" section-number="16.1" section-title="fn:position" section-pointer="func-position"/>
+      <query name="position-22" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">position-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-1" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `position(1)`.</description>
+      <query name="K-ContextPositionFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-2" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[if(1) then 1 else position()]`.</description>
+      <query name="K-ContextPositionFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-3" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('=').</description>
+      <query name="K-ContextPositionFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-4" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('='), #2.</description>
+      <query name="K-ContextPositionFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-5" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('eq').</description>
+      <query name="K-ContextPositionFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-6" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('eq'), #2.</description>
+      <query name="K-ContextPositionFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-7" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('!=').</description>
+      <query name="K-ContextPositionFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-8" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('ne').</description>
+      <query name="K-ContextPositionFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-9" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('!='), #2.</description>
+      <query name="K-ContextPositionFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-10" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return 0('ne'), #2.</description>
+      <query name="K-ContextPositionFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-11" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return anything less than 1(lt).</description>
+      <query name="K-ContextPositionFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-12" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return anything less than 1(&lt;).</description>
+      <query name="K-ContextPositionFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-13" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return anything less or equal to 0(le).</description>
+      <query name="K-ContextPositionFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-14" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>fn:position() can never return anything less or equal to 0(&lt;=).</description>
+      <query name="K-ContextPositionFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-15" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>The return value of fn:position() is always greater than 0('ne').</description>
+      <query name="K-ContextPositionFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-16" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>The return value of fn:position() is always greater than 0('&gt;').</description>
+      <query name="K-ContextPositionFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-17" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>The return value of fn:position() is always greater than 0('gt').</description>
+      <query name="K-ContextPositionFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-18" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>The return value of fn:position() is always greater or equal to 0('&gt;=').</description>
+      <query name="K-ContextPositionFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-19" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>The return value of fn:position() is always greater or equal to 0('ge').</description>
+      <query name="K-ContextPositionFunc-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-20" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-21" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-22" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-23" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-24" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-25" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-26" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-27" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-28" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-29" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-30" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-31" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-32" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-33" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-33.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-34" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-35" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-36" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-37" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-37.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-38" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-38.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-39" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-39.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-40" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-40.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-41" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-42" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-42.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextPositionFunc-43" FilePath="Functions/ContextFunc/ContextPositionFunc/" scenario="standard">
+      <description>position() combined with a comparison operator inside a predicate.</description>
+      <query name="K-ContextPositionFunc-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextPositionFunc-43.txt</output-file>
+   </test-case>
+</test-group>

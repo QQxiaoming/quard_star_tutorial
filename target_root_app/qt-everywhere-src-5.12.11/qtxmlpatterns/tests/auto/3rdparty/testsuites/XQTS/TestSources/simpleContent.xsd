@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ss="http://www.w3.org/query-test/complexSimple"
+           targetNamespace="http://www.w3.org/query-test/complexSimple"
+           elementFormDefault="qualified">
+
+
+<xs:complexType name="complexExtendsSimple">
+  <xs:annotation>
+    <xs:documentation>
+    A complex type that extends a simple base
+    </xs:documentation>
+  </xs:annotation>
+  <xs:simpleContent>
+    <xs:extension base="xs:integer"/>
+  </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType name="emptyMixed" mixed="true">
+  <xs:annotation>
+    <xs:documentation>
+    A complex type that is mixed but with no content model.
+    </xs:documentation>
+  </xs:annotation>
+  <xs:sequence/>
+</xs:complexType>
+
+<xs:simpleType name="unionBase">
+  <xs:union memberTypes="xs:boolean xs:integer"/>
+</xs:simpleType>
+
+<xs:complexType name="complexExtendsUnion">
+  <xs:annotation>
+    <xs:documentation>
+    A complex type that extends a simple union type base
+    </xs:documentation>
+  </xs:annotation>
+  <xs:simpleContent>
+    <xs:extension base="ss:unionBase"/>
+  </xs:simpleContent>
+</xs:complexType>
+
+<xs:simpleType name="listBase">
+  <xs:list itemType="xs:integer"/>
+</xs:simpleType>
+
+<xs:complexType name="complexExtendsList">
+  <xs:annotation>
+    <xs:documentation>
+    A complex type that extends a simple list type base
+    </xs:documentation>
+  </xs:annotation>
+  <xs:simpleContent>
+    <xs:extension base="ss:listBase"/>
+  </xs:simpleContent>
+</xs:complexType>
+
+<xs:element name="complexExtendsSimple" type="ss:complexExtendsSimple"/>
+<xs:element name="emptyMixed" type="ss:emptyMixed"/>
+<xs:element name="unionBase" type="ss:unionBase"/>
+<xs:element name="complexExtendsUnion" type="ss:complexExtendsUnion"/>
+<xs:element name="listBase" type="ss:listBase"/>
+<xs:element name="complexExtendsList" type="ss:complexExtendsList"/>
+
+</xs:schema>

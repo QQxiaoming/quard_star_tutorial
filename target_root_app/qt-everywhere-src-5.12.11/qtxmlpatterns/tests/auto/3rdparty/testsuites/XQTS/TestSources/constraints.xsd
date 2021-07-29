@@ -1,0 +1,56 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:constraints="http://www.w3.org/constraints"
+  targetNamespace="http://www.w3.org/constraints">
+
+  <xsd:element name="a" type="constraints:myList">
+    <xsd:unique name="myId">
+      <xsd:selector xpath="./b"/>
+      <xsd:field xpath="@id"/>
+    </xsd:unique>
+  </xsd:element>
+
+  <xsd:complexType name="myList">
+    <xsd:sequence minOccurs="1">
+      <xsd:element name="b" minOccurs="1" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="id" type="xsd:NCName"/>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:element name="a2" type="constraints:myList2">
+    <xsd:key name="myId2">
+      <xsd:selector xpath="./b2"/>
+      <xsd:field xpath="@id"/>
+    </xsd:key>
+    <xsd:keyref name="myIdref" refer="constraints:myId2">
+      <xsd:selector xpath="./b2ref/c"/>
+      <xsd:field xpath="@idref"/>
+    </xsd:keyref> 
+  </xsd:element>
+
+  <xsd:complexType name="myList2">
+    <xsd:sequence minOccurs="1">
+      
+      <xsd:element name="b2" minOccurs="1" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:attribute name="id" type="xsd:NCName"/>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="b2ref" minOccurs="0" maxOccurs="unbounded">
+        <xsd:complexType>
+          <xsd:sequence minOccurs="1">
+            <xsd:element name="c" minOccurs="1" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:attribute name="idref" type="xsd:NCName" use="required"/>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType> 
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+
+</xsd:schema>

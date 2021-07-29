@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-152                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Hexa-decimal notation isn't allowed in unsignedLong. :)
+(:*******************************************************:)
+xs:unsignedLong("0x0")

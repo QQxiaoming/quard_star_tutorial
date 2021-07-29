@@ -1,0 +1,570 @@
+/* Copyright 2018 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+#custom-bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  transition: opacity 700ms;
+  width: 100%;
+}
+
+#edit-bg {
+  border-radius: 8px;
+  bottom: 16px;
+  height: 28px;
+  position: fixed;
+  right: 16px;
+  width: 28px;
+}
+
+html[dir=rtl] #edit-bg {
+  left: 16px;
+  right: auto;
+}
+
+#edit-bg:hover {
+  background-color: rgb(241, 243, 244);
+}
+
+.non-white-bg #edit-bg:hover {
+  background-color: rgba(255, 255, 255, .1);
+}
+
+.using-mouse-nav .bg-option:focus {
+  outline: none;
+}
+
+#edit-bg-gear {
+  background: url(../../../../ui/webui/resources/images/icon_settings.svg) no-repeat center;
+  background-size: 16px 16px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.non-white-bg #edit-bg-gear {
+  background: url(../../../../ui/webui/resources/images/icon_settings_white.svg) no-repeat center;
+  background-size: 16px 16px;
+}
+
+#edit-bg-dialog::backdrop {
+  background: transparent;
+}
+
+#edit-bg-dialog {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  border-width: thin;
+  bottom: 44px;
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+  left: auto;
+  padding: 0 0 16px 0;
+  position: fixed;
+  right: 16px;
+  width: 325px;
+}
+
+html[dir=rtl] #edit-bg-dialog {
+  left: 16px;
+  right: auto;
+}
+
+#edit-bg-title {
+  color: rgb(32, 33, 36);
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 15px;
+  height: 30px;
+  padding: 16px 0 0 16px;
+}
+
+html[dir=rtl] #edit-bg-title {
+  padding: 16px 16px 0 0;
+}
+
+.bg-option {
+  color: rgb(60, 64, 67);
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 13px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.bg-option:hover {
+  background-color: rgb(241, 243, 244);
+}
+
+.bg-option-img {
+  background-size: 24px 24px;
+  display: inline-block;
+  height: 24px;
+  line-height: normal;
+  margin: 0 0 0 16px;
+  text-align: center;
+  vertical-align: middle;
+  width: 24px;
+}
+
+html[dir=rtl] .bg-option-img {
+  margin: 0 16px 0 0;
+}
+
+.bg-option.bg-option-disabled {
+  opacity: 0.28;
+}
+
+.bg-option.bg-option-disabled:hover {
+  background-color: transparent;
+}
+
+#edit-bg-google-photos .bg-option-img {
+  background: url(icons/photos.svg) no-repeat center;
+}
+
+#edit-bg-default-wallpapers .bg-option-img {
+  background: url(icons/wallpapers.svg) no-repeat center;
+}
+
+#edit-bg-upload-image .bg-option-img {
+  background: rgb(241, 243, 244) url(icons/upload.svg) no-repeat center;
+  border-radius: 50%;
+}
+
+#edit-bg-divider {
+  border-bottom: 1px solid rgb(232, 234, 237);
+  margin: 8px 0;
+  width: 100%;
+}
+
+#custom-links-restore-default .bg-option-img {
+  background: rgb(241, 243, 244) url(icons/link_gray.svg) no-repeat center;
+  border-radius: 50%;
+}
+
+#edit-bg-restore-default .bg-option-img {
+  background: rgb(241, 243, 244) url(icons/chrome.svg)  no-repeat center;
+  border-radius: 50%;
+}
+
+.bg-option-text {
+  display: inline-block;
+  line-height: normal;
+  overflow: hidden;
+  padding-left: 16px;
+  text-align: center;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+html[dir=rtl] .bg-option-text {
+  padding-left: auto;
+  padding-right: 16px;
+}
+
+#bg-sel-menu::backdrop {
+  background-color: rgba(255, 255, 255, .75);
+}
+
+/* The width here should match that used in customBackgrounds.getNextTile. */
+#bg-sel-menu {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  bottom: 0;
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+  font-family: 'Roboto', arial, sans-serif;
+  height: 400px;
+  left: 0;
+  margin: auto;
+  padding: 0 0 0 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* Suitable for 3 columns of tiles on all platforms, accounting for larger
+   * scrollbar width on Windows.*/
+  width: 517px;
+  z-index: 10000;
+}
+
+/* The width here should match that used in customBackgrounds.getNextTile. */
+@media (max-width: 520px) {
+   #bg-sel-menu {
+     width: 352px;
+   }
+}
+
+@media (max-width: 356px) {
+   #bg-sel-menu,
+   #edit-bg-dialog {
+     width: 188px;
+   }
+}
+
+#bg-sel-tiles {
+  height: 284px;
+  overflow-y: scroll;
+  padding-left: 8px;
+}
+
+#bg-sel-tiles::-webkit-scrollbar-track {
+  display: none;
+}
+
+.using-mouse-nav :focus {
+  outline: none;
+}
+
+html[dir=rtl] #bg-sel-tiles {
+  padding-left: auto;
+  padding-right: 8px;
+}
+
+html[dir=rtl] #bg-sel-tiles {
+  padding-left: 0;
+  padding-right: 8px;
+}
+
+#bg-sel-title-bar {
+  border-bottom: 1px solid rgb(232, 234, 237);
+  font-size: 15px;
+  height: 51px;
+  line-height: 52px;
+  text-align: center;
+}
+
+#bg-sel-back {
+  background: url(../../../../ui/webui/resources/images/icon_arrow_back.svg) no-repeat center;
+  background-size: 20px 20px;
+  display: none;
+  height: 20px;
+  width: 20px;
+}
+
+#bg-sel-back-circle {
+  border-radius: 50%;
+  display: none;
+  height: 36px;
+  margin: 8px 8px 0 16px;
+  width: 36px;
+}
+
+#bg-sel-back-circle:active {
+  background: rgb(218, 220, 224);
+  background-position: center;
+  background-size: 36px 36px;
+}
+
+.is-col-sel #bg-sel-back {
+  display: none;
+  text-align: left;
+}
+
+.is-col-sel #bg-sel-back-circle {
+  display: none;
+  text-align: left;
+}
+
+.is-img-sel #bg-sel-back-circle {
+  display: inline-block;
+  float: left;
+  margin: 8px 0 0 8px;
+}
+
+html[dir=rtl] .is-img-sel #bg-sel-back-circle {
+  display: inline-block;
+  float: right;
+  margin: 8px 8px 0 0;
+}
+
+.is-img-sel #bg-sel-back {
+  display: inline-block;
+  float: left;
+  margin: 8px 0 0 8px;
+}
+
+html[dir=rtl] .is-img-sel #bg-sel-back {
+  float: right;
+  margin: 8px 8px 0 0;
+  transform: scaleX(-1);
+}
+
+#bg-sel-title {
+  color: rgb(32, 33, 36);
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin: 8px 0 0 0;
+  text-align: center;
+}
+
+.is-col-sel #bg-sel-title {
+  padding-left: 0;
+  text-align: center;
+}
+
+.is-img-sel #bg-sel-title {
+  float: left;
+  margin: 16px 0 0 8px;
+}
+
+html[dir=rtl] .is-img-sel #bg-sel-title {
+  float: right;
+  margin: 16px 8px 0 0;
+  text-align: left;
+}
+
+#bg-sel-footer {
+  border-top: 1px solid rgba(232, 234, 237, 1);
+  bottom: 0;
+  color: rgb(60, 64, 67);
+  height: 64px;
+  padding-left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.bg-sel-footer-button {
+  border-radius: 4px;
+  bottom: 16px;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#bg-sel-footer-done {
+  background-color: rgb(241, 243, 244);
+  color: rgb(128, 134, 139);
+  height: 24px;
+  padding-top: 9px;
+  right: 16px;
+  width: 62px;
+}
+
+html[dir=rtl] #bg-sel-footer-done {
+  left: 16px;
+  right: auto;
+}
+
+#bg-sel-footer-cancel {
+  background-color: #fff;
+  border: 1px solid rgb(218, 220, 224);
+  color: rgb(26, 115, 232);
+  height: 23px;
+  margin-right: 8px;
+  padding-top: 8px;
+  right: 78px;
+  width: 66px;
+}
+
+html[dir=rtl] #bg-sel-footer-cancel {
+  left: 78px;
+  margin-left: 8px;
+  right: auto;
+}
+
+#bg-sel-footer-cancel:hover {
+  background-color: rgb(154, 160, 166, 0.04);
+}
+
+#bg-sel-footer-cancel:active {
+  background-color: #fff;
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.3), 0 1px 1px 1px rgba(60, 64, 67, 0.15);
+  outline: none;
+}
+
+#bg-sel-footer-done.done-available:active {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  outline: none;
+}
+
+#bg-sel-footer-done.done-available {
+  background-color: rgb(26, 115, 232);
+  color: #FFF;
+}
+
+#bg-sel-footer-toggle-text {
+  padding: 24px 0 0 16px;
+}
+
+.bg-sel-tile {
+  background-color: rgba(32, 33, 36, .06);
+  background-size: cover;
+  display: inline-block;
+  height: 117px;
+  margin: 6px 0 0 8px;
+  position: relative;
+  width: 156px;
+}
+
+html[dir=rtl] .bg-sel-tile {
+  margin: 6px 8px 0 0;
+}
+
+.bg-selected {
+  border-radius: 4px;
+}
+
+.selected-border {
+  border: 2px solid rgba(26, 115, 232, .4);
+  border-radius: 4px;
+  height: 113px;
+  position: relative;
+  width: 152px;
+}
+
+.selected-circle {
+  background: #FFF no-repeat center;
+  border-radius: 50%;
+  height: 22px;
+  left: 66px;
+  position: absolute;
+  top: 46px;
+  width: 22px;
+}
+
+html[dir=rtl] .selected-circle {
+  left: auto;
+  right: 66px;
+}
+
+.selected-check {
+  background: url(../../../../ui/webui/resources/images/check_circle.svg) no-repeat center;
+  background-size: 28px 28px;
+  height: 28px;
+  left: 63px;
+  position: absolute;
+  top: 43px;
+  width: 28px;
+}
+
+html[dir=rtl] .selected-check {
+  left: auto;
+  right: 63px;
+}
+
+.bg-sel-tile-title {
+  background-color: rgba(32, 33, 36, 0.71);
+  bottom: 0;
+  color: #FFF;
+  display: inline-block;
+  font-size: 13px;
+  height: 24px;
+  overflow: hidden;
+  padding: 8px 16px 0 16px;
+  position: absolute;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 124px;
+}
+
+.bg-selected .bg-sel-tile-title {
+  width: 118px;
+}
+
+#bg-daily-refresh {
+ margin: 23px 0 0 16px;
+}
+
+.is-img-sel #bg-daily-refresh {
+  display: none;
+}
+
+.is-col-sel #bg-daily-refresh {
+  display: none;
+}
+
+.is-img-sel #bg-sel-refresh-text {
+  display: none;
+  margin: 24px 0 0 64px;
+}
+
+.is-col-sel #bg-sel-refresh-text {
+  display: none;
+}
+
+.plus-icon {
+  background: url(icons/add.svg);
+  background-size: 22px 22px;
+  height: 22px;
+  left: 67px;
+  position: absolute;
+  top: 47px;
+  width: 22px;
+}
+
+html[dir=rtl] .plus-icon {
+  left: auto;
+  right: 67px;
+}
+
+#custom-bg-attr {
+  border-radius: 8px;
+  bottom: 16px;
+  color: white;
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  left: 16px;
+  padding: 8px 8px 8px 8px;
+  position: fixed;
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+}
+
+html[dir=rtl] #custom-bg-attr {
+  left: auto;
+  position: fixed;
+  right: 16px;
+}
+
+.attr1 {
+  font-size: 13px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+.attr2 {
+  font-size: 11px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+#custom-bg-attr.attr-link:hover {
+  background: rgba(32, 33, 36, .1);
+}
+
+.attr1.attr-link,
+.attr2.attr-link {
+  display: inline-block;
+  text-decoration: underline;
+}
+
+#link-icon {
+  background: url(icons/link.svg);
+  background-size: 10px 10px;
+  display: inline-block;
+  height: 10px;
+  margin-right: 8px;
+  vertical-align: middle;
+  width: 10px;
+}
+
+html[dir=rtl] #link-icon {
+  margin-right: auto;
+  margin-left: 8px;
+}

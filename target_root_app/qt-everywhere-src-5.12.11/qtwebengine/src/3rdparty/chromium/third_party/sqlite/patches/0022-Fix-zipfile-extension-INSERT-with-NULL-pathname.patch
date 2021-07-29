@@ -1,0 +1,50 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Tue, 7 Jan 2020 13:43:48 -0800
+Subject: [PATCH 22/25] Fix zipfile extension INSERT with NULL pathname
+
+Backports https://sqlite.org/src/info/a80f84b511231204658304226de3e075a55afc2e3f39ac063716f7a57f585c06
+
+Bug: 1038863
+---
+ third_party/sqlite/patched/ext/misc/zipfile.c |  1 +
+ third_party/sqlite/patched/test/zipfile.test  | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/third_party/sqlite/patched/ext/misc/zipfile.c b/third_party/sqlite/patched/ext/misc/zipfile.c
+index 5a88389bf2da..1dc47a7d9ae0 100644
+--- a/third_party/sqlite/patched/ext/misc/zipfile.c
++++ b/third_party/sqlite/patched/ext/misc/zipfile.c
+@@ -1618,6 +1618,7 @@ static int zipfileUpdate(
+ 
+     if( rc==SQLITE_OK ){
+       zPath = (const char*)sqlite3_value_text(apVal[2]);
++      if( zPath==0 ) zPath = "";
+       nPath = (int)strlen(zPath);
+       mTime = zipfileGetTime(apVal[4]);
+     }
+diff --git a/third_party/sqlite/patched/test/zipfile.test b/third_party/sqlite/patched/test/zipfile.test
+index 25dc5d6497d1..f5c503d7f156 100644
+--- a/third_party/sqlite/patched/test/zipfile.test
++++ b/third_party/sqlite/patched/test/zipfile.test
+@@ -795,4 +795,17 @@ if {$tcl_platform(platform)!="windows"} {
+   } {. ./x1.txt ./x2.txt}
+ }
+ 
++# 2019-12-18 Yongheng and Rui fuzzer
++#
++do_execsql_test 13.10 {
++  DROP TABLE IF EXISTS t0;
++  DROP TABLE IF EXISTS t1;
++  CREATE TABLE t0(a,b,c,d,e,f,g);
++  REPLACE INTO t0(c,b,f) VALUES(10,10,10);
++  CREATE VIRTUAL TABLE t1 USING zipfile('h.zip');
++  REPLACE INTO t1 SELECT * FROM t0;
++  SELECT quote(name),quote(mode),quote(mtime),quote(sz),quote(rawdata),
++         quote(data),quote(method) FROM t1;
++} {'' 10 10 2 X'3130' X'3130' 0}
++
+ finish_test
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

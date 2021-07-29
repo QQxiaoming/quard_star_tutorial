@@ -1,0 +1,87 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \example activeqt/mediaplayer
+    \title Media Player Example (ActiveQt)
+
+    \brief The Media Player example uses the Microsoft Media Player
+    ActiveX control to implement a functional media player application.
+
+    \image activeqt-mediaplayer-example.jpg
+
+    \e {Media Player} demonstrates how a Qt application can communicate with
+    embedded ActiveX controls using signals, slots, and the \c dynamicCall()
+    function.
+
+    \quotefromfile activeqt/mediaplayer/main.cpp
+    \skipto class MainWindow
+    \printuntil /^\}/
+
+    The \c MainWindow class declares a \c QMainWindow based user interface,
+    using the \c Ui::MainWindow class created by Qt Designer. A number
+    of slots are implemented to handle events from user interface elements,
+    including the \c mediaPlayer object, which is a QAxWidget hosting
+    the Microsoft Media Player ActiveX control.
+
+    \quotefromfile activeqt/mediaplayer/main.cpp
+    \skipto MainWindow::MainWindow()
+    \printuntil /^\}/
+
+    The constructor initializes the user interface, restores a previously
+    saved window geometry, and uses the \c dynamicCall() function to invoke
+    the APIs implemented by the Microsoft Media Player ActiveX control,
+    to set initial configuration parameters.
+
+    \quotefromfile activeqt/mediaplayer/main.cpp
+    \skipto MainWindow::on_mediaPlayer_PlayStateChange
+    \printuntil /^\}/
+
+    The \c on_mediaPlayer_PlayStateChange slot handles the signal emitted
+    by the \c mediaPlayer object when its state changes.
+
+    \quotefromfile activeqt/mediaplayer/main.cpp
+    \skipto MainWindow::openMedia
+    \printuntil /^\}/
+
+    The \c openMedia() function allows a media file to be opened by using
+    the \c dynamicCall() function to set the URL property in the ActiveX
+    control, which causes the media file to be loaded and played.
+
+    \quotefromfile activeqt/mediaplayer/main.cpp
+    \skipto int main
+    \printuntil /^\}/
+
+    The \c main() function starts the application using standard Qt APIs
+    and uses an optional command line argument as the name of a media
+    file to be loaded by the player.
+
+    To build the example, you must first build the QAxContainer
+    library. Then run your make tool in
+    \c examples/activeqt/mediaplayer and run the resulting
+    \c mediaplayer.exe.
+*/

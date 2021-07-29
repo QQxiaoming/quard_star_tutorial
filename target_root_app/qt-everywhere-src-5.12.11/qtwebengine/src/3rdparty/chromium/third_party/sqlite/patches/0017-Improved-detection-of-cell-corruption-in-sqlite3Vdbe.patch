@@ -1,0 +1,35 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Victor Costan <pwnall@chromium.org>
+Date: Fri, 11 Jan 2019 13:22:44 -0800
+Subject: [PATCH 17/17] Improved detection of cell corruption in
+ sqlite3VdbeRecordCompareWithSkip().
+
+This backports https://www.sqlite.org/src/info/fa47f4c6589c431c
+
+Bug: 915348
+---
+ third_party/sqlite/src/src/vdbeaux.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/third_party/sqlite/src/src/vdbeaux.c b/third_party/sqlite/src/src/vdbeaux.c
+index ebcb652bad20..15a095ff6e7b 100644
+--- a/third_party/sqlite/src/src/vdbeaux.c
++++ b/third_party/sqlite/src/src/vdbeaux.c
+@@ -4167,12 +4167,12 @@ int sqlite3VdbeRecordCompareWithSkip(
+   }else{
+     idx1 = getVarint32(aKey1, szHdr1);
+     d1 = szHdr1;
++    i = 0;
++  }
+   if( d1>(unsigned)nKey1 ){
+     pPKey2->errCode = (u8)SQLITE_CORRUPT_BKPT;
+     return 0;  /* Corruption */
+   }
+-    i = 0;
+-  }
+
+   VVA_ONLY( mem1.szMalloc = 0; ) /* Only needed by assert() statements */
+   assert( pPKey2->pKeyInfo->nAllField>=pPKey2->nField
+--
+2.18.0
+

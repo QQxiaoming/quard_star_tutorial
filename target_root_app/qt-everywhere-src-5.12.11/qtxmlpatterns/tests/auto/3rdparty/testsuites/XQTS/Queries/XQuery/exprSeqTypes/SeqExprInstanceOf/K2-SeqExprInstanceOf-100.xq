@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprInstanceOf-100                        :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Test using element().                        :)
+(:*******************************************************:)
+<a><b/></a>/(b instance of element(), * instance of element())

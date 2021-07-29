@@ -1,0 +1,387 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqExprCastSI" featureOwner="IBM/XSLT">
+   <GroupInfo>
+      <title>Cast</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="qname-cast-1" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates casting a QName to another QName.</description>
+      <spec-citation section-number="5.1" spec="FuncOps" section-title="Constructor Functions for XML Schema Built-in Types" section-pointer="constructor-functions-for-xsd-types"/>
+      <spec-citation section-number="3.12.3" spec="XQuery" section-title="Cast" section-pointer="id-cast"/>
+      <query name="qname-cast-1" date="2006-04-13"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">value1.txt</output-file>
+   </test-case>
+   <test-case name="qname-cast-2" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates casting QName derived type to a QName.</description>
+      <spec-citation section-number="5.1" spec="FuncOps" section-title="Constructor Functions for XML Schema Built-in Types" section-pointer="constructor-functions-for-xsd-types"/>
+      <spec-citation section-number="17.2" spec="FuncOps" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="3.12.3" spec="XQuery" section-title="Cast" section-pointer="id-cast"/>
+      <query name="qname-cast-2" date="2006-04-13"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">value1.txt</output-file>
+   </test-case>
+   <test-case name="qname-cast-3" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates casting QName derived type to another QName derived type.</description>
+      <spec-citation section-number="5.1" spec="FuncOps" section-title="Constructor Functions for XML Schema Built-in Types" section-pointer="constructor-functions-for-xsd-types"/>
+      <spec-citation section-number="17.2" spec="FuncOps" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="3.12.3" spec="XQuery" section-title="Cast" section-pointer="id-cast"/>
+      <query name="qname-cast-3" date="2006-04-13"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">value1.txt</output-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case name="qname-cast-4" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluates casting QName type to a QName derived type.</description>
+      <spec-citation section-number="5.1" spec="FuncOps" section-title="Constructor Functions for XML Schema Built-in Types" section-pointer="constructor-functions-for-xsd-types"/>
+      <spec-citation section-number="17.2" spec="FuncOps" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="3.12.3" spec="XQuery" section-title="Cast" section-pointer="id-cast"/>
+      <query name="qname-cast-4" date="2006-04-13"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">value1.txt</output-file>
+      <expected-error>XPST0051</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="notation-cast-2" FilePath="SchemaImport/SeqExprCastSI/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates casting a type derived from an xs:NOTATION to an xs:NOTATION type.</description>
+      <spec-citation section-number="3.12.3" spec="XQuery" section-title="Cast" section-pointer="id-cast"/>
+      <query name="notation-cast-2" date="2006-04-13"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPST0080</expected-error>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="notation-cast-3" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates casting a type derived from an xs:NOTATION to a type derived from xs:NOTATION.</description>
+      <spec-citation section-number="17.2" spec="FuncOps" section-title="Casting to derived types" section-pointer="casting-to-derived-types"/>
+      <spec-citation section-number="3.12.3" spec="XQuery" section-title="Cast" section-pointer="id-cast"/>
+      <query name="notation-cast-3" date="2006-04-13"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">mytype-value1.txt</output-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds1" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate an expression and cast it as an xs:integer. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds1" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds2" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate an expression and cast it as an xs:float. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds2" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds3" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate an expression and cast it as an xs:boolean. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds3" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds3.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds4" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate an expression and cast it as an xs:double. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds4" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds5" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate an expression and cast it as an xs:decimal. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds5" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds6" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluate an expression and cast it as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds6" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds7" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a xs:string value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds7" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds8" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a xs:float value casted as an xs:float. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds8" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds9" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a xs:float value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds9" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds9.txt</output-file>
+      <output-file role="principal" compare="Text">casthcds9alt.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds10" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a xs:float value casted as an xs:double. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds10" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds11" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a xs:float value casted as an xs:boolean. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds11" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds11.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds12" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:double value casted as an xs:double. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds12" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds13" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:double value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds13" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds14" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:double value casted as an xs:float. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds14" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds15" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:double value casted as an xs:boolean. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds15" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds15.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds16" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:decimal value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds16" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds17" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:decimal value casted as an xs:float. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds17" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds18" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:decimal value casted as an xs:double. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds18" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds19" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:decimal value casted as an xs:decimal. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds19" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds20" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:decimal value casted as an xs:integer. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds20" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds20.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds21" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:decimal value casted as an xs:boolean. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds21" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds21.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds22" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:integer value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds22" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds23" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:integer value casted as an xs:float. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds23" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds24" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:integer value casted as an xs:double. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds24" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds25" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:integer value casted as an xs:decimal. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds25" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds26" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:integer value casted as an xs:integer. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds26" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds27" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:integer value casted as an xs:boolean. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds27" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds27.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds28" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:dateTime value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds28" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds29" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:dateTime value casted as an xs:dateTime. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds29" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds30" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:dateTime value casted as an xs:time. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds30" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds30.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds31" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:dateTime value casted as an xs:date. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds31" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds31.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds32" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:date value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds32" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds33" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:date value casted as an xs:dateTime. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds33" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds33.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds34" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:date value casted as an xs:date. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds34" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds34.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds35" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:time value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds35" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds35.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds36" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:time value casted as an xs:time. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds36" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds36.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds37" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:boolean value casted as an xs:string. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds37" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds37.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds38" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:boolean value casted as an xs:float. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds38" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds38.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds39" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:boolean value casted as an xs:double. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds39" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds39.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds40" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:boolean value casted as an xs:decimal. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds40" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds40.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds41" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:boolean value casted as an xs:integer. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <spec-citation section-number="17.1.3" spec="FuncOps" section-title="Casting to numeric types" section-pointer="casting-to-numerics"/>
+      <query name="casthcds41" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds41.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="casthcds42" FilePath="SchemaImport/SeqExprCastSI/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an xs:boolean value casted as an xs:boolean. This test queries an XML file to obtain data.</description>
+      <spec-citation spec="XQuery" section-number="3.12.3" section-title="Cast" section-pointer="id-cast"/>
+      <query name="casthcds42" date="2005-03-08"/>
+      <input-file role="principal-data" variable="input-context1">atomic</input-file>
+      <output-file role="principal" compare="Text">casthcds42.txt</output-file>
+   </test-case>
+</test-group>

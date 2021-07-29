@@ -1,0 +1,48 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseTREE" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "TREE": Queries that preserve hierarchy</title>
+      <description>An XML query language should have the ability to extract elements from documents while preserving their original hierarchy. This Use Case illustrates this requirement by means of a flexible document type named Book.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="tree-queries-results-q1" FilePath="UseCase/UseCaseTREE/" scenario="standard" Creator="XML Query Group">
+      <description>Prepare a (nested) table of contents for Book1, listing all the sections and their titles. Preserve the original attributes of each "section" element, if any.</description>
+      <spec-citation spec="UseCases" section-number="1.2.4.1" section-title="Q1" section-pointer="tree-queries-results-q1"/>
+      <query name="tree-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">book</input-file>
+      <output-file role="principal" compare="XML">tree-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="tree-queries-results-q2" FilePath="UseCase/UseCaseTREE/" scenario="standard" Creator="XML Query Group">
+      <description>Prepare a (flat) figure list for Book1, listing all the figures and their titles. Preserve the original attributes of each "figure" element, if any.</description>
+      <spec-citation spec="UseCases" section-number="1.2.4.2" section-title="Q2" section-pointer="tree-queries-results-q2"/>
+      <query name="tree-queries-results-q2" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">book</input-file>
+      <output-file role="principal" compare="XML">tree-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="tree-queries-results-q3" FilePath="UseCase/UseCaseTREE/" scenario="standard" Creator="XML Query Group">
+      <description>How many sections are in Book1, and how many figures?</description>
+      <spec-citation spec="UseCases" section-number="1.2.4.3" section-title="Q3" section-pointer="tree-queries-results-q3"/>
+      <query name="tree-queries-results-q3" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">book</input-file>
+      <output-file role="principal" compare="Fragment">tree-queries-results-q3.txt</output-file>
+   </test-case>
+   <test-case name="tree-queries-results-q4" FilePath="UseCase/UseCaseTREE/" scenario="standard" Creator="XML Query Group" is-XPath2="false">
+      <description>How many top-level sections are in Book1?</description>
+      <spec-citation spec="UseCases" section-number="1.2.4.4" section-title="Q4" section-pointer="tree-queries-results-q4"/>
+      <query name="tree-queries-results-q4" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">book</input-file>
+      <output-file role="principal" compare="XML">tree-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="tree-queries-results-q5" FilePath="UseCase/UseCaseTREE/" scenario="standard" Creator="XML Query Group">
+      <description>Make a flat list of the section elements in Book1. In place of its original attributes, each section element should have two attributes, containing the title of the section and the number of figures immediately contained in the section.</description>
+      <spec-citation spec="UseCases" section-number="1.2.4.5" section-title="Q5" section-pointer="tree-queries-results-q5"/>
+      <query name="tree-queries-results-q5" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">book</input-file>
+      <output-file role="principal" compare="XML">tree-queries-results-q5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="tree-queries-results-q6" FilePath="UseCase/UseCaseTREE/" scenario="standard" Creator="XML Query Group">
+      <description>Make a nested list of the section elements in Book1, preserving their original attributes and hierarchy. Inside each section element, include the title of the section and an element that includes the number of figures immediately contained in the section.</description>
+      <spec-citation spec="UseCases" section-number="1.2.4.6" section-title="Q6" section-pointer="tree-queries-results-q6"/>
+      <query name="tree-queries-results-q6" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">book</input-file>
+      <output-file role="principal" compare="XML">tree-queries-results-q6.txt</output-file>
+   </test-case>
+</test-group>

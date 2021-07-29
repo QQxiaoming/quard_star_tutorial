@@ -1,0 +1,380 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="BaseURIFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:base-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-base-uri-1" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with no arguments and no context node set. Should raise runtime error.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-1" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-base-uri-2" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with context item no a node.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-2" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-base-uri-3" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-3" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-4" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a comment node (via direct construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-4" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-5" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a comment node (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-5" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-6" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a text node (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-6" date="2005-11-21"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-7" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an Element node with no xml-base argument (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-7" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-7.txt</output-file>
+      <output-file role="principal" compare="Text">fn-base-urialt-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-8" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an Element node with no xml-base argument (via direct construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-8" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-8.txt</output-file>
+      <output-file role="principal" compare="Text">fn-base-urialt-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-9" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an Element node with xml-base argument (via direct construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-9" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-10" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an Element node with xml-base argument (via direct construction as argument). Requires no escaping of characters.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-10" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-11" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a Document node (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-11" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-11.txt</output-file>
+      <output-file role="principal" compare="Text">fn-base-urialt-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-12" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a Document node (via computed construction as argument). Use declared base-uri property.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-12" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-13" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an Element node (via direct construction as argument). Use declared base-uri property.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-13" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-14" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an attribute node (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-14" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-15" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a PI node (via direct construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-15" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-16" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a PI node (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-16" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-17" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to a PI node (via computed construction as argument).</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-17" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-18" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an element node (via direct construction as part of FLOWR expr). Uses declared base-uri property.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-18" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-19" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an element node (via direct construction as part of FLOWR expr). Uses "xml-base" attribute.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-19" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-20" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an element node (via direct construction as part of FLOWR expr). Uses "xml-base" attribute and should ignore declare base-uri property.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-20" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-21" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to comment node (via direct construction as part of FLOWR expr). Should ignore declare base-uri property.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-21" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-22" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to "." and no context node set. Should raise runtime error.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-22" date="2006-02-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-base-uri-23" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "base-uri" function with argument set to an Element node with xml-base argument (via direct construction as argument). Requires escaping of characters.</description>
+      <spec-citation spec="FuncOps" section-number="2.5" section-title="fn:base-uri" section-pointer="func-base-uri"/>
+      <query name="fn-base-uri-23" date="2006-03-10"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-base-uri-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BaseURIFunc-1" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `base-uri((), "wrong param")`.</description>
+      <query name="K-BaseURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-BaseURIFunc-2" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>A test whose essence is: `empty(base-uri(()))`.</description>
+      <query name="K-BaseURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-BaseURIFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-1" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a comment node.</description>
+      <query name="K2-BaseURIFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-2" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on an attribute node.</description>
+      <query name="K2-BaseURIFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-3" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-BaseURIFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-4" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a processing instruction node.</description>
+      <query name="K2-BaseURIFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-5" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a text node.</description>
+      <query name="K2-BaseURIFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-6" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a single element node.</description>
+      <query name="K2-BaseURIFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-7" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a single attribute node.</description>
+      <query name="K2-BaseURIFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-8" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Invoke on a single document node.</description>
+      <query name="K2-BaseURIFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-9" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure processing-instructions pick up the correct xml:base value.</description>
+      <query name="K2-BaseURIFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-10" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed processing-instructions pick up the correct xml:base value.</description>
+      <query name="K2-BaseURIFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-11" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure comments pick up the correct xml:base value.</description>
+      <query name="K2-BaseURIFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-12" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed comments pick up the correct xml:base value.</description>
+      <query name="K2-BaseURIFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-13" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed comments don't pick up the base-uri from the static context.</description>
+      <query name="K2-BaseURIFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-14" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed comments don't pick up the base-uri from the static context.</description>
+      <query name="K2-BaseURIFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-15" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed processing-instructions don't pick up the base-uri from the static context.</description>
+      <query name="K2-BaseURIFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-16" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure processing-instructions don't pick up the base-uri from the static context.</description>
+      <query name="K2-BaseURIFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-17" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed attributes don't pick up the base-uri from the static context.</description>
+      <query name="K2-BaseURIFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-18" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed attributes pick up the base-uri from parent.</description>
+      <query name="K2-BaseURIFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-19" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed attributes pick up the resolved base-uri of the parent.</description>
+      <query name="K2-BaseURIFunc-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-20" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure computed attributes pick up the resolved base-uri of the parent(#2).</description>
+      <query name="K2-BaseURIFunc-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-21" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the return value of document-uri() is of correct type.</description>
+      <query name="K2-BaseURIFunc-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context1">TopMany</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-22" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the base URI is empty for direct PI constructors.</description>
+      <query name="K2-BaseURIFunc-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-23" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the base URI is empty for computed PI constructors.</description>
+      <query name="K2-BaseURIFunc-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-24" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the base URI is empty for direct PI constructors, with no base-uri declaration.</description>
+      <query name="K2-BaseURIFunc-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-25" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the base URI is empty for computed PI constructors, with no base-uri declaration.</description>
+      <query name="K2-BaseURIFunc-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-26" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the base URI is empty for computed attribute constructors, with no base-uri declaration.</description>
+      <query name="K2-BaseURIFunc-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-26.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-27" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure that the base URI is set for computed documents.</description>
+      <query name="K2-BaseURIFunc-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-27.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-28" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Check the document URI and base URI simultaneously for a computed document node.</description>
+      <query name="K2-BaseURIFunc-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-28.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-29" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Use an URI in an xml:base element that is a valid URI, but an invalid HTTP URL. Since implementations aren't required to validate specific schemes but allowed to, this may either raise an error or return the URI.</description>
+      <query name="K2-BaseURIFunc-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-30" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Use an empty xml:base attribute.</description>
+      <query name="K2-BaseURIFunc-30" static-name="K2-BaseURIFunc-30-static-cbcl" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-31" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Compute the base URI from a processing instruction.</description>
+      <query name="K2-BaseURIFunc-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-32" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Compute the base URI from a comment.</description>
+      <query name="K2-BaseURIFunc-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-BaseURIFunc-33" FilePath="Functions/AccessorFunc/BaseURIFunc/" scenario="standard">
+      <description>Ensure recursive resolution works.</description>
+      <query name="K2-BaseURIFunc-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-BaseURIFunc-33.txt</output-file>
+   </test-case>
+</test-group>

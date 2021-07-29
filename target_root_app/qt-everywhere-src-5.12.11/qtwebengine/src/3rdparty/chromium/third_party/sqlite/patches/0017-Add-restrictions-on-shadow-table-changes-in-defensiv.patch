@@ -1,0 +1,203 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Thu, 19 Dec 2019 14:19:06 -0800
+Subject: [PATCH 17/25] Add restrictions on shadow table changes in defensive
+ mode
+
+Backports https://www.sqlite.org/src/info/bae76a5c40703871
+
+Bug: 1034695
+---
+ third_party/sqlite/patched/src/alter.c        |  5 ++-
+ third_party/sqlite/patched/src/build.c        | 36 +++++++++++++------
+ third_party/sqlite/patched/src/delete.c       |  6 +---
+ third_party/sqlite/patched/src/sqliteInt.h    |  6 ++++
+ third_party/sqlite/patched/test/altertab.test | 24 ++++++++++---
+ 5 files changed, 54 insertions(+), 23 deletions(-)
+
+diff --git a/third_party/sqlite/patched/src/alter.c b/third_party/sqlite/patched/src/alter.c
+index 7c4f55955c0b..48282c57b3b6 100644
+--- a/third_party/sqlite/patched/src/alter.c
++++ b/third_party/sqlite/patched/src/alter.c
+@@ -31,9 +31,8 @@
+ static int isAlterableTable(Parse *pParse, Table *pTab){
+   if( 0==sqlite3StrNICmp(pTab->zName, "sqlite_", 7)
+ #ifndef SQLITE_OMIT_VIRTUALTABLE
+-   || ( (pTab->tabFlags & TF_Shadow)
+-     && (pParse->db->flags & SQLITE_Defensive)
+-     && pParse->db->nVdbeExec==0
++   || ( (pTab->tabFlags & TF_Shadow)!=0
++        && sqlite3ReadOnlyShadowTables(pParse->db)
+    )
+ #endif
+   ){
+diff --git a/third_party/sqlite/patched/src/build.c b/third_party/sqlite/patched/src/build.c
+index e277f6d9da18..9a9a33e95641 100644
+--- a/third_party/sqlite/patched/src/build.c
++++ b/third_party/sqlite/patched/src/build.c
+@@ -856,13 +856,14 @@ int sqlite3CheckObjectName(
+       }
+     }
+   }else{
+-    if( pParse->nested==0
+-     && 0==sqlite3StrNICmp(zName, "sqlite_", 7)
++    if( (pParse->nested==0 && 0==sqlite3StrNICmp(zName, "sqlite_", 7))
++     || (sqlite3ReadOnlyShadowTables(db) && sqlite3ShadowTableName(db, zName))
+     ){
+       sqlite3ErrorMsg(pParse, "object name reserved for internal use: %s",
+                       zName);
+       return SQLITE_ERROR;
+     }
++
+   }
+   return SQLITE_OK;
+ }
+@@ -2002,7 +2003,7 @@ static void convertToWithoutRowidTable(Parse *pParse, Table *pTab){
+ ** zName is temporarily modified while this routine is running, but is
+ ** restored to its original value prior to this routine returning.
+ */
+-static int isShadowTableName(sqlite3 *db, char *zName){
++int sqlite3ShadowTableName(sqlite3 *db, const char *zName){
+   char *zTail;                  /* Pointer to the last "_" in zName */
+   Table *pTab;                  /* Table that zName is a shadow of */
+   Module *pMod;                 /* Module for the virtual table */
+@@ -2020,8 +2021,6 @@ static int isShadowTableName(sqlite3 *db, char *zName){
+   if( pMod->pModule->xShadowName==0 ) return 0;
+   return pMod->pModule->xShadowName(zTail+1);
+ }
+-#else
+-# define isShadowTableName(x,y) 0
+ #endif /* ifndef SQLITE_OMIT_VIRTUALTABLE */
+
+ /*
+@@ -2063,7 +2062,7 @@ void sqlite3EndTable(
+   p = pParse->pNewTable;
+   if( p==0 ) return;
+
+-  if( pSelect==0 && isShadowTableName(db, p->zName) ){
++  if( pSelect==0 && sqlite3ShadowTableName(db, p->zName) ){
+     p->tabFlags |= TF_Shadow;
+   }
+
+@@ -2747,18 +2746,33 @@ void sqlite3CodeDropTable(Parse *pParse, Table *pTab, int iDb, int isView){
+   sqliteViewResetAll(db, iDb);
+ }
+
++/*
++** Return TRUE if shadow tables should be read-only in the current
++** context.
++*/
++int sqlite3ReadOnlyShadowTables(sqlite3 *db){
++#ifndef SQLITE_OMIT_VIRTUALTABLE
++  if( (db->flags & SQLITE_Defensive)!=0
++   && db->pVtabCtx==0
++   && db->nVdbeExec==0
++  ){
++    return 1;
++  }
++#endif
++  return 0;
++}
++
+ /*
+ ** Return true if it is not allowed to drop the given table
+ */
+-static int tableMayNotBeDropped(Parse *pParse, Table *pTab){
++static int tableMayNotBeDropped(sqlite3 *db, Table *pTab){
+   if( sqlite3StrNICmp(pTab->zName, "sqlite_", 7)==0 ){
+     if( sqlite3StrNICmp(pTab->zName+7, "stat", 4)==0 ) return 0;
+     if( sqlite3StrNICmp(pTab->zName+7, "parameters", 10)==0 ) return 0;
+     return 1;
+   }
+-  if( pTab->tabFlags & TF_Shadow ){
+-    sqlite3 *db = pParse->db;
+-    if( (db->flags & SQLITE_Defensive)!=0 && db->nVdbeExec==0 ) return 1;
++  if( (pTab->tabFlags & TF_Shadow)!=0 && sqlite3ReadOnlyShadowTables(db) ){
++    return 1;
+   }
+   return 0;
+ }
+@@ -2832,7 +2846,7 @@ void sqlite3DropTable(Parse *pParse, SrcList *pName, int isView, int noErr){
+     }
+   }
+ #endif
+-  if( tableMayNotBeDropped(pParse, pTab) ){
++  if( tableMayNotBeDropped(db, pTab) ){
+     sqlite3ErrorMsg(pParse, "table %s may not be dropped", pTab->zName);
+     goto exit_drop_table;
+   }
+diff --git a/third_party/sqlite/patched/src/delete.c b/third_party/sqlite/patched/src/delete.c
+index dcb117f2e108..cde8e1a292a1 100644
+--- a/third_party/sqlite/patched/src/delete.c
++++ b/third_party/sqlite/patched/src/delete.c
+@@ -70,11 +70,7 @@ static int tabIsReadOnly(Parse *pParse, Table *pTab){
+     return sqlite3WritableSchema(db)==0 && pParse->nested==0;
+   }
+   assert( pTab->tabFlags & TF_Shadow );
+-  return (db->flags & SQLITE_Defensive)!=0
+-#ifndef SQLITE_OMIT_VIRTUALTABLE
+-          && db->pVtabCtx==0
+-#endif
+-          && db->nVdbeExec==0;
++  return sqlite3ReadOnlyShadowTables(db);
+ }
+
+ /*
+diff --git a/third_party/sqlite/patched/src/sqliteInt.h b/third_party/sqlite/patched/src/sqliteInt.h
+index 1f22ec9064b6..2eb9ff559aac 100644
+--- a/third_party/sqlite/patched/src/sqliteInt.h
++++ b/third_party/sqlite/patched/src/sqliteInt.h
+@@ -4486,6 +4486,12 @@ void sqlite3AutoLoadExtensions(sqlite3*);
+    );
+ #  define sqlite3VtabInSync(db) ((db)->nVTrans>0 && (db)->aVTrans==0)
+ #endif
++int sqlite3ReadOnlyShadowTables(sqlite3 *db);
++#ifndef SQLITE_OMIT_VIRTUALTABLE
++  int sqlite3ShadowTableName(sqlite3 *db, const char *zName);
++#else
++# define sqlite3ShadowTableName(A,B) 0
++#endif
+ int sqlite3VtabEponymousTableInit(Parse*,Module*);
+ void sqlite3VtabEponymousTableClear(sqlite3*,Module*);
+ void sqlite3VtabMakeWritable(Parse*,Table*);
+diff --git a/third_party/sqlite/patched/test/altertab.test b/third_party/sqlite/patched/test/altertab.test
+index c5766e22717d..c6fbbbbb3185 100644
+--- a/third_party/sqlite/patched/test/altertab.test
++++ b/third_party/sqlite/patched/test/altertab.test
+@@ -547,13 +547,29 @@ ifcapable fts3 {
+   } {1 {table y1_segments may not be modified}}
+
+   do_catchsql_test 16.20 {
+-    ALTER TABLE y1_segments RENAME TO abc;
+-  } {1 {table y1_segments may not be altered}}
+-
+-  do_catchsql_test 16.21 {
+     DROP TABLE y1_segments;
+   } {1 {table y1_segments may not be dropped}}
+
++  do_catchsql_test 16.20 {
++    ALTER TABLE y1_segments RENAME TO abc;
++  } {1 {table y1_segments may not be altered}}
++  sqlite3_db_config db DEFENSIVE 0
++  do_catchsql_test 16.22 {
++    ALTER TABLE y1_segments RENAME TO abc;
++  } {0 {}}
++  sqlite3_db_config db DEFENSIVE 1
++  do_catchsql_test 16.23 {
++    CREATE TABLE y1_segments AS SELECT * FROM abc;
++  } {1 {object name reserved for internal use: y1_segments}}
++  do_catchsql_test 16.24 {
++    CREATE VIEW y1_segments AS SELECT * FROM abc;
++  } {1 {object name reserved for internal use: y1_segments}}
++  sqlite3_db_config db DEFENSIVE 0
++  do_catchsql_test 16.25 {
++    ALTER TABLE abc RENAME TO y1_segments;
++  } {0 {}}
++  sqlite3_db_config db DEFENSIVE 1
++
+   do_execsql_test 16.30 {
+     ALTER TABLE y1 RENAME TO z1;
+   }
+--
+2.25.0.rc1.283.g88dfdc4193-goog
+

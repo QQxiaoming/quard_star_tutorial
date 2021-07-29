@@ -1,0 +1,58 @@
+Qt 5.9.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.3 Changes                           *
+****************************************************************************
+
+QtMultimedia
+------------
+
+- [QTBUG-53268] Fixed regression that caused relevant properties of the surface
+  format to be discarded when the video node was created.
+- [QTBUG-62255] Fixed loading of remote m3u files.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Linux
+-----
+
+- [QTBUG-62789] Fixed memory leak in QGstreamerAudioDecoderSession.
+- [QTBUG-62245] Fixed input query in V4L code to correctly detect all cameras.
+- Fixed memory leak in CameraBinImageCapture.
+
+QNX
+---
+
+- Switched to mmr_event_t based metadata retrieval, as PPS based retrieval is no
+  longer supported by Multimedia for QNX 7.0.0.
+
+
+Android
+-------
+
+- [QTBUG-51213] The scan line for the video surface format is now correctly
+  set to bottom-up.
+
+WinRT
+-----
+
+- [QTBUG-63308] Added permission check for the camera.

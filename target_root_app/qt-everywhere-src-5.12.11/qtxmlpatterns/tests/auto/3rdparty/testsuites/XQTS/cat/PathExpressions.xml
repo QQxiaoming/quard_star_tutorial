@@ -1,0 +1,141 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="PathExpressions">
+   <GroupInfo>
+      <title>General Path Expression Tests</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="PathExprErr-2" FilePath="Expressions/PathExpr/PathExpressions/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test condition for error code XPTY0018.</description>
+      <spec-citation spec="XQuery" section-number="3.2" section-title="Path Expressions" section-pointer="id-path-expressions"/>
+      <query name="PathExprErr-2" date="2006-07-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-1" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-1" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-1.txt</output-file>    
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-2" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-2" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-2.txt</output-file>    
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-3" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-3" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-4" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-4" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-4.txt</output-file>    
+   </test-case>
+   <test-case is-XPath2="false" name="PathExpr-5" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-5" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-6" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-6" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-6.txt</output-file>    
+   </test-case>
+   <test-case is-XPath2="false" name="PathExpr-7" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-7" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="PathExpr-8" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-8" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="PathExpr-9" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-9" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-10" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-10" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-11" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-11" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-12" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-12" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-13" FilePath="Expressions/PathExpr/PathExpressions/" scenario="parse-error" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-13" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="PathExpr-14" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-14" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-14.txt</output-file>    
+   </test-case>
+   <test-case is-XPath2="true" name="PathExpr-15" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-15" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-15.txt</output-file>    
+   </test-case>
+   <test-case is-XPath2="false" name="PathExpr-16" FilePath="Expressions/PathExpr/PathExpressions/" scenario="standard" Creator="Nicolae Brinza">
+      <description>Leading lone slash syntax contraints.</description>
+      <spec-citation spec="XQuery" section-number="A.1.2" section-title="Extra-grammatical Constraints" section-pointer="extra-grammatical-constraints"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5727</reflects-resolution>
+      <query name="PathExpr-16" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">OneTopElement</input-file>
+      <output-file role="principal" compare="Text">PathExpr-16.txt</output-file>    
+   </test-case>
+</test-group>

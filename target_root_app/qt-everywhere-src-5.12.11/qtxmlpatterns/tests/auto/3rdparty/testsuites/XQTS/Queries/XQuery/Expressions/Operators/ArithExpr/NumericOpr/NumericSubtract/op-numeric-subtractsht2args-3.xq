@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-numeric-subtractsht2args-3                     :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:16 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:numeric-subtract" operator  :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:short(upper bound)                          :)
+(:$arg2 = xs:short(lower bound)                          :)
+(:*******************************************************:)
+
+xs:short("-1") - xs:short("-32768")

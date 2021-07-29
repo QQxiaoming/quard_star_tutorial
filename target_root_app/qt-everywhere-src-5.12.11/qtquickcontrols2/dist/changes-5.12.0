@@ -1,0 +1,171 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                 Controls                                 *
+****************************************************************************
+
+ - AbstractButton:
+   * Added implicitIndicatorWidth and implicitIndicatorHeight properties.
+
+ - ComboBox:
+   * Added implicitIndicatorWidth and implicitIndicatorHeight properties.
+
+ - Control:
+   * Added horizontalPadding and verticalPadding properties as a convenient
+     way to set both left and right, or top and bottom paddings in one go.
+   * Unless explicitly specified, baselineOffset is now automatically
+     updated based on the top padding of the control and the baselineOffset
+     of the contentItem. Styles no longer need to specify the
+     baselineOffset in QML.
+   * [QTBUG-60156] Added implicitBackgroundWidth and
+     implicitBackgroundHeight properties that can be used to simplify
+     complex implicit size bindings.
+   * Added implicitContentWidth and implicitContentHeight properties that
+     can be used to simplify complex implicit size bindings.
+   * [QTBUG-60156] Added topInset, bottomInset, leftInset, and rightInset
+     properties to control the geometry of the background similarly to how
+     paddings control the geometry of the contentItem.
+
+ - Dial:
+   * [QTBUG-56323] Added the inputMode property. This property controls how
+     the dial is interacted with. The circular input mode (default, old
+     behavior) operates on an absolute input system, whereas the horizontal
+     and vertical input modes use a relative input system.
+
+ - Dialog:
+   * Added implicitHeaderWidth, implicitHeaderHeight, implicitFooterWidth,
+     and implicitFooterHeight properties.
+
+ - DialogButtonBox:
+   * Added buttonLayout property that can be used to arrange the buttons.
+   * Added contentWidth and contentHeight properties.
+
+ - GroupBox:
+   * Added implicitLabelWidth and implicitLabelHeight properties.
+
+ - Label:
+   * Added implicitBackgroundWidth and implicitBackgroundHeight properties
+     that can be used to simplify complex implicit size bindings.
+     [ChangeLog][Controls][TextArea] Added implicitBackgroundWidth and
+     implicitBackgroundHeight properties that can be used to simplify
+     complex implicit size bindings. [ChangeLog][Controls][TextField] Added
+     implicitBackgroundWidth and implicitBackgroundHeight properties that
+     can be used to simplify complex implicit size bindings.
+   * Added topInset, bottomInset, leftInset, and rightInset properties to
+     control the geometry of the background similarly to how paddings
+     control the geometry of the contentItem.
+
+ - Page:
+   * Added implicitHeaderWidth, implicitHeaderHeight, implicitFooterWidth,
+     and implicitFooterHeight properties.
+
+ - Popup:
+   * Added horizontalPadding and verticalPadding properties as a convenient
+     way to set both left and right, or top and bottom paddings in one go.
+   * [QTBUG-60354] Added anchors.centerIn to Popup to allow a covenient way
+     of centering a popup.
+   * Added implicitBackgroundWidth, implicitBackgroundHeight,
+     implicitContentWidth, and implicitContentHeight properties.
+   * [QTBUG-60156] Added topInset, bottomInset, leftInset, and rightInset
+     properties to control the geometry of the background similarly to how
+     paddings control the geometry of the contentItem.
+
+ - QQuickStyle:
+   * [QTBUG-67062] Added stylePathList() and addStylePath() methods for
+     managing the list of directories where Qt Quick Controls 2 searches
+     for available styles.
+
+ - RangeSlider:
+   * [QTBUG-67311] Added a moved() signal to each handle (similar to the
+     Slider's moved() signal) to react to the values being interactively
+     changed by the user.
+   * [QTBUG-67317] Added a valueAt() function to allow accessing each
+     handle's value when the live property is set to false.
+   * Added first.implicitHandleWidth, first.implicitHandleHeight,
+     second.implicitHandleWidth, and second.implicitHandleHeight
+     properties.
+   * [QTBUG-62784] Added touchDragThreshold property for configuring the
+     threshold to initiate the touch 'drag' of the handle of the slider. The
+     mouse 'drag' won't be affected by the property.
+
+ - Slider:
+   * Added implicitHandleWidth and implicitHandleHeight properties.
+   * [QTBUG-62784] Added touchDragThreshold property for configuring the
+     threshold to initiate the touch 'drag' of the handle of the slider. The
+     mouse 'drag' won't be affected by the property.
+
+ - SpinBox:
+   * Added up.implicitIndicatorWidth, up.implicitIndicatorHeight,
+     down.implicitIndicatorWidth, and down.implicitIndicatorHeight
+     properties.
+
+ - SwipeView:
+   * Added contentWidth and contentHeight properties.
+
+ - TextArea:
+   * Added topInset, bottomInset, leftInset, and rightInset properties to
+     control the geometry of the background similarly to how paddings
+     control the geometry of the contentItem.
+   * Added placeholderTextColor property for user convenience to customize
+     the placeholderText color to fit the backgrounds.
+
+ - TextField:
+   * Added topInset, bottomInset, leftInset, and rightInset properties to
+     control the geometry of the background similarly to how paddings
+     control the geometry of the contentItem.
+   * [QTBUG-66260] Added placeholderTextColor property for user convenience
+     to customize the placeholderText color to fit the backgrounds.
+
+ - ToolTip:
+   * [QTBUG-62890] Added non-attached show() and hide() methods to make it
+     more flexible to meet certain requirements.
+
+ - Tumbler:
+   * [QTBUG-66358] Added positionViewAtIndex() function that calls the
+     respective PathView/ListView function, depending on the value of wrap.
+     This allows changing currentIndex without animations.
+
+****************************************************************************
+*                                 Material                                 *
+****************************************************************************
+
+ - [QTBUG-51109] Added Dense variant of the Material style for use on
+   desktop platforms. Some controls are slightly smaller in height and use
+   smaller font sizes. The variant can be enabled by setting
+   QT_QUICK_CONTROLS_MATERIAL_VARIANT to Dense or setting Variant=Dense in
+   the qtquickcontrols.conf file.
+
+****************************************************************************
+*                                 Platform                                 *
+****************************************************************************
+
+ - Menu:
+   * [QTBUG-67730] Deprecated iconName and iconSource properties in favor
+     of icon.name and icon.source grouped properties.
+   * [QTBUG-67730] Added icon.mask grouped property.
+     [ChangeLog][Platform][MenuItem] Added icon.mask grouped property.
+     [ChangeLog][Platform][SystemTrayIcon] Added icon.mask grouped
+     property.
+
+ - MenuItem:
+   * [QTBUG-67730] Deprecated iconName and iconSource properties in favor
+     of icon.name and icon.source grouped properties.
+
+ - SystemTrayIcon:
+   * [QTBUG-67730] Deprecated iconName and iconSource properties in favor
+     of icon.name and icon.source grouped properties.

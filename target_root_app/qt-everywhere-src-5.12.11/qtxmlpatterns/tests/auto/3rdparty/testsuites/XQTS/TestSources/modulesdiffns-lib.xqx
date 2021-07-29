@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>defs</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/diffns</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>foo</xqx:prefix>
+        <xqx:uri>http://example.org</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="foo">var1</xqx:varName>
+        <xqx:varValue>
+          <xqx:integerConstantExpr>
+            <xqx:value>1</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:varValue>
+      </xqx:varDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

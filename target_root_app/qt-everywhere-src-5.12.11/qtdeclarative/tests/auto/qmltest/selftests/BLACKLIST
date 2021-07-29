@@ -1,0 +1,13 @@
+# Blacklist for testing
+[SelfTests::test_blacklisted_fail]
+*
+[SelfTests::test_blacklistWithData:test2]
+*
+# QTBUG-53793: seems to be failing on Linux a little too often...
+[tst_grabImage::test_equals]
+linux
+[tst_grabImage::test_sizeProps]
+linux
+[tst_grabImage::test_save]
+linux
+

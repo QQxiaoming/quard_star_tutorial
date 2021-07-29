@@ -1,0 +1,171 @@
+include($$QTWEBENGINE_OUT_ROOT/src/core/qtwebenginecore-config.pri)
+QT_FOR_CONFIG += webenginecore-private
+
+defineTest(isQtMinimum) {
+    !equals(QT_MAJOR_VERSION, $$1): return(false)
+    count(ARGS, 1, greaterThan) {
+        lessThan(QT_MINOR_VERSION, $$2): return(false)
+    }
+    return(true)
+}
+
+defineTest(isPlatformSupported) {
+  QT_FOR_CONFIG += gui-private
+  linux {
+    if(!gcc:!clang)|intel_icc {
+      skipBuild("Qt WebEngine on Linux requires clang or GCC.")
+      return(false)
+    }
+    gcc:!clang:!isGCCVersionSupported(): return(false)
+  } else:win32 {
+    winrt {
+      skipBuild("WinRT is not supported.")
+      return(false)
+    }
+    isBuildingOnWin32() {
+      skipBuild("Qt WebEngine on Windows must be built on a 64-bit machine.")
+    }
+    !msvc|intel_icl {
+      skipBuild("Qt WebEngine on Windows requires MSVC.")
+      return(false)
+    }
+    !isMinWinSDKVersion(10, 16299): {
+      skipBuild("Qt WebEngine on Windows requires a Windows SDK version 10.0.16299 or newer.")
+      return(false)
+    }
+    !qtConfig(webengine-winversion) {
+         skipBuild("Needs Visual Studio 2017 or higher")
+         return(false)
+    }
+  } else:osx {
+    # FIXME: Try to get it back down to 8.2 for building on OS X 10.11
+    !isMinXcodeVersion(8, 3, 3) {
+      skipBuild("Using Xcode version $$QMAKE_XCODE_VERSION, but at least version 8.3.3 is required to build Qt WebEngine.")
+      return(false)
+    }
+    !clang|intel_icc {
+        skipBuild("Qt WebEngine on macOS requires Clang.")
+        return(false)
+    }
+    # We require macOS 10.12 (darwin version 16.0.0) or newer.
+    darwin_major_version = $$section(QMAKE_HOST.version, ., 0, 0)
+    lessThan(darwin_major_version, 16) {
+      skipBuild("Building Qt WebEngine requires macOS version 10.12 or newer.")
+      return(false)
+    }
+    !isMinOSXSDKVersion(10, 12): {
+      skipBuild("Building Qt WebEngine requires a macOS SDK version of 10.12 or newer. Current version is $${WEBENGINE_OSX_SDK_PRODUCT_VERSION}.")
+      return(false)
+    }
+  } else {
+    skipBuild("Unknown platform. Qt WebEngine only supports Linux, Windows, and macOS.")
+    return(false)
+  }
+
+  # QMAKE doesn't set c++14 for MSVC2017, so only test for gcc and clang (which pretends to be gcc)
+  gcc:!contains(QT_CONFIG, c++14) {
+    skipBuild("C++14 support is required in order to build chromium.")
+    return(false)
+  }
+  qtConfig(mirclient) {
+    skipBuild("Mir is not yet supported as graphics backend for Qt WebEngine.")
+    return(false)
+  }
+  static {
+    skipBuild("Static builds of QtWebEngine aren't supported.")
+    return(false)
+  }
+  !isArchSupported(): return(false)
+  return(true)
+}
+
+defineTest(isArchSupported) {
+    contains(QT_ARCH, "i386")|contains(QT_ARCH, "x86_64"): return(true)
+    contains(QT_ARCH, "arm")|contains(QT_ARCH, "arm64"): return(true)
+    contains(QT_ARCH, "mips"): return(true)
+#     contains(QT_ARCH, "mips64"): return(true)
+
+    skipBuild("QtWebEngine can only be built for x86, x86-64, ARM, Aarch64, and MIPSel architectures.")
+    return(false)
+}
+
+defineTest(isGCCVersionSupported) {
+  # Keep in sync with src/webengine/doc/src/qtwebengine-platform-notes.qdoc
+  greaterThan(QT_GCC_MAJOR_VERSION, 4):return(true)
+
+  skipBuild("Using gcc version "$$QT_GCC_MAJOR_VERSION"."$$QT_GCC_MINOR_VERSION", but at least gcc version 5 is required to build Qt WebEngine.")
+  return(false)
+}
+
+defineTest(isBuildingOnWin32) {
+    # The check below is ugly, but necessary, as it seems to be the only reliable way to detect if the host
+    # architecture is 32 bit. QMAKE_HOST.arch does not work as it returns the architecture that the toolchain
+    # is building for, not the system's actual architecture.
+    PROGRAM_FILES_X86 = $$(ProgramW6432)
+    isEmpty(PROGRAM_FILES_X86): return(true)
+    return(false)
+}
+
+defineTest(isMinOSXSDKVersion) {
+    requested_major = $$1
+    requested_minor = $$2
+    requested_patch = $$3
+    isEmpty(requested_patch): requested_patch = 0
+    WEBENGINE_OSX_SDK_PRODUCT_VERSION = $$system("/usr/bin/xcodebuild -sdk $$QMAKE_MAC_SDK -version ProductVersion 2>/dev/null")
+    export(WEBENGINE_OSX_SDK_PRODUCT_VERSION)
+    isEmpty(WEBENGINE_OSX_SDK_PRODUCT_VERSION) {
+        skipBuild("Could not resolve SDK product version for \'$$QMAKE_MAC_SDK\'.")
+        return(false)
+    }
+    major_version = $$section(WEBENGINE_OSX_SDK_PRODUCT_VERSION, ., 0, 0)
+    minor_version = $$section(WEBENGINE_OSX_SDK_PRODUCT_VERSION, ., 1, 1)
+    patch_version = $$section(WEBENGINE_OSX_SDK_PRODUCT_VERSION, ., 2, 2)
+    isEmpty(patch_version): patch_version = 0
+
+    greaterThan(major_version, $$requested_major):return(true)
+    equals(major_version, $$requested_major):greaterThan(minor_version, $$requested_minor):return(true)
+    equals(major_version, $$requested_major):equals(minor_version, $$requested_minor):!lessThan(patch_version, $$requested_patch):return(true)
+
+    return(false)
+}
+
+defineTest(isMinXcodeVersion) {
+    requested_major = $$1
+    requested_minor = $$2
+    requested_patch = $$3
+    isEmpty(requested_minor): requested_minor = 0
+    isEmpty(requested_patch): requested_patch = 0
+    target_var = QMAKE_XCODE_VERSION
+    major_version = $$section($$target_var, ., 0, 0)
+    minor_version = $$section($$target_var, ., 1, 1)
+    patch_version = $$section($$target_var, ., 2, 2)
+    isEmpty(minor_version): minor_version = 0
+    isEmpty(patch_version): patch_version = 0
+
+    greaterThan(major_version, $$requested_major):return(true)
+    equals(major_version, $$requested_major):greaterThan(minor_version, $$requested_minor):return(true)
+    equals(major_version, $$requested_major):equals(minor_version, $$requested_minor):!lessThan(patch_version, $$requested_patch):return(true)
+
+    return(false)
+}
+
+defineTest(isMinWinSDKVersion) {
+    requested_major = $$1
+    requested_minor = $$2
+    WIN_SDK_VERSION = $$(WindowsSDKVersion)
+
+    isEmpty(WIN_SDK_VERSION)|equals(WIN_SDK_VERSION, "\\") {
+        skipBuild("Could not detect Windows SDK version (\'WindowsSDKVersion\' environment variable is not set).")
+        return(false)
+    }
+
+    # major.0.minor
+    major_version = $$section(WIN_SDK_VERSION, ., 0, 0)
+    minor_version = $$section(WIN_SDK_VERSION, ., 2, 2)
+
+    greaterThan(major_version, $$requested_major):return(true)
+    equals(major_version, $$requested_major):greaterThan(minor_version, $$requested_minor):return(true)
+    equals(major_version, $$requested_major):equals(minor_version, $$requested_minor)::return(true)
+
+    return(false)
+}

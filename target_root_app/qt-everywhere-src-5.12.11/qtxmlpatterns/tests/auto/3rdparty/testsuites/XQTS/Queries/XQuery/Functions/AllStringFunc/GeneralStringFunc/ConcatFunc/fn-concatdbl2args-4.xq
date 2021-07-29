@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: concatdbl2args-4                                  :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Wed Dec 15 15:41:48 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "concat" function               :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:double(lower bound)                         :)
+(:$arg2 = xs:double(mid range)                           :)
+(:*******************************************************:)
+
+fn:concat(xs:double("-1.7976931348623157E308"),xs:double("0"))

@@ -1,0 +1,275 @@
+This source tree contains third party source code which is governed by third
+party licenses. Paths to the files and associated licenses are collected here.
+
+Files governed by third party licenses:
+rtc_base/base64.cc
+rtc_base/base64.h
+rtc_base/sigslot.cc
+rtc_base/sigslot.h
+common_audio/fft4g.c
+common_audio/signal_processing/spl_sqrt_floor.c
+common_audio/signal_processing/spl_sqrt_floor_arm.S
+modules/audio_coding/codecs/g711/main/source/g711.c
+modules/audio_coding/codecs/g711/main/source/g711.h
+modules/audio_coding/codecs/g722/main/source/g722_decode.c
+modules/audio_coding/codecs/g722/main/source/g722_enc_dec.h
+modules/audio_coding/codecs/g722/main/source/g722_encode.c
+modules/audio_coding/codecs/isac/main/source/fft.c
+modules/audio_device/mac/portaudio/pa_memorybarrier.h
+modules/audio_device/mac/portaudio/pa_ringbuffer.c
+modules/audio_device/mac/portaudio/pa_ringbuffer.h
+
+Individual licenses for each file:
+-------------------------------------------------------------------------------
+Files:
+rtc_base/base64.cc
+rtc_base/base64.h
+
+License:
+//*********************************************************************
+//* Base64 - a simple base64 encoder and decoder.
+//*
+//*     Copyright (c) 1999, Bob Withers - bwit@pobox.com
+//*
+//* This code may be freely used for any purpose, either personal
+//* or commercial, provided the authors copyright notice remains
+//* intact.
+//*
+//* Enhancements by Stanley Yamane:
+//*     o reverse lookup table for the decode function
+//*     o reserve string buffer space in advance
+//*
+//*********************************************************************
+-------------------------------------------------------------------------------
+Files:
+rtc_base/sigslot.cc
+rtc_base/sigslot.h
+
+License:
+// sigslot.h: Signal/Slot classes
+//
+// Written by Sarah Thompson (sarah@telergy.com) 2002.
+//
+// License: Public domain. You are free to use this code however you like, with
+// the proviso that the author takes on no responsibility or liability for any
+// use.
+-------------------------------------------------------------------------------
+Files:
+common_audio/signal_processing/spl_sqrt_floor.c
+common_audio/signal_processing/spl_sqrt_floor_arm.S
+
+License:
+/*
+ * Written by Wilco Dijkstra, 1996. The following email exchange establishes the
+ * license.
+ *
+ * From: Wilco Dijkstra <Wilco.Dijkstra@ntlworld.com>
+ * Date: Fri, Jun 24, 2011 at 3:20 AM
+ * Subject: Re: sqrt routine
+ * To: Kevin Ma <kma@google.com>
+ * Hi Kevin,
+ * Thanks for asking. Those routines are public domain (originally posted to
+ * comp.sys.arm a long time ago), so you can use them freely for any purpose.
+ * Cheers,
+ * Wilco
+ *
+ * ----- Original Message -----
+ * From: "Kevin Ma" <kma@google.com>
+ * To: <Wilco.Dijkstra@ntlworld.com>
+ * Sent: Thursday, June 23, 2011 11:44 PM
+ * Subject: Fwd: sqrt routine
+ * Hi Wilco,
+ * I saw your sqrt routine from several web sites, including
+ * http://www.finesse.demon.co.uk/steven/sqrt.html.
+ * Just wonder if there's any copyright information with your Successive
+ * approximation routines, or if I can freely use it for any purpose.
+ * Thanks.
+ * Kevin
+ */
+-------------------------------------------------------------------------------
+Files:
+modules/audio_coding/codecs/g711/main/source/g711.c
+modules/audio_coding/codecs/g711/main/source/g711.h
+
+License:
+/*
+ * SpanDSP - a series of DSP components for telephony
+ *
+ * g711.h - In line A-law and u-law conversion routines
+ *
+ * Written by Steve Underwood <steveu@coppice.org>
+ *
+ * Copyright (C) 2001 Steve Underwood
+ *
+ *  Despite my general liking of the GPL, I place this code in the
+ *  public domain for the benefit of all mankind - even the slimy
+ *  ones who might try to proprietize my work and use it to my
+ *  detriment.
+ */
+-------------------------------------------------------------------------------
+Files:
+modules/audio_coding/codecs/g722/main/source/g722_decode.c
+modules/audio_coding/codecs/g722/main/source/g722_enc_dec.h
+modules/audio_coding/codecs/g722/main/source/g722_encode.c
+
+License:
+/*
+ * SpanDSP - a series of DSP components for telephony
+ *
+ * g722_decode.c - The ITU G.722 codec, decode part.
+ *
+ * Written by Steve Underwood <steveu@coppice.org>
+ *
+ * Copyright (C) 2005 Steve Underwood
+ *
+ *  Despite my general liking of the GPL, I place my own contributions
+ *  to this code in the public domain for the benefit of all mankind -
+ *  even the slimy ones who might try to proprietize my work and use it
+ *  to my detriment.
+ *
+ * Based in part on a single channel G.722 codec which is:
+ *
+ * Copyright (c) CMU 1993
+ * Computer Science, Speech Group
+ * Chengxiang Lu and Alex Hauptmann
+ */
+-------------------------------------------------------------------------------
+Files:
+modules/audio_coding/codecs/isac/main/source/fft.c
+
+License:
+/*
+ * Copyright(c)1995,97 Mark Olesen <olesen@me.QueensU.CA>
+ *    Queen's Univ at Kingston (Canada)
+ *
+ * Permission to use, copy, modify, and distribute this software for
+ * any purpose without fee is hereby granted, provided that this
+ * entire notice is included in all copies of any software which is
+ * or includes a copy or modification of this software and in all
+ * copies of the supporting documentation for such software.
+ *
+ * THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTY.  IN PARTICULAR, NEITHER THE AUTHOR NOR QUEEN'S
+ * UNIVERSITY AT KINGSTON MAKES ANY REPRESENTATION OR WARRANTY OF ANY
+ * KIND CONCERNING THE MERCHANTABILITY OF THIS SOFTWARE OR ITS
+ * FITNESS FOR ANY PARTICULAR PURPOSE.
+ *
+ * All of which is to say that you can do what you like with this
+ * source code provided you don't try to sell it as your own and you
+ * include an unaltered copy of this message (including the
+ * copyright).
+ *
+ * It is also implicitly understood that bug fixes and improvements
+ * should make their way back to the general Internet community so
+ * that everyone benefits.
+ */
+-------------------------------------------------------------------------------
+Files:
+modules/audio_device/mac/portaudio/pa_memorybarrier.h
+modules/audio_device/mac/portaudio/pa_ringbuffer.c
+modules/audio_device/mac/portaudio/pa_ringbuffer.h
+
+License:
+/*
+ * $Id: pa_memorybarrier.h 1240 2007-07-17 13:05:07Z bjornroche $
+ * Portable Audio I/O Library
+ * Memory barrier utilities
+ *
+ * Author: Bjorn Roche, XO Audio, LLC
+ *
+ * This program uses the PortAudio Portable Audio Library.
+ * For more information see: http://www.portaudio.com
+ * Copyright (c) 1999-2000 Ross Bencina and Phil Burk
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files
+ * (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/*
+ * The text above constitutes the entire PortAudio license; however,
+ * the PortAudio community also makes the following non-binding requests:
+ *
+ * Any person wishing to distribute modifications to the Software is
+ * requested to send the modifications to the original developer so that
+ * they can be incorporated into the canonical version. It is also
+ * requested that these non-binding requests be included along with the
+ * license above.
+ */
+
+/*
+ * $Id: pa_ringbuffer.c 1421 2009-11-18 16:09:05Z bjornroche $
+ * Portable Audio I/O Library
+ * Ring Buffer utility.
+ *
+ * Author: Phil Burk, http://www.softsynth.com
+ * modified for SMP safety on Mac OS X by Bjorn Roche
+ * modified for SMP safety on Linux by Leland Lucius
+ * also, allowed for const where possible
+ * modified for multiple-byte-sized data elements by Sven Fischer
+ *
+ * Note that this is safe only for a single-thread reader and a
+ * single-thread writer.
+ *
+ * This program uses the PortAudio Portable Audio Library.
+ * For more information see: http://www.portaudio.com
+ * Copyright (c) 1999-2000 Ross Bencina and Phil Burk
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files
+ * (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge,
+ * publish, distribute, sublicense, and/or sell copies of the Software,
+ * and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+ * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/*
+ * The text above constitutes the entire PortAudio license; however,
+ * the PortAudio community also makes the following non-binding requests:
+ *
+ * Any person wishing to distribute modifications to the Software is
+ * requested to send the modifications to the original developer so that
+ * they can be incorporated into the canonical version. It is also
+ * requested that these non-binding requests be included along with the
+ * license above.
+ */
+-------------------------------------------------------------------------------
+Files:
+common_audio/fft4g.c
+
+License:
+/*
+ * http://www.kurims.kyoto-u.ac.jp/~ooura/fft.html
+ * Copyright Takuya OOURA, 1996-2001
+ *
+ * You may use, copy, modify and distribute this code for any purpose (include
+ * commercial use) and without fee. Please refer to this package when you modify
+ * this code.
+ */

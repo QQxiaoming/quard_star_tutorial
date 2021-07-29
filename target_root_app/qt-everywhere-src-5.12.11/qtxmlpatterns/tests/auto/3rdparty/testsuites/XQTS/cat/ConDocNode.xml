@@ -1,0 +1,388 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="ConDocNode" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Document Node Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-docnode-adjtext-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Merge adjacent atomic values to text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-adjtext-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-adjtext-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-adjtext-2" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Merge adjacent atomic values and text nodes to text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-adjtext-2" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-adjtext-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-adjtext-3" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Merge adjacent atomic values between other nodes to text node.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-adjtext-3" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-adjtext-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-nested-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Nested document constructors.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-nested-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-nested-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-nested-2" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Copy node tree into document constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-nested-2" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-nested-2.xml</output-file>
+   </test-case>
+	<test-case is-XPath2="false" name="Constr-docnode-nested-3" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Oliver Hallam">
+		<description>Check that text nodes are merged in nested document constructors.</description>
+		<spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3637</reflects-resolution>
+		<query name="Constr-docnode-nested-3" date="2009-10-05"/>
+		<output-file role="principal" compare="Text">Constr-docnode-nested-3.txt</output-file>
+	</test-case>
+	<test-case is-XPath2="false" name="Constr-docnode-nested-4" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Oliver Hallam">
+		<description>Check that empty text nodes are stripped in nested document constructors.</description>
+		<spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3637</reflects-resolution>
+		<query name="Constr-docnode-nested-4" date="2009-10-05"/>
+		<output-file role="principal" compare="Text">Constr-docnode-nested-4.txt</output-file>
+	</test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-enclexpr-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty document content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+ 		 <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3771</reflects-resolution>
+      <query name="Constr-docnode-enclexpr-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-enclexpr-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-enclexpr-2" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Atomic values in document content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+  		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3771</reflects-resolution>
+ 	    <query name="Constr-docnode-enclexpr-2" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-enclexpr-2.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-enclexpr-3" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Atomic values and nodes in document content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3771</reflects-resolution>
+      <query name="Constr-docnode-enclexpr-3" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-enclexpr-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-enclexpr-4" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty string in document content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=3771</reflects-resolution>
+      <query name="Constr-docnode-enclexpr-4" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-enclexpr-4.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-nodeid-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied element node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-nodeid-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-nodeid-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-nodeid-3" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied comment node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-nodeid-3" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-nodeid-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-nodeid-4" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied pi node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-nodeid-4" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-nodeid-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-nodeid-5" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Copied text node has new node identity.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-nodeid-5" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-nodeid-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-constrmod-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip IDREFS type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-constrmod-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-constrmod-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-constrmod-2" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Preserve IDREFS type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-constrmod-2" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-constrmod-2.txt</output-file>
+      <output-file role="principal" compare="Text">Constr-docnode-constrmodalt-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-constrmod-3" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Strip decimal type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-constrmod-3" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-constrmod-4" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Preserve decimal type.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-constrmod-4" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">atomic</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-constrmod-4.txt</output-file>
+      <expected-error>FORG0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-doc-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Strip document nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-doc-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">DupNode</input-file>
+      <output-file role="principal" compare="Fragment">Constr-docnode-doc-1.xml</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-parent-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Empty parent.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-parent-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-parent-1.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-string-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>String value of document.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-string-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-string-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-data-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="standard" Creator="Andreas Behm">
+      <description>Typed value of document.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-data-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-docnode-data-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-attr-1" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attribute in document constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-attr-1" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-attr-2" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attribute in document constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-attr-2" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-docnode-attr-3" FilePath="Expressions/Construct/ComputeCon/ConDocNode/" scenario="runtime-error" Creator="Andreas Behm">
+      <description>Attribute in document constructor.</description>
+      <spec-citation spec="XQuery" section-number="3.7.3.3" section-title="Document Node Constructors" section-pointer="id-documentConstructors"/>
+      <query name="Constr-docnode-attr-3" date="2005-05-26"/>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConDocNode-1" FilePath="Construct/ComputeCon/ConDocNode/" scenario="parse-error">
+      <description>No node constructor by name document-node exists.</description>
+      <query name="K2-ConDocNode-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ConDocNode-2" FilePath="Construct/ComputeCon/ConDocNode/" scenario="parse-error">
+      <description>A semi-colon can't follow document{}.</description>
+      <query name="K2-ConDocNode-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-3" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>A document constructor can't receive attribute nodes.</description>
+      <query name="K2-ConDocNode-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-4" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>A document constructor can't receive attribute nodes(#2).</description>
+      <query name="K2-ConDocNode-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-5" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>A document constructor can't receive attribute nodes(#3).</description>
+      <query name="K2-ConDocNode-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-6" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>A document constructor can't receive attribute nodes(#4).</description>
+      <query name="K2-ConDocNode-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-7" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>A document constructor can't receive attribute nodes(#5).</description>
+      <query name="K2-ConDocNode-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-8" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>A document constructor can't receive attribute nodes(#7).</description>
+      <query name="K2-ConDocNode-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-9" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Document nodes may have several elements as children(#8).</description>
+      <query name="K2-ConDocNode-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConDocNode-9.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-10" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Document nodes may have several elements as children.</description>
+      <query name="K2-ConDocNode-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConDocNode-10.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-11" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Extract the typed value from a document node.</description>
+      <query name="K2-ConDocNode-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-11.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-12" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Extract the string value from a document node.</description>
+      <query name="K2-ConDocNode-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-12.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-13" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Extract the string value from a document node.</description>
+      <query name="K2-ConDocNode-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-13.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-14" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Extract the string value from a document node.</description>
+      <query name="K2-ConDocNode-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConDocNode-14.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-15" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Test the atomized type.</description>
+      <query name="K2-ConDocNode-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-15.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-16" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Test node identity of two document nodes.</description>
+      <query name="K2-ConDocNode-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-16.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-17" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Extract the string value from a complex document node.</description>
+      <query name="K2-ConDocNode-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-18" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Ensure processing instructions and comments are ignored when extracting the string value from a document node.</description>
+      <query name="K2-ConDocNode-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-18.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-19" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>A recursive construction of document nodes.</description>
+      <query name="K2-ConDocNode-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-19.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-20" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>A recursive construction of document nodes, combined with the comma operator.</description>
+      <query name="K2-ConDocNode-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-20.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-21" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>A recursive construction of document nodes, with one child element.</description>
+      <query name="K2-ConDocNode-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-ConDocNode-21.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-22" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>A recursive construction of document nodes, combined with elements.</description>
+      <query name="K2-ConDocNode-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-ConDocNode-22.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-23" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Extract the string value from a document node with four computed text nodes.</description>
+      <query name="K2-ConDocNode-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-24" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Ensure text nodes gets merged.</description>
+      <query name="K2-ConDocNode-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-24.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-25" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Ensure text nodes gets merged(#2).</description>
+      <query name="K2-ConDocNode-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-26" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>Attributes cannot be children of document nodes.</description>
+      <query name="K2-ConDocNode-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-27" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>Attributes cannot be children of document nodes(#2).</description>
+      <query name="K2-ConDocNode-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-28" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>Attributes cannot be children of document nodes(#3).</description>
+      <query name="K2-ConDocNode-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-29" FilePath="Construct/ComputeCon/ConDocNode/" scenario="runtime-error">
+      <description>An invalid attribute constructor as child to the document constructor.</description>
+      <query name="K2-ConDocNode-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0024</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-30" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Ensure two text nodes appearing after a document constructor are merged properly.</description>
+      <query name="K2-ConDocNode-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-31" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Ensure a text node is properly constructed with nested document constructors, when extracting the string-value.</description>
+      <query name="K2-ConDocNode-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-ConDocNode-32" FilePath="Construct/ComputeCon/ConDocNode/" scenario="standard">
+      <description>Ensure a text node is properly constructed with nested document constructors, when serializing.</description>
+      <query name="K2-ConDocNode-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-ConDocNode-32.txt</output-file>
+   </test-case>
+</test-group>

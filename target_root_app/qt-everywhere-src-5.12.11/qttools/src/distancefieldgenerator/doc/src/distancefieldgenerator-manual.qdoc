@@ -1,0 +1,131 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtdistancefieldgenerator-index.html
+    \title Qt Distance Field Generator Manual
+    \ingroup qttools
+
+    If the user interface of an application has a lot of text, it
+    may cause a small, but noticeable, performance impact the first
+    time it is displayed to the user. This is especially true if the
+    text is rendered in multiple different fonts or use a large amount
+    of distinct characters (common for instance in writing systems such
+    as Hanzi, written Chinese).
+
+    The reason is that in order to render the text efficiently later,
+    Qt will spend some time creating graphical assets for each of the
+    glyphs that will later be reused. This happens the first time a
+    glyph is displayed in the scene.
+
+    For advanced users who want to optimize startup performance, it is
+    possible to pregenerate this font cache, as long as Text.QtRendering
+    is the rendering type in use. The Qt Distance Field Generator tool can
+    be used to pregenerate the cache, either for all glyphs in the fonts,
+    or just a selection that are known to be displayed during a critical
+    phase.
+
+    \note This is a tool that may be used by advanced users
+    to streamline their application in ways that cannot be done
+    automatically by Qt. For most common use cases, the default behavior
+    in Qt will be sufficient.
+
+    \image distancefieldgenerator.png "Qt Distance Field Generator UI"
+
+    \section1 General Usage
+
+    Use the Qt Distance Field Generator in the following way:
+
+    \list
+        \li Load a font file with \gui File > \gui Open font. If the font
+        file is large, there will be some waiting as it reads the fonts
+        and generates the distance fields.
+        \li Once this is done, select the glyphs that you want to save in
+        the pregenerated cache. This should ideally be the glyphs that
+        are used by your application during a performance-critical phase,
+        so that doing the generation ahead of time will give a visible
+        impact on performance.
+        \li Finally, click \gui Save to save the new font file.
+    \endlist
+
+    \note In order to modify a font in this way, you will need to make sure
+    its license does not prohibit it.
+
+    \section1 Selecting Glyphs
+
+    Glyphs can be selected in multiple ways. The simplest way is to click
+    the grid of glyphs to select a particular glyph. You can cancel the
+    selection by clicking on the glyph again.
+
+    In addition, you can use the list of Unicode ranges to select all glyphs
+    matching the characters in a certain range.
+
+    If you want to make sure you pregenerate the glyphs for a specific string
+    from your user interface, you can use the \gui Select > \gui Select string
+    function.
+
+    \note Both of the two latter selection methods base the results
+    on the CMAP table in the font and will not do any shaping.
+
+    \section1 Using the File
+
+    Once you have prepared a file, the next step is to load it in your application.
+    The saved file is a copy of the original font file, and can thus be used in
+    the same ways as any other font file. In addition, it has a special font table
+    which is recognized by Qt and used to prepopulate the glyph cache when the
+    font is used in Qt Quick.
+
+    You can, for instance, load the font using a \c FontLoader in your application
+    code. When it is used to display text in a \c Text element with \c renderType
+    set to \c Text.QtRendering (the default), then the pregenerated cache will be
+    loaded and used.
+
+    \section1 Measuring performance
+
+    For analyzing the impact of distance field generation on your application, you
+    can set the \c QT_LOGGING_RULES environment variable to
+    \c "qt.scenegraph.time.glyph=true".
+
+    When using normal fonts with no built-in cache, you will give output similar to
+    this:
+
+    \code
+    qt.scenegraph.time.glyph: distancefield: 50 glyphs prepared in 16ms, rendering=15, upload=1
+    \endcode
+
+    If you have pregenerated all the glyphs in use, the output will instead read something like
+    this:
+
+    \code
+    qt.scenegraph.time.glyph: distancefield: 50 pre-generated glyphs loaded in 2ms
+    \endcode
+
+    In this case, the time used to prepare the distance fields used to render in the application
+    has been reduced from one full frame (16 ms) to 2 ms. You can also use the output to verify
+    that all the glyphs in use are being loaded from the cache and to identify problematic phases
+    in your application's life cycle, performance-wise.
+*/

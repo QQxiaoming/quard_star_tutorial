@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqCountFunc-1                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: fn:count() doesn't implicitly get the context node. :)
+(:*******************************************************:)
+<e/>/count()

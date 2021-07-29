@@ -1,0 +1,171 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="DayTimeDurationAdd" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:add-dayTimeDurations</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations2args-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator with the arguments set as follows: Sarg1 = xs:dayTimeDuration(lower bound) $arg2 = xs:dayTimeDuration(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations2args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations2args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations2args-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator with the arguments set as follows: Sarg1 = xs:dayTimeDuration(mid range) $arg2 = xs:dayTimeDuration(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations2args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations2args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations2args-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator with the arguments set as follows: Sarg1 = xs:dayTimeDuration(upper bound) $arg2 = xs:dayTimeDuration(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations2args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations2args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations2args-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator with the arguments set as follows: Sarg1 = xs:dayTimeDuration(lower bound) $arg2 = xs:dayTimeDuration(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations2args-4" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations2args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations2args-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator with the arguments set as follows: Sarg1 = xs:dayTimeDuration(lower bound) $arg2 = xs:dayTimeDuration(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations2args-5" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations2args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator as per example 1 (for this function) of the Functions and Operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-1" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator as part of a boolean expression (and operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-2" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" opeartor as part of a boolean expression (or operator) and the "fn:false" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-3" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-4" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator used in conjunction with the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-4" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-5" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-5" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-6" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator as an argument to the "fn:number" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-6" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-7" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator as an argument to the "fn:string" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-7" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-8" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator that returns a negative value.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-8" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-9" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator, which is part of an "and" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-9" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-10" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" operator as part of an "or" expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-10" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-11" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" function, which is part of a div expression.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-11" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-12" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" function used in conjunction with a boolean expression and the "fn:true" function.</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-12" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-13" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" function, which is part of a numeric-equal expression (eq operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-13" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-14" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" function, which is part of a numeric-equal expression (ne operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-14" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-15" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" function, which is part of a numeric-equal expression (le operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-15" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="op-add-dayTimeDurations-16" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "op:add-dayTimeDurations" function, which is part of a numeric-equal expression (ge operator).</description>
+      <spec-citation spec="FuncOps" section-number="10.6.6" section-title="op:add-dayTimeDurations" section-pointer="func-add-dayTimeDurations"/>
+      <query name="op-add-dayTimeDurations-16" date="2005-06-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">op-add-dayTimeDurations-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationAdd-1" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard">
+      <description>Simple test of adding an xs:dayTimeDuration with PT0S.</description>
+      <query name="K-DayTimeDurationAdd-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationAdd-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationAdd-2" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard">
+      <description>Simple test of substraction PT0S with an xs:dayTimeDuration.</description>
+      <query name="K-DayTimeDurationAdd-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationAdd-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationAdd-3" FilePath="Expressions/Operators/ArithExpr/DurationArith/DayTimeDurationAdd/" scenario="standard">
+      <description>Simple test of adding two arbitrary xs:yearMonthDurations.</description>
+      <query name="K-DayTimeDurationAdd-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationAdd-3.txt</output-file>
+   </test-case>
+</test-group>

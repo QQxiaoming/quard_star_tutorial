@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-TranslateFunc-2                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The third argument to fn:translate() cannot be the empty sequence. :)
+(:*******************************************************:)
+fn:translate("arg", "mapString", ())

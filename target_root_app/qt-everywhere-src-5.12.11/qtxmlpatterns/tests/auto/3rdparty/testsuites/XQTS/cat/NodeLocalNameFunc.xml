@@ -1,0 +1,192 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeLocalNameFunc" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>fn:local-name</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-local-name-1" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with no argument and no context node. Should raise an error.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-1" date="2005-09-20"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-local-name-2" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with context item not a node. Should raise an error.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-2" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-3" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with incorrect arity. Should raise an error.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-3" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-local-name-4" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-4" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-5" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed text node.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-5" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-6" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to computed comment node.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-6" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-7" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to directly constructed comment node.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-7" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-8" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed Document node.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-8" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-9" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed element node with no prefix.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-9" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-10" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly element node with no prefix.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-10" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-11" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly element node with a prefix.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-11" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-12" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed attribute node with no prefix.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-12" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-13" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed attribute node with a prefix.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-13" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-14" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed PI node.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-14" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-15" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly constructed PI node.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-15" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-16" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly constructed element node with prefix and a namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-16" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-17" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly constructed element node with no prefix and used as argument to string-length.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-17" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-18" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed element node with prefix and a namespace declaration.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-18" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-19" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly constructed element node with no prefix and used as argument to upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-19" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-20" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a directly constructed element node with no prefix and used as argument to lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-20" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-21" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed attribute node with no prefix and used as argument to upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-21" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-22" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with argument set to a computed attribute node with no prefix and used as argument to lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-22" date="2005-11-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-local-name-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-local-name-23" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:local-name function with second argument set to "." and no context node. Should raise an error.</description>
+      <spec-citation spec="FuncOps" section-number="14.2" section-title="fn:local-name" section-pointer="func-local-name"/>
+      <query name="fn-local-name-23" date="2006-02-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLocalNameFunc-1" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `local-name((), "wrong param")`.</description>
+      <query name="K-NodeLocalNameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLocalNameFunc-2" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then local-name() else true()`.</description>
+      <query name="K-NodeLocalNameFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeLocalNameFunc-2.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NodeLocalNameFunc-3" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard">
+      <description>A test whose essence is: `local-name(()) eq ""`.</description>
+      <query name="K-NodeLocalNameFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NodeLocalNameFunc-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeLocalNameFunc-1" FilePath="Functions/NodeFunc/NodeLocalNameFunc/" scenario="standard">
+      <description>Call fn:local-name() on an attribute node.</description>
+      <query name="K2-NodeLocalNameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeLocalNameFunc-1.txt</output-file>
+   </test-case>
+</test-group>

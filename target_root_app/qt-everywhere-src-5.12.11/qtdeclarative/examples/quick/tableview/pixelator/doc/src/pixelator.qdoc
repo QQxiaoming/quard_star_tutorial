@@ -1,0 +1,95 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+    \title Qt Quick TableViews examples - Pixelator
+    \example tableview/pixelator
+    \brief The Pixelator example shows how a QML TableView and a delegate
+    can be used for custom table models.
+
+    \image qt-pixelator.png
+    \ingroup qtquickexamples
+
+    \include examples-run.qdocinc
+
+    \snippet tableview/pixelator/imagemodel.h model
+
+    We only require a simple, read-only table model. Thus, we need to implement
+    functions to indicate the dimensions of the image and supply data to the
+    TableView.
+    We use the \l{The Property System}{Qt Property System} and a source property
+    as \c QString to set the path of the image.
+
+    \snippet tableview/pixelator/imagemodel.cpp setsource
+
+    Here we load the image when the source path is set.
+    When the source path has changed, we need to call \c beginResetModel() before.
+    After the image has been loaded, we need to call \c endResetModel().
+
+    \snippet tableview/pixelator/imagemodel.cpp rowcolcount
+
+    The row and column count is set to image height and width, respectively.
+
+    \snippet tableview/pixelator/imagemodel.cpp data
+
+    This overloaded function allows us to access the pixel data from the image.
+    When we call this function with the display role, we return the pixel's
+    gray value.
+
+    \snippet tableview/pixelator/main.cpp registertype
+
+    We need to register our model in the QML type system to be able to use it
+    from the QML side.
+
+    \snippet tableview/pixelator/main.qml pixelcomponent
+
+    Each pixel in the \c TableView is displayed via a delegate component.
+    It contains an item that has an implicit height and width defining the
+    cell size of the table.
+    It also has a property for the gray value of the pixel that is retrieved
+    from the model.
+
+    \snippet tableview/pixelator/main.qml rectshape
+
+    Inside the \c Item, there is a rounded \c Rectangle with the size and
+    radius according to the pixel's gray value.
+
+    \snippet tableview/pixelator/main.qml interaction
+
+    For a little bit of interaction, we place a \c MouseArea inside the \c Item
+    and change the Rectangle's color on mouse over.
+
+    \snippet tableview/pixelator/main.qml animation
+
+    The \c Rectangle also has a short color animation to fade between the
+    colors when it is changed.
+
+    \snippet tableview/pixelator/main.qml tableview
+
+    The \c TableView spans over the whole window and has an instance of our
+    custom \c ImageModel attached.
+
+*/

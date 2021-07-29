@@ -1,0 +1,78 @@
+Qt 5.6.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.6.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+  http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.6 series is binary compatible with the 5.5.x series.
+Applications compiled for 5.5 will continue to run with 5.6.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+  https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+QQuickWindow
+------------
+
+ - The relevant child item is now sent a hover event when the window
+   receives a QEnterEvent, making sure hovering is recognized without
+   waiting for mouse movement.
+ - [QTBUG-56075] Wheel events retain their timestamps during delivery.
+
+QtQml
+-----
+
+ - Fixed reading of enum properties from gadgets / value types when the
+   enum was registered with qRegisterMetaType().
+ - [QTBUG-56271] Fixed a crash on big-endian architecture.
+ - [QTBUG-50592] JSON.stringify() uses QVariant::toString() so that URLs
+   and other types which are stored as variants will not be omitted.
+ - [QTBUG-56658] Fixed a crash in the Qt Quick compiler.
+ - [QTBUG-56830] Fixed conversion of long numeric strings to integers.
+ - [QTBUG-52356] Fixed binding re-evaluation when list model properties change.
+ - [QTBUG-58133] Fixed a crash when emitting a signal with an undefined QJSValue.
+ - [QTBUG-57633][QTBUG-46263] Fix crash with QObjects exposed to multiple QML engines.
+ - [QTBUG-58271] Fix PropertyChanges element to restore bindings on aliases.
+ - [QTBUG-56499] Fix Connection element not disconnecting when target became null.
+ - Work around crashes with gcc 5/6 caused by dead-store eliminations.
+ - Fix memory leak with QQmlExpression.
+ - [QTBUG-53261] Fix memory corruption when changing JS object properties in
+   certain ways.
+ - [QTBUG-39888] Fix crash with QQuickItem objects that do not have a parent but
+   should be kept alive by the JS garbage collector.
+ - [QTBUG-54822] Fix support for address space configurations where the kernel uses
+   more bits in pointer addressing
+ - [QTBUG-56551] Fix crash with Connection element and non-existent objects
+
+QtQuick
+-------
+
+ - [QTBUG-39888] Fixed crash with QQuickItems created via JavaScript being
+   garbage collected sometimes when they're not assigned to a window.
+ - [QTBUG-44038] TextInput no longer emits editingFinished twice on iOS.
+ - [QTBUG-55871][QTBUG-55886] Flickable::movementEnding and movementEnded
+   are emitted reliably at the right times on macOS.
+ - [QTBUG-55779] Text padding now has the proper effect on height when
+   there is more than one line of text.
+ - [QTBUG-37095] Canvas is rendered at high resolution if the scene is
+   initially rendered on a high-DPI screen.
+ - [QTBUG-56657] Fixed a bug resulting in invisible images in some cases.
+ - [QTBUG-58852] Large amounts of text are now rendered properly with
+   Text.NativeRendering.
+
+QuickTest
+---------
+ - [QTBUG-56223] Mouse events now include timestamps.
+
+QtWidgets
+---------
+
+ - [QTBUG-42074][QTBUG-57003] Support characters in Private Use Area, as
+   well as zero-width joiners and zero-width non-joiners in input in
+   TextInput and TextEdit.

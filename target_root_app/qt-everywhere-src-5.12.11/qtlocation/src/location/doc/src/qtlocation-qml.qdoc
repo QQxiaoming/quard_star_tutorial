@@ -1,0 +1,128 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \qmlmodule QtLocation \QtVer
+    \title Qt Location QML Types
+    \ingroup qmlmodules
+    \brief Provides QML types for mapping and location information.
+
+    \section1 Overview
+
+    Provided that a position has been obtained, the Qt Location module
+    can add a \l{QtLocation::}{Map} with Places of Interest (POI) and
+    \l{QtLocation::Place}{Places}. The user can be made aware of nearby
+    features and related information, displayed on the map. These features
+    can be places of business, entertainment, and so on. They may include
+    paths, roads, or forms of transport, enabling navigation optimization
+    and assistance.
+
+    To perform navigation we need \l {Route}s from start to destination.
+    These routes are made up of segments, where each \l {QtLocation::}
+    {RouteSegment} can be considered a navigation subtask; for example,
+    "drive 100 meters", or "turn left". The beginning and end of each
+    segment is a \e waypoint, that is, one part of the journey.
+
+    A typical use case for the API is a user looking for a particular type of
+    place, such as a restaurant; the user enters a search string into the map
+    application and is presented with a list of results for restaurants
+    "near" the device. The application can then be used to navigate to the
+    chosen destination using a route that is optimized according to features
+    in the environment that may help or hinder the journey. The navigation then
+    proceeds with the user's progress monitored by means of the current
+    location.
+
+    In short, the main QML types and their roles are as follows:
+
+    \list
+
+        \li The \l [QML] Place instances hold information about the
+            destination and surrounding objects, including displayable
+            representations.
+
+        \li The \l [QML] Map enables the information contained in
+            \l [QML] {Place} objects to be displayed, panned, zoomed,
+            and so on.
+
+        \li The \l [QML] Route is be determined by a \e plugin, with each
+            \l [QML] RouteSegment holding the navigation instructions,
+            guided by the continuously updated current \l [QML] Location.
+
+    \endlist
+
+    \section2 Plugins
+
+    \l {Plugin}s supply the data required to calculate routes and navigation
+    instructions, and they are typically tied to a specific location-based
+    service. For example, a plugin may allow connecting to a service that
+    provides geocoding and routing information, which can be consumed by the
+    application.
+
+    There may be various GeoServices plugins for various tasks, with some
+    plugins providing more than one service. One QML \l Plugin instance must
+    be created for each GeoService plugin. Plugins are required for routing
+    and geocoding, maps, and places, however the default plugin handles all
+    four of these services. A plugin may require online access or it may
+    support on-board maps and data.
+
+    \note Plugins may not provide features such as paging or relevance hints.
+
+    \section2 Related Information
+
+    The following links provide more information about maps and places:
+
+    \table
+        \row
+            \li \l {Maps and Navigation (QML)}{Maps and Navigation}
+            \li Displaying maps and finding routes
+        \row
+            \li \l {QML Places API} {Places}
+            \li Searching for and managing points of interest
+    \endtable
+
+    \section1 Common QML Types
+
+    \annotatedlist qml-QtLocation5-common
+
+    \section1 Maps QML Types
+
+    \annotatedlist qml-QtLocation5-maps
+
+    \section1 Navigation and Routing QML Types
+
+    \annotatedlist qml-QtLocation5-routing
+
+    \section1 Geocoding QML Types
+
+    \annotatedlist qml-QtLocation5-geocoding
+
+    \section1 Places QML Types
+
+    \annotatedlist qml-QtLocation5-places
+
+    \section1 Alphabetical Listing of All QML Types
+*/

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DatesSubtract-6                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The 'mod' operator is not available between xs:date and xs:date. :)
+(:*******************************************************:)
+xs:date("1999-10-12") mod xs:date("1999-10-12")

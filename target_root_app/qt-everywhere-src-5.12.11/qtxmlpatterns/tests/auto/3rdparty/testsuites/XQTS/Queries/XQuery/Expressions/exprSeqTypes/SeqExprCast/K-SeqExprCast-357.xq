@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-357                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: '-21:01:50' is an invalid lexical representation for xs:time. :)
+(:*******************************************************:)
+xs:time("-21:01:50")

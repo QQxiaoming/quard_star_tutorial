@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-YearMonthDurationEQ-2                         :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Testing 'eq' involving xs:yearMonthDuration with two zeroed values. :)
+(:*******************************************************:)
+xs:yearMonthDuration("P0M") eq xs:yearMonthDuration("P0M")

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-178                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: 'PDT3H2M10.001S' is an invalid lexical representation for xs:dayTimeDuration. :)
+(:*******************************************************:)
+xs:dayTimeDuration("PDT3H2M10.001S")

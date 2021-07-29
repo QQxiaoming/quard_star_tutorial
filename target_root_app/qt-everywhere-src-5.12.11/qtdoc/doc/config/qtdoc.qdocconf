@@ -1,0 +1,131 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+include($QT_INSTALL_DOCS/global/externalsites.qdocconf)
+
+
+project                 = QtDoc
+description             = Qt Reference Documentation
+version                 = $QT_VERSION
+
+# Instruct Clang not to look for a module header
+moduleheader =
+
+depends += \
+    activeqt \
+    qdoc \
+    qmake \
+    qtandroidextras \
+    qtassistant \
+    qtbluetooth \
+    qtconcurrent \
+    qtcore \
+    qtdbus \
+    qtdesigner \
+    qtgamepad \
+    qtgraphicaleffects \
+    qthelp \
+    qtimageformats \
+    qtgui \
+    qtlinguist \
+    qtlocation \
+    qtmacextras \
+    qtmultimedia \
+    qtnetwork \
+    qtnfc \
+    qtopengl \
+    qtplatformheaders \
+    qtpositioning \
+    qtprintsupport \
+    qtqml \
+    qtqmltest \
+    qtquick \
+    qtquickcontrols \
+    qtquickdialogs \
+    qtquickextras \
+    qtscript \
+    qtscripttools \
+    qtscxml \
+    qtsensors \
+    qtserialbus \
+    qtserialport \
+    qtsql \
+    qtsvg \
+    qttestlib \
+    qtuitools \
+    qtwebchannel \
+    qtwebengine \
+    qtwebsockets \
+    qtwidgets \
+    qtwinextras \
+    qtx11extras \
+    qtxml \
+    qtxmlpatterns \
+    qt3d \
+    qtcanvas3d \
+    qtwebview \
+    qtquickcontrols1 \
+    qtwaylandcompositor \
+    qtcharts \
+    qtdatavisualization \
+    qtpurchasing \
+    qtvirtualkeyboard \
+    qtspeech \
+    qtnetworkauth \
+    qtremoteobjects \
+    qtdistancefieldgenerator
+
+headerdirs  += ../src
+imagedirs   += ../src/images \
+               ../images
+
+sourcedirs  += \
+    ../src
+
+exampledirs += \
+    ../src \
+    ../snippets \
+    ../../examples
+
+# Don't parse files in snippets directory
+excludedirs += \
+    ../src/snippets
+
+examplesinstallpath =
+
+qhp.projects            = QtDoc
+
+qhp.QtDoc.file                = qtdoc.qhp
+qhp.QtDoc.namespace           = org.qt-project.qtdoc.$QT_VERSION_TAG
+qhp.QtDoc.virtualFolder       = qtdoc
+qhp.QtDoc.indexTitle          = Qt $QT_VERSION Reference Documentation
+qhp.QtDoc.indexRoot           =
+
+qhp.QtDoc.filterAttributes    = qtdoc $QT_VERSION qtrefdoc
+qhp.QtDoc.customFilters.Qt.name = QtDoc $QT_VERSION
+qhp.QtDoc.customFilters.Qt.filterAttributes = qtdoc $QT_VERSION
+qhp.QtDoc.subprojects         = classes qmltypes examples
+qhp.QtDoc.subprojects.classes.title = Classes
+qhp.QtDoc.subprojects.classes.indexTitle = All Classes
+qhp.QtDoc.subprojects.classes.selectors = class fake:headerfile
+qhp.QtDoc.subprojects.classes.sortPages = true
+qhp.QtDoc.subprojects.qmltypes.title = QML Types
+qhp.QtDoc.subprojects.qmltypes.indexTitle = All QML Types
+qhp.QtDoc.subprojects.qmltypes.selectors = qmlclass
+qhp.QtDoc.subprojects.qmltypes.sortPages = true
+qhp.QtDoc.subprojects.examples.title = Tutorials and Examples
+qhp.QtDoc.subprojects.examples.indexTitle = Qt Examples And Tutorials
+qhp.QtDoc.subprojects.examples.selectors = fake:example
+qhp.QtDoc.subprojects.examples.sortPages = true
+
+# Add an image used in example manifests to qhp
+HTML.extraimages             += images/qt-codesample.png
+qhp.QtDoc.extraFiles         += images/qt-codesample.png
+
+# Add an .html file with sidebar content, used in the online style
+HTML.stylesheets             += style/qt5-sidebar.html
+
+macro.indextitle              = "\\title Qt $QT_VER"
+macro.qtver                   = "$QT_VER"
+
+# Config to enable YouTube links in the offline documentation
+HTML.extraimages += ../images/I5jasWrsxT0.jpg
+qhp.QtDoc.extraFiles += ../images/I5jasWrsxT0.jpg

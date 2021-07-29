@@ -1,0 +1,123 @@
+defineReplace(getConfigDir) {
+  CONFIG(release, debug|release):return("release")
+  return("debug")
+}
+
+defineReplace(getChromiumSrcDir) {
+  exists($$QTWEBENGINE_ROOT/.git): git_chromium_src_dir = $$system("git config qtwebengine.chromiumsrcdir")
+  # Fall back to the snapshot path if git does not know about chromium sources (i.e. init-repository.py has not been used)
+  isEmpty(git_chromium_src_dir): git_chromium_src_dir = "src/3rdparty/chromium"
+  return($$git_chromium_src_dir)
+}
+
+defineReplace(which) {
+  out = $$1
+  win32 {
+    command = $$split(out, " ")
+    executable = $$first(command)
+    # Return the first match only
+    out = $$system("((for /f \"usebackq delims=\" %i in (`where $$executable 2^> NUL`) do @if not defined _endwhich (@echo %i & set _endwhich=true)) & set _endwhich=)")
+    isEmpty(out) {
+      message($$executable not found)
+      out = $$executable
+    }
+    for(arg, command): !equals(arg, $$executable): out += $$arg
+  } else:unix {
+    command = $$split(out, " ")
+    executable = $$first(command)
+    out = $$system("which $$executable 2>/dev/null")
+    isEmpty(out) {
+      message($$executable not found)
+      out = $$executable
+    }
+    for(arg, command): !equals(arg, $$executable): out += $$arg
+  }
+  return($$out)
+}
+
+# Returns the unquoted path to the python executable.
+defineReplace(pythonPath) {
+    isEmpty(QMAKE_PYTHON2) {
+        # Fallback for building QtWebEngine with Qt < 5.8
+        QMAKE_PYTHON2 = python
+    }
+    return($$QMAKE_PYTHON2)
+}
+
+# Returns the python executable for use with shell / make targets.
+defineReplace(pythonPathForShell) {
+    return($$shell_quote($$shell_path($$pythonPath())))
+}
+
+# Returns the python executable for use with $$system()
+defineReplace(pythonPathForSystem) {
+    return($$system_quote($$system_path($$pythonPath())))
+}
+
+defineReplace(ninjaPath) {
+    src_3rd_party_dir = $$absolute_path("$${getChromiumSrcDir()}/../", "$$QTWEBENGINE_ROOT")
+    out = $$shadowed($$absolute_path(ninja/ninja, $$src_3rd_party_dir))
+    win32: out = $${out}.exe
+    return($$out)
+}
+
+defineReplace(gnPath) {
+    src_3rd_party_dir = $$absolute_path("$${getChromiumSrcDir()}/../", "$$QTWEBENGINE_ROOT")
+    out = $$shadowed($$absolute_path(gn/out/Release/gn, $$src_3rd_party_dir))
+
+    win32: out = $${out}.exe
+    return($$out)
+}
+
+defineReplace(gnArgs) {
+    linux: include($$QTWEBENGINE_ROOT/src/core/config/linux.pri)
+    macos: include($$QTWEBENGINE_ROOT/src/core/config/mac_osx.pri)
+    win32: include($$QTWEBENGINE_ROOT/src/core/config/windows.pri)
+    isEmpty(gn_args): error(No gn_args found please make sure you have valid configuration.)
+    return($$gn_args)
+}
+
+defineReplace(gnArch) {
+    qtArch = $$1
+    contains(qtArch, "i386"): return(x86)
+    contains(qtArch, "x86_64"): return(x64)
+    contains(qtArch, "arm"): return(arm)
+    contains(qtArch, "arm64"): return(arm64)
+    contains(qtArch, "mips"): return(mipsel)
+    contains(qtArch, "mips64"): return(mips64el)
+    return(unknown)
+}
+
+defineReplace(gnOS) {
+    macos: return(mac)
+    win32: return(win)
+    linux: return(linux)
+    error(Unsupported platform)
+    return(unknown)
+}
+
+defineTest(isDeveloperBuild) {
+    qtConfig(private_tests): return(true) # enabled for developer-build
+    return(false)
+}
+
+defineTest(skipBuild) {
+    skipBuildReason = "$$skipBuildReason $${EOL}$$1"
+    export(skipBuildReason)
+}
+
+defineReplace(pkgConfigHostExecutable) {
+    wrapper_name = $$OUT_PWD/pkg-config-host_wrapper.sh
+    wrapper_cmd = $$QMAKE_PKG_CONFIG_HOST
+    isEmpty(wrapper_cmd): wrapper_cmd = pkg-config
+    wrapper_content = \
+        "$$LITERAL_HASH!/bin/sh" \
+        "unset PKG_CONFIG_LIBDIR" \
+        "unset PKG_CONFIG_SYSROOT_DIR" \
+        "exec $$wrapper_cmd \"$@\""
+    !build_pass:!write_file($$wrapper_name, wrapper_content, exe): error()
+    QMAKE_DISTCLEAN += $$wrapper_name
+    export(QMAKE_DISTCLEAN)
+    return($$system_quote($$system_path($$wrapper_name)))
+}
+

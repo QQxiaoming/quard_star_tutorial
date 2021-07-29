@@ -1,0 +1,54 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="DayTimeDurationEQ" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>op:dayTimeDuration-equal</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-1" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>Simple test of 'eq' for xs:dayTimeDuration, returning positive.</description>
+      <query name="K-DayTimeDurationEQ-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-2" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>Testing 'eq' involving xs:dayTimeDuration with two zeroed values.</description>
+      <query name="K-DayTimeDurationEQ-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-3" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>Simple test of 'eq' for xs:dayTimeDuration.</description>
+      <query name="K-DayTimeDurationEQ-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-4" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>Simple test of 'ne' for xs:dayTimeDuration.</description>
+      <query name="K-DayTimeDurationEQ-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-5" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>Simple test of 'ne' for xs:dayTimeDuration.</description>
+      <query name="K-DayTimeDurationEQ-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-6" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>The xs:dayTimeDuration values -PT0S and PT0S are equal.</description>
+      <query name="K-DayTimeDurationEQ-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-7" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>The xs:dayTimeDuration values -P2DT5H and P2DT5H are not equal.</description>
+      <query name="K-DayTimeDurationEQ-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-DayTimeDurationEQ-8" FilePath="Expressions/Operators/CompExpr/ValComp/DurationDateTimeOp/DayTimeDurationEQ/" scenario="standard">
+      <description>Test eq operator for xs:dayTimeDuration values with large milli second component.</description>
+      <query name="K-DayTimeDurationEQ-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-DayTimeDurationEQ-8.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-LogicExpr-38                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Empty xs:untypedAtomics have an EBV value of false. :)
+(:*******************************************************:)
+not(xs:untypedAtomic("a string") and xs:untypedAtomic(""))

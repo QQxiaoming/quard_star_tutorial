@@ -1,0 +1,226 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ExpandedQNameConstructFunc" featureOwner="Microsoft and Frans Englich">
+   <GroupInfo>
+      <title>fn:QName</title>
+      <description>Returns an xs:QName with the namespace URI given in the first argument and the local name and prefix in the second argument.</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc001" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Simple use case from functions and operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc001" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc001.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc002" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Simple use case from functions and operators spec.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc002" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc002.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc003" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Simple use case for 'no namespace' QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc003" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc003.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc004" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Simple use case for 'no namespace' QName.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc004" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc004.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc005" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - local name contains a prefix, but no namespace URI is specified.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc005" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc006" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - local name contains a prefix, but no namespace URI is specified.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc006" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc007" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid lexical representation for the local-name part.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc007" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc008" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid lexical representation for the local-name part.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc008" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc009" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid lexical representation for the local-name part.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc009" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc010" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid lexical representation for the local-name part.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc010" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc011" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid lexical representation for the local-name part.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc011" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc012" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid lexical representation for the local-name part.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc012" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc013" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - wrong number of input parameters.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc013" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc014" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - wrong number of input parameters.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc014" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc015" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid input type for parameters (integer).</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc015" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc016" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - invalid input type for parameters (integer).</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc016" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc017" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Select local-name part from source document.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc017" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc017.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc018" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Select local-name part from source document.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc018" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">fsx</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc018.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc019" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Mike Rorke">
+      <description>Test function fn:QName. Error case - zero length string for local-name.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc019" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc020" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Local-name references an already defined namespace prefix which is assigned to a different URI.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc020" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc020.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="ExpandedQNameConstructFunc021" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard" Creator="Mike Rorke">
+      <description>Test function fn:QName. Local-name references an already defined namespace prefix which is assigned to a different URI.</description>
+      <spec-citation spec="FuncOps" section-number="11.1.2" section-title="fn:QName" section-pointer="func-QName"/>
+      <query name="ExpandedQNameConstructFunc021" date="2005-09-29"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">ExpandedQNameConstructFunc021.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="qName-1" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Test function xs:QName with argument not set to a string literal.</description>
+      <spec-citation spec="XQuery" section-number="3.12.5" section-title="Constructor Functions" section-pointer="id-constructor-functions"/>
+      <query name="qName-1" date="2005-11-30"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-1" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `QName()`.</description>
+      <query name="K-ExpandedQNameConstructFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-2" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `QName("http://www.example.com/")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-3" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `QName("http://www.example.com/", "ncname", "error")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-4" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard">
+      <description>A test whose essence is: `QName("http://www.w3.org/2005/xpath-functions", "prefix:local") eq xs:QName("fn:local")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ExpandedQNameConstructFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-5" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>A QName cannot start with a digit.</description>
+      <query name="K-ExpandedQNameConstructFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-6" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `QName("", "error:ncname")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-7" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `QName((), "error:ncname")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-8" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>URI/QName arguments appearing in wrong order, leading to an invalid QName.</description>
+      <query name="K-ExpandedQNameConstructFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>FOCA0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-9" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard">
+      <description>A test whose essence is: `QName("", "local") eq xs:QName("local")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ExpandedQNameConstructFunc-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ExpandedQNameConstructFunc-10" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="standard">
+      <description>A test whose essence is: `QName((), "local") eq xs:QName("local")`.</description>
+      <query name="K-ExpandedQNameConstructFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ExpandedQNameConstructFunc-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-ExpandedQNameConstructFunc-1" FilePath="Functions/QNameFunc/QNameConstructFunc/ExpandedQNameConstructFunc/" scenario="runtime-error">
+      <description>The last argument must be a string.</description>
+      <query name="K2-ExpandedQNameConstructFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

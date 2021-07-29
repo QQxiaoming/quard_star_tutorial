@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-835                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: 'castable as' involving xs:dateTime as source type and xs:boolean as target type should always evaluate to false. :)
+(:*******************************************************:)
+not(xs:dateTime("2002-10-10T12:00:00-05:00") castable as xs:boolean)

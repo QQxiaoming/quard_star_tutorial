@@ -1,0 +1,27 @@
+Qt 5.12.9 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.8.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                  Client                                  *
+****************************************************************************
+
+ - [QTBUG-82914] Added support for QT_WAYLAND_FRAME_CALLBACK_TIMEOUT
+   environment variable, which can be used to disable or change the
+   internal frame callback timeout. If you see windows that stop rendering
+   or minimize on heavy load, then try setting the variable to 0.

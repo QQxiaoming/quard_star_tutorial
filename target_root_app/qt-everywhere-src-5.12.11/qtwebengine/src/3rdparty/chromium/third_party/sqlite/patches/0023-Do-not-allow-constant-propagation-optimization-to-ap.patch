@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Darwin Huang <huangdarwin@chromium.org>
+Date: Thu, 16 Jan 2020 15:34:48 -0800
+Subject: [PATCH 23/25] Do not allow constant-propagation optimization to apple
+ to ON/USING clause terms
+
+Backports: https://www.sqlite.org/src/info/1bc783da63d58b05
+
+Bug: 1042145
+---
+ third_party/sqlite/patched/src/select.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/third_party/sqlite/patched/src/select.c b/third_party/sqlite/patched/src/select.c
+index be705c11d1b4..4ed359800a2b 100644
+--- a/third_party/sqlite/patched/src/select.c
++++ b/third_party/sqlite/patched/src/select.c
+@@ -4193,7 +4193,7 @@ static int propagateConstantExprRewrite(Walker *pWalker, Expr *pExpr){
+   int i;
+   WhereConst *pConst;
+   if( pExpr->op!=TK_COLUMN ) return WRC_Continue;
+-  if( ExprHasProperty(pExpr, EP_FixedCol) ) return WRC_Continue;
++  if( ExprHasProperty(pExpr, EP_FixedCol|EP_FromJoin) ) return WRC_Continue;
+   pConst = pWalker->u.pConst;
+   for(i=0; i<pConst->nConst; i++){
+     Expr *pColumn = pConst->apExpr[i*2];
+-- 
+2.25.0.rc1.283.g88dfdc4193-goog
+

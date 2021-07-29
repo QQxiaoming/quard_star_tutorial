@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-224                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Whitespace is ignored for xs:double's lexical space(#2). :)
+(:*******************************************************:)
+xs:double("      INF           ")

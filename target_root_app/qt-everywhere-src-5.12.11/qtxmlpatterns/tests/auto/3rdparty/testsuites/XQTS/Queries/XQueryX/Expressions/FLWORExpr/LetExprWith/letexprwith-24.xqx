@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:flworExpr>
+        <xqx:letClause>
+          <xqx:letClauseItem>
+            <xqx:typedVariableBinding>
+              <xqx:varName>var</xqx:varName>
+              <xqx:typeDeclaration>
+                <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+              </xqx:typeDeclaration>
+            </xqx:typedVariableBinding>
+            <xqx:letExpr>
+              <xqx:typeswitchExpr>
+                <xqx:argExpr>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName xqx:prefix="fn">true</xqx:functionName>
+                    <xqx:arguments>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:argExpr>
+                <xqx:typeswitchExprCaseClause>
+                  <xqx:variableBinding>i</xqx:variableBinding>
+                  <xqx:sequenceType>
+                    <xqx:atomicType xqx:prefix="xs">boolean</xqx:atomicType>
+                  </xqx:sequenceType>
+                  <xqx:resultExpr>
+                    <xqx:stringConstantExpr>
+                      <xqx:value>Test Passed</xqx:value>
+                    </xqx:stringConstantExpr>
+                  </xqx:resultExpr>
+                </xqx:typeswitchExprCaseClause>
+                <xqx:typeswitchExprDefaultClause>
+                  <xqx:resultExpr>
+                    <xqx:stringConstantExpr>
+                      <xqx:value>Test failed</xqx:value>
+                    </xqx:stringConstantExpr>
+                  </xqx:resultExpr>
+                </xqx:typeswitchExprDefaultClause>
+              </xqx:typeswitchExpr>
+            </xqx:letExpr>
+          </xqx:letClauseItem>
+        </xqx:letClause>
+        <xqx:returnClause>
+          <xqx:varRef>
+            <xqx:name>var</xqx:name>
+          </xqx:varRef>
+        </xqx:returnClause>
+      </xqx:flworExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

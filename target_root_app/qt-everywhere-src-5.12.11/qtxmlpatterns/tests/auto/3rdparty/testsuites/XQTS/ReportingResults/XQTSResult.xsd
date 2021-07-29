@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:xqtsr="http://www.w3.org/2005/02/query-test-XQTSResult"
+   targetNamespace="http://www.w3.org/2005/02/query-test-XQTSResult">
+
+   <xsd:element name="p">
+      <xsd:complexType mixed="true">
+         <xsd:sequence>
+            <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##any" processContents="skip" />
+         </xsd:sequence>
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:complexType name="commentType" mixed="true">
+      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+         <xsd:sequence>         
+            <xsd:element ref="xqtsr:p" />
+         </xsd:sequence>
+      </xsd:sequence>
+   </xsd:complexType>
+   
+   <xsd:simpleType name="syntaxType">
+      <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="XQuery" />
+          <xsd:enumeration value="XQueryX" />
+      </xsd:restriction>
+   </xsd:simpleType>
+   
+   <xsd:element name="syntax" type="xqtsr:syntaxType" />
+
+   <xsd:element name="test-suite-result">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element ref="xqtsr:implementation" />
+            <xsd:element ref="xqtsr:syntax" />
+            <xsd:element ref="xqtsr:test-run" />
+            <xsd:element
+               maxOccurs="unbounded"
+               minOccurs="1"
+               ref="xqtsr:test-case" />
+         </xsd:sequence>
+         <xsd:anyAttribute processContents="lax" namespace="##other"/>
+      </xsd:complexType>
+
+      <xsd:unique name="unique-test-cases">
+         <xsd:selector xpath=".//xqtsr:test-case"/>
+         <xsd:field xpath="@name"/>
+      </xsd:unique>
+
+   </xsd:element>
+
+   <xsd:element name="implementation">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element ref="xqtsr:organization" />
+            <xsd:element ref="xqtsr:submittor" />
+            <xsd:element
+               ref="xqtsr:description"
+               minOccurs="0"
+               maxOccurs="1" />
+            <xsd:element
+               ref="xqtsr:implementation-defined-items"
+               minOccurs="0"
+               maxOccurs="1" />
+            <xsd:element
+               ref="xqtsr:features"
+               minOccurs="0"
+               maxOccurs="1" />
+            <xsd:element
+               ref="xqtsr:context-properties"
+               minOccurs="0"
+               maxOccurs="1" />
+         </xsd:sequence>
+         <xsd:attribute
+            name="name"
+            type="xsd:string"
+            use="required" />
+         <xsd:attribute
+            name="version"
+            type="xsd:string"
+            use="optional" />
+
+         <!-- anonymous-result-columm='true' will create a result column in reports
+            that are generated with "Anonymous" instead of the implementation name. 
+         -->
+
+         <xsd:attribute
+            name="anonymous-result-column"
+            type="xsd:string"
+            use="optional" />
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="organization">
+      <xsd:complexType>
+         <xsd:attribute
+            name="name"
+            type="xsd:string"
+            use="required" />
+         <xsd:attribute
+            name="website"
+            type="xsd:string"
+            use="optional" />
+
+         <!-- anonymous='true' will cause the organization and implementation
+            information not to be listed at the top of reports that are generated.
+         -->
+
+         <xsd:attribute
+            name="anonymous"
+            type="xsd:boolean"
+            use="optional" />
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="submittor">
+      <xsd:complexType>
+         <xsd:attribute
+            name="name"
+            type="xsd:string"
+            use="required" />
+         <xsd:attribute
+            name="title"
+            type="xsd:string"
+            use="optional" />
+         <xsd:attribute
+            name="email"
+            type="xsd:string"
+            use="optional" />
+         <xsd:attribute
+            name="phone"
+            use="optional"></xsd:attribute>
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element
+      name="description"
+      type="xqtsr:commentType" />
+
+   <xsd:element name="implementation-defined-items">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element
+               minOccurs="0"
+               maxOccurs="unbounded"
+               ref="xqtsr:implementation-defined-item" />
+         </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:unique name="unique-implementation-defined-item">
+         <xsd:selector xpath=".//xqtsr:implementation-defined-item"/>
+         <xsd:field xpath="@name"/>
+      </xsd:unique>
+
+   </xsd:element>
+
+
+   <!-- Report the behavior of an implementation for an implementation-defined
+      item. The implementation-defined-item name should be reported exactly
+      as provided in XQTSCatalog.
+   -->
+
+   <xsd:element name="implementation-defined-item">
+      <xsd:complexType>
+         <xsd:attribute
+            name="name"
+            type="xsd:string"
+            use="required" />
+         <xsd:attribute
+            name="value"
+            type="xsd:string"
+            use="required" />
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="features">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element
+               minOccurs="0"
+               maxOccurs="unbounded"
+               ref="xqtsr:feature"></xsd:element>
+         </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:unique name="unique-features">
+         <xsd:selector xpath=".//xqtsr:feature"/>
+         <xsd:field xpath="@name"/>
+      </xsd:unique>
+
+   </xsd:element>
+
+   <!-- Report whether a conformance feature described in XQTSCatalog
+      is supported. The feature name should be reported exactly as
+      provided in XQTSCatalog.
+   -->
+
+   <xsd:element name="feature">
+      <xsd:complexType>
+         <xsd:attribute
+            name="name"
+            type="xsd:string"
+            use="required" />
+         <xsd:attribute
+            name="supported"
+            type="xsd:boolean"
+            use="required" />
+         <xsd:attribute
+            name="comment"
+            type="xsd:string" />
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element name="context-properties">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element
+               maxOccurs="unbounded"
+               minOccurs="0"
+               ref="xqtsr:context-property" />
+         </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:unique name="unique-context-properties">
+         <xsd:selector xpath=".//xqtsr:context-property"/>
+         <xsd:field xpath="@name"/>
+      </xsd:unique>
+
+   </xsd:element>
+
+
+   <!-- Report whether a context item described in XQTSCatalog has been
+      overwritten or augmented. The context property name should be
+      reported exactly as provided in XQTSCatalog.
+   -->
+
+   <xsd:element name="context-property">
+      <xsd:complexType>
+         <xsd:attribute
+            name="name"
+            type="xsd:string"
+            use="required" />
+         <xsd:attribute
+            name="value"
+            type="xsd:string"
+            use="optional" />
+         <xsd:attribute
+            name="context-type"
+            use="required">
+            <xsd:simpleType>
+               <xsd:restriction
+                  base="xsd:string">
+                  <xsd:enumeration
+                     value="static" />
+                  <xsd:enumeration
+                     value="dynamic" />
+               </xsd:restriction>
+            </xsd:simpleType>
+         </xsd:attribute>
+
+      </xsd:complexType>
+   </xsd:element>
+
+
+   <xsd:element name="test-run">
+      <xsd:complexType>
+         <xsd:sequence>
+            <xsd:element ref="xqtsr:test-suite" />
+            <xsd:element
+               ref="xqtsr:transformation"
+               minOccurs="0"
+               maxOccurs="1" />
+            <xsd:element
+               ref="xqtsr:comparison"
+               minOccurs="0"
+               maxOccurs="1" />
+            <xsd:element
+               ref="xqtsr:otherComments"
+               minOccurs="0"
+               maxOccurs="1" />
+         </xsd:sequence>
+         <xsd:attribute
+            name="dateRun"
+            type="xsd:date"
+            use="required" />
+      </xsd:complexType>
+   </xsd:element>
+
+   <xsd:element
+      name="transformation"
+      type="xqtsr:commentType" />
+
+   <xsd:element
+      name="comparison"
+      type="xqtsr:commentType" />
+   <xsd:element
+      name="otherComments"
+      type="xqtsr:commentType" />
+
+
+   <xsd:element name="test-suite">
+      <xsd:complexType>
+         <xsd:attribute
+            name="version"
+            type="xsd:string"
+            use="required" />
+      </xsd:complexType>
+   </xsd:element>
+
+   <!-- Report the result of running a test case described in XQTSCatalog.
+      The test case name should be reported exactly as provided in
+      XQTSCatalog.
+   -->
+
+   <xsd:element name="test-case" type="xqtsr:test-caseType" />
+
+   <xsd:complexType name="test-caseType">
+      <xsd:attribute
+         name="name"
+         type="xsd:string"
+         use="required" />
+      <xsd:attribute
+         name="result"
+         type="xqtsr:resultStatusType"
+         use="required">
+      </xsd:attribute>
+      <xsd:attribute
+         name="comment"
+         type="xsd:string"
+         use="optional" />
+      <xsd:anyAttribute processContents="lax" namespace="##other"/>
+   </xsd:complexType>
+
+   <xsd:simpleType name="resultStatusType">
+      <xsd:restriction
+         base="xsd:string">
+         <xsd:enumeration
+            value="pass" />
+         <xsd:enumeration
+            value="fail" />
+         <xsd:enumeration
+            value="not applicable" />
+         <xsd:enumeration
+            value="not tested" />
+         <xsd:enumeration
+            value="cannot tell" />
+      </xsd:restriction>
+   </xsd:simpleType>
+
+
+</xsd:schema>

@@ -1,0 +1,47 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Victor Costan <pwnall@chromium.org>
+Date: Fri, 11 Jan 2019 12:15:27 -0800
+Subject: [PATCH 15/17] Report a new corruption case.
+
+This backports https://sqlite.org/src/info/cc42dd15100db28a
+
+Bug: 917285
+---
+ third_party/sqlite/src/src/btree.c      | 7 +++++++
+ third_party/sqlite/src/test/fuzzcheck.c | 2 +-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/third_party/sqlite/src/src/btree.c b/third_party/sqlite/src/src/btree.c
+index 7a8de2d78c6a..6b17bdee5c4f 100644
+--- a/third_party/sqlite/src/src/btree.c
++++ b/third_party/sqlite/src/src/btree.c
+@@ -992,6 +992,13 @@ static void ptrmapPut(BtShared *pBt, Pgno key, u8 eType, Pgno parent, int *pRC){
+     *pRC = rc;
+     return;
+   }
++  if( ((char*)sqlite3PagerGetExtra(pDbPage))[0]!=0 ){
++    /* The first byte of the extra data is the MemPage.isInit byte.
++    ** If that byte is set, it means this page is also being used
++    ** as a btree page. */
++    *pRC = SQLITE_CORRUPT_BKPT;
++    goto ptrmap_exit;
++  }
+   offset = PTRMAP_PTROFFSET(iPtrmap, key);
+   if( offset<0 ){
+     *pRC = SQLITE_CORRUPT_BKPT;
+diff --git a/third_party/sqlite/src/test/fuzzcheck.c b/third_party/sqlite/src/test/fuzzcheck.c
+index 61925fcbe435..7ed17ae8a7d1 100644
+--- a/third_party/sqlite/src/test/fuzzcheck.c
++++ b/third_party/sqlite/src/test/fuzzcheck.c
+@@ -447,7 +447,7 @@ static int inmemRead(
+   if( iOfst+iAmt>pVFile->sz ){
+     memset(pData, 0, iAmt);
+     iAmt = (int)(pVFile->sz - iOfst);
+-    memcpy(pData, pVFile->a, iAmt);
++    memcpy(pData, pVFile->a + iOfst, iAmt);
+     return SQLITE_IOERR_SHORT_READ;
+   }
+   memcpy(pData, pVFile->a + iOfst, iAmt);
+--
+2.18.0
+

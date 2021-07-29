@@ -1,0 +1,138 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="CombinedErrorCodes" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Single error code for extra features</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="combined-errors-1" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates simple module import to generate error code if feature not supported.</description>
+      <spec-citation spec="XQuery" section-number="5.2.5" section-title="Module Feature" section-pointer="id-module-feature"/>
+      <query name="combined-errors-1" date="2006-06-06"/>
+      <module namespace="http://www.w3.org/TestModules/defs">module-defs</module>
+      <module namespace="http://www.w3.org/TestModules/test1">test1-lib</module>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">combined-errors-1.txt</output-file>
+      <expected-error>XQST0016</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="combined-errors-2" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates simple schema import to generate error code if feature not supported.</description>
+      <spec-citation spec="XQuery" section-number="5.2.1" section-title="Schema Import Feature" section-pointer="id-schema-import-feature"/>
+      <query name="combined-errors-2" date="2006-06-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">combined-errors-2.txt</output-file>
+      <expected-error>XQST0009</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="combined-errors-3" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates simple schema validation feature to generate error code if feature not supported.</description>
+      <spec-citation spec="XQuery" section-number="5.2.2" section-title="Schema Validation Feature" section-pointer="id-schema-validation-feature"/>
+      <query name="combined-errors-3" date="2006-06-06"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">combined-errors-3.txt</output-file>
+      <expected-error>XQST0075</expected-error>
+      <expected-error>XQST0009</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="combined-errors-4" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates simple full axis feature (preceding axis) to generate error code if feature not supported.</description>
+      <spec-citation spec="XQuery" section-number="5.2.4" section-title="Full Axis Feature" section-pointer="id-full-axis-feature"/>
+      <query name="combined-errors-4" date="2006-06-06"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">combined-errors-4.txt</output-file>
+      <expected-error>XPST0010</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-1" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>Schema import binding to no namespace, and no location hint.</description>
+      <query name="K-CombinedErrorCodes-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-2" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>Schema import binding to no namespace, but has a location hint.</description>
+      <query name="K-CombinedErrorCodes-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-3" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>Schema import binding to no namespace, but has three location hints.</description>
+      <query name="K-CombinedErrorCodes-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-4" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>Schema import binding to no namespace, but has three location hints.</description>
+      <query name="K-CombinedErrorCodes-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-5" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>Schema import binding to a namespace, and has three location hints.</description>
+      <query name="K-CombinedErrorCodes-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-6" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>Schema import binding to the default element namespace, and has three location hints.</description>
+      <query name="K-CombinedErrorCodes-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQST0009</expected-error>
+      <expected-error>XQST0059</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CombinedErrorCodes-7" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="parse-error">
+      <description>':=' cannot be used to assing namespaces in 'import schema'.</description>
+      <query name="K-CombinedErrorCodes-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-9" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-10" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-11" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-CombinedErrorCodes-12" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="runtime-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XQTY0030</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CombinedErrorCodes-13" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="parse-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CombinedErrorCodes-14" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="parse-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-CombinedErrorCodes-15" FilePath="OptionalFeatureErrors/CombinedErrorCodes/" scenario="parse-error">
+      <description>A 'validate' expression with an invalid operand.</description>
+      <query name="K-CombinedErrorCodes-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+      <expected-error>XQST0075</expected-error>
+   </test-case>
+</test-group>

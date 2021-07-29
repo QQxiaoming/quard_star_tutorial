@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DefaultNamespaceProlog-4                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A 'declare default function namespace' expression containing many comments, using quotes for the URILiteral. :)
+(:*******************************************************:)
+(::)declare(::)default(::)function(::)namespace(::)"http://example.com/"(::);(::)1(::)eq(::)1(::)

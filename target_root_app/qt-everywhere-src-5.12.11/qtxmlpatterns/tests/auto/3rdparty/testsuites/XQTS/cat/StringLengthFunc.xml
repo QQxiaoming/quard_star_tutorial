@@ -1,0 +1,209 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="StringLengthFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:string-length</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-string-length1args-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with the arguments set as follows: $arg = xs:string(lower bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length1args-1" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length1args-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with the arguments set as follows: $arg = xs:string(mid range).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length1args-2" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length1args-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with the arguments set as follows: $arg = xs:string(upper bound).</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length1args-3" date="2004-12-13"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function as per example 1 (for this function) from the Functions and Ops specs.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-1" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-2" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses only numbers as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-3" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses both numbers and letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-4" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses only upper case letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-5" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses only lower case letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-6" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses both, upper and lower case letters as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-7" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses the empty string as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-8" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-9" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function that uses the "string" function as part of argument.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-9" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-10" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with argument set to "*****".</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-10" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-11" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function as part of an addition operation.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-11" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-12" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function as an argument to the "fn:boolean" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-12" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-13" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function as an argument to the "fn:concat" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-13" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-14" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function as an argument to the "fn:not" function.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-14" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-15" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with argument set to "%$#@!" .</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-15" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-16" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with argument set to "string-length" .</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-16" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-17" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function as part of a boolean expression.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-17" date="2005-08-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-string-length-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-string-length-18" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluates the "string-length" function with no arguments and no context node defined. Should raise error.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-18" date="2005-09-19"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-string-length-19" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="runtime-error" Creator="Nicolae Brinza">
+      <description>Evaluation of string-length function with an argument that is a sequence of more than one item.</description>
+      <spec-citation spec="FuncOps" section-number="7.4.4" section-title="fn:string-length" section-pointer="func-string-length"/>
+      <query name="fn-string-length-19" date="2009-04-01"/>
+      <input-file role="principal-data" variable="input-context">acme_corp</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `string-length("a string", "wrong param")`.</description>
+      <query name="K-StringLengthFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `string-length("ebv") eq 3`.</description>
+      <query name="K-StringLengthFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `string-length("ebv") instance of xs:integer`.</description>
+      <query name="K-StringLengthFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `string-length(()) eq 0`.</description>
+      <query name="K-StringLengthFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `string-length("") eq 0`.</description>
+      <query name="K-StringLengthFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `string-length(()) instance of xs:integer`.</description>
+      <query name="K-StringLengthFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-7" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then string-length() else true()`.</description>
+      <query name="K-StringLengthFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-7.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-StringLengthFunc-8" FilePath="Functions/AllStringFunc/GeneralStringFunc/StringLengthFunc/" scenario="standard">
+      <description>A test whose essence is: `string-length("Harp not on that string, madam; that is past.") eq 45`.</description>
+      <query name="K-StringLengthFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-StringLengthFunc-8.txt</output-file>
+   </test-case>
+</test-group>

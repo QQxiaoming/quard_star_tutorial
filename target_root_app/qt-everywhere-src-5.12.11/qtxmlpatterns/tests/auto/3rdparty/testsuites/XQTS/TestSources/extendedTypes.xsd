@@ -1,0 +1,76 @@
+<xs:schema
+   xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+   xmlns:extends = "http://www.example.com/XQueryTest/extendedTypes"
+   targetNamespace = "http://www.example.com/XQueryTest/extendedTypes" 
+	 elementFormDefault="qualified">
+
+	<xs:complexType name="baseType">
+		<xs:sequence>
+			<xs:element name="baseElement" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="anotherBaseType">
+		<xs:sequence>
+			<xs:element name="baseElement" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="extendedWithElementType">
+		<xs:complexContent>
+			<xs:extension base="extends:baseType">
+				<xs:sequence>
+					<xs:element name="extendedElement" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="extendedWithOptionalElementType">
+		<xs:complexContent>
+			<xs:extension base="extends:baseType">
+				<xs:sequence>
+					<xs:element name="extendedElement" minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="extendedWithAttributeType">
+		<xs:complexContent>
+			<xs:extension base="extends:anotherBaseType">
+				<xs:attribute name="extendedAttribute" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="restrictedType">
+		<xs:complexContent>
+			<xs:restriction base="extends:extendedWithOptionalElementType">
+				<xs:sequence>
+					<xs:element name="baseElement" />
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="restrictedAttributeType">
+		<xs:complexContent>
+			<xs:restriction base="extends:extendedWithAttributeType">
+				<xs:sequence>
+					<xs:element name="baseElement" />
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name ="extendedTypes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="extendedWithElement" type="extends:extendedWithElementType" />
+				<xs:element name="restricted" type="extends:restrictedType" />
+				<xs:element name="restrictedAttribute" type="extends:restrictedAttributeType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

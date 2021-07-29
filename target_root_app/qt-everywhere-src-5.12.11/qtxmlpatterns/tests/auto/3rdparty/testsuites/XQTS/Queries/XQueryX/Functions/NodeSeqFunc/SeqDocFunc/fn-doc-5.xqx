@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>input-context</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:isOp>
+        <xqx:firstOperand>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">doc</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>input-context</xqx:name>
+              </xqx:varRef>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:firstOperand>
+        <xqx:secondOperand>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">doc</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>input-context</xqx:name>
+              </xqx:varRef>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:secondOperand>
+      </xqx:isOp>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

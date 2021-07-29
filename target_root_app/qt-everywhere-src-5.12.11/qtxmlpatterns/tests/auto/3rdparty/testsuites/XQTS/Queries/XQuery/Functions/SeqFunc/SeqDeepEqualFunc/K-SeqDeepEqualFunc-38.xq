@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqDeepEqualFunc-38                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:22+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal(("str", 1, 1), ("str", 1, 1))`. :)
+(:*******************************************************:)
+deep-equal(("str", 1, 1), ("str", 1, 1))

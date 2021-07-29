@@ -1,0 +1,70 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtquickhandlers-index.html
+    \title Qt Quick Input Handlers
+    \brief A module with a set of QML elements that handle events from input devices in a user interface.
+
+    Qt Quick Input Handlers are a set of QML types used to handle events from
+    keyboard, touch, mouse, and stylus devices in a UI. In contrast to event-handling
+    items, such as \l MouseArea and \l Flickable, input handlers are explicitly non-visual,
+    require less memory and are intended to be used in greater numbers: one
+    handler instance per aspect of interaction. Each input handler instance
+    handles certain events on behalf of its \c parent Item. Thus the visual and
+    behavioral concerns are better separated, and the behavior is built up by
+    finer-grained composition.
+
+    In Qt 5.10, these handlers were introduced in a separate Qt.labs.handlers module.
+    Now they are included with Qt Quick since 5.12.  The pre-existing
+    \l Keys attached property is similar in concept, so we refer to the
+    pointing-device-oriented handlers plus \c Keys together as the set of Input Handlers.
+    We expect to offer more attached-property use cases in future versions of Qt.
+
+    \section1 Input Handlers
+
+    \annotatedlist qtquick-input-handlers
+
+    \section1 Key Features
+
+    Some of the key features are:
+
+    \list
+        \li Handle keystrokes within the focused Item
+        \li Handle gestures such as tapping or dragging regardless which device it comes from
+        \li Handle gestures from different classes of devices in different ways
+        \li Each Item can have unlimited Handlers
+    \endlist
+
+    \omit TODO actual overview with snippets and stuff \endomit
+
+    \section1 Related Information
+
+     \list
+      \li \l{Qt Quick}
+     \endlist
+*/

@@ -1,0 +1,107 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \qmlbasictype palette
+    \brief a palette of colors.
+    \target qtquickcontrols2-palette
+
+    The \c palette type refers to a palette of colors for various roles.
+
+    Available properties:
+    \table
+        \header
+            \li Property
+            \li Description
+        \row
+            \li \b palette.alternateBase : color
+            \li Used as the alternate background color in item views with alternating row colors.
+        \row
+            \li \b palette.base : color
+            \li Used mostly as the background color for text editor controls and items views.
+                It is usually white or another light color.
+        \row
+            \li \b palette.brightText : color
+            \li A text color that is very different from \c palette.windowText, and contrasts
+                well with e.g. \c palette.dark. Typically used for text that needs to be drawn
+                where \c palette.text, \c palette.windowText or \c palette.buttonText would
+                give poor contrast, such as on highlighted buttons.
+        \row
+            \li \b palette.button : color
+            \li The general button background color. This background can be different from
+                \c palette.window as some styles require a different background color for buttons.
+        \row
+            \li \b palette.buttonText : color
+            \li A foreground color used with the \c palette.button color.
+        \row
+            \li \b palette.dark : color
+            \li Darker than \c palette.button.
+        \row
+            \li \b palette.highlight : color
+            \li A color to indicate a selected item or the current item.
+        \row
+            \li \b palette.highlightedText : color
+            \li A text color that contrasts with \c palette.highlight.
+        \row
+            \li \b palette.light : color
+            \li Lighter than \c palette.button.
+        \row
+            \li \b palette.link : color
+            \li A text color used for hyperlinks.
+        \row
+            \li \b palette.linkVisited : color
+            \li A text color used for already visited hyperlinks.
+        \row
+            \li \b palette.mid : color
+            \li Between \c palette.button and \c palette.dark.
+        \row
+            \li \b palette.midlight : color
+            \li Between \c palette.button and \c palette.light.
+        \row
+            \li \b palette.shadow : color
+            \li A very dark color.
+        \row
+            \li \b palette.text : color
+            \li The foreground color used with \c palette.base. This is usually the same as
+                the \c palette.windowText, in which case it must provide good contrast with
+                \c palette.window and \c palette.base.
+        \row
+            \li \b palette.toolTipBase : color
+            \li Used as the background color for tooltips.
+        \row
+            \li \b palette.toolTipText : color
+            \li Used as the foreground color for tooltips.
+        \row
+            \li \b palette.window : color
+            \li A general background color.
+        \row
+            \li \b palette.windowText : color
+            \li A general foreground color.
+    \endtable
+
+    \sa Control::palette, Popup::palette, ApplicationWindow::palette, QPalette::ColorRole
+*/

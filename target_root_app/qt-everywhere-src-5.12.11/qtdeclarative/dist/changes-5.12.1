@@ -1,0 +1,81 @@
+Qt 5.12.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                   Qml                                    *
+****************************************************************************
+
+ - [QTBUG-71829] Qt Quick Compiler works correctly with CMake on Windows.
+ - Empty resource files will not be passed to Qt Quick Compiler to be
+   handled when using CMake.
+ - [QTBUG-58454] You can now pass enum values tagged with Q_ENUM in one
+   class as parameters to function of a different class exposed to QML.
+ - [QTBUG-66976] Disk caching of compiled QML code works now for modules
+   with multiple QML singletons.
+ - [QTBUG-71138] You can extend built-in JavaScript classes with
+   user-defined methods.
+ - [QTBUG-71817] Inserting the same QObject as the same context property
+   multiple times does not leak memory anymore.
+ - [QTBUG-67292] qmlplugindump will correctly report versions of components
+   defined in qmldir files that also contain singletons.
+ - [QTBUG-71195] You can create more than the previous limit of about 2500
+   QML elements in the same file.
+ - [QTBUG-68736] On android the QML engine will not load stale cache files
+   anymore.
+ - [QTBUG-71524] JavaScript files included via Qt.include() are now parsed
+   as JavaScript, not as QML.
+ - [QTBUG-72674] Running URLs through JSON.stringify() will produce a proper
+   JSON string.
+
+****************************************************************************
+*                               Qml Tooling                                *
+****************************************************************************
+
+ - [QTBUG-71515] The Qml profiling plugin now inserts memory events in the
+   correct order. This is important for the client to show a meaningful
+   memory profile.
+ - [QTBUG-71768] The qmlpreview tool does a better job at watching files for
+   changes, especially in the common case that editors replace files, rather
+   than change them in place.
+ - [QTBUG-71037] The QML debugger will not crash the application on
+   encountering certain dynamically created objects anymore.
+
+****************************************************************************
+*                                  QtQuick                                 *
+****************************************************************************
+
+ - [QTBUG-71972] PinchHandler and DragHandler activate only when they grab points.
+ - [QTBUG-71466][QTBUG-71970] TapHandler resets state when giving up grab.
+ - [QTBUG-71431] PointHandler distributes simultaneous touch presses properly.
+ - [QTBUG-71955] TapHandler ignores scroll events and native gestures.
+ - [QTBUG-71317] Event Handlers can now be used in Windows and Dialogs.
+ - [QTBUG-71427] Event Handlers now function properly when created dynamically.
+ - [QTBUG-73137] The PinchHandler {min,max}imum{X,Y} properties that were
+   unintentionally included in the 5.12.0 release have now been deprecated.
+   Please use the xAxis and yAxis properties instead.
+ - [QTBUG-72376] In Text with StyledText textFormat, <s></s> and <del></del>
+   tags will now be interpreted as strikethrough style.
+ - [QTBUG-59310] Fixed vertical alignment of images in a text document.
+ - [QTBUG-68863] Fixed updating of text nodes in QQuickTextEdit.
+ - [QTBUG-71684] QQuickText: Signal content height/width changes also when resetting.
+ - [QTBUG-72603] Fixed regression in border-top with high-dpi.
+ - [QTBUG-65077] Fixed invalidation of m_cache while iterating qquickpixmapcache.
+ - [QTBUG-71322] Disabled antialiased clipping when painting images.
+ - [QTBUG-69290] Fixed leaking textures and animation resources in software backend.
+ - [QTBUG-65236][QTBUG-71705] Fixed null pointer access in material cache.

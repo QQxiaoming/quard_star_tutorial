@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FilterExpr-88                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: A truth predicate that never match.          :)
+(:*******************************************************:)
+empty(remove((1, 2, 3, current-time()), 4)[false()])

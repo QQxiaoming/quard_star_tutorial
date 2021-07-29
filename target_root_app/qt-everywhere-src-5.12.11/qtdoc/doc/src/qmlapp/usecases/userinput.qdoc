@@ -1,0 +1,78 @@
+/****************************************************************************
+**
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+\page qtquick-usecase-userinput.html
+\title Use Case - Responding To User Input in QML
+\brief Example of how to accept user input and respond to it in a QML application
+
+\section1 Supported types of user input
+
+The \l {Qt Quick} module provides support for the most common types of user input,
+including mouse and touch events, text input, and key-press events.  Other
+modules provide support for other types of user input for example, the
+\l {Qt Sensors} module provides support for shake-gestures in QML applications.
+
+This article covers how to handle basic user input; for further information
+about motion-gesture support, see the \l {Qt Sensors} documentation. For
+information about audio-visual input, see the \l {Qt Multimedia} documentation.
+
+\section2 Mouse and touch events
+
+The \l{Input Handlers}{input handlers} let QML applications handle mouse and
+touch events. For example, you could create a button by adding a
+\l TapHandler to an Image, or to a \l Rectangle with a \l Text object inside.
+The \l TapHandler responds to taps or clicks on any type of pointing device.
+
+\snippet qmlapp/usecases/userinput.qml 0
+
+For more advanced use cases such as, drag, pinch and zoom gestures, see
+documentation for the \l DragHandler and \l PinchHandler types.
+
+\note Some types have their own built-in input handling. For example,
+\l Flickable responds to mouse dragging and mouse wheel scrolling. It handles
+touch dragging and flicking via synthetic mouse events that are created when
+the touch events are not handled.
+
+\section2 Keyboard and button events
+
+Button and key presses, from buttons on a device, a keypad, or a keyboard,
+can all be handled using the \l Keys attached property. This attached property
+is available on all \l Item derived types, and works with the \l Item::focus property
+to determine which type receives the key event. For simple key handling, you can set the focus
+to true on a single \l Item and do all your key handling there.
+
+\snippet qmlapp/usecases/userinput-keys.qml 0
+
+For text input, we have several QML types to choose from. TextInput provides an
+unstyled single-line editable text, while TextField is more suitable for
+form fields in applications. TextEdit can handle multi-line editable text,
+but TextArea is a better alternative as it adds styling.
+
+The following snippet demonstrates how to use these types in your application:
+
+\snippet qmlapp/usecases/userinput-text.qml 0
+*/

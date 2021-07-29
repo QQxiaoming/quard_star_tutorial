@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-ConDocNode-19                                :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: A recursive construction of document nodes.  :)
+(:*******************************************************:)
+count(document{document{document{document{()}}}}/child::node())

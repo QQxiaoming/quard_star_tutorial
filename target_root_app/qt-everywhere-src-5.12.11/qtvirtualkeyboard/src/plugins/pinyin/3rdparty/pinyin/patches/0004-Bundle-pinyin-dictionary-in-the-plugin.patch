@@ -1,0 +1,354 @@
+From 8342c36a8a216481ddacc6aee514077586b08573 Mon Sep 17 00:00:00 2001
+From: Jarkko Koivikko <jarkko.koivikko@code-q.fi>
+Date: Sat, 31 Mar 2018 09:51:32 +0300
+Subject: [PATCH] Bundle pinyin dictionary in the plugin
+
+This change modifies the pinyin library and adds support for loading
+the dictionary from the qt resource system.
+
+[ChangeLog] The pinyin dictionary is now bundled in the plugin by default.
+
+Task-number: QTBUG-66198
+Change-Id: I17459c4bde89cc4ccd96ad5c97393a5ad502b902
+Reviewed-by: Andy Shaw <andy.shaw@qt.io>
+Reviewed-by: Mitch Curtis <mitch.curtis@qt.io>
+---
+ .../3rdparty/pinyin/include/dictlist.h             |  2 +-
+ .../3rdparty/pinyin/include/dicttrie.h             |  3 +-
+ .../3rdparty/pinyin/include/ngram.h                |  3 +-
+ .../3rdparty/pinyin/include/spellingtrie.h         |  3 +-
+ .../3rdparty/pinyin/share/dictlist.cpp             | 20 +++++-----
+ .../3rdparty/pinyin/share/dicttrie.cpp             | 43 ++++++++++------------
+ .../3rdparty/pinyin/share/ngram.cpp                | 10 ++---
+ .../3rdparty/pinyin/share/spellingtrie.cpp         | 13 +++----
+ 8 files changed, 47 insertions(+), 50 deletions(-)
+
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/include/dictlist.h b/src/virtualkeyboard/3rdparty/pinyin/include/dictlist.h
+index 27fa6d8..1c1daef 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/include/dictlist.h
++++ b/src/virtualkeyboard/3rdparty/pinyin/include/dictlist.h
+@@ -80,7 +80,7 @@ class DictList {
+   ~DictList();
+ 
+   bool save_list(FILE *fp);
+-  bool load_list(FILE *fp);
++  bool load_list(QFile *fp);
+ 
+ #ifdef ___BUILD_MODEL___
+   // Init the list from the LemmaEntry array.
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/include/dicttrie.h b/src/virtualkeyboard/3rdparty/pinyin/include/dicttrie.h
+index 75b7ee0..86a8ee2 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/include/dicttrie.h
++++ b/src/virtualkeyboard/3rdparty/pinyin/include/dicttrie.h
+@@ -22,6 +22,7 @@
+ #include "./dictdef.h"
+ #include "./dictlist.h"
+ #include "./searchutility.h"
++#include <QFile>
+ 
+ namespace ime_pinyin {
+ 
+@@ -105,7 +106,7 @@ class DictTrie : AtomDictBase {
+ 
+   void free_resource(bool free_dict_list);
+ 
+-  bool load_dict(FILE *fp);
++  bool load_dict(QFile *fp);
+ 
+   // Given a LmaNodeLE0 node, extract the lemmas specified by it, and fill
+   // them into the lpi_items buffer.
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/include/ngram.h b/src/virtualkeyboard/3rdparty/pinyin/include/ngram.h
+index 7adb46d..1d3a86e 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/include/ngram.h
++++ b/src/virtualkeyboard/3rdparty/pinyin/include/ngram.h
+@@ -20,6 +20,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "./dictdef.h"
++#include <QFile>
+ 
+ namespace ime_pinyin {
+ 
+@@ -71,7 +72,7 @@ class NGram {
+   static NGram& get_instance();
+ 
+   bool save_ngram(FILE *fp);
+-  bool load_ngram(FILE *fp);
++  bool load_ngram(QFile *fp);
+ 
+   // Set the total frequency of all none system dictionaries.
+   void set_total_freq_none_sys(size_t freq_none_sys);
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/include/spellingtrie.h b/src/virtualkeyboard/3rdparty/pinyin/include/spellingtrie.h
+index 03510ed..f943a24 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/include/spellingtrie.h
++++ b/src/virtualkeyboard/3rdparty/pinyin/include/spellingtrie.h
+@@ -20,6 +20,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "./dictdef.h"
++#include <QFile>
+ 
+ namespace ime_pinyin {
+ 
+@@ -233,7 +234,7 @@ class SpellingTrie {
+   bool save_spl_trie(FILE *fp);
+ 
+   // Load from the file stream
+-  bool load_spl_trie(FILE *fp);
++  bool load_spl_trie(QFile *fp);
+ 
+   // Get the number of spellings
+   size_t get_spelling_num();
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/share/dictlist.cpp b/src/virtualkeyboard/3rdparty/pinyin/share/dictlist.cpp
+index 64d8d08..a5238ae 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/share/dictlist.cpp
++++ b/src/virtualkeyboard/3rdparty/pinyin/share/dictlist.cpp
+@@ -408,21 +408,21 @@ bool DictList::save_list(FILE *fp) {
+   return true;
+ }
+ 
+-bool DictList::load_list(FILE *fp) {
++bool DictList::load_list(QFile *fp) {
+   if (NULL == fp)
+     return false;
+ 
+   initialized_ = false;
+ 
+-  if (fread(&scis_num_, sizeof(uint32), 1, fp) != 1)
++  if (fp->read((char *)&scis_num_, sizeof(uint32)) != sizeof(uint32))
+     return false;
+ 
+-  if (fread(start_pos_, sizeof(uint32), kMaxLemmaSize + 1, fp) !=
+-      kMaxLemmaSize + 1)
++  if (fp->read((char *)start_pos_, sizeof(uint32) * (kMaxLemmaSize + 1)) !=
++      sizeof(uint32) * (kMaxLemmaSize + 1))
+     return false;
+ 
+-  if (fread(start_id_, sizeof(uint32), kMaxLemmaSize + 1, fp) !=
+-      kMaxLemmaSize + 1)
++  if (fp->read((char *)start_id_, sizeof(uint32) * (kMaxLemmaSize + 1)) !=
++      sizeof(uint32) * (kMaxLemmaSize + 1))
+     return false;
+ 
+   free_resource();
+@@ -430,14 +430,14 @@ bool DictList::load_list(FILE *fp) {
+   if (!alloc_resource(start_pos_[kMaxLemmaSize], scis_num_))
+     return false;
+ 
+-  if (fread(scis_hz_, sizeof(char16), scis_num_, fp) != scis_num_)
++  if (fp->read((char *)scis_hz_, sizeof(char16) * scis_num_) != sizeof(char16) * scis_num_)
+     return false;
+ 
+-  if (fread(scis_splid_, sizeof(SpellingId), scis_num_, fp) != scis_num_)
++  if (fp->read((char *)scis_splid_, sizeof(SpellingId) * scis_num_) != sizeof(SpellingId) * scis_num_)
+     return false;
+ 
+-  if (fread(buf_, sizeof(char16), start_pos_[kMaxLemmaSize], fp) !=
+-      start_pos_[kMaxLemmaSize])
++  if (fp->read((char *)buf_, sizeof(char16) * start_pos_[kMaxLemmaSize]) !=
++      sizeof(char16) * start_pos_[kMaxLemmaSize])
+     return false;
+ 
+   initialized_ = true;
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/share/dicttrie.cpp b/src/virtualkeyboard/3rdparty/pinyin/share/dicttrie.cpp
+index 0cdd098..e7d194f 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/share/dicttrie.cpp
++++ b/src/virtualkeyboard/3rdparty/pinyin/share/dicttrie.cpp
+@@ -165,19 +165,19 @@ bool DictTrie::save_dict(const char *filename) {
+ }
+ #endif  // ___BUILD_MODEL___
+ 
+-bool DictTrie::load_dict(FILE *fp) {
++bool DictTrie::load_dict(QFile *fp) {
+   if (NULL == fp)
+     return false;
+-  if (fread(&lma_node_num_le0_, sizeof(uint32), 1, fp) != 1)
++  if (fp->read((char *)&lma_node_num_le0_, sizeof(uint32)) != sizeof(uint32))
+     return false;
+ 
+-  if (fread(&lma_node_num_ge1_, sizeof(uint32), 1, fp) != 1)
++  if (fp->read((char *)&lma_node_num_ge1_, sizeof(uint32)) != sizeof(uint32))
+     return false;
+ 
+-  if (fread(&lma_idx_buf_len_, sizeof(uint32), 1, fp) != 1)
++  if (fp->read((char *)&lma_idx_buf_len_, sizeof(uint32)) != sizeof(uint32))
+     return false;
+ 
+-  if (fread(&top_lmas_num_, sizeof(uint32), 1, fp) != 1 ||
++  if (fp->read((char *)&top_lmas_num_, sizeof(uint32)) != sizeof(uint32) ||
+      top_lmas_num_ >= lma_idx_buf_len_)
+      return false;
+ 
+@@ -206,16 +206,16 @@ bool DictTrie::load_dict(FILE *fp) {
+     return false;
+   }
+ 
+-  if (fread(root_, sizeof(LmaNodeLE0), lma_node_num_le0_, fp)
+-      != lma_node_num_le0_)
++  if (fp->read((char *)root_, sizeof(LmaNodeLE0) * lma_node_num_le0_)
++      != sizeof(LmaNodeLE0) * lma_node_num_le0_)
+     return false;
+ 
+-  if (fread(nodes_ge1_, sizeof(LmaNodeGE1), lma_node_num_ge1_, fp)
+-      != lma_node_num_ge1_)
++  if (fp->read((char *)nodes_ge1_, sizeof(LmaNodeGE1) * lma_node_num_ge1_)
++      != sizeof(LmaNodeGE1) * lma_node_num_ge1_)
+     return false;
+ 
+-  if (fread(lma_idx_buf_, sizeof(unsigned char), lma_idx_buf_len_, fp) !=
+-      lma_idx_buf_len_)
++  if (fp->read((char *)lma_idx_buf_, sizeof(unsigned char) * lma_idx_buf_len_) !=
++      sizeof(unsigned char) * lma_idx_buf_len_)
+     return false;
+ 
+   // The quick index for the first level sons
+@@ -245,15 +245,15 @@ bool DictTrie::load_dict(const char *filename, LemmaIdType start_id,
+   if (NULL == filename || end_id <= start_id)
+     return false;
+ 
+-  FILE *fp = fopen(filename, "rb");
+-  if (NULL == fp)
++  QFile file(filename);
++  if (!file.open(QIODevice::ReadOnly))
+     return false;
++  QFile *fp = &file;
+ 
+   free_resource(true);
+ 
+   dict_list_ = new DictList();
+   if (NULL == dict_list_) {
+-    fclose(fp);
+     return false;
+   }
+ 
+@@ -264,11 +264,9 @@ bool DictTrie::load_dict(const char *filename, LemmaIdType start_id,
+       !load_dict(fp) || !ngram.load_ngram(fp) ||
+       total_lma_num_ > end_id - start_id + 1) {
+     free_resource(true);
+-    fclose(fp);
+     return false;
+   }
+ 
+-  fclose(fp);
+   return true;
+ }
+ 
+@@ -278,12 +276,12 @@ bool DictTrie::load_dict_fd(int sys_fd, long start_offset,
+   if (start_offset < 0 || length <= 0 || end_id <= start_id)
+     return false;
+ 
+-  FILE *fp = fdopen(sys_fd, "rb");
+-  if (NULL == fp)
++  QFile file;
++  if (!file.open(sys_fd, QIODevice::ReadOnly))
+     return false;
++  QFile *fp = &file;
+ 
+-  if (-1 == fseek(fp, start_offset, SEEK_SET)) {
+-    fclose(fp);
++  if (!fp->seek(start_offset)) {
+     return false;
+   }
+ 
+@@ -291,7 +289,6 @@ bool DictTrie::load_dict_fd(int sys_fd, long start_offset,
+ 
+   dict_list_ = new DictList();
+   if (NULL == dict_list_) {
+-    fclose(fp);
+     return false;
+   }
+ 
+@@ -300,14 +297,12 @@ bool DictTrie::load_dict_fd(int sys_fd, long start_offset,
+ 
+   if (!spl_trie.load_spl_trie(fp) || !dict_list_->load_list(fp) ||
+       !load_dict(fp) || !ngram.load_ngram(fp) ||
+-      ftell(fp) < start_offset + length ||
++      fp->pos() < start_offset + length ||
+       total_lma_num_ > end_id - start_id + 1) {
+     free_resource(true);
+-    fclose(fp);
+     return false;
+   }
+ 
+-  fclose(fp);
+   return true;
+ }
+ 
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/share/ngram.cpp b/src/virtualkeyboard/3rdparty/pinyin/share/ngram.cpp
+index 6aec850..39155bf 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/share/ngram.cpp
++++ b/src/virtualkeyboard/3rdparty/pinyin/share/ngram.cpp
+@@ -177,13 +177,13 @@ bool NGram::save_ngram(FILE *fp) {
+   return true;
+ }
+ 
+-bool NGram::load_ngram(FILE *fp) {
++bool NGram::load_ngram(QFile *fp) {
+   if (NULL == fp)
+     return false;
+ 
+   initialized_ = false;
+ 
+-  if (fread(&idx_num_, sizeof(uint32), 1, fp) != 1 )
++  if (fp->read((char *)&idx_num_, sizeof(uint32)) != sizeof(uint32) )
+     return false;
+ 
+   if (NULL != lma_freq_idx_)
+@@ -200,11 +200,11 @@ bool NGram::load_ngram(FILE *fp) {
+   if (NULL == lma_freq_idx_ || NULL == freq_codes_)
+     return false;
+ 
+-  if (fread(freq_codes_, sizeof(LmaScoreType), kCodeBookSize, fp) !=
+-      kCodeBookSize)
++  if (fp->read((char *)freq_codes_, sizeof(LmaScoreType) * kCodeBookSize) !=
++      sizeof(LmaScoreType) * kCodeBookSize)
+     return false;
+ 
+-  if (fread(lma_freq_idx_, sizeof(CODEBOOK_TYPE), idx_num_, fp) != idx_num_)
++  if (fp->read((char *)lma_freq_idx_, sizeof(CODEBOOK_TYPE) * idx_num_) != sizeof(CODEBOOK_TYPE) * idx_num_)
+     return false;
+ 
+   initialized_ = true;
+diff --git a/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp b/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp
+index e01c89a..355c56b 100644
+--- a/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp
++++ b/src/virtualkeyboard/3rdparty/pinyin/share/spellingtrie.cpp
+@@ -663,20 +663,20 @@ bool SpellingTrie::save_spl_trie(FILE *fp) {
+   return true;
+ }
+ 
+-bool SpellingTrie::load_spl_trie(FILE *fp) {
++bool SpellingTrie::load_spl_trie(QFile *fp) {
+   if (NULL == fp)
+     return false;
+ 
+-  if (fread(&spelling_size_, sizeof(uint32), 1, fp) != 1)
++  if (fp->read((char *)&spelling_size_, sizeof(uint32)) != sizeof(uint32))
+     return false;
+ 
+-  if (fread(&spelling_num_, sizeof(uint32), 1, fp) != 1)
++  if (fp->read((char *)&spelling_num_, sizeof(uint32)) != sizeof(uint32))
+     return false;
+ 
+-  if (fread(&score_amplifier_, sizeof(float), 1, fp) != 1)
++  if (fp->read((char *)&score_amplifier_, sizeof(float)) != sizeof(float))
+     return false;
+ 
+-  if (fread(&average_score_, sizeof(unsigned char), 1, fp) != 1)
++  if (fp->read((char *)&average_score_, sizeof(unsigned char)) != sizeof(unsigned char))
+     return false;
+ 
+   if (NULL != spelling_buf_)
+@@ -686,8 +686,7 @@ bool SpellingTrie::load_spl_trie(FILE *fp) {
+   if (NULL == spelling_buf_)
+     return false;
+ 
+-  if (fread(spelling_buf_, sizeof(char) * spelling_size_,
+-            spelling_num_, fp) != spelling_num_)
++  if (fp->read((char *)spelling_buf_, spelling_size_ * spelling_num_) != spelling_size_ * spelling_num_)
+     return false;
+ 
+   return construct(spelling_buf_, spelling_size_, spelling_num_,
+-- 
+2.14.1.windows.1
+

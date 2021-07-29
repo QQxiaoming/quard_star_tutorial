@@ -1,0 +1,27 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="PathExprSI">
+   <GroupInfo>
+      <title>Schema import path expression tests.</title>
+		 <description>Tests on path expressions using the schema import feature</description>
+   </GroupInfo>
+   <test-case is-XPath2="false" Creator="Oliver Hallam" name="step-expr-si-1" FilePath="SchemaImport/PathExprSI/" scenario="runtime-error">
+      <description>Ensure that the type of the child axis on an extended schema type is computed correctly.</description>
+		 <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4189</reflects-resolution>
+      <query name="step-expr-si-1" date="2010-03-17"/>
+		 <input-file role="principal-data" variable="input-context">extendedTypes</input-file>
+		 <expected-error>XPTY0004</expected-error>
+   </test-case>
+	<test-case is-XPath2="false" Creator="Oliver Hallam" name="step-expr-si-2" FilePath="SchemaImport/PathExprSI/" scenario="standard">
+		<description>Ensure that static type of the child axis on a restricted schema type is computed correctly.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4189</reflects-resolution>
+		<query name="step-expr-si-2" date="2010-03-17"/>
+		<input-file role="principal-data" variable="input-context">extendedTypes</input-file>
+		<output-file role="principal" compare="XML">step-expr-si-2.xml</output-file>
+	</test-case>
+	<test-case is-XPath2="false" Creator="Oliver Hallam" name="step-expr-si-3" FilePath="SchemaImport/PathExprSI/" scenario="standard">
+		<description>Ensure that static type of the child axis on a restricted schema type is computed correctly.</description>
+		<reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=4189</reflects-resolution>
+		<query name="step-expr-si-3" date="2010-03-17"/>
+		<input-file role="principal-data" variable="input-context">extendedTypes</input-file>
+		<output-file role="principal" compare="XML">step-expr-si-3.xml</output-file>
+	</test-case>
+</test-group>

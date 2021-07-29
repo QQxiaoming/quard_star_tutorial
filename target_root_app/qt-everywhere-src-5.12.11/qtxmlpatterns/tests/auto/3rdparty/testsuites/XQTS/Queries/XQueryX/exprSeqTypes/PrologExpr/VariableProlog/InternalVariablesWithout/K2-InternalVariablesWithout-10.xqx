@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName xqx:prefix="local">myVar</xqx:varName>
+        <xqx:varValue>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+            <xqx:arguments>
+              <xqx:integerConstantExpr>
+                <xqx:value>3</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:varValue>
+      </xqx:varDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName xqx:prefix="local">myVar</xqx:varName>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:functionBody>
+          <xqx:varRef>
+            <xqx:name xqx:prefix="local">myVar</xqx:name>
+          </xqx:varRef>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="local">myFunc</xqx:functionName>
+        <xqx:arguments>
+          <xqx:integerConstantExpr>
+            <xqx:value>6</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

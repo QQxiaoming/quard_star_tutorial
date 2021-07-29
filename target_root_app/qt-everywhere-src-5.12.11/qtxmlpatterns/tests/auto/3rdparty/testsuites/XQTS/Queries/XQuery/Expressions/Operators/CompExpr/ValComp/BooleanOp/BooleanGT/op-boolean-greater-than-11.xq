@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-greater-than-11                       :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 15, 2005                                    :)
+(:Purpose: Evaluates The "boolean-greater-than" function :)
+(: with operands set to "(7 eq 7)", "false" respectively.:)
+(: Use of gt operator.                                   :)
+(:*******************************************************:)
+ 
+(7 eq 7) gt xs:boolean("false")

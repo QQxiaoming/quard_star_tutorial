@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-Axes-83                                      :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple parser test of the attribute() test appearing after the attribute axis. :)
+(:*******************************************************:)
+empty(<e/>/attribute::attribute())

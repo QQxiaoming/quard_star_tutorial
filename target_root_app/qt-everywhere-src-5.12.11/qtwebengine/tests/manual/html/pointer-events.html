@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Pointer event test</title>
+  </head>
+  <body>
+
+<p>
+    <canvas id="listener" width="500" height="500" style="border: silver 1px dotted;"></canvas>
+</p>
+<p>
+    Touch this circle with a stylus. Its size indicates your pressure; its position is the angle between your stylus and your tablet device; and the radius is the rotation - if your tablet supports it.
+</p>
+
+  </body>
+  <script>
+
+var canvas = document.getElementById("listener");
+var context = canvas.getContext('2d');
+
+var eventName = [
+    "pointerover",
+    "pointerenter",
+    "pointerdown",
+    "pointermove",
+    "pointerup",
+    "pointercancel",
+    "pointerout",
+    "pointerleave",
+    "gotpointercapture",
+    "lostpointercapture"
+];
+
+for (var i = 0; i < eventName.length; i++) {
+    canvas.addEventListener(eventName[i], function(ev) {
+        drawCircle(ev.pressure, ev.tiltX, ev.tiltY, ev.twist);
+    }, false);
+}
+
+drawCircle(0, 0, 0, 0);
+
+function drawCircle(pressure, tiltX, tiltY, twist) {
+    var centerX = canvas.width / 2 + tiltX;
+    var centerY = canvas.height / 2 + tiltY;
+    var radius = 100 + 100 * pressure;
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.beginPath();
+    context.arc(centerX,
+                centerY,
+                radius,
+                0,
+                2 * Math.PI,
+                false);
+    context.fillStyle = 'lightblue';
+    context.fill();
+    context.lineWidth = 3;
+    context.strokeStyle = '#008B8B';
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(centerX, centerY);
+    context.lineTo(centerX + radius * Math.cos(twist), centerY + radius * Math.sin(twist));
+    context.stroke();
+}
+
+</script>
+</html>

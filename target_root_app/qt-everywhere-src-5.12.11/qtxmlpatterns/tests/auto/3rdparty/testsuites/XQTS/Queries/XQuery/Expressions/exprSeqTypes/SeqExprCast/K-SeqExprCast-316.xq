@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-316                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: '2002-02-15T24:01:00' is an invalid lexical representation for xs:dateTime; if hour is 24, minutes part must be 00. :)
+(:*******************************************************:)
+xs:dateTime("2002-02-15T24:01:00")

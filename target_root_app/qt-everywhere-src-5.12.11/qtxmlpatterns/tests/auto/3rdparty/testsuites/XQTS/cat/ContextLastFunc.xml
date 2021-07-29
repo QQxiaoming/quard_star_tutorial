@@ -1,0 +1,350 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="ContextLastFunc" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>fn:last</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="last-1" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple last test, where the context node is an element node and the position is last.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-1" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="last-2" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last", for which no context node is defined.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-2" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="last-3" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last", where the last node is selected.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-3" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-4" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" together with the fn:position function (format position() = last()).</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-4" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-5" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" together with the fn:position function (format last() = position()).</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-5" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-6" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" together with the "&lt;&lt;" node operator.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-6" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">last-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-7" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" together with the "is" node operator.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-7" date="2005-11-29"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">last-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-8" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last", where two last functions are used inside the predicate.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-8" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-9" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last", where the last function is part of a second predicate.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-9" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-10" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last", where the last function is part of the first of two predicates.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-10" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-11" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used in conjunction with the fn:not function.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-11" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-12" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used as part of a predicate to a wildcrard (*).</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-12" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-13" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with an addition operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-13" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-14" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with a subtraction operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-14" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-15" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with a multiplication operation.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-15" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-16" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with a division operation (div).</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-16" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-17" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with a division operation (idiv).</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-17" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-18" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with logical operation ("and" operand and "fn:true").</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-18" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-19" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with logical operation ("and" operand and "fn:false").</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-19" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">last-19.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="last-20" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with logical operation ("or" operand and "fn:true").</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-20" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-21" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used together with logical operation ("or" operand and "fn:false").</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-21" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-22" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of "fn:last" used in the middle of a path expression.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-22" date="2005-09-14"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="last-23" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard" Creator="Michael Kay">
+      <description>Evaluation of "position() = N to last()" used in a predicate.</description>
+      <spec-citation spec="FuncOps" section-number="16.2" section-title="fn:last" section-pointer="func-last"/>
+      <query name="last-23" date="2009-11-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">last-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-1" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `last(1)`.</description>
+      <query name="K-ContextLastFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-2" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3)[if(1) then 1 else last()]`.</description>
+      <query name="K-ContextLastFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-3" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3)[count((last(), last())) eq 2], (1, 2, 3))`.</description>
+      <query name="K-ContextLastFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-4" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((1, 2, 3)[last() eq last()], (1, 2, 3))`.</description>
+      <query name="K-ContextLastFunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-5" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>A test whose essence is: `(1, 2, 3, current-time())[last() - 1] treat as xs:integer eq 3`.</description>
+      <query name="K-ContextLastFunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-6" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>A test whose essence is: `empty((1, 2, 3, current-time())[last() + 1])`.</description>
+      <query name="K-ContextLastFunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-7" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('=').</description>
+      <query name="K-ContextLastFunc-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-7.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-8" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('='), #2.</description>
+      <query name="K-ContextLastFunc-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-8.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-9" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('eq').</description>
+      <query name="K-ContextLastFunc-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-9.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-10" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('eq'), #2.</description>
+      <query name="K-ContextLastFunc-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-10.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-11" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('!=').</description>
+      <query name="K-ContextLastFunc-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-12" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('ne').</description>
+      <query name="K-ContextLastFunc-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-13" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('!=').</description>
+      <query name="K-ContextLastFunc-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-14" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return 0('ne'), #2.</description>
+      <query name="K-ContextLastFunc-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-15" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return anything less than 1(lt).</description>
+      <query name="K-ContextLastFunc-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-15.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-16" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return anything less than 1(&lt;).</description>
+      <query name="K-ContextLastFunc-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-16.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-17" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return anything less or equal to 0(le).</description>
+      <query name="K-ContextLastFunc-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-17.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-18" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() can never return anything less or equal to 0(&lt;=).</description>
+      <query name="K-ContextLastFunc-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-18.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-19" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>The return value of fn:last() is always greater than 0('ne').</description>
+      <query name="K-ContextLastFunc-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-20" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>The return value of fn:last() is always greater than 0('&gt;').</description>
+      <query name="K-ContextLastFunc-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-21" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>The return value of fn:last() is always greater than 0('gt').</description>
+      <query name="K-ContextLastFunc-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-22" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>The return value of fn:last() is always greater or equal to 0('&gt;=').</description>
+      <query name="K-ContextLastFunc-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-23" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>The return value of fn:last() is always greater or equal to 0('ge').</description>
+      <query name="K-ContextLastFunc-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-24" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() inside a predicate combined with a offset.</description>
+      <query name="K-ContextLastFunc-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-25" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() inside a predicate combined with a offset.</description>
+      <query name="K-ContextLastFunc-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-26" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() inside a predicate.</description>
+      <query name="K-ContextLastFunc-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-27" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() inside a predicate and an insignificant offset.</description>
+      <query name="K-ContextLastFunc-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-28" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() inside a predicate combined with a range expression.</description>
+      <query name="K-ContextLastFunc-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-ContextLastFunc-29" FilePath="Functions/ContextFunc/ContextLastFunc/" scenario="standard">
+      <description>fn:last() inside a predicate combined with a range expression and offset.</description>
+      <query name="K-ContextLastFunc-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-ContextLastFunc-29.txt</output-file>
+   </test-case>
+</test-group>

@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: fn-substring-before-18                           :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: Mon Jun 1, 2005                                  :)
+(:Purpose: Evaluates The "substring-before" function     :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = "substring-beforesubstring-before"             :)
+(:$arg2 = "substring-before"                             :)
+(:*******************************************************:)
+
+fn:count(fn:substring-before("substring-beforesubstring-before","substring-before"))

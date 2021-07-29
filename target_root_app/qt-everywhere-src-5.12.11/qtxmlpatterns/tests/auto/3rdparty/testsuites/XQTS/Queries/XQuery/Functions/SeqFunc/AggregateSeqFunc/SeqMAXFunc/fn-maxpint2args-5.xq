@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: maxpint2args-5                                    :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:48 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "max" function                  :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:positiveInteger(lower bound)                :)
+(:$arg2 = xs:positiveInteger(upper bound)                :)
+(:*******************************************************:)
+
+fn:max((xs:positiveInteger("1"),xs:positiveInteger("999999999999999999")))

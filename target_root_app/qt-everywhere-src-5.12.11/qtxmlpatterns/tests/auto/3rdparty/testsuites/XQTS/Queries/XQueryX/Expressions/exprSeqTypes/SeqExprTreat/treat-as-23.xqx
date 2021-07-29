@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:flworExpr>
+        <xqx:letClause>
+          <xqx:letClauseItem>
+            <xqx:typedVariableBinding>
+              <xqx:varName>var</xqx:varName>
+            </xqx:typedVariableBinding>
+            <xqx:letExpr>
+              <xqx:functionCallExpr>
+                <xqx:functionName xqx:prefix="xs">double</xqx:functionName>
+                <xqx:arguments>
+                  <xqx:unaryMinusOp>
+                    <xqx:operand>
+                      <xqx:integerConstantExpr>
+                        <xqx:value>100</xqx:value>
+                      </xqx:integerConstantExpr>
+                    </xqx:operand>
+                  </xqx:unaryMinusOp>
+                </xqx:arguments>
+              </xqx:functionCallExpr>
+            </xqx:letExpr>
+          </xqx:letClauseItem>
+        </xqx:letClause>
+        <xqx:returnClause>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="fn">abs</xqx:functionName>
+            <xqx:arguments>
+              <xqx:treatExpr>
+                <xqx:argExpr>
+                  <xqx:castExpr>
+                    <xqx:argExpr>
+                      <xqx:varRef>
+                        <xqx:name>var</xqx:name>
+                      </xqx:varRef>
+                    </xqx:argExpr>
+                    <xqx:singleType>
+                      <xqx:atomicType xqx:prefix="xs">decimal</xqx:atomicType>
+                    </xqx:singleType>
+                  </xqx:castExpr>
+                </xqx:argExpr>
+                <xqx:sequenceType>
+                  <xqx:atomicType xqx:prefix="xs">decimal</xqx:atomicType>
+                </xqx:sequenceType>
+              </xqx:treatExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:returnClause>
+      </xqx:flworExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

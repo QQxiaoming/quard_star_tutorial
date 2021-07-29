@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script src=../../resources/testharness.js></script>
+<script src=../../resources/testharnessreport.js></script>
+<body>
+<script>
+promise_test(async t => {
+  const frame = document.body.appendChild(document.createElement('iframe'));
+  const recorderFunc = frame.contentWindow.MediaRecorder;
+  frame.remove();
+  try {
+    new recorderFunc(new MediaStream);
+  } catch (err) {
+    assert_equals(err.name, 'NotAllowedError');
+    return;
+  }
+  assert_unreached('MediaRecorder should have failed');
+}, 'MediaRecorder creation with detached context');
+</script>
+</body>

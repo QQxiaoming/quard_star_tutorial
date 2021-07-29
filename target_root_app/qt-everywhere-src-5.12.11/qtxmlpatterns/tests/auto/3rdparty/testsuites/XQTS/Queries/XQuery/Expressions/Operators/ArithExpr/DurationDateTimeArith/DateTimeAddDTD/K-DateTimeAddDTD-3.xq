@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DateTimeAddDTD-3                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The '+' operator is not available between xs:time and xs:dateTime. :)
+(:*******************************************************:)
+xs:time("08:12:12") + xs:dateTime("1999-10-12T08:12:12")

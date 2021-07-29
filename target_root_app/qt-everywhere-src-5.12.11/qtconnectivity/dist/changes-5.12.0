@@ -1,0 +1,70 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.12.0 Changes                             *
+****************************************************************************
+
+QtBluetooth
+-----------
+
+ - [QTBUG-68026] Excluded ICC build for QtBluetooth. Previously, ICC attempted to build
+   the WinRT implementation which does not work. In the long term, ICC should build
+   the Win32 port of QtBluetooth which unfortunately does not exist yet.
+
+ - [QTBUG-68550] Added a DBus based Bluez implementation for QBluetoothSocket. Previously,
+   raw Bluetooth socket API was used to established the connection. However
+   this is no longer the recommended BlueZ way and hence the need for this change.
+   The new implementation is chosen if the BlueZ runtime version is 5.46+. This change
+   required extensive redesign of the QBluetoothSocket internals affecting all other platforms.
+
+ - [QTBUG-69857] Fixed crash in QBluetoothServiceInfo::unregisterService() on macOS.
+
+ - Added manufacturer data related API to QBluetoothDeviceInfo. This is needed for
+   Bluetooth Low Energy device scans.
+
+ - [QTBUG-46008] [QTBUG-69747] Added QBluetoothDeviceDiscoveryAgent::deviceUpdated()
+   signal. The signal permits live updates of changing Bluetooth Low Energy data such
+   as manufacturer or RSSI information during the discovery.
+
+ - Fixed incorrect QLowEnergyService::state() of local (peripheral) services.
+
+ - Fixed failing Bluetooth config test when using clang due to stricter error
+   dectection in clang (when compared to gcc).
+
+ - [QTBUG-70222] Fixed incorrect detection of BTLE Battery services in BlueZ 5.48+
+
+ - [QTBUG-70295] Added implementation to properly handle pin code pairing
+   (BluetoothDevice.PAIRING_VARIANT_PIN) on Android. So far, only
+   BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION was supported.
+
+ - [QTBUG-70754] Ensured that repeated calls to QLowEnergyCOntroller::startAdvertising()
+   updates the to-be-updated info on Linux.
+
+ - [QTBUG-58660] Fixed discovery of unpaired Bluetooth devices on WinRT.
+
+ - [QTBUG-58529] Fixed incorrect BluetoothProfileDescriptorList generation by various
+   QBluetoothSocket related classes, documentation and examples.
+
+QtNfc
+-----
+
+ - [QTBUG-62169] Added QNearFieldManager::isSupported(). This only works on
+   Android at the moment.
+
+ - Added QNearFieldManager::AdapterState enum and the related adapterStateChanged()
+   signal.

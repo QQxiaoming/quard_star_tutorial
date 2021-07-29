@@ -1,0 +1,29 @@
+#version 150 core
+
+in vec3 worldPosition;
+uniform sampler2D texture;
+in vec2 texCoord;
+uniform float lightIntensity;
+uniform float exposure;
+out vec4 fragColor;
+vec4 lightModel(const in vec3 baseColor,
+                const in vec3 pos,
+                const in float intensity)
+{
+    ...
+}
+
+#line 10
+vec4 lightModel(const in vec3 baseColor,
+                const in vec3 pos,
+                const in float intensity)
+{
+    ...
+}
+
+#line 12
+
+void main()
+{
+    fragColor = (((((lightModel(((texture2D(texture, texCoord))), worldPosition, lightIntensity)))) * pow(2.0, exposure)));
+}

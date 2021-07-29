@@ -1,0 +1,194 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="QuantExprWith" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Quantified Expressions With TypeDeclaration</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="quantExpr-60" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple quantified expression using "every" keyword and use of multiple variables and the xs:date data type.</description>
+      <spec-citation spec="XQuery" section-number="3.11" section-title="Quantified Expressions" section-pointer="id-quantified-expressions"/>
+      <query name="quantExpr-60" date="2005-08-22"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">quantExpr-60.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="quantexpr-61" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple quantified expression using "some" keyword that binds the declared variables to and xs:integer type.</description>
+      <spec-citation spec="XQuery" section-number="3.11" section-title="Quantified Expressions" section-pointer="id-quantified-expressions"/>
+      <query name="quantexpr-61" date="2006-05-23"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="quantexpr-62" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple quantified expression using "some" keyword that binds the declared variable to an xs:string type.</description>
+      <spec-citation spec="XQuery" section-number="3.11" section-title="Quantified Expressions" section-pointer="id-quantified-expressions"/>
+      <query name="quantexpr-62" date="2006-05-23"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="quantexpr-63" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple quantified expression using "every" keyword that binds the declared variable to an xs:string type.</description>
+      <spec-citation spec="XQuery" section-number="3.11" section-title="Quantified Expressions" section-pointer="id-quantified-expressions"/>
+      <query name="quantexpr-63" date="2006-05-23"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="quantexpr-64" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple quantified expression using "every" keyword that binds the declared variables to an xs:string and xs:integer type respectively.</description>
+      <spec-citation spec="XQuery" section-number="3.11" section-title="Quantified Expressions" section-pointer="id-quantified-expressions"/>
+      <query name="quantexpr-64" date="2006-05-23"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="quantexpr-65" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple quantified expression using "some" keyword that binds the declared variable to an xs:integer and xs:float type respectively.</description>
+      <spec-citation spec="XQuery" section-number="3.11" section-title="Quantified Expressions" section-pointer="id-quantified-expressions"/>
+      <query name="quantexpr-65" date="2006-05-23"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">truevalue.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-1" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying type declarations(cardinalities have no impact).</description>
+      <query name="K-QuantExprWith-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-2" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying type declarations(cardinalities have no impact).</description>
+      <query name="K-QuantExprWith-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-3" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying type declarations(cardinalities have no impact).</description>
+      <query name="K-QuantExprWith-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-4" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying type declarations(cardinalities have no impact).</description>
+      <query name="K-QuantExprWith-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-5" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying type declarations(cardinalities have no impact).</description>
+      <query name="K-QuantExprWith-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-6" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying type declarations(cardinalities have no impact).</description>
+      <query name="K-QuantExprWith-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QuantExprWith-7" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="parse-error">
+      <description>Every-quantification; the empty-sequence() cannot have an occurrence indicator.</description>
+      <query name="K-QuantExprWith-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QuantExprWith-8" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="parse-error">
+      <description>Every-quantification; the empty-sequence() cannot have an occurrence indicator.</description>
+      <query name="K-QuantExprWith-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-9" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Some-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-10" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Some-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-11" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Every-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-12" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Every-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-13" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Every-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-14" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Some-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-15" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Some-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-16" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="runtime-error">
+      <description>Some-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-17" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-17.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-18" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification carrying invalid type declarations.</description>
+      <query name="K-QuantExprWith-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QuantExprWith-19" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="parse-error">
+      <description>No 'at' declaration is allowed in 'some'-quantification.</description>
+      <query name="K-QuantExprWith-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-QuantExprWith-20" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="parse-error">
+      <description>No 'at' declaration is allowed in 'every'-quantification.</description>
+      <query name="K-QuantExprWith-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-21" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification with type-declaration. An implementation supporting the static typing feature may raise XPTY0004.</description>
+      <query name="K-QuantExprWith-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-21.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-22" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification with type-declaration. An implementation supporting the static typing feature may raise XPTY0004.</description>
+      <query name="K-QuantExprWith-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-22.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-23" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification with type-declaration.</description>
+      <query name="K-QuantExprWith-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K-QuantExprWith-24" FilePath="Expressions/QuantExpr/QuantExprWith/" scenario="standard">
+      <description>Every-quantification with type-declaration.</description>
+      <query name="K-QuantExprWith-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-QuantExprWith-24.txt</output-file>
+   </test-case>
+</test-group>

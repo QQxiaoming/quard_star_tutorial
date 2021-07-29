@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-359                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Testing timezone field in xs:time: the hour component cannot be -15. :)
+(:*******************************************************:)
+xs:time("23:59:12.432-15:00")

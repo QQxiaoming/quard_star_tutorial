@@ -1,0 +1,60 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               macdeployqt                                *
+****************************************************************************
+
+ - [QTBUG-68823] Now deploys plugins when Qt is configured with
+   -no-framework
+
+****************************************************************************
+*                               winrtrunner                                *
+****************************************************************************
+
+ - Loopback exemption for UWP applications:
+   * Added ability to enable loopback exemption for clients. This basically
+     enables UWP applications to connect to a local server for debugging
+     purposes.
+   * Added ability to enable loopback exemption for servers. This basically
+     enables UWP applications to react on socket connections that are made
+     from the same machine for debugging purposes.
+
+****************************************************************************
+*                                 Qt Help                                  *
+****************************************************************************
+
+ - [QTCREATORBUG-18242] Fixed the issue with too many open files, when
+   many documentation files were registered.
+ - [QTBUG-59363] Fixed jumping to the proper documentation version
+   when activating the link that refers to another qch file.
+ - [QTBUG-21357] Items are now sorted alphabetically in Contents view.
+ - Removed qhelpconverter tool.
+ - Merged qcollectiongenerator tool into the qhelpgenerator tool.
+
+****************************************************************************
+*                                Qt Linguist                               *
+****************************************************************************
+
+ - Added "Go to" action to context menu in "Phrases and guesses" pane.
+
+lupdate
+-------
+
+ - [QTBUG-63364] Add support for C++17 nested namespaces.
+ - [QTBUG-62478] Fixed premature termination on qmake .prf execution errors.
+ - Updated qmake project handling to newer functionality in qmake.

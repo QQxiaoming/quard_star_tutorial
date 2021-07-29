@@ -1,0 +1,59 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqDocAvailableFunc" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>fn:doc-available</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-doc-available-1" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc-available function with wrong arity.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.5" section-title="fn:doc-available" section-pointer="func-doc-available"/>
+      <query name="fn-doc-available-1" date="2006-07-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-available-2" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:doc-available function with wrong argument type.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.5" section-title="fn:doc-available" section-pointer="func-doc-available"/>
+      <query name="fn-doc-available-2" date="2006-07-11"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-available-3" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Open an XML document that has an xml:id attribute duplicated.</description>
+      <query name="fn-doc-available-3" date="2008-01-15"/>
+      <input-URI role="principal-data" variable="input-context">XMLIdDuplicated</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-available-3.txt</output-file>
+      <output-file role="principal" compare="Text">fn-doc-available-3-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-available-4" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="standard" Creator="Frans Englich">
+      <description>Open an XML document that has an invalid xml:id attribute.</description>
+      <query name="fn-doc-available-4" date="2008-01-15"/>
+      <input-URI role="principal-data" variable="input-context">InvalidXMLId</input-URI>
+      <output-file role="principal" compare="Text">fn-doc-available-4.txt</output-file>
+      <output-file role="principal" compare="Text">fn-doc-available-4-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-available-5" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="standard" Creator="Michael Kay">
+      <description>Use doc-available on the document URI of a known document</description>
+      <query name="fn-doc-available-5" date="2010-01-04"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">fn-doc-available-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-doc-available-6" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="standard" Creator="Michael Kay">
+      <description>Use doc-available with a non-existent but valid URI</description>
+      <query name="fn-doc-available-6" date="2010-01-04"/>
+      <output-file role="principal" compare="Text">fn-doc-available-6.txt</output-file>
+   </test-case>   
+   <test-case is-XPath2="true" name="fn-doc-available-7" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="standard" Creator="Andrew Eisenberg">
+      <description>Use doc-available with an empty sequence</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5688</reflects-resolution>
+      <query name="fn-doc-available-7" date="2010-01-04"/>
+      <output-file role="principal" compare="Text">fn-doc-available-7.txt</output-file>
+   </test-case>   
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqDocAvailableFunc-1" FilePath="Functions/NodeSeqFunc/SeqDocAvailableFunc/" scenario="runtime-error">
+      <description>':/' is an invalid URI, no scheme.</description>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=5688</reflects-resolution>
+      <query name="K2-SeqDocAvailableFunc-1" date="2008-01-15+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-SeqDocAvailableFunc-1.txt</output-file>
+      <expected-error>FODC0005</expected-error>
+   </test-case>
+</test-group>

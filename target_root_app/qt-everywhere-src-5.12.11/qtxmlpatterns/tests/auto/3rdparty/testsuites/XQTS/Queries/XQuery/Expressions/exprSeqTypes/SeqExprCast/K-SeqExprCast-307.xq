@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-307                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Simple xs:gMonthDay test involving --02-29.  :)
+(:*******************************************************:)
+xs:gMonthDay("--02-29+00:00") eq xs:gMonthDay("--02-29+00:00")

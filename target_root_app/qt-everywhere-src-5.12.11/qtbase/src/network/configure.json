@@ -1,0 +1,404 @@
+{
+    "module": "network",
+    "depends": [
+        "core"
+    ],
+    "testDir": "../../config.tests",
+
+    "commandline": {
+        "assignments": {
+            "OPENSSL_PATH": "openssl.prefix"
+        },
+        "options": {
+            "libproxy": "boolean",
+            "openssl": { "type": "optionalString", "values": [ "no", "yes", "linked", "runtime" ] },
+            "openssl-linked": { "type": "void", "name": "openssl", "value": "linked" },
+            "openssl-runtime": { "type": "void", "name": "openssl", "value": "runtime" },
+            "dtls": "boolean",
+            "sctp": "boolean",
+            "securetransport": "boolean",
+            "ssl": "boolean",
+            "system-proxies": "boolean"
+        }
+    },
+
+    "libraries": {
+        "corewlan": {
+            "label": "CoreWLan",
+            "export": "",
+            "test": {
+                "lang": "objc++",
+                "include": [ "CoreWLAN/CoreWLAN.h", "CoreWLAN/CWInterface.h" ],
+                "main": "[CWInterface interfaceWithName:@\"en2\"];"
+            },
+            "sources": [
+                "-framework CoreWLAN -framework Foundation"
+            ]
+        },
+        "network": {
+            "sources": [
+                { "type": "makeSpec", "spec": "NETWORK" }
+            ]
+        },
+        "libproxy": {
+            "label": "libproxy",
+            "test": {
+                "main": [
+                    "pxProxyFactory *factory = px_proxy_factory_new();",
+                    "px_proxy_factory_get_proxies(factory, \"http://qt-project.org\");",
+                    "px_proxy_factory_free(factory);"
+                ]
+            },
+            "headers": "proxy.h",
+            "sources": [
+                "-lproxy"
+            ]
+        },
+        "openssl_headers": {
+            "label": "OpenSSL Headers",
+            "export": "openssl",
+            "test": {
+                "tail": [
+                    "#if !defined(OPENSSL_VERSION_NUMBER) || OPENSSL_VERSION_NUMBER-0 < 0x10000000L",
+                    "#  error OpenSSL >= 1.0.0 is required",
+                    "#endif",
+                    "#if OPENSSL_VERSION_NUMBER-0 >= 0x10002000L && !defined(OPENSSL_NO_EC) && !defined(SSL_CTRL_SET_CURVES)",
+                    "#  error OpenSSL was reported as >= 1.0.2 but is missing required features, possibly it's libressl which is unsupported",
+                    "#endif"
+                ]
+            },
+            "headers": [ "openssl/ssl.h", "openssl/opensslv.h" ],
+            "sources": [
+                {
+                    "comment": "placeholder for OPENSSL_PATH",
+                    "libs": ""
+                }
+            ]
+        },
+        "openssl": {
+            "label": "OpenSSL",
+            "test": {
+                "inherit": "openssl_headers",
+                "main": "SSL_free(SSL_new(0));"
+            },
+            "sources": [
+                { "type": "openssl" },
+                {
+                    "libs": "-lssleay32 -llibeay32 -lUser32 -lWs2_32 -lAdvapi32 -lGdi32",
+                    "condition": "config.win32"
+                },
+                {
+                    "libs": "-llibssl -llibcrypto -lUser32 -lWs2_32 -lAdvapi32 -lCrypt32",
+                    "condition": "config.msvc"
+                },
+                {
+                    "libs": "-lssl -lcrypto",
+                    "condition": "!config.msvc"
+                }
+            ]
+        }
+    },
+
+    "tests": {
+        "getifaddrs": {
+            "label": "getifaddrs()",
+            "type": "compile",
+            "test": {
+                "include": [ "sys/types.h", "sys/socket.h", "net/if.h", "ifaddrs.h" ],
+                "main": [
+                    "ifaddrs *list;",
+                    "getifaddrs(&list);",
+                    "freeifaddrs(list);"
+                ]
+            },
+            "use": "network"
+        },
+        "ipv6ifname": {
+            "label": "IPv6 ifname",
+            "type": "compile",
+            "test": {
+                "include": [ "sys/types.h", "sys/socket.h", "net/if.h" ],
+                "main": [
+                    "char buf[IFNAMSIZ];",
+                    "if_nametoindex(\"eth0\");",
+                    "if_indextoname(1, buf);",
+                    "if_freenameindex(if_nameindex());"
+                ]
+            },
+            "use": "network"
+        },
+        "linux-netlink": {
+            "label": "Linux AF_NETLINK sockets",
+            "type": "compile",
+            "test": {
+                "include": [ "asm/types.h", "linux/netlink.h", "linux/rtnetlink.h", "sys/socket.h" ],
+                "main": [
+                    "struct rtattr rta = { };",
+                    "struct ifinfomsg ifi = {};",
+                    "struct ifaddrmsg ifa = {};",
+                    "struct ifa_cacheinfo ci;",
+                    "ci.ifa_prefered = ci.ifa_valid = 0;",
+                    "(void)RTM_NEWLINK; (void)RTM_NEWADDR;",
+                    "(void)IFLA_ADDRESS; (void)IFLA_IFNAME;",
+                    "(void)IFA_ADDRESS; (void)IFA_LABEL; (void)IFA_CACHEINFO;",
+                    "(void)(IFA_F_SECONDARY | IFA_F_DEPRECATED | IFA_F_PERMANENT | IFA_F_MANAGETEMPADDR);"
+                ]
+            }
+        },
+        "sctp": {
+            "label": "SCTP support",
+            "type": "compile",
+            "test": {
+                "include": [ "sys/types.h", "sys/socket.h", "netinet/in.h", "netinet/sctp.h" ],
+                "main": [
+                    "sctp_initmsg sctpInitMsg;",
+                    "socklen_t sctpInitMsgSize = sizeof(sctpInitMsg);",
+                    "(void) socket(PF_INET, SOCK_STREAM, IPPROTO_SCTP);",
+                    "(void) getsockopt(-1, SOL_SCTP, SCTP_INITMSG, &sctpInitMsg, &sctpInitMsgSize);"
+                ]
+            },
+            "use": "network"
+        },
+        "openssl11": {
+            "label": "OpenSSL 1.1 support",
+            "type": "compile",
+            "test": {
+                "include": "openssl/opensslv.h",
+                "tail": [
+                    "#if !defined(OPENSSL_VERSION_NUMBER) || OPENSSL_VERSION_NUMBER-0 < 0x10100000L",
+                    "#  error OpenSSL >= 1.1 is required",
+                    "#endif"
+                ]
+            },
+            "use": "openssl"
+        },
+        "dtls": {
+            "label": "DTLS support in OpenSSL",
+            "type": "compile",
+            "test": {
+                "include": "openssl/ssl.h",
+                "tail": [
+                    "#if defined(OPENSSL_NO_DTLS) || !defined(DTLS1_2_VERSION)",
+                    "#  error OpenSSL without DTLS support",
+                    "#endif"
+                ]
+            },
+            "use": "openssl"
+        }
+    },
+
+    "features": {
+        "corewlan": {
+            "label": "CoreWLan",
+            "condition": "libs.corewlan",
+            "emitIf": "config.darwin",
+            "output": [ "feature", "privateFeature" ]
+        },
+        "getifaddrs": {
+            "label": "getifaddrs()",
+            "condition": "tests.getifaddrs",
+            "output": [ "feature" ]
+        },
+        "ipv6ifname": {
+            "label": "IPv6 ifname",
+            "condition": "tests.ipv6ifname",
+            "output": [ "feature" ]
+        },
+        "libproxy": {
+            "label": "libproxy",
+            "autoDetect": false,
+            "condition": "libs.libproxy",
+            "output": [ "privateFeature" ]
+        },
+        "linux-netlink": {
+            "label": "Linux AF_NETLINK",
+            "condition": "config.linux && tests.linux-netlink",
+            "output": [ "privateFeature" ]
+        },
+        "openssl": {
+            "label": "OpenSSL",
+            "enable": "false",
+            "condition": "features.openssl-runtime || features.openssl-linked",
+            "output": [
+                "privateFeature",
+                { "type": "publicQtConfig", "condition": "!features.openssl-linked" },
+                { "type": "define", "negative": true, "name": "QT_NO_OPENSSL" }
+            ]
+        },
+        "openssl-runtime": {
+            "autoDetect": "!config.winrt && !config.wasm",
+            "enable": "input.openssl == 'yes' || input.openssl == 'runtime'",
+            "disable": "input.openssl == 'no' || input.openssl == 'linked' || input.ssl == 'no'",
+            "condition": "!features.securetransport && libs.openssl_headers"
+        },
+        "openssl-linked": {
+            "label": "  Qt directly linked to OpenSSL",
+            "autoDetect": false,
+            "enable": "input.openssl == 'linked'",
+            "condition": "!features.securetransport && libs.openssl",
+            "output": [
+                "privateFeature",
+                { "type": "define", "name": "QT_LINKED_OPENSSL" }
+            ]
+        },
+        "securetransport": {
+            "label": "SecureTransport",
+            "disable": "input.securetransport == 'no' || input.ssl == 'no'",
+            "condition": "config.darwin && (input.openssl == '' || input.openssl == 'no')",
+            "output": [
+                "privateFeature",
+                { "type": "define", "name": "QT_SECURETRANSPORT" }
+            ]
+        },
+        "ssl": {
+            "label": "SSL",
+            "condition": "config.winrt || features.securetransport || features.openssl",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "dtls": {
+            "label": "DTLS",
+            "purpose": "Provides a DTLS implementation",
+            "section": "Networking",
+            "condition": "features.openssl && tests.dtls",
+            "output": [ "publicFeature" ]
+        },
+        "opensslv11": {
+            "label": "OpenSSL 1.1",
+            "condition": "features.openssl && tests.openssl11",
+            "output": [ "publicFeature" ]
+        },
+        "sctp": {
+            "label": "SCTP",
+            "autoDetect": false,
+            "condition": "tests.sctp",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "system-proxies": {
+            "label": "Use system proxies",
+            "output": [ "privateFeature" ]
+        },
+        "ftp": {
+            "label": "FTP",
+            "purpose": "Provides support for the File Transfer Protocol in QNetworkAccessManager.",
+            "section": "Networking",
+            "condition": "features.textdate",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "http": {
+            "label": "HTTP",
+            "purpose": "Provides support for the Hypertext Transfer Protocol in QNetworkAccessManager.",
+            "section": "Networking",
+            "condition": "features.thread",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "udpsocket": {
+            "label": "QUdpSocket",
+            "purpose": "Provides access to UDP sockets.",
+            "section": "Networking",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "networkproxy": {
+            "label": "QNetworkProxy",
+            "purpose": "Provides network proxy support.",
+            "section": "Networking",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "socks5": {
+            "label": "SOCKS5",
+            "purpose": "Provides SOCKS5 support in QNetworkProxy.",
+            "section": "Networking",
+            "condition": "features.networkproxy",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "networkinterface": {
+            "label": "QNetworkInterface",
+            "purpose": "Supports enumerating a host's IP addresses and network interfaces.",
+            "condition": "!config.wasm",
+            "section": "Networking",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "networkdiskcache": {
+            "label": "QNetworkDiskCache",
+            "purpose": "Provides a disk cache for network resources.",
+            "section": "Networking",
+            "condition": "features.temporaryfile",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "bearermanagement": {
+            "label": "Bearer management",
+            "purpose": "Provides bearer management for the network stack.",
+            "section": "Networking",
+            "condition": "features.thread && features.library && features.networkinterface && features.properties",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "localserver": {
+            "label": "QLocalServer",
+            "purpose": "Provides a local socket based server.",
+            "section": "Networking",
+            "condition": "features.temporaryfile",
+            "output": [ "publicFeature", "feature" ]
+        },
+        "dnslookup": {
+            "label": "QDnsLookup",
+            "purpose": "Provides API for DNS lookups.",
+            "section": "Networking",
+            "output": [ "publicFeature" ]
+        }
+    },
+
+    "report": [
+        {
+            "type": "note",
+            "condition": "features.openssl-linked && libs.openssl.source != 0
+                          && input.openssl.prefix == '' && input.openssl.libs == '' && input.openssl.libs.debug == ''",
+            "message": "When linking against OpenSSL, you can override the default
+library names and directories with setting OPENSSL_PREFIX (or OPENSSL_INCDIR, OPENSSL_LIBDIR),
+and OPENSSL_LIBS, OPENSSL_LIBS_DEBUG, OPENSSL_LIBS_RELEASE.
+For example:
+    ./configure -openssl-linked OPENSSL_PREFIX='/opt/ssl' OPENSSL_LIBS='-lssl -lcrypto'"
+        },
+        {
+            "type": "warning",
+            "condition": "features.libproxy && input.qt_namespace == ''",
+            "message": "Some of libproxy's plugins may use incompatible Qt versions.
+
+    Some platforms and distributions ship libproxy with plugins, such
+    as config_kde4.so, that are linked against old versions of Qt; and
+    libproxy loads these plugins automatically when initialized. If Qt
+    is not in a namespace, that loading causes a crash. Even if the
+    systems on which you build and test have no such plugins, your
+    users' systems may have them. We therefore recommend that you
+    combine -libproxy with -qtnamespace when configuring Qt."
+        }
+    ],
+
+    "summary": [
+        {
+            "section": "Qt Network",
+            "entries": [
+                {
+                    "type": "feature",
+                    "args": "corewlan",
+                    "condition": "config.darwin"
+                },
+                "getifaddrs", "ipv6ifname", "libproxy",
+                {
+                    "type": "feature",
+                    "args": "linux-netlink",
+                    "condition": "config.linux"
+                },
+                {
+                    "type": "feature",
+                    "args": "securetransport",
+                    "condition": "config.darwin"
+                },
+                "openssl",
+                "openssl-linked",
+                "opensslv11",
+                "dtls",
+                "sctp",
+                "system-proxies"
+            ]
+        }
+    ]
+}

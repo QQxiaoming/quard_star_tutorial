@@ -1,0 +1,29 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:order="http://www.w3.org/XQueryTestOrderBy" targetNamespace="http://www.w3.org/XQueryTestOrderBy" elementFormDefault="qualified">
+	<xs:complexType name = "numbers">
+		<xs:sequence>
+			<xs:element name="orderData" type="xs:decimal" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>	
+	<xs:element name = "Strings">
+		<xs:complexType>	
+			<xs:sequence>
+				<xs:element name="orderData" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>	
+	</xs:element>
+	<xs:element name = "NegativeNumbers" type = "order:numbers"/>
+	<xs:element name = "PositiveNumbers" type = "order:numbers"/>
+	<xs:element name = "SmallNegativeNumbers" type = "order:numbers"/>
+	<xs:element name = "SmallPositiveNumbers" type = "order:numbers"/>  
+	<xs:element name = "DataValues">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="order:Strings"/>
+				<xs:element ref="order:NegativeNumbers"/>
+				<xs:element ref="order:PositiveNumbers"/>
+				<xs:element ref="order:SmallNegativeNumbers"/>
+				<xs:element ref="order:SmallPositiveNumbers"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

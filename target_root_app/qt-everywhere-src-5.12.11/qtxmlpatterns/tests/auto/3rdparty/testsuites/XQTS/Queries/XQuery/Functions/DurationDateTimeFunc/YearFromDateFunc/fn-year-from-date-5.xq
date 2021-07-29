@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: year-from-date-5                                 :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 6, 2005                                     :)
+(:Purpose: Evaluates The "year-from-date" function       :)
+(:using the empty sequence as an argument. Use count     :) 
+(:function to avoid empty file.                          :)
+(:*******************************************************:)
+
+fn:count(fn:year-from-date(()))

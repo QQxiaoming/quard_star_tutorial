@@ -1,0 +1,576 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" is-XPath2="false" name="DirectConOther" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Other Direct Constructors</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="Constr-pi-content-1" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - regular.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-1" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-pi-content-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-pi-content-2" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - regular content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-2" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-pi-content-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-pi-content-3" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - empty.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-3" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-pi-content-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-pi-content-4" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - empty content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-4" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-pi-content-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-pi-content-5" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - special characters.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-5" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-pi-content-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-pi-content-6" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - leading whitespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-6" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-pi-content-6.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-pi-content-7" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>PI constructor - trailing whitespace.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-7" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">Constr-pi-content-7.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-pi-content-8" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description>PI constructor - syntax error.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-content-8" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-pi-target-1" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description/>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-target-1" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-pi-target-2" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description/>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-target-2" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-pi-target-3" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description/>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-target-3" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-pi-target-4" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description/>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-pi-target-4" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comment-1" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>Comment constructor - regular.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-1" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comment-1.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comment-2" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>Comment constructor - regular content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-2" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comment-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comment-3" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>Comment constructor - empty.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-3" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comment-3.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comment-4" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>Comment constructor - empty content.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-4" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">Constr-comment-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="Constr-comment-5" FilePath="Expressions/Construct/DirectConOther/" scenario="standard" Creator="Andreas Behm">
+      <description>Comment constructor - special characters.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-5" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">Constr-comment-5.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-comment-6" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Constructor - single dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-6" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-comment-7" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Comment constructor - trailing dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-7" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="Constr-comment-8" FilePath="Expressions/Construct/DirectConOther/" scenario="parse-error" Creator="Andreas Behm">
+      <description>Comment constructor - double dash.</description>
+      <spec-citation spec="XQuery" section-number="3.7.2" section-title="Other Direct Constructors" section-pointer="id-otherConstructors"/>
+      <query name="Constr-comment-8" date="2005-02-22"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-1" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Test that processing-instruction data does not receive any special treatment.</description>
+      <query name="K2-DirectConOther-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-2" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-3" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-4" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-5" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-6" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-7" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-8" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-9" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-10" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-11" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-12" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-13" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-14" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-15" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-16" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-17" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-18" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-19" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in comment.</description>
+      <query name="K2-DirectConOther-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-20" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Space is not allowed between '&lt;?' and the target name.</description>
+      <query name="K2-DirectConOther-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-21" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>'|' is not allowed in PI target names.</description>
+      <query name="K2-DirectConOther-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-22" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>':' is not allowed in PI target names.</description>
+      <query name="K2-DirectConOther-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-23" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in processing instruction.</description>
+      <query name="K2-DirectConOther-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-24" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in processing instruction.</description>
+      <query name="K2-DirectConOther-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-25" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in processing instruction.</description>
+      <query name="K2-DirectConOther-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-26" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in processing instruction.</description>
+      <query name="K2-DirectConOther-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-27" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in processing instruction.</description>
+      <query name="K2-DirectConOther-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-28" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Syntax error in processing instruction.</description>
+      <query name="K2-DirectConOther-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-29" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the name from a PI.</description>
+      <query name="K2-DirectConOther-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-29.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-30" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the name from a PI.</description>
+      <query name="K2-DirectConOther-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-30.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-31" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the name from a PI.</description>
+      <query name="K2-DirectConOther-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-31.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-32" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the data from a directly constructed PI.</description>
+      <query name="K2-DirectConOther-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-33" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the data from a directly constructed PI.</description>
+      <query name="K2-DirectConOther-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-33.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-34" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the data from a directly constructed PI.</description>
+      <query name="K2-DirectConOther-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-34.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-35" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the content from a comment.</description>
+      <query name="K2-DirectConOther-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-35.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-36" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Extract the content from a comment.</description>
+      <query name="K2-DirectConOther-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-36.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-37" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Enclosed expressions aren't recognized inside processing instructions.</description>
+      <query name="K2-DirectConOther-37" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConOther-37.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-38" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Space after PI data isn't stripped.</description>
+      <query name="K2-DirectConOther-38" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-38.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-39" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Mixed content involving two text nodes and one comment node.</description>
+      <query name="K2-DirectConOther-39" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-39.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-40" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Mixed content involving two text nodes and one comment node.</description>
+      <query name="K2-DirectConOther-40" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-40.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-41" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure comment content doesn't receive special interpretation.</description>
+      <query name="K2-DirectConOther-41" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-42" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>A PI target must be specified.</description>
+      <query name="K2-DirectConOther-42" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-43" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>Two subsequent processing instructions as a primary expression is a syntax error.</description>
+      <query name="K2-DirectConOther-43" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-44" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Test the atomized type of a PI.</description>
+      <query name="K2-DirectConOther-44" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-44.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-45" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Test the atomized type of a comment.</description>
+      <query name="K2-DirectConOther-45" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-45.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-46" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Test serialization of tricky comment content.</description>
+      <query name="K2-DirectConOther-46" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConOther-46.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-47" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Use an ending ']]&gt;' string inside a processing instruction.</description>
+      <query name="K2-DirectConOther-47" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Fragment">K2-DirectConOther-47.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-48" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure xml:id is properly normalized, when using a direct constructor. The value is also an invalid xs:ID value, hence the allowed error code.</description>
+      <query name="K2-DirectConOther-48" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-48.txt</output-file>
+      <expected-error>XQDY0091</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-49" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Check that an attribute value's value is properly read and serialized. Since the whitespace is expressed with character references they are preserved and hence aren't subject to for instance end-of-line handling. Subsequently, the serialization process must escape such characters in order to not have the parser normalize the values when being read back in.</description>
+      <query name="K2-DirectConOther-49" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-49.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-50" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOL-normalization also takes place in CDATA sections.</description>
+      <query name="K2-DirectConOther-50" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-50.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-51" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOL-normalization also takes place in CDATA sections(#2).</description>
+      <query name="K2-DirectConOther-51" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-51.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-52" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOLs are normalized in text nodes.</description>
+      <query name="K2-DirectConOther-52" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-52.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-53" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOLs are normalized in comment nodes.</description>
+      <query name="K2-DirectConOther-53" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-53.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-54" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOLs are normalized in processing instructions.</description>
+      <query name="K2-DirectConOther-54" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-54.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-55" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>A single '&gt;'.</description>
+      <query name="K2-DirectConOther-55" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-56" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>A single '&lt;'.</description>
+      <query name="K2-DirectConOther-56" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-57" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>'/&gt;' is a syntax error.</description>
+      <query name="K2-DirectConOther-57" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-58" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure whitespace at the beginning of attributes, isn't stripped.</description>
+      <query name="K2-DirectConOther-58" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-58.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-59" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Check attribute normalization, with apostrophes.</description>
+      <query name="K2-DirectConOther-59" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-59.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-60" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Check normalization of attributes.</description>
+      <query name="K2-DirectConOther-60" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-60.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-61" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>An unmatched curly in an attribute value template(quotes).</description>
+      <query name="K2-DirectConOther-61" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-DirectConOther-62" FilePath="Construct/DirectConOther/" scenario="parse-error">
+      <description>An unmatched curly in an attribute value template(apostrophes).</description>
+      <query name="K2-DirectConOther-62" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-63" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>'1' is an invalid value for xml:id.</description>
+      <query name="K2-DirectConOther-63" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-63.txt</output-file>
+      <expected-error>XQDY0091</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-64" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>'PRESERVE' is an invalid value for xml:space.</description>
+      <query name="K2-DirectConOther-64" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-64.txt</output-file>
+      <expected-error>XQDY0092</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-65" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>' preserve' is an invalid value for xml:space.</description>
+      <query name="K2-DirectConOther-65" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-65.txt</output-file>
+      <expected-error>XQDY0092</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-66" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure direct element constructors makes namespaces in scope for other node constructors.</description>
+      <query name="K2-DirectConOther-66" date="2008-01-10+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-66.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-67" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure the default namespace is picked up by independent child constructors.</description>
+      <query name="K2-DirectConOther-67" date="2008-01-10+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-67.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-68" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOLs are normalized in attributes surrounded with quotes.</description>
+      <query name="K2-DirectConOther-68" date="2008-01-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-68.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-69" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOLs are normalized in attributes surrounded with apostrophes.</description>
+      <query name="K2-DirectConOther-69" date="2008-01-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-69.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-70" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>Ensure that EOLs are normalized in text nodes, but not when specified with character references.</description>
+      <query name="K2-DirectConOther-70" date="2008-01-23+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-DirectConOther-70.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-DirectConOther-71" FilePath="Construct/DirectConOther/" scenario="standard">
+      <description>A small fragment using namespaces.</description>
+      <query name="K2-DirectConOther-71" date="2008-02-27+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-DirectConOther-71.txt</output-file>
+   </test-case>
+</test-group>

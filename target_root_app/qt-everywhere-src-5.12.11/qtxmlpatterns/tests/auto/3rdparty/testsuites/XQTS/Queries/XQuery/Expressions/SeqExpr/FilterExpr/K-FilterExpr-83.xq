@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FilterExpr-83                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: Type related predicate tests.                :)
+(:*******************************************************:)
+deep-equal((1, 2), (1, 2)[remove((true(), "a string"), 2)])

@@ -1,0 +1,58 @@
+Qt 5.11.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.11.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.11 series is binary compatible with the 5.10.x series.
+Applications compiled for 5.10 will continue to run with 5.11.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                              Qt 5.11.2 Changes                           *
+****************************************************************************
+
+QtBluetooth
+-----------
+
+ - Fixed incorrect application of QBluetoothSocket type during
+   QBluetoothSocket::connectToService(const QBluetoothServiceInfo&, OpenMode).
+   The function applied the socket type of the QBLuetoothSocket default ctor
+   and ignored the requested socket type of the given QBluetoothServiceInfo
+   instance
+
+QtNfc
+-----
+
+ - [QTBUG-67958] Fixed QMetaObject::invokeMethod() warning.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Android
+-------
+
+ - [QTBUG-69700] Fixed incorrect matching of
+   QBluetoothServiceDiscoveryAgent::uuidFilter() during a service discovery.
+
+iOS/macOS
+---------
+
+ - [QTBUG-69857] Fixed crash in QBluetoothServiceInfo::unregisterService() on macOS.
+
+
+Linux/BlueZ
+-----------
+
+ - [QTBUG-68890] Fixed a crash in QLowEnergyController on BlueZ 5 triggered when
+   BTLE devices disconnect and reconnect.

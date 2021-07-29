@@ -1,0 +1,101 @@
+Qt 5.12.2 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0 through 5.12.1.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                                  QtQml                                   *
+****************************************************************************
+
+ - Important Behavior Changes:
+   * The parameters passed to C++ functions from QML are now checked for
+     compatibility with the expected arguments. If they cannot be
+     converted, a warning is printed. In future versions of Qt a type error
+     will be thrown in JavaScript and the function will not be invoked.
+
+   * [QTBUG-73239] Removed revisions from the new Qt.labs.settings methods
+     and properties that were introduced in 5.12.  Qt.labs plugins are
+     intended to always have revision 1.0 until they graduate.
+
+ - QQmlApplicationEngine:
+   * [QTBUG-73649] QQmlApplicationEngine connects quit() and exit() signals
+     with queued connections to avoid problems with AutoConnection, when
+     connecting to QCoreApplication slots.
+
+ - [QTBUG-69340] QML cache files are not unnecessarily re-generated.
+ - [QTBUG-71325] Fixed a crash in V4 string to number conversion on 32-bit
+   platforms.
+ - [QTBUG-72137] Fixed a crash in QML garbage collector when accessing
+   other items from Component.onDestruction.
+ - [QTBUG-72352] QML can be built with -no-feature-translation.
+ - [QTBUG-72407] We now annotate stack traces when frames are elided
+   through tail calls.
+ - [QTBUG-72734] Fixed a crash in the parser on certain kinds of bad input.
+ - [QTBUG-72858] Exception handlers are correctly scoped for try blocks and
+   for "for ... in" loops.
+ - [QTBUG-72908] QML can be built with -c++std=c++11 again.
+ - [QTBUG-72972] QQmlMetaType deletes attached properties in its destructor
+   to avoid a crash.
+ - [QTBUG-73009] Fixed a crash with qt.qml.binding.removal.info=true.
+ - [QTBUG-73013] If a signal sender is deleted during the handling of the
+   signal in QML, the QML engine won't crash anymore.
+ - [QTBUG-73152] Brought behavior of String.replace() in line with other
+   JS engines: "x".replace("x", "$1") gives "$1" in both JSC and V8, as there
+   are no captures that could be used as a replacement for $1. Two-digit
+   captures ($nm) get applied if $nm captures exist. If there are less than nm
+   but more than n captures available $n is replaced by the n'th capture and m
+   is copied over verbatim.
+ - [QTBUG-73425] Fixed allocation of large arrays at startup.
+ - [QTBUG-73733] Fixed an access-after-delete crash in DelegateModel.
+ - [QTBUG-73734] When a Q_GADGET type, marked as a primitive type with
+   Q_DECLARE_METATYPE, is emitted with a signal, it can now be accessed in QML.
+ - [QTBUG-73750] Fixed undefined Q_ENUM value in QML Connections object.
+ - [QTBUG-73821] Fixed a failing assert on 32bit platforms.
+ - The JIT compiler is disabled for the IPL32 (or X32) ABI. It did not work
+   before.
+ - The tail call optimization correctly counts method arguments on 32bit
+   platforms now.
+ - The JavaScript engine now tolerates UINT_MAX as array index.
+
+****************************************************************************
+*                                 QtQuick                                  *
+****************************************************************************
+
+ - TextInput/security:
+   * When the TextInput is used for password input, preallocate a buffer
+     for the string that stores the entered value and zero-out the string
+     on TextInput destruction to avoid leaking sensitive data to process
+     memory
+
+ - [QTBUG-63271] If a MouseArea sets itself invisible or disabled while
+   handling a mouse press, it does not acquire the exclusive grab
+ - [QTBUG-71887] TapHandler now consistently forgets touchpoints that occur
+   outside its parent's bounds. This eliminates the warning "pointId is
+   missing from current event, but was neither canceled nor released" when
+   tapping quickly and having some of the taps fall out of bounds.
+   (The warning still exists though, in case there are other scenarios where
+   Handlers remember "wanting" certain touchpoints and then they go missing.)
+ - [QTBUG-72822] PinchHandler now correctly holds its target in place when
+   axes are disabled.
+ - [QTBUG-71918] PointerHandlers are declared as direct children of
+   Flickable (ListView, TableView etc.) now get the pointer events properly.
+ - [QTBUG-42155] Canvas now handles switching between object and string
+   based colors
+ - [QTBUG-73113] Fixed a crash when reparenting QML Canvas items
+ - [QTBUG-73013] Fixed a crash in QuickView on setSource while deleting
+   the sender.
+ - [QT3DS-1419] Improved quality of Qt 3D Studio text labels.

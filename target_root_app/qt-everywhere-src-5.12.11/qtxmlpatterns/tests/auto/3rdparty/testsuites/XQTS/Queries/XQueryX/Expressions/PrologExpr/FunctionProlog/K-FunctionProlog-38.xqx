@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">MyFunction</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>myArg</xqx:varName>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:functionBody>
+          <xqx:varRef>
+            <xqx:name>myArg2</xqx:name>
+          </xqx:varRef>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="local">MyFunction2</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>myArg2</xqx:varName>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:functionBody>
+          <xqx:integerConstantExpr>
+            <xqx:value>0</xqx:value>
+          </xqx:integerConstantExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:integerConstantExpr>
+        <xqx:value>1</xqx:value>
+      </xqx:integerConstantExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

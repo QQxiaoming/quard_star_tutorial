@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DayTimeDurationEQ-6                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The xs:dayTimeDuration values -PT0S and PT0S are equal. :)
+(:*******************************************************:)
+xs:dayTimeDuration("-PT0S") eq xs:dayTimeDuration("PT0S")

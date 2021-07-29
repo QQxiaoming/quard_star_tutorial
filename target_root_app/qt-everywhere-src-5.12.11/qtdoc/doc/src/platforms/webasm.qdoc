@@ -1,0 +1,136 @@
+/****************************************************************************
+**
+** Copyright (C) 2019 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+\page wasm.html
+\title Qt for WebAssembly
+\brief Runs Qt applications in a secure sandbox in the browser
+
+\ingroup supportedplatform
+
+WebAssembly is a binary format that allows sand-boxed executable code
+in web pages. This format is nearly as fast as native machine code, and
+is now supported by all major web browsers.
+
+Qt for WebAssembly is a \l {Qt Platform Abstraction}{platform plugin} that
+lets you build Qt applications, which can be integrated into your web pages.
+It doesn't require any client-side installations and reduces the server-side
+resource usage.
+
+\section1 Getting Started with Qt for WebAssembly
+
+\section2 Install Emscripten
+
+\l{emscripten} is a toolchain for compiling to asm.js and Webassembly.
+It lets you run Qt on the web at near-native speed without plugins.
+
+Refer to the \l{http://kripken.github.io/emscripten-site/docs/getting_started/index.html}{emscripten documentation} for the installation procedure.
+
+After installation, you should have emscripten in your path.
+Check this with the following command:
+\badcode
+    em++ --version
+\endcode
+
+\section2 Build Qt from the sources
+
+Download the Qt 5.12 sources and build Qt from source. Specify that
+we are cross-compiling for \c wasm using \c emscripten:
+
+\badcode
+    $ ~/Qt/5.12.0/Src/configure -xplatform wasm-emscripten -nomake examples -prefix $PWD/qtbase
+    $ make module-qtbase module-qtdeclarative [other modules]
+\endcode
+
+The Qt build is a static build, and does not support threads.
+
+\section2 Build your application
+
+\badcode
+   $ /path/to/qt-wasm/qtbase/bin/qmake
+   $ make
+\endcode
+
+This generates the following files:
+
+\table
+    \header
+        \li Generated file
+        \li Brief Description
+    \row
+        \li app.html
+        \li HTML container
+    \row
+        \li qtloader.js \li JS API for loading Qt apps
+    \row
+        \li app.js
+        \li JS API for loading Qt apps
+    \row
+        \li app.wasm
+        \li emscripten app binary
+\endtable
+
+    When deploying the app, the compression is typically handled on
+    the server side. We recommend to compress the wasm binaries because
+    this typically reduces the size of the binary by 50 %.
+
+    \sa {WebAssembly Resource site},{Getting Started with Qt for WebAssembly},
+        {Remote UIs with WegGL and WebAssemblhy}
+\section1 Some examples
+
+\list
+        \li \l {http://example.qt.io/qt-webassembly/opengl/hellowindow/hellowindow.html}
+               {An example displaying a Qt logo using OpenGL calls}
+        \li \l {http://example.qt.io/qt-webassembly/SensorTagDemo/SensorTagDemo.html}
+               {An industry automation use case}
+        \li \l {http://example.qt.io/qt-webassembly/quickcontrols2/gallery/gallery.html}
+               {A gallery of available controls in Qt Quick Controls}
+        \li \l {http://example.qt.io/qt-webassembly/widgets/richtext/textedit/textedit.html}
+               {A simple text editor, written with Qt Widgets}
+\endlist
+
+\section1 Limitations
+
+The most important limitation is that the Qt build is static,
+and does not support threads.
+
+For further info, refer to \l { https://wiki.qt.io/Qt_for_WebAssembly#Known_issues_and_platform_notes}{Known_issues_and_platform_notes}.
+
+\section1 External resources
+\list
+        \li \l {Qt for WebAssembly Technology Preview}
+        \li \l {Qt and WebAssembly}
+        \li \l {Qt for WebAssembly wiki}
+        \li \l {Getting Started with Qt for WebAssembly}
+        \li \l {Remote UIs with WebGL and WebAssembly}
+        \li \l {WebAssembly Resource site}
+\endlist
+\section1 Licenses
+
+Qt for WebAssembly is available under commercial licenses from \l{The Qt Company}.
+In addition, it is available under the \l{GNU General Public License, version 3}.
+See \l{Qt Licensing} for further details.
+*/

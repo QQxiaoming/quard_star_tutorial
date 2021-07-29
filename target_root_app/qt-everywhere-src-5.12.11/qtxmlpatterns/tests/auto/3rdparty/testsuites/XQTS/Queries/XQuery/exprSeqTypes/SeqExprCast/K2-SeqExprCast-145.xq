@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-145                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Hexa-decimal notation isn't allowed in nonPositiveInteger. :)
+(:*******************************************************:)
+xs:nonPositiveInteger("0x0")

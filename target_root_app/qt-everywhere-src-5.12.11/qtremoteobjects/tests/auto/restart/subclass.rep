@@ -1,0 +1,19 @@
+POD MyPOD(int i, float f, QString s)
+
+class SubClass
+{
+    PROP(MyPOD myPOD)
+}
+
+class ParentClass
+{
+    PROP(bool started = false)
+
+    SLOT(bool start())
+    SLOT(bool quit())
+    SIGNAL(advance())
+
+    CLASS subClass(SubClass)
+    MODEL tracks(display)
+}
+

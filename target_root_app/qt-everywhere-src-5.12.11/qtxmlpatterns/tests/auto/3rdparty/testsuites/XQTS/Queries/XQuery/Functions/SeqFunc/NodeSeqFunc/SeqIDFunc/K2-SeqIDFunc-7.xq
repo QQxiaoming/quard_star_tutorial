@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqIDFunc-7                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use an invalid target node.                  :)
+(:*******************************************************:)
+id("id", exactly-one(<e><a><b/><b/><b/></a></e>/a/b[last()]))

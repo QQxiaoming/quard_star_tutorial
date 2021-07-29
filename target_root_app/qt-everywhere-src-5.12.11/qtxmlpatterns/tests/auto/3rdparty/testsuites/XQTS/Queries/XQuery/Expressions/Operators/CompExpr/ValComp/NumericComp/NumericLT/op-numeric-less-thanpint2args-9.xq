@@ -1,0 +1,11 @@
+(:*******************************************************:)
+(:Test: op-numeric-less-thanpint2args-9                   :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Thu Dec 16 10:48:16 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "op:numeric-less-than" operator :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:positiveInteger(lower bound)                :)
+(:$arg2 = xs:positiveInteger(mid range)                  :)
+(:*******************************************************:)
+
+xs:positiveInteger("1") ge xs:positiveInteger("52704602390610033")

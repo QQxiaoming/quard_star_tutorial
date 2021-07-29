@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-equal-3                               :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 24, 2005                                    :)
+(:Purpose: Evaluates The "boolean-equal" function        :)
+(: with operands set to "not(false)" ad "false" respectively.:)
+(: Use of eq operator.                                   :)
+(:*******************************************************:)
+ 
+fn:not(xs:boolean("false")) eq xs:boolean("false")

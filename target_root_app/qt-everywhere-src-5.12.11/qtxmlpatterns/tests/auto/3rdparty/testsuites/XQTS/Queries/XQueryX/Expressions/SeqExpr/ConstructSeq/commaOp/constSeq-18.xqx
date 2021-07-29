@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:varDecl>
+        <xqx:varName>input-context1</xqx:varName>
+        <xqx:external/>
+      </xqx:varDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:sequenceExpr>
+        <xqx:functionCallExpr>
+          <xqx:functionName xqx:prefix="xs">double</xqx:functionName>
+          <xqx:arguments>
+            <xqx:doubleConstantExpr>
+              <xqx:value>1.2E2</xqx:value>
+            </xqx:doubleConstantExpr>
+          </xqx:arguments>
+        </xqx:functionCallExpr>
+        <xqx:doubleConstantExpr>
+          <xqx:value>2.2E2</xqx:value>
+        </xqx:doubleConstantExpr>
+        <xqx:doubleConstantExpr>
+          <xqx:value>3.3E2</xqx:value>
+        </xqx:doubleConstantExpr>
+      </xqx:sequenceExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

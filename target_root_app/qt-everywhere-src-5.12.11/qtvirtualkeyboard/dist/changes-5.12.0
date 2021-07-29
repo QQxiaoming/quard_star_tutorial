@@ -1,0 +1,101 @@
+Qt 5.12 introduces many new features and improvements as well as bugfixes
+over the 5.11.x series. For more details, refer to the online documentation
+included in this distribution. The documentation is also available online:
+
+https://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                        Important Behavior Changes                        *
+****************************************************************************
+
+ - [QTBUG-57602] Introduce an extension interface for the virtual keyboard.
+   All the current input methods and some special keyboard layouts (e.g.
+   Hunspell, OpenWnn, etc.) have been moved to extensions. The extension
+   interface allows third party to create a new input method without having
+   to modify or rebuild the virtual keyboard. In addition, this change
+   makes it possible to add features and languages independently by copying
+   the desired extension to the system.
+ - [QTBUG-57602] Introduce a virtualkeyboard module, which can be linked
+   against an extension plugin. This module provides the C++ API necessary
+   for creating an input method.
+ - [QTBUG-57602] Wrap the entire virtual keyboard API into Qt namespace
+   (e.g. QT_BEGIN_NAMESPACE/QT_END_NAMESPACE).
+
+****************************************************************************
+*                               InputContext                               *
+****************************************************************************
+
+ - Deprecated shift and capsLock properties in favor of shiftActive and
+   capsLockActive.
+
+****************************************************************************
+*                                  Trace                                   *
+****************************************************************************
+
+ - Added opacity property.
+
+****************************************************************************
+*                                 MyScript                                 *
+****************************************************************************
+
+ - Added support for MyScript handwriting.
+
+****************************************************************************
+*                                 Hunspell                                 *
+****************************************************************************
+
+ - Added user dictionary and learning for Hunspell
+
+****************************************************************************
+*                                 T9 Write                                 *
+****************************************************************************
+
+ - Added Vietnamese handwriting recognition.
+ - Added Thai handwriting recognition.
+
+****************************************************************************
+*                                 Layouts                                  *
+****************************************************************************
+
+ -  Added Albanian keyboard layout
+ -  Added English US keyboard layout
+ -  Added French Canadian keyboard layout
+ -  Added Indonesian keyboard layout
+ -  Added Malay keyboard layout
+ -  Added Portuguese Brazil keyboard layout
+ -  Added Slovak keyboard layout
+ -  Added Slovenian keyboard layout
+ -  Added Spanish Mexican keyboard layout
+ -  Added Thai keyboard layout
+ -  Added Turkish keyboard layout
+ -  Added Ukrainian keyboard layout
+ -  Added Vietnamese keyboard layout
+ -  Fixed incorrect input mode (Latin) in Russian handwriting layout
+ - [QTBUG-67756]  Added latin extra layout for Russian.
+
+****************************************************************************
+*                                 General                                  *
+****************************************************************************
+
+ - [QTBUG-66198]  The pinyin dictionary is now bundled in the plugin by
+   default.
+ - [QTBUG-66198]  The tcime dictionary is now bundled in the plugin by
+   default.
+ - Added build time option to exclude all styles from the plugin.
+ - Removed QtVirtualKeyboard namespace from the public C++ API and
+   prefixed class names with QVirtualKeyboard. The new class names are
+   QVirtualKeyboardAbstractInputMethod, QVirtualKeyboardInputContext,
+   QVirtualKeyboardInputEngine, QVirtualKeyboardSelectionListModel and
+   QVirtualKeyboardTrace.
+ - [QTBUG-67595]  Fixed possible crash in PlatformInputContext::update.

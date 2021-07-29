@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-boolean-greater-than-10                       :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: June 15, 2005                                    :)
+(:Purpose: Evaluates The "boolean-greater-than" function :)
+(: with operands set to "(7 eq 7)", "true" respectively.:)
+(: Use of le operator.                                   :)
+(:*******************************************************:)
+ 
+(7 eq 7) le xs:boolean("true")

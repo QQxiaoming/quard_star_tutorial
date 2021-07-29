@@ -1,0 +1,391 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="Predicates" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Predicates</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="predicates-1" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate with a "true" value (uses "fn:true").</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-1" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-2" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate with a "false" value (uses "fn:false"). Use "fn:count" to avoid empty file.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-2" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Text">predicates-2.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-3" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate with a "true" value (uses "fn:true" and fn:not()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-3" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-4" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("and" operator), returns true.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-4" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-5" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("or" operator), return true.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-5" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-6" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("and" operator), returns false. Use "fn:count" to avoid empty file.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-6" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Text">predicates-6.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-7" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("or" operator), returns false. Use "fn:count" to avoid empty file.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-7" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Text">predicates-7.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-8" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:string() function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-8" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-9" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:integer()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-9" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-10" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:decimal()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-10" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="XML">predicates-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-11" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:float()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-11" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-12" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:double()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-12" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-13" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:boolean()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-13" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-14" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:date()" function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-14" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicates-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-17" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "eq" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-17" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-18" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "ne" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-18" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-19" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "lt" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-19" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-20" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "le" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-20" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-21" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "gt" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-21" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-22" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "ge" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-22" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-23" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "=" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-23" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-24" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "!=" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-24" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-25" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "&lt;" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-25" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-26" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "&lt;=" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-26" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-27" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "&gt;" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-27" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-28" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate that uses the "&gt;=" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicates-28" date="2005-09-01"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-28.txt</output-file>
+   </test-case>
+   <test-case name="predicates-29" FilePath="Expressions/PathExpr/Predicates/" scenario="runtime-error" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Evaluation of numeric range used as filter expression.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-29" date="2006-03-17"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FORG0006</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-30" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of predicates, where implementation may switch order of predicates order.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-30" date="2006-03-21"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicates-31" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of predicates, where implementation may switch order of predicates for evaluation.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicates-31" date="2006-03-21"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">predicates-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-1" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate with a "true" value (uses "fn:true"). Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-1" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-2" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate with a "false" value (uses "fn:false"). Use "fn:count" to avoid empty file. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-2" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Text">predicatesns-2.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-3" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate with a "true" value (uses "fn:true" and fn:not()). Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-3" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-4" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("and" operator), returns true. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-4" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-5" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("or" operator), return true. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-5" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-6" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("and" operator), returns false. Use "fn:count" to avoid empty file. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-6" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Text">predicatesns-6.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-7" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate set to a boolean expression ("or" operator), returns false. Use "fn:count" to avoid empty file. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <query name="predicatesns-7" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Text">predicatesns-7.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-8" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:string() function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-8" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-9" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:integer()" function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-9" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-10" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:decimal()" function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-10" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="XML">predicatesns-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-11" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:float()" function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-11" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-12" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:double()" function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-12" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-13" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:boolean()" function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-13" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="predicatesns-14" FilePath="Expressions/PathExpr/Predicates/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a simple predicate, that uses the "xs:date()" function. Not Schema dependent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.2" section-title="Predicates" section-pointer="id-predicates"/>
+      <spec-citation spec="XQuery" section-number="3.1.4" section-title="Context Item Expression" section-pointer="id-context-item-expression"/>
+      <query name="predicatesns-14" date="2006-03-15"/>
+      <input-file role="principal-data" variable="input-context1">atomicns</input-file>
+      <output-file role="principal" compare="Fragment">predicatesns-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-Predicates-1" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Predicate combined with 'treat as'.</description>
+      <query name="K2-Predicates-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Predicates-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-2" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Apply a predicate to directly constructed nodes.</description>
+      <query name="K2-Predicates-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-3" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Apply a predicate to directly constructed nodes.</description>
+      <query name="K2-Predicates-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-4" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Apply a predicate to directly constructed nodes.</description>
+      <query name="K2-Predicates-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-5" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Apply two identical numeric predicates after each other.</description>
+      <query name="K2-Predicates-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-6" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Apply a predicate to a node constructor.</description>
+      <query name="K2-Predicates-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-7" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Apply last() to ancestor-or-self within a predicate.</description>
+      <query name="K2-Predicates-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-8" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Use an axis step on an expression which has static type item(), from within a predicate.</description>
+      <query name="K2-Predicates-8" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-Predicates-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-Predicates-9" FilePath="PathExpr/Predicates/" scenario="standard">
+      <description>Use an axis step on an expression which has static type item(), from within a path.</description>
+      <query name="K2-Predicates-9" date="2008-11-13+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-Predicates-9.txt</output-file>
+   </test-case>
+</test-group>

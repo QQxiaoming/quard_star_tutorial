@@ -1,0 +1,203 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="EncodeURIfunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:encode-for-uri</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-1" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test encode-for-uri from example defined in functions and operators specification.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-1" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri1args-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-2" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test encode-for-uri from example defined in functions and operators specification.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-2" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri1args-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-3" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test encode-for-uri from example defined in functions and operators specification.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-3" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri1args-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-4" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test encode-for-uri with zero-length string argument.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-4" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri1args-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-5" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Joanne Tong">
+      <description>Test encode-for-uri with empty sequence argument.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-5" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri1args-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-6" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test encode-for-uri with invalid argument type.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-6" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri1args-7" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="runtime-error" Creator="Joanne Tong">
+      <description>Test encode-for-uri with incorrect arity.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri1args-7" date="2005-09-29+01:00"/>
+      <input-file variable="input-context" role="principal-data">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-1" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri with nothing to encode.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-1" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-2" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does escape the "#" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-2" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-3" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does not escape the "-" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-3" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-4" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does not escape the "_" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-4" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-5" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does not escape the "." symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-5" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-6" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does escape the "!" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-6" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-7" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does not escape the "~" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-7" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-8" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does escape the "*" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-8" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-9" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does escape the "'" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-9" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-10" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does escape the "(" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-10" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-11" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does escape the ")" symbol.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-11" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-12" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri does not escape numbers.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-12" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-13" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri escapes the space.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-13" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-14" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri escapes the "/" character.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-14" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-15" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri escapes the ":" character.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-15" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-encode-for-uri-16" FilePath="Functions/AllStringFunc/EscapingFuncs/EncodeURIfunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Test encode-for-uri escapes the "%" character.</description>
+      <spec-citation section-number="7.4.10" spec="FuncOps" section-title="fn:encode-for-uri" section-pointer="func-encode-for-uri"/>
+      <query name="fn-encode-for-uri-16" date="2005-11-23"/>
+      <input-file variable="input-context1" role="principal-data">emptydoc</input-file>
+      <output-file compare="Text" role="principal">fn-encode-for-uri-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EncodeURIfunc-1" FilePath="Functions/AllStringFunc/GeneralStringFunc/EncodeURIfunc/" scenario="runtime-error">
+      <description>A test whose essence is: `encode-for-uri()`.</description>
+      <query name="K-EncodeURIfunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EncodeURIfunc-2" FilePath="Functions/AllStringFunc/GeneralStringFunc/EncodeURIfunc/" scenario="runtime-error">
+      <description>A test whose essence is: `encode-for-uri("http://example.com/", "wrong param")`.</description>
+      <query name="K-EncodeURIfunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EncodeURIfunc-3" FilePath="Functions/AllStringFunc/GeneralStringFunc/EncodeURIfunc/" scenario="standard">
+      <description>A test whose essence is: `encode-for-uri(()) eq ""`.</description>
+      <query name="K-EncodeURIfunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EncodeURIfunc-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EncodeURIfunc-4" FilePath="Functions/AllStringFunc/GeneralStringFunc/EncodeURIfunc/" scenario="standard">
+      <description>Combine fn:concat and fn:encode-for-uri.</description>
+      <query name="K-EncodeURIfunc-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EncodeURIfunc-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EncodeURIfunc-5" FilePath="Functions/AllStringFunc/GeneralStringFunc/EncodeURIfunc/" scenario="standard">
+      <description>Combine fn:concat and fn:encode-for-uri.</description>
+      <query name="K-EncodeURIfunc-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EncodeURIfunc-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-EncodeURIfunc-6" FilePath="Functions/AllStringFunc/GeneralStringFunc/EncodeURIfunc/" scenario="standard">
+      <description>Invoke fn:normalize-space() on the return value of fn:encode-for-uri().</description>
+      <query name="K-EncodeURIfunc-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-EncodeURIfunc-6.txt</output-file>
+   </test-case>
+</test-group>

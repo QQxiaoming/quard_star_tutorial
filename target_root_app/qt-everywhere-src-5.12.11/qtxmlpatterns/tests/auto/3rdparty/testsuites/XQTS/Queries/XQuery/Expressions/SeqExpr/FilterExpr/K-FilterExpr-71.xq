@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-FilterExpr-71                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:20+01:00                       :)
+(: Purpose: A test whose essence is: `deep-equal((0, 1, 2), (0, 1, 2)[if(. eq 8) then "str" else position()])`. :)
+(:*******************************************************:)
+deep-equal((0, 1, 2), (0, 1, 2)[if(. eq 8) then "str" else position()])

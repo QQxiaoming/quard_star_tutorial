@@ -1,0 +1,68 @@
+Qt 5.12.1 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.12.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.12 series is binary compatible with the 5.11.x series.
+Applications compiled for 5.11 will continue to run with 5.12.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.12.1 Changes                             *
+****************************************************************************
+
+ - [QTBUG-54901 Fixed QCamera to return ServiceMissingError
+   if no camera can be found by name.
+
+****************************************************************************
+*                      Platform Specific Changes                           *
+****************************************************************************
+
+Gstreamer
+---------
+
+ - [QTBUG-51769] Fixed camera example to apply video settings.
+ - [QTBUG-64178] Fixed compilation error
+   if GST_VIDEO_REGION_OF_INTEREST_META_INFO is not available.
+ - Added fix to avoid creating video profile if no codec provided.
+ - Added fix to build gstreamer on Windows and MSVC.
+
+CoreAudio
+---------
+
+ - [QTBUG-63492] Added logic to decrease volume when playback is stopped
+   to avoid popping noise.
+
+DirectShow
+----------
+
+ - [QTBUG-68768] The camera will now use the pixel format requested by
+   QCameraViewFinderSettings, if supported, instead of defaulting to RGB32.
+ - [QTBUG-71851] Added fix to display windows error string when camera fails.
+ - [QTBUG-42057] Added fix to restart an inactive surface when a new frame is received.
+ - [QTBUG-72012] Added fix to keep the last video buffer from sample grabber.
+
+Alsa
+----
+
+ - Fixed QSoundEffect to prevent openning a device twice.
+
+Windows
+-------
+
+ - [QTBUG-71326] Added fix to repaint QVideoWidget when WM_PAINT or WM_ERASEBKGND received.
+
+WMF
+---
+
+ - [QTBUG-72287] Mapped PKEY_Media_EncodingSettings to QMediaMetaData::Description.

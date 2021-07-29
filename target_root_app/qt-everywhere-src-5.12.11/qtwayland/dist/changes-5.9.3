@@ -1,0 +1,52 @@
+Qt 5.9.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9. Exception:
+between Qt 5.8.0 and 5.9.0 the QWaylandQuickOutput class was changed
+in a binary incompatible way.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+
+****************************************************************************
+*                      Qt Wayland QPA Plugin 5.9.3 Changes                 *
+****************************************************************************
+
+ - Fix crash when wl-shell setType is called with a hidden parent.
+
+ - [QTBUG-63840] Fix crash with XDG shell v6 when parent of popup is not
+   initialized.
+
+ - Fix flickering if backing store is flushed multiple times between paints.
+
+****************************************************************************
+*                    Qt Wayland Compositor API 5.9.3 Changes               *
+****************************************************************************
+
+- [QTBUG-63208] Fix crash after destroying view with mouse focus
+
+- [QTBUG-63039] Make multi-threaded QML compositors work with Nvidia
+  EGLStreams. Note: this requires setting the Qt::AA_ShareOpenGLContexts
+  application attribute.
+
+- Add missing signals for properties:
+   * QWaylandSurface::cursorSurfaceChanged
+   * QWaylandOutput::windowChanged
+   * QWaylandOutput::geometryChanged
+   * QWaylandOutput::availableGeometryChanged
+   * QWaylandCompositor::socketNameChanged
+
+- [QTBUG-62638] Make sure mask is applied when window is reset.
+

@@ -1,0 +1,466 @@
+{
+    "nodes": [
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000001}",
+            "type": "input",
+            "parameters": {
+                "name": "worldPosition",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Input"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000002}",
+            "type": "eyePosition"
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000003}",
+            "type": "input",
+            "parameters": {
+                "name": "worldNormal",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Input"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000004}",
+            "type": "input",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "name": "worldTangent",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Input"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec4"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000005}",
+            "type": "input",
+            "layers": ["diffuseTexture", "specularTexture", "normalTexture"],
+            "parameters": {
+                "name": "texCoord",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Input"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec2"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000006}",
+            "type": "input",
+            "parameters": {
+                "name": "ka",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Uniform"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec4"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000007}",
+            "type": "input",
+            "layers": ["diffuse"],
+            "parameters": {
+                "name": "kd",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Uniform"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec4"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000008}",
+            "type": "sampleTexture",
+            "layers": ["diffuseTexture"],
+            "parameters": {
+                "name": "diffuseTexture"
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000009}",
+            "type": "input",
+            "layers": ["specular"],
+            "parameters": {
+                "name": "ks",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Uniform"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec4"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000010}",
+            "layers": ["specularTexture"],
+            "type": "sampleTexture",
+            "parameters": {
+                "name": "specularTexture"
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000011}",
+            "type": "input",
+            "parameters": {
+                "name": "shininess",
+                "qualifier": {
+                    "type": "QShaderLanguage::StorageQualifier",
+                    "value": "QShaderLanguage::Uniform"
+                },
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Float"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000012}",
+            "type": "subtract",
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000013}",
+            "type": "normalize",
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000014}",
+            "type": "normalize",
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000015}",
+            "type": "worldSpaceToTangentSpaceMatrix",
+            "layers": ["normalTexture"]
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000016}",
+            "type": "transpose",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Mat3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000017}",
+            "type": "sampleTexture",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "name": "normalTexture"
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000018}",
+            "type": "swizzle",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "fields": "rgb",
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000019}",
+            "type": "constant",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "constant": "2.0",
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Float"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000020}",
+            "type": "multiply",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000021}",
+            "type": "constant",
+            "layers": ["normalTexture"],
+            "parameters": {
+                "constant": "1.0",
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000022}",
+            "type": "subtract",
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000023}",
+            "type": "multiply",
+            "parameters": {
+                "type": {
+                    "type": "QShaderLanguage::VariableType",
+                    "value": "QShaderLanguage::Vec3"
+                }
+            }
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000024}",
+            "type": "phongFunction"
+        },
+        {
+            "uuid": "{00000000-0000-0000-0000-000000000025}",
+            "type": "fragColor"
+        }
+    ],
+    "edges": [
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000001}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "worldPosition"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000001}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000012}",
+            "targetPort": "subtrahend"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000002}",
+            "sourcePort": "eyePosition",
+            "targetUuid": "{00000000-0000-0000-0000-000000000012}",
+            "targetPort": "minuend"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000012}",
+            "sourcePort": "difference",
+            "targetUuid": "{00000000-0000-0000-0000-000000000013}",
+            "targetPort": "input"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000013}",
+            "sourcePort": "output",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "worldView"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000003}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000014}",
+            "targetPort": "input",
+            "layers": ["normal"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000003}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000015}",
+            "targetPort": "worldNormal",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000004}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000015}",
+            "targetPort": "worldTangent",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000015}",
+            "sourcePort": "matrix",
+            "targetUuid": "{00000000-0000-0000-0000-000000000016}",
+            "targetPort": "input",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000016}",
+            "sourcePort": "output",
+            "targetUuid": "{00000000-0000-0000-0000-000000000023}",
+            "targetPort": "first",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000005}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000017}",
+            "targetPort": "coord",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000017}",
+            "sourcePort": "color",
+            "targetUuid": "{00000000-0000-0000-0000-000000000018}",
+            "targetPort": "input",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000018}",
+            "sourcePort": "output",
+            "targetUuid": "{00000000-0000-0000-0000-000000000020}",
+            "targetPort": "first",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000019}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000020}",
+            "targetPort": "second",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000020}",
+            "sourcePort": "product",
+            "targetUuid": "{00000000-0000-0000-0000-000000000022}",
+            "targetPort": "minuend",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000021}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000022}",
+            "targetPort": "subtrahend",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000022}",
+            "sourcePort": "difference",
+            "targetUuid": "{00000000-0000-0000-0000-000000000023}",
+            "targetPort": "second",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000023}",
+            "sourcePort": "product",
+            "targetUuid": "{00000000-0000-0000-0000-000000000014}",
+            "targetPort": "input",
+            "layers": ["normalTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000014}",
+            "sourcePort": "output",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "worldNormal"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000006}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "ambient"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000007}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "diffuse",
+            "layers": ["diffuse"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000005}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000008}",
+            "targetPort": "coord",
+            "layers": ["diffuseTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000008}",
+            "sourcePort": "color",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "diffuse",
+            "layers": ["diffuseTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000009}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "specular",
+            "layers": ["specular"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000005}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000010}",
+            "targetPort": "coord",
+            "layers": ["specularTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000010}",
+            "sourcePort": "color",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "specular",
+            "layers": ["specularTexture"]
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000011}",
+            "sourcePort": "value",
+            "targetUuid": "{00000000-0000-0000-0000-000000000024}",
+            "targetPort": "shininess"
+        },
+        {
+            "sourceUuid": "{00000000-0000-0000-0000-000000000024}",
+            "sourcePort": "outputColor",
+            "targetUuid": "{00000000-0000-0000-0000-000000000025}",
+            "targetPort": "fragColor"
+        }
+    ]
+}

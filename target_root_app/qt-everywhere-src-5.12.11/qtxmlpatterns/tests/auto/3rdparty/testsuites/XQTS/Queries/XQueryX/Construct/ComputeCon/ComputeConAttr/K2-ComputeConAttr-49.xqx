@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>a</xqx:prefix>
+        <xqx:uri>http://example.com/A</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:namespaceDecl>
+        <xqx:prefix>b</xqx:prefix>
+        <xqx:uri>http://example.com/A</xqx:uri>
+      </xqx:namespaceDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>e</xqx:tagName>
+        <xqx:elementContent>
+          <xqx:sequenceExpr>
+            <xqx:computedAttributeConstructor>
+              <xqx:tagName xqx:prefix="a">localName</xqx:tagName>
+              <xqx:valueExpr>
+                <xqx:sequenceExpr/>
+              </xqx:valueExpr>
+            </xqx:computedAttributeConstructor>
+            <xqx:computedAttributeConstructor>
+              <xqx:tagName xqx:prefix="b">localName</xqx:tagName>
+              <xqx:valueExpr>
+                <xqx:sequenceExpr/>
+              </xqx:valueExpr>
+            </xqx:computedAttributeConstructor>
+          </xqx:sequenceExpr>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,36 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="UseCaseSTRING" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Use Case "STRING": String Search</title>
+      <description>This use case is based on company profiles and a set of news documents which contain data for PR, mergers and acquisitions, etc. Given a company, the use case illustrates several different queries for searching text in news documents and different ways of providing query results by matching the information from the company profile and the content of the news items.</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="string-queries-results-q1" FilePath="UseCase/UseCaseSTRING/" scenario="standard" Creator="XML Query Group">
+      <description>Find the titles of all news items where the string "Foobar Corporation" appears in the title.</description>
+      <spec-citation spec="UseCases" section-number="1.6.4.1" section-title="Q1" section-pointer="text-queries-results-q1"/>
+      <query name="string-queries-results-q1" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">string</input-file>
+      <output-file role="principal" compare="Fragment">string-queries-results-q1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="string-queries-results-q2" FilePath="UseCase/UseCaseSTRING/" scenario="standard" Creator="XML Query Group">
+      <description>Find news items where the Foobar Corporation and one or more of its partners are mentioned in the same paragraph and/or title. List each news item by its title and date.</description>
+      <spec-citation spec="UseCases" section-number="1.6.4.2" section-title="Q2" section-pointer="text-queries-results-q2"/>
+      <query name="string-queries-results-q2" static-name="string-queries-results-q2-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">string</input-file>
+      <input-file role="principal-data" variable="input-context2">company-data</input-file>
+      <output-file role="principal" compare="Fragment">string-queries-results-q2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="string-queries-results-q4" FilePath="UseCase/UseCaseSTRING/" scenario="standard" Creator="XML Query Group">
+      <description>Find news items where a company and one of its partners is mentioned in the same news item and the news item is not authored by the company itself.</description>
+      <spec-citation spec="UseCases" section-number="1.6.4.4" section-title="Q4" section-pointer="text-queries-results-q4"/>
+      <query name="string-queries-results-q4" static-name="string-queries-results-q4-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context1">string</input-file>
+      <input-file role="principal-data" variable="input-context2">company-data</input-file>
+      <output-file role="principal" compare="Fragment">string-queries-results-q4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="string-queries-results-q5" FilePath="UseCase/UseCaseSTRING/" scenario="standard" Creator="XML Query Group">
+      <description>For each news item that is relevant to the Gorilla Corporation, create an "item summary" element. The content of the item summary is the content of the title, date, and first paragraph of the news item, separated by periods. A news item is relevant if the name of the company is mentioned anywhere within the content of the news item.</description>
+      <spec-citation spec="UseCases" section-number="1.6.4.5" section-title="Q5" section-pointer="text-queries-results-q5"/>
+      <query name="string-queries-results-q5" static-name="string-queries-results-q5-static-cbcl" date="2005-02-03"/>
+      <input-file role="principal-data" variable="input-context">string</input-file>
+      <output-file role="principal" compare="Fragment">string-queries-results-q5.txt</output-file>
+   </test-case>
+</test-group>

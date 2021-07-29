@@ -1,0 +1,85 @@
+Qt 5.9.5 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.9 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                            Qt 5.9.5 Changes                              *
+****************************************************************************
+
+Chromium
+--------
+
+ - SharedWorkers have been disabled as they have been changed in the newest
+   spec for security reasons.
+ - Security fixes from Chromium up to version 65.0.3325.146
+
+    * CVE-2017-15429
+    * CVE-2018-6031
+    * CVE-2018-6033
+    * CVE-2018-6034
+    * CVE-2018-6037
+    * CVE-2018-6038
+    * CVE-2018-6040
+    * CVE-2018-6047
+    * CVE-2018-6048
+    * CVE-2018-6051
+    * CVE-2018-6052
+    * CVE-2018-6054
+    * CVE-2018-6060
+    * CVE-2018-6062
+    * CVE-2018-6064
+    * CVE-2018-6069
+    * CVE-2018-6071
+    * CVE-2018-6073
+    * CVE-2018-6076
+    * CVE-2018-6079
+    * CVE-2018-6081
+    * CVE-2018-6082
+    * Security Bug 770734
+    * Security Bug 774833
+    * Security Bug 798410
+    * Security Bug 789764
+    * Security Bug 806122
+
+General
+-------
+
+ - [QTBUG-65942] Fixed crash when accessing WebEngineView properties too early.
+ - [QTBUG-62640] Changed value of QWebEngineDownloadItem::downloadType() for
+                 explicit downloads to QWebEngineDownloadItem::UserRequested.
+ - [QTBUG-66081] Fixed crashes on shutdown.
+
+Build System
+------------
+
+ - [QTBUG-62944] Rename "icu" feature to "webengine-icu" to avoid a clash with
+                 the qtbase feature of the same name.
+ - Fixed order problem that could result in missing toolchain generated files
+   when building the module.
+
+Platform Specific Changes
+-------------------------
+
+ - Linux
+   * [QTBUG-66346] Fixed an issue with packaging of QtWebEngineProcess executable
+                   using an qt.conf file.
+   * Fixed incorrect GLX pbuffer attributes terminator that was causing issues
+     with mesa driver.
+
+ - Windows
+   * [QTBUG-60705] Fixed issues with too large scrollbars on Hi-DPI monitors.

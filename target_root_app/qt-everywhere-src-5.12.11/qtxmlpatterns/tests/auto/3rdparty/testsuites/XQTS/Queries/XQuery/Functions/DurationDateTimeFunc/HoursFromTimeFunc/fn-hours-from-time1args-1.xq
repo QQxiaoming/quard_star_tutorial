@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: hours-from-time1args-1                            :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Wed Apr 13 09:47:38 GMT-05:00 2005                :)
+(:Purpose: Evaluates The "hours-from-time" function      :)
+(: with the arguments set as follows:                    :)
+(:$arg = xs:time(lower bound)                            :)
+(:*******************************************************:)
+
+fn:hours-from-time(xs:time("00:00:00Z"))

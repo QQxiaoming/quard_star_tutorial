@@ -1,0 +1,466 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="RangeExpr" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Range Expression</title>
+      <description>Tests that construct sequences using the RangeExpr</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="rangeExpr-1" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Simple range expression using positive integers.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-1" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-2" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression of length one containing the single integer 10.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-2" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-3" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression that results in the sequence of length zero.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-3" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-4" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression that in conjunction with the "reverse" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-4" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-5" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression that uses the empty sequence.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-5" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-5.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-6" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where both operands are addition operations.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-6" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-7" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the first operand are negative numbers.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-7" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-8" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where both operands are negative integers.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-8" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-9" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the first operand is "xs:integer" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-9" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-10" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the second operand is "xs:integer" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-10" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-11" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where both operands are "xs:integer" functions.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-11" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-12" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, using the "fn:min" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-12" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-13" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, using the "fn:max" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-13" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-14" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, using the "fn:min" and "fn:max" functions.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-14" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-15" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression as an argument to the "fn:min" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-15" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-16" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression as an argument to the "fn:max" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-16" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-17" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression as an argument to the "fn:avg" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-17" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-18" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression as an argument to the "fn:count" function.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-18" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-19" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the first operand is a multiplication operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-19" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-20" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the second operand is a multiplication operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-20" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-21" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where both operands are multiplication operations.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-21" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-22" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the first operand is a subtraction operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-22" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-23" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the second operand is a subtraction operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-23" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-24" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where both operands are subtraction operations.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-24" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-25" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the first operand is a division operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-25" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-26" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where the second operand is a division operation.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-26" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="rangeExpr-27" FilePath="Expressions/SeqExpr/RangeExpr/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of a range expression, where both operands are division operations.</description>
+      <spec-citation spec="XQuery" section-number="3.3.1" section-title="Constructing Sequences" section-pointer="construct_seq"/>
+      <spec-citation spec="FuncOps" section-number="15.5.1" section-title="op:to" section-pointer="func-to"/>
+      <query name="rangeExpr-27" date="2005-08-16"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">rangeExpr-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-1" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>Since the left operand has the static cardinality zero-or-more, implementations using the static typing feature may raise XPTY0004.</description>
+      <query name="K-RangeExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-1.txt</output-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-2" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(30 to 3)`.</description>
+      <query name="K-RangeExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-3" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(0 to -3)`.</description>
+      <query name="K-RangeExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-4" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(1 to ())`.</description>
+      <query name="K-RangeExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-4.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-5" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(() to 1)`.</description>
+      <query name="K-RangeExpr-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-5.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-6" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(-1 to -3)`.</description>
+      <query name="K-RangeExpr-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-7" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count(1 to 4) eq 4`.</description>
+      <query name="K-RangeExpr-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-8" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count(0 to 4) eq 5`.</description>
+      <query name="K-RangeExpr-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-9" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count(-5 to -0) eq 6`.</description>
+      <query name="K-RangeExpr-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-10" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count((10, 1 to 4)) eq 5`.</description>
+      <query name="K-RangeExpr-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-11" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(-3 to -1, 1, 1) eq -3`.</description>
+      <query name="K-RangeExpr-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-12" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(-3 to -1, 3, 1) eq -1`.</description>
+      <query name="K-RangeExpr-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-13" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(reverse(4 to 1))`.</description>
+      <query name="K-RangeExpr-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-14" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(reverse(1 to 3), 1, 1) eq 3`.</description>
+      <query name="K-RangeExpr-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-15" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(reverse(1 to 3), 3, 1) eq 1`.</description>
+      <query name="K-RangeExpr-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-16" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(reverse(1 to 4), 2, 1) eq 3`.</description>
+      <query name="K-RangeExpr-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-17" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(reverse(1 to 4), 3, 1) eq 2`.</description>
+      <query name="K-RangeExpr-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-18" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `subsequence(reverse(-4 to -1), 2, 1) eq -2`.</description>
+      <query name="K-RangeExpr-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-19" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((-1, -2, -3, -4), reverse(-4 to -1))`.</description>
+      <query name="K-RangeExpr-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-20" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((), reverse(0 to -5))`.</description>
+      <query name="K-RangeExpr-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-21" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `deep-equal((0, -1, -2, -3, -4, -5), reverse(-5 to 0))`.</description>
+      <query name="K-RangeExpr-21" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-22" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count(reverse(-5 to -2)) eq 4`.</description>
+      <query name="K-RangeExpr-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-23" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count(reverse(-5 to -0)) eq 6`.</description>
+      <query name="K-RangeExpr-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-23.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-24" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `count(reverse(1 to 4)) eq 4`.</description>
+      <query name="K-RangeExpr-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-25" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(1 to 0)`.</description>
+      <query name="K-RangeExpr-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-25.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-26" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(0 to -5)`.</description>
+      <query name="K-RangeExpr-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-26.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-27" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(-4 to -5)`.</description>
+      <query name="K-RangeExpr-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-27.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-28" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(reverse(1 to 0))`.</description>
+      <query name="K-RangeExpr-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-28.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-29" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(reverse(0 to -5))`.</description>
+      <query name="K-RangeExpr-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-29.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-30" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `empty(reverse(-4 to -5))`.</description>
+      <query name="K-RangeExpr-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-30.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-31" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `(remove((2.e0, 4), 1) treat as xs:integer to 4)`.</description>
+      <query name="K-RangeExpr-31" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-31.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-32" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>A test whose essence is: `(4 to remove((2e0, 4), 1) treat as xs:integer)`.</description>
+      <query name="K-RangeExpr-32" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-RangeExpr-32.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-33" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `1.1 to 3`.</description>
+      <query name="K-RangeExpr-33" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-34" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `3 to 1.1`.</description>
+      <query name="K-RangeExpr-34" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-35" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `1.1 to 3.3`.</description>
+      <query name="K-RangeExpr-35" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-RangeExpr-36" FilePath="Expressions/SeqExpr/ConstructSeq/RangeExpr/" scenario="runtime-error">
+      <description>A test whose essence is: `1 + 1.1 to 5`.</description>
+      <query name="K-RangeExpr-36" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-RangeExpr-1" FilePath="SeqExpr/ConstructSeq/RangeExpr/" scenario="runtime-error">
+      <description>The range expression doesn't accept xs:double as operand.</description>
+      <query name="K2-RangeExpr-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-RangeExpr-2" FilePath="SeqExpr/ConstructSeq/RangeExpr/" scenario="runtime-error">
+      <description>The range expression doesn't accept xs:double as operand.</description>
+      <query name="K2-RangeExpr-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-RangeExpr-3" FilePath="SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>Combine with a for expression.</description>
+      <query name="K2-RangeExpr-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-RangeExpr-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-RangeExpr-4" FilePath="SeqExpr/ConstructSeq/RangeExpr/" scenario="standard">
+      <description>Expressions that are tricky for local rewrites.</description>
+      <query name="K2-RangeExpr-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-RangeExpr-4.txt</output-file>
+   </test-case>
+</test-group>

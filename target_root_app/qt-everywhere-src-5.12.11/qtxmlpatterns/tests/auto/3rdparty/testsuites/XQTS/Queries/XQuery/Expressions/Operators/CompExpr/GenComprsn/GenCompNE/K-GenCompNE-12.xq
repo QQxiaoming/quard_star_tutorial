@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-GenCompNE-12                                  :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: General comparison causing numeric promotion from xs:untypedAtomic. :)
+(:*******************************************************:)
+not(1 != xs:untypedAtomic("1"))

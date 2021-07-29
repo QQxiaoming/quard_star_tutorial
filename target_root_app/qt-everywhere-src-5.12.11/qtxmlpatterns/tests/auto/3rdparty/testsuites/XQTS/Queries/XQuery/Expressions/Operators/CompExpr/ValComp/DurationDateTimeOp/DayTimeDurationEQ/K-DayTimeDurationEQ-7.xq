@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-DayTimeDurationEQ-7                           :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The xs:dayTimeDuration values -P2DT5H and P2DT5H are not equal. :)
+(:*******************************************************:)
+xs:dayTimeDuration("-P2DT5H") ne xs:dayTimeDuration("P2DT5H")

@@ -1,0 +1,52 @@
+Qt 5.9.3 is a bug-fix release. It maintains both forward and backward
+compatibility (source and binary) with Qt 5.9.0.
+
+For more details, refer to the online documentation included in this
+distribution. The documentation is also available online:
+
+http://doc.qt.io/qt-5/index.html
+
+The Qt version 5.9 series is binary compatible with the 5.8.x series.
+Applications compiled for 5.8 will continue to run with 5.9.
+
+Some of the changes listed in this file include issue tracking numbers
+corresponding to tasks in the Qt Bug Tracker:
+
+https://bugreports.qt.io/
+
+Each of these identifiers can be entered in the bug tracker to obtain more
+information about a particular change.
+
+****************************************************************************
+*                               Qt 5.9.3 Changes                           *
+****************************************************************************
+
+ - ButtonGroup:
+   * [QTBUG-62946][QTBUG-63470] Fixed an issue in tracking of the currently
+     checked button that caused a crash under certain circumstances.
+
+ - DialogButtonBox:
+   * [QTBUG-63898] Fixed a potential crash when using DialogButtonBox without
+     a contentItem.
+
+ - Popup:
+   * [QTBUG-63672] Fixed a dangling QML context that was causing random
+     crashes in the QML engine debug service.
+
+ - ScrollView:
+   * [QTBUG-62325] Fixed a binding loop when using a wrapping TextArea as
+     content.
+
+ - StackView:
+   * Fixed a resource leak that occurred when the creation of the initial
+     item failed.
+
+ - TextArea & TextField:
+   * [QTBUG-62854] Improved the Default style.
+     - Removed top-level opacity assignments to allow full customization.
+     - Added more distinction between disabled and placeholder text.
+     - Made disabled text more visible.
+
+ - ToolTip:
+   * [QTBUG-63644] Disabled hover to avoid tooltips blocking hover events,
+     which are typically used for showing tooltips on desktop platforms.

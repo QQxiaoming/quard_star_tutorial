@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-LetExprWithout-21                            :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a focus within a LET tail expression.    :)
+(:*******************************************************:)
+<e/>/(for $b in 1, $i in self::node() return $i)

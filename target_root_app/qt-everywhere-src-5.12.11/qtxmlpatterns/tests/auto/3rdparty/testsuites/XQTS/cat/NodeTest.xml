@@ -1,0 +1,490 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NodeTest" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>NodeTest</title>
+      <description>Tests in this group take the axes as a given and focus on the NodeTest syntax in XQuery 3.2.1.2. Includes explicit names, *, and the various kind tests that look like functions.</description>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="NodeTest001" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Asad Jawahar">
+      <description>Simple test for comment() node type.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest001" date="2003-03-07">
+         <description>Simple test for comment() node type</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">bib2</input-file>
+      <output-file role="principal" compare="Fragment">NodeTest001.xml</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="NodeTest002" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Asad Jawahar">
+      <description>Simple test for processing-instruction() node test.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest002" date="2003-03-07">
+         <description>Simple test for processing-instruction() node test</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">bib2</input-file>
+      <output-file role="principal" compare="Fragment">NodeTest002.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest006" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Asad Jawahar" is-XPath2="false">
+      <description>Simple test for node type text().</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest006" date="2003-03-07">
+         <description>Simple test for node type text()</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">bib</input-file>
+      <output-file role="principal" compare="XML">NodeTest006.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest007-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() finds no descendant PIs of the given name anywhere.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest007" date="2003-02-28">
+         <description>processing-instruction('name') NodeTest can apply under root</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <output-file role="principal" compare="XML">NodeTest007-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest007-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() gets all PIs of the given name, including those off root.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest007" date="2003-02-28">
+         <description>processing-instruction('name') NodeTest can apply under root</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <output-file role="principal" compare="XML">NodeTest007-2.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest008-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>text() gets no descendant text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest008" date="2003-02-28">
+         <description>text() as a NodeTest</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">Tree1Child</input-file>
+      <output-file role="principal" compare="XML">NodeTest008-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest008-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>text() gets text nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest008" date="2003-02-28">
+         <description>text() as a NodeTest</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <output-file role="principal" compare="XML">NodeTest008-2.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest009-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>comment() gets no descendant comment nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest009" date="2003-02-28">
+         <description>comment() as a NodeTest</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">Tree1Child</input-file>
+      <output-file role="principal" compare="XML">NodeTest009-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest009-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>comment() gets comment nodes.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest009" date="2003-02-28">
+         <description>comment() as a NodeTest</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <output-file role="principal" compare="XML">NodeTest009-2.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest010-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>//comment() gets no comment nodes anywhere.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest010" date="2003-02-28">
+         <description>comment() NodeTest can apply under root</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <output-file role="principal" compare="XML">NodeTest010-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest010-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>//comment() gets all comments, including those off root.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest010" date="2003-02-28">
+         <description>comment() NodeTest can apply under root</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <output-file role="principal" compare="XML">NodeTest010-2.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest011-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() finds no descendant PIs.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest011" date="2003-02-28">
+         <description>processing-instruction() as a NodeTest</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">Tree1Child</input-file>
+      <output-file role="principal" compare="XML">NodeTest011-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest011-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() gets all descendant PIs.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest011" date="2003-02-28">
+         <description>processing-instruction() as a NodeTest</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <output-file role="principal" compare="XML">NodeTest011-2.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest012-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() finds no descendant PIs anywhere.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest012" date="2003-02-28">
+         <description>processing-instruction() NodeTest can apply under root</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeEmpty</input-file>
+      <output-file role="principal" compare="XML">NodeTest012-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest012-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() gets all PIs, including those off root.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest012" date="2003-02-28">
+         <description>processing-instruction() NodeTest can apply under root</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TopMany</input-file>
+      <output-file role="principal" compare="XML">NodeTest012-2.xml</output-file>
+   </test-case>
+   <test-case name="NodeTest013-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="David Marston" is-XPath2="false">
+      <description>processing-instruction() gets descendant PIs of the given name.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTest013" date="2003-02-28">
+         <description>processing-instruction('name') matches only the given name</description>
+      </query>
+      <input-file role="principal-data" variable="input-context">TreeCompass</input-file>
+      <output-file role="principal" compare="XML">NodeTest013-1.xml</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-1" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving a text node and a boolean expression (and fn:true()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-1" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-1.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-2" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving a text node and a boolean expression (or fn:true()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-2" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-2.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-3" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving a text node and a boolean expression (and fn:false()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-3" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-3.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-4" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving a text node and a boolean expression (or fn:false()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-4" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-4.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-5" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving Element node types and a boolean expression (or fn:false()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-5" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-5.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-6" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving Element node types and a boolean expression (or fn:true()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-6" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-6.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-7" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving Element node types and a boolean expression (and fn:false()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-7" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-7.txt</output-file>
+   </test-case>
+   <test-case name="NodeTesthc-8" FilePath="Expressions/PathExpr/Steps/NodeTest/" scenario="standard" Creator="Carmelo Montanez" is-XPath2="false">
+      <description>Simple test involving Element node types and a boolean expression (and fn:true()).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.2" section-title="Node Tests" section-pointer="node-tests"/>
+      <spec-citation spec="XQuery" section-number="3.2.1" section-title="Steps" section-pointer="id-steps"/>
+      <query name="NodeTesthc-8" date="2005-10-04"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">NodeTesthc-8.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-1" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>Check the child count of an empty direct element constructor.</description>
+      <query name="K2-NodeTest-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeTest-1.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-2" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>Check the child count of an empty direct element constructor.</description>
+      <query name="K2-NodeTest-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeTest-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-3" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside processing-instruction().</description>
+      <query name="K2-NodeTest-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-4" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside text().</description>
+      <query name="K2-NodeTest-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-5" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside comment().</description>
+      <query name="K2-NodeTest-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-6" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside node().</description>
+      <query name="K2-NodeTest-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-7" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside document-node().</description>
+      <query name="K2-NodeTest-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-8" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside schema-attribute().</description>
+      <query name="K2-NodeTest-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-9" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'*' is not allowed inside schema-element().</description>
+      <query name="K2-NodeTest-9" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-10" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>There is no type by name document().</description>
+      <query name="K2-NodeTest-10" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-11" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>There is no type by name document().</description>
+      <query name="K2-NodeTest-11" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-12" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>There is no type by name document().</description>
+      <query name="K2-NodeTest-12" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-13" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>There is no type by name document().</description>
+      <query name="K2-NodeTest-13" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-14" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'name' is not allowed inside document-node().</description>
+      <query name="K2-NodeTest-14" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-15" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>'name' is not allowed inside document-node().</description>
+      <query name="K2-NodeTest-15" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-16" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>processing-instruction() isn't allowed inside document-node().</description>
+      <query name="K2-NodeTest-16" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-17" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>unknown() isn't allowed inside document-node().</description>
+      <query name="K2-NodeTest-17" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-18" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="parse-error">
+      <description>schema-attribute() isn't allowed inside document-node().</description>
+      <query name="K2-NodeTest-18" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0003</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-19" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use document-node() with an unkown schema-element() type.</description>
+      <query name="K2-NodeTest-19" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-20" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use document-node() with an unkown schema-element() type.</description>
+      <query name="K2-NodeTest-20" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0008</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-21" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>Ensure 'element(local:ncname)' is parsed correctly when inside document-node().</description>
+      <query name="K2-NodeTest-21" date="2007-11-26+01:00"/>
+		  <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeTest-21.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-22" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use an unbound prefix inside document-node()/element().</description>
+      <query name="K2-NodeTest-22" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-23" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use an unbound prefix inside element().</description>
+      <query name="K2-NodeTest-23" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-24" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use an unbound prefix inside element().</description>
+      <query name="K2-NodeTest-24" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-25" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use an unbound prefix inside document-node()/schema-element().</description>
+      <query name="K2-NodeTest-25" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-26" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use an unbound prefix inside schema-element().</description>
+      <query name="K2-NodeTest-26" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-27" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Use an unbound prefix inside schema-attribute().</description>
+      <query name="K2-NodeTest-27" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0081</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-28" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Invoke '/' on a tree whose root is not a document node.</description>
+      <query name="K2-NodeTest-28" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0050</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-29" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Apostrophes are valid separators in processing-instruction().</description>
+      <query name="K2-NodeTest-29" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-30" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Ensure element() isn't parsed as a function.</description>
+      <query name="K2-NodeTest-30" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-31" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a function body.</description>
+      <query name="K2-NodeTest-31" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-32" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>We evaluate to only atomic values, although the static type does not reflect that.</description>
+      <query name="K2-NodeTest-32" static-name="K2-NodeTest-32-static" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeTest-32.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-33" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a body for a global variable.</description>
+      <query name="K2-NodeTest-33" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-34" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a body for a global variable(#2).</description>
+      <query name="K2-NodeTest-34" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-35" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a function body(#2).</description>
+      <query name="K2-NodeTest-35" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-36" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a function body(#3).</description>
+      <query name="K2-NodeTest-36" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-37" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a function body(#4).</description>
+      <query name="K2-NodeTest-37" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-38" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a function body(#4).</description>
+      <query name="K2-NodeTest-38" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-39" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a let clause.</description>
+      <query name="K2-NodeTest-39" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-40" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="runtime-error">
+      <description>Trigger XPTY0018 inside a for clause.</description>
+      <query name="K2-NodeTest-40" date="2008-01-02+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0018</expected-error>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-NodeTest-41" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>Use fn:last() with nested predicates.</description>
+      <query name="K2-NodeTest-41" static-name="K2-NodeTest-41-static-cbcl" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-NodeTest-41.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-42" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>Use fn:last() with nested predicates(#2).</description>
+      <query name="K2-NodeTest-42" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeTest-42.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-NodeTest-43" FilePath="PathExpr/Steps/NodeTestSection/NodeTest/" scenario="standard">
+      <description>Use fn:last() with nested predicates(#3).</description>
+      <query name="K2-NodeTest-43" date="2008-01-03+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-NodeTest-43.txt</output-file>
+   </test-case>
+</test-group>

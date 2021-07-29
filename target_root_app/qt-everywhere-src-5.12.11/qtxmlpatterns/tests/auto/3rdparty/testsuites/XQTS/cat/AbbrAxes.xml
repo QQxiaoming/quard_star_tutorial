@@ -1,0 +1,159 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="AbbrAxes" featureOwner="NIST and Frans Englich">
+   <GroupInfo>
+      <title>Abbreviated Syntax</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-1" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "hours". Selects the "hours" element children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-1" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-2" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "text()". Selects all text node children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-2" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">abbreviatedSyntax-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-3" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "@name". Selects the name attribute of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-3" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-5" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[1]". Selects the first employee child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-5" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-6" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "para[fn:last()]". Selects the last employee child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-6" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-7" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "*/hours". Selects all hours grandchildren of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-7" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-8" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "/works/employee[5]/hours[2]". Selects the second hours of the fifth employee of the book whose parent is the document node that contains the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-8" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-9" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee//hours". Selects the hours element descendants of the employee element children of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-9" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-10" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "//hours". Selects all the hours descendants of the root document node and thus selects all hours elements in the same document as the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-10" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-12" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "//overtime/day". Selects all the day elements in the same document as the context node that have an overtime parent.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-12" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-13" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, ".//day". Selects the day element descendants of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-13" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-14" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "..". Selects the parent of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-14" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-16" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[@name="Jane Doe 11"]". Selects all employee children of the context node that have a name attribute with a value "Jane Doe 11".</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-16" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-17" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[@gender="female"][5]". Selects the fifth element child of the context node that has a gender attribute with value "female".</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-17" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-18" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[5][@gender="female"]". Selects the fifth employee child of the context node if that child has a gender attribute with value "female".</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-18" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-19" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[status="active"]". Selects the employee children of the context node that have one or more status children whose typed value is equal to the string "active".</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-19" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-20" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[overtime]". Selects the employee children of the context node that have one or more overtime children.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-20" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-21" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[@name and @type]". Selects all the employee children of the context node that have both a name attribute and a type attribute.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-21" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-22" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee/(status|overtime)/day". Selects every day element that has a parent that is either a status or an overime element, that in turn is a child of an employee element that is a child of the context node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-22" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-24" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee/(status|overtime)/day". Selects every day element that has a parent that is either a status or an overime element, that in turn is a child of an employee element that is a child of the context node. Uses "union" Operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-24" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="abbreviatedSyntax-25" FilePath="Expressions/PathExpr/AbbrAxes/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluates abbreviated syntax, "employee[@name=condition or @type=condition]". Selects all the employee children of the context node that have both a name attribute and a type attribute. Uses the "or" operator.</description>
+      <spec-citation spec="XQuery" section-number="3.2.4" section-title="Abbreviated Syntax" section-pointer="abbrev"/>
+      <query name="abbreviatedSyntax-25" date="2005-07-08"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">abbreviatedSyntax-25.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-AbbrAxes-1" FilePath="PathExpr/AbbrAxes/" scenario="runtime-error">
+      <description>Focus is undefined inside user functions; '..' axis.</description>
+      <query name="K2-AbbrAxes-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+</test-group>

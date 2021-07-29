@@ -1,0 +1,6 @@
+SYNCQT.HEADER_FILES = qabstractoauth.h qabstractoauth2.h qabstractoauthreplyhandler.h qoauth1.h qoauth1signature.h qoauth2authorizationcodeflow.h qoauthglobal.h qoauthhttpserverreplyhandler.h qoauthoobreplyhandler.h 
+SYNCQT.GENERATED_HEADER_FILES = QAbstractOAuth QAbstractOAuth2 QAbstractOAuthReplyHandler QOAuth1 QOAuth1Signature QOAuth2AuthorizationCodeFlow QOAuthHttpServerReplyHandler QOAuthOobReplyHandler qtnetworkauthversion.h QtNetworkAuthVersion QtNetworkAuth 
+SYNCQT.PRIVATE_HEADER_FILES = qabstractoauth2_p.h qabstractoauth_p.h qabstractoauthreplyhandler_p.h qoauth1_p.h qoauth1signature_p.h qoauth2authorizationcodeflow_p.h qoauthhttpserverreplyhandler_p.h 
+SYNCQT.QPA_HEADER_FILES = 
+SYNCQT.CLEAN_HEADER_FILES = qabstractoauth.h qabstractoauth2.h qabstractoauthreplyhandler.h qoauth1.h qoauth1signature.h qoauth2authorizationcodeflow.h qoauthglobal.h qoauthhttpserverreplyhandler.h qoauthoobreplyhandler.h 
+SYNCQT.INJECTIONS = 

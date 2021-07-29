@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqExprCast-299                               :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The xs:gMonthDay value '--11-31' represents a non-existent date. :)
+(:*******************************************************:)
+xs:gMonthDay("--11-31")

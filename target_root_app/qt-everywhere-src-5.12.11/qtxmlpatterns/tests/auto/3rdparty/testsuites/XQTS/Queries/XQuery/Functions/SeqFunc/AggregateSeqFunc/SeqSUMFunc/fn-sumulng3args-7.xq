@@ -1,0 +1,12 @@
+(:*******************************************************:)
+(:Test: sumulng3args-7                                    :)
+(:Written By: Carmelo Montanez                            :)
+(:Date: Fri Dec 10 10:15:47 GMT-05:00 2004                :)
+(:Purpose: Evaluates The "sum" function                  :)
+(: with the arguments set as follows:                    :)
+(:$arg1 = xs:unsignedLong(lower bound)                   :)
+(:$arg2 = xs:unsignedLong(lower bound)                   :)
+(:$zero = xs:unsignedLong(upper bound)                   :)
+(:*******************************************************:)
+
+fn:sum((xs:unsignedLong("0"),xs:unsignedLong("0"),xs:unsignedLong("184467440737095516")))

@@ -1,0 +1,25 @@
+#include <QtCore>
+
+class SimpleClock
+{
+    PROP(int hour=6);
+    PROP(int minute=30);
+};
+
+class TypeWithModel
+{
+    MODEL tracks(display);
+};
+
+class TypeWithSubObject
+{
+    CLASS clock(SimpleClock);
+};
+
+class ComplexType
+{
+    PROP(int before = 0)
+    MODEL tracks(display)
+    CLASS clock(SimpleClock)
+    PROP(int after = 42)
+}

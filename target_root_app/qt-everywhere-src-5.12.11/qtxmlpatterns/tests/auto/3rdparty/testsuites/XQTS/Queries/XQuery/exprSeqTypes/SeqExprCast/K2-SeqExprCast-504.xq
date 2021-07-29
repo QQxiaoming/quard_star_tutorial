@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-504                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Use a series of corner case Unicode codepoints. :)
+(:*******************************************************:)
+xs:NCName(codepoints-to-string((3648, 3592, 3617, 3626, 3660)))

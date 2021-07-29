@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:libraryModule>
+    <xqx:moduleDecl>
+      <xqx:prefix>errata6_7</xqx:prefix>
+      <xqx:uri>http://www.w3.org/TestModules/errata6-7</xqx:uri>
+    </xqx:moduleDecl>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>a</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTest/someExamples</xqx:targetNamespace>
+      </xqx:schemaImport>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="errata6_7">fun</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>a</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:elementTest>
+                <xqx:elementName>
+                  <xqx:star/>
+                </xqx:elementName>
+                <xqx:typeName xqx:prefix="a">weather</xqx:typeName>
+              </xqx:elementTest>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:functionBody>
+          <xqx:varRef>
+            <xqx:name>a</xqx:name>
+          </xqx:varRef>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+  </xqx:libraryModule>
+</xqx:module>

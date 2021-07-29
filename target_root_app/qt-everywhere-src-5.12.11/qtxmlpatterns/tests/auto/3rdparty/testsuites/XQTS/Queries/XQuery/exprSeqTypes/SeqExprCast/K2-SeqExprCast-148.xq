@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K2-SeqExprCast-148                              :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: Hexa-decimal notation isn't allowed in int.  :)
+(:*******************************************************:)
+xs:int("0x2147483647")

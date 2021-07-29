@@ -1,0 +1,93 @@
+/****************************************************************************
+**
+** Copyright (C) 2018 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+\page webgl.html
+\title Qt Quick WebGL
+\brief A platform plugin that enables streaming or Qt Quick user interfaces
+       using WebGL™.
+\ingroup supportedplatform
+
+The \e {Qt Quick WebGL} is a \l {Qt Platform Abstraction} {platform plugin}
+that allows for single-user remote access by streaming \l [QtQuick] {Qt Quick}
+user interfaces over the network. The UI is rendered in a
+\l {https://www.khronos.org/webgl/}{WebGL™}-enabled client browser.
+
+\section2 Using Qt Quick WebGL
+
+Any Qt Quick application can be launched with the \e webgl platform plugin as
+follows:
+
+\badcode
+./qmlapplication -platform webgl
+\endcode
+
+This starts a lightweight web server on port 8080, that the client
+can connect to with a web browser that supports WebGL. The listening
+port can be configured as follows:
+
+\badcode
+./qmlapplication -platform webgl:port=80
+\endcode
+
+Keyboard, mouse, touch, and multi-touch events from the client are passed to
+the application.
+
+\section2 Limitations
+
+\list
+    \li Streaming OpenGL® commands over the network imposes an amount of
+        delay compared to running the application locally.
+
+    \li Desktop applications that use \l {Qt Widgets} are not supported by the
+        plugin.
+
+    \li Text elements may not display correctly when the
+        \l {QtQuick::Text::renderType}{Text.NativeRendering} render type option
+        is set.
+
+    \li Only one active client per process is permitted. Subsequent clients
+        attempting to connect to the server will see a loading indicator until
+        the previous client disconnects.
+
+    \li Streaming audio is not supported.
+\endlist
+
+\note The \c webgl plugin requires a \l {Scene Graph and Rendering}
+      {threaded render loop}. On Windows and other platforms that use a
+      different render loop by default, set the \c QSG_RENDER_LOOP environment
+      variable accordingly:
+
+\badcode
+set QSG_RENDER_LOOP=threaded
+\endcode
+
+\section1 Licenses
+
+Qt Quick WebGL is available under commercial licenses from \l{The Qt Company}.
+In addition, it is available under the \l{GNU General Public License, version 3}.
+See \l{Qt Licensing} for further details.
+*/

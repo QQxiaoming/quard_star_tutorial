@@ -1,0 +1,215 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="precedingAxis" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>preceding Axis</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="preceding-1" FilePath="FullAxis/precedingAxis/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis for which the context node is not a node.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-1" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0019</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-2" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis for which the given node does not exists.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-2" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-3" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "is" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-3" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-4" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "is" expression (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-4" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-5" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "node before" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-5" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-6" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "node before" expression and both operands are the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-6" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-7" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "node before" expression and operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-7" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-8" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "node-after" expression (return true).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-8" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-9" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "node-after" expression and both operands the same (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-9" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-10" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "node-after" expression operands are different (return false).</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-10" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-11" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "union" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-11" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-12" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "union" operation and both operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-12" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-13" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "intersect" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-13" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-14" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "except" operation and both operands are the same.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-14" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-15" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis that is part of an "except" operation and operands are different.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-15" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Fragment">preceding-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-16" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis as part of a boolean expression. Uses "and" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-16" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-17" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis as part of a boolean expression. Uses "and" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-17" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-18" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis as part of a boolean expression. Uses "or" and "fn:true()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-18" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-19" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis as part of a boolean expression. Uses "or" and "fn:false()".</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-19" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="preceding-20" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis as an argument to fn:deep-equal function.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-20" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">preceding-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="preceding-21" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of an preceding axis used together with a newly constructed element.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-21" date="2005-12-13"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <output-file role="principal" compare="Text">preceding-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="preceding-22" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Frans Englich">
+      <description>Walk from the node from the last node in the document.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-22" date="2005-12-13"/>
+      <input-URI role="principal-data" variable="input-context1">SmallTree</input-URI>
+      <output-file role="principal" compare="XML">preceding-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="preceding-23" FilePath="FullAxis/precedingAxis/" scenario="standard" Creator="Frans Englich">
+      <description>Walk from the node from the last node in the document.</description>
+      <spec-citation spec="XQuery" section-number="3.2.1.1" section-title="Axes" section-pointer="axes"/>
+      <query name="preceding-23" date="2005-12-13"/>
+      <input-URI role="principal-data" variable="input-context1">AttributesAndElements</input-URI>
+      <output-file role="principal" compare="XML">preceding-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-1" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Evaluate the child node from the last node in a tree.</description>
+      <query name="K2-precedingAxis-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-precedingAxis-1.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-2" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Evaluate from a node that has no preceding nodes.</description>
+      <query name="K2-precedingAxis-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-precedingAxis-2.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-3" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Apply a numeric predicate to axis preceding.</description>
+      <query name="K2-precedingAxis-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-precedingAxis-3.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-4" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Apply a numeric predicate to axis preceding, combined with a numeric predicate. The paranteses ensures the step is parsed as a primary expression, and hence is in document order, not reversed.</description>
+      <query name="K2-precedingAxis-4" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-precedingAxis-4.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-5" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Apply a numeric predicate to axis preceding, combined with fn:last(). The paranteses ensures the step is parsed as a primary expression, and hence is in document order, not reversed.</description>
+      <query name="K2-precedingAxis-5" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-precedingAxis-5.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-6" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Apply fn:last() to axis preceding.</description>
+      <query name="K2-precedingAxis-6" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="XML">K2-precedingAxis-6.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-7" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Apply fn:count() to axis preceding.</description>
+      <query name="K2-precedingAxis-7" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-precedingAxis-7.txt</output-file>
+   </test-case>
+   <test-case Creator="Frans Englich" is-XPath2="false" name="K2-precedingAxis-8" FilePath="Optional/FullAxis/precedingAxis/" scenario="standard">
+      <description>Apply fn:count() to axis preceding.</description>
+      <query name="K2-precedingAxis-8" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K2-precedingAxis-8.txt</output-file>
+   </test-case>
+</test-group>

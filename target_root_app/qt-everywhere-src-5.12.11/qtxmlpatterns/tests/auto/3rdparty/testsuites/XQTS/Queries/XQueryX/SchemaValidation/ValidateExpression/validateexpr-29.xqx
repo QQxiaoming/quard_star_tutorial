@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:schemaImport>
+        <xqx:namespacePrefix>ns</xqx:namespacePrefix>
+        <xqx:targetNamespace>http://www.w3.org/XQueryTestOrderBy</xqx:targetNamespace>
+      </xqx:schemaImport>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:validateExpr>
+        <xqx:argExpr>
+          <xqx:computedDocumentConstructor>
+            <xqx:argExpr>
+              <xqx:sequenceExpr>
+                <xqx:elementConstructor>
+                  <xqx:tagName xqx:prefix="ns">Strings</xqx:tagName>
+                </xqx:elementConstructor>
+                <xqx:elementConstructor>
+                  <xqx:tagName xqx:prefix="ns">Strings</xqx:tagName>
+                </xqx:elementConstructor>
+              </xqx:sequenceExpr>
+            </xqx:argExpr>
+          </xqx:computedDocumentConstructor>
+        </xqx:argExpr>
+      </xqx:validateExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

@@ -1,0 +1,206 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+
+/*!
+    \page qtquickcontrols2-configuration.html
+    \keyword Qt Quick Controls Configuration File
+    \title Qt Quick Controls Configuration File
+    \keyword Qt Quick Controls 2 Configuration File
+
+    Qt Quick Controls 2 support a special configuration file, \c :/qtquickcontrols2.conf,
+    that is built into an application's resources.
+
+    The configuration file can specify the preferred style and certain style-specific
+    attributes. The following example specifies that the preferred style is the \l {Material style}.
+    Furthermore, when the application is run with the Material style, its theme is light and the
+    accent and primary colors are teal and blue grey, respectively. However, if the application
+    is run with the \l {Universal style} instead, the accent color is red and the appropriate theme
+    is chosen based on the system theme colors.
+
+    \code
+    [Controls]
+    Style=Material
+
+    [Universal]
+    Theme=System
+    Accent=Red
+
+    [Material]
+    Theme=Light
+    Accent=Teal
+    Primary=BlueGrey
+    \endcode
+
+    It is possible to specify a custom location for the configuration file with
+    the \l {Supported Environment Variables in Qt Quick Controls 2}
+    {QT_QUICK_CONTROLS_CONF} environment variable.
+
+    \section1 Controls Section
+
+    The following values can be specified in a \c Controls section of the
+    configuration file:
+
+    \table
+        \header
+            \li Variable
+            \li Description
+        \row
+            \li \c Style
+            \li Specifies the style to run the application with.
+                The value can be the name of one of the \l {Available Styles}{built-in styles}
+                or a \l {Creating a Custom Style}{custom style}.
+        \row
+            \li \c FallbackStyle
+            \li Specifies the style to use for controls that are not implemented.
+                The style must be one of the \l {Available Styles}{built-in styles}.
+                By default, the \l {Default Style}{Default} style is used.
+    \endtable
+
+    \section1 Imagine Section
+
+    The following table lists values that can be used to configure the
+    \l {Imagine style} in an \c Imagine section of the configuration file:
+
+    \include qquickimaginestyle.qdocinc conf
+
+    \section1 Material Section
+
+    The following table lists values that can be used to configure the
+    \l {Material style} in a \c Material section of the configuration file:
+
+    \include qquickmaterialstyle.qdocinc conf
+
+    \section1 Universal Section
+
+    The following table lists values that can be used to configure the
+    \l {Universal style} in a \c Universal section of the configuration file:
+
+    \include qquickuniversalstyle.qdocinc conf
+
+    \section1 Font Configuration
+
+    The default \l {Control::font}{font} can be specified in a \c Font sub-group
+    in each style's section in the configuration file. The \c Font sub-group can
+    be defined in two alternative ways:
+
+    \code
+    [Default]
+    Font\Family=Open Sans
+    Font\PixelSize=20
+
+    [Material\Font]
+    Family=Open Sans
+    PixelSize=20
+    \endcode
+
+    Supported font attributes:
+    \table
+        \header
+            \li Variable
+            \li Description
+        \row
+            \li \c Family
+            \li The \l {QFont::family}{font family}.
+        \row
+            \li \c PointSize
+            \li The \l {QFont::pointSizeF}{point size}.
+        \row
+            \li \c PixelSize
+            \li The \l {QFont::pixelSize}{pixel size}.
+        \row
+            \li \c StyleHint
+            \li The \l {QFont::styleHint}{style hint}.
+                Available values: \c SansSerif, \c Helvetica, \c Serif, \c Times, \c TypeWriter, \c Courier,
+                                  \c OldEnglish, \c Decorative, \c Monospace, \c Fantasy, \c Cursive.
+        \row
+            \li \c Weight
+            \li The \l {QFont::}{weight}. Qt uses a weighting scale from \c 0 to \c 99 similar to,
+                but not the same as, the scales used in Windows or CSS. A weight of \c 0 will be thin,
+                whilst \c 99 will be extremely black.
+                Available pre-defined weights: \c Thin (0), \c ExtraLight (12), \c Light (25), \c Normal (50),
+                                               \c Medium (57), \c DemiBold (63), \c Bold (75), \c ExtraBold (81),
+                                               \c Black (87).
+        \row
+            \li \c Style
+            \li The \l {QFont::}{style}.
+                Available values: \c StyleNormal, \c StyleItalic, \c StyleOblique.
+    \endtable
+
+    \section1 Palette Configuration
+
+    The default \l {Control::palette}{palette} can be specified in a \c Palette sub-group
+    in each style's section in the configuration file. The \c Palette sub-group can be
+    defined in two alternative ways:
+
+    \code
+    [Fusion]
+    Palette\Window=#dedede
+    Palette\WindowText=#212121
+    \endcode
+
+    or:
+    \code
+    [Fusion\Palette]
+    Window=#dedede
+    WindowText=#212121
+    \endcode
+
+    See \l {qtquickcontrols2-palette}{palette QML Basic Type} for a full list of supported
+    attributes.
+
+    \section1 Using the Configuration File in a Project
+
+    In order to make it possible for Qt Quick Controls 2 to find the configuration file,
+    it must be built into application's resources using the \l {The Qt Resource System}.
+    Here's an example \c .qrc file:
+
+    \code
+    <!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+    </RCC>
+    \endcode
+
+    \note Qt Quick Controls 2 uses a file selector to load the configuration file. It
+    is possible to provide a different configuration file for different platforms and
+    locales. See \l QFileSelector documentation for more details.
+
+    Finally, the \c .qrc file must be listed in the application's \c .pro file so that
+    the build system knows about it. For example:
+
+    \code
+    RESOURCES = application.qrc
+    \endcode
+
+    \section1 Related Information
+
+    \list
+      \li \l{Styling Qt Quick Controls 2}
+      \li \l{Supported Environment Variables in Qt Quick Controls 2}
+    \endlist
+*/

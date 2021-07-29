@@ -1,0 +1,24 @@
+<xs:schema
+   xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+   xmlns:examples = "http://www.w3.org/XQueryTest/someExamples2" 
+   targetNamespace = "http://www.w3.org/XQueryTest/someExamples2" 
+   elementFormDefault = "qualified">
+   
+  <xs:attribute name="attr" type="xs:string" />
+
+  <xs:element name = "E6-Root">
+   <xs:complexType>
+    <xs:sequence>
+     <xs:element name="E6" type = "examples:weather"/>   
+    </xs:sequence>
+   </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="weather">
+   <xs:sequence>
+    <xs:element name="temperature" type= "xs:string"/>   
+    <xs:element name="precipitation" type = "xs:string"/>
+   </xs:sequence>
+  </xs:complexType>  
+</xs:schema>
+

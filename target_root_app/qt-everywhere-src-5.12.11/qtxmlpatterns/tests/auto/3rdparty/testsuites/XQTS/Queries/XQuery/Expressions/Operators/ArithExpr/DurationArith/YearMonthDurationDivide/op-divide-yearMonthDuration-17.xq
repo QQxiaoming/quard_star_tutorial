@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: op-divide-yearMonthDuration-17                   :)
+(:Written By: Michael Kay                                :)
+(:Date: 5 March 2009                                     :)
+(:Purpose: Tests rounding performed by the "divide-yearMonthDuration" operator  :)
+(:See Erratum FO.E12                           .         :)
+(:*******************************************************:)
+ 
+for $i in (-2, -4, -10, -50, +50, +10, +4, +2) 
+return (xs:yearMonthDuration("P5M") div $i)

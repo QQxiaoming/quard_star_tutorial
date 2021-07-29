@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:functionCallExpr>
+        <xqx:functionName xqx:prefix="fn">trace</xqx:functionName>
+        <xqx:arguments>
+          <xqx:flworExpr>
+            <xqx:forClause>
+              <xqx:forClauseItem>
+                <xqx:typedVariableBinding>
+                  <xqx:varName>var</xqx:varName>
+                </xqx:typedVariableBinding>
+                <xqx:forExpr>
+                  <xqx:sequenceExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="fn">true</xqx:functionName>
+                      <xqx:arguments>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="fn">false</xqx:functionName>
+                      <xqx:arguments>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                    <xqx:functionCallExpr>
+                      <xqx:functionName xqx:prefix="fn">true</xqx:functionName>
+                      <xqx:arguments>
+                      </xqx:arguments>
+                    </xqx:functionCallExpr>
+                  </xqx:sequenceExpr>
+                </xqx:forExpr>
+              </xqx:forClauseItem>
+            </xqx:forClause>
+            <xqx:returnClause>
+              <xqx:andOp>
+                <xqx:firstOperand>
+                  <xqx:varRef>
+                    <xqx:name>var</xqx:name>
+                  </xqx:varRef>
+                </xqx:firstOperand>
+                <xqx:secondOperand>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName xqx:prefix="fn">true</xqx:functionName>
+                    <xqx:arguments>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:secondOperand>
+              </xqx:andOp>
+            </xqx:returnClause>
+          </xqx:flworExpr>
+          <xqx:stringConstantExpr>
+            <xqx:value>The value of 'for $var in (fn:true(),fn:false(),fn:true() return $var and fn:true()' is:</xqx:value>
+          </xqx:stringConstantExpr>
+        </xqx:arguments>
+      </xqx:functionCallExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

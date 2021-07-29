@@ -1,0 +1,16 @@
+<xs:schema
+   xmlns:xs = "http://www.w3.org/2001/XMLSchema"
+   xmlns:lu = "http://www.w3.org/XQueryTest/ListUnionTypes" 
+   targetNamespace = "http://www.w3.org/XQueryTest/ListUnionTypes" 
+   elementFormDefault = "qualified">
+   
+  <xs:simpleType name="unionType">
+    <xs:union memberTypes="xs:integer xs:float"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="listType">
+    <xs:list itemType="lu:unionType"/>
+  </xs:simpleType>
+
+  <xs:element name="e" type="lu:listType"/>
+</xs:schema>

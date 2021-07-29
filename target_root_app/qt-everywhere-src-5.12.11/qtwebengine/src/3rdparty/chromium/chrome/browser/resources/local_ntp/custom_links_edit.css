@@ -1,0 +1,197 @@
+/* Copyright 2018 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+body {
+  overflow: hidden;
+}
+
+.mouse-navigation {
+  outline: none;
+}
+
+#edit-link-dialog {
+  background-color: #fff;
+  border: none;
+  border-radius: 8px;
+  bottom: 0;
+  box-shadow:
+      0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+  font-family: 'Roboto', arial, sans-serif;
+  margin: auto;
+  padding: 16px;
+  top: 0;
+  width: 320px;
+  z-index: 10000;
+}
+
+#edit-link-dialog::backdrop {
+  background: transparent;
+}
+
+#edit-link-dialog > div {
+  width: 100%;
+}
+
+#dialog-title {
+  color: rgb(32, 33, 36);
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.field-container {
+  margin-bottom: 16px;
+}
+
+.field-title {
+  color: rgb(154, 160, 166);
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.input-container {
+  position: relative;
+}
+
+input {
+  background-color: rgb(232, 234, 237);
+  border: none;
+  border-radius: 4px;
+  caret-color: rgb(26, 115, 232);
+  color: rgb(32, 33, 36);
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 13px;
+  height: 32px;
+  line-height: 24px;
+  outline: none;
+  padding-inline-end: 8px;
+  padding-inline-start: 8px;
+  width: calc(100% - 16px);
+}
+
+#url-field:not(.text-modified) {
+  color: rgba(32, 33, 36, 0.38);
+}
+
+.underline {
+  border-bottom: 2px solid rgb(26, 115, 232);
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  margin: auto;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  transition: opacity 120ms ease-out, width 0ms linear 180ms;
+  width: 0;
+}
+
+input:focus + .underline {
+  opacity: 1;
+  transition: width 180ms ease-out, opacity 120ms ease-in;
+  width: 100%;
+}
+
+.field-title.focused {
+  color: rgb(26, 115, 232);
+}
+
+.error-msg {
+  color: rgb(217, 48, 37);
+  display: none;
+  font-size: 10px;
+  font-weight: 400;
+  margin-top: 6px;
+}
+
+.invalid label {
+  color: rgb(217, 48, 37);
+}
+
+.invalid .error-msg {
+  display: block;
+}
+
+.invalid .underline {
+  border-color: rgb(217, 48, 37);
+  opacity: 1;
+  transition: width 180ms ease-out, opacity 120ms ease-in;
+  width: 100%;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.buttons-container .right {
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  height: 32px;
+  padding: 0 16px;
+  transition-duration: 200ms;
+  transition-property: background-color, color, box-shadow, border;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:disabled {
+  transition: none;
+}
+
+button.primary {
+  background-color: rgb(26, 115, 232);
+  color: white;
+}
+
+button.primary:disabled {
+  background-color: rgb(241, 243, 244);
+  color: rgb(128, 134, 139);
+}
+
+button.primary:hover:not(:disabled) {
+  background-color: rgb(41, 123, 231);
+  box-shadow: 0 1px 2px 0 rgba(66, 133, 244, 0.3),
+      0 1px 3px 1px rgba(66, 133, 244, 0.15);
+}
+
+button.primary:active:not(:disabled) {
+  box-shadow: 0 1px 2px 0 rgba(66, 133, 244, 0.3),
+      0 3px 6px 2px rgba(66, 133, 244, 0.15);
+}
+
+button.secondary {
+  background-color: white;
+  border: 1px solid rgb(218, 220, 224);
+  color: rgb(26, 115, 232);
+}
+
+button.secondary:disabled {
+  border-color: rgb(241, 243, 244);
+  color: rgb(128, 134, 139);
+}
+
+button.secondary:hover:not(:disabled) {
+  background-color: rgba(66, 133, 244, 0.04);
+  border-color: rgb(210, 227, 252);
+}
+
+button.secondary:active:not(:disabled) {
+  background-color: white;
+  border-color: white;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+      0 3px 6px 2px rgba(60, 64, 67, 0.15);
+}
+
+#cancel {
+  margin-right: 8px;
+}

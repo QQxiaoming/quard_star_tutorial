@@ -1,0 +1,193 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="SeqIDREFFunc" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>fn:idref</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="false" name="fn-idref-1" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with incorrect arity.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-1" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-2" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with second argument ommited and no context item.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-2" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-3" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with second argument not a node.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-3" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-4" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given node not being part of a document with root not Document Element.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-4" date="2005-11-28"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>FODC0001</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-5" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given ID matching a single element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-5" static-name="fn-idref-dtd-5-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-idref-dtd-6" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given ID not matching a single element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-6" static-name="fn-idref-dtd-6-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-idref-dtd-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-7" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with given ID matching multiple elements.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-7" static-name="fn-idref-dtd-7-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-7.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-8" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref function, which attempts to create element with two attributes with same name.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-8" static-name="fn-idref-dtd-8-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <expected-error>XQDY0025</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-9" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with multiple ID, but only one matching one element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-9" static-name="fn-idref-dtd-9-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-idref-dtd-10" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with multiple ID, but none matching one element.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-10" static-name="fn-idref-dtd-10-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-idref-dtd-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-idref-dtd-11" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with ID set to empty string.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-11" static-name="fn-idref-dtd-11-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-idref-dtd-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-idref-dtd-12" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref used as ar argument to function fn:node-name().  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-12" static-name="fn-idref-dtd-12-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-idref-dtd-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-idref-dtd-13" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref used as part of a node expression ("is" operand). Compare same elements.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-13" static-name="fn-idref-dtd-13-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-idref-dtd-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-idref-dtd-14" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref used as part of a node expression ("is" operand). Compare different elements.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-14" static-name="fn-idref-dtd-14-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Text">fn-idref-dtd-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-15" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID list have the same value for all its members.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-15" static-name="fn-idref-dtd-15-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-16" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID list have the same value for all its members but different case.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-16" static-name="fn-idref-dtd-16-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-16.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-17" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID uses the fn lower-case function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-17" static-name="fn-idref-dtd-17-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-18" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which ID uses the fn:upper-case function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-18" static-name="fn-idref-dtd-18-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-19" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which $arg uses the fn:concat function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-19" static-name="fn-idref-dtd-19-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-20" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which $arg uses the xs:string function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-20" static-name="fn-idref-dtd-20-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-21" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref for which $arg uses the fn:string-join function.  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-21" static-name="fn-idref-dtd-21-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-22" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref with second argument set to "." and no context item.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-22" date="2006-02-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-idref-dtd-23" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:idref together with declare ordering (ordered).  This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <query name="fn-idref-dtd-23" static-name="fn-idref-dtd-23-static-cbcl" date="2006-06-23"/>
+      <input-file role="principal-data" variable="input-context1">id-idref-dtd</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-23.txt</output-file>
+   </test-case>
+   <test-case Creator="Bogdan Butnaru" name="fn-idref-dtd-24" FilePath="Functions/NodeSeqFunc/SeqIDREFFunc/" scenario="standard">
+      <description>Evaluation of fn:idref where an IDREFS node contains multiple IDREFs. This test uses a DTD.</description>
+      <spec-citation spec="FuncOps" section-number="15.5.3" section-title="fn:idref" section-pointer="func-idref"/>
+      <reflects-resolution>http://www.w3.org/Bugs/Public/show_bug.cgi?id=6306</reflects-resolution>
+      <query name="fn-idref-dtd-24" date="2009-11-18"/>
+      <input-file role="principal-data" variable="input-context1">functx_book</input-file>
+      <output-file role="principal" compare="Fragment">fn-idref-dtd-24.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDREFFunc-1" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error">
+      <description>Wrong arguments to fn:idref().</description>
+      <query name="K2-SeqIDREFFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDREFFunc-2" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error">
+      <description>Wrong arguments to fn:idref().</description>
+      <query name="K2-SeqIDREFFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K2-SeqIDREFFunc-3" FilePath="Functions/SeqFunc/NodeSeqFunc/SeqIDREFFunc/" scenario="runtime-error">
+      <description>Wrong arguments to fn:idref().</description>
+      <query name="K2-SeqIDREFFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPTY0004</expected-error>
+   </test-case>
+</test-group>

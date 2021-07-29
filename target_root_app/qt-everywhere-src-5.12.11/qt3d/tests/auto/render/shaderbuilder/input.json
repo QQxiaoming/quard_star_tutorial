@@ -1,0 +1,90 @@
+{
+    "nodes": [
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000001}",
+           "type": "worldPosition"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000002}",
+           "type": "texture"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000003}",
+           "type": "texCoord"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000004}",
+           "type": "lightIntensity"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000005}",
+           "type": "exposure"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000006}",
+           "type": "fragColor"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000007}",
+           "type": "sampleTexture"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000008}",
+           "type": "lightModel"
+       },
+       {
+           "uuid": "{00000000-0000-0000-0000-000000000009}",
+           "type": "exposureFunction"
+       }
+    ],
+    "edges": [
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000002}",
+           "sourcePort": "texture",
+           "targetUuid": "{00000000-0000-0000-0000-000000000007}",
+           "targetPort": "sampler"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000003}",
+           "sourcePort": "texCoord",
+           "targetUuid": "{00000000-0000-0000-0000-000000000007}",
+           "targetPort": "coord"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000001}",
+           "sourcePort": "worldPosition",
+           "targetUuid": "{00000000-0000-0000-0000-000000000008}",
+           "targetPort": "position"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000007}",
+           "sourcePort": "color",
+           "targetUuid": "{00000000-0000-0000-0000-000000000008}",
+           "targetPort": "baseColor"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000004}",
+           "sourcePort": "lightIntensity",
+           "targetUuid": "{00000000-0000-0000-0000-000000000008}",
+           "targetPort": "lightIntensity"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000008}",
+           "sourcePort": "outputColor",
+           "targetUuid": "{00000000-0000-0000-0000-000000000009}",
+           "targetPort": "inputColor"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000005}",
+           "sourcePort": "exposure",
+           "targetUuid": "{00000000-0000-0000-0000-000000000009}",
+           "targetPort": "exposure"
+       },
+       {
+           "sourceUuid": "{00000000-0000-0000-0000-000000000009}",
+           "sourcePort": "outputColor",
+           "targetUuid": "{00000000-0000-0000-0000-000000000006}",
+           "targetPort": "fragColor"
+       }
+   ]
+}

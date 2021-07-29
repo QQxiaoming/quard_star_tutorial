@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-TimeSubtractDTD-3                             :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:21+01:00                       :)
+(: Purpose: The '+' operator is not available between xs:time and xs:yearMonthDuration. :)
+(:*******************************************************:)
+xs:time("08:01:23") + xs:yearMonthDuration("P1Y")

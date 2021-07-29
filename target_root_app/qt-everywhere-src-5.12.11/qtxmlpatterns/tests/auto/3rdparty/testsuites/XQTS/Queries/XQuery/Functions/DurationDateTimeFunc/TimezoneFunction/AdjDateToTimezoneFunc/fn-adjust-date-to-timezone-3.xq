@@ -1,0 +1,10 @@
+(:*******************************************************:)
+(:Test: adjust-date-to-timezone-3                        :)
+(:Written By: Carmelo Montanez                           :)
+(:Date: August 10, 2005                                  :)
+(:Test Description: Evaluates The "adjust-date-to-timezone" function   :)
+(:as per example 3 (for this function) of the F&O  specs. :)
+(:*******************************************************:)
+let $tz := xs:dayTimeDuration("-PT10H")
+return
+fn:adjust-date-to-timezone(xs:date("2002-03-07"), $tz)

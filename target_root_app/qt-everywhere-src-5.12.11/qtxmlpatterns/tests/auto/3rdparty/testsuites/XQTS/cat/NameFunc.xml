@@ -1,0 +1,187 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="NameFunc" featureOwner="Oracle and Frans Englich">
+   <GroupInfo>
+      <title>fn:name</title>
+      <description/>
+   </GroupInfo>
+   <test-case is-XPath2="true" name="fn-name-1" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with the argument set to the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-1" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-1.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-2" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with the argument set to an element node.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-2" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-2.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-3" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with the argument set to an attribute node.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-3" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-3.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-4" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with the argument set to a document element node.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-4" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-4.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-5" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with the argument set to a non existing element node.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-5" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-5.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-6" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with the argument set to a text node.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-6" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-6.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-name-7" FilePath="Functions/NodeFunc/NameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with no context node defined.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-7" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-8" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function used as argument to fn:upper-case function.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-8" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-8.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-9" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function used as argument to fn:lower-case function.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-9" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-9.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-10" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function for which the argument uses "parent::node()" axes.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-10" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-10.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-11" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function for which the argument uses "descendant" axes.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-11" static-name="fn-name-11-static-cbcl" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-11.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-12" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function for which the argument uses "descendant-or-self" axes.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-12" static-name="fn-name-12-static-cbcl" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-12.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-13" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function used as argument to fn:substring function.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-13" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-13.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-14" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function used as argument to fn:concat function.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-14" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-14.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-15" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function for which the argument uses "self" axes. Retuns a string.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-15" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-15.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-16" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function for which the argument uses "self" axes. Retuns the empty sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-16" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-16.txt</output-file>
+      <expected-error>XPST0005</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-17" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function for which the argument uses "parent::node()" axes. Context node is an attribute node.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-17" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-17.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-18" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function as argument to the "fn:string-length()" attribute.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-18" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-18.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-name-19" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function, whose argument is a direct element constructor.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-19" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-19.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-name-20" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function, whose argument is a direct element constructor with an attribute.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-20" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-20.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-21" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function, which is part of a sequence.</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-21" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-21.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="true" name="fn-name-22" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard" Creator="Carmelo Montanez">
+      <description>Evaluation of fn:name functions as arguments to "fn:count".</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-22" date="2005-09-07"/>
+      <input-file role="principal-data" variable="input-context1">works-mod</input-file>
+      <output-file role="principal" compare="Text">fn-name-22.txt</output-file>
+   </test-case>
+   <test-case is-XPath2="false" name="fn-name-23" FilePath="Functions/NodeFunc/NameFunc/" scenario="runtime-error" Creator="Carmelo Montanez">
+      <description>Evaluation of the fn:name function with no context node defined and argument set to ".".</description>
+      <spec-citation spec="FuncOps" section-number="14.1" section-title="fn:name" section-pointer="func-name"/>
+      <query name="fn-name-23" date="2006-02-08"/>
+      <input-file role="principal-data" variable="input-context1">emptydoc</input-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NameFunc-1" FilePath="Functions/NodeFunc/NameFunc/" scenario="runtime-error">
+      <description>A test whose essence is: `name((), "wrong param")`.</description>
+      <query name="K-NameFunc-1" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <expected-error>XPST0017</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NameFunc-2" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard">
+      <description>A test whose essence is: `if(false()) then name() else true()`.</description>
+      <query name="K-NameFunc-2" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NameFunc-2.txt</output-file>
+      <expected-error>XPDY0002</expected-error>
+   </test-case>
+   <test-case is-XPath2="true" Creator="Frans Englich" name="K-NameFunc-3" FilePath="Functions/NodeFunc/NameFunc/" scenario="standard">
+      <description>A test whose essence is: `name(()) eq ""`.</description>
+      <query name="K-NameFunc-3" date="2007-11-26+01:00"/>
+      <input-file role="principal-data" variable="input-context">emptydoc</input-file>
+      <output-file role="principal" compare="Text">K-NameFunc-3.txt</output-file>
+   </test-case>
+</test-group>

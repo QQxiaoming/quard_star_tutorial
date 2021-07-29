@@ -1,0 +1,83 @@
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+module device.mojom;
+
+import "device/vr/public/mojom/vr_service.mojom";
+
+// The XRSessionController lives in the vr device service, and corresponds to a
+// VRPresentationProvider or a VRMagicWindowProvider.  The client is the browser
+// process, which will pause or stop sessions depending events/state such as
+// focus or other tabs requesting presentation.
+// Sessions are stopped by closing the mojo connection.
+interface XRSessionController {
+  // A session may be paused temporarily for example when a non-presenting
+  // tab loses focus. When paused, a session will hand out null poses.
+  // Eventually we may hand out poses at a throttled rate instead.
+  SetFrameDataRestricted(bool restricted);
+};
+
+// The XRRuntimeEventListener lives in the vr device service, and allows the
+// browser to listen to state changes about a device.
+interface XRRuntimeEventListener {
+  // A device has changed its display information.
+  OnDisplayInfoChanged(device.mojom.VRDisplayInfo display_info);
+
+  // A device has indicated that it is in use.
+  OnDeviceActivated(device.mojom.VRDisplayEventReason reason) =>
+      (bool will_not_present);
+
+  // A device has indicated that it is idle.
+  OnDeviceIdle(device.mojom.VRDisplayEventReason reason);
+
+  // Called when the device exits presentation.
+  OnExitPresent();
+};
+
+struct XRDeviceRuntimeSessionOptions {
+  bool immersive;
+  bool provide_passthrough_camera;
+
+  // The following options are used for permission requests.
+  // TODO(crbug.com/854655): remove these fields, and do permission checks in
+  // the browser process before calling out to devices.
+  int32 render_process_id;
+  int32 render_frame_id;
+
+  // A flag to indicate if there has been a user activation when the request
+  // session is made.
+  bool has_user_activation;
+
+  // This flag ensures that render path's that are only supported in WebXR are
+  // not used for WebVR 1.1.
+  bool use_legacy_webvr_render_path;
+};
+
+// An XRRuntime may live in the browser process or a utility process.  The
+// browser process is the client, and may in turn expose device information to
+// render processes using vr_service interfaces, such as VRDisplayHost.
+interface XRRuntime {
+  // Attempt to start a presentation session.  Clients may submit graphics to be
+  // displayed in the headset.  Called by the browser process, but the
+  // VRPresentationProvider may be passed to the renderer process to allow
+  // submitting graphics without going through an extra IPC hop through the
+  // browser process.
+  RequestSession(XRDeviceRuntimeSessionOptions options) => (
+                     device.mojom.XRPresentationConnection? connection,
+                     XRSessionController? controller);
+
+  // Attempt to start a "magic window" session.  Magic window sessions allow
+  // Clients to obtain poses (device position and orientation), but rendering
+  // goes through the standard Chrome compositor.
+  RequestMagicWindowSession() =>
+      (device.mojom.VRMagicWindowProvider? session,
+       device.mojom.XRSessionController? controller);
+
+  // The browser may register for changes to a device. Initial VRDisplayInfo
+  // will immediately be returned to the listener to prevent races.
+  ListenToDeviceChanges(XRRuntimeEventListener listener) =>
+      (VRDisplayInfo display_info);
+
+  SetListeningForActivate(bool listen_for_activation);
+};

@@ -1,0 +1,27 @@
+<test-group xmlns="http://www.w3.org/2005/02/query-test-XQTSCatalog" name="Catalog" featureOwner="Frans Englich">
+   <GroupInfo>
+      <title>Consistency in XQTS Catalog</title>
+      <description/>
+   </GroupInfo>
+   <test-case name="Catalog001" FilePath="Catalog/" scenario="standard" Creator="Andreas Behm" is-XPath2="false">
+      <description>Check variable name is used, if source is not "emptydoc".</description>
+      <spec-citation spec="XQuery" section-number="XQuery" section-title="1.0: An XML Query Language" section-pointer="title"/>
+      <query name="Catalog001" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">XQTSCatalog</input-file>
+      <output-file role="principal" compare="XML">Catalog001.xml</output-file>
+   </test-case>
+   <test-case name="Catalog002" FilePath="Catalog/" scenario="standard" Creator="Andreas Behm" is-XPath2="false">
+      <description>Test all standard test cases have at least one output file.</description>
+      <spec-citation spec="XQuery" section-number="XQuery" section-title="1.0: An XML Query Language" section-pointer="title"/>
+      <query name="Catalog002" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">XQTSCatalog</input-file>
+      <output-file role="principal" compare="XML">Catalog002.xml</output-file>
+   </test-case>
+   <test-case name="Catalog003" FilePath="Catalog/" scenario="standard" Creator="Andreas Behm" is-XPath2="false">
+      <description>Test all error test cases have at least one expected error.</description>
+      <spec-citation spec="XQuery" section-number="XQuery" section-title="1.0: An XML Query Language" section-pointer="title"/>
+      <query name="Catalog003" date="2005-04-14"/>
+      <input-file role="principal-data" variable="input-context">XQTSCatalog</input-file>
+      <output-file role="principal" compare="XML">Catalog003.xml</output-file>
+   </test-case>
+</test-group>

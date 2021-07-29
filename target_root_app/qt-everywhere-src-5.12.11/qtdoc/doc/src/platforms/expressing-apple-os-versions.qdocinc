@@ -1,0 +1,106 @@
+/****************************************************************************
+**
+** Copyright (C) 2017 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
+**
+** This file is part of the documentation of the Qt Toolkit.
+**
+** $QT_BEGIN_LICENSE:FDL$
+** Commercial License Usage
+** Licensees holding valid commercial Qt licenses may use this file in
+** accordance with the commercial license agreement provided with the
+** Software or, alternatively, in accordance with the terms contained in
+** a written agreement between you and The Qt Company. For licensing terms
+** and conditions see https://www.qt.io/terms-conditions. For further
+** information use the contact form at https://www.qt.io/contact-us.
+**
+** GNU Free Documentation License Usage
+** Alternatively, this file may be used under the terms of the GNU Free
+** Documentation License version 1.3 as published by the Free Software
+** Foundation and appearing in the file included in the packaging of
+** this file. Please review the following information to ensure
+** the GNU Free Documentation License version 1.3 requirements
+** will be met: https://www.gnu.org/licenses/fdl-1.3.html.
+** $QT_END_LICENSE$
+**
+****************************************************************************/
+/*!
+//! [expressing os versions]
+
+    Apple platforms have a built-in way to express the OS versions that an
+    application supports, which allows older versions of the platforms to
+    automatically display a user friendly error message prompting the user to
+    update their OS, as opposed to crashing and displaying a stack trace.
+
+    The main concepts involved in expressing support for a particular range of
+    OS versions are:
+
+    \list
+        \li \e {Deployment target} specifies the \e hard minimum version of
+            \macos, iOS, tvOS, or watchOS that your application supports.
+        \li \e {SDK version} specifies the \e soft maximum version of \macos,
+            iOS, tvOS, or watchOS that your application supports.
+    \endlist
+
+    When you develop an application for an Apple platform, you should always
+    use the latest version of Xcode and the latest SDK available at the time of
+    development. On some platforms, like iOS, you will actually be rejected from
+    the App Store if you do not. Therefore, the SDK version is always
+    greater than or equal to the deployment target.
+
+    When you develop an application for an Apple platform, you must set the
+    deployment target. Various build tools within the Xcode toolchain all have
+    a flag which you can use to set this value, including but not limited to
+    the compiler and linker. By setting the deployment target value, you are
+    explicitly declaring that your application must work on at least that
+    version, and will not work with any earlier versions of the OS. It is then
+    up to you to ensure that your use of the system APIs matches what you have
+    declared. Since the compiler knows what you have declared, it can help in
+    enforcing that.
+
+    The SDK version is considered a \e soft maximum version of the OS that an
+    application is compatible with in the way that if the application is built
+    with an SDK, it will continue to use the behaviors of that SDK even on newer
+    OS versions, because the OS checks the binary's load commands and emulates
+    backwards compatibility with the older OS. For example, if an application is
+    built with the \macos 10.12 SDK, it will continue to use 10.12 behaviors
+    even on 10.13 and above.
+
+    However, Mach-O binaries are inherently forward compatible. For example, an
+    application built with the iOS 9 SDK will run just fine on iOS 10, but might
+    not be opted into whatever behavior changes may have been made to certain
+    functionality on the new release, until that application is recompiled
+    against that newer SDK.
+
+    The minimum OS version can be expressed to the system by the compiler and
+    linker flags that embed it into the Mach-O binary. In addition, the
+    \c LSMinimumSystemVersion key must be set in the application's app bundle.
+    This value must be equal to the value passed to the compiler and linker,
+    because on \macos it will allow the OS to display a user friendly error
+    dialog that says the application requires a newer version of the OS as
+    opposed to a crash dialog. The \c LSMinimumSystemVersion is also the key
+    that the App Store uses to display the required OS version; the compiler and
+    linker flags have no power there.
+
+    For the most part, Qt applications will work without problems. For example,
+    in qmake, the Qt mkspecs set \l QMAKE_IOS_DEPLOYMENT_TARGET,
+    \l QMAKE_MACOSX_DEPLOYMENT_TARGET, \l QMAKE_TVOS_DEPLOYMENT_TARGET, or
+    \l QMAKE_WATCHOS_DEPLOYMENT_TARGET to the minimum version that Qt itself
+    supports. Similarly, in Qbs, the Qt modules set \c cpp.minimumIosVersion,
+    \c cpp.minimumMacosVersion, \c cpp.minimumTvosVersion, or
+    \c cpp.minimumWatchosVersion to the minimum version that Qt itself supports.
+
+    However, you must take care when you manually set your own target version.
+    If you set it to a value higher than what Qt requires and supply your own
+    \c Info.plist file, you must add an \c LSMinimumSystemVersion entry to the
+    \c Info.plist that matches the value of the deployment target, because the
+    OS will use the \c LSMinimumSystemVersion value as the authoritative one.
+
+    If you specify a deployment target value lower than what Qt requires, the
+    application will almost certainly crash somewhere in the Qt libraries when
+    run on an older version than Qt supports. Therefore, make sure that the
+    actual build system code reflects the minimum OS version that is actually
+    required.
+
+//! [expressing os versions]
+*/

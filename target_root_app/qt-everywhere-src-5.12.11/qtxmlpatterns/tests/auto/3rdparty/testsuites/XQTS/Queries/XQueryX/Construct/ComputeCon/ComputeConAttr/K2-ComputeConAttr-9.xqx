@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:queryBody>
+      <xqx:elementConstructor>
+        <xqx:tagName>elem</xqx:tagName>
+        <xqx:elementContent>
+          <xqx:computedCommentConstructor>
+            <xqx:argExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value> comment </xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:argExpr>
+          </xqx:computedCommentConstructor>
+          <xqx:sequenceExpr>
+            <xqx:stringConstantExpr>
+              <xqx:value>a string</xqx:value>
+            </xqx:stringConstantExpr>
+            <xqx:integerConstantExpr>
+              <xqx:value>999</xqx:value>
+            </xqx:integerConstantExpr>
+            <xqx:sequenceExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>another string</xqx:value>
+              </xqx:stringConstantExpr>
+              <xqx:computedAttributeConstructor>
+                <xqx:tagName>name</xqx:tagName>
+                <xqx:valueExpr>
+                  <xqx:stringConstantExpr>
+                    <xqx:value>content</xqx:value>
+                  </xqx:stringConstantExpr>
+                </xqx:valueExpr>
+              </xqx:computedAttributeConstructor>
+              <xqx:integerConstantExpr>
+                <xqx:value>383</xqx:value>
+              </xqx:integerConstantExpr>
+            </xqx:sequenceExpr>
+            <xqx:functionCallExpr>
+              <xqx:functionName xqx:prefix="xs">hexBinary</xqx:functionName>
+              <xqx:arguments>
+                <xqx:stringConstantExpr>
+                  <xqx:value>FF</xqx:value>
+                </xqx:stringConstantExpr>
+              </xqx:arguments>
+            </xqx:functionCallExpr>
+          </xqx:sequenceExpr>
+        </xqx:elementContent>
+      </xqx:elementConstructor>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

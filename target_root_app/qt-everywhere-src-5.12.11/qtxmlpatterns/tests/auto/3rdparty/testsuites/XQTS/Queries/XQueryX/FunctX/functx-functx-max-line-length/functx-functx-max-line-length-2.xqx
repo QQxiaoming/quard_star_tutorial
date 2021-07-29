@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<xqx:module xmlns:xqx="http://www.w3.org/2005/XQueryX"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.w3.org/2005/XQueryX
+                                http://www.w3.org/2005/XQueryX/xqueryx.xsd">
+  <xqx:mainModule>
+    <xqx:prolog>
+      <xqx:namespaceDecl>
+        <xqx:prefix>functx</xqx:prefix>
+        <xqx:uri>http://www.example.com/</xqx:uri>
+      </xqx:namespaceDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="functx">lines</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>arg</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+              <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+          <xqx:occurrenceIndicator>*</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName>tokenize</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>arg</xqx:name>
+              </xqx:varRef>
+              <xqx:stringConstantExpr>
+                <xqx:value>(\r\n?|\n\r?)</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+      <xqx:functionDecl>
+        <xqx:functionName xqx:prefix="functx">max-line-length</xqx:functionName>
+        <xqx:paramList>
+          <xqx:param>
+            <xqx:varName>arg</xqx:varName>
+            <xqx:typeDeclaration>
+              <xqx:atomicType xqx:prefix="xs">string</xqx:atomicType>
+              <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+            </xqx:typeDeclaration>
+          </xqx:param>
+        </xqx:paramList>
+        <xqx:typeDeclaration>
+          <xqx:atomicType xqx:prefix="xs">integer</xqx:atomicType>
+          <xqx:occurrenceIndicator>?</xqx:occurrenceIndicator>
+        </xqx:typeDeclaration>
+        <xqx:functionBody>
+          <xqx:functionCallExpr>
+            <xqx:functionName>max</xqx:functionName>
+            <xqx:arguments>
+              <xqx:flworExpr>
+                <xqx:forClause>
+                  <xqx:forClauseItem>
+                    <xqx:typedVariableBinding>
+                      <xqx:varName>line</xqx:varName>
+                    </xqx:typedVariableBinding>
+                    <xqx:forExpr>
+                      <xqx:functionCallExpr>
+                        <xqx:functionName xqx:prefix="functx">lines</xqx:functionName>
+                        <xqx:arguments>
+                          <xqx:varRef>
+                            <xqx:name>arg</xqx:name>
+                          </xqx:varRef>
+                        </xqx:arguments>
+                      </xqx:functionCallExpr>
+                    </xqx:forExpr>
+                  </xqx:forClauseItem>
+                </xqx:forClause>
+                <xqx:returnClause>
+                  <xqx:functionCallExpr>
+                    <xqx:functionName>string-length</xqx:functionName>
+                    <xqx:arguments>
+                      <xqx:varRef>
+                        <xqx:name>line</xqx:name>
+                      </xqx:varRef>
+                    </xqx:arguments>
+                  </xqx:functionCallExpr>
+                </xqx:returnClause>
+              </xqx:flworExpr>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:functionBody>
+      </xqx:functionDecl>
+    </xqx:prolog>
+    <xqx:queryBody>
+      <xqx:flworExpr>
+        <xqx:letClause>
+          <xqx:letClauseItem>
+            <xqx:typedVariableBinding>
+              <xqx:varName>lines</xqx:varName>
+            </xqx:typedVariableBinding>
+            <xqx:letExpr>
+              <xqx:stringConstantExpr>
+                <xqx:value>a
+value
+on several
+lines</xqx:value>
+              </xqx:stringConstantExpr>
+            </xqx:letExpr>
+          </xqx:letClauseItem>
+        </xqx:letClause>
+        <xqx:returnClause>
+          <xqx:functionCallExpr>
+            <xqx:functionName xqx:prefix="functx">max-line-length</xqx:functionName>
+            <xqx:arguments>
+              <xqx:varRef>
+                <xqx:name>lines</xqx:name>
+              </xqx:varRef>
+            </xqx:arguments>
+          </xqx:functionCallExpr>
+        </xqx:returnClause>
+      </xqx:flworExpr>
+    </xqx:queryBody>
+  </xqx:mainModule>
+</xqx:module>

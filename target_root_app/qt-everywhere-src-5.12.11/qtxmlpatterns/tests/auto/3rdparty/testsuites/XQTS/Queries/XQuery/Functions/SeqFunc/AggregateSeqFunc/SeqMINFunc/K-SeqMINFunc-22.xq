@@ -1,0 +1,7 @@
+(:*******************************************************:)
+(: Test: K-SeqMINFunc-22                                 :)
+(: Written by: Frans Englich                             :)
+(: Date: 2007-11-22T11:31:23+01:00                       :)
+(: Purpose: An xs:string cannot be compared to a numeric, even if a value is NaN. :)
+(:*******************************************************:)
+min(("a string", 1, xs:float("NaN")))
