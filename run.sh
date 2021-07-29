@@ -35,7 +35,7 @@ if [ $# != 2 ] ; then
 else
 	case "$2" in
 	full-screen)
-		DEFAULT_VC="$(xrandr -q 2>/dev/zero | awk '/*/{print $1}')"
+		DEFAULT_VC="$(xrandr -q 2>/dev/null | awk '/*/{print $1}')"
 		FULL_SCREEN=-full-screen
 		;;
 	*)

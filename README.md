@@ -81,7 +81,7 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     CONFIG_LEGACY_PTY_COUNT=256
     ```
     
-    但是要注意到[内核文档devices](linux-5.10.42/Documentation/admin-guide/devices.rst)第155行提到了要将devpts挂载到/dev/pts这样linux风格的pty设备才能使用，原来是这样( ^_^ )！我们在目标文件系统配置文件/etc/fstab使用mdev的方式生成/dev目录，但是并没有给我们创建/dev/pts目录，因此不能直接在/etc/fstab添加挂载设备信息，那我们就还是在/etc/init.d/rcS启动脚本中添加，在/sbin/mdev -s后添加
+    但是要注意到[内核文档>devices.rst](linux-5.10.42/Documentation/admin-guide/devices.rst)第155行提到了要将devpts挂载到/dev/pts这样linux风格的pty设备才能使用，原来是这样( ^_^ )！我们在目标文件系统配置文件/etc/fstab使用mdev的方式生成/dev目录，但是并没有给我们创建/dev/pts目录，因此不能直接在/etc/fstab添加挂载设备信息，那我们就还是在/etc/init.d/rcS启动脚本中添加，在/sbin/mdev -s后添加
     
     ```shell
     mkdir /dev/pts
@@ -89,7 +89,6 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     ```
     
     OK，测试一下screen，完美运行，大功告成。
-    
 - 
     2021.07.27(晚上):添加了运行脚本full-screen选项，希望能全屏启动且分辨率适配主机环境，然后发现qemu的gtk前端UI有点问题，在图形驱动工作前处于低分辨率，完成配置后分辨率正确后，gtk会更新窗画面，但是如果gtk进入全面模式就不会更新，最终整个全屏显示就出问题了，最终定位到qemu-6.0.0/ui/gtk.c:601这里gd_update_windowsize函数只会在非全屏模式更新size，于是我们做以下修改:
 

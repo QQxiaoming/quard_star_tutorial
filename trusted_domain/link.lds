@@ -159,7 +159,7 @@ SECTIONS
     } >ram AT>ram 
 
     . = ALIGN(8);
-    PROVIDE( _end = . ); /*0X2000,0340*/
+    PROVIDE( _end = . );
     PROVIDE( end = . );
     PROVIDE( heap_start = . );
 
