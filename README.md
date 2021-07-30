@@ -116,3 +116,23 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     到这里我们的编译器基本更换完成，后面如果遇到问题终于不用担心别人提供的二进制开发工具是否存在问题了，我们拥有全部的源码可以自行编译、debug、fix问题，O(∩_∩)O哈哈~ 
 - 
     2021.07.29(晚上):添加了qt-5.12.11，顺利完成了交叉编译，之前尝试了qt-5.15.2版本，发现该版本在不打开opengl的情况下存在bug无法正常编译，[Qt bugreports](https://bugreports.qt.io/browse/QTBUG-88017)上已经有描述该问题了，因此我们这里使用比较稳定的lts版本5.12.11。
+- 
+    2021.07.30(晚上):内核增加CONFIG_INPUT_EVDEV选项以方便qt应用使用/dev/input/event*设备来获取鼠标和键盘输入事件。编译了几个测试示例qt gui应用，一切正常，注意添加一些环境变量确保qt应用运转正常。目前还没完全部署好Qt库到代码里，我想多测试一些功能再考虑细节的部署问题，让部署和调试变得优雅。
+
+    ```
+    export QT_QPA_FB_DRM=1
+    export QT_QPA_GENERIC_PLUGINS=evdevkeyboard
+    export QT_QPA_GENERIC_PLUGINS=evdevmouse
+    export QT_QPA_EVDEV_MOUSE_PARAMETERS=/dev/input/event0
+    export QT_QPA_EVDEV_KEYBOARD_PARAMETERS=/dev/input/event1
+    export QT_PLUGIN_PATH=/home/root/plugins
+    ```
+
+    另外年初不是基于Qt移植了个世嘉和FC的模拟器，刚好也把这个项目也部署到现在的环境里看看效果，编译非常顺利，试运行如下图：
+
+    ![img1](./doc/img/img1.gif)
+
+    ![img2](./doc/img/img2.gif)
+
+    哈哈哈哈哈哈哈，这太搞笑了，居然成功在x86的pc中运行qemu模拟的riscv平台里运行linux系统并移植的基于fb的qt框架里跑模拟m68k架构应用程序成功运行了世嘉md游戏，层层套娃，试玩一下，帧率不可言表，哈哈哈哈（笑哭）！
+ 
