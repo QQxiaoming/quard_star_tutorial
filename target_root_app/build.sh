@@ -118,6 +118,46 @@ build_qt()
 	make install
 }
 
+build_libmnl()
+{
+    # 编译libmnl
+    echo "\033[1;4;41;32m编译libmnl\033[0m"
+    cd $SHELL_FOLDER/libmnl-1.0.4
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+}
+
+build_ethtool()
+{
+    # 编译ethtool
+    echo "\033[1;4;41;32m编译ethtool\033[0m"
+    cd $SHELL_FOLDER/ethtool-5.13
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output MNL_CFLAGS=-I$SHELL_FOLDER/output/include MNL_LIBS="-L$SHELL_FOLDER/output/lib -lmnl" CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+}
+
+build_openssl()
+{
+    # 编译openssl
+    echo "\033[1;4;41;32m编译openssl\033[0m"
+    cd $SHELL_FOLDER/openssl-1.1.1j
+	./Configure linux-generic64 no-asm --prefix=$SHELL_FOLDER/output --cross-compile-prefix=$CROSS_PREFIX-
+	make -j$PROCESSORS
+    make install_sw
+}
+
+build_iperf()
+{
+    # 编译iperf
+    echo "\033[1;4;41;32m编译iperf\033[0m"
+    cd $SHELL_FOLDER/iperf-3.10.1
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --with-openssl=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
 case "$1" in
 bash)
     build_bash
@@ -149,6 +189,18 @@ cu)
 qt)
     build_qt
     ;;
+libmnl)
+    build_libmnl
+    ;;
+ethtool)
+    build_ethtool
+    ;;
+openssl)
+    build_openssl
+    ;;
+iperf)
+    build_iperf
+    ;;
 all)
     build_make
     build_ncurses
@@ -160,6 +212,10 @@ all)
     build_screen
     build_cu
 	build_qt
+	build_libmnl
+	build_ethtool
+	build_openssl
+	build_iperf
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

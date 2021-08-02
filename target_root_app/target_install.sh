@@ -103,6 +103,39 @@ install_qt()
     done
 }
 
+
+install_libmnl()
+{
+	cd /usr/lib
+	cp $SHELL_FOLDER/output/lib/libmnl.so.0.2.0 /lib/libmnl.so.0.2.0
+	ln -s libmnl.so.0.2.0 libmnl.so.0
+	ln -s libmnl.so.0 libmnl.so
+}
+
+install_ethtool()
+{
+	cp $SHELL_FOLDER/output/sbin/ethtool /sbin/ethtool
+}
+
+install_openssl()
+{
+	cd /usr/lib
+	cp $SHELL_FOLDER/output/bin/openssl /bin/openssl
+	cp $SHELL_FOLDER/output/lib/libssl.so.1.1 /lib/libssl.so.1.1
+	cp $SHELL_FOLDER/output/lib/libcrypto.so.1.1 /lib/libcrypto.so.1.1
+	ln -s libssl.so.1.1 libssl.so
+	ln -s libcrypto.so.1.1 libcrypto.so
+}
+
+install_iperf()
+{
+	cd /usr/lib
+	cp $SHELL_FOLDER/output/bin/iperf3 /bin/iperf3
+	cp $SHELL_FOLDER/output/lib/libiperf.so.0.0.0 /lib/libiperf.so.0.0.0
+	ln -s libiperf.so.0.0.0 libiperf.so.0
+	ln -s libiperf.so.0 libiperf.so
+}
+
 case "$1" in
 bash)
     install_bash
@@ -134,6 +167,18 @@ cu)
 qt)
     install_qt
     ;;
+libmnl)
+    install_libmnl
+    ;;
+ethtool)
+    install_ethtool
+    ;;
+openssl)
+    install_openssl
+    ;;
+iperf)
+    install_iperf
+    ;;
 all)
     install_make
     install_ncurses
@@ -145,6 +190,10 @@ all)
     install_screen
     install_cu
 	install_qt
+    install_libmnl
+    install_ethtool
+    install_openssl
+    install_iperf
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
