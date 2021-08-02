@@ -11,10 +11,26 @@ mkdir /dev/pts
 mount -t devpts devpts /dev/pts
 mount -t 9p -o trans=virtio,version=9p2000.L,msize=16384 hostshare /mnt/
 
-echo QEMU-QUARD-STAR > /proc/sys/kernel/hostname
+/bin/hostname -F /etc/hostname
 
 dmesg -n 1
 chmod 666 /dev/null
+
+for i in /etc/init.d/S??* ;do
+     [ ! -f "$i" ] && continue
+     case "$i" in
+	*.sh)
+	    (
+		trap - INT QUIT TSTP
+		set start
+		. $i
+	    )
+	    ;;
+	*)
+	    $i start
+	    ;;
+    esac
+done
 
 echo "---------------------------------------------"
 echo " Welcome debugging on Qemu Quard Star board! "

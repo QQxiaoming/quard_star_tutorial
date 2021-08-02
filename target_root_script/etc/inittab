@@ -1,4 +1,7 @@
 ::sysinit:/etc/init.d/rcS
 console::respawn:/sbin/getty 38400 console
-console::restart:/sbin/init
-console::ctrlaltdel:/sbin/reboot
+::ctrlaltdel:/sbin/reboot
+::shutdown:/etc/init.d/rcK
+::shutdown:/sbin/swapoff -a
+::shutdown:/bin/umount -a -r
+::restart:/sbin/init

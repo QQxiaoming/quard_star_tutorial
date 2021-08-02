@@ -90,11 +90,13 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin \
 -drive file=$SHELL_FOLDER/output/rootfs/rootfs.img,format=raw,id=drive0 \
 -fsdev local,security_model=mapped-xattr,id=fsdev0,path=$SHELL_FOLDER \
+-netdev user,id=net0,net=192.168.31.0/24,dhcpstart=192.168.31.100 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,id=hd0,drive=drive0 \
 -device virtio-gpu-device,id=video0,xres=$WIDTH,yres=$HEIGHT \
 -device virtio-mouse-device,id=input0 \
 -device virtio-keyboard-device,id=input1 \
 -device virtio-9p-device,id=fs0,fsdev=fsdev0,mount_tag=hostshare \
+-device virtio-net-device,netdev=net0 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc="$DEFAULT_V"" \
 $GRAPHIC_PARAM $FULL_SCREEN
