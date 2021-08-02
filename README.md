@@ -135,4 +135,5 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     ![img2](./doc/img/img2.gif)
 
     哈哈哈哈哈哈哈，这太搞笑了，居然成功在x86的pc中运行qemu模拟的riscv平台里运行linux系统并移植的基于fb的qt框架里跑模拟m68k架构应用程序成功运行了世嘉md游戏，层层套娃，试玩一下，帧率不可言表，哈哈哈哈（笑哭）！
- 
+ - 
+    2021.08.01(下午):添加网络相关的配置脚本，修改启动脚本配置网络dhcp等功能，添加网络相关的工具ethtool和iperf。比较顺利没啥大问题注意下/etc/inittab内的语法是busybox的不是sysvinit的不要搞错了。
