@@ -106,7 +106,7 @@ install_qt()
 
 install_libmnl()
 {
-	cd /usr/lib
+	cd /lib
 	cp $SHELL_FOLDER/output/lib/libmnl.so.0.2.0 /lib/libmnl.so.0.2.0
 	ln -s libmnl.so.0.2.0 libmnl.so.0
 	ln -s libmnl.so.0 libmnl.so
@@ -119,7 +119,7 @@ install_ethtool()
 
 install_openssl()
 {
-	cd /usr/lib
+	cd /lib
 	cp $SHELL_FOLDER/output/bin/openssl /bin/openssl
 	cp $SHELL_FOLDER/output/lib/libssl.so.1.1 /lib/libssl.so.1.1
 	cp $SHELL_FOLDER/output/lib/libcrypto.so.1.1 /lib/libcrypto.so.1.1
@@ -129,11 +129,25 @@ install_openssl()
 
 install_iperf()
 {
-	cd /usr/lib
+	cd /lib
 	cp $SHELL_FOLDER/output/bin/iperf3 /bin/iperf3
 	cp $SHELL_FOLDER/output/lib/libiperf.so.0.0.0 /lib/libiperf.so.0.0.0
 	ln -s libiperf.so.0.0.0 libiperf.so.0
 	ln -s libiperf.so.0 libiperf.so
+}
+
+install_zlib()
+{
+	cd /lib
+	cp $SHELL_FOLDER/output/lib/libz.so.1.2.11 /lib/libz.so.1.2.11
+	ln -s libz.so.1.2.11 libz.so.1
+	ln -s libz.so.1 libz.so
+}
+
+install_openssh()
+{
+    cd $SHELL_FOLDER/openssh-8.6p1
+    make install
 }
 
 case "$1" in
@@ -179,6 +193,12 @@ openssl)
 iperf)
     install_iperf
     ;;
+zlib)
+    install_zlib
+    ;;
+openssh)
+    install_openssh
+    ;;
 all)
     install_make
     install_ncurses
@@ -194,6 +214,8 @@ all)
     install_ethtool
     install_openssl
     install_iperf
+	install_zlib
+	install_openssh
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

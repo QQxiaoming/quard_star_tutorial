@@ -158,6 +158,28 @@ build_iperf()
     make install
 }
 
+build_zlib()
+{
+    # 编译zlib
+    echo "\033[1;4;41;32m编译zlib\033[0m"
+    cd $SHELL_FOLDER/zlib-1.2.11
+	export CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --prefix=$SHELL_FOLDER/output
+	make -j$PROCESSORS
+    make install
+}
+
+build_openssh()
+{
+    # 编译openssh
+    echo "\033[1;4;41;32m编译openssh\033[0m"
+    cd $SHELL_FOLDER/openssh-8.6p1
+    $CONFIGURE --host=riscv64-linux-gnu --with-openssl=$SHELL_FOLDER/output --with-zlib=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    #make install
+}
+
+
 case "$1" in
 bash)
     build_bash
@@ -201,6 +223,12 @@ openssl)
 iperf)
     build_iperf
     ;;
+zlib)
+    build_zlib
+    ;;
+openssh)
+    build_openssh
+    ;;
 all)
     build_make
     build_ncurses
@@ -216,6 +244,8 @@ all)
 	build_ethtool
 	build_openssl
 	build_iperf
+	build_zlib
+	build_openssh
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

@@ -73,6 +73,10 @@ customize3)
 	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
+customize4)
+	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
+	DEFAULT_V=":vn:24x80:"
+	;;
 --help)
 	echo $USAGE
 	exit 0
@@ -90,7 +94,7 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin \
 -drive file=$SHELL_FOLDER/output/rootfs/rootfs.img,format=raw,id=drive0 \
 -fsdev local,security_model=mapped-xattr,id=fsdev0,path=$SHELL_FOLDER \
--netdev user,id=net0,net=192.168.31.0/24,dhcpstart=192.168.31.100 \
+-netdev user,id=net0,net=192.168.31.0/24,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,id=hd0,drive=drive0 \
 -device virtio-gpu-device,id=video0,xres=$WIDTH,yres=$HEIGHT \
