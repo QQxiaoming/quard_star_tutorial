@@ -637,7 +637,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #KerberosGetAFSToken no
 
 # GSSAPI options
-GSSAPIAuthentication no
+#GSSAPIAuthentication no
 #GSSAPICleanupCredentials yes
 
 # Set this to 'yes' to enable PAM authentication, account processing,
