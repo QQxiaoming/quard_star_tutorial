@@ -1,0 +1,116 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Check that the parallel testsuite harness removes incomplete log files
+# when interrupt upon some signal.  This test is definitely too hacky,
+# but we couldn't find a better way to deal with inter-processes
+# signals and the whole process-synchronization mess.
+
+. test-init.sh
+
+plan_ 16
+
+cat >> configure.ac << 'END'
+AC_OUTPUT
+END
+
+cat > Makefile.am << 'END'
+TESTS = foo.test
+## Provide more debugging info.
+TEST_LOG_COMPILER = $(SHELL) -ex
+## Required by foo.test; see below.
+AM_TESTS_FD_REDIRECT = 9>&1
+END
+
+# This is hacky and ugly, but has the great advantage of avoiding us a lot
+# of pain with background processes and related synchronization issues.
+
+cat - "$am_scriptdir"/test-driver > test-driver <<'END'
+#!/bin/sh
+echo $$ > pid
+END
+
+cat > foo.test << 'END'
+#!/bin/sh -e
+
+# We expect the test driver to be terminated by a signal, and so
+# to exit with non-zero status, thus causing "make check" to fail.
+# Exiting with status 0 from this test script is thus a good way to
+# make unexpected behaviours more evident, since this will likely
+# cause and unexpected success in "make check".
+trap 'exit 0' 0;
+stop_test () { exit 0; }
+
+# We need the "foo is starting to run" string flushed to standard output
+# ASAP, because we are soon going to grep for that string in the log file
+# where the test driver is redirecting this script's stdout.  The safest
+# way force this flushing portably is to rely on perl I/O capabilities.
+$PERL -e 'BEGIN { $| = 1 }; print "foo is starting to run\n"' || stop_test
+
+ls -l >&9 || stop_test
+
+bailout ()
+{
+  # Print this to the original stdout (saved in the fd 9), so that the
+  # emitted "Bail out!" directive will be interpreted by the test driver
+  # running the Automake testsuite.
+  echo "Bail out! $*" >&9
+  stop_test
+}
+
+test $sig -gt 0 || bailout "\$sig not exported to test script"
+
+res=ok; cat foo.log >&9 || res="not ok"
+echo "$res - logfile created and readable [SIG $sig]" >&9
+
+res=ok; grep '^foo is starting to run$' foo.log >&9 || res='not ok'
+echo "$res - logfile contains output from test script [SIG $sig]" >&9
+
+cat pid >&9 || bailout "cannot get PID of test driver"
+kill -$sig `cat pid` || bailout "cannot send signal $sig to test driver"
+
+stop_test
+END
+chmod a+x foo.test
+
+$ACLOCAL  || fatal_ "aclocal failed"
+$AUTOCONF || fatal_ "autoconf failed"
+$AUTOMAKE || fatal_ "automake failed"
+
+./configure || fatal_ "./configure failed"
+
+# The only signals that can be trapped portable are 1 "SIGHUP",
+# 2 "SIGINT", 13 "SIGPIPE" and 15 "SIGTERM".
+trapped_signals='1 2 13 15'
+
+for sig in $trapped_signals; do
+  if is_blocked_signal $sig; then
+    for i in 1 2 3 4; do echo "ok # SKIP signal $sig is blocked"; done
+    continue
+  fi
+  rm -f pid fail *.log
+  r=ok; env PERL="$PERL" sig="$sig" $MAKE check && r='not ok'
+  echo "$r - signal $sig to test driver causes \"make check\" to fail"
+  ls -l
+  # These files shouldn't exist, but in case they do, their content might
+  # provide helpful information about the causes of the failure(s).
+  cat foo.log || :
+  cat test-suite.log || :
+  r=ok; ls | $EGREP 'foo.*\.(log|tmp)' && r='not ok'
+  echo "$r - test driver clean up log and tmp files after signal $sig"
+done
+
+:

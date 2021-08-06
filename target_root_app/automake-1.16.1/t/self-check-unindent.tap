@@ -1,0 +1,255 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Sanity check for the automake testsuite.
+# Check the 'unindent' subroutine.
+
+. test-init.sh
+
+plan_ 22
+
+#------------------------------------------------------------------
+
+will_test () { tst=$*; }
+
+do_check ()
+{
+  command_ok_ "$tst [simple, exit status]" \
+              eval 'unindent input > got'
+  command_ok_ "$tst [simple, output]" \
+              diff exp got
+  command_ok_ "$tst [parallel, exit status]" \
+              eval 'unindent input | unindent > got'
+  command_ok_ "$tst [parallel, output]" \
+              diff exp got
+}
+
+#------------------------------------------------------------------
+
+will_test 'leading spaces'
+
+cat > input <<END
+  1
+   2
+3
+ 4
+${tab}5
+${tab}  6
+  6${sp}
+7${sp}
+  8${sp}${sp}
+9${sp}${sp}
+  10${tab}
+11${tab}
+  12${sp}${tab}
+13${sp}${tab}
+  14 this${tab}with${tab}multiple fields${sp}
+15 and   ${tab}${tab}this too${tab}
+ 16 and also this
+${sp}${sp}
+${sp}
+${tab}
+
+last line
+END
+
+cat > exp <<END
+1
+ 2
+3
+ 4
+${tab}5
+${tab}  6
+6${sp}
+7${sp}
+8${sp}${sp}
+9${sp}${sp}
+10${tab}
+11${tab}
+12${sp}${tab}
+13${sp}${tab}
+14 this${tab}with${tab}multiple fields${sp}
+15 and   ${tab}${tab}this too${tab}
+ 16 and also this
+
+${sp}
+${tab}
+
+last line
+END
+
+do_check
+
+#------------------------------------------------------------------
+
+will_test 'leading tab'
+
+cat > input <<END
+${tab}1
+${tab} 2
+3
+ 4
+  5
+    6
+        7
+ ${tab}8
+${tab}${tab}9
+${tab}10${tab}
+${tab}11${sp}
+12${tab}
+13${sp}
+${tab}14 this  with${tab}multiple fields${sp}
+15 and   ${tab}${tab}this too${tab}
+ 16 and also this
+${tab}
+${sp}
+${sp}${tab}
+
+last line
+END
+
+cat > exp <<END
+1
+ 2
+3
+ 4
+  5
+    6
+        7
+ ${tab}8
+${tab}9
+10${tab}
+11${sp}
+12${tab}
+13${sp}
+14 this  with${tab}multiple fields${sp}
+15 and   ${tab}${tab}this too${tab}
+ 16 and also this
+
+${sp}
+${sp}${tab}
+
+last line
+END
+
+do_check "leading tab"
+
+#------------------------------------------------------------------
+
+will_test 'no leading whitespace'
+
+cat > input <<END
+1
+ 2
+  3
+        4
+${tab}5
+${tab} 6
+ ${tab}7
+${tab}${tab}8
+9${sp}
+ 10${tab}
+${tab}10${sp}${sp}
+14 this with${tab}multiple  fields${sp}
+ 15 and this too${tab}
+${tab}16 and also this
+${tab}
+${sp}
+
+last line
+END
+
+cp input exp
+
+do_check
+
+#------------------------------------------------------------------
+
+will_test 'leading empty lines ignored (1)'
+
+cat > input <<END
+
+
+ foo
+ bar
+   quux
+END
+
+cat > exp <<END
+
+
+foo
+bar
+  quux
+END
+
+do_check
+
+#------------------------------------------------------------------
+
+will_test 'leading empty lines ignored (2)'
+
+cat > input <<END
+
+
+foo
+bar
+   quux
+END
+
+cat > exp <<END
+
+
+foo
+bar
+   quux
+END
+
+do_check
+
+#------------------------------------------------------------------
+
+will_test 'more elaborated parallel use'
+
+cat > input <<END
+  x
+  ${tab}y
+  z
+  ${tab}a
+  ${tab} b
+${tab}c
+   ${tab}d
+ ${tab}e
+  ${tab}${tab}f
+END
+
+cat > exp <<END
+y
+z
+a
+ b
+c
+ ${tab}d
+ ${tab}e
+${tab}f
+END
+
+command_ok_ "$tst [exit status]" \
+            eval 'unindent input | sed 1d | unindent > got'
+
+command_ok_ "$tst [output]" diff exp got
+
+:

@@ -1,0 +1,420 @@
+#! /usr/bin/env perl
+# Automatically compute some dependencies for the hand-written tests
+# of the Automake testsuite.  Also, automatically generate some more
+# tests from them (for particular cases/setups only).
+
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#--------------------------------------------------------------------------
+
+use warnings FATAL => "all";
+use strict;
+use File::Basename ();
+use constant TRUE => 1;
+use constant FALSE => 0;
+
+my $me = File::Basename::basename $0;
+
+# For use in VPATH builds.
+my $srcdir = ".";
+
+# The testsuite subdirectory, relative to the top-lever source directory.
+my $testdir = "t";
+
+# Where testsuite-related helper scripts, data files and shell libraries
+# are placed.  Relative to the top-lever source directory.
+my $testauxdir = "$testdir/ax";
+
+#--------------------------------------------------------------------------
+
+sub unindent ($)
+{
+  my $text = shift;
+  $text =~ /^(\s*)/;
+  my $indentation = $1;
+  $text =~ s/^$indentation//gm;
+  return $text;
+}
+
+sub atomic_write ($$;$)
+{
+  my ($outfile, $func) = (shift, shift);
+  my $perms = @_ > 0 ? shift : 0777;
+  my $tmpfile = "$outfile-t";
+  foreach my $f ($outfile, $tmpfile)
+    {
+      unlink $f or die "$me: cannot unlink '$f': $!\n"
+        if -e $f;
+    }
+  open (my $fh, ">$tmpfile")
+    or die "$me: can't write to '$tmpfile': $!\n";
+  $func->($fh);
+  close $fh
+    or die "$me: closing '$tmpfile': $!\n";
+  chmod ($perms & ~umask, $tmpfile)
+    or die "$me: cannot change perms for '$tmpfile': $!\n";
+  rename ($tmpfile, $outfile)
+    or die "$me: renaming '$tmpfile' -> '$outfile: $!\n'";
+}
+
+sub line_match ($$)
+{
+  my ($re, $file) = (shift, shift);
+  # Try both builddir and srcdir, with builddir first, to play nice
+  # with VPATH builds.
+  open (FH, "<$file") or open (FH, "<$srcdir/$file")
+    or die "$me: cannot open file '$file': $!\n";
+  my $ret = 0;
+  while (defined (my $line = <FH>))
+    {
+      if ($line =~ $re)
+        {
+          $ret = 1;
+          last;
+        }
+    }
+  close FH or die "$me: cannot close file '$file': $!\n";
+  return $ret;
+}
+
+sub write_wrapper_script ($$$)
+{
+  my ($file_handle, $wrapped_test, $shell_setup_code, $creator_name) = @_;
+  print $file_handle unindent <<EOF;
+    #! /bin/sh
+    # This file has been automatically generated.  DO NOT EDIT BY HAND!
+    . test-lib.sh
+    $shell_setup_code
+    # In the spirit of VPATH, we prefer a test in the build tree
+    # over one in the source tree.
+    for dir in . "\$am_top_srcdir"; do
+      if test -f "\$dir/$wrapped_test"; then
+        echo "\$0: will source \$dir/$wrapped_test"
+        . "\$dir/$wrapped_test"; exit \$?
+      fi
+    done
+    echo "\$0: cannot find wrapped test '$wrapped_test'" >&2
+    exit 99
+EOF
+}
+
+sub get_list_of_tests ()
+{
+  my $make = defined $ENV{MAKE} ? $ENV{MAKE} : "make";
+  # Unset MAKEFLAGS, for when we are called from make itself.
+  my $cmd = "MAKEFLAGS= && unset MAKEFLAGS && cd '$srcdir' && "
+            . "$make -s -f $testdir/list-of-tests.mk print-list-of-tests";
+  my @tests_list = split /\s+/, `$cmd`;
+  die "$me: cannot get list of tests\n" unless $? == 0 && @tests_list;
+  my $ok = 1;
+  foreach my $test (@tests_list)
+    {
+      # Respect VPATH builds.
+      next if -f $test || -f "$srcdir/$test";
+      warn "$me: test '$test' not found\n";
+      $ok = 0;
+    }
+  die "$me: some test scripts not found\n" if !$ok;
+  return @tests_list;
+}
+
+sub parse_options (@)
+{
+  use Getopt::Long qw/GetOptions/;
+  local @ARGV = @_;
+  GetOptions ('srcdir=s' => \$srcdir) or die "$me: usage error\n";
+  die "$me: too many arguments\n" if @ARGV > 0;
+  die "$me: srcdir '$srcdir': not a directory\n" unless -d $srcdir;
+}
+
+#--------------------------------------------------------------------------
+
+my %deps_extractor =
+  (
+    libtool_macros =>
+      {
+        line_matcher => qr/^\s*required=.*\blibtool/,
+        nodist_prereqs => "$testdir/libtool-macros.log",
+      },
+    gettext_macros =>
+      {
+        line_matcher => qr/^\s*required=.*\bgettext/,
+        nodist_prereqs => "$testdir/gettext-macros.log",
+      },
+    pkgconfig_macros =>
+      {
+        line_matcher => qr/^\s*required=.*\bpkg-config/,
+        nodist_prereqs => "$testdir/pkg-config-macros.log",
+      },
+    use_trivial_test_driver =>
+      {
+        line_matcher => qr/\btrivial-test-driver\b/,
+        dist_prereqs => "$testauxdir/trivial-test-driver",
+      },
+    check_testsuite_summary =>
+      {
+        line_matcher => qr/\btestsuite-summary-checks\.sh\b/,
+        dist_prereqs => "$testauxdir/testsuite-summary-checks.sh",
+      },
+    extract_testsuite_summary =>
+      {
+        line_matcher => qr/\bextract-testsuite-summary\.pl\b/,
+        dist_prereqs => "$testauxdir/extract-testsuite-summary.pl",
+      },
+    check_tap_testsuite_summary =>
+      {
+        line_matcher => qr/\btap-summary-aux\.sh\b/,
+        dist_prereqs => "$testauxdir/tap-summary-aux.sh",
+      },
+    on_tap_with_common_setup =>
+      {
+        line_matcher => qr/\btap-setup\.sh\b/,
+        dist_prereqs => "$testauxdir/tap-setup.sh",
+        nodist_prereqs => "$testdir/tap-common-setup.log",
+      },
+    depcomp =>
+      {
+        line_matcher => qr/\bdepcomp\.sh\b/,
+        dist_prereqs => "$testauxdir/depcomp.sh",
+      },
+  );
+
+#--------------------------------------------------------------------------
+
+my %test_generators =
+  (
+    #
+    # Any test script in the Automake testsuite that checks features of
+    # the Automake-provided parallel testsuite harness might want to
+    # define a sibling test that does similar checks, but for the old
+    # serial testsuite harness instead.
+    #
+    # Individual tests can request the creation of such a sibling by
+    # making the string "try-with-serial-tests" appear any line of the
+    # test itself.
+    #
+    serial_testsuite_harness =>
+      {
+        line_matcher     => qr/\btry-with-serial-tests\b/,
+        shell_setup_code => 'am_serial_tests=yes',
+      },
+    #
+    # For each test script in the Automake testsuite that tests features
+    # of one or more automake-provided shell script from the 'lib/'
+    # subdirectory by running those scripts directly (i.e., not thought
+    # make calls and automake-generated makefiles), define a sibling test
+    # that does likewise, but running the said script with the configure
+    # time $SHELL instead of the default system shell /bin/sh.
+    #
+    # A test is considered a candidate for sibling-generation if it calls
+    # the 'get_shell_script' function anywhere.
+    #
+    # Individual tests can prevent the creation of such a sibling by
+    # explicitly setting the '$am_test_prefer_config_shell' variable
+    # to either "yes" or "no".
+    # The rationale for this is that if the variable is set to "yes",
+    # the test already uses $SHELL, so that a sibling would be just a
+    # duplicate; while if the variable is set to "no", the test doesn't
+    # support, or is not meant to use, $SHELL to run the script under
+    # testing, and forcing it to do so in the sibling would likely
+    # cause a spurious failure.
+    #
+    prefer_config_shell =>
+      {
+        line_matcher =>
+          qr/(^|\s)get_shell_script\s/,
+        line_rejecter =>
+          qr/\bam_test_prefer_config_shell=/,
+        shell_setup_code =>
+          'am_test_prefer_config_shell=yes',
+      },
+  );
+
+#--------------------------------------------------------------------------
+
+parse_options @ARGV;
+
+my @all_tests = get_list_of_tests;
+my @generated_tests = (); # Will be updated later.
+
+print "## -*- Makefile -*-\n";
+print "## Generated by $me.  DO NOT EDIT BY HAND!\n\n";
+
+print <<EOF;
+
+## --------------------------------------------- ##
+##  Autogenerated tests and their dependencies.  ##
+## --------------------------------------------- ##
+
+EOF
+
+# A test script '$test' can possibly match more than one condition, so
+# for each tests we need to keep a list of generated wrapper tests.
+# Since what defines these wrapper scripts is the set of initializations
+# that are issued before sourcing the original, wrapped tests, these
+# initializations is what we put in our list entries.
+# The list will be saved in the hash entry '$wrapper_setups{$test}'.
+my %wrapper_setups = ();
+foreach my $test (@all_tests)
+  {
+    my @setups = ('');
+    foreach my $x (values %test_generators)
+    {
+      next
+        if not line_match $x->{line_matcher}, $test;
+      next
+        if $x->{line_rejecter} and line_match $x->{line_rejecter}, $test;
+      @setups = map { ($_, "$_\n$x->{shell_setup_code}") } @setups;
+    }
+    @setups = grep { $_ ne '' } @setups;
+    $wrapper_setups{$test} = \@setups if @setups;
+  }
+# And now create all the wrapper tests.
+for my $wrapped_test (sort keys %wrapper_setups)
+  {
+    my $setup_list = $wrapper_setups{$wrapped_test};
+    (my $base = $wrapped_test) =~ s/\.([^.]*)$//;
+    my $suf = $1 or die "$me: test '$wrapped_test' lacks a suffix\n";
+    my $count = 0;
+    foreach my $setup (@$setup_list)
+      {
+        $count++;
+        my $wbase = "$base-w" . ($count > 1 ? $count : '');
+        my $wrapper_test =  "$wbase.$suf";
+        # Register wrapper test as "autogenerated".
+        push @generated_tests, $wrapper_test;
+        # Create wrapper test.
+        atomic_write $wrapper_test,
+                     sub { write_wrapper_script $_[0], $wrapped_test,
+                                                $setup },
+                     0444;
+        # The generated test works by sourcing the original test, so that
+        # it has to be re-run every time that changes ...
+        print "$wbase.log: $wrapped_test\n";
+        # ... but also every time the prerequisites of the wrapped test
+        # changes.  The simpler (although suboptimal) way to do so is to
+        # ensure that the wrapped tests runs before the wrapper one (in
+        # case it needs to be re-run *at all*).
+        # FIXME: we could maybe refactor the script to find a more
+        # granular way to express such implicit dependencies.
+        print "$wbase.log: $base.log\n";
+      }
+  }
+
+print <<EOF;
+
+## ---------------------------------------------------- ##
+##  Ad-hoc autogenerated tests and their dependencies.  ##
+## ---------------------------------------------------- ##
+
+EOF
+
+print "## Tests on automatic dependency tracking (see 'depcomp.sh').\n";
+
+# Key: depmode, value: list of required programs.
+my %depmodes =
+  (
+    auto         => ["cc"],
+    disabled     => ["cc"],
+    makedepend   => ["cc", "makedepend", "-c-o"],
+    dashmstdout  => ["gcc"],
+    cpp          => ["gcc"],
+# This was for older (pre-3.x) GCC versions (newer versions
+# have depmode "gcc3").  But other compilers use this depmode
+# as well (for example, the IMB xlc/xlC compilers, and the HP
+# C compiler, see 'lib/depcomp' for more info), so it's not
+# obsolete, and it's worth giving it some coverage.
+    gcc          => ["gcc"],
+# This is for older (pre-7) msvc versions.  Newer versions
+# have depmodes "msvc7" and "msvc7msys".
+    msvisualcpp  => ["cl", "cygpath"],
+    msvcmsys     => ["cl", "mingw"],
+  );
+
+foreach my $lt (TRUE, FALSE)
+  {
+    foreach my $m (sort keys %depmodes)
+      {
+        my $planned = ($lt && $m eq "auto") ? 84 : 28;
+        my @required =
+          (
+            @{$depmodes{$m}},
+            $lt ? ("libtoolize",) : (),
+          );
+        my @vars_init =
+          (
+            "am_create_testdir=empty",
+            "depmode=$m",
+            "depcomp_with_libtool=" . ($lt ? "yes" : "no"),
+          );
+        my $test = "$testdir/depcomp" . ($lt ? "-lt-" : "-") . "$m.tap";
+        # Register wrapper test as "autogenerated" ...
+        push @generated_tests, $test;
+        # ... and create it.
+        atomic_write ($test, sub
+          {
+            my $file_handle = shift;
+            print $file_handle unindent <<EOF;
+              #! /bin/sh
+              # Automatically generated test.  DO NOT EDIT BY HAND!
+              @vars_init
+              required="@required"
+              . test-init.sh
+              plan_ $planned
+              . depcomp.sh
+              exit \$?
+EOF
+          },
+          0444);
+      }
+   }
+
+# Update generated makefile fragment to account for all the generated tests.
+print "generated_TESTS =\n";
+map { print "generated_TESTS += $_\n" } @generated_tests;
+
+# The test scripts are scanned for automatic dependency generation *after*
+# the generated tests have been created, so they too can be scanned.  To
+# do so correctly, we need to update the list in '@all_tests' to make it
+# comprise also the freshly-generated tests.
+
+push @all_tests, @generated_tests;
+
+print <<EOF;
+
+## ----------------------------- ##
+##  Autogenerated dependencies.  ##
+## ----------------------------- ##
+
+EOF
+
+for my $k (sort keys %deps_extractor)
+  {
+    my $x = $deps_extractor{$k};
+    my $dist_prereqs = $x->{dist_prereqs} || "";
+    my $nodist_prereqs = $x->{nodist_prereqs} || "";
+    my @tests = grep { line_match $x->{line_matcher}, $_ } @all_tests;
+    map { s/\.[^.]*$//; s/$/\.log/; } (my @logs = @tests);
+    print "## Added by deps-extracting key '$k'.\n";
+    ## The list of all tests which have a dependency detected by the
+    ## current key.
+    print join(" \\\n  ", "${k}_TESTS =", @tests) . "\n";
+    print "EXTRA_DIST += $dist_prereqs\n";
+    map { print "$_: $dist_prereqs $nodist_prereqs\n" } @logs;
+    print "\n";
+  }
+
+__END__

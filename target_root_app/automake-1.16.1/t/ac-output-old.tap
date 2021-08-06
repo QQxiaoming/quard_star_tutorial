@@ -1,0 +1,177 @@
+#!/bin/sh
+# Copyright (C) 1996-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test for various older bugs related to quoting, escaping and
+# line breaking in the use of AC_OUTPUT.  Synthesised by a bunch
+# of older tests (referenced below).
+
+. test-init.sh
+
+plan_ 22
+
+rm -f configure.ac depcomp # Not required.
+
+# -----------------------------------------------------------------------
+
+# Test for bug reported by François Pinard.
+# If \ is in AC_OUTPUT, automake barfs.
+# This was the old test 'acoutbs.test'.
+
+# Also test for bug reported by David A. Swierczek.
+# Another bug with \ in AC_OUTPUT (this time with whitespace).
+# This was the old test 'acoutbs2.test'.
+
+acoutbs_check ()
+{
+  dir=acoutbs$1
+  mkdir $dir
+  cd $dir
+  cat > configure.ac
+  touch Makefile.am zot.in
+  command_ok_ "aclocal groks '\\' in AC_OUTPUT ($dir)" $ACLOCAL
+  command_ok_ "automake groks '\\' in AC_OUTPUT ($dir)" $AUTOMAKE
+  command_ok_ "autoconf groks '\\' in AC_OUTPUT ($dir)" $AUTOCONF
+  command_ok_ "can ./configure in $dir" ./configure
+  command_ok_ "zot created in $dir" test -f zot
+  ls -a > lst || bailout_ "cannot get file listing in $dir"
+  command_ok_ "'\\' not leaked in filenames in $dir" not grep '\\' lst
+  cd ..
+}
+
+acoutbs_check 1 << 'END'
+AC_INIT([acoutbs1], [1.0])
+AM_INIT_AUTOMAKE
+AC_OUTPUT(Makefile \
+zot)
+END
+
+acoutbs_check 2 << 'END'
+AC_INIT([acoutbs2], [1.0])
+AM_INIT_AUTOMAKE
+AC_OUTPUT(\
+   Makefile \
+   zot
+)
+END
+
+# -----------------------------------------------------------------------
+
+# Test for bug reported by Jerome Santini.
+# If I put this line in my configure.ac:
+#  AC_OUTPUT(Makefile src/Makefile tests/Makefile, echo timestamp > stamp-h)dnl
+# automake is not happy:
+#  [ ... ]
+# This was the old test 'acoutnoq.test'.
+
+mkdir acoutnoq
+cd acoutnoq
+
+cat > configure.ac << 'END'
+AC_INIT([acoutnoq], [1.0])
+AM_INIT_AUTOMAKE
+AC_OUTPUT(Makefile, [true])
+END
+
+: > Makefile.am
+
+command_ok_ "aclocal and quoted AC_OUTPUT second argument" $ACLOCAL
+command_ok_ "automake and quoted AC_OUTPUT second argument" $AUTOMAKE
+
+cd ..
+
+# -----------------------------------------------------------------------
+
+# Test for bug when AC_OUTPUT has 2 args on the same line, eg:
+#   AC_OUTPUT([Makefile automake tests/Makefile],[chmod +x automake])
+# This was the old test 'acoutpt.test'.
+
+mkdir acoutpt
+cd acoutpt
+
+cat > configure.ac << 'END'
+AC_INIT([acoutpt], [1.0])
+AM_INIT_AUTOMAKE
+AC_OUTPUT([Makefile], [true])
+END
+
+: > Makefile.am
+
+command_ok_ "aclocal and two AC_OUTPUT arguments on same line" $ACLOCAL
+command_ok_ "automake and two AC_OUTPUT arguments on same line" $AUTOMAKE
+
+cd ..
+
+# -----------------------------------------------------------------------
+
+# Test for bug reported by Eric Magnien.
+# This was the old test 'acoutpt2.test'.
+
+mkdir acoutpt2
+cd acoutpt2
+
+# Name of the current "subtest".
+cur=acoutput2
+
+cat > configure.ac <<END
+AC_INIT([$cur], [1.0])
+AM_INIT_AUTOMAKE
+AC_OUTPUT([subdir/Makefile subdir/foo Makefile foo], [true])
+END
+
+mkdir subdir
+
+: > Makefile.am
+: > subdir/Makefile.am
+: > foo.in
+: > subdir/foo.in
+
+command_ok_ "aclocal and AC_OUTPUT ($cur)" $ACLOCAL
+command_ok_ "automake and AC_OUTPUT ($cur)" $AUTOMAKE
+command_ok_ "foo.in mentioned two times in Makefile.in ($cur)" \
+             test $($FGREP -c 'foo.in' Makefile.in) -eq 2
+
+# This ought to work as well.
+command_ok_ "'automake -a -f' and AC_OUTPUT ($cur)" \
+            $AUTOMAKE --add-missing --force-missing
+
+cd ..
+
+# -----------------------------------------------------------------------
+
+# Test for bug reported by François Pinard.
+# This was the old test 'acoutqnl.test'.
+
+mkdir acoutqnl
+cd acoutqnl
+
+cat > configure.ac << 'END'
+AC_INIT([acoutqnl], [1.0])
+AM_INIT_AUTOMAKE
+AC_OUTPUT([Makefile],
+[echo zardoz has spoken])
+END
+
+: > Makefile.am
+
+command_ok_ "aclocal and two AC_OUTPUT arguments on two lines" $ACLOCAL
+command_ok_ "automake and two AC_OUTPUT arguments on two lines" $AUTOMAKE
+
+cd ..
+
+# -----------------------------------------------------------------------
+
+# And we're done.
+exit 0

@@ -1,0 +1,57 @@
+#! /bin/sh
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test that two whitespace-separated lists are equal.
+# Assumes the two lists are passed on the command line separated by
+# a '==' string.
+# This script is useful to test equality of lists in makefile rules,
+# in the face of variables defined through line-continuations,
+# automake rewrites and expansions of empty variables.
+
+# NOTE: keep this file Bourne-compatible, for the sake of systems with
+#       non-POSIX /bin/sh (like Solaris).
+
+set -e
+set -u
+
+# Initialize before unsetting, for shells (like older bash or Solaris
+# ksh) that fail to unset variables that are already unset.
+exp= got=; unset exp got
+seen_eqeq=no
+while test $# -gt 0; do
+  if test x"$1" = x"=="; then
+    if test $seen_eqeq = no; then
+      seen_eqeq=yes
+    else
+      echo "$0: more than one '==' argument seen on command line" >&2
+      exit 2
+    fi
+  else
+    if test $seen_eqeq = no; then
+      got=${got+"$got "}$1
+    else
+      exp=${exp+"$exp "}$1
+    fi
+  fi
+  shift
+done
+
+if test $seen_eqeq = no; then
+  echo "$0: no '==' argument seen on command line" >&2
+  exit 2
+fi
+
+test x"${exp-}" = x"${got-}"

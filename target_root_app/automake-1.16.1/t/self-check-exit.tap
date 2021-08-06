@@ -1,0 +1,82 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Sanity check for the automake testsuite.
+# Check that, in case of failing commands, the correct exit status is
+# passed to the exit trap installed by the 'test-init.sh' script.
+# Also check that the 'errexit' shell flag is active.
+
+am_create_testdir=no
+. test-init.sh
+
+plan_ 32
+
+# This test becomes more cumbersome if we keep the 'errexit' shell flag
+# set.  And removing it is no big deal, as this test is a TAP-based one,
+# so that false positives remain very unlikely.
+set +e
+
+# It's especially important that the 'unset' is done before sourcing
+# test-init.sh, i.e., when 'set -e' is not active yet, for the benefit
+# of shells (like Bash 2.05 and Solaris 10 /bin/ksh) that returns a
+# non-zero status when unsetting an already-unset variable.
+# Add an extra newline at the end so that the aliases defined by
+# test-init.sh can take effect.  Yes, this is truly required.
+init="stderr_fileno_=2; unset am_explicit_skips;. test-init.sh${nl}"
+
+# Required so that the code in test-init.sh doesn't go crazy trying to creating a
+# temporary directory in the absolute dir of $AM_TEST_RUNNER_SHELL.
+dummy_test_script=t/$me.sh
+
+for st in 1 2 3 4 5 77 99 126 127 128 129 130 255; do
+  for exit_cmd in "exit $st" "sh -c 'exit $st'"; do
+    $AM_TEST_RUNNER_SHELL -c "$init $exit_cmd; :" "$dummy_test_script"
+    command_ok_ "$exit_cmd" test $? -eq $st
+  done
+done
+
+for sig in 1 2 13 15; do
+  if is_blocked_signal $sig; then
+    skip_ -r "signal $sig seems blocked"
+    continue
+  fi
+  if test $sig -eq 2; then
+    # Some Korn shells might otherwise get a spurious SIGINT when one is
+    # sent to the child $AM_TEST_RUNNER_SHELL.  For more details, see:
+    # <https://lists.gnu.org/archive/html/bug-autoconf/2011-09/msg00004.html>
+    trap : 2
+  fi
+  $AM_TEST_RUNNER_SHELL -c "$init kill -$sig \$\$; :" "$dummy_test_script"
+  rc=$?
+  if test $sig -eq 2; then
+    # Reset default SIGINT handler as portably as possible.
+    trap 2 || trap - 2
+  fi
+  command_ok_ "kill -$sig" test $rc -eq 99
+  unset rc
+done
+
+: Non-existent program.
+$AM_TEST_RUNNER_SHELL -c "$init non-existent-prog; :" "$dummy_test_script"
+command_ok_ "command not found" -- test $? -gt 0
+
+: Non-executable command.
+test -f Makefile && test ! -x Makefile || \
+  framowork_failure_ "no proper Makefile in the current directory"
+$AM_TEST_RUNNER_SHELL -c "$init ./Makefile; :" "$dummy_test_script"
+command_ok_ "permission denied" test $? -gt 0
+
+:

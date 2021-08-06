@@ -1,0 +1,71 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Sanity check for the automake testsuite.
+# Check that tests using 'test-init.sh' create a proper temporary
+# directory, and run in it.  Also check that we can prevent the
+# pre-population and the creation of such directory if we want.
+
+am_create_testdir=no
+. test-init.sh
+
+plan_ 5
+
+unset keep_testdirs
+
+# This needs to be consistent with what $AM_TEST_RUNNER_SHELL
+# deems to be the current working directory.
+cwd=$($AM_TEST_RUNNER_SHELL -c 'pwd') \
+  || fatal_ "can't get current working directory"
+echo "$cwd"
+
+do_check ()
+{
+  rm -rf _self.dir || framework_failure_ "cleaning up _self.dir"
+  command_ok_ "$1 [$2]" $AM_TEST_RUNNER_SHELL -c "
+    $2
+   . test-init.sh
+    # Don't fail if 'ls -l' fails; avoids possible racy spurious failures.
+    pwd; ls -l || : # For debugging.
+    $3
+  " t/_self.sh
+}
+
+do_check 'testdir has the expected path' \
+         'unset am_create_testdir' \
+         'case $(pwd) in '"$cwd"'/t/_self.dir);; *) exit 1;; esac'
+
+do_check 'fully pre-populated testdir' \
+         'unset am_create_testdir' \
+         'test -f install-sh || exit 1
+          test -f configure.ac || exit 1
+          case $(pwd) in '"$cwd"'/t/_self.dir) : ;; *) exit 1;; esac'
+
+do_check 'testdir has the expected path' \
+         'am_create_testdir=empty' \
+         'case $(pwd) in '"$cwd"'/t/_self.dir) : ;; *) exit 1;; esac'
+
+do_check 'do not pre-populate testdir' \
+         'am_create_testdir=empty' \
+         'ls -a | grep -v "^\\.\\{1,2\\}$" | grep . && exit 1; :'
+
+do_check 'do not create nor chdir in testdir' \
+         'am_create_testdir=no' \
+         'test ! -e t/_self.dir || exit 1
+          grep "self-check-dir\.tap" Makefile || exit 1
+          case $(pwd) in '"$cwd"') : ;; *) exit 1;; esac'
+
+:

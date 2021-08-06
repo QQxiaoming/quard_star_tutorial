@@ -1,0 +1,147 @@
+#! /bin/sh
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Check that $(am__make_dryrun) works as expected.
+
+. test-init.sh
+
+plan_ 60
+
+if echo "all: ; +@printf %sbb%s aa cc" | $MAKE -n -f - | grep aabbcc; then
+  make_plus_silence () { return 0; }
+else
+  make_plus_silence () { return 1; }
+fi
+
+mkdir none # Also used later.
+if echo nil: | $MAKE -I none -f -; then
+  make_supports_option_I () { return 0; }
+else
+  make_supports_option_I () { return 1; }
+fi
+
+echo AC_OUTPUT >> configure.ac
+
+cat > Makefile.am <<'END'
+all:
+	: Dummy, nothing to do.
+run:
+	@echo ":: $$MAKEFLAGS :: $$MFLAGS ::" ;: For debugging.
+	$(am__make_dryrun) && exit 1; echo ok > from-run
+dry:
+	+@echo ":: $$MAKEFLAGS :: $$MFLAGS ::" ;: For debugging.
+	+$(am__make_dryrun) || exit 1; echo ok > from-dry
+END
+
+check_make ()
+{
+  msg= mode= condition=: directive= reason= skip_reason=
+  case $1 in
+    --dry) mode=dry;;
+    --run) mode=run;;
+    *) fatal_ "check_run: invalid usage";;
+  esac
+  shift
+  while test $# -gt 0; do
+    case $1 in
+      -C) condition=$2 skip_reason=$3; shift; shift;;
+      -M) msg=$2; shift;;
+      --) shift; break;;
+       *) break;;
+    esac
+    shift
+  done
+  for opts in '' '-s'  '-s -r'; do
+    r=ok
+    pmsg=${mode}${msg:+" [$msg]"}${opts:+" ($opts)"}
+    if $condition; then
+      $MAKE $opts "$mode" ${1+"$@"} || r='not ok'
+      test -f from-$mode            || r='not ok'
+      test ! -e bad                 || r='not ok'
+      rm -f bad from-*              || fatal_ "cleaning up"
+    else
+      directive=SKIP reason=$skip_reason
+    fi
+    result_ "$r" -D "$directive" -r "$reason" "$pmsg"
+  done
+  unset r msg pmsg opts mode condition directive reason skip_reason
+}
+
+# ----------------------------------------------------------------------
+
+$ACLOCAL    || fatal_ "aclocal failed"
+$AUTOCONF   || fatal_ "autoconf failed"
+$AUTOMAKE   || fatal_ "automake failed"
+./configure || fatal_ "configure failed"
+
+# ----------------------------------------------------------------------
+
+check_make --run
+
+# Test against a known regression.  This was especially heinous, since
+# make running in normal mode was sometimes mistaken for make running
+# in dry mode.
+check_make --run TESTS="n1.test n2.test"
+check_make --run TESTS="n1 n2" AM_MAKEFLAGS="TESTS='n1 n2'"
+check_make --run TESTS="n1 n2" AM_MAKEFLAGS='TESTS="n1 n2"'
+check_make --run FOOFLAGS="-n -n -knf2 n --none -n"
+check_make --run MYFLAGS="-n --dryrun -n --dry-run -n"
+
+# ----------------------------------------------------------------------
+
+check_make --dry -C make_plus_silence 'recipe prefix "+" unsupported' -n
+check_make --dry -C using_gmake "\$MAKE is not GNU make" --dry-run -k
+
+# ----------------------------------------------------------------------
+
+# Automake bug#13760: the "n" in "none" used to confound am__make_dryrun
+# into thinking the '-n' option had been passed.
+
+pr='bug#13760'
+
+check_make --run -C make_supports_option_I "-I make option unsupported" \
+                 -M "$pr" -I none
+
+check_make --run -C using_gmake "\$MAKE is not GNU make" \
+                 -M "$pr" -I none --include dry-run
+
+check_make --dry -C make_supports_option_I "-I make option unsupported" \
+                 -M "$pr" -I none -n
+
+check_make --dry -C using_gmake "\$MAKE is not GNU make" \
+                 -M "$pr" --dry-run -I none --include dry-run
+
+# ----------------------------------------------------------------------
+
+# Test for when shell metacharacters or backslashes are in $(MAKEFLAGS).
+
+check_metachars ()
+{
+  check_make --run -M "metachars" "$@"
+}
+
+check_metachars MYFLAGS="-n \"n\" '-n' --none -n"
+check_metachars MYFLAGS='-knf2\ n\ \\n'
+check_metachars MYFLAGS="(&) | ; \" \` '"
+check_metachars MYFLAGS=" ' # ' "
+check_metachars MYFLAGS='$(foo)'
+check_metachars MYFLAGS='$(foo -n)'
+check_metachars MYFLAGS='`touch bad`'
+check_metachars MYFLAGS='`touch --dry-run bad`'
+
+# ----------------------------------------------------------------------
+
+:

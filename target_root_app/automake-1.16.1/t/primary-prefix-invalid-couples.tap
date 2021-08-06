@@ -1,0 +1,193 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Not all primaries/directories combinations are valid.
+# Automake should flag them as errors.
+# Originated from PR/294, extended later (following bug #7647) to
+# cover more cases.
+# See also test 'primary-prefix-valid-couples.test'.
+
+. test-init.sh
+
+plan_ "later"
+
+oIFS=$IFS # Saved for later.
+
+: > ar-lib
+: > ltmain.sh
+: > texinfo.tex
+: > py-compile
+: > config.guess
+: > config.sub
+
+cat >> configure.ac <<'END'
+AC_PROG_CC
+AM_PROG_AR
+AC_PROG_RANLIB
+AC_SUBST([LIBTOOL], [:]) dnl So that we don't have to require Libtool.
+AM_PROG_GCJ
+AM_PATH_PYTHON
+AM_PATH_LISPDIR
+END
+
+$ACLOCAL || fatal_ "aclocal failure"
+
+# Please keep this list in sync with the list of "Directory Variables"
+# in the GNU Coding Standards and with the list additional directory
+# variables provided by autoconf and/or automake (pkgdatadir, pkglibdir,
+# ...).   See also the hash '%standard_prefix' in the automake script.
+prefixes='bin data dataroot doc dvi exec html include info lib libexec
+          lisp locale localstate man man1 man2 man3 man4 man5 man6 man7
+          man8 man9 oldinclude pdf pkgdata pkginclude pkglib pkglibexec
+          ps sbin sharedstate sysconf'
+# Please keep this list in sync with the list of primaries documented in
+# the Automake manual (see the "The Uniform Naming Scheme" section).
+primaries='PROGRAMS LIBRARIES LTLIBRARIES LISP PYTHON JAVA SCRIPTS DATA
+           HEADERS MANS TEXINFOS'
+
+# Use files, not variables, to hold the list of all the possible
+# prefix_PRIMARY couples and the list of those couples valid for
+# automake, to avoid having unreadable very verbose traces.
+
+set +x # Don't be overly verbose.
+
+for prefix in $prefixes; do
+  for primary in $primaries; do
+    echo ${prefix} ${primary}
+  done
+done >all.list
+
+for primary in $primaries; do
+  prefixes_ok=''
+  case $primary in
+    LIBRARIES|LTLIBRARIES)
+      prefixes_ok='lib pkglib'
+      ;;
+    PROGRAMS)
+      prefixes_ok='bin sbin libexec pkglibexec'
+      ;;
+    SCRIPTS)
+      prefixes_ok='bin sbin libexec pkglibexec pkgdata'
+      ;;
+    DATA)
+      prefixes_ok='data dataroot pkgdata doc html dvi pdf ps
+                   sysconf sharedstate localstate lisp'
+      ;;
+    HEADERS)
+      prefixes_ok='include oldinclude pkginclude'
+      ;;
+    LISP)
+      prefixes_ok='lisp'
+      ;;
+    PYTHON)
+      prefixes_ok='python'
+      ;;
+    JAVA)
+      prefixes_ok='java'
+      ;;
+    MANS)
+      # FIXME: Here we'd like to have:
+      #   prefixes_ok='man man1 man2 man3 man4 man5 man6 man7 man8 man9'
+      # but Automake currently fails on that, as it allows the MANS
+      # primary to be coupled to any prefix.
+      # See also Automake bug#7656.
+      # We should dig out how automake had come to behave this way, and
+      # if such a behaviour can be safely changed.
+      prefixes_ok=$prefixes
+      ;;
+    TEXINFOS)
+      # FIXME: Here we'd like to have:
+      #   prefixes_ok='info'
+      # but Automake currently fails on that, as it allows the use of
+      # 'foo_TEXINFOS' to declare extra Texinfo sources for the 'foo'
+      # Texinfo manual, as in e.g.:
+      #   info_TEXINFOS = foo.texi
+      #   foo_TEXINFOS = gpl.texi
+      # See also Automake bug#7657.
+      prefixes_ok=$prefixes
+      ;;
+    *)
+      fatal_ "unrecognized primary '$primary'"
+      ;;
+  esac
+  for prefix in $prefixes_ok; do
+    echo ${prefix}_${primary}
+  done
+done >allow.list
+
+# 'html_TEXINFOS' is not yet supported, and might never be.
+grep -v '^html TEXINFOS$' all.list | awk '{print NR, $0}' > t
+mv -f t all.list
+
+# For debugging.
+echo '=== all.list ==='
+cat all.list
+echo '=== allow.list ==='
+cat allow.list
+
+# Create the Makefile.am.
+while read lineno prefix primary; do
+  test -n "$prefix" && test -n "$primary" && test 0 -lt $lineno \
+    || fatal_ "internal error in 'all.list'"
+  pfx='' ext=''
+  case $primary in
+    LTLIBRARIES) pfx=lib ext=la;;
+    LIBRARIES) pfx=lib ext=a;;
+    MANS) ext=man;;
+    HEADERS) ext=h;;
+    JAVA) ext=java;;
+    PYTHON) ext=py;;
+    LISP) ext=el;;
+    TEXINFOS) ext=texi;;
+  esac
+  test -z "$ext" || ext=.$ext
+  if test $primary = TEXINFOS; then
+    echo @setfilename foo$lineno.info > foo$lineno.texi
+  fi
+  echo ${prefix}_${primary} = ${pfx}foo${lineno}${ext}
+done <all.list >Makefile.am
+
+# For debugging.
+echo '=== Makefile.am ==='
+cat Makefile.am
+
+set -x # Restore shell xtraces from now on.
+
+AUTOMAKE_fails \
+  -d "'automake -a' error out on mismatched prefix/primary couples" \
+  -- --add-missing
+
+while read lineno prefix primary; do
+  test -n "$prefix" && test -n "$primary" && test 0 -lt $lineno \
+    || fatal_ "internal error in 'all.list'"
+  grep "^${prefix}_${primary}$" allow.list >/dev/null && continue
+  errmsg_rx=".*${prefix}dir.* not a legitimate directory .*$primary"
+  command_ok_ \
+    "mismatched prefix/primary in ${prefix}_${primary}" \
+    grep "^Makefile\\.am:$lineno: $errmsg_rx" stderr
+done <all.list
+
+# Check that automake really failed only for the expected reason(s).
+grep -v 'dir.* not a legitimate directory' stderr && exit 1
+
+# Check that the same failures are present without the '--add-missing'
+# option.
+mv stderr stderr.old
+AUTOMAKE_fails -d "automake error out on mismatched prefix/primary couples"
+command_ok_ "... and with the same diagnostic of 'automake -a'" \
+            diff stderr.old stderr
+
+:

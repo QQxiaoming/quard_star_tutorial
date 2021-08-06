@@ -1,0 +1,341 @@
+#! /bin/sh
+# Copyright (C) 2010-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Check that building from, or installing to, directories with shell
+# metacharacters succeed.
+# Original report from James Amundson about file names with spaces.
+# Other characters added by Paul Eggert.
+
+. test-init.sh
+
+# Usage: is_in_list ITEM [LIST...]
+is_in_list ()
+{
+  item=$1; shift;
+  case " $* " in
+    *[\ \	]"$item"[\ \	]*) return 0;;
+    *) return 1;;
+  esac
+}
+
+# Helper subroutine for test data definition.
+# Usage: define_problematic_string NAME STRING
+define_problematic_string ()
+{
+  tst=$1; shift
+  eval "instspc__$tst=\$1" \
+    || fatal_ "define_problematic_string: bad argument: '$tst'"
+  shift
+  all_test_names_list="$all_test_names_list $tst"
+  # Some of the "problematic" characters cannot be used in the name of
+  # a build or install directory on a POSIX host.  These lists should
+  # be empty, but are not due to limitations in Autoconf, Automake, Make,
+  # M4, or the shell.
+  if is_in_list fail-builddir "$@"; then
+    builddir_xfails="$builddir_xfails $tst"
+  fi
+  if is_in_list fail-destdir "$@"; then
+    destdir_xfails="$destdir_xfails $tst"
+  fi
+}
+
+# Be sure to avoid interferences from the environment.
+all_test_names_list=''
+builddir_xfails=''
+destdir_xfails=''
+
+expected_to_fail ()
+{
+   case $1 in
+     build) is_in_list "$2" $builddir_xfails;;
+      dest) is_in_list "$2" $destdir_xfails;;
+         *) fatal_ "incorrect 'expected_to_fail' usage";;
+   esac
+}
+
+# Helper subroutines for creation of input data files.
+create_input_data ()
+{
+  mkdir sub
+
+  unindent >> configure.ac << 'EOF'
+    AC_PROG_CC
+    AM_PROG_AR
+    AC_PROG_RANLIB
+    AC_OUTPUT
+EOF
+
+  : > sub/base.h
+  : > sub/nobase.h
+  : > sub/base.dat
+  : > sub/nobase.dat
+  : > sub/base.sh
+  : > sub/nobase.sh
+
+  unindent > source.c << 'EOF'
+    int
+    main (int argc, char **argv)
+    {
+      return 0;
+    }
+EOF
+
+  unindent > Makefile.am << 'EOF'
+    foodir = $(prefix)/foo
+    fooexecdir = $(prefix)/foo
+
+    foo_HEADERS = sub/base.h
+    nobase_foo_HEADERS = sub/nobase.h
+
+    dist_foo_DATA = sub/base.dat
+    nobase_dist_foo_DATA = sub/nobase.dat
+
+    dist_fooexec_SCRIPTS = sub/base.sh
+    nobase_dist_fooexec_SCRIPTS = sub/nobase.sh
+
+    fooexec_PROGRAMS = sub/base
+    nobase_fooexec_PROGRAMS = sub/nobase
+    sub_base_SOURCES = source.c
+    sub_nobase_SOURCES = source.c
+
+    fooexec_LIBRARIES = sub/libbase.a
+    nobase_fooexec_LIBRARIES = sub/libnobase.a
+    sub_libbase_a_SOURCES = source.c
+    sub_libnobase_a_SOURCES = source.c
+
+    .PHONY: test-inst
+    test-inst: install
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/sub/nobase.h'
+	test ! -f '$(DESTDIR)/$(file)-prefix/foo/nobase.h'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/base.h'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/sub/nobase.dat'
+	test ! -f '$(DESTDIR)/$(file)-prefix/foo/nobase.dat'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/base.dat'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/sub/nobase.sh'
+	test ! -f '$(DESTDIR)/$(file)-prefix/foo/nobase.sh'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/base.sh'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/sub/nobase$(EXEEXT)'
+	test ! -f '$(DESTDIR)/$(file)-prefix/foo/nobase$(EXEEXT)'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/base$(EXEEXT)'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/sub/libnobase.a'
+	test ! -f '$(DESTDIR)/$(file)-prefix/foo/libnobase.a'
+	test   -f '$(DESTDIR)/$(file)-prefix/foo/libbase.a'
+EOF
+
+  $ACLOCAL     || framework_failure_ "aclocal failed"
+  $AUTOCONF    || framework_failure_ "autoconf failed"
+  $AUTOMAKE -a || framework_failure_ "automake failed"
+}
+
+# ================= #
+#  Test data begin  #
+# ----------------- #
+
+# Some control characters that are white space.
+bs=''   # back space
+cr=''   # carriage return
+ff=''   # form feed
+ht='	' # horizontal tab
+lf='
+'         # line feed (aka newline)
+
+# Hack to save typing and make code visually clearer.
+def=define_problematic_string
+
+$def    squote          \'          fail-builddir  fail-destdir
+$def    dquote          '"'         fail-builddir  fail-destdir
+$def    bquote          '`'         fail-builddir  fail-destdir
+$def    sharp           '#'         fail-builddir  fail-destdir
+$def    dollar          '$'         fail-builddir  fail-destdir
+$def    bang            '!'
+$def    bslash          '\'         fail-builddir
+$def    ampersand       '&'         fail-builddir
+$def    percent         '%'
+$def    leftpar         '('
+$def    rightpar        ')'
+$def    pipe            '|'
+$def    caret           '^'
+$def    tilde           '~'
+$def    qmark           '?'
+$def    star            '*'
+$def    plus            '+'
+$def    minus           '-'
+$def    comma           ','
+$def    colon           ':'
+$def    semicol         ';'
+$def    equal           '='
+$def    less            '<'
+$def    more            '>'
+$def    at              '@'
+$def    lqbrack         '['
+$def    rqbrack         ']'
+$def    lcbrack         '{'
+$def    rcbrack         '}'
+$def    space           ' '
+$def    tab             "$ht"
+$def    linefeed        "$lf"       fail-builddir  fail-destdir
+$def    backspace       "$bs"
+$def    formfeed        "$ff"
+$def    carriageret     "$cr"
+$def    quadrigraph0    '@&t@'      fail-builddir
+$def    quadrigraph1    '@<:@'
+$def    quadrigraph2    '@:>@'
+$def    quadrigraph3    '@S|@'
+$def    quadrigraph4    '@%:@'
+$def    a_b             'a b'
+$def    a__b            'a  b'
+$def    a_lf_b          "a${lf}b"   fail-builddir  fail-destdir
+$def    dotdotdot       '...'
+$def    dosdrive        'a:'
+$def    miscglob1       '?[a-z]*'
+$def    miscglob2       '.*?[0-9]'
+
+unset def
+
+# --------------- #
+#  Test data end  #
+# =============== #
+
+# Allow the user to select a subset of the tests.
+if test $# -gt 0; then
+  test_names_list=$*
+  for test_name in $test_names_list; do
+    case " $all_test_names_list " in
+      *" $test_name "*);;
+      *) fatal_ "invalid user-specified test_name '$test_name'"
+    esac
+  done
+  # We need to determine the TAP plan adaptively.
+  n=$(for t in $test_names_list; do echo $t; done | wc -l)
+  plan_ $(($n * 2)) # Two tests per "problematic string".
+  unset n
+else
+  test_names_list=$all_test_names_list
+  # Prefer static TAP plan if possible, it minimizes the chance of errors.
+  plan_ 94
+fi
+
+ocwd=$(pwd) || fatal_ "getting current working directory"
+
+create_input_data
+
+for test_name in $test_names_list; do
+
+  eval "test_string=\${instspc__$test_name}" \
+    || fatal_ "invalid test name: '$test_name'"
+
+  if test x"$test_string" = x; then
+    if test x"$test_name" != xcarriageret; then
+      fatal_ "invalid test name: '$test_name'"
+    else
+      # MSYS version 1.0.17 still mishandles carriage returns; see
+      # automake bug#7849.
+      skip_ -r "carriage-return treated as null char" "$test_name in builddir"
+      skip_ -r "carriage-return treated as null char" "$test_name in destdir"
+      continue
+    fi
+  fi
+
+  # Skip the next checks if this system doesn't support the required
+  # characters in file names.
+
+  mkdir "./$test_string" || {
+    skip_ -r "mkdir failed" "$test_name in builddir"
+    skip_ -r "mkdir failed" "$test_name in destdir"
+    continue
+  }
+
+  case $test_string in
+  *:*)
+    # On MSYS 1.0.17, "mkdir ./a:" creates ./a, and "cd ./a:" takes you
+    # to a strange directory with pwd equal to "a".  But only for
+    # interactive shells.  Or something?  In this script, "cd ./a:" fails
+    # on MSYS.  Marvelous.
+    ( cd "./$test_string" ) || {
+      rmdir "./$test_string" || fatal_ "removing directory"
+      skip_ -r "cd failed" "$test_name in builddir"
+      skip_ -r "cd failed" "$test_name in destdir"
+      continue
+    }
+    ;;
+  esac
+
+  # Where are the "weird" characters going to be used, in $(builddir)
+  # or in $(DESTDIR)?  They are always going to be used in $(prefix)
+  # though; should we maybe separate this into a dedicated check?
+  for where in build dest; do
+
+    case $where in
+      build)
+        build=./$test_string
+        dest=$ocwd/dest-$test_name
+        ;;
+      dest)
+        build=build-$test_name
+        # Also use $test_name in the definition of $dest, to avoid
+        # interferences among different tests in case $test_string
+        # is strangely munged (which is not unexpected, considering
+        # how tricky its characters are).  With some shells, this
+        # has already happened (at least on OpenIndiana 11 and on
+        # Solaris 10).
+        dest=$ocwd/dest-$test_name/$test_string
+        mkdir "$build" || fatal_ "cannot create '$build'"
+        ;;
+      *)
+        fatal_ "invalid where '$where'"
+        ;;
+    esac
+
+    cd "$build" || fatal_ "cannot chdir into '$build'"
+
+    # Some make implementations eliminate leading and trailing whitespace
+    # from macros passed on the command line, and some eliminate leading
+    # whitespace from macros set from environment variables, so prepend
+    # './' and use the latter here.
+    r=ok
+    ../configure --prefix "/$test_string-prefix" \
+      && $MAKE all \
+      && DESTDIR="$dest" file="./$test_string" $MAKE test-inst \
+      || r='not ok'
+
+    description="$test_name in ${where}dir"
+    if expected_to_fail "$where" "$test_name"; then
+      directive=TODO
+      reason="long-standing limitation"
+    else
+      directive=
+      reason=
+    fi
+    # Test case outcome is here.
+    result_ "$r" -D "$directive" -r "$reason" -- "$description"
+
+    cd "$ocwd" || fatal_ "cannot chdir back to test directory"
+
+    # Remove subdirectories for tests that have passed, to avoid ending up
+    # with a too big test directory.  This is especially important since
+    # some tests in this tests are expected to fail, and this will cause
+    # the test directory not to be removed when the script terminates.
+    if not am_keeping_testdirs && test "$r" = ok; then
+      rm_rf_ "$build" "$dest" || fatal_ "removing temporary subdirectory"
+    fi
+
+    : For shells with busted 'set -e'.
+
+  done # $instspc_action
+
+done # $test_name
+
+:

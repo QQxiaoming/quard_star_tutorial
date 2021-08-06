@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+# Convenience script to rename test cases in Automake.
+
+# Copyright (C) 2013-2018 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+set -e -u
+
+me=${0##*/}
+msg_file=$me.git-msg
+
+fatal () { echo "$me: $*" >&2; exit 1; }
+
+case $# in
+  0) input=$(cat);;
+  1) input=$(cat -- "$1");;
+  *) fatal "too many arguments";;
+esac
+
+AWK=${AWK-awk}
+SED=${SED-sed}
+
+[[ -f bin/automake.in && -d lib/Automake ]] \
+  || fatal "can only be run from the top-level of the Automake source tree"
+
+$SED --version 2>&1 | grep GNU >/dev/null 2>&1 \
+  || fatal "GNU sed is required by this script"
+
+# Input validation and cleanup.
+input=$(
+  $AWK -v me="$me" '
+    /^#/ { next; }
+    (NF == 0) { next; }
+    (NF != 2) { print me ": wrong number of fields at line " NR;
+                exit(1); }
+    { printf ("t/%s t/%s\n", $1, $2); }
+  ' <<<"$input"
+) || exit $?
+
+# Prepare git commit message.
+exec 5>"$msg_file"
+echo "tests: more significant names for some tests" >&5
+echo >&5
+$AWK >&5 <<<"$input" \
+  '{ printf ("* %s: Rename...\n* %s: ... like this.\n", $1, $2) }'
+exec 5>&-
+
+# Rename tests.
+eval "$($AWK '{ printf ("git mv %s %s\n", $1, $2) }' <<<"$input")"
+
+# Adjust the list of tests (do this conditionally, since such a
+# list is not required nor used in Automake-NG).
+if test -f t/list-of-tests.mk; then
+  $SED -e "$($AWK '{ printf ("s|^%s |%s |\n", $1, $2) }' <<<"$input")" \
+       -i t/list-of-tests.mk
+  git add t/list-of-tests.mk
+fi
+
+git status
+echo
+echo "NOTICE: pre-filled commit message is in file '$msg_file'"
+
+exit 0

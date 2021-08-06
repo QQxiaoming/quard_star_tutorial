@@ -1,0 +1,39 @@
+#! /bin/sh
+# Copyright (C) 2001-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# It should be possible to use a computed auxdir.  This might seem
+# bizarre, but it is actually used in multilib builds.
+
+. test-init.sh
+
+plan_ 3
+
+cat > configure.ac <<END
+AC_INIT([$me], [1.0])
+AC_CONFIG_AUX_DIR([\$foo])
+AM_INIT_AUTOMAKE
+AC_CONFIG_FILES([Makefile])
+END
+
+: > Makefile.am
+
+command_ok_ "aclocal" $ACLOCAL
+# Both these two invocations are meant.
+# They exercise both code paths concerning auxiliary files.
+command_ok_ "automake -a" -D TODO -r "long-standing limitation" $AUTOMAKE -a
+command_ok_ "automake"    -D TODO -r "long-standing limitation" $AUTOMAKE
+
+:

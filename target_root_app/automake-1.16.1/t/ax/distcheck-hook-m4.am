@@ -1,0 +1,30 @@
+## Data files for some tests.  Not used in the automake build system.
+##
+## Copyright (C) 2011-2018 Free Software Foundation, Inc.
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+distcheck-hook:
+	@fatal () { echo "$@: $$*" >&2; exit 1; }; \
+	$(am__cd) $(distdir) && chmod u+w . && mkdir _m4 \
+	  || fatal "cannot setup distdir"; \
+	$(ACLOCAL) -I _m4 $(ACLOCAL_AMFLAGS) --install --output=_am.m4 \
+	  || fatal "cannot regenerate aclocal.m4"; \
+	lst=`ls _m4 | tr '\012\015' '  '`; \
+	if test -n "$$lst"; then \
+	  fatal "required m4 files not distributed or outdated: $$lst"; \
+	fi; \
+	$(AUTOCONF) -o /dev/null || fatal "can't remake configure"; \
+	rm -rf _m4 _am.m4 autom4te.cache && chmod a-w . \
+	  || fatal "cannot reset distdir"

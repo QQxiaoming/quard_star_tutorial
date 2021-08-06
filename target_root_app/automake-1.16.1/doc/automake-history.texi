@@ -1,0 +1,1214 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename automake-history.info
+@settitle automake-history
+@setchapternewpage on
+@c %**end of header
+
+@copying
+
+This manual describes (part of) the history of GNU Automake, a program
+that creates GNU standards-compliant Makefiles from template files.
+
+Copyright @copyright{} 1995-2018 Free Software Foundation, Inc.
+
+@quotation
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License,
+Version 1.3 or any later version published by the Free Software
+Foundation; with no Invariant Sections, with no Front-Cover texts,
+and with no Back-Cover Texts.  A copy of the license is included in the
+section entitled ``GNU Free Documentation License.''
+
+@end quotation
+@end copying
+
+@titlepage
+@title Brief History of Automake
+@author David MacKenzie
+@author Tom Tromey
+@author Alexandre Duret-Lutz
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@contents
+
+@ifnottex
+@node Top
+@comment  node-name,  next,  previous,  up
+@top Brief History of Automake
+
+@insertcopying
+
+@menu
+* Timeline::                      The Automake story.
+* Dependency Tracking Evolution:: Evolution of Automatic Dependency Tracking
+* Releases::                      Release statistics
+* Copying This Manual::           How to make copies of this manual
+
+@detailmenu
+ --- The Detailed Node Listing ---
+
+Evolution of Automatic Dependency Tracking
+
+* First Take on Dependencies::    Precomputed dependency tracking
+* Dependencies As Side Effects::  Update at developer compile time
+* Dependencies for the User::     Update at user compile time
+* Techniques for Dependencies::   Alternative approaches
+
+Techniques for Computing Dependencies
+
+* Recommendations for Tool Writers::
+* Future Directions for Dependencies::
+
+Copying This Manual
+
+* GNU Free Documentation License::  License for copying this manual
+
+@end detailmenu
+@end menu
+
+@end ifnottex
+
+@node Timeline
+@chapter Timeline
+
+@table @asis
+@item 1994-09-19 First CVS commit.
+
+If we can trust the CVS repository, David J.@tie{}MacKenzie (djm) started
+working on Automake (or AutoMake, as it was spelt then) this Monday.
+
+The first version of the @command{automake} script looks as follows.
+
+@example
+#!/bin/sh
+
+status=0
+
+for makefile
+do
+  if test ! -f $@{makefile@}.am; then
+    echo "automake: $@{makefile@}.am: No such honkin' file"
+    status=1
+    continue
+  fi
+
+  exec 4> $@{makefile@}.in
+
+done
+@end example
+
+From this you can already see that Automake will be about reading
+@file{*.am} file and producing @file{*.in} files.  You cannot see
+anything else, but if you also know that David is the one who created
+Autoconf two years before you can guess the rest.
+
+Several commits follow, and by the end of the day Automake is
+reported to work for GNU fileutils and GNU m4.
+
+The modus operandi is the one that is still used today: variable
+assignments in @file{Makefile.am} files trigger injections of
+precanned @file{Makefile} fragments into the generated
+@file{Makefile.in}.  The use of @file{Makefile} fragments was inspired
+by the 4.4BSD @command{make} and include files, however Automake aims
+to be portable and to conform to the GNU standards for @file{Makefile}
+variables and targets.
+
+At this point, the most recent release of Autoconf is version 1.11,
+and David is preparing to release Autoconf 2.0 in late October.  As a
+matter of fact, he will barely touch Automake after September.
+
+@item 1994-11-05 David MacKenzie's last commit.
+
+At this point Automake is a 200 line portable shell script, plus 332
+lines of @file{Makefile} fragments.  In the @file{README}, David
+states his ambivalence between ``portable shell'' and ``more
+appropriate language'':
+
+@quotation
+I wrote it keeping in mind the possibility of it becoming an Autoconf
+macro, so it would run at configure-time.  That would slow
+configuration down a bit, but allow users to modify the Makefile.am
+without needing to fetch the AutoMake package.  And, the Makefile.in
+files wouldn't need to be distributed.  But all of AutoMake would.  So
+I might reimplement AutoMake in Perl, m4, or some other more
+appropriate language.
+@end quotation
+
+Automake is described as ``an experimental Makefile generator''.
+There is no documentation.  Adventurous users are referred to the
+examples and patches needed to use Automake with GNU m4 1.3, fileutils
+3.9, time 1.6, and development versions of find and indent.
+
+These examples seem to have been lost.  However at the time of writing
+(10 years later in September, 2004) the FSF still distributes a
+package that uses this version of Automake: check out GNU termutils
+2.0.
+
+@item 1995-11-12 Tom Tromey's first commit.
+
+After one year of inactivity, Tom Tromey takes over the package.
+Tom was working on GNU cpio back then, and doing this just for fun,
+having trouble finding a project to contribute to.  So while hacking
+he wanted to bring the @file{Makefile.in} up to GNU standards.  This
+was hard, and one day he saw Automake on @url{ftp://alpha.gnu.org/},
+grabbed it and tried it out.
+
+Tom didn't talk to djm about it until later, just to make sure he
+didn't mind if he made a release.  He did a bunch of early releases to
+the Gnits folks.
+
+Gnits was (and still is) totally informal, just a few GNU friends who
+Fran@,cois Pinard knew, who were all interested in making a common
+infrastructure for GNU projects, and shared a similar outlook on how
+to do it.  So they were able to make some progress.  It came along
+with Autoconf and extensions thereof, and then Automake from David and
+Tom (who were both gnitsians).  One of their ideas was to write a
+document paralleling the GNU standards, that was more strict in some
+ways and more detailed.  They never finished the GNITS standards, but
+the ideas mostly made their way into Automake.
+
+@item 1995-11-23 Automake 0.20
+
+Besides introducing automatic dependency tracking (@pxref{Dependency
+Tracking Evolution}), this version also supplies a 9-page manual.
+
+At this time @command{aclocal} and @code{AM_INIT_AUTOMAKE} did not
+exist, so many things had to be done by hand.  For instance, here is
+what a configure.in (this is the former name of the
+@file{configure.ac} we use today) must contain in order to use
+Automake 0.20:
+
+@example
+PACKAGE=cpio
+VERSION=2.3.911
+AC_DEFINE_UNQUOTED(PACKAGE, "$PACKAGE")
+AC_DEFINE_UNQUOTED(VERSION, "$VERSION")
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+AC_ARG_PROGRAM
+AC_PROG_INSTALL
+@end example
+
+(Today all of the above is achieved by @code{AC_INIT} and
+@code{AM_INIT_AUTOMAKE}.)
+
+Here is how programs are specified in @file{Makefile.am}:
+
+@example
+PROGRAMS = hello
+hello_SOURCES = hello.c
+@end example
+
+This looks pretty much like what we do today, except the
+@code{PROGRAMS} variable has no directory prefix specifying where
+@file{hello} should be installed: all programs are installed in
+@samp{$(bindir)}.  @code{LIBPROGRAMS} can be used to specify programs
+that must be built but not installed (it is called
+@code{noinst_PROGRAMS} nowadays).
+
+Programs can be built conditionally using @code{AC_SUBST}itutions:
+
+@example
+PROGRAMS = @@progs@@
+AM_PROGRAMS = foo bar baz
+@end example
+
+(@code{AM_PROGRAMS} has since then been renamed to
+@code{EXTRA_PROGRAMS}.)
+
+Similarly scripts, static libraries, and data can be built and installed
+using the @code{LIBRARIES}, @code{SCRIPTS}, and @code{DATA} variables.
+However @code{LIBRARIES} were treated a bit specially in that Automake
+did automatically supply the @file{lib} and @file{.a} prefixes.
+Therefore to build @file{libcpio.a}, one had to write
+
+@example
+LIBRARIES = cpio
+cpio_SOURCES = ...
+@end example
+
+Extra files to distribute must be listed in @code{DIST_OTHER} (the
+ancestor of @code{EXTRA_DIST}).  Also extra directories that are to be
+distributed should appear in @code{DIST_SUBDIRS}, but the manual
+describes this as a temporary ugly hack (today extra directories should
+also be listed in @code{EXTRA_DIST}, and @code{DIST_SUBDIRS} is used
+for another purpose, @pxref{Conditional Subdirectories, , Conditional
+Subdirectories, automake, GNU Automake}).
+
+@item 1995-11-26 Automake 0.21
+
+In less time than it takes to cook a frozen pizza, Tom rewrites
+Automake using Perl.  At this time Perl 5 is only one year old, and
+Perl 4.036 is in use at many sites.  Supporting several Perl versions
+has been a source of problems through the whole history of Automake.
+
+If you never used Perl 4, imagine Perl 5 without objects, without
+@samp{my} variables (only dynamically scoped @samp{local} variables),
+without function prototypes, with function calls that needs to be
+prefixed with @samp{&}, etc.  Traces of this old style can still be
+found in today's @command{automake}.
+
+@item 1995-11-28 Automake 0.22
+@itemx 1995-11-29 Automake 0.23
+
+Bug fixes.
+
+@item 1995-12-08 Automake 0.24
+@itemx 1995-12-10 Automake 0.25
+
+Releases are raining.  0.24 introduces the uniform naming scheme we
+use today, i.e., @code{bin_PROGRAMS} instead of @code{PROGRAMS},
+@code{noinst_LIBRARIES} instead of @code{LIBLIBRARIES}, etc.  (However
+@code{EXTRA_PROGRAMS} does not exist yet, @code{AM_PROGRAMS} is still
+in use; and @code{TEXINFOS} and @code{MANS} still have no directory
+prefixes.)  Adding support for prefixes like that was one of the major
+ideas in @command{automake}; it has lasted pretty well.
+
+AutoMake is renamed to Automake (Tom seems to recall it was Fran@,cois
+Pinard's doing).
+
+0.25 fixes a Perl 4 portability bug.
+
+@item 1995-12-18 Jim Meyering starts using Automake in GNU Textutils.
+@item 1995-12-31 Fran@,cois Pinard starts using Automake in GNU tar.
+
+@item 1996-01-03 Automake 0.26
+@itemx 1996-01-03 Automake 0.27
+
+Of the many changes and suggestions sent by Fran@,cois Pinard and
+included in 0.26, perhaps the most important is the advice that to
+ease customization a user rule or variable definition should always
+override an Automake rule or definition.
+
+Gordon Matzigkeit and Jim Meyering are two other early contributors
+that have been sending fixes.
+
+0.27 fixes yet another Perl 4 portability bug.
+
+@item 1996-01-13 Automake 0.28
+
+Automake starts scanning @file{configure.in} for @code{LIBOBJS}
+support.  This is an important step because until this version
+Automake only knew about the @file{Makefile.am}s it processed.
+@file{configure.in} was Autoconf's world and the link between Autoconf
+and Automake had to be done by the @file{Makefile.am} author.  For
+instance, if @file{config.h} was generated by @file{configure}, it was the
+package maintainer's responsibility to define the @code{CONFIG_HEADER}
+variable in each @file{Makefile.am}.
+
+Succeeding releases will rely more and more on scanning
+@file{configure.in} to better automate the Autoconf integration.
+
+0.28 also introduces the @code{AUTOMAKE_OPTIONS} variable and the
+@option{--gnu} and @option{--gnits} options, the latter being stricter.
+
+@item 1996-02-07 Automake 0.29
+
+Thanks to @file{configure.in} scanning, @code{CONFIG_HEADER} is gone,
+and rebuild rules for @file{configure}-generated file are
+automatically output.
+
+@code{TEXINFOS} and @code{MANS} converted to the uniform naming
+scheme.
+
+@item 1996-02-24 Automake 0.30
+
+The test suite is born.  It contains 9 tests.  From now on test cases
+will be added pretty regularly (@pxref{Releases}), and this proved to
+be really helpful later on.
+
+@code{EXTRA_PROGRAMS} finally replaces @code{AM_PROGRAMS}.
+
+All the third-party Autoconf macros, written mostly by Fran@,cois
+Pinard (and later Jim Meyering), are distributed in Automake's
+hand-written @file{aclocal.m4} file.  Package maintainers are expected
+to extract the necessary macros from this file.  (In previous versions
+you had to copy and paste them from the manual...)
+
+@item 1996-03-11 Automake 0.31
+
+The test suite in 0.30 was run via a long @code{check-local} rule.  Upon
+Ulrich Drepper's suggestion, 0.31 makes it an Automake rule output
+whenever the @code{TESTS} variable is defined.
+
+@code{DIST_OTHER} is renamed to @code{EXTRA_DIST}, and the @code{check_}
+prefix is introduced.  The syntax is now the same as today.
+
+@item 1996-03-15 Gordon Matzigkeit starts writing libtool.
+
+@item 1996-04-27 Automake 0.32
+
+@code{-hook} targets are introduced; an idea from Dieter Baron.
+
+@file{*.info} files, which were output in the build directory are
+now built in the source directory, because they are distributed.  It
+seems these files like to move back and forth as that will happen
+again in future versions.
+
+@item 1996-05-18 Automake 0.33
+
+Gord Matzigkeit's main two contributions:
+
+@itemize
+@item very preliminary libtool support
+@item the distcheck rule
+@end itemize
+
+Although they were very basic at this point, these are probably
+among the top features for Automake today.
+
+Jim Meyering also provides the infamous @code{jm_MAINTAINER_MODE}, since
+then renamed to @code{AM_MAINTAINER_MODE} and abandoned by its author
+(@pxref{maintainer-mode, , maintainer-mode, automake, GNU Automake}).
+
+@item 1996-05-28 Automake 1.0
+
+After only six months of heavy development, the @command{automake} script is
+3134 lines long, plus 973 lines of @file{Makefile} fragments.  The
+package has 30 pages of documentation, and 38 test cases.
+@file{aclocal.m4} contains 4 macros.
+
+From now on and until version 1.4, new releases will occur at a rate
+of about one a year.  1.1 did not exist, actually 1.1b to 1.1p have
+been the name of beta releases for 1.2.  This is the first time
+Automake uses suffix letters to designate beta releases, a habit that
+lasts.
+
+@item 1996-10-10 Kevin Dalley packages Automake 1.0 for Debian GNU/Linux.
+
+@item 1996-11-26 David J.@tie{}MacKenzie releases Autoconf 2.12.
+
+Between June and October, the Autoconf development is almost stalled.
+Roland McGrath has been working at the beginning of the year.  David
+comes back in November to release 2.12, but he won't touch Autoconf
+anymore after this year, and Autoconf then really stagnates.  The
+desolate Autoconf @file{ChangeLog} for 1997 lists only 7 commits.
+
+@item 1997-02-28 @email{automake@@gnu.ai.mit.edu} list alive
+
+The mailing list is announced as follows:
+@smallexample
+I've created the "automake" mailing list.  It is
+"automake@@gnu.ai.mit.edu".  Administrivia, as always, to
+automake-request@@gnu.ai.mit.edu.
+
+The charter of this list is discussion of automake, autoconf, and
+other configuration/portability tools (e.g., libtool).  It is expected
+that discussion will range from pleas for help all the way up to
+patches.
+
+This list is archived on the FSF machines.  Offhand I don't know if
+you can get the archive without an account there.
+
+This list is open to anybody who wants to join.  Tell all your
+friends!
+-- Tom Tromey
+@end smallexample
+
+Before that people were discussing Automake privately, on the Gnits
+mailing list (which is not public either), and less frequently on
+@code{gnu.misc.discuss}.
+
+@code{gnu.ai.mit.edu} is now @code{gnu.org}, in case you never
+noticed.  The archives of the early years of the
+@code{automake@@gnu.org} list have been lost, so today it is almost
+impossible to find traces of discussions that occurred before 1999.
+This has been annoying more than once, as such discussions can be
+useful to understand the rationale behind a piece of uncommented code
+that was introduced back then.
+
+@item 1997-06-22 Automake 1.2
+
+Automake developments continues, and more and more new Autoconf macros
+are required.  Distributing them in @file{aclocal.m4} and requiring
+people to browse this file to extract the relevant macros becomes
+uncomfortable.  Ideally, some of them should be contributed to
+Autoconf so that they can be used directly, however Autoconf is
+currently inactive.  Automake 1.2 consequently introduces
+@command{aclocal} (@command{aclocal} was actually started on
+1996-07-28), a tool that automatically constructs an @file{aclocal.m4}
+file from a repository of third-party macros.  Because Autoconf has
+stalled, Automake also becomes a kind of repository for such
+third-party macros, even macros completely unrelated to Automake (for
+instance macros that fix broken Autoconf macros).
+
+The 1.2 release contains 20 macros, including the
+@code{AM_INIT_AUTOMAKE} macro that simplifies the creation of
+@file{configure.in}.
+
+Libtool is fully supported using @code{*_LTLIBRARIES}.
+
+The missing script is introduced by Fran@,cois Pinard; it is meant
+to be a better solution than @code{AM_MAINTAINER_MODE}
+(@pxref{maintainer-mode, , maintainer-mode, automake, GNU Automake}).
+
+Conditionals support was implemented by Ian Lance Taylor.  At the
+time, Tom and Ian were working on an internal project at Cygnus.  They
+were using ILU, which is pretty similar to CORBA@.  They wanted to
+integrate ILU into their build, which was all @file{configure}-based,
+and Ian thought that adding conditionals to @command{automake} was
+simpler than doing all the work in @file{configure} (which was the
+standard at the time).  So this was actually funded by Cygnus.
+
+This very useful but tricky feature will take a lot of time to
+stabilize.  (At the time this text is written, there are still
+primaries that have not been updated to support conditional
+definitions in Automake 1.9.)
+
+The @command{automake} script has almost doubled: 6089 lines of Perl,
+plus 1294 lines of @file{Makefile} fragments.
+
+@item 1997-07-08 Gordon Matzigkeit releases Libtool 1.0.
+
+@item 1998-04-05 Automake 1.3
+
+This is a small advance compared to 1.2.
+It adds support for assembly, and preliminary support for Java.
+
+Perl 5.004_04 is out, but fixes to support Perl 4 are still
+regularly submitted whenever Automake breaks it.
+
+@item 1998-09-06 @code{sourceware.cygnus.com} is on-line.
+
+Sourceware was setup by Jason Molenda to host open source projects.
+
+@item 1998-09-19  Automake CVS repository moved to @code{sourceware.cygnus.com}
+@itemx 1998-10-26  @code{sourceware.cygnus.com} announces it hosts Automake:
+Automake is now hosted on @code{sourceware.cygnus.com}.  It has a
+publicly accessible CVS repository.  This CVS repository is a copy of
+the one Tom was using on his machine, which in turn is based on
+a copy of the CVS repository of David MacKenzie.  This is why we still
+have to full source history.  (Automake was on Sourceware until 2007-10-29,
+when it moved to a git repository on @code{savannah.gnu.org},
+but the Sourceware host had been renamed to @code{sources.redhat.com}.)
+
+The oldest file in the administrative directory of the CVS repository
+that was created on Sourceware is dated 1998-09-19, while the
+announcement that @command{automake} and @command{autoconf} had joined
+@command{sourceware} was made on 1998-10-26.  They were among the
+first projects to be hosted there.
+
+The heedful reader will have noticed Automake was exactly 4 years old
+on 1998-09-19.
+
+@item 1999-01-05 Ben Elliston releases Autoconf 2.13.
+
+@item 1999-01-14 Automake 1.4
+
+This release adds support for Fortran 77 and for the @code{include}
+statement.  Also, @samp{+=} assignments are introduced, but it is
+still quite easy to fool Automake when mixing this with conditionals.
+
+These two releases, Automake 1.4 and Autoconf 2.13 make a duo that
+will be used together for years.
+
+@command{automake} is 7228 lines, plus 1591 lines of Makefile
+fragment, 20 macros (some 1.3 macros were finally contributed back to
+Autoconf), 197 test cases, and 51 pages of documentation.
+
+@item 1999-03-27 The @code{user-dep-branch} is created on the CVS repository.
+
+This implements a new dependency tracking schemed that should be
+able to handle automatic dependency tracking using any compiler (not
+just gcc) and any make (not just GNU @command{make}).  In addition,
+the new scheme should be more reliable than the old one, as
+dependencies are generated on the end user's machine.  Alexandre Oliva
+creates depcomp for this purpose.
+
+@xref{Dependency Tracking Evolution}, for more details about the
+evolution of automatic dependency tracking in Automake.
+
+@item 1999-11-21 The @code{user-dep-branch} is merged into the main trunk.
+
+This was a huge problem since we also had patches going in on the
+trunk.  The merge took a long time and was very painful.
+
+@item 2000-05-10
+
+Since September 1999 and until 2003, Akim Demaille will be zealously
+revamping Autoconf.
+
+@quotation
+I think the next release should be called "3.0".@*
+Let's face it: you've basically rewritten autoconf.@*
+Every weekend there are 30 new patches.@*
+I don't see how we could call this "2.15" with a straight face.@*
+-- Tom Tromey on @email{autoconf@@gnu.org}
+@end quotation
+
+Actually Akim works like a submarine: he will pile up patches while he
+works off-line during the weekend, and flush them in batch when he
+resurfaces on Monday.
+
+@item 2001-01-24
+
+On this Wednesday, Autoconf 2.49c, the last beta before Autoconf 2.50
+is out, and Akim has to find something to do during his week-end :)
+
+@item 2001-01-28
+
+Akim sends a batch of 14 patches to @email{automake@@gnu.org}.
+
+@quotation
+Aiieeee!  I was dreading the day that the Demaillator turned his
+sights on automake@dots{} and now it has arrived! -- Tom Tromey
+@end quotation
+
+It's only the beginning: in two months he will send 192 patches.  Then
+he would slow down so Tom can catch up and review all this.  Initially
+Tom actually read all of these patches, then he probably trustingly
+answered OK to most of them, and finally gave up and let Akim apply
+whatever he wanted.  There was no way to keep up with that patch rate.
+
+@quotation
+Anyway the patch below won't apply since it predates Akim's
+sourcequake; I have yet to figure where the relevant passage has
+been moved :) -- Alexandre Duret-Lutz
+@end quotation
+
+All of these patches were sent to and discussed on
+@email{automake@@gnu.org}, so subscribed users were literally drowning in
+technical mails.  Eventually, the @email{automake-patches@@gnu.org}
+mailing list was created in May.
+
+Year after year, Automake had drifted away from its initial design:
+construct @file{Makefile.in} by assembling various @file{Makefile}
+fragments.  In 1.4, lots of @file{Makefile} rules are being emitted at
+various places in the @command{automake} script itself; this does not
+help ensuring a consistent treatment of these rules (for instance
+making sure that user-defined rules override Automake's own rules).
+One of Akim's goal was moving all of these hard-coded rules to separate
+@file{Makefile} fragments, so the logic could be centralized in a
+@file{Makefile} fragment processor.
+
+Another significant contribution of Akim is the interface with the
+``trace'' feature of Autoconf.  The way to scan @file{configure.in} at
+this time was to read the file and grep the various macro of interest
+to Automake.  Doing so could break in many unexpected ways; @command{automake}
+could miss some definition (for instance @samp{AC_SUBST([$1], [$2])}
+where the arguments are known only when M4 is run), or conversely it
+could detect some macro that was not expanded (because it is called
+conditionally).  In the CVS version of Autoconf, Akim had implemented
+the @option{--trace} option, which provides accurate information about
+where macros are actually called and with what arguments.  Akim will
+equip Automake with a second @file{configure.in} scanner that uses
+this @option{--trace} interface.  Since it was not sensible to drop the
+Autoconf 2.13 compatibility yet, this experimental scanner was only
+used when an environment variable was set, the traditional
+grep-scanner being still the default.
+
+@item 2001-04-25 Gary V.@tie{}Vaughan releases Libtool 1.4
+
+It has been more than two years since Automake 1.4, CVS Automake has
+suffered lot's of heavy changes and still is not ready for release.
+Libtool 1.4 had to be distributed with a patch against Automake 1.4.
+
+@item 2001-05-08 Automake 1.4-p1
+@itemx 2001-05-24 Automake 1.4-p2
+
+Gary V.@tie{}Vaughan, the principal Libtool maintainer, makes a ``patch
+release'' of Automake:
+
+@quotation
+The main purpose of this release is to have a stable automake
+which is compatible with the latest stable libtool.
+@end quotation
+
+The release also contains obvious fixes for bugs in Automake 1.4,
+some of which were reported almost monthly.
+
+@item 2001-05-21 Akim Demaille releases Autoconf 2.50
+
+@item 2001-06-07 Automake 1.4-p3
+@itemx 2001-06-10 Automake 1.4-p4
+@itemx 2001-07-15 Automake 1.4-p5
+
+Gary continues his patch-release series.  These also add support for
+some new Autoconf 2.50 idioms.  Essentially, Autoconf now advocates
+@file{configure.ac} over @file{configure.in}, and it introduces a new
+syntax for @code{AC_OUTPUT}ing files.
+
+@item 2001-08-23 Automake 1.5
+
+A major and long-awaited release, that comes more than two years after
+1.4.  It brings many changes, among which:
+@itemize
+@item The new dependency tracking scheme that uses @command{depcomp}.
+Aside from the improvement on the dependency tracking itself
+(@pxref{Dependency Tracking Evolution}), this also streamlines the use
+of @command{automake}-generated @file{Makefile.in}s as the @file{Makefile.in}s
+used during development are now the same as those used in
+distributions.  Before that the @file{Makefile.in}s generated for
+maintainers required GNU @command{make} and GCC, they were different
+from the portable @file{Makefile} generated for distribution; this was
+causing some confusion.
+
+@item Support for per-target compilation flags.
+
+@item Support for reference to files in subdirectories in most
+@file{Makefile.am} variables.
+
+@item Introduction of the @code{dist_}, @code{nodist_}, and @code{nobase_}
+prefixes.
+@item Perl 4 support is finally dropped.
+@end itemize
+
+1.5 did break several packages that worked with 1.4.  Enough so that
+Linux distributions could not easily install the new Automake version
+without breaking many of the packages for which they had to run
+@command{automake}.
+
+Some of these breakages were effectively bugs that would eventually be
+fixed in the next release.  However, a lot of damage was caused by
+some changes made deliberately to render Automake stricter on some
+setup we did consider bogus.  For instance, @samp{make distcheck} was
+improved to check that @samp{make uninstall} did remove all the files
+@samp{make install} installed, that @samp{make distclean} did not omit
+some file, and that a VPATH build would work even if the source
+directory was read-only.  Similarly, Automake now rejects multiple
+definitions of the same variable (because that would mix very badly
+with conditionals), and @samp{+=} assignments with no previous
+definition.  Because these changes all occurred suddenly after 1.4 had
+been established for more than two years, it hurt users.
+
+To make matter worse, meanwhile Autoconf (now at version 2.52) was
+facing similar troubles, for similar reasons.
+
+@item 2002-03-05 Automake 1.6
+
+This release introduced versioned installation (@pxref{API Versioning, ,
+API Versioning, automake, GNU Automake}). This was mainly pushed by
+Havoc Pennington, taking the GNOME source tree as motive: due to
+incompatibilities between the autotools it's impossible for the GNOME
+packages to switch to Autoconf 2.53 and Automake 1.5 all at once, so
+they are currently stuck with Autoconf 2.13 and Automake 1.4.
+
+The idea was to call this version @file{automake-1.6}, call all its
+bug-fix versions identically, and switch to @file{automake-1.7} for
+the next release that adds new features or changes some rules.  This
+scheme implies maintaining a bug-fix branch in addition to the
+development trunk, which means more work from the maintainer, but
+providing regular bug-fix releases proved to be really worthwhile.
+
+Like 1.5, 1.6 also introduced a bunch of incompatibilities, intentional or
+not.  Perhaps the more annoying was the dependence on the newly
+released Autoconf 2.53.  Autoconf seemed to have stabilized enough
+since its explosive 2.50 release and included changes required to fix
+some bugs in Automake.  In order to upgrade to Automake 1.6, people
+now had to upgrade Autoconf too; for some packages it was no picnic.
+
+While versioned installation helped people to upgrade, it also
+unfortunately allowed people not to upgrade.  At the time of writing,
+some Linux distributions are shipping packages for Automake 1.4, 1.5,
+1.6, 1.7, 1.8, and 1.9.  Most of these still install 1.4 by default.
+Some distribution also call 1.4 the ``stable'' version, and present
+``1.9'' as the development version; this does not really makes sense
+since 1.9 is way more solid than 1.4.  All this does not help the
+newcomer.
+
+@item 2002-04-11 Automake 1.6.1
+
+1.6, and the upcoming 1.4-p6 release were the last release by Tom.
+This one and those following will be handled by Alexandre
+Duret-Lutz.  Tom is still around, and will be there until about 1.7,
+but his interest into Automake is drifting away towards projects like
+@command{gcj}.
+
+Alexandre has been using Automake since 2000, and started to
+contribute mostly on Akim's incitement (Akim and Alexandre have been
+working in the same room from 1999 to 2002).  In 2001 and 2002 he had
+a lot of free time to enjoy hacking Automake.
+
+@item 2002-06-14 Automake 1.6.2
+
+@item 2002-07-28 Automake 1.6.3
+@itemx 2002-07-28 Automake 1.4-p6
+
+Two releases on the same day.  1.6.3 is a bug-fix release.
+
+Tom Tromey backported the versioned installation mechanism on the 1.4
+branch, so that Automake 1.6.x and Automake 1.4-p6 could be installed
+side by side.  Another request from the GNOME folks.
+
+@item 2002-09-25 Automake 1.7
+
+This release switches to the new @file{configure.ac} scanner Akim
+was experimenting in 1.5.
+
+@item 2002-10-16 Automake 1.7.1
+@itemx 2002-12-06 Automake 1.7.2
+@itemx 2003-02-20 Automake 1.7.3
+@itemx 2003-04-23 Automake 1.7.4
+@itemx 2003-05-18 Automake 1.7.5
+@itemx 2003-07-10 Automake 1.7.6
+@itemx 2003-09-07 Automake 1.7.7
+@itemx 2003-10-07 Automake 1.7.8
+
+Many bug-fix releases.  1.7 lasted because the development version
+(upcoming 1.8) was suffering some major internal revamping.
+
+@item 2003-10-26 Automake on screen
+
+Episode 49, `Repercussions', in the third season of the `Alias' TV
+show is first aired.
+
+Marshall, one of the characters, is working on a computer virus that he
+has to modify before it gets into the wrong hands or something like
+that.  The screenshots you see do not show any program code, they show
+a @file{Makefile.in} generated by automake...
+
+@item 2003-11-09 Automake 1.7.9
+
+@item 2003-12-10 Automake 1.8
+
+The most striking update is probably that of @command{aclocal}.
+
+@command{aclocal} now uses @code{m4_include} in the produced
+@file{aclocal.m4} when the included macros are already distributed
+with the package (an idiom used in many packages), which reduces code
+duplication.  Many people liked that, but in fact this change was
+really introduced to fix a bug in rebuild rules: @file{Makefile.in}
+must be rebuilt whenever a dependency of @file{configure} changes, but
+all the @file{m4} files included in @file{aclocal.m4} where unknown
+from @command{automake}.  Now @command{automake} can just trace the
+@code{m4_include}s to discover the dependencies.
+
+@command{aclocal} also starts using the @option{--trace} Autoconf option
+in order to discover used macros more accurately.  This will turn out
+to be very tricky (later releases will improve this) as people had
+devised many ways to cope with the limitation of previous
+@command{aclocal} versions, notably using handwritten
+@code{m4_include}s: @command{aclocal} must make sure not to redefine a
+rule that is already included by such statement.
+
+Automake also has seen its guts rewritten.  Although this rewriting
+took a lot of efforts, it is only apparent to the users in that some
+constructions previously disallowed by the implementation now work
+nicely.  Conditionals, Locations, Variable and Rule definitions,
+Options: these items on which Automake works have been rewritten as
+separate Perl modules, and documented.
+
+@item 2004-01-11 Automake 1.8.1
+@itemx 2004-01-12 Automake 1.8.2
+@itemx 2004-03-07 Automake 1.8.3
+@itemx 2004-04-25 Automake 1.8.4
+@itemx 2004-05-16 Automake 1.8.5
+
+@item 2004-07-28 Automake 1.9
+
+This release tries to simplify the compilation rules it outputs to
+reduce the size of the Makefile.  The complaint initially come from
+the libgcj developers.  Their @file{Makefile.in} generated with
+Automake 1.4 and custom build rules (1.4 did not support compiled
+Java) is 250KB@.  The one generated by 1.8 was over 9MB@!  1.9 gets it
+down to 1.2MB@.
+
+Aside from this it contains mainly minor changes and bug-fixes.
+
+@item 2004-08-11 Automake 1.9.1
+@itemx 2004-09-19 Automake 1.9.2
+
+Automake has ten years.  This chapter of the manual was initially
+written for this occasion.
+
+@item 2007-10-29 Automake repository moves to @code{savannah.gnu.org}
+and uses git as primary repository.
+
+@end table
+
+@node Dependency Tracking Evolution
+@chapter Evolution of Automatic Dependency Tracking
+
+Over the years Automake has deployed three different dependency
+tracking methods.  Each method, including the current one, has had
+flaws of various sorts.  Here we lay out the different dependency
+tracking methods, their flaws, and their fixes.  We conclude with
+recommendations for tool writers, and by indicating future directions
+for dependency tracking work in Automake.
+
+@menu
+* First Take on Dependencies::    Precomputed dependency tracking
+* Dependencies As Side Effects::  Update at developer compile time
+* Dependencies for the User::     Update at user compile time
+* Techniques for Dependencies::   Alternative approaches
+@end menu
+
+@node First Take on Dependencies
+@section First Take on Dependency Tracking
+@unnumberedsubsec Description
+
+Our first attempt at automatic dependency tracking was based on the
+method recommended by GNU @command{make}.  (@pxref{Automatic
+Prerequisites, , Generating Prerequisites Automatically, make, The GNU
+make Manual})
+
+This version worked by precomputing dependencies ahead of time.  For
+each source file, it had a special @file{.P} file that held the
+dependencies.  There was a rule to generate a @file{.P} file by
+invoking the compiler appropriately.  All such @file{.P} files were
+included by the @file{Makefile}, thus implicitly becoming dependencies
+of @file{Makefile}.
+
+@unnumberedsubsec Bugs
+
+This approach had several critical bugs.
+
+@itemize
+@item
+The code to generate the @file{.P} file relied on @command{gcc}.
+(A limitation, not technically a bug.)
+@item
+The dependency tracking mechanism itself relied on GNU @command{make}.
+(A limitation, not technically a bug.)
+@item
+Because each @file{.P} file was a dependency of @file{Makefile}, this
+meant that dependency tracking was done eagerly by @command{make}.
+For instance, @samp{make clean} would cause all the dependency files
+to be updated, and then immediately removed.  This eagerness also
+caused problems with some configurations; if a certain source file
+could not be compiled on a given architecture for some reason,
+dependency tracking would fail, aborting the entire build.
+@item
+As dependency tracking was done as a pre-pass, compile times were
+doubled--the compiler had to be run twice per source file.
+@item
+@samp{make dist} re-ran @command{automake} to generate a
+@file{Makefile} that did not have automatic dependency tracking (and
+that was thus portable to any version of @command{make}).  In order to
+do this portably, Automake had to scan the dependency files and remove
+any reference that was to a source file not in the distribution.
+This process was error-prone.  Also, if @samp{make dist} was run in an
+environment where some object file had a dependency on a source file
+that was only conditionally created, Automake would generate a
+@file{Makefile} that referred to a file that might not appear in the
+end user's build.  A special, hacky mechanism was required to work
+around this.
+@end itemize
+
+@unnumberedsubsec Historical Note
+
+The code generated by Automake is often inspired by the
+@file{Makefile} style of a particular author.  In the case of the first
+implementation of dependency tracking, I believe the impetus and
+inspiration was Jim Meyering.  (I could be mistaken.  If you know
+otherwise feel free to correct me.)
+
+@node Dependencies As Side Effects
+@section Dependencies As Side Effects
+@unnumberedsubsec Description
+
+The next refinement of Automake's automatic dependency tracking scheme
+was to implement dependencies as side effects of the compilation.
+This was aimed at solving the most commonly reported problems with the
+first approach.  In particular we were most concerned with eliminating
+the weird rebuilding effect associated with make clean.
+
+In this approach, the @file{.P} files were included using the
+@code{-include} command, which let us create these files lazily.  This
+avoided the @samp{make clean} problem.
+
+We only computed dependencies when a file was actually compiled.  This
+avoided the performance penalty associated with scanning each file
+twice.  It also let us avoid the other problems associated with the
+first, eager, implementation.  For instance, dependencies would never
+be generated for a source file that was not compilable on a given
+architecture (because it in fact would never be compiled).
+
+@unnumberedsubsec Bugs
+
+@itemize
+@item
+This approach also relied on the existence of @command{gcc} and GNU
+@command{make}.  (A limitation, not technically a bug.)
+@item
+Dependency tracking was still done by the developer, so the problems
+from the first implementation relating to massaging of dependencies by
+@samp{make dist} were still in effect.
+@item
+This implementation suffered from the ``deleted header file'' problem.
+Suppose a lazily-created @file{.P} file includes a dependency on a
+given header file, like this:
+
+@example
+maude.o: maude.c something.h
+@end example
+
+Now suppose that you remove @file{something.h} and update @file{maude.c}
+so that this include is no longer needed.  If you run @command{make},
+you will get an error because there is no way to create
+@file{something.h}.
+
+We fixed this problem in a later release by further massaging the
+output of @command{gcc} to include a dummy dependency for each header
+file.
+@end itemize
+
+@node Dependencies for the User
+@section Dependencies for the User
+@unnumberedsubsec Description
+
+The bugs associated with @samp{make dist}, over time, became a real
+problem.  Packages using Automake were being built on a large number
+of platforms, and were becoming increasingly complex.  Broken
+dependencies were distributed in ``portable'' @file{Makefile.in}s,
+leading to user complaints.  Also, the requirement for @command{gcc}
+and GNU @command{make} was a constant source of bug reports.  The next
+implementation of dependency tracking aimed to remove these problems.
+
+We realized that the only truly reliable way to automatically track
+dependencies was to do it when the package itself was built.  This
+meant discovering a method portable to any version of make and any
+compiler.  Also, we wanted to preserve what we saw as the best point
+of the second implementation: dependency computation as a side effect
+of compilation.
+
+In the end we found that most modern make implementations support some
+form of include directive.  Also, we wrote a wrapper script that let
+us abstract away differences between dependency tracking methods for
+compilers.  For instance, some compilers cannot generate dependencies
+as a side effect of compilation.  In this case we simply have the
+script run the compiler twice.  Currently our wrapper script
+(@command{depcomp}) knows about twelve different compilers (including
+a "compiler" that simply invokes @command{makedepend} and then the
+real compiler, which is assumed to be a standard Unix-like C compiler
+with no way to do dependency tracking).
+
+@unnumberedsubsec Bugs
+
+@itemize
+@item
+Running a wrapper script for each compilation slows down the build.
+@item
+Many users don't really care about precise dependencies.
+@item
+This implementation, like every other automatic dependency tracking
+scheme in common use today (indeed, every one we've ever heard of),
+suffers from the ``duplicated new header'' bug.
+
+This bug occurs because dependency tracking tools, such as the
+compiler, only generate dependencies on the successful opening of a
+file, and not on every probe.
+
+Suppose for instance that the compiler searches three directories for
+a given header, and that the header is found in the third directory.
+If the programmer erroneously adds a header file with the same name to
+the first directory, then a clean rebuild from scratch could fail
+(suppose the new header file is buggy), whereas an incremental rebuild
+will succeed.
+
+What has happened here is that people have a misunderstanding of what
+a dependency is.  Tool writers think a dependency encodes information
+about which files were read by the compiler.  However, a dependency
+must actually encode information about what the compiler tried to do.
+
+This problem is not serious in practice.  Programmers typically do not
+use the same name for a header file twice in a given project.  (At
+least, not in C or C++.  This problem may be more troublesome in
+Java.)  This problem is easy to fix, by modifying dependency
+generators to record every probe, instead of every successful open.
+
+@item
+Since Automake generates dependencies as a side effect of compilation,
+there is a bootstrapping problem when header files are generated by
+running a program.  The problem is that, the first time the build is
+done, there is no way by default to know that the headers are
+required, so make might try to run a compilation for which the headers
+have not yet been built.
+
+This was also a problem in the previous dependency tracking implementation.
+
+The current fix is to use @code{BUILT_SOURCES} to list built headers
+(@pxref{Sources, , Sources, automake, GNU Automake}).  This causes them
+to be built before any other build rules are run.  This is unsatisfactory
+as a general solution, however in practice it seems sufficient for most
+actual programs.
+@end itemize
+
+This code is used since Automake 1.5.
+
+In GCC 3.0, we managed to convince the maintainers to add special
+command-line options to help Automake more efficiently do its job.  We
+hoped this would let us avoid the use of a wrapper script when
+Automake's automatic dependency tracking was used with @command{gcc}.
+
+Unfortunately, this code doesn't quite do what we want.  In
+particular, it removes the dependency file if the compilation fails;
+we'd prefer that it instead only touch the file in any way if the
+compilation succeeds.
+
+Nevertheless, since Automake 1.7, when a recent @command{gcc} is
+detected at @command{configure} time, we inline the
+dependency-generation code and do not use the @command{depcomp}
+wrapper script.  This makes compilations faster for those using this
+compiler (probably our primary user base).  The counterpart is that
+because we have to encode two compilation rules in @file{Makefile}
+(with or without @command{depcomp}), the produced @file{Makefile}s are
+larger.
+
+@node Techniques for Dependencies
+@section Techniques for Computing Dependencies
+
+There are actually several ways for a build tool like Automake to
+cause tools to generate dependencies.
+
+@table @asis
+@item @command{makedepend}
+This was a commonly-used method in the past.  The idea is to run a
+special program over the source and have it generate dependency
+information.  Traditional implementations of @command{makedepend} are
+not completely precise; ordinarily they were conservative and
+discovered too many dependencies.
+@item The tool
+An obvious way to generate dependencies is to simply write the tool so
+that it can generate the information needed by the build tool.  This is
+also the most portable method.  Many compilers have an option to
+generate dependencies.  Unfortunately, not all tools provide such an
+option.
+@item The file system
+It is possible to write a special file system that tracks opens,
+reads, writes, etc, and then feed this information back to the build
+tool.  @command{clearmake} does this.  This is a very powerful
+technique, as it doesn't require cooperation from the
+tool.  Unfortunately it is also very difficult to implement and also
+not practical in the general case.
+@item @code{LD_PRELOAD}
+Rather than use the file system, one could write a special library to
+intercept @code{open} and other syscalls.  This technique is also quite
+powerful, but unfortunately it is not portable enough for use in
+@command{automake}.
+@end table
+
+@menu
+* Recommendations for Tool Writers::
+* Future Directions for Dependencies::
+@end menu
+
+@node Recommendations for Tool Writers
+@subsection Recommendations for Tool Writers
+
+We think that every compilation tool ought to be able to generate
+dependencies as a side effect of compilation.  Furthermore, at least
+while @command{make}-based tools are nearly universally in use (at
+least in the free software community), the tool itself should generate
+dummy dependencies for header files, to avoid the deleted header file
+bug.  Finally, the tool should generate a dependency for each probe,
+instead of each successful file open, in order to avoid the duplicated
+new header bug.
+
+@node Future Directions for Dependencies
+@subsection Future Directions for Dependencies
+
+Currently, only languages and compilers understood by Automake can
+have dependency tracking enabled.  We would like to see if it is
+practical (and worthwhile) to let this support be extended by the user
+to languages unknown to Automake.
+
+@node Releases
+@chapter Release Statistics
+
+The following table (inspired by @samp{perlhist(1)}) quantifies the
+evolution of Automake using these metrics:
+
+@table @asis
+@item Date, Rel
+The date and version of the release.
+@item am
+The number of lines of the @command{automake} script.
+@item acl
+The number of lines of the @command{aclocal} script.
+@item pm
+The number of lines of the @command{Perl} supporting modules.
+@item @file{*.am}
+The number of lines of the @file{Makefile} fragments.  The number in
+parentheses is the number of files.
+@item m4
+The number of lines (and files) of Autoconf macros.
+@item doc
+The number of pages of the documentation (the Postscript version).
+@item t
+The number of test cases in the test suite.  Of those, the number in
+parentheses is the number of generated test cases.
+@end table
+
+@multitable {8888-88-88} {8.8-p8} {8888} {8888} {8888} {8888 (88)} {8888 (88)} {888} {888 (88)}
+@headitem Date   @tab Rel    @tab   am @tab acl @tab   pm @tab @file{*.am} @tab m4 @tab doc @tab t
+@item 1994-09-19 @tab CVS    @tab  141 @tab     @tab      @tab  299 (24) @tab           @tab     @tab
+@item 1994-11-05 @tab CVS    @tab  208 @tab     @tab      @tab  332 (28) @tab           @tab     @tab
+@item 1995-11-23 @tab 0.20   @tab  533 @tab     @tab      @tab  458 (35) @tab           @tab   9 @tab
+@item 1995-11-26 @tab 0.21   @tab  613 @tab     @tab      @tab  480 (36) @tab           @tab  11 @tab
+@item 1995-11-28 @tab 0.22   @tab 1116 @tab     @tab      @tab  539 (38) @tab           @tab  12 @tab
+@item 1995-11-29 @tab 0.23   @tab 1240 @tab     @tab      @tab  541 (38) @tab           @tab  12 @tab
+@item 1995-12-08 @tab 0.24   @tab 1462 @tab     @tab      @tab  504 (33) @tab           @tab  14 @tab
+@item 1995-12-10 @tab 0.25   @tab 1513 @tab     @tab      @tab  511 (37) @tab           @tab  15 @tab
+@item 1996-01-03 @tab 0.26   @tab 1706 @tab     @tab      @tab  438 (36) @tab           @tab  16 @tab
+@item 1996-01-03 @tab 0.27   @tab 1706 @tab     @tab      @tab  438 (36) @tab           @tab  16 @tab
+@item 1996-01-13 @tab 0.28   @tab 1964 @tab     @tab      @tab  934 (33) @tab           @tab  16 @tab
+@item 1996-02-07 @tab 0.29   @tab 2299 @tab     @tab      @tab  936 (33) @tab           @tab  17 @tab
+@item 1996-02-24 @tab 0.30   @tab 2544 @tab     @tab      @tab  919 (32) @tab   85 (1)  @tab  20 @tab 9
+@item 1996-03-11 @tab 0.31   @tab 2877 @tab     @tab      @tab  919 (32) @tab   85 (1)  @tab  29 @tab 17
+@item 1996-04-27 @tab 0.32   @tab 3058 @tab     @tab      @tab  921 (31) @tab   85 (1)  @tab  30 @tab 26
+@item 1996-05-18 @tab 0.33   @tab 3110 @tab     @tab      @tab  926 (31) @tab  105 (1)  @tab  30 @tab 35
+@item 1996-05-28 @tab 1.0    @tab 3134 @tab     @tab      @tab  973 (32) @tab  105 (1)  @tab  30 @tab 38
+@item 1997-06-22 @tab 1.2    @tab 6089 @tab 385 @tab      @tab 1294 (36) @tab  592 (20) @tab  37 @tab 126
+@item 1998-04-05 @tab 1.3    @tab 6415 @tab 422 @tab      @tab 1470 (39) @tab  741 (23) @tab  39 @tab 156
+@item 1999-01-14 @tab 1.4    @tab 7240 @tab 426 @tab      @tab 1591 (40) @tab  734 (20) @tab  51 @tab 197
+@item 2001-05-08 @tab 1.4-p1 @tab 7251 @tab 426 @tab      @tab 1591 (40) @tab  734 (20) @tab  51 @tab 197
+@item 2001-05-24 @tab 1.4-p2 @tab 7268 @tab 439 @tab      @tab 1591 (40) @tab  734 (20) @tab  49 @tab 197
+@item 2001-06-07 @tab 1.4-p3 @tab 7312 @tab 439 @tab      @tab 1591 (40) @tab  734 (20) @tab  49 @tab 197
+@item 2001-06-10 @tab 1.4-p4 @tab 7321 @tab 439 @tab      @tab 1591 (40) @tab  734 (20) @tab  49 @tab 198
+@item 2001-07-15 @tab 1.4-p5 @tab 7228 @tab 426 @tab      @tab 1596 (40) @tab  734 (20) @tab  51 @tab 198
+@item 2001-08-23 @tab 1.5    @tab 8016 @tab 475 @tab  600 @tab 2654 (39) @tab 1166 (29) @tab  63 @tab 327
+@item 2002-03-05 @tab 1.6    @tab 8465 @tab 475 @tab 1136 @tab 2732 (39) @tab 1603 (27) @tab  66 @tab 365
+@item 2002-04-11 @tab 1.6.1  @tab 8544 @tab 475 @tab 1136 @tab 2741 (39) @tab 1603 (27) @tab  66 @tab 372
+@item 2002-06-14 @tab 1.6.2  @tab 8575 @tab 475 @tab 1136 @tab 2800 (39) @tab 1609 (27) @tab  67 @tab 386
+@item 2002-07-28 @tab 1.6.3  @tab 8600 @tab 475 @tab 1153 @tab 2809 (39) @tab 1609 (27) @tab  67 @tab 391
+@item 2002-07-28 @tab 1.4-p6 @tab 7332 @tab 455 @tab      @tab 1596 (40) @tab  735 (20) @tab  49 @tab 197
+@item 2002-09-25 @tab 1.7    @tab 9189 @tab 471 @tab 1790 @tab 2965 (39) @tab 1606 (28) @tab  73 @tab 430
+@item 2002-10-16 @tab 1.7.1  @tab 9229 @tab 475 @tab 1790 @tab 2977 (39) @tab 1606 (28) @tab  73 @tab 437
+@item 2002-12-06 @tab 1.7.2  @tab 9334 @tab 475 @tab 1790 @tab 2988 (39) @tab 1606 (28) @tab  77 @tab 445
+@item 2003-02-20 @tab 1.7.3  @tab 9389 @tab 475 @tab 1790 @tab 3023 (39) @tab 1651 (29) @tab  84 @tab 448
+@item 2003-04-23 @tab 1.7.4  @tab 9429 @tab 475 @tab 1790 @tab 3031 (39) @tab 1644 (29) @tab  85 @tab 458
+@item 2003-05-18 @tab 1.7.5  @tab 9429 @tab 475 @tab 1790 @tab 3033 (39) @tab 1645 (29) @tab  85 @tab 459
+@item 2003-07-10 @tab 1.7.6  @tab 9442 @tab 475 @tab 1790 @tab 3033 (39) @tab 1660 (29) @tab  85 @tab 461
+@item 2003-09-07 @tab 1.7.7  @tab 9443 @tab 475 @tab 1790 @tab 3041 (39) @tab 1660 (29) @tab  90 @tab 467
+@item 2003-10-07 @tab 1.7.8  @tab 9444 @tab 475 @tab 1790 @tab 3041 (39) @tab 1660 (29) @tab  90 @tab 468
+@item 2003-11-09 @tab 1.7.9  @tab 9444 @tab 475 @tab 1790 @tab 3048 (39) @tab 1660 (29) @tab  90 @tab 468
+@item 2003-12-10 @tab 1.8    @tab 7171 @tab 585 @tab 7730 @tab 3236 (39) @tab 1666 (31) @tab 104 @tab 521
+@item 2004-01-11 @tab 1.8.1  @tab 7217 @tab 663 @tab 7726 @tab 3287 (39) @tab 1686 (31) @tab 104 @tab 525
+@item 2004-01-12 @tab 1.8.2  @tab 7217 @tab 663 @tab 7726 @tab 3288 (39) @tab 1686 (31) @tab 104 @tab 526
+@item 2004-03-07 @tab 1.8.3  @tab 7214 @tab 686 @tab 7735 @tab 3303 (39) @tab 1695 (31) @tab 111 @tab 530
+@item 2004-04-25 @tab 1.8.4  @tab 7214 @tab 686 @tab 7736 @tab 3310 (39) @tab 1701 (31) @tab 112 @tab 531
+@item 2004-05-16 @tab 1.8.5  @tab 7240 @tab 686 @tab 7736 @tab 3299 (39) @tab 1701 (31) @tab 112 @tab 533
+@item 2004-07-28 @tab 1.9    @tab 7508 @tab 715 @tab 7794 @tab 3352 (40) @tab 1812 (32) @tab 115 @tab 551
+@item 2004-08-11 @tab 1.9.1  @tab 7512 @tab 715 @tab 7794 @tab 3354 (40) @tab 1812 (32) @tab 115 @tab 552
+@item 2004-09-19 @tab 1.9.2  @tab 7512 @tab 715 @tab 7794 @tab 3354 (40) @tab 1812 (32) @tab 132 @tab 554
+@item 2004-11-01 @tab 1.9.3  @tab 7507 @tab 718 @tab 7804 @tab 3354 (40) @tab 1812 (32) @tab 134 @tab 556
+@item 2004-12-18 @tab 1.9.4  @tab 7508 @tab 718 @tab 7856 @tab 3361 (40) @tab 1811 (32) @tab 140 @tab 560
+@item 2005-02-13 @tab 1.9.5  @tab 7523 @tab 719 @tab 7859 @tab 3373 (40) @tab 1453 (32) @tab 142 @tab 562
+@item 2005-07-10 @tab 1.9.6  @tab 7539 @tab 699 @tab 7867 @tab 3400 (40) @tab 1453 (32) @tab 144 @tab 570
+@item 2006-10-15 @tab 1.10   @tab 7859 @tab 1072 @tab 8024 @tab 3512 (40) @tab 1496 (34) @tab 172 @tab 604
+@item 2008-01-19 @tab 1.10.1 @tab 7870 @tab 1089 @tab 8025 @tab 3520 (40) @tab 1499 (34) @tab 173 @tab 617
+@item 2008-11-23 @tab 1.10.2 @tab 7882 @tab 1089 @tab 8027 @tab 3540 (40) @tab 1509 (34) @tab 176 @tab 628
+@item 2009-05-17 @tab 1.11   @tab 8721 @tab 1092 @tab 8289 @tab 4164 (42) @tab 1714 (37) @tab 181 @tab 732 (20)
+@end multitable
+
+
+@c ========================================================== Appendices
+
+@page
+@node Copying This Manual
+@appendix Copying This Manual
+
+@menu
+* GNU Free Documentation License::  License for copying this manual
+@end menu
+
+@node GNU Free Documentation License
+@appendixsec GNU Free Documentation License
+@include fdl.texi
+
+@bye

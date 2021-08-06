@@ -1,0 +1,62 @@
+The macro AM_PROG_MKDIR_P is no longer going to be removed from Automake.
+Let's see a bit of history to understand why.
+
+I had already scheduled the removal of the long-deprecated AM_PROG_MKDR_P
+macro (superseded by the Autoconf-provided one AC_PROG_MKDIR_P) for
+Automake 1.13 -- see commit 'v1.12-20-g8a1c64f'.
+
+Alas, it turned out the latest Gettext version at the time (0.18.1.1) was
+still using that macro:
+
+  <https://lists.gnu.org/archive/html/automake/2012-09/msg00010.html>
+
+And since the maintenance of Gettext was stalled, I couldn't get a fix
+committed and released in time for the appearance of Automake 1.13:
+
+  <https://lists.gnu.org/archive/html/bug-gettext/2012-04/msg00018.html>
+  <https://lists.gnu.org/archive/html/bug-gettext/2012-06/msg00012.html>
+  <https://lists.gnu.org/archive/html/bug-gettext/2012-10/msg00001.html>
+
+So, on strong advice by Jim Meyering, in commit 'v1.12.4-158-gdf23daf'
+I re-introduced AM_PROG_MKDIR_P in Automake (thanks to Jim for having
+convinced me to do so in time!)
+
+But then, Gettext (as said, the greatest "offender" in the use of
+AM_PROG_MKDIR_P), in its latest release 0.18.2, finally removed all the
+uses of that macro still present in its code base.  Yay.  So I thought
+we could finally and quite safely remove AM_PROG_MKDIR_P in Automake 1.14;
+and I proceeded to do so, see commit 'v1.13-30-gd01834b' and the merge
+commit 'v1.13-5-gb373ad9'.  Well, it turned out I was wrong, again, and
+in a trickier and sublter way this time.  Let's see the details.
+
+If a package's 'configure.ac' contains a call like:
+
+    AM_GNU_GETTEXT_VERSION([0.18])
+
+then the 'autopoint' script will bring the data files from the Gettext
+release *1.18* into the package's tree -- yes, even even if the developer
+has installed *and is using* Gettext 1.18.2!  Now, these data files
+comprise m4 files (that will be seen by subsequent aclocal and autoconf
+calls), and of course, the pre-0.18.2 version of some of these files
+still contains occurrences of AM_PROG_MKDIR_P -- so Automake 1.13 errors
+out, and we lose.  That already happened in practice:
+
+    <https://lists.gnu.org/archive/html/bug-grep/2013-01/msg00003.html>
+
+Moreover, while I might see it as not unreasonable to ask a developer
+using Automake 2.0 to also update Gettext to 1.18.2, that would not
+be enough; in order for gettext to use the correct data files, that
+developer would have to update his configure.ac to read:
+
+    AM_GNU_GETTEXT_VERSION([0.18.2])
+
+thus requiring *all* of his co-developers to install Gettext 1.18.2,
+even if they are still using, say, Automake 1.13 or 1.14.  Bad.
+
+So I decided to re-instate this macro as a simple alias for AC_PROG_MKDIR_P
+(plus a non-fatal runtime warning in the 'obsolete' category), and drop
+any plan to remove it (see how much good those plans have done us so far).
+See commit v1.13.1-109-g030ecb4.
+
+Similarly, the obsolete '@mkdir_p@' substitution and '$(mkdir_p)' make
+variable are still supported, as simple aliases to '$(MKDIR_P)'.

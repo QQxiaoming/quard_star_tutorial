@@ -1,0 +1,27 @@
+For in Automake 2.0 (DONE)
+--------------------------
+
+We will drop split info files in Automake 2.0.
+See automake bug#13351: <https://debbugs.gnu.org/13351>.
+
+Basically, it has been confirmed that the original reason behind
+the existence of split info files was indeed "efficiency,
+especially memory size":
+<https://lists.gnu.org/archive/html/texinfo-devel/2012-08/msg00024.html>
+
+So split info files have lost their reason d'etre on modern systems
+(where even Emacs has become a lightweight program ;-).  And you are
+not using an embedded system to read Info documentation, right?
+
+In addition, it appears that the use of split info files (at least
+the way Automake-generated rules have been handling them for a long
+time) can cause real problems in some (admittedly quite corner-case)
+situations; see automake bug#12320: <https://debbugs.gnu.org/12320>.
+
+This change should be completely transparent to the developer (no
+adjustments needed to be made to Makefile.am or other parts of the
+build system).  In case some CI system or overly picky build script
+used to rely on that feature, they'll have to be adjusted; but that
+is expected to be a rare occurrence, and thus a price worth pay for
+the nice simplifications and the fixlets this planned change will
+offer us.

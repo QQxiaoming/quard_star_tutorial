@@ -1,0 +1,64 @@
+#! /bin/sh
+# Copyright (C) 2002-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Check that Automake can emit code that work round the inability of
+# some make implementations to automatically chain suffix rules.
+# See automake bug#7824 and bug#7670.
+
+required=cc
+. test-init.sh
+
+plan_ 8
+
+cat >> configure.ac <<'END'
+AC_PROG_CC
+AC_OUTPUT
+END
+
+cat > Makefile.am <<'END'
+bin_PROGRAMS = foo
+foo_SOURCES = foo.c1
+.c1.c0:
+	(echo 'int main (void)' && echo '{' && cat $<) > $@
+.c0.c:
+	(cat $< && echo '}') > $@
+CLEANFILES = foo.c0 foo.c
+END
+
+echo 'return 0;' > foo.c1
+
+command_ok_ "aclocal"   $ACLOCAL
+command_ok_ "automake"  $AUTOMAKE
+command_ok_ "autoconf"  $AUTOCONF
+command_ok_ "configure" ./configure
+
+directive=''; make_can_chain_suffix_rules || directive=TODO
+
+for target in all distcheck; do
+  command_ok_ "make $target" \
+              -D "$directive" -r "suffix rules not chained" \
+              $MAKE $target
+done
+
+command_ok_ "clean" $MAKE clean
+# Sanity check.
+cat >> Makefile <<'END'
+foo.c: foo.c0
+foo.c0: foo.c1
+END
+command_ok_ "make with explicit dependencies" $MAKE
+
+:

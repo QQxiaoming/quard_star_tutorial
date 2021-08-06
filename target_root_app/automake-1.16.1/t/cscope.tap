@@ -1,0 +1,170 @@
+#! /bin/sh
+# Copyright (C) 2009-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test cscope functionality.
+
+. test-init.sh
+
+plan_ 18
+
+ocwd=$(pwd) || fatal_ "getting top-level directory"
+
+cat > configure.ac << 'END'
+AC_INIT([cscope-test], [1.0])
+AM_INIT_AUTOMAKE([subdir-objects])
+AC_CONFIG_FILES([Makefile sub/Makefile])
+AC_SUBST([CC],  [who-cares])
+AC_SUBST([CXX], [who-cares])
+AC_SUBST([FC],  [who-cares])
+AC_SUBST([GCJ], [who-cares])
+AM_PATH_LISPDIR
+AC_OUTPUT
+END
+
+mkdir sub sub/subsub
+
+cat > Makefile.am <<'END'
+SUBDIRS = sub
+bin_PROGRAMS = foo
+foo_SOURCES = foo.c bar.cpp baz.f90
+lisp_LISP = foo.el
+EXTRA_DIST = foo.el
+END
+
+cat > sub/Makefile.am <<'END'
+bin_PROGRAMS = bar
+bar_SOURCES = subsub/dist.c
+nodist_bar_SOURCES = subsub/gen.c
+subsub/gen.c:
+	$(MKDIR_P) subsub
+	echo 'int generated_subsub () { return 0; }' > $@
+CLEANFILES = subsub/gen.c
+END
+
+echo 'int foo_func () { return 0; }' > foo.c
+echo 'int main () { return 0; }' > bar.cpp
+cat > baz.f90 <<'END'
+      subroutine baz
+      end
+END
+: > foo.el
+echo 'int main () { return 0; }' > sub/subsub/dist.c
+
+$ACLOCAL || fatal_ "aclocal failed"
+$AUTOCONF || fatal_ "autoconf failed"
+$AUTOMAKE -i -a || fatal_ "automake -i -a failed"
+
+# Sun cscope is interactive without redirection; also, it might not
+# support the '-q' option, which is required by our generated recipes.
+if cscope -q --version </dev/null; then
+  have_cscope=yes
+else
+  have_cscope=no
+fi
+
+test_cleanup ()
+{
+  r=ok
+  if test -f configure; then
+    # In-tree build.
+    $MAKE distclean
+  else
+    # VPATH build.
+    $MAKE distcleancheck
+  fi \
+    && test ! -e cscope.files \
+    && test ! -e cscope.out \
+    && test ! -e cscope.in.out \
+    && test ! -e cscope.po.out \
+    || r='not ok'
+  result_ "$r" "[$pfx] make distcheck"
+}
+
+test_cscope ()
+{
+  r=ok
+  $MAKE -n cscope || r='not ok'
+  result_ "$r" "[$pfx] make -n cscope"
+
+  if test $have_cscope = no; then
+    # For later tests.
+    touch cscope.files cscope.out cscope.in.out cscope.po.out
+    skip_row_ 3 -r "no proper cscope program available"
+    return 0
+  fi
+
+  r=ok
+  run_make -E cscope || r='not ok'
+  grep 'cannot find file' stderr && r='not ok'
+  rm -f stderr
+  result_ "$r" "[$pfx] make cscope"
+
+  r=ok
+  test -f cscope.files \
+    && $FGREP foo.c cscope.files \
+    && $FGREP bar.cpp cscope.files \
+    && $FGREP sub/subsub/dist.c cscope.files \
+    && $FGREP sub/subsub/gen.c cscope.files \
+    || r='not ok'
+  result_ "$r" "[$pfx] cscope.files looks correct"
+
+  r=ok
+  # cscope.files might not exist of the earlier "make cscope" failed.
+  cp cscope.files cscope.files1 \
+    && $MAKE cscope \
+    && diff cscope.files cscope.files1 \
+    || r='not ok'
+  rm -f cscope.files1
+  result_ "$r" "[$pfx] second \"make cscope\" is consistent"
+}
+
+my_configure ()
+{
+  command_ok_ "[$pfx] configure" \
+              "$1"/configure EMACS=no --with-lispdir=/who/cares
+}
+
+if using_gmake; then
+
+  cd "$ocwd"
+  pfx="relative VPATH"
+  mkdir build
+  cd build
+  my_configure ..
+  test_cscope
+  test_cleanup
+
+  cd "$ocwd"
+  pfx="absolute VPATH"
+  mkdir build2
+  cd build2
+  my_configure "$ocwd"
+  test_cscope
+  test_cleanup
+
+else
+
+  skip_row_ 12 -r "cscope in VPATH requires GNU make"
+
+fi
+
+cd "$ocwd"
+pfx="in-tree build"
+my_configure .
+test_cscope
+test_cleanup
+
+:

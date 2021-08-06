@@ -1,0 +1,133 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# TAP support:
+#  - a test script terminated by a signal causes an hard error
+
+. test-init.sh
+
+fetch_tap_driver
+
+plan_ 10
+
+cat >> configure.ac <<END
+AC_OUTPUT
+END
+
+cat > Makefile.am << END
+TEST_LOG_DRIVER = \$(srcdir)/tap-driver
+TEST_LOG_COMPILER = $PERL -w
+## Will be updated later.
+TESTS =
+END
+
+all_signals='1 2 3 9 13 15'
+blocked_signals=''
+for sig in $all_signals; do
+  # Ignore blocked signals
+  if is_blocked_signal $sig; then
+    blocked_signals="$blocked_signals $sig"
+    continue
+  fi
+  # Write the dummy test scripts in perl, not as shell scripts, to work
+  # around unportabilities in the handling of signals (in fact, even
+  # with bash, the older script were unable to properly deliver a SIGQUIT
+  # to themselves consistently).  The shebang is dummy here, as we prefer
+  # to rely on the definition of TEST_LOG_COMPILER instead.
+  unindent > signal-$sig.test <<END
+    #! /usr/bin/env perl
+    # We need autoflush to avoid losing output, which could cause spurious
+    # "no test plan seen" in the TAP driver.
+    BEGIN { $| = 1 }
+    use warnings FATAL => "all";
+    print "1..1\\n";
+    print "ok 1\\n";
+    kill $sig, \$\$;
+    print "Bail out! \$0 not killed?\\n";
+END
+  echo TESTS += signal-$sig.test >> Makefile.am
+done
+results_count=$(ls *.test | wc -l | tr -d "$tab$sp")
+
+chmod a+x *.test
+
+$ACLOCAL
+$AUTOCONF
+$AUTOMAKE
+
+./configure
+
+system=$(uname -s -r || echo unknown) # Needed later.
+
+signal_caught ()
+{
+  numeric=$1
+  case $numeric in
+     1) symbolic=HUP;;
+     2) symbolic=INT;;
+     3) symbolic=QUIT;;
+     9) symbolic=KILL;;
+    13) symbolic=PIPE;;
+    15) symbolic=TERM;;
+     *) fatal_ "unexpected signal number '$numeric'"
+  esac
+  # Sending a SIGQUIT on Cygwin 1.5 can cause a segmentation fault
+  # instead (sometimes).  Don't let this older bug pollute the results
+  # of our testsuite.
+  case $numeric,$system in
+    3,CYGWIN*\ 1.5.*) sig_re="((SIG)?($symbolic|SEGV)|$numeric|11)";;
+    *) sig_re="((SIG)?$symbolic|$numeric)";;
+  esac
+  wbound_re="($|[^a-zA-Z0-9_-])"
+  pfx_re="^ERROR: signal-$numeric\\.test"
+  rx="${pfx_re} .*terminated by signal ${sig_re}${wbound_re}"
+  desc="TAP driver catch test termination by signal SIG${symbolic}"
+  case " $blocked_signals " in
+    *" $numeric "*) skip_ -r "SIG$symbolic is blocked" "$desc" ;;
+    *) command_ok_ "$desc" env LC_ALL=C $EGREP "$rx" stdout ;;
+  esac
+}
+
+command_ok_ '"make check" fails' eval '
+  (
+    run_make -e IGNORE -O check
+    # Extra "echo" and silencing of xtraces required to avoid possible
+    # garbled output with NetBSD make, which would miss some final
+    # newlines in the expected places and thus mess up our TAP output.
+    set +x; echo
+    test $am_make_rc -gt 0
+  )
+'
+cat stdout # For debugging.
+
+command_ok_ "count of test results" count_test_results \
+  total=$(($results_count * 2)) \
+  pass=$results_count error=$results_count \
+  fail=0 xpass=0 xfail=0 skip=0
+
+for sig in $all_signals; do
+  signal_caught $sig
+done
+
+echo 'TEST_LOG_DRIVER_FLAGS = --ignore-exit' >> Makefile
+
+command_ok_ '"make check" passes [--ignore-exit]' run_make -O check
+
+command_ok_ "count of test results [--ignore-exit]" count_test_results \
+  total=$results_count pass=$results_count \
+  fail=0 xpass=0 xfail=0 skip=0 error=0
+
+:

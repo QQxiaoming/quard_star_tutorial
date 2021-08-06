@@ -1,0 +1,35 @@
+## automake - create Makefile.in from Makefile.am
+## Copyright (C) 1994-2018 Free Software Foundation, Inc.
+
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+am__mv = mv -f
+
+$(am__depfiles_remade):
+	@$(MKDIR_P) $(@D)
+	@echo '# dummy' >$@-t && $(am__mv) $@-t $@
+
+am--depfiles: $(am__depfiles_remade)
+.PHONY: am--depfiles
+
+## This Makefile depends on Depdirs' files, so we should never
+## erase them in -am or -recursive rules; that would prevent any other
+## rules from being recursive (for instance multilib clean rules are
+## recursive).
+if %?DISTRMS%
+distclean:
+	%DISTRMS%
+maintainer-clean:
+	%DISTRMS%
+endif

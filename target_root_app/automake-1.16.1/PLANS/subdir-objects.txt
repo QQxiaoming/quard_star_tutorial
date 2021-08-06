@@ -1,0 +1,67 @@
+Summary
+-------
+
+We want to make the behaviour currently enabled by the 'subdir-objects'
+the default one, and in fact the *only* one, in Automake 2.0.
+See automake bug#13378: <https://debbugs.gnu.org/13378>.
+
+Details
+-------
+
+The fact that Automake-generated Makefiles place compiled object files in
+the current directory by default, also when the corresponding source file
+is in a subdirectory, is basically an historical accident, due to the fact
+that the 'subdir-objects' option had only been introduced in April 1999,
+starting with commit 'user-dep-gen-branchpoint-56-g88b5959', and never
+made the default (likely to avoid backwards-compatibility issues).
+
+Since I believe the behaviour enabled by the 'subdir-objects' is the most
+useful one, and in fact the *only* natural one, I'd like to make it the
+only one available, simplifying the Automake implementation and APIs a
+little in the process.
+
+Alas, since this also means changing the default behaviour of Automake
+('subdir-objects' is not enabled by default, sadly), this means the
+transition path will be less smooth than I'd like.
+
+DONE for automake 1.13.2
+------------------------
+
+The bug spotted by Nick Bowler:
+
+  <https://debbugs.gnu.org/cgi/bugreport.cgi?bug=13378#35>
+  <https://debbugs.gnu.org/cgi/bugreport.cgi?bug=13378#44>
+
+and exposed in test case 't/ccnoco4.sh' has been fixed (see commit
+v1.13.1-56-g34001a9).  The bug was due to the fact that Automake-generated
+C compilation rules mistakenly passed the "-c -o" options combination
+unconditionally (even to losing compiler) when the 'subdir-objects' was
+used but sources were only present in the top-level directory.
+
+DONE for automake 1.14
+----------------------
+
+We give a warning in the category 'unsupported' if the 'subdir-objects'
+option is not specified.  This should give the users enough forewarning
+about the planned change, and give them time to update their packages
+to the new semantic.
+
+We also make sure to avoid the warning when it would be irrelevant, i.e.,
+if all source files sit in "current" directory (thanks to Peter Johansson
+for suggesting this).
+
+For automake 1.16 (*before* 2.0 can be released)
+------------------------------------------------
+
+Submit the pending patch series that fixes https://debbugs.gnu.org/13928
+
+For automake 2.0
+----------------
+
+Make the behaviour once activated by the 'subdir-object' option mandatory.
+With that change, we'll drop support for the "old" behaviour of having
+object files derived from sources in a subdirectory being placed in the
+current directory rather than in that same subdirectory.
+
+Still keep the 'subdir-objects' option supported (as a simple no-op
+now), to save useless churn in our user's build systems.

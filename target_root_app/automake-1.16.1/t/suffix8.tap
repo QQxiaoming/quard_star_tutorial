@@ -1,0 +1,105 @@
+#! /bin/sh
+# Copyright (C) 2002-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test to make sure Automake supports multiple derivations for the
+# same suffix.
+# From PR/37.
+
+required='cc libtoolize'
+. test-init.sh
+
+plan_ 10
+
+cat >>configure.ac <<'END'
+AM_PROG_AR
+AM_PROG_LIBTOOL
+AC_OUTPUT
+END
+
+cat >Makefile.am << 'END'
+# $(LINK) is not defined automatically by Automake, since the *_SOURCES
+# variables don't contain any known extension (.c, .cc, .f ...),
+# So we need this hack.
+LINK = :
+
+bin_PROGRAMS = foo
+lib_LTLIBRARIES = libfoo.la
+
+foo_SOURCES = foo.x_
+libfoo_la_SOURCES = bar.x_
+
+# The elaborate cp commands below account for VPATH issues on
+# weaker make implementations (e.g. IRIX 6.5).
+.x_.y_:
+	cp `test -f '$<' || echo $(srcdir)/`$< $@
+.y_.o:
+	cp `test -f '$<' || echo $(srcdir)/`$< $@
+.y_.obj:
+	cp `test -f '$<' || echo $(srcdir)/`$< $@
+.y_.z_:
+	cp `test -f '$<' || echo $(srcdir)/`$< $@
+.z_.lo:
+	cp `test -f '$<' || echo $(srcdir)/`$< $@
+
+# Some make implementations don't remove intermediate files
+# automatically, thus causing "make distcheck" to fail if
+# this is not added.
+MOSTLYCLEANFILES = *.y_ *.z_
+
+.PHONY: test0 test1 test2
+test0:
+	echo $(foo_OBJECTS) | grep '^foo\.foo$$'
+	echo $(libfoo_la_OBJECTS) | grep '^bar\.lo$$'
+test1:
+	echo $(foo_OBJECTS) | grep '^foo\.$(OBJEXT)$$'
+	echo $(libfoo_la_OBJECTS) | grep '^bar\.lo$$'
+test2: $(foo_OBJECTS) $(libfoo_la_OBJECTS)
+	test -f foo.$(OBJEXT)
+	test -f bar.lo
+check-local: test1 test2
+END
+
+echo 'int main (void) { return 0; }' > foo.x_
+echo 'int bar (void) { return 0; }' > bar.x_
+
+# We must protect the TAP driver from the output of configure, since
+# that might output a stray "ok" on a line of its own (due to a
+# libtool bug on Mac OS X), thus causing a spurious test result to
+# be seen.  See automake bug#11897.
+protect_output ()
+{
+  st=0; "$@" >output 2>&1 || st=1
+  sed 's/^/  /' output
+  test $st -eq 0
+}
+
+command_ok_ "libtoolize" libtoolize
+command_ok_ "aclocal"    $ACLOCAL
+command_ok_ "autoconf"   $AUTOCONF
+command_ok_ "automake"   $AUTOMAKE -a
+command_ok_ "configure"  protect_output ./configure
+command_ok_ "make test0" run_make OBJEXT=foo test0
+command_ok_ "make test1" $MAKE test1
+
+directive=''; make_can_chain_suffix_rules || directive=TODO
+
+for target in test2 all distcheck; do
+  command_ok_ "make $target"  \
+              -D "$directive" -r "suffix rules not chained" \
+              protect_output $MAKE $target
+done
+
+:

@@ -1,0 +1,40 @@
+Summary
+-------
+
+POSIX will say in a future version that calling "rm -f" with no argument
+is OK; and this sensible behaviour seem to be already very widespread in
+"the wild" (and possibly lacking only on those systems that are well on
+their way to obsolescence).
+
+Se we'd like to simplify several automake-generated "cleaning" rules
+accordingly, to get rid of the awful idiom:
+
+  test -z "$(VAR)" || rm -f $(VAR)
+
+See automake bug#10828.
+
+For Automake 1.14 (DONE)
+------------------------
+
+Add a temporary "probe check" in AM_INIT_AUTOMAKE that verifies that
+the no-args "rm -f" usage is supported on the system configure is
+being run on; complain loudly if this is not the case, and tell the
+user to report the situation to us.
+
+For Automake 2.0
+----------------
+
+Make any failure in the configure-time probe check introduced by the
+previous point fatal; and in case of failure, also suggest to the user
+to install an older version of GNU coreutils to work around the
+limitation of his system (this version should be old enough not to
+be bootstrapped with Automake 2.0, otherwise the user will face a
+bootstrapping catch-22).
+
+In all our recipes, start assuming "rm -f" with no argument is OK;
+simplify and de-uglify the recipes accordingly.
+
+For Automake 3.0
+----------------
+
+Remove the runtime probe altogether.

@@ -1,0 +1,21 @@
+Done in automake 1.13.2:
+------------------------
+
+I have discouraged the use of '.txi' and '.texinfo' suffixes for
+Texinfo inputs (see commit 'v1.13.1-6-ge1ed314') and the generation
+of suffix-less info files (commit 'v1.13.1-4-g2af418d').
+
+This is done to ease transition to Automake-NG (see commits
+'v1.12.1-416-gd5459b9' and 'v1.12.1-392-ga0c7b6a' there), and
+(to a lesser degree) to discourage use of seldom-tested setups.
+
+
+The Future:
+-----------
+
+I have no plans to do the further step of removing support for those
+usages in future Automake versions.  That would be a gratuitous
+incompatibility (in Automake-NG, they have been useful because have
+allowed further refactorings and improvements, but those were
+based on GNU make features, and as such have no place in mainline
+Automake).

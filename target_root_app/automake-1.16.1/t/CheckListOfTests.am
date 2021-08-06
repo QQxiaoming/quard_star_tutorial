@@ -1,0 +1,68 @@
+## -*- Automake -*-
+##
+## Copyright (C) 2011-2018 Free Software Foundation, Inc.
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+##
+
+## Temporary files used in the 'check-list-of-tests' recipe.
+am__tmk = tests-in-makefile-list.tmp
+am__tfs = tests-on-filesystem-list.tmp
+am__tdf = diff-in-tests-lists.tmp
+
+## Check that the list of tests given in the Makefile is equal to the
+## list of all test scripts in the Automake testsuite.
+.PHONY: maintainer-check-list-of-tests
+maintainer-check-list-of-tests:
+## Prefer unified diffs over plain diffs, for readability.
+	 @if diff -u /dev/null /dev/null >/dev/null 2>&1; then \
+	   diff='diff -u'; \
+	 else \
+	   diff='diff'; \
+	 fi; \
+## List of tests in Makefile.
+	 lst='$(expected_list_of_tests)'; \
+	 test -n "$$lst" || lst='$(TESTS)'; \
+	 for t in $$lst; do \
+	   echo "$$t"; \
+	 done | sort >$(am__tmk); \
+## List of subdirs where to look for tests.
+	 dirs='$(test_subdirs)'; \
+	 test -n "$$dirs" || dirs=.; \
+## List of tests on filesystem.  Be careful to cater for VPATH builds too.
+	 test_extensions='$(TEST_EXTENSIONS)'; \
+	 for ext in $$test_extensions; do \
+	   for dir in $$dirs; do \
+	     ls $$dir/*$$ext 2>/dev/null; \
+	     if test $(srcdir) != $(builddir); then \
+	       ($(am__cd) $(srcdir) && ls $$dir/*$$ext 2>/dev/null); \
+	     fi; \
+	   done; \
+	 done | sed 's,^\./,,' | sort | uniq >$(am__tfs); \
+## Compare the two lists, complain if they differ.
+	 if $$diff $(am__tmk) $(am__tfs) >$(am__tdf); then \
+	    result=0; \
+	 else \
+	    echo '$@: list of tests in Makefile an on filesystem differ' >&2; \
+	    echo "+ $$diff in-makefile on-filesystem" >&2; \
+	    cat $(am__tdf) >&2; \
+	    result=1; \
+	 fi; \
+	 rm -f $(am__tmk) $(am__tfs) $(am__tdf); \
+	 exit $$result;
+
+.PHONY: clean-maintcheck-testslist-tmp
+clean-local: clean-maintcheck-testslist-tmp
+clean-maintcheck-testslist-tmp:
+	rm -f $(am__tmk) $(am__tfs) $(am__tdf)

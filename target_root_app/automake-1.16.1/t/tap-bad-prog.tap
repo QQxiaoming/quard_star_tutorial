@@ -1,0 +1,85 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# TAP support:
+#  - missing, unreadable, or not-executable test scripts cause proper
+#    error reports
+
+. test-init.sh
+
+fetch_tap_driver
+
+plan_ 6
+
+cat >> configure.ac <<END
+AC_OUTPUT
+END
+
+cat > Makefile.am << 'END'
+TEST_LOG_DRIVER = $(srcdir)/tap-driver
+TESTS = none.test noread.test noexec.test
+none.test:
+END
+
+cat > noexec.test <<'END'
+#!/bin/sh
+echo 1..1
+echo ok 1
+END
+
+cp noexec.test noread.test
+chmod a-r noread.test
+
+$ACLOCAL
+$AUTOCONF
+$AUTOMAKE
+
+./configure
+
+command_ok_ '"make check" returns non-zero exit status' \
+            run_make -O -e FAIL check
+
+# FIXME: maybe grep for stricter error messages in the next checks?
+
+command_ok_ "non-existent test is reported" \
+            grep '^ERROR: none\.test' stdout
+
+desc="non-executable test is reported"
+# Redirect output to avoid confusing automake's testsuite own TAP driver.
+if ./noexec.test >/dev/null; then
+  skip_ -r "any file is executable" "$desc"
+else
+  command_ok_ "$desc" -- grep '^ERROR: noexec\.test' stdout
+fi
+
+desc="non-readable test is reported"
+if test -r noread.test; then
+  skip_ -r "any file is readable" "$desc"
+else
+  command_ok_ "$desc" -- grep '^ERROR: noread\.test' stdout
+fi
+
+# Check that no spurious test result is reported.  This is lower-priority
+# (and in fact the check currently fails).
+
+command_ok_ 'no spurious "missing plan" message' \
+  -D TODO -- not grep 'missing.* plan' stdout
+
+command_ok_ 'no spurious results' \
+  -D TODO -r 'still get "missing plan"' \
+  count_test_results total=3 pass=0 fail=0 xpass=0 xfail=0 skip=0 error=3
+
+:

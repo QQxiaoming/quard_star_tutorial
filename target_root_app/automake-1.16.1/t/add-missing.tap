@@ -1,0 +1,382 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test that automake complains when required auxiliary files are not
+# found, and that 'automake --add-missing' installs the files (and only
+# the files) it's supposed to, and that these files are symlinked by
+# default, but copied if the '--copy' option is used.
+
+am_create_testdir=empty
+. test-init.sh
+
+plan_ "later"
+
+build_aux=build-aux
+ocwd=$(pwd) || fatal_ "cannot get current working directory"
+
+# Try to improve readability of displayed diffs.
+if diff -u /dev/null /dev/null; then
+  am_diff='diff -u'
+elif diff -c /dev/null /dev/null; then
+  am_diff='diff -c'
+else
+  am_diff=diff
+fi
+
+# MinGW/MSYS lacks real symlinks, so we'll have to skip some checks
+# on that system.  More details below.
+echo dummy > foo
+if ln -s foo bar && test -h bar; then
+  have_true_symlinks=yes
+else
+  have_true_symlinks=no
+fi
+rm -f foo bar
+
+cat > configure.stub << END
+AC_INIT([$me], [1.0])
+AC_CONFIG_AUX_DIR([$build_aux])
+AM_INIT_AUTOMAKE
+AC_CONFIG_FILES([Makefile])
+END
+
+# Pre-compute aclocal.m4, in order to save several aclocal invocations.
+cat configure.stub - > configure.ac <<'END'
+AC_PROG_CC
+AC_CANONICAL_BUILD
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
+AC_CANONICAL_SYSTEM
+AM_PATH_LISPDIR
+AM_PATH_PYTHON
+AC_OUTPUT
+END
+$ACLOCAL || framework_failure_ "cannot pre-compute aclocal.m4"
+
+rm -rf configure.ac autom4te*.cache
+mv aclocal.m4 aclocal.stub
+
+# For debugging.
+cat configure.stub
+cat aclocal.stub
+
+check_count=0
+
+# This is hacky and ugly and complex, but allow us to organize our tests
+# below in a more "declarative fashion".  All in all, a good trade-off.
+check_ ()
+{
+  set +x # Temporary disable shell traces to remove noise from log files.
+  check_count=$(($check_count + 1))
+  echo check count: $check_count
+  override=no
+  run_aclocal=no
+  fetch_file=
+  while test $# -gt 0; do
+    case $1 in
+      --override) override=yes;;
+      --run-aclocal) run_aclocal=yes;;
+      --fetch-file) fetch_file=$2; shift;;
+      *) framework_failure_ "check_: invalid argument '$1'";;
+    esac
+    shift
+  done
+  mkdir testdir-$check_count
+  cd testdir-$check_count
+  # Directory for common data files (specific to the current test, but
+  # shared by its "subtests").
+  mkdir generic
+  cd generic
+  : > Makefile.am
+  if test $override = yes; then
+    : > configure.ac
+  else
+    cp "$ocwd"/configure.stub configure.ac
+  fi
+  test -z "$fetch_file" || cp "$ocwd/$fetch_file" .
+  # Read description of "test scenario" from standard input.
+  what= line= name= files=
+  while read line; do
+    case $line in
+      '== Name ==') what=NAME;;
+      '== Makefile.am ==') what=Makefile.am;;
+      '== configure.ac ==') what=configure.ac;;
+      '== Files ==') what=LIST;;
+      '==*') framework_failure_ "invalid input line: $line";;
+      ''|'#%'*) : Empty line or ad-hoc comment, ignore. ;;
+      *)
+        if test $what = LIST; then
+          files="$files $line"
+        elif test $what = NAME; then
+          name=$line
+        else
+          printf '%s\n' "$line" >> "$what"
+        fi
+        ;;
+    esac
+  done
+  test -n "$name" || fatal_ "name of a test case not specified"
+  if test $run_aclocal = yes; then
+    if $ACLOCAL; then
+      ok_ "[$name] aclocal.m4 rebuilt"
+      echo == aclocal.m4 ==
+      cat aclocal.m4
+    else
+      not_ok_ "[$name] aclocal failure, aclocal.m4 not rebuilt"
+    fi
+  else
+    cp "$ocwd"/aclocal.stub aclocal.m4
+  fi
+  echo == Makefile.am ==
+  cat Makefile.am
+  echo == configure.ac ==
+  cat configure.ac
+  echo Expected files: $files
+  mkdir "$build_aux"
+  cd ..
+  # End of "test scenario" setup.
+  set -x # Re-enable shell traces.
+  pwd
+  ls -l generic
+  # Test once with '--copy', once without.
+  for action in link copy; do
+    case $action in
+      link) opts='--add-missing';;
+      copy) opts='-a --copy';;
+         *) fatal_ "invalid value '$action' for \$action";;
+    esac
+    pfx="[$action $name]"
+    cp -R generic $action
+    cd $action
+    # If the required auxiliary files are missing, and automake is
+    # not told to install them, it should complain and error out,
+    # and also give a useful suggestion.
+    AUTOMAKE_fails -d "$pfx missing files, automake fails"
+    for f in $files; do
+      command_ok_ \
+        "$pfx warn about missing file $f" \
+        $FGREP "required file '$build_aux/$f' not found" stderr
+      # Suggest the user to use '--add-missing'.
+      command_ok_ \
+        "$pfx suggest --add-missing for $f" \
+        grep ".*--add-missing.* install .*'$f'" stderr
+    done
+    # No files should be automatically installed by automake if it
+    # is not told to.
+    if ls "$build_aux" | grep .; then r='not ok'; else r=ok; fi
+    result_ "$r" "$pfx no extra files installed"
+    AUTOMAKE_run -d "$pfx automake run successfully" -- $opts
+    ls -l . $build_aux
+    # The expected files should get installed correctly (e.g., no
+    # broken symlinks).
+    for f in $files; do
+      command_ok_ \
+        "$pfx file $f installed" \
+        test -f $build_aux/$f
+    done
+    # Automake should inform about which files it's installing.
+    for f in $files; do
+      command_ok_ \
+        "$pfx report installation of $f" \
+        $FGREP ": installing '$build_aux/$f'" stderr
+    done
+    # Only the expected files should be installed.  But automake always
+    # require 'missing' and 'install-sh', so account for them.
+    all_files="install-sh missing $files"
+    for f in $all_files; do echo $f; done | sort | uniq > files.exp
+    (cd $build_aux && ls) | sort > files.got
+    cat files.exp
+    cat files.got
+    command_ok_ \
+      "$pfx all and only expected files installed" \
+      $am_diff files.exp files.got
+    # The files should be copied by '--copy' and symlinked otherwise.
+    # But these checks make no sense on systems like MSYS/MinGW where
+    # there are no true symlinks ('ln -s' behaves like 'cp -p'), so be
+    # ready to skip the checks in that case.  See automake bug#10441.
+    for f in $files; do
+      if test $have_true_symlinks = no; then
+        skip_ -r "system lacks true symlinks" "$pfx $f is a symlink or not"
+      else
+        if test -h $build_aux/$f; then
+          is_symlink=yes
+        else
+          is_symlink=no
+        fi
+        case $action,$is_symlink in
+          link,yes)     ok_ "$pfx $f has been symlinked"     ;;
+           link,no) not_ok_ "$pfx $f has not been symlinked" ;;
+          copy,yes) not_ok_ "$pfx $f has been symlinked"     ;;
+           copy,no)     ok_ "$pfx $f has not been symlinked" ;;
+                 *)  fatal_ "invalid condition in case"      ;;
+        esac
+      fi
+    done
+    # Now that the required auxiliary files have been installed, automake
+    # should not complain anymore even if the '--add-missing' option is
+    # not used.
+    AUTOMAKE_run -d "$pfx automake finds all added files"
+    cd ..
+  done # for action in link copy
+  cd "$ocwd" || fatal_ "cannot chdir back to top-level test directory"
+}
+
+# Automake should always and unconditionally require the 'missing'
+# and 'install-sh' scripts.
+check_ <<'END'
+== Name ==
+minimal
+== Files ==
+install-sh missing
+END
+
+check_ <<'END'
+== Name ==
+depcomp/C
+== Files ==
+depcomp
+compile
+== configure.ac ==
+AC_PROG_CC
+== Makefile.am ==
+bin_PROGRAMS = foo
+END
+
+check_ <<'END'
+== Name ==
+depcomp/C++
+== Files ==
+depcomp
+== configure.ac ==
+AC_PROG_CXX
+== Makefile.am ==
+bin_PROGRAMS = foo
+foo_SOURCES = foo.cc
+END
+
+check_ --run-aclocal <<'END'
+== Name ==
+compile
+== Files ==
+compile
+== configure.ac ==
+# Using AC_PROG_CC in configure.ac should be enough.
+# No need to also define, say, xxx_PROGRAMS in Makefile.am.
+AC_PROG_CC
+END
+
+# For config.guess and config.sub.
+for mach in build host target system; do
+  MACH=$(echo "$mach" | LC_ALL=C tr '[a-z]' '[A-Z]')
+  check_ <<END
+== Name ==
+cfg-$mach
+== Files ==
+config.sub
+config.guess
+== configure.ac ==
+AC_CANONICAL_$MACH
+END
+done
+
+check_ <<'END'
+== Name ==
+ylwrap/Lex
+== Files ==
+ylwrap
+compile
+== configure.ac ==
+AC_PROG_CC
+AC_PROG_LEX
+== Makefile.am ==
+AUTOMAKE_OPTIONS = no-dependencies
+bin_PROGRAMS = foo
+foo_SOURCES = foo.l
+END
+
+check_ <<'END'
+== Name ==
+ylwrap/Yacc
+== Files ==
+ylwrap
+compile
+== configure.ac ==
+AC_PROG_CC
+AC_PROG_YACC
+== Makefile.am ==
+AUTOMAKE_OPTIONS = no-dependencies
+bin_PROGRAMS = foo
+foo_SOURCES = foo.y
+END
+
+echo '@setfilename foo.info' > foo.texi
+check_ --fetch-file foo.texi <<'END'
+== Name ==
+Texinfo
+== Files ==
+texinfo.tex
+== Makefile.am ==
+info_TEXINFOS = foo.texi
+END
+
+echo '@include version.texi' >> foo.texi
+check_ --fetch-file foo.texi <<'END'
+== Name ==
+Texinfo/mdate-sh
+== Files ==
+mdate-sh
+texinfo.tex
+== Makefile.am ==
+info_TEXINFOS = foo.texi
+END
+
+rm -f foo.texi
+
+check_ <<'END'
+== Name ==
+py-compile
+== Files ==
+py-compile
+== configure.ac ==
+AM_PATH_PYTHON
+== Makefile.am ==
+python_PYTHON = foo.py
+END
+
+# Try few unrelated auxiliary scripts together.
+check_ <<'END'
+== Name ==
+misc
+== Files ==
+py-compile
+depcomp
+ylwrap
+config.sub
+config.guess
+== configure.ac ==
+AC_CANONICAL_BUILD
+AC_CANONICAL_HOST
+AC_PROG_CXX
+== Makefile.am ==
+PYTHON = python
+pythondir = $(prefix)/py
+YACC = bison -y
+bin_PROGRAMS = foo
+foo_SOURCES = bar.yxx baz.c++
+python_PYTHON = zardoz.py
+END
+
+:

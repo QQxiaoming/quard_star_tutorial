@@ -1,0 +1,82 @@
+#! /bin/sh
+# Copyright (C) 2002-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Tests that Automake understands multiple suffix rules on the same line.
+# PR/371 and PR/372: Reported by Duncan Gibson.
+# We also check for suffixes containing '-'.
+
+required=cc
+. test-init.sh
+
+plan_ 10
+
+cat >>configure.ac <<EOF
+AC_PROG_CC
+AC_OUTPUT
+EOF
+
+cat >Makefile.am << 'END'
+bin_PROGRAMS = foo bar baz
+foo_SOURCES = foo.x_
+bar_SOURCES = bar.y-z
+baz_SOURCES = baz1.x_ baz2.y-z
+
+.y-z.c .x_.c:
+## Account for VPATH issues on weaker make implementations (e.g. IRIX 6.5).
+	sed 's/INTEGER/int/g' `test -f '$<' || echo $(srcdir)/`$< >$@
+
+CLEANFILES = foo.c bar.c baz1.c baz2.c
+
+.PHONY: test-real test-fake
+test-fake:
+	echo $(foo_OBJECTS) | grep '^foo\.foo$$'
+	echo $(bar_OBJECTS) | grep '^bar\.foo$$'
+	echo $(baz_OBJECTS) | grep '^baz1\.foo baz2\.foo$$'
+test-real:
+	echo $(foo_OBJECTS) | grep '^foo\.$(OBJEXT)$$'
+	echo $(bar_OBJECTS) | grep '^bar\.$(OBJEXT)$$'
+	echo $(baz_OBJECTS) | grep '^baz1\.$(OBJEXT) baz2\.$(OBJEXT)$$'
+check-local: test-real
+END
+
+echo 'INTEGER main(void) { return 0; }' > foo.x_
+echo 'INTEGER main(void) { return 0; }' > bar.y-z
+echo 'INTEGER main(void) { INTEGER baz(void); return baz(); }' > baz1.x_
+echo 'INTEGER baz(void) { return 0; }' > baz2.y-z
+
+command_ok_ "aclocal" $ACLOCAL
+command_ok_ "autoconf" $AUTOCONF
+
+# What we do is not portable.  Automake should warn.
+AUTOMAKE_fails -a
+command_ok_ "warn about unportable make usage" \
+  grep '[iI]nference rules can have only one target before the colon' stderr
+# But this should work anyway.
+command_ok_ "automake" $AUTOMAKE -a -Wno-portability
+
+command_ok_ "configure"  ./configure
+command_ok_ "make test-fake" run_make OBJEXT=foo test-fake
+command_ok_ "make test-real" $MAKE test-real
+
+directive=''; make_can_chain_suffix_rules || directive=TODO
+
+for target in '' distcheck; do
+  command_ok_ "make $target" \
+              -D "$directive" -r "suffix rules not chained" \
+              $MAKE $target
+done
+
+:

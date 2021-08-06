@@ -2,6 +2,8 @@ SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 PROCESSORS=`cat /proc/cpuinfo |grep "processor"|wc -l`
 CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
 CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
+export PATH=$SHELL_FOLDER/host_output/bin:$PATH
+export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
 
 case "$2" in
 skip)
@@ -11,6 +13,22 @@ skip)
     CONFIGURE=./configure
 	;;
 esac
+
+build_hosttool()
+{
+    # 编译automake
+    echo "\033[1;4;41;32m编译automake\033[0m"
+    cd $SHELL_FOLDER/automake-1.16.1
+    $CONFIGURE --prefix=$SHELL_FOLDER/host_output
+    make -j$PROCESSORS
+    make install
+    # 编译pkgconfig
+    echo "\033[1;4;41;32m编译pkgconfig\033[0m"
+    cd $SHELL_FOLDER/pkg-config-0.29.2
+    $CONFIGURE --prefix=$SHELL_FOLDER/host_output
+    make -j$PROCESSORS
+    make install
+}
 
 build_make()
 {
@@ -181,14 +199,17 @@ build_openssh()
 
 
 case "$1" in
-bash)
-    build_bash
+hosttool)
+    build_hosttool
     ;;
 make)
     build_make
     ;;
 ncurses)
     build_ncurses
+    ;;
+bash)
+    build_bash
     ;;
 sudo)
     build_sudo
@@ -230,6 +251,7 @@ openssh)
     build_openssh
     ;;
 all)
+    build_hosttool
     build_make
     build_ncurses
     build_bash

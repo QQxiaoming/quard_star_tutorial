@@ -1,0 +1,41 @@
+#! @AM_TEST_RUNNER_SHELL@
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# A "C compiler" that chokes when the '-c' and '-o' options are passed
+# together to it on the command line.  See also automake bug#13378.
+
+am_CC=${AM_TESTSUITE_GNU_CC-'@GNU_CC@'}
+
+seen_c=false
+seen_o=false
+
+for arg
+do
+  case $arg in
+    -c)
+      seen_c=true;;
+    # It is acceptable not to leave a space between the '-o' option
+    # and its argument, so we have to cater for that.
+    -o|-o*)
+      seen_o=true;;
+  esac
+  if $seen_c && $seen_o; then
+    echo "$0: both '-o' and '-c' seen on the command line" >&2
+    exit 2
+  fi
+done
+
+exec $am_CC "$@"

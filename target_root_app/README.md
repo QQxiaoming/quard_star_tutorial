@@ -724,3 +724,12 @@ case "$1" in
 esac
 exit 0
 ```
+
+#### 系统时区配置
+
+拷贝主机上的时区信息文件目录/usr/share/zoneinfo到目标机文件系统相同的路径下。执行以下示例命令来选择你需要的时区。
+
+```shell
+ln -s  /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+

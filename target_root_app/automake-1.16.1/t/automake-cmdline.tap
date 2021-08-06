@@ -1,0 +1,54 @@
+#! /bin/sh
+# Copyright (C) 2004-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test Automake's command-line options.
+
+. test-init.sh
+
+plan_ 14
+
+# Usage: bad_cmdline DESCRIPTION REGEX-FOR-STDERR [ARGS-FOR-AUTOMAKE...]
+do_check ()
+{
+  test $# -ge 3 || fatal_ "do_check: invalid usage"
+  desc=$1; shift
+  regex=$1; shift
+  AUTOMAKE_fails -d "$desc (run)" -- "$@"
+  command_ok_ "$desc (stderr)" grep "$regex" stderr
+  cat stderr
+}
+
+do_check 'invalid long option' 'unrecognized option.*--voo' --voo
+
+do_check "empty argument" \
+         'empty argument' ''
+
+do_check "missing argument for long option" \
+         'option.*-W.*requires an argument' -W
+
+do_check "missing argument for short option" \
+         'option.*--warnings.*requires an argument' --warnings
+
+do_check "'--help' as option argument" \
+         'unknown warning.*--help' --warnings --help
+
+do_check "'--help' as option argument" \
+         'unknown warning.*--help' --warnings --help
+
+do_check "ambiguous incomplete option" \
+         'unrecognized option.*--ver' --ver
+
+:

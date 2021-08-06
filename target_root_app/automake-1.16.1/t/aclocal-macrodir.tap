@@ -1,0 +1,239 @@
+#! /bin/sh
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Several tests on the use of the m4 macro AC_CONFIG_MACRO_DIR with
+# aclocal.  See also related test 'aclocal-macrodir.tap'.
+
+am_create_testdir=empty
+. test-init.sh
+
+plan_ 7
+
+ocwd=$(pwd) || fatal_ "getting current working directory"
+unset ACLOCAL_PATH
+
+#
+# General utility functions and variables.
+#
+# TODO: These should maybe be refactored, generalized and
+#       moved into 't/ax/tap-functions.sh' ...
+#
+
+tcount=0
+r=invalid
+description=''
+directive=''
+
+test_begin ()
+{
+  if test -n "$description"; then
+    fatal_ "'test_begin' called, but another test seems active already"
+  else
+    r=ok
+    description=$1
+    directive=${2-}
+    echo "$description" > README.txt
+    shift
+  fi
+  tcount=$(($tcount + 1)) && test $tcount -gt 0 \
+    || fatal_ "failed to bump the test count"
+  mkdir $tcount.d
+  cd $tcount.d
+}
+
+test_end ()
+{
+  if test -z "$description"; then
+    fatal_ "'test_end' called, but no test seems active"
+  else
+    cd "$ocwd" || fatal_ "cannot chdir back to top-level directory"
+    result_ "$r" -D "$directive" -- "$description"
+    # Don't leave directories for successful subtests hanging around.
+    if test -z "$directive" && test "$r" = ok; then
+      rm -rf "$tcount.d" || fatal_ "removing subdir $tcount.d"
+    fi
+    r=invalid directive= description=
+  fi
+}
+
+#---------------------------------------------------------------------------
+
+test_begin "AC_CONFIG_MACRO_DIR is honored"
+
+cat > configure.ac <<'END'
+AC_INIT([md], [10.0])
+AC_CONFIG_MACRO_DIR([macro-dir])
+MY_FOO
+END
+
+mkdir macro-dir
+echo 'AC_DEFUN([MY_FOO], [::my::foo::])' > macro-dir/foo.m4
+
+$ACLOCAL \
+  && $FGREP 'm4_include([macro-dir/foo.m4])' aclocal.m4 \
+  && $AUTOCONF \
+  && not $FGREP 'MY_FOO' configure \
+  && $FGREP '::my::foo::' configure \
+  || r='not ok'
+
+test_end
+
+#---------------------------------------------------------------------------
+
+test_begin "AC_CONFIG_MACRO_DIR([foo]) interaction with --install"
+
+cat > configure.ac << 'END'
+AC_INIT([inst], [1.0])
+AC_CONFIG_MACRO_DIR([the-dir])
+THE_MACRO
+END
+
+mkdir sys-dir the-dir
+echo 'AC_DEFUN([THE_MACRO], [:])' > sys-dir/my.m4
+
+test ! -r the-dir/my.m4 \
+  && $ACLOCAL --install --system-acdir ./sys-dir \
+  && diff sys-dir/my.m4 the-dir/my.m4 \
+  || r='not ok'
+
+test_end
+
+#---------------------------------------------------------------------------
+
+test_begin "'-I' option wins over AC_CONFIG_MACRO_DIR"
+
+cat > configure.ac <<'END'
+AC_INIT([md], [4.6])
+AC_CONFIG_MACRO_DIR([dir1])
+MY_FOO
+END
+
+mkdir dir1 dir2
+echo 'AC_DEFUN([MY_FOO], [::ko::ko::])' > dir1/1.m4
+echo 'AC_DEFUN([MY_FOO], [::ok::ok::])' > dir2/2.m4
+
+$ACLOCAL -I dir2 \
+  && $FGREP 'm4_include([dir2/2.m4])' aclocal.m4 \
+  && not $FGREP 'm4_include([dir1/1.m4])' aclocal.m4 \
+  && $AUTOCONF \
+  && not $FGREP '::ko::ko::' configure \
+  && $FGREP '::ok::ok::' configure \
+  || r='not ok'
+
+test_end
+
+#---------------------------------------------------------------------------
+
+test_begin "AC_CONFIG_MACRO_DIR([foo]) can create directory 'foo'"
+
+cat > configure.ac << 'END'
+AC_INIT([x], [1.0])
+AC_CONFIG_MACRO_DIR([foo])
+MY_MACRO
+END
+
+mkdir acdir
+echo 'AC_DEFUN([MY_MACRO], [:])' > acdir/bar.m4
+
+test ! -d foo \
+  && $ACLOCAL --install --system-acdir ./acdir \
+  && diff acdir/bar.m4 foo/bar.m4 \
+  || r='not ok'
+
+test_end
+
+#---------------------------------------------------------------------------
+
+test_begin "AC_CONFIG_MACRO_DIR([non-existent]) warns with -Wunsupported"
+
+cat > configure.ac << 'END'
+AC_INIT([oops], [1.0])
+AC_CONFIG_MACRO_DIR([non-existent])
+AM_INIT_AUTOMAKE
+END
+
+$ACLOCAL -Wno-error 2>stderr \
+  && cat stderr >&2 \
+  && grep "couldn't open directory 'non-existent'" stderr \
+  && test -f aclocal.m4 \
+  || r='not ok'
+
+rm -rf aclocal.m4 autom4te*.cache
+
+$ACLOCAL -Werror -Wno-unsupported \
+  && test -f aclocal.m4 \
+  || r='not ok'
+
+test_end
+
+#---------------------------------------------------------------------------
+
+test_begin "AC_CONFIG_MACRO_DIR([not-exist]) and ACLOCAL_AMFLAGS = -I not-exist"
+
+cat > configure.ac << 'END'
+AC_INIT([oops], [1.0])
+AC_CONFIG_MACRO_DIR([not-exist])
+END
+
+cat > Makefile.am << 'END'
+ACLOCAL_AMFLAGS = -I not-exist
+END
+
+$ACLOCAL -Wno-error 2>stderr \
+  && cat stderr >&2 \
+  && test $(grep -c "couldn't open directory 'not-exist'" stderr) -eq 1 \
+  || r='not ok'
+
+test_end
+
+#---------------------------------------------------------------------------
+
+# Avoid spurious failures with pre-2.70 autoconf.
+# FIXME: remove this in automake 2.0, once we require Autoconf 2.70.
+if echo 'AC_INIT AC_CONFIG_MACRO_DIRS' | $AUTOCONF -o/dev/null -; then
+
+  test_begin "AC_CONFIG_MACRO_DIR interaction with AC_REQUIRE"
+
+  unindent > configure.ac <<'END'
+  AC_INIT([req], [1.0])
+  AC_CONFIG_MACRO_DIR([macro-dir])
+  AC_DEFUN([MY_FOO], [AC_REQUIRE([MY_BAR])])
+  MY_FOO
+END
+
+  mkdir macro-dir
+  echo 'AC_DEFUN([MY_BAR], [//my//bar//])' > macro-dir/x.m4
+
+  st=0; $ACLOCAL 2>stderr || st=$?
+  cat stderr >&2
+
+  test $st -eq 0 \
+    && test ! -s stderr \
+    && $FGREP 'm4_include([macro-dir/x.m4])' aclocal.m4 \
+    && $AUTOCONF \
+    && not $EGREP 'MY_(FOO|BAR)' configure \
+    && $FGREP '//my//bar//' configure \
+    || r='not ok'
+
+  test_end
+
+else
+
+  skip_ -r "autoconf is too old (AC_CONFIG_MACRO_DIRS not defined)"
+
+fi
+
+:

@@ -1,0 +1,96 @@
+#! /bin/sh
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Test Automake-provided internal make macro $(am__relativize).
+
+am_create_testdir=empty
+. test-init.sh
+
+plan_ later
+
+mkdir uber uber/top
+cd uber/top
+
+: > install-sh
+: > missing
+
+cat >> configure.ac <<END
+AC_INIT([$me], [1.0])
+AM_INIT_AUTOMAKE
+AC_CONFIG_FILES([Makefile])
+AC_OUTPUT
+END
+
+cat > Makefile.am << 'END'
+# The 'am__relitivize' definition is only brought in when
+# SUBDIRS are defined.
+SUBDIRS = .
+
+.PHONY: test
+test:
+	@$(am__relativize); echo "result: '$$reldir'"; set -x; \
+	 case $${reldir:-.} in "$$exp"|"$$exp/.") ;; *) exit 1;; esac
+END
+
+$ACLOCAL && $AUTOMAKE && $AUTOCONF && ./configure || fatal_ "setup failure"
+
+rel_ ()
+{
+   case $1 in -x) directive=TODO; shift;; *) directive=;; esac
+   test $# -eq 4 && test x"$3" = x"=" || fatal_ "rel_: incorrect usage"
+   command_ok_ "$1/{$4} = $2" -D "$directive" \
+               env dir1=$1 dir2=$2 exp=$4 $MAKE test
+}
+
+# am__relativize
+# ~~~~~~~~~~~~~~
+# Computes a relative pathname RELDIR such that DIR1/RELDIR = DIR2.
+# Input:
+#   - DIR1     relative pathname, relative to the current directory
+#   - DIR2     relative pathname, relative to the current directory
+# Output:
+#   - reldir   relative pathname of DIR2, relative to DIR1
+
+rel_ . .  = .
+rel_ . .. = ..
+rel_ .. . = top
+
+for d in x long-longer a/b 1/2/3/4/5; do
+  rel_ $d $d = .
+  for d2 in . .. x r/s/t; do
+    rel_ $d $d/$d2 = $d2
+  done
+done
+
+rel_ one two     = ../two
+rel_ a   b/c     = ../b/c
+rel_ a/b .       = ../..
+rel_ a/b foo     = ../../foo
+rel_ a/b foo/bar = ../../foo/bar
+rel_ a/b a/c     = ../c
+rel_ a/b a/c/d   = ../c/d
+
+rel_ foo/bar/baz foo/bar/qux/zap   = ../qux/zap
+
+rel_ ../foo       .      = ../top
+rel_ ../..        .      = uber/top
+rel_ ../../foo    .      = ../uber/top
+rel_ ../../x      ok     = ../uber/top/ok
+rel_ ../../x      bo/ba  = ../uber/top/bo/ba
+rel_ ../../x      ../ok2 = ../uber/top/../ok2
+rel_ ../a/b/c/d/e .      = ../../../../../top
+
+:

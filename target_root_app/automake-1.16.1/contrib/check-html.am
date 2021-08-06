@@ -1,0 +1,57 @@
+## automake - create Makefile.in from Makefile.am
+## Copyright (C) 2001-2018 Free Software Foundation, Inc.
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+## Makefile.am fragment to produce HTML output from RST-formatted
+## log files produced by the parallel-tests output.
+## This fragment was part of the automake core in the 1.11.x release
+## series, but has been then moved to contrib.
+
+TEST_SUITE_HTML = $(TEST_SUITE_LOG:.log=.html)
+
+mostlyclean-local: mostlyclean-check-html
+.PHONY: mostlyclean-check-html
+mostlyclean-check-html:
+## Expand $(TEST_LOGS) only once, to avoid exceeding line length limits.
+	list='$(TEST_LOGS:.log=.html)'; test -z "$$list" || rm -f $$list
+	rm -f $(TEST_SUITE_HTML)
+
+.log.html:
+	@list='$(RST2HTML) rst2html rst2html.py';			\
+	while :; do							\
+	  for r2h in $$list; do						\
+	    if ($$r2h --version) >/dev/null 2>&1; then break 2;		\
+	    else :; fi;							\
+	  done;								\
+	  echo "cannot find rst2html, cannot create $@" >&2;		\
+	  exit 2;							\
+	done;								\
+	$$r2h $(AM_RST2HTMLFLAGS) $(RST2HTMLFLAGS) $< >$@-t		\
+	  && mv -f $@-t $@
+
+# Be sure to run check first, and then to convert the result.
+# Beware of concurrent executions.  Run "check" not "check-TESTS", as
+# check-SCRIPTS and other dependencies are rebuilt by the former only.
+# And expect check to fail.
+check-html recheck-html:
+	@target=`echo $@ | sed 's/-html$$//'`; \
+	rv=0; $(MAKE) $(AM_MAKEFLAGS) $$target || rv=$$?; \
+## The nullification of $(TEST_LOGS) is required to ensure that
+## "make recheck-html" do not try to uselessly re-run tests.
+	$(MAKE) $(AM_MAKEFLAGS) $(TEST_SUITE_HTML) TEST_LOGS= || exit 4; \
+	exit $$rv
+
+.PHONY: check-html recheck-html
+.MAKE: check-html recheck-html

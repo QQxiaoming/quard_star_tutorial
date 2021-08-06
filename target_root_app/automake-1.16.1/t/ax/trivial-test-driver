@@ -1,0 +1,102 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Test driver for a very simple test protocol used by the Automake
+# testsuite to check support for custom test drivers allowing for more
+# test results per test script.
+#
+# The exit status of the wrapped script is ignored.  Lines in its stdout
+# and stderr beginning with 'PASS', 'FAIL', 'XFAIL', 'XPASS', 'SKIP' or
+# 'ERROR' count as a test case result with the obviously-corresponding
+# outcome.  Every other line is ignored for what concerns the testsuite
+# outcome.
+#
+# This script is used at least by the 'driver-custom-multitest*.test'
+# tests.
+#
+
+# Help to avoid typo-related bugs.
+set -u
+
+## Option parsing.
+
+test_name=INVALID.NAME
+log_file=BAD.LOG
+trs_file=BAD.TRS
+while test $# -gt 0; do
+  case $1 in
+    --test-name) test_name=$2; shift;;
+    --log-file) log_file=$2; shift;;
+    --trs-file) trs_file=$2; shift;;
+    # Ignored.
+    --expect-failure) shift;;
+    --color-tests) shift;;
+    --enable-hard-errors) shift;;
+    # Explicitly terminate option list.
+    --) shift; break;;
+    # Shouldn't happen
+    *) echo "$0: invalid option/argument: '$1'" >&2; exit 2;;
+  esac
+  shift
+done
+
+## Log file header.
+{
+  echo "RUN: $test_name"
+  echo "RUN: $test_name" | sed 's/./=/g'
+  echo
+} > $log_file
+
+## Run the test script, get test cases results, display them on console.
+
+"$@" 2>&1 | tee -a $log_file | (
+  i=0 st=0
+  exec 5> $trs_file
+  while read line; do
+    result=
+    case $line in
+      PASS:*)  result=PASS  ;;
+      FAIL:*)  result=FAIL  ;;
+      XPASS:*) result=XPASS ;;
+      XFAIL:*) result=XFAIL ;;
+      SKIP:*)  result=SKIP  ;;
+      ERROR:*) result=ERROR ;;
+    esac
+    if test -n "$result"; then
+      case $result in FAIL|XPASS|ERROR) st=1;; esac
+      # Output testcase result to console.
+      echo "$result: $test_name"
+      # Register testcase outcome for the log file.
+      echo ":test-result: $line" >&5
+      echo >&5
+    fi
+  done
+  if test $st -eq 0; then
+    recheck=no
+    copy_in_global_log=no
+  else
+    recheck=yes
+    copy_in_global_log=yes
+  fi
+  echo ":recheck: $recheck" >&5
+  echo ":copy-in-global-log: $copy_in_global_log" >&5
+  exec 5>&-
+) | awk '{ print $0 ", testcase " NR }'
+
+## And we're done.
+
+exit 0

@@ -1,0 +1,85 @@
+#! @AM_TEST_RUNNER_SHELL@
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# A "shell" that chokes on '-c' commands and/or shell scripts having
+# a trailing '\' character (possibly followed by whitespace only).
+# This is to emulate problems seen in older bash versions (e.g., bash
+# 2.05b). See also automake bug#10436.
+
+set -u
+
+am_SHELL=${AM_TESTSUITE_SHELL-'@SHELL@'}
+
+(
+  set -e
+  shell_command=; unset shell_command
+  shell_script=; unset shell_script
+  while test $# -gt 0; do
+    case $1 in
+      # The shell might be invoked by make e.g. as "sh -ec" or "sh -ce".
+      # Be liberal (in the spirit of defensive programming) and accept
+      # both forms.
+      -*c*) shell_command=$2; shift;;
+       -?*) ;;
+         *) break;;
+    esac
+    shift
+  done
+
+  if test x${shell_command+"set"} != x"set"; then
+    if test $# -gt 0; then
+      shell_script=$1
+      shell_command=$(cat <"$shell_script")
+    else
+      # Some make implementations, like *BSD's, pass the recipes to the
+      # shell through its standard input.  Trying to run our extra checks
+      # in this case would be too tricky, so we just skip them.
+      exit 0
+    fi
+  fi
+  original_shell_command=$shell_command
+
+  tab='	'
+  nl='
+'
+  case "$shell_command" in
+    *" "|*"$tab"|*"$nl")
+      shell_command=$(printf '%s\n' "$shell_command" | tr -d " $tab$nl");;
+  esac
+
+  case "$shell_command" in
+    *\\)
+      {
+        printf '%s\n' "$0: recipe/script ends with backslash character"
+        printf '%s\n' "=== BEGIN recipe/script"
+        if test x${shell_script+"set"} = x"set"; then
+          cat <"$shell_script"
+        else
+          printf '%s\n' "$original_shell_command"
+        fi
+        printf '%s\n' "=== END recipe/script"
+      } >&2
+      exit 1
+      ;;
+  esac
+)
+
+if test $? -gt 0; then
+  # Some of our scripts or makefile recipes had invalid contents.
+  exit 3
+fi
+
+exec ${AM_TESTSUITE_SHELL-'@SHELL@'} ${1+"$@"}

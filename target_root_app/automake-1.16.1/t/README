@@ -1,0 +1,303 @@
+			    The Automake test suite
+
+
+User interface
+==============
+
+
+Running the tests
+-----------------
+
+  To run all tests:
+
+    make -k check
+
+  By default, verbose output of a test 't/foo.sh' or 't/foo.tap' is retained
+  in the log file 't/foo.log'.  Also, a summary log is created in the file
+  'test-suite.log' (in the top-level directory).
+
+  You can use '-jN' for faster completion (it even helps on a uniprocessor
+  system, due to unavoidable sleep delays, as noted below):
+
+    make -k -j4
+
+  To rerun only failed tests:
+
+    make -k recheck
+
+  To run only tests that are newer than their last results:
+
+    make -k check RECHECK_LOGS=
+
+  To run only selected tests:
+
+    make -k check TESTS="t/foo.sh t/bar.tap"           (GNU make)
+    env TESTS="t/foo.sh t/bar.tap" make -e -k check    (non-GNU make)
+
+ To run the tests in cross-compilation mode, you should first configure
+ the automake source tree to a cross-compilation setup.  For example, to
+ run with a Linux-to-MinGW cross compiler, you will need something like
+ this:
+
+   ./configure --host i586-mingw32msvc --build i686-pc-linux-gnu
+
+ To avoid possible spurious error, you really have to *explicitly* specify
+ '--build' in addition to '--host'; the 'lib/config.guess' script can help
+ determine the correct value to pass to '--build'.
+ Then you can just run the testsuite in the usual way, and the test cases
+ using a compiler should automatically use a cross-compilation setup.
+
+
+Interpretation
+--------------
+
+  Successes:
+    PASS  - success
+    XFAIL - expected failure
+
+  Failures:
+    FAIL  - failure
+    XPASS - unexpected success
+
+  Other:
+    SKIP  - skipped tests (third party tools not available)
+    ERROR - some unexpected error condition
+
+
+About the tests
+---------------
+
+  There are two kinds of tests in the Automake testsuite (both implemented
+  as shell scripts).  The scripts with the '.sh' suffix are "simple"
+  tests, their outcome completely determined by their exit status.  Those
+  with the '.tap' suffix use the TAP protocol.
+
+  If you want to run a test by hand, you should be able to do so using the
+  'runtest' script provided in the Automake distribution:
+
+      ./runtest t/nogzip.sh
+      ./runtest t/add-missing.tap
+
+  This will run the test using the correct shell, and should also work in
+  VPATH builds.  Note that, to run the TAP tests this way, you'll need to
+  have the prove(1) utility available in $PATH.
+
+
+Supported shells
+----------------
+
+  By default, the tests are run by a proper shell detected at configure
+  time.  Here is how you can run the tests with a different shell, say
+  '/bin/my-sh':
+
+    # Running through the makefile test driver.
+    make check AM_TEST_RUNNER_SHELL=/bin/my-sh         (GNU make)
+    AM_TEST_RUNNER_SHELL=/bin/my-sh make -e check      (non-GNU make)
+
+    # Run a test directly from the command line.
+    AM_TEST_RUNNER_SHELL=/bin/my-sh ./runtest t/foo.sh
+
+  The test scripts are written with portability in mind, and should run
+  with any decent POSIX shell.  However, it is worth nothing that older
+  versions of Zsh (pre-4.3) exhibited several bugs and incompatibilities
+  with our uses, and are thus not supported for running Automake's test
+  scripts.
+
+
+Reporting failures
+------------------
+
+  Send verbose output, i.e., the contents of test-suite.log, of failing
+  tests to <bug-automake@gnu.org>, along with the usual version numbers
+  (which Automake, which Autoconf, which operating system, which make
+  version, which shell, etc.)
+
+
+
+Writing test cases
+==================
+
+* If you plan to fix a bug, write the test case first.  This way you'll
+  make sure the test catches the bug, and that it succeeds once you have
+  fixed the bug.
+
+* Add a copyright/license paragraph.
+
+* Explain what the test does, i.e., which features it checks, which
+  invariants it verifies, or what bugs/issues it guard against.
+
+* Cite the PR number (if any), and the original reporter (if any), so
+  we can find or ask for information if needed.
+
+* If a test checks examples or idioms given in the documentation, make
+  sure the documentation reference them appropriately in comments, as
+  with:
+
+    @c Keep in sync with autodist-config-headers.sh
+    @example
+    ...
+    @end example
+
+* Use "required=..." for required tools.  Do not explicitly require
+  tools which can be taken for granted because they're listed in the
+  GNU Coding Standards (for example, 'gzip').
+
+* Include 'test-init.sh' in every test script (see existing tests for
+  examples of how to do this).
+
+* Use the 'skip_' function to skip tests, with a meaningful message if
+  possible.  Where convenient, use the 'warn_' function to print generic
+  warnings, the 'fail_' function for test failures, and the 'fatal_'
+  function for hard errors.  In case a hard error is due to a failed
+  set-up of a test scenario, you can use the 'framework_fail_' function
+  instead.
+
+* For those tests checking the Automake-provided test harnesses that
+  are expected to work also when the 'serial-tests' Automake option
+  is used (thus causing the serial testsuite harness to be used in the
+  generated Makefile), place a line containing "try-with-serial-tests"
+  somewhere in the file (usually in a comment).
+  That will ensure that the 'gen-testsuite-part' script generates a
+  sibling of that test which uses the serial harness instead of the
+  parallel one.  For those tests that are *not* meant to work with the
+  parallel testsuite harness at all (these should be very very few),
+  set the shell variable 'am_serial_tests' to "yes" before including
+  test-init.sh.
+
+* Some tests in the Automake testsuite are auto-generated; those tests
+  might have custom extensions, but their basename (that is, with such
+  extension stripped) is expected to end with "-w" string, optionally
+  followed by decimal digits.  For example, the name of a valid
+  auto-generated test can be 'color-w.sh' or 'tap-signal-w09.tap'.
+  Please don't name hand-written tests in a way that could cause them
+  to be confused with auto-generated tests; for example, 'u-v-w.sh'
+  or 'option-w0.tap' are *not* valid name for hand-written tests.
+
+* test-init.sh brings in some commonly required files, and sets a skeleton
+  configure.ac.  If possible, append to this file.  In some cases you'll
+  have to overwrite it, but this should be the exception.  Note that
+  configure.ac registers Makefile.in but do not output anything by
+  default.  If you need ./configure to create Makefile, append AC_OUTPUT
+  to configure.ac.  In case you don't want your test directory to be
+  pre-populate by test-init.sh (this should be a rare occurrence), set
+  the 'am_create_testdir' shell variable to "empty" before sourcing
+  test-init.sh.
+
+* By default, the testcases are run with the errexit shell flag on,
+  to make it easier to catch failures you might not have thought of.
+  If  this is undesirable in some testcase, you can use "set +e" to
+  disable the errexit flag (but please do so only if you have a very
+  good reason).
+
+* End the test script with a ':' command.  Otherwise, when somebody
+  changes the test by adding a failing command after the last command,
+  the test will spuriously fail because '$?' is nonzero at the end.
+  Note that this is relevant even if the errexit shell flag is on, in
+  case the test contains commands like "grep ... Makefile.in && exit 1"
+  (and there are indeed a lot of such tests).
+
+* Use $ACLOCAL, $AUTOMAKE, $AUTOCONF, $AUTOUPDATE, $AUTOHEADER,
+  $PERL, $MAKE, $EGREP, and $FGREP, instead of the corresponding
+  commands.
+
+* When you want to redirect the output from a make invocation, use the
+  'run_make' function rather than calling $MAKE directly.  Not only is
+  this more idiomatic, but it also avoid possible spurious racy failures
+  when the make invocations in the testsuite are run in parallel mode
+  (as with "make check AM_TESTSUITE_MAKE='make -j4"').
+
+* Do not override Makefile variables using make arguments, as in e.g.:
+
+    $MAKE prefix=/opt install           # BAD
+
+  This is not portable for recursive targets (with non-GNU make,
+  targets that call a sub-make may not pass "prefix=/opt" along).
+  Instead, use the 'run_make' function, which automatically uses
+  the AM_MAKEFLAGS to propagate the variable definitions along to
+  sub-make:
+
+    run_make prefix=/opt install        # GOOD
+
+* Use '$sleep' when you have to make sure that some file is newer
+  than another.
+
+* Use cat or grep or similar commands to display (part of) files that
+  may be interesting for debugging, so that when a user send a verbose
+  output we don't have to ask him for more details.  Display stderr
+  output on the stderr file descriptor.  If some redirected command is
+  likely to fail, display its output even in the failure case, before
+  exiting.
+
+* Use '$PATH_SEPARATOR', not hard-coded ':', as the separator of
+  PATH's entries.
+
+* It's more important to make sure that a feature works, than make
+  sure that Automake's output looks correct.  It might look correct
+  and still fail to work.  In other words, prefer running 'make' over
+  grepping Makefile.in (or do both).
+
+* If you run $ACLOCAL, $AUTOMAKE or $AUTOCONF several times in the
+  same test and change configure.ac by the meantime, do
+
+    rm -rf autom4te*.cache
+
+  before the following runs.  On fast machines the new configure.ac
+  could otherwise have the same timestamp as the old autom4te.cache.
+
+* Use filenames with two consecutive spaces when testing that some
+  code preserves filenames with spaces.  This will catch errors like
+  `echo $filename | ...`.
+
+* Make sure your test script can be used to faithfully check an
+  installed version of automake (as with "make installcheck").  For
+  example, if you need to copy or grep an automake-provided script,
+  do not assume that they can be found in the '$top_srcdir/lib'
+  directory, but use '$am_scriptdir' instead.  The complete list of
+  such "$am_...dir" variables can be found in the 't/ax/test-defs.in'
+  file.
+
+* When writing input for lex, include the following in the definitions
+  section:
+
+    %{
+    #define YY_NO_UNISTD_H 1
+    %}
+
+  to accommodate non-ANSI systems, since GNU flex generates code that
+  includes unistd.h otherwise.  Also add:
+
+    int isatty (int fd) { return 0; }
+
+  to the definitions section if the generated code is to be compiled
+  by a C++ compiler, for similar reasons (i.e., the isatty(3) function
+  from that same unistd.h header would be required otherwise).
+
+* Add any new test to handwritten_TESTS in 't/list-of-tests.mk', and
+  to XFAIL_TESTS in addition if needed (that is, if the test is expected
+  to fail).
+
+* In test scripts, prefer using POSIX constructs over their old
+  Bourne-only equivalents:
+
+    - use $(...), not `...`, for command substitution;
+    - use $((...)), not `expr ...`, for arithmetic processing;
+    - liberally use '!' to invert the exit status of a command, e.g.,
+      in idioms like "if ! CMD; then ...", instead of relying on clumsy
+      paraphrases like "if CMD; then :; else ...".
+    - prefer use of ${param%pattern} and ${param#pattern} parameter
+      expansions over processing by 'sed' or 'expr'.
+
+* Note however that, when writing Makefile recipes or shell code in a
+  configure.ac, you should still use `...` instead, because the Autoconf
+  generated configure scripts do not ensure they will find a truly POSIX
+  shell (even though they will prefer and use it *if* it's found).
+
+* Do not test an Automake error with "$AUTOMAKE && exit 1", or in three
+  years we'll discover that this test failed for some other bogus reason.
+  This happened many times.  Better use something like
+
+     AUTOMAKE_fails
+     grep 'expected diagnostic' stderr
+
+  Note this doesn't prevent the test from failing for another reason,
+  but at least it makes sure the original error is still here.

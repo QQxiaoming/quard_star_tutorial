@@ -1,0 +1,67 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Sanity check for the automake testsuite.
+# Make sure that $me gets automatically defined by 'test-init.sh'.
+
+am_create_testdir=no
+. test-init.sh
+
+plan_ 12
+
+# This test becomes cumbersome if we keep the 'errexit' shell flag set.
+# And removing it is no big deal, as this test is a TAP-based one, so
+# that false positives remain very unlikely.
+set +e
+
+do_check ()
+{
+  $AM_TEST_RUNNER_SHELL -c '
+    am_create_testdir=no # Do not pollute the top-level directory.
+   . test-init.sh
+    echo me=$me
+  ' "$1" | grep "^me=$2$"
+  command_ok_ "me=$1" test $? -eq 0
+}
+
+for e in sh tap; do
+  do_check foo-bar-.$e 'foo-bar-'
+  do_check _foo__bar.$e '_foo__bar'
+  do_check 012.$e '012'
+  do_check a.b.c.$e 'a\.b\.c'
+done
+
+do_check foo.bar 'foo\.bar'
+do_check abc. 'abc\.'
+
+# A definition of $me in the environment should be ignored.
+
+s=$(me=bad $AM_TEST_RUNNER_SHELL -c '
+  # Do not pollute the top-level directory.
+  am_create_testdir=no
+ . test-init.sh
+  echo me=$me
+' foo.sh)
+command_ok_ "override of \$me before test-init.sh causes no error" \
+            test $? -eq 0
+
+r='ok'
+printf '%s\n' "$s" | grep '^me=foo$' || r='not ok'
+printf '%s\n' "$s" | grep 'me=bad'   && r='not ok'
+result_ "$r" "\$me from the environment is ignored"
+unset r
+
+:

@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+# Remote testing of Automake tarballs made easy.
+# This script requires Bash 4.x or later.
+
+# Copyright (C) 2013-2018 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# TODO: some documentation would be nice ...
+
+set -u
+me=${0##*/}
+
+fatal () { echo "$me: $*" >&2; exit 1; }
+
+cmd='
+  test_script=$HOME/.am-test/run
+  if test -f "$test_script" && test -x "$test_script"; then
+    "$test_script" "$@"
+  else
+    nice -n19 ./configure && nice -n19 make -j10 check
+  fi
+'
+
+remote=
+interactive=1
+maybe_sleep=:
+while test $# -gt 0; do
+  case $1 in
+   -b|--batch) interactive=0;;
+   -c|--command) cmd=${2-}; shift;;
+    # Useful to avoid spurious errors due to skewed clocks between
+    # the system where the tarball is built and the target system.
+   -S|--sleep) maybe_sleep="sleep ${2-}"; shift;;
+   -*) fatal "'$1': invalid option";;
+    *) remote=$1; shift; break;;
+  esac
+  shift
+done
+[[ -n $remote ]] || fatal "no remote given"
+
+if ((interactive)); then
+  do_on_error='{
+    AM_TESTSUITE_FAILED=yes
+    export AM_TESTSUITE_FAILED
+    # We should not modify the environment with which the failed
+    # tests have run, hence do not read ".profile", ".bashrc", and
+    # company.
+    exec bash --noprofile --norc -i
+  }'
+else
+  do_on_error='exit $?'
+fi
+
+tarball=$(echo automake*.tar.xz)
+
+case $tarball in
+  *' '*) fatal "too many automake tarballs: $tarball";;
+esac
+
+test -f $tarball || fatal "no automake tarball found"
+
+distdir=${tarball%%.tar.xz}
+
+env='PATH=$HOME/bin:$PATH'
+if test -t 1; then
+  env+=" TERM='$TERM' AM_COLOR_TESTS=always"
+fi
+
+# This is tempting:
+#   $ ssh "command" arg-1 ... arg-2
+# but doesn't work as expected.  So we need the following hack
+# to propagate the command line arguments to the remote shell.
+quoted_args=--
+while (($# > 0)); do
+  case $1 in
+    *\'*) quoted_args+=" "$(printf '%s\n' "$1" | sed "s/'/'\\''/g");;
+       *) quoted_args+=" '$1'";;
+  esac
+  shift
+done
+
+set -e
+set -x
+
+scp $tarball $remote:tmp/
+
+$maybe_sleep
+
+# Multiple '-t' to force tty allocation.
+ssh -t -t $remote "
+  set -x; set -e; set -u;
+  set $quoted_args
+  cd tmp
+  if test -e $distdir; then
+    # Use 'perl', not only 'rm -rf', to correctly handle read-only
+    # files or directory.  Fall back to 'rm' if something goes awry.
+    perl -e 'use File::Path qw/rmtree/; rmtree(\"$distdir\")' \
+      || rm -rf $distdir || exit 1
+    test ! -e $distdir
+  fi
+  export $env
+  "'
+  am_extra_acdir=$HOME/.am-test/extra-aclocal
+  am_extra_bindir=$HOME/.am-test/extra-bin
+  am_extra_setup=$HOME/.am-test/extra-setup.sh
+  if test -d "$am_extra_acdir"; then
+    export ACLOCAL_PATH=$am_extra_acdir${ACLOCAL_PATH+":$ACLOCAL_PATH"}
+  fi
+  if test -d "$am_extra_bindir"; then
+    export PATH=$am_extra_bindir:$PATH
+  fi
+  '"
+  xz -dc $tarball | tar xf -
+  cd $distdir
+  if test -f \"\$am_extra_setup\"; then
+    . \"\$am_extra_setup\"
+  fi
+  ($cmd) || $do_on_error
+"

@@ -1,0 +1,90 @@
+#! /bin/sh
+# Copyright (C) 2011-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Sanity check for the automake testsuite: the 'is_newest' subroutine.
+
+. test-init.sh
+
+plan_ 21
+
+# I'm a lazy typist.
+Y () { command_ok_ "is_newest $*" is_newest "$@"; }
+N () { command_ok_ "not is_newest $*" not is_newest "$@"; }
+
+# A simple "touch -r" might not work, since on some file systems, and/or
+# with some 'touch' versions, it might truncate the timestamp (or even
+# rounded it upwards maybe).  So the first (apparently redundant) 'touch'
+# invocation below ensures that the timestamp gets "normalized" in a way
+# that allows it to be correctly copied by the second 'touch' invocation.
+copy_timestamp ()
+{
+  touch -r "$1" "$1" && touch -r "$1" "$2"
+}
+
+: > a
+$sleep
+: > b
+: > c
+
+stat a b c || : # For debugging.
+
+Y c a
+Y b a
+N a b
+Y c b
+Y c c
+Y c a b c
+
+copy_timestamp c d
+
+stat c d || : # For debugging.
+
+Y c d
+
+# Should work on directories too, both empty and not-empty.  An older
+# implementation of 'is_newest' failed if the first argument was a
+# directory containing files newer than itself (see automake bug#9147).
+mkdir u x
+touch x/foo
+$sleep
+touch x/foo
+$sleep
+mkdir v y
+touch y/foo
+$sleep
+touch y/foo
+
+stat u v x y x/foo y/foo || : # For debugging.
+
+for older in u x; do
+  for newer in v y; do
+    Y $newer $older
+    N $older $newer
+  done
+done
+
+Y x/foo x
+N x x/foo
+
+copy_timestamp x u
+Y x u
+Y u x
+
+# A couple of mild "stress" tests.
+Y y x u v
+Y y u x/foo a b c
+
+:

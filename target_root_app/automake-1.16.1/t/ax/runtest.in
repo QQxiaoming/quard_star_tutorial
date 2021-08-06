@@ -1,0 +1,130 @@
+#!@AM_TEST_RUNNER_SHELL@
+# @configure_input@
+#
+# Copyright (C) 2012-2018 Free Software Foundation, Inc.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+# Run an Automake test from the command line.
+
+set -e; set -u
+
+: ${AM_TEST_RUNNER_SHELL='@AM_TEST_RUNNER_SHELL@'}
+: ${AM_PROVE_CMD='prove'}
+: ${AM_PROVEFLAGS='--merge --verbose'}
+: ${srcdir='@srcdir@'}
+: ${abs_srcdir='@abs_srcdir@'}
+: ${abs_builddir='@abs_builddir@'}
+: ${PATH_SEPARATOR='@PATH_SEPARATOR@'}
+
+# For sourcing of extra "shell libraries" by our test scripts.  As per
+# POSIX, sourcing a file with '.' will cause it to be looked up in $PATH
+# in case it is given with a relative name containing no slashes.
+if test "$srcdir" != .; then
+  PATH=$abs_srcdir/t/ax$PATH_SEPARATOR$PATH
+fi
+PATH=$abs_builddir/t/ax$PATH_SEPARATOR$PATH
+export PATH
+
+# For use by the testsuite framework.  The Automake test harness
+# define this, so we better do the same.
+export srcdir
+
+# Some testsuite-influential variables should be overridable from the
+# test scripts, but not from the environment.
+# Keep this in sync with the 'Makefile.am:AM_TESTS_ENVIRONMENT'.
+for v in \
+  required \
+  am_test_protocol \
+  am_serial_tests \
+  am_test_prefer_config_shell \
+  am_original_AUTOMAKE \
+  am_original_ACLOCAL \
+  am_test_lib_sourced \
+  test_lib_sourced \
+; do
+  eval "$v= && unset $v" || exit 1
+done
+unset v
+
+xecho () { printf '%s\n' "$*"; }
+error () { echo "$0: $*" >&2; exit 255; }
+
+# Some shell flags should be passed over to the test scripts.
+shell_opts=
+while test $# -gt 0; do
+  case $1 in
+    --help)
+       xecho "Usage: $0 [--shell=PATH] [-k] [SHELL-OPTIONS]" \
+             "[VAR=VALUE ...] TEST [TEST-OPTIONS]"
+       exit $?
+       ;;
+    --shell)
+       test $# -gt 1 || error "missing argument for option '$1'"
+       AM_TEST_RUNNER_SHELL=$2
+       shift
+       ;;
+    --shell=*)
+       AM_TEST_RUNNER_SHELL=${1#--shell=}
+       ;;
+    -o)
+       test $# -gt 1 || error "missing argument for option '$1'"
+       shell_opts="$shell_opts -o $2"
+       shift
+       ;;
+    -k|--keep-testdir|--keep-testdirs)
+       keep_testdirs=yes; export keep_testdirs;;
+    -*)
+       # Assume it is an option to pass through to the shell.
+       shell_opts="$shell_opts $1";;
+    *=*)
+       var=${1%%=*} val=${1#*=}
+       xecho "$var" | LC_ALL=C grep '^[a-zA-Z_][a-zA-Z0-9_]*$' >/dev/null \
+         || error "'$var': invalid variable name"
+       eval "$var=\$val && export $var" || exit 1
+       ;;
+     *)
+       break;;
+  esac
+  shift
+done
+
+test $# -gt 0 || error "missing argument"
+
+tst=$1; shift
+
+case $tst in
+  /*) ;;
+   *) if test -f ./$tst; then
+        tst=./$tst
+      # Support for VPATH build.
+      elif test -f $srcdir/$tst; then
+        tst=$srcdir/$tst
+      else
+        error "could not find test '$tst'"
+      fi
+      ;;
+esac
+
+case $tst in
+  *.sh)
+    exec $AM_TEST_RUNNER_SHELL $shell_opts "$tst" ${1+"$@"} ;;
+  *.tap)
+    exec "$AM_PROVE_CMD" $AM_PROVEFLAGS -e \
+         "$AM_TEST_RUNNER_SHELL $shell_opts" "$tst" ${1+"$@"} ;;
+  *)
+    error "test '$tst' has an unrecognized extension" ;;
+esac
+
+error "dead code reached"
