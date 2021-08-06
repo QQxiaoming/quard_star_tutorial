@@ -153,6 +153,7 @@ build_libmnl()
     # 编译libmnl
     echo "\033[1;4;41;32m编译libmnl\033[0m"
     cd $SHELL_FOLDER/libmnl-1.0.4
+    autoreconf -f -i 
     $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
