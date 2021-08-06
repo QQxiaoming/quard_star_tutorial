@@ -139,3 +139,5 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     2021.08.01(下午):添加网络相关的配置脚本，修改启动脚本配置网络dhcp等功能，添加网络相关的工具ethtool和iperf。比较顺利没啥大问题注意下/etc/inittab内的语法是busybox的不是sysvinit的不要搞错了。
 - 
     2021.08.02(晚上):添加一系列启动脚本，内容参考自buildroot的配置。添加zlib和openssh源码，添加编译脚本并部署完成，qemu使用端口转发22端口到物理机3522端口，ssh和sftp已测试完全可用，这周末开始完成一些网络相关的内容，不过个人在网路这块还是小白初学者，好在这块目前完全没有遇到坑，而且资料教程颇多，我最近也要开始好好学习这方面的底层知识，后面本项目看情况缓更。
+- 
+    2021.08.06(晚上):target_root_app里的一些工具编译可能在原版的ubuntu18.04上不能直接编译通过，为了确保能顺利偏移通过，以目前的版本看来，automake的版本选用1.16.1，pkg-config选择0.29.2，我们直接引入源码安装到host_output目录下，后续使用host_output下的automake工具执行编译流程。
