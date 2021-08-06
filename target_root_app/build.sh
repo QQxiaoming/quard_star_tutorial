@@ -2,8 +2,19 @@ SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 PROCESSORS=`cat /proc/cpuinfo |grep "processor"|wc -l`
 CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
 CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
-export PATH=$SHELL_FOLDER/host_output/bin:$PATH
-export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
+
+case "$1" in
+hosttool)
+    echo "skip export!"
+	;;
+all)
+    echo "lazy export!"
+	;;
+*)
+    export PATH=$SHELL_FOLDER/host_output/bin:$PATH
+    export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
+	;;
+esac
 
 case "$2" in
 skip)
@@ -19,6 +30,7 @@ build_hosttool()
     # 编译automake
     echo "\033[1;4;41;32m编译automake\033[0m"
     cd $SHELL_FOLDER/automake-1.16.1
+    autoreconf -f -i 
     $CONFIGURE --prefix=$SHELL_FOLDER/host_output
     make -j$PROCESSORS
     make install
@@ -252,6 +264,8 @@ openssh)
     ;;
 all)
     build_hosttool
+    export PATH=$SHELL_FOLDER/host_output/bin:$PATH
+    export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
     build_make
     build_ncurses
     build_bash
@@ -265,9 +279,6 @@ all)
 	build_libmnl
 	build_ethtool
 	build_openssl
-	build_iperf
-	build_zlib
-	build_openssh
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
