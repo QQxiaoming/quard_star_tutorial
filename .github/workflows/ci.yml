@@ -1,0 +1,113 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Install prerequisites
+      - name: Install prerequisites
+        run: |
+          sudo apt update
+          sudo apt install -y wget device-tree-compiler ninja-build git build-essential \
+                pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev \
+                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex \
+                bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev \
+                libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz \
+                ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
+                libattr1-dev device-tree-compiler bison flex
+
+      # Get prebuilt newlibc and glibc toolchain
+      - name: Download and extract prebuilt toolchain
+        run: |
+          # download prebuilt toolchain
+          DOWNLOAD_URL_BASE=https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/
+          wget $DOWNLOAD_URL_BASE/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+          # prebuilt toolchain from riscv official is not ok, due to medlow compile
+          # see The default code model, medlow, can only access addresses below 0x80000000 on a 64-bit part, 
+          # or the entire memory on a 32-bit part due to wraparound. If you want to access memory above 2GB on a 64-bit part, 
+          # you have to use the medany code model, via the -mcmodel=medany compiler option. If you are linking with libraries, 
+          # like the C library, then those libraries must also be compiled with medany. It you are building your own toolchain, 
+          # this works best if you use --with-cmodel=medany when configuring
+          #wget $DOWNLOAD_URL_BASE/riscv64-elf-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+          #tar -xzf riscv64-elf-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+          RISCV_GLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-linux-gnu
+          RISCV_NEWLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-elf
+          # wget all prebuilt toolchain
+          wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+          wget $DOWNLOAD_URL_BASE/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+          tar -xzf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+          mv riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14 $RISCV_NEWLIBC_TOOLCHAIN
+          tar -xzf riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+          mv riscv $RISCV_GLIBC_TOOLCHAIN
+          rm -f *.tar.gz
+          # strip binaries
+          cd /opt
+          set +e
+          for i in `find libexec bin -type f`
+          do
+          strip -s $i
+          done
+          cd -
+          $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
+          $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
+
+      # Build all asserts
+      - name: Build all
+        run: |
+          # replace pkexec with sudo for ci
+          sed -i 's/pkexec/sudo/g' build.sh
+          bash build.sh
+          du -sh output
+          tar -czf build.tar.gz output/
+          tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
+          du -sh /opt/gcc-riscv64-unknown-linux-gnu
+          du -sh /opt/gcc-riscv64-unknown-elf
+      
+      # Upload asserts
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          # Artifact name
+          name: build
+          # A file, directory or wildcard pattern that describes what to upload
+          path: |
+            build.tar.gz
+      
+      # Upload prebuilt toolchain
+      - name: Upload prebuilt toolchain
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          # Artifact name
+          name: prebuilt_toolchain
+          # A file, directory or wildcard pattern that describes what to upload
+          path: |
+            toolchain.tar.gz
+      
+      # Test
+      - name: Run tests
+        run: |
+          timeout --foreground -s SIGKILL 2m bash run.sh nographic > >(tee run_qemu.log) || {
+            if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
+            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && exit 0; else echo "Failed in init process" && exit 1; fi; 
+          }
