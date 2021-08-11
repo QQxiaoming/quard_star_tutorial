@@ -1,4 +1,4 @@
-[![Build status](https://github.com/QQxiaoming/quard_star_tutorial/workflows/CI/badge.svg)]()
+[![CI](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ci.yml)
 
 # 基于qemu从0开始构建嵌入式linux系统
 

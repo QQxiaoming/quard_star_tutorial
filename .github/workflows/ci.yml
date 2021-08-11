@@ -7,9 +7,16 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'doc/**'
+      - 'tutorial/**'
+      - 'README.md'
   pull_request:
     branches: [ main ]
-
+    paths-ignore:
+      - 'doc/**'
+      - 'tutorial/**'
+      - 'README.md'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -79,7 +86,7 @@ jobs:
           sed -i 's/pkexec/sudo/g' build.sh
           bash build.sh
           du -sh output
-          tar -czf build.tar.gz output/
+          tar -czf build.tar.gz output/ run.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
           du -sh /opt/gcc-riscv64-unknown-linux-gnu
           du -sh /opt/gcc-riscv64-unknown-elf
