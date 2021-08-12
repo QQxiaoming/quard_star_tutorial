@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 3
 
+   ch0.引言<ch0.md>
    ch1.搭建qemu环境<ch1.md>
    ch2.添加qemu仿真板——Quard-Star板<ch2.md>
    ch3.添加中断控制器、串口、pflash支持<ch3.md>
