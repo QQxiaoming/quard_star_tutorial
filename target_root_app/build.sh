@@ -435,6 +435,16 @@ build_alsa()
     make install
 }
 
+build_openjdk_zero()
+{
+    cd $SHELL_FOLDER/jdk11u-dev-113c646a33d2
+    TEMP_PATH=$PATH
+	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
+    bash configure --with-boot-jdk=$SHELL_FOLDER/host_output/opt/jdk-10 --with-jvm-variants=zero --openjdk-target=riscv64-unknown-linux-gnu --prefix=$SHELL_FOLDER/output --enable-headless-only=yes --disable-warnings-as-errors --with-alsa=$SHELL_FOLDER/output --with-x=$SHELL_FOLDER/output --with-cups=$SHELL_FOLDER/output --with-fontconfig=$SHELL_FOLDER/output --with-libffi=$SHELL_FOLDER/output --with-freetype-include=$SHELL_FOLDER/output/include/freetype2 --with-freetype-lib=$SHELL_FOLDER/output/lib
+    make
+	export PATH=$TEMP_PATH
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -511,6 +521,9 @@ libffi)
 alsa)
     build_alsa
     ;;
+openjdk_zero)
+    build_openjdk_zero
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -537,6 +550,7 @@ all)
 	build_fontconfig
 	build_libffi
 	build_alsa
+    build_openjdk_zero
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
