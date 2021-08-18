@@ -1,0 +1,1152 @@
+commit 754b492ddf490682c5fff2518a36d0afb5655a36
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Wed Jun 29 21:50:39 2011 -0700
+
+    libXrandr 1.3.2
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 2a8e4e3b6c28d095e315da6874a72e05ef113edb
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 31 03:43:57 2011 +0200
+
+    Xrandr.man: Document how to request notifications.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit 7613d6e70c4af791bdb3e005a6231f1d4d14745c
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 16:17:51 2011 +0100
+
+    Xrandr.man: Fix parenthesis escaping.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit d0b9b06d2d0b85da3eb89adf4abd973b092201df
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 16:01:56 2011 +0100
+
+    Xrandr.man: Fix missing closing parenthesis.
+    
+    Also fix the closing tag (\fP instead of \fI).
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit cf351e133c71fdae77c961373e01258404a5ff7f
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 15:54:58 2011 +0100
+
+    Xrandr.man: Build full sentences for easier reading.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit e92474f36a2157ce8939b143e077d9342638e74a
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 15:52:58 2011 +0100
+
+    Xrandr.man: Fix typo.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit d77cd6cc30bd9ebaea7c3b1c97e6984844a607f9
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 15:50:08 2011 +0100
+
+    Xrandr.man: Try to make some sense.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Reviewed-by: Magnus Kessler <Magnus.Kessler@gmx.net>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit 58b664ba4c8c8d34a2c6169dbaf55f0d21fc0139
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 15:49:57 2011 +0100
+
+    Xrandr.man: Build full sentences, possibly easier to read.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit dfb543b9061428e745b7a1b5910c46ffa46fadf5
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 15:34:41 2011 +0100
+
+    Xrandr.man: Fix grammar.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit f340f5b117b69cccabf9b3a0f2834a4b6aae057e
+Author: Cyril Brulebois <kibi@debian.org>
+Date:   Thu Mar 3 15:32:03 2011 +0100
+
+    Xrandr.man: Remove trailing spaces.
+    
+    Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+    Signed-off-by: Cyril Brulebois <kibi@debian.org>
+
+commit 2da3bb5e59db3ed5f689686774dd051766dd39a6
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Wed Feb 2 11:43:44 2011 -0500
+
+    config: comment, minor upgrade, quote and layout configure.ac
+    
+    Group statements per section as per Autoconf standard layout
+    Quote statements where appropriate.
+    Autoconf recommends not using dnl instead of # for comments
+    
+    Use AC_CONFIG_FILES to replace the deprecated AC_OUTPUT with parameters.
+    Add AC_CONFIG_SRCDIR([Makefile.am])
+    
+    This helps automated maintenance and release activities.
+    Details can be found in http://wiki.x.org/wiki/NewModuleGuidelines
+
+commit 04d5ffa04c2255025580ce1740c3f0bb2146e716
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Fri Jan 28 19:41:37 2011 -0500
+
+    config: replace deprecated AM_CONFIG_HEADER with AC_CONFIG_HEADERS
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit ae18cc9cd98f4db512a21e0b4e1cb18a69fcf532
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Fri Jan 28 16:34:14 2011 -0500
+
+    config: remove unrequired AC_CONFIG_AUX_DIR
+    
+    The default location for the generation of configuation files is the current
+    package root directory. These files are config.* and friends.
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit c1c5283f37387fbae7772e1dcd56528a515f0a23
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Thu Jan 27 18:50:15 2011 -0500
+
+    config: remove AC_PROG_CC as it overrides AC_PROG_C_C99
+    
+    XORG_STRICT_OPTION from XORG_DEFAULT_OPTIONS calls
+    AC_PROG_C_C99. This sets gcc with -std=gnu99.
+    If AC_PROG_CC macro is called afterwards, it resets CC to gcc.
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit b7e31c69d345d3cba359d7648c304cff43ff7437
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Thu Oct 28 12:34:26 2010 -0700
+
+    libXrandr 1.3.1
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit f490ed44a1c85c75183d87d034b94f9973b88abd
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Thu Oct 28 12:30:27 2010 -0700
+
+    Fix configure.ac comment for RandR instead of Render
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 95cf69bd452db86b6aefe3837e1f7010ebf21e80
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Thu Oct 28 12:27:30 2010 -0700
+
+    Sun's copyrights now belong to Oracle
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 12f22e0ae0cbd748b416c7e2486f289f89c5c77c
+Author: Jesse Adkins <jesserayadkins@gmail.com>
+Date:   Tue Sep 28 13:30:03 2010 -0700
+
+    Purge cvs tags.
+    
+    Signed-off-by: Jesse Adkins <jesserayadkins@gmail.com>
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 247ad2a3865ba503e6c77444f855c71e7a210f13
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Tue Aug 17 07:57:08 2010 -0400
+
+    man: store shadow man pages in git rather than generating them
+    
+    Simplify the build process and the makefile.
+    
+    Local fix in CVS for bug 5628 is not required
+    as the problem has been fixed in
+    util-macros d9062e4077ebfd0985baf8418f3d0f111b9ddbba
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit 8f23ad4703c7fcfdd7d53d52ddebb7590c3cb265
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Thu Jul 8 14:40:39 2010 -0700
+
+    Use make rules instead of shell for loops to generate shadow man pages
+    
+    Allows parallel make and simpler build logs/error reporting
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 82bc24d6137cc4f03944af88e69c4d67b26d3cc9
+Author: Alan Coopersmith <alan.coopersmith@oracle.com>
+Date:   Thu Jul 8 14:34:18 2010 -0700
+
+    config: upgrade to util-macros 1.8 for additional man page support
+    
+    Use MAN_SUBST now supplied in XORG_MANPAGE_SECTIONS
+    The value of MAN_SUBST is the same for all X.Org packages.
+    
+    Use AC_PROG_SED now supplied by XORG_DEFAULT_OPTIONS
+    The existing statement can now be removed from the configuration file.
+    
+    Use automake provided $(AM_V_GEN) and XORG_DEFAULT_OPTIONS provided $(SED)
+    Enables silent rule and use platform appropriate version of sed.
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 2e5c60f477fc68634f1fa31a2fc4a166642ab318
+Author: Fernando Carrijo <fcarrijo@yahoo.com.br>
+Date:   Thu Jul 1 07:01:47 2010 -0300
+
+    Purge macros NEED_EVENTS and NEED_REPLIES
+    
+    Signed-off-by: Fernando Carrijo <fcarrijo@yahoo.com.br>
+    Acked-by: Tiago Vignatti <tiago.vignatti@nokia.com>
+    Reviewed-by: Alan Coopersmith <alan.coopersmith@oracle.com>
+
+commit 18517a55d08cdcf9e29bed6761cf4311e1d4109f
+Author: Leif Middelschulte <leif.middelschulte@gmail.com>
+Date:   Tue May 25 14:52:50 2010 -0300
+
+    Add parameter safety check
+    
+    As mentioned in bugzilla ticket 28150.
+    Calling '_XRRValidateCache' with 'improper' arguments results in a SEGV.
+    This patch adds a parameter validation to the mentioned function.
+    
+    Signed-off-by: Leif Middelschulte <leif.middelschulte@gmail.com>
+    Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+
+commit 7a7bac907ac15033c0ddb979202c7f3ddc368726
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Mon Mar 29 16:50:34 2010 -0400
+
+    config: update AC_PREREQ statement to 2.60
+    
+    Unrelated to the previous patches, the new value simply reflects
+    the reality that the minimum level for autoconf to configure
+    all x.org modules is 2.60 dated June 2006.
+    
+    ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.60.tar.gz
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit 883acff30b23c2bdf446988ff7b780cd61e49a5e
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Mon Mar 29 14:53:49 2010 -0400
+
+    config: remove the pkgconfig pc.in file from EXTRA_DIST
+    
+    Automake always includes it in the tarball.
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit 74bb9072015b8a785f6b6458ba0605287a1ffcaf
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Tue Feb 16 10:37:21 2010 -0500
+
+    config: move CWARNFLAGS from configure.ac to Makefile.am
+    
+    Compiler warning flags should be explicitly set in the makefile
+    rather than being merged with other packages compiler flags.
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit 449d22180549d990ad3164c98b22968359b55df2
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Thu Jan 14 09:41:26 2010 -0500
+
+    COPYING: add missing copyright notices
+    
+    Refer to: Xrandr.h XrrConfig.c
+    Copyright © 2006 Intel Corporation
+    Copyright © 2008 Red Hat, Inc.
+    Copyright © 2006 Keith Packard
+    
+    Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
+
+commit 51887f07a7722576933ddcc00c5380266d6fa37c
+Author: Alan Coopersmith <alan.coopersmith@sun.com>
+Date:   Thu Jan 14 21:02:20 2010 -0800
+
+    Update Sun license notices to current X.Org standard form
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
+
+commit cd6fcaeaf0da7ca66ec0ab63ce282def37c21c3b
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Fri Nov 27 20:56:04 2009 -0500
+
+    Makefile.am: add ChangeLog and INSTALL on MAINTAINERCLEANFILES
+    
+    Now that the INSTALL file is generated.
+    Allows running make maintainer-clean.
+
+commit 61c4a57286b601ff266a15565740aea31e68d1bb
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Wed Oct 28 14:09:10 2009 -0400
+
+    INSTALL, NEWS, README or AUTHORS files are missing/incorrect #24206
+    
+    Add missing INSTALL file. Use standard GNU file on building tarball
+    README may have been updated
+    Remove AUTHORS file as it is empty and no content available yet.
+    Remove NEWS file as it is empty and no content available yet.
+
+commit 170a3efb274d473165a8d6085c185792b1c43005
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Tue Oct 27 15:07:25 2009 -0400
+
+    Deploy the new XORG_DEFAULT_OPTIONS #24242
+    
+    This macro aggregate a number of existing macros that sets commmon
+    X.Org components configuration options. It shields the configuration file from
+    future changes.
+
+commit 8567a45cb36857a8b5e2699a3d3ed7850b053281
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Mon Oct 26 22:08:43 2009 -0400
+
+    Makefile.am: ChangeLog not required: EXTRA_DIST or *CLEANFILES #24432
+    
+    ChangeLog filename is known to Automake and requires no further
+    coding in the makefile.
+
+commit 015687dbec93d954fb18981bc6e15937a206a4b7
+Author: Gaetan Nadon <memsize@videotron.ca>
+Date:   Thu Oct 22 12:34:19 2009 -0400
+
+    .gitignore: use common defaults with custom section # 24239
+    
+    Using common defaults will reduce errors and maintenance.
+    Only the very small or inexistent custom section need periodic maintenance
+    when the structure of the component changes. Do not edit defaults.
+
+commit 2e07e9d4f300e8153e4e93cd78bc51e0d91dba6f
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Nov 9 17:51:03 2009 -0500
+
+    GetCrtcGamma: Fix error handling.
+    
+    We didn't treat _XReply failure as fatal.  Parsing an xError as a gamma
+    ramp reply doesn't work that often.
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+    Reviewed-by: Jamey Sharp <jamey@minilop.net>
+
+commit 7b41b589213293793182b61f20006229a89d5ba7
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Nov 9 17:50:42 2009 -0500
+
+    GetCrtcGammaSize: Return 0, not garbage, on failure
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+    Reviewed-by: Jamey Sharp <jamey@minilop.net>
+
+commit 5e94f071f45ca504ccafe083e2e289351ba6eab4
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Nov 9 17:49:40 2009 -0500
+
+    GetScreenSizeRange: Document funky return code in the header
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+    Reviewed-by: Jamey Sharp <jamey@minilop.net>
+
+commit f98cbea8b33356a0de1f777c3a862ecbf163cfd3
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Nov 9 17:49:10 2009 -0500
+
+    SetScreenConfigAndRate: Document error handling better
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+    Reviewed-by: Jamey Sharp <jamey@minilop.net>
+
+commit a8af918c0db758a667345b7c3055075124197f6c
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Nov 9 17:48:22 2009 -0500
+
+    GetOutputProperty: Return the error code, not BadRequest
+    
+    Signed-off-by: Adam Jackson <ajax@redhat.com>
+    Reviewed-by: Jamey Sharp <jamey@minilop.net>
+
+commit 7f463b2a2221065c03b6122c0cffd2fa5cb13427
+Author: Jeremy Huddleston <jeremyhu@freedesktop.org>
+Date:   Wed Oct 21 12:47:26 2009 -0700
+
+    This is not a GNU project, so declare it foreign.
+    
+    On Wed, 2009-10-21 at 13:36 +1000, Peter Hutterer wrote:
+    > On Tue, Oct 20, 2009 at 08:23:55PM -0700, Jeremy Huddleston wrote:
+    > > I noticed an INSTALL file in xlsclients and libXvMC today, and it
+    > > was quite annoying to work around since 'autoreconf -fvi' replaces
+    > > it and git wants to commit it.  Should these files even be in git?
+    > > Can I nuke them for the betterment of humanity and since they get
+    > > created by autoreconf anyways?
+    >
+    > See https://bugs.freedesktop.org/show_bug.cgi?id=24206
+    
+    As an interim measure, replace AM_INIT_AUTOMAKE([dist-bzip2]) with
+    AM_INIT_AUTOMAKE([foreign dist-bzip2]). This will prevent the generation
+    of the INSTALL file. It is also part of the 24206 solution.
+    
+    Signed-off-by: Jeremy Huddleston <jeremyhu@freedesktop.org>
+
+commit e3036766916d55d0c8ae72d5752fd1699ae7390d
+Author: Matthias Hopf <mhopf@suse.de>
+Date:   Fri Mar 6 15:13:56 2009 +0100
+
+    Bump to 1.3.0
+
+commit 6bf8648e7e408be7a869fd4c4527a4fd73fc687d
+Author: Alan Coopersmith <alan.coopersmith@sun.com>
+Date:   Mon Feb 2 20:34:36 2009 -0800
+
+    Add README with pointers to mailing list, bugzilla & git repos
+    
+    Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
+
+commit 70d641c6d170cda44856579dfdcb42d3bb1f8221
+Author: Keith Packard <keithp@keithp.com>
+Date:   Fri Jan 30 20:12:43 2009 -0800
+
+    Send X_RRGetOutputPrimary when making an X_RRGetOutputPrimary request
+    
+    Using X_RRGetOutputProperty does not yield success here.
+    
+    Signed-off-by: Keith Packard <keithp@keithp.com>
+
+commit bf284b043d4c5688da2207647126b095f8c2b0cd
+Author: Paulo Cesar Pereira de Andrade <pcpa@mandriva.com.br>
+Date:   Fri Jan 30 16:38:03 2009 -0200
+
+    Janitor: make distcheck, compiler warnings, .gitignore
+    
+      Warning corrections are either unused symbols or using an
+    integer as a pointer (generated by sparse).
+
+commit a0c45b798d2fa810167d64a92093840178f993b1
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Sun Dec 21 16:32:17 2008 +0100
+
+    Fix thinkos
+    
+    * XRRExtensionInfo can be static
+    * XRRExtensionName is not called XrandrExtensionName
+
+commit 8574ffb20fa10b6f2e9a5f115f23506b93c64b12
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Dec 17 11:33:37 2008 -0500
+
+    libXrandr 1.2.99.4
+
+commit e2f075ea3927f83fb7ee8b359ef951222e8f894b
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Dec 17 11:29:05 2008 -0500
+
+    Define _XRRHasRates internally.
+
+commit 53bd07438d3671dca86df2bf3052f89ee8ce0891
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Dec 17 11:27:19 2008 -0500
+
+    Be sure to return NULL when returning no properties.
+
+commit 7c1ccb19bd2545ccdf7099489e946e772a25649f
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Dec 17 11:25:20 2008 -0500
+
+    Use RRCheckExtension in function returning a value.
+
+commit 2db939e82c29fa3ab868bac9d2b54de18419004b
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Dec 17 11:24:33 2008 -0500
+
+    Fix type of GetReq() argument.
+
+commit c79e2aecab080d8f47b258ae3c4dd9394280ae2a
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Dec 17 11:23:51 2008 -0500
+
+    Use RRSimpleCheckExtension in functions returning void
+
+commit dda80ea67e33d18f7cc869c6f828c444c8966704
+Author: Matthias Hopf <mhopf@suse.de>
+Date:   Fri Dec 12 13:04:57 2008 +0100
+
+    Bump to 1.2.99.3
+
+commit 59c8812099f33d56b43044f999ffe5df16adf5ff
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Dec 8 15:37:53 2008 -0500
+
+    Add [GS]etOutputPrimary
+
+commit 0f11922bdc0d4e3929df4dc967379ea0b48338b8
+Author: Matthias Hopf <mhopf@suse.de>
+Date:   Thu Dec 4 18:24:42 2008 +0100
+
+    Bump to 1.2.99.2.
+    
+    Note the .99
+
+commit e788c1ed41e029e54470a2c79f1478c1be7bba92
+Author: Matthias Hopf <mhopf@suse.de>
+Date:   Thu Dec 4 15:51:07 2008 +0100
+
+    Nuke config-timestamp for panning.
+
+commit 1de7212d9a945403f13f4dc15a66ec115c3be44c
+Author: Matthias Hopf <mhopf@suse.de>
+Date:   Fri Nov 28 17:26:43 2008 +0100
+
+    Panning support
+
+commit 0dd24bd6ad3c437f320c5d8e922c479fb61b115f
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Mon Dec 1 21:19:35 2008 +0100
+
+    Bump to 1.2.91
+
+commit 0fa7452220701ee44d8bafc57001e362afcedb0c
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Mon Dec 1 21:09:44 2008 +0100
+
+    RRNotify subevents have 'window' at different offsets, the sequel
+    
+    f176b2bda103f6f38aabab8207f47a02cc797659 fixed XRRWireToEvent, but
+    XRREventToWire had the same bug.
+    
+    Signed-off-by: Julien Cristau <jcristau@debian.org>
+
+commit 83e567f427f68dc4ae2de796a1184748bbe0238e
+Merge: 908de8f 00f2e30
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Mon Dec 1 20:59:39 2008 +0100
+
+    Merge branch 'transform-proposal' of git.freedesktop.org:/git/xorg/lib/libXrandr
+    
+    Conflicts:
+    
+    	src/Xrandr.c
+
+commit 00f2e30d0b8296668776d62a4c47f96bf95faa08
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Fri Nov 28 16:16:22 2008 +0100
+
+    Set attr->pendingNparams in XRRGetCrtcTransform()
+
+commit 908de8fc7228ecc7b02825ebede5fb937f3abf1b
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Mon Nov 24 16:11:46 2008 -0500
+
+    Add GetScreenResourcesCurrent
+
+commit 377126fdaf1094354d54b1743f9d2bf1f2de1e0c
+Author: Keith Packard <keithp@keithp.com>
+Date:   Fri Sep 12 20:18:21 2008 -0700
+
+    Set NparamsFilter in XRRGetCrtcTransform return value.
+    
+    Leaving this uninitialized isn't very helpful, and can cause segfaults.
+
+commit f176b2bda103f6f38aabab8207f47a02cc797659
+Author: Tomas Carnecky <tom@dbservice.com>
+Date:   Wed Aug 13 10:24:11 2008 -0400
+
+    RRNotify subevents have 'window' at different offsets.
+
+commit d631e453d62104b4a4afdcf0b34e6f3aefd62644
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Aug 13 10:21:51 2008 -0400
+
+    Remove RCS tags.
+
+commit bf476779616b24c6456339bc77896460f1a2545a
+Author: Adam Jackson <ajax@redhat.com>
+Date:   Wed Jul 2 15:28:08 2008 -0400
+
+    libXrandr 1.2.3
+
+commit 203fc002b6948c3942f0461a0346dd07b633222d
+Author: thb <thb@openoffice.org>
+Date:   Mon Jun 23 13:25:12 2008 -0400
+
+    Bug #16430: Ignore ConfigureNotify on non-root windows in UpdateConfiguration
+
+commit 332eee90c4d00be3b11049e0261323abe89a96dc
+Author: Peter Hutterer <peter@cs.unisa.edu.au>
+Date:   Mon May 19 17:34:36 2008 +0930
+
+    Rename parameters to clarify QueryVersion/QueryExtension.
+    
+    These parameters are not treated as input. Rename them to make the inner
+    workings slightly more obvious.
+    
+    X.Org Bug 14511 <http://bugs.freedesktop.org/show_bug.cgi?id=14511>
+
+commit 824f3d4a3a4669526a5c391c6668df0384b49cdb
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Tue Feb 5 15:37:32 2008 +0100
+
+    Bug #14388: Remove XRRScreenConfig() and XRRConfig() from Xrandr.h.
+    
+    It seems that they were never actually implemented.
+    Also remove the corresponding manpage symlinks.
+
+commit 7a21e7bc994c5fa7d3ab15ba7201667e134f1512
+Author: Keith Packard <keithp@keithp.com>
+Date:   Tue Mar 18 16:02:36 2008 -0700
+
+    Eliminate inverse matrix from randr transform protocol
+    
+    It is easier, and potentially more precise, to compute the inverse in the
+    server where everything can eventually be kept in floating point form.
+
+commit a6e5fa4ceb72795380496fcfe62c083866791dc1
+Author: Keith Packard <keithp@keithp.com>
+Date:   Sat Mar 15 00:33:30 2008 -0700
+
+    Support CRTC Transform filters
+    
+    XRRGetCrtcTransform now returns a giant struct containing all of the
+    transform and filter data.
+    
+    XRRSetCrtcTransform now accepts filter parameters.
+
+commit 2a5fb0e58ed6ee1ff1f0ff00b5bf5b2623991132
+Author: Keith Packard <keithp@keithp.com>
+Date:   Tue Mar 4 08:17:48 2008 -0800
+
+    Add support for new Transform requests.
+
+commit dc0ce2e363dbdac560fc2a8c1296c5468d75f644
+Author: Matthieu Herrb <matthieu.herrb@laas.fr>
+Date:   Sun Mar 9 08:37:17 2008 +0100
+
+    nuke RCS Ids
+
+commit 23a47035818390ca197179a9a69a54badb370990
+Author: Julien Cristau <jcristau@debian.org>
+Date:   Tue Feb 5 15:35:30 2008 +0100
+
+    Hide some private symbols.
+    
+    XExtensionInfo, XRRExtensionName, XRRFindDisplay, _XRRHasRates and
+    _XRRVersionHandler are internal to libXrandr.  Don't export them.
+
+commit 732ae92882383b33384791c2e9136a54e0fd06f3
+Author: James Cloos <cloos@jhcloos.com>
+Date:   Thu Dec 6 16:38:42 2007 -0500
+
+    Replace static ChangeLog with dist-hook to generate from git log
+
+commit e56fa06624dc240dbe8d3e127cc3b65da580fe6e
+Merge: 27b91d1 0294912
+Author: James Cloos <cloos@jhcloos.com>
+Date:   Sun Nov 11 10:27:35 2007 -0500
+
+    Merge branch 'master' of git://git.freedesktop.org/git/xorg/lib/libXrandr
+
+commit 029491243b43c2e03a62c143ac21941449f335aa
+Author: Eric Anholt <eric@anholt.net>
+Date:   Wed Sep 5 10:01:06 2007 -0700
+
+    Bump version to 1.2.2.
+
+commit 27b91d1d62acb70da7d131ee4b6da265d64cb835
+Author: James Cloos <cloos@jhcloos.com>
+Date:   Mon Sep 3 05:53:48 2007 -0400
+
+    Add *~ to .gitignore to skip patch/emacs droppings
+
+commit 126143add5349fc34488b23d54d1bdcc7e8847b9
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Tue Jul 3 09:58:09 2007 -0700
+
+    CrtcChange event format conversion was using 'height' for 'width'.
+    
+    CrtcChange events were getting the source 'height' value stored in the
+    'width' target in both conversion directions.
+
+commit 3e753542bcf0fd49fe977e56b7ab7e540bbd4282
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Sun Mar 4 20:03:59 2007 -0800
+
+    Set version to 1.2.1 for release.
+
+commit c279b64ccca18b14974e413b0b1d55ac81abceda
+Author: Fredrik Höglund <fredrik@kde.org>
+Date:   Tue Feb 20 22:30:00 2007 +0100
+
+    Fix the use of a C++ keyword as a parameter name in Xrandr.h
+
+commit 75d9944484651d4180e3079a739be4edb36545fe
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Sun Feb 18 20:57:31 2007 -0800
+
+    Reset version from 1.2.0.0 to 1.2.0
+
+commit ac82ee50f3938b7b4d6dbcec850d38500258bfe0
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Thu Feb 15 16:56:11 2007 -0800
+
+    Must pass size information in SetCrtcGamma request.
+
+commit 9c4fea702a0382689898fc14cbdab456fb18c403
+Merge: c85237a 382b7a3
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Wed Jan 31 14:24:57 2007 -0800
+
+    Merge 64-bit fixes in
+
+commit c85237a1651ae8e1abe9ae442ffa04dcb20c1d3e
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Wed Jan 31 14:20:33 2007 -0800
+
+    Fix read sizes for 64-bit machines.
+    
+    Be consistent in variable usage:
+    	nbytes = network byte length.
+    	rbytes = memory byte length.
+    	nbytesRead = actual network bytes read.
+    Malloc rbytes data to pass to _XRead*, but use nbytes as the
+    amount of data to read (yes, this is insane, welcome to Xlib).
+    Some of this patch is semi-gratuitous, but the goal is to be consistent
+    everywhere.
+
+commit 382b7a3cfabdd37a6231e18a2ac92bc8a3722b79
+Author: Eric Anholt <eric@anholt.net>
+Date:   Tue Jan 16 13:10:49 2007 -0800
+
+    Return a valid property info even if we lack valid value sets.
+    
+    Previously, XRRQueryOutputProperty90 would return an uninitialized pointer if
+    num_values was 0.
+
+commit 36a4a633a93a89bd854f49e670777925c9751de3
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Sat Jan 6 12:42:47 2007 -0800
+
+    Avoid nested LockDisplay calls.
+    
+    XRRFindDisplay must make extension requests that use LockDisplay, so don't
+    call it with the display locked, instead pass the info around to the
+    internal functions that were calling it themselves, having acquired the info
+    before the outer LockDisplay is called.
+
+commit d70a3e7f111cb65c37edfa78ca66449338d3bb8f
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Sat Dec 30 13:11:10 2006 -0800
+
+    Failed to copy rotations from reply to XRRCrtcInfo.
+    
+    XRRGetCrtcInfo was not moving the rotations value from the wire reply
+    structure to the XRRCrtcInfo being returned, leaving the value uninitialized.
+
+commit bc75a92cac23dad4a661a13e6af121f6072cecc8
+Merge: 7fcdcbb 370fa28
+Author: Dave Airlie <airlied@linux.ie>
+Date:   Sat Dec 2 11:27:36 2006 +1100
+
+    Merge branch 'randr-1.2'
+
+commit 370fa28a6afd70ec91411edf1413c0e448ae45b6
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Thu Nov 30 21:56:59 2006 -0800
+
+    Add initial implementation of crtc gamma and mode adding requests.
+    
+    They build. More testing seems indicated.
+
+commit 7fcdcbb0f9c4736bd678be7f9bf76d472293233f
+Merge: 875867f 0dba1be
+Author: Eric Anholt <eric@anholt.net>
+Date:   Mon Nov 27 15:41:03 2006 -0800
+
+    Merge branch 'randr-1.2'
+    
+    Conflicts:
+    
+    	configure.ac
+
+commit 0dba1be7969aa56f934d93889cbd589b3dafd3d4
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Mon Nov 20 20:59:18 2006 -0800
+
+    Change properties to have a pending value and report valid values.
+    
+    Pending values are transferred to current values at mode set, allowing a
+    queue of values to accrue in preparation for the modeset operation while
+    still reporting valid 'current' values for applications.
+    
+    The set of valid values is also available so applications can present
+    a reasonable list to the user during configuration.
+
+commit 8edabfeba65562f026111b35ec14a9801b4b6a5c
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Thu Nov 16 13:35:46 2006 -0800
+
+    Remove RandR output options.
+    
+    Options are to be implemented as properties instead.
+
+commit 7ac8dba76fe33b13620e023699bf971fe8c99fb2
+Author: Eric Anholt <eric@anholt.net>
+Date:   Thu Nov 9 20:26:33 2006 -0800
+
+    Return the right actual property type for XRRGetOutputProperty.
+
+commit b49342b58d17267fae81205f1a89263ec4d3d114
+Author: Eric Anholt <eric@anholt.net>
+Date:   Thu Nov 9 17:07:55 2006 -0800
+
+    Add support for various output property requests.
+    
+    These should be reviewed by someone with proto clue, which I'm generally
+    lacking.
+
+commit 6676505b6012c97d2f711a84237fa14a62d1d33d
+Author: Keith Packard <keithp@mandolin.keithp.com>
+Date:   Wed Nov 1 00:25:45 2006 -0800
+
+    Moving physical size from mode to output.
+    
+    Follows protocol change which places physical size
+    information in the output rather than (inappropriately)
+    in each mode line.
+
+commit 875867f275803682e58f0649f054a83293c6e02c
+Author: Adam Jackson <ajax@benzedrine.nwnk.net>
+Date:   Fri Oct 13 17:09:57 2006 -0400
+
+    Bump to 1.1.2
+
+commit 6eacf491a094add48363d530357dce0d25b8f244
+Author: Adam Jackson <ajax@benzedrine.nwnk.net>
+Date:   Fri Oct 13 16:25:00 2006 -0400
+
+    Bump to 1.1.1
+
+commit d914d05d34991b4cfa3af411fd2a3e281ea0e73b
+Author: Jamey Sharp <jamey@minilop.net>
+Date:   Thu Oct 12 17:42:48 2006 -0700
+
+    Do not call UnlockDisplay without calling LockDisplay.
+    
+    Thanks to Magnus Kessler <Magnus.Kessler@gmx.net> for reporting this
+    bug and a correct fix.
+
+commit ab4207db14d70384f017cc2a22379d7c358b60e0
+Author: Keith Packard <keithp@neko.keithp.com>
+Date:   Wed Oct 4 20:04:09 2006 -0700
+
+    Remove mode origins. Add preferred mode count.
+
+commit dd0fb435a0168d4041ecd81024d6493295651c61
+Author: Keith Packard <keithp@guitar.keithp.com>
+Date:   Tue Oct 3 21:03:10 2006 -0700
+
+    Add mode origins and output options.
+
+commit cb1dbb7c2446ddf514ee709fba940cc4e75438a0
+Author: Keith Packard <keithp@guitar.keithp.com>
+Date:   Wed Sep 20 20:00:57 2006 -0700
+
+    XRRGetScreenSizeRange returns Status. Lots more requests added.
+    
+    XRRGetCrtcInfo
+    XRRSetCrtcConfig
+    XRRGetScreenSizeRange
+    XRRSetScreenSize
+    
+    properties still to do.
+
+commit c712df73eeb0cb84aad6a0bec2be0f480418c217
+Author: Keith Packard <keithp@guitar.keithp.com>
+Date:   Tue Sep 19 00:42:49 2006 -0700
+
+    Start update to 1.2, splitting code across multiple files.
+
+commit a8abbe92f0486f174fb89ca2c81eabede646bf32
+Author: Alan Coopersmith <alan.coopersmith@sun.com>
+Date:   Thu Jul 13 14:59:05 2006 -0700
+
+    renamed: .cvsignore -> .gitignore
+
+commit 88f4e37d937f171352dc0089a0903c0a3d9487d8
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Sun Feb 12 18:19:22 2006 +0000
+
+    Bug #5628 <https://bugs.freedesktop.org/show_bug.cgi?id=5628> Shadow pages
+        not created correctly when MANDIR & MANSUFFIX don't match.
+
+commit c6541af3ef1cfaba57a73369090b6ac1a38b9b1e
+Author: Kevin E Martin <kem@kem.org>
+Date:   Thu Dec 15 00:24:33 2005 +0000
+
+    Update package version number for final X11R7 release candidate.
+
+commit be2b102d0ce89f4ac2eb2c2aad5b2e3af947abba
+Author: Kevin E Martin <kem@kem.org>
+Date:   Tue Dec 6 22:48:44 2005 +0000
+
+    Change *man_SOURCES ==> *man_PRE to fix autotools warnings.
+
+commit 8f9937022d259917ea7f1a3fefab58607300756a
+Author: Kevin E Martin <kem@kem.org>
+Date:   Sat Dec 3 05:49:45 2005 +0000
+
+    Update package version number for X11R7 RC3 release.
+
+commit 127ec4993118efe56caef761febef86eae2b7300
+Author: Kevin E Martin <kem@kem.org>
+Date:   Sat Dec 3 04:41:50 2005 +0000
+
+    Add check and cflags for malloc(0) returning NULL.
+
+commit 89f4aca8d76806edf51d4999223011cbff1c3f55
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Mon Nov 28 22:03:06 2005 +0000
+
+    Change *mandir targets to use new *_MAN_DIR variables set by xorg-macros.m4
+        update to fix bug #5167 (Linux prefers *.1x man pages in man1 subdir)
+
+commit bf2fcad15b7bf2c505f5478648bf6ecbc0be701a
+Author: Kevin E Martin <kem@kem.org>
+Date:   Sat Nov 19 07:15:43 2005 +0000
+
+    Update pkgconfig files to separate library build-time dependencies from
+        application build-time dependencies, and update package deps to work
+        with separate build roots.
+
+commit a27c3d61d107fe4af33181a63f8ea951367ff418
+Author: Kevin E Martin <kem@kem.org>
+Date:   Mon Nov 14 22:02:13 2005 +0000
+
+    Fix pkgconfig deps for separate build roots.
+
+commit 1d690983d20e3d874b7f0e7f430e3d0cf2710c53
+Author: Kevin E Martin <kem@kem.org>
+Date:   Wed Nov 9 21:19:13 2005 +0000
+
+    Update package version number for X11R7 RC2 release.
+
+commit 090314b101b9d3626dc0dc970be68aec7e382d0f
+Author: Kevin E Martin <kem@kem.org>
+Date:   Tue Nov 1 15:11:51 2005 +0000
+
+    Update pkgcheck dependencies to work with separate build roots.
+
+commit 2deac5f213ee0a1cedccc721cd015691661b8002
+Author: Kevin E Martin <kem@kem.org>
+Date:   Wed Oct 19 02:48:11 2005 +0000
+
+    Update package version number for RC1 release.
+
+commit 33d17445401ec09bb0c2305d477b00c3abc2182a
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Tue Oct 18 00:00:09 2005 +0000
+
+    Use @LIB_MAN_SUFFIX@ instead of $(LIB_MAN_SUFFIX) in macro substitutions to
+        work better with BSD make
+
+commit a42c72fe8924e98f0794e37dec8e5ef49fd7423c
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Mon Oct 17 21:13:22 2005 +0000
+
+    Rename .shadows.DONE to shadows.DONE to avoid some make's thinking it's a
+        suffix rule (reported by Matthieu Herrb)
+
+commit 13ec5d5d689bb03e01d8f269d2c7a72e4cf0b5f1
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Thu Oct 13 05:06:10 2005 +0000
+
+    [lib/Xrandr]
+    Use sed to fill in variables in man page Add shadow man pages for man pages
+        that document multiple functions.
+
+commit 544ec9ae021fecc6001df97a6000095f294b7422
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Thu Oct 13 02:56:42 2005 +0000
+
+    Fix troff macros from last commit to not generate cpp warnings
+
+commit f678f6cc9b73960c3ad61cc93fc61acefbe40ef5
+Author: Alan Coopersmith <Alan.Coopersmith@sun.com>
+Date:   Wed Oct 12 23:45:05 2005 +0000
+
+    Use troff macros to prevent cpp eating C comments & #defines that are
+        supposed to appear in man page output.
+
+commit a42516d3a5aa532ed7c19fa128afd63d159676f8
+Author: Aaron Plattner <aplattner@nvidia.com>
+Date:   Fri Sep 30 04:25:14 2005 +0000
+
+    Bug #2965 <https://bugs.freedesktop.org/show_bug.cgi?id=2965> Patch #2994
+        <https://bugs.freedesktop.org/attachment.cgi?id=2994> Swap the screen
+        dimensions when handling XRRScreenChangeNotify events for 90- and
+        270-degree rotations. This fixes KDE's panel placement for rotated
+        screens.
+
+commit f9c9043f2a6787cdb6ab130f66fd39b29e7f2506
+Author: Kevin E Martin <kem@kem.org>
+Date:   Fri Jul 29 21:22:52 2005 +0000
+
+    Various changes preparing packages for RC0:
+    - Verify and update package version numbers as needed
+    - Implement versioning scheme
+    - Change bug address to point to bugzilla bug entry form
+    - Disable loadable i18n in libX11 by default (use --enable-loadable-i18n to
+        reenable it)
+    - Fix makedepend to use pkgconfig and pass distcheck
+    - Update build script to build macros first
+    - Update modular Xorg version
+
+commit 6fd64a5c552ce5f0559838b2b4ae5a27b40e52f1
+Author: Kevin E Martin <kem@kem.org>
+Date:   Sat Jul 23 05:27:00 2005 +0000
+
+    Fix distchecks
+
+commit bceba127b9b671e378030b348f36602eb44278af
+Author: Daniel Stone <daniel@fooishbar.org>
+Date:   Sat Jul 16 07:34:59 2005 +0000
+
+    Set soversion to 2.0.0 with -version-number.
+
+commit 63538e6c68e1697e027e55a5015791de3af7bc8c
+Author: Keith Packard <keithp@keithp.com>
+Date:   Sat Jul 9 06:48:05 2005 +0000
+
+    Add .cvsignore files Switch _la_CFLAGS for AM_CFLAGS to clean up directory
+
+commit 3f5e389cb5bd5305cc45aca522086d3b92506265
+Author: Kevin E Martin <kem@kem.org>
+Date:   Sat Jul 2 06:35:03 2005 +0000
+
+    Add appropriate lib*_CFLAGS to Makefile.am's -- fixes build problems
+
+commit 48a3a08206e827a5af88d6a2d8ac62aa3bbbe122
+Author: Daniel Stone <daniel@fooishbar.org>
+Date:   Fri Jun 10 14:10:29 2005 +0000
+
+    Bug #1976: Fix deadlock when attempting to initialise with threads.
+
+commit 1279a7f95e654bb33c9057e25a291e2a093f2dee
+Author: Alexander Gottwald <alexander.gottwald@s1999.tu-chemnitz.de>
+Date:   Thu Jun 9 12:52:44 2005 +0000
+
+    Require renderproto instead of render for pkgconfig
+
+commit 9c36643810a7e837f325970ddd5964bbff4971b6
+Author: Søren Sandmann Pedersen <sandmann@daimi.au.dk>
+Date:   Wed Jun 8 20:22:47 2005 +0000
+
+    - Don't search for non-autoconf'ed X libs in Xrandr
+    - Rename man page Xrandr.3
+
+commit 73b3dff9d12d417716c19a33a95eac5f73e5da13
+Author: Søren Sandmann Pedersen <sandmann@daimi.au.dk>
+Date:   Wed Jun 8 19:19:31 2005 +0000
+
+    Add Xcursor
+    conditionally include config.h
+
+commit 32107cdd57b4796c3f41ac56c9ba683be3d894af
+Author: Søren Sandmann Pedersen <sandmann@daimi.au.dk>
+Date:   Wed Jun 8 17:48:03 2005 +0000
+
+    Check in build system for Xrandr
+
+commit 84264cf7a9ce88850f3bc18428e2c046ff0251ed
+Author: Markus Kuhn <Markus.Kuhn@cl.cam.ac.uk>
+Date:   Sat Dec 4 00:42:48 2004 +0000
+
+    Encoding of numerous files changed to UTF-8
+
+commit a9b18ca5a13816d4ffbbd00d3fc80a048e84e94f
+Author: Egbert Eich <eich@suse.de>
+Date:   Mon May 24 19:06:58 2004 +0000
+
+    Fix build glitches when building modules independently using Imake.
+
+commit 76f134caf8da6a08f0fb3587868efaec401c7e74
+Author: Egbert Eich <eich@suse.de>
+Date:   Fri Apr 23 18:43:47 2004 +0000
+
+    Merging XORG-CURRENT into trunk
+
+commit 634976e69c2d0cd014ac537acb1e52884c1d89b2
+Author: Egbert Eich <eich@suse.de>
+Date:   Sun Mar 14 08:32:25 2004 +0000
+
+    Importing vendor version xf86-4_4_99_1 on Sun Mar 14 00:26:39 PST 2004
+
+commit f07005c663731709ec6c5d7f36492ff3ac253845
+Author: Egbert Eich <eich@suse.de>
+Date:   Wed Mar 3 12:11:30 2004 +0000
+
+    Importing vendor version xf86-4_4_0 on Wed Mar 3 04:09:24 PST 2004
+
+commit e61377128a66342b8e39a4c5b7e2acd34f38799f
+Author: Egbert Eich <eich@suse.de>
+Date:   Thu Feb 26 13:35:33 2004 +0000
+
+    readding XFree86's cvs IDs
+
+commit 696a58bfcb75b56cad6e5994f8c974ac4bb884da
+Author: Egbert Eich <eich@suse.de>
+Date:   Thu Feb 26 09:22:44 2004 +0000
+
+    Importing vendor version xf86-4_3_99_903 on Wed Feb 26 01:21:00 PST 2004
+
+commit 731775dea70f37fd41e4a384d484236e9d0ce4ef
+Author: Kaleb Keithley <kaleb@freedesktop.org>
+Date:   Thu Dec 4 22:02:57 2003 +0000
+
+    XFree86 4.3.99.901 (RC 1)
+
+commit 35eca17cac066690575683bc1367b1fdaba1f4cc
+Author: Kaleb Keithley <kaleb@freedesktop.org>
+Date:   Tue Nov 25 19:28:15 2003 +0000
+
+    XFree86 4.3.99.16 Bring the tree up to date for the Cygwin folks
+
+commit 8a8b419755dd3c815cc70265ed0d44e5f31028cc
+Author: Kaleb Keithley <kaleb@freedesktop.org>
+Date:   Fri Nov 14 16:48:49 2003 +0000
+
+    XFree86 4.3.0.1
+
+commit 52d0891b9e3c51d43fd13d0b2680b7e24b2f2e2d
+Author: Kaleb Keithley <kaleb@freedesktop.org>
+Date:   Fri Nov 14 16:48:49 2003 +0000
+
+    Initial revision

@@ -1,0 +1,348 @@
+.\"
+.\" Copyright 2002 Hewlett-Packard Company.\"
+.\" Permission to use, copy, modify, distribute, and sell this software and its
+.\" documentation for any purpose is hereby granted without fee, provided that
+.\" the above copyright notice appear in all copies and that both that
+.\" copyright notice and this permission notice appear in supporting
+.\" documentation, and that the name of Hewlett-Packard Company not be used in
+.\" advertising or publicity pertaining to distribution of the software without
+.\" specific, written prior permission.  Hewlett Packard Company makes no
+.\" representations about the suitability of this software for any purpose.  It
+.\" is provided "as is" without express or implied warranty.
+.\"
+.\" Hewlett-Packard DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
+.\" INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO
+.\" EVENT SHALL KEITH PACKARD BE LIABLE FOR ANY SPECIAL, INDIRECT OR
+.\" CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+.\" DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+.\" TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+.\" PERFORMANCE OF THIS SOFTWARE.
+.\"
+.de TQ
+.br
+.ns
+.TP \\$1
+..
+.TH XRANDR __libmansuffix__ __vendorversion__
+
+.SH NAME
+ Xrandr \- X Resize, Rotate and Reflection extension.
+.SH SYNTAX
+\&#include <X11/extensions/Xrandr.h>
+.nf
+.sp
+Bool XRRQueryExtension \^(\^Display *\fIdpy\fP,
+	int *\fIevent_base_return\fP, int *\fIerror_base_return\fP\^);
+.sp
+Status XRRQueryVersion \^(\^Display *\fIdpy\fP,
+	int *\fImajor_version_return\fP,
+	int *\fIminor_version_return\fP\^);
+.sp
+XRRScreenConfiguration *XRRGetScreenInfo \^(\^Display *dpy,
+	Drawable \fIdraw\fP\^);
+.sp
+void XRRFreeScreenConfigInfo \^(\^
+	\fIXRRScreenConfiguration *config\fP\^);
+.sp
+Status XRRSetScreenConfig \^(\^Display *\fIdpy\fP,
+	XRRScreenConfiguration *\fIconfig\fP,
+	Drawable \fIdraw\fP,
+	int \fIsize_index\fP,
+	Rotation \fIrotation\fP,
+	Time \fItimestamp\fP\^);
+.sp
+Status XRRSetScreenConfigAndRate \^(\^Display *\fIdpy\fP,
+				  XRRScreenConfiguration *\fIconfig\fP,
+				  Drawable \fIdraw\fP,
+				  int \fIsize_index\fP,
+				  Rotation \fIrotation\fP,
+				  short \fIrate\fP,
+				  Time \fItimestamp\fP\^);
+.sp
+Rotation XRRConfigRotations\^(\^
+	XRRScreenConfiguration *\fIconfig\fP,
+	Rotation *\fIcurrent_rotation\fP\^);
+.sp
+Time XRRConfigTimes \^(\^
+	XRRScreenConfiguration *\fIconfig\fP,
+	Time *\fIconfig_timestamp\fP\^);
+.sp
+XRRScreenSize *XRRConfigSizes\^(\^
+	XRRScreenConfiguration *\fIconfig\fP,
+	int *\fInsizes\fP\^);
+.sp
+short *XRRConfigRates \^(\^
+	XRRScreenConfiguration *\fIconfig\fP,
+	int \fIsize_index\fP,
+	int *\fInrates\fP\^);
+.sp
+SizeID XRRConfigCurrentConfiguration \^(\^
+	XRRScreenConfiguration *\fIconfig\fP,
+	Rotation *\fIrotation\fP\^);
+.sp
+short XRRConfigCurrentRate \^(\^
+	XRRScreenConfiguration *\fIconfig\fP\^);
+.sp
+int XRRRootToScreen\^(\^
+	Display *\fIdpy\fP,
+	Window \fIroot\fP\^);
+.sp
+void XRRSelectInput\^(\^Display *\fIdpy\fP, Window \fIwindow\fP, int \fImask\fP\^);
+.sp
+/\(**
+ * intended to take RRScreenChangeNotify,  or
+ * ConfigureNotify \^(\^\fIon the root window\fP\^)
+ * returns 1 if it is an event type it understands, 0 if not
+ */
+int XRRUpdateConfiguration\^(\^XEvent *\fIevent\fP\^);
+.sp
+/\(**
+ * the following are always safe to call, even if RandR is
+ * not implemented on a screen
+ */
+.br
+Rotation XRRRotations\^(\^
+	Display *\fIdpy\fP, int \fIscreen\fP,
+	Rotation *\fIcurrent_rotation\fP\^);
+.sp
+XRRScreenSize *XRRSizes\^(\^Display *\fIdpy\fP,
+	int \fIscreen\fP, int *\fInsizes\fP\^);
+.sp
+short *XRRRates \^(\^Display *\fIdpy\fP, int \fIscreen\fP,
+	int \fIsize_index\fP, int *\fInrates\fP\^);
+.sp
+Time XRRTimes \^(\^Display *\fIdpy\fP, int \fIscreen\fP, Time *\fIconfig_timestamp\fP\^);
+.fi
+.SH ARGUMENTS
+.IP \fIdisplay\fP 1i
+Specifies the connection to the X server.
+.IP \fIscreen\fP 1i
+Specifies which screen.
+.IP \fIdraw\fP 1i
+Specifies the screen.
+.IP \fIrotation\fP 1i
+Specifies the possible rotations or reflections of the screen.
+.IP \fIcurrent_rotation\fP 1i
+Specifies the current rotations and reflection of the screen.
+.IP \fItimestamp\fP 1i
+Specifies the server timestamp.
+.IP \fIconfig_timestamp\fP 1i
+Specifies the timestamp when the screen was last (re)configured.
+.IP \fIconfig\fP 1i
+Specifies the screen configuration being used.
+.IP \fIsizes\fP 1i
+Specifies the array of supported sizes.
+.IP \fIrate\fP 1i
+Specifies the refresh rate in Hz.
+
+.SH DATATYPES
+
+.PP
+.B Rotations/Reflections
+.PP
+Can be any of:
+.nf
+\&#define RR_Rotate_0             1
+\&#define RR_Rotate_90            2
+\&#define RR_Rotate_180           4
+\&#define RR_Rotate_270           8
+
+/\(** new in 1.0 protocol, to allow reflection of screen */
+/\(** reflection is applied after rotation */
+
+\&#define RR_Reflect_X            16
+\&#define RR_Reflect_Y            32
+
+
+typedef struct {
+    int	width, height;
+    int	mwidth, mheight;
+} XRRScreenSize;
+
+typedef struct {
+    int type;				/\(** event base */
+    unsigned long serial;	/\(** # of last request processed by server */
+    Bool send_event;		/\(** true if this came from a SendEvent request */
+    Display *display;		/\(** Display the event was read from */
+    Window window;			/\(** window which selected for this event */
+    Window root;			/\(** Root window for changed screen */
+    Time timestamp;			/\(** when the screen change occurred */
+    Time config_timestamp;	/\(** when the last configuration change */
+    SizeID size_index;
+    SubpixelOrder subpixel_order;
+    Rotation rotation;
+    int width;
+    int height;
+    int mwidth;
+    int mheight;
+} XRRScreenChangeNotifyEvent;
+.sp
+.fi
+The
+.B XRRScreenSize
+structure contains a possible root size in pixels and in millimeters.
+
+A
+.B XRRScreenChangeNotifyEvent
+is sent to a client that has requested notification whenever the screen
+configuration is changed. A client can perform this request by calling
+\fBXRRSelectInput\fP, passing the display, the root window, and the
+\fBRRScreenChangeNotifyMask\fP mask.
+
+.B XRRScreenConfiguration
+is an opaque data type containing the configuration information
+for a screen.
+
+.B Timestamps
+.PP
+Time stamps are included and must be used to ensure the client is playing
+with a full deck: the screen may change properties
+on the fly and this ensures its knowledge of the configuration is up to date.
+This is to help issues when screens may become hot-pluggable in the future.
+
+.SH DESCRIPTION
+.B Xrandr
+is a simple library designed to interface the X Resize and Rotate
+Extension.  This allows clients to change the size and rotation of the
+root window of a screen, along with the ability to reflect the screen
+about either axis (if supported by the implementation).  Rotation and
+reflection may be implemented by software and may result in slower
+performance if rotation and reflection are implemented in this fashion
+(as are all implementations as of October 2002).
+.PP
+The Xrandr library does some minimal caching to avoid roundtrips to
+provide clients frequently used information.  See "The X Resize and
+Rotate Extension" for a detailed description; also note that depth
+switching, as described in the document is not implemented, and may
+(or may not) ever be implemented, as display memory is growing rapidly,
+and toolkits are already beginning to support migration, mitigating the
+need for depth switching.  If it is implemented in the future, we
+expect to do so via an upward compatible extension to the
+current library/protocol; functionality described here should continue
+to work.
+.PP
+Rotation and reflection and how they interact can be confusing.  In
+Randr, the coordinate system is rotated in a counter-clockwise
+direction relative to the normal orientation.  Reflection is along the
+window system coordinate system, not the physical screen X and Y axis,
+so that rotation and reflection do not interact.  The other way to
+consider reflection is to treat it as specified in the "normal"
+orientation, before rotation.
+.PP
+The
+.B XRRScreenChangeNotify
+event is sent to clients that ask to be informed whenever the root window
+configuration changes.  Configuration changes may include resolution,
+physical size, subpixel order (see XRender(3)), and rotation.  Note
+that changes to any or all of these could occur due to external events
+(user control in the X server, a different monitor/flat panel display
+being hot-plugged) and is not only the result of a protocol/library
+request to the X server.
+.PP
+Additionally, to eliminate a potential race condition,
+this event may be generated
+immediately upon selecting for notification if the screen has changed
+since the client of Xrandr connected to the X server, to enable
+reliable screen resolution changing when a user may log in and
+change the configuration while one or many clients are starting up.
+.PP
+.B Xlib notification
+.PP
+Clients must call back into Xlib using
+.B XRRUpdateConfiguration
+when screen configuration change notify events are generated
+(or root window configuration changes occur, to update Xlib's
+view of the resolution, size, rotation, reflection or subpixel order.
+Generally, toolkits will perform this operation on behalf of applications;
+we did not want to change display structure data behind the back of toolkits,
+as in multithreaded clients, various race conditions might occur.
+Toolkits should provide clients some mechanism for notification of
+screen change, of course.
+
+.SH FUNCTIONS
+There are two classes of interfaces: those which can be safely called
+even if RandR is not implemented on a screen (to make common idioms not
+dependent on the server having support), and those which will return
+errors if the extension is not present.
+.PP
+.B XRRRotations
+returns both the possible set of rotations/reflections supported
+(as a bitmask) as the value of the function, along with the current
+rotation/reflection of the screen.
+.PP
+.B XRRSizes
+returns the size and a pointer to the current sizes supported by
+the specified screen.  The first size specified is the default size
+of the server. If RandR is not supported, it returns 0 for
+the number of sizes.
+.PP
+.B XRRRates
+returns a pointer to the rates supported by the specified size.
+If RandR is not supported, it returns 0 for the number of rates.
+.PP
+.B XRRTimes
+returns the time last reported by the server along with the
+timestamp the last configuration changed.
+If the configuration has changed since the client last updated
+its view of the server time, requests to change the configuration
+will fail until the client has an up to date timestamp.
+.PP
+.B XRRRootToScreen
+returns the screen number given a root window (for example, from
+an \fBXRRScreenChangeNotifyEvent\fP).
+.PP
+The rest of the functions will fail if applied to screens not
+implementing the RandR extension.
+.B XRRSetScreenConfig
+sets the screen size and rotation and reflection to the desired
+values on the screen specified by \fIdraw\fP, or returns a
+.B BadValue
+error.
+\fIsize_index\fP specifies which size configuration is to be used,
+\fIrotation\fP specifies which rotation or reflection is to
+be used (or a
+.B BadValue
+error is returned).
+The \fItimestamp\fP is used by the server to make sure the client
+has up to date configuration information. Status is returned
+to indicate success or failure; a client must refresh its configuration
+information if it fails and try the call again (by calling
+\fBXRRGetScreenInfo\fP).
+.PP
+.B XRRSetScreenConfigAndRate
+is like
+.B XRRSetScreenConfig
+but also sets the refresh rate. If specified rate is not supported a
+.B BadValue
+error is returned.
+.PP
+.B XRRConfigRotations,
+.B XRRConfigSizes,
+.B XRRConfigCurrentConfiguration,
+.B XRRConfigTimes,
+.B XRRConfigRates,
+and
+.B XRRConfigCurrentRate
+are used to get specific configuration information out of a screen
+configuration.
+.PP
+.B XRRGetScreenInfo
+returns a screen configuration for later use; the information is
+private to the library.
+Call
+.B XRRFreeScreenConfigInfo
+to free this information when you are finished with it.
+It forces a round trip to the server.
+
+Other functions include:
+.B XRRQueryExtension
+which returns the event and error base codes,
+.B XRRQueryVersion
+, which returns the current version of the extension (this information
+is cached by the library).
+.SH RESTRICTIONS
+.B Xrandr
+will remain upward compatible after the current 1.0 release.
+.SH AUTHOR
+Jim Gettys, and Keith Packard, HP.
+

@@ -1,0 +1,94 @@
+#!/bin/bash
+
+set -e
+
+bit32=
+modules=
+alisp=
+lto=
+if [ $# -ne 0 ]; then
+  endloop=
+  while [ -z "$endloop" ]; do
+    case "$1" in
+    32)
+      bits32=yes
+      echo "Forced 32-bit library build..."
+      shift ;;
+    modules)
+      modules=yes
+      echo "Forced mixer modules build..."
+      shift ;;
+    alisp)
+      alisp=yes
+      echo "Forced alisp code build..."
+      shift ;;
+    python2)
+      python2=yes
+      echo "Forced python2 interpreter build..."
+      shift ;;
+    lto)
+      lto="-flto -flto-partition=none"
+      echo "Forced lto build..."
+      shift ;;
+    *)
+      endloop=yes
+      ;;
+    esac
+  done
+fi
+if [ $# -ne 0 -a -z "$bit32" ]; then
+  args="$@"
+elif [ -r /etc/asound/library_args ]; then
+  args="`cat /etc/asound/library_args`"
+  if [ -z "$bit32" ]; then
+    test -r /etc/asound/library64_args && \
+      args="`cat /etc/asound/library64_args`"
+  fi
+else
+  prefix="/usr"
+  libdir="/usr/lib"
+  libdir2="/usr/lib"
+  if [ -z "$bit32" ]; then
+    test -d /usr/lib64 && libdir="/usr/lib64"
+    test -f /lib64/libasound.so.2 && libdir="/lib64"
+    test -d /usr/lib64 && libdir2="/usr/lib64"
+  else
+    test -f /lib/libasound.so.2 && libdir="/lib"
+  fi
+  args="--disable-aload --prefix=$prefix --libdir=$libdir"
+  args="$args --with-plugindir=$libdir2/alsa-lib"
+  args="$args --with-pkgconfdir=$libdir2/pkgconfig"
+fi
+
+if [ "$modules" = "yes" ]; then
+  args="$args --enable-mixer-modules"
+  args="$args --enable-mixer-pymods"
+fi
+
+if [ "$alisp" = "yes" ]; then
+  args="$args --enable-alisp"
+fi
+
+if [ "$python2" = "yes" ]; then
+  args="$args --enable-python2"
+fi
+
+touch ltconfig
+libtoolize --force --copy --automake
+aclocal $ACLOCAL_FLAGS
+autoheader
+automake --foreign --copy --add-missing
+touch depcomp		# seems to be missing for old automake
+autoconf
+export CFLAGS="-O2 -Wall -W -Wunused-const-variable=0 -pipe -g $lto"
+if [ -n "$lto" ]; then
+  export AR="gcc-ar"
+  export RANLIB="gcc-ranlib"
+fi
+echo "CFLAGS=$CFLAGS"
+echo "./configure $args"
+./configure $args || exit 1
+unset CFLAGS
+if [ -z "$GITCOMPILE_NO_MAKE" ]; then
+  make
+fi
