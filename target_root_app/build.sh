@@ -233,6 +233,155 @@ build_freetype()
     make install
 }
 
+build_libx11()
+{
+    # 编译libx11
+    echo "\033[1;4;41;32m编译x11\033[0m"
+
+    echo "\033[1;4;41;32m编译xproto\033[0m"
+    cd $SHELL_FOLDER/libX11/xproto-7.0.31
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译xextproto\033[0m"
+    cd $SHELL_FOLDER/libX11/xextproto-7.3.0
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译inputproto\033[0m"
+    cd $SHELL_FOLDER/libX11/inputproto-2.3.2
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译kbproto\033[0m"
+    cd $SHELL_FOLDER/libX11/kbproto-1.0.7
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译util-macros\033[0m"
+    cd $SHELL_FOLDER/libX11/util-macros-1.19.3
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译xtrans\033[0m"
+    cd $SHELL_FOLDER/libX11/xtrans-1.4.0
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译xcb-proto\033[0m"
+    cd $SHELL_FOLDER/libX11/xcb-proto-1.14
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXau\033[0m"
+    cd $SHELL_FOLDER/libX11/libXau-1.0.9
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libxcb\033[0m"
+    cd $SHELL_FOLDER/libX11/libxcb-1.14
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libX11\033[0m"
+    cd $SHELL_FOLDER/libX11/libX11-1.7.2
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --enable-malloc0returnsnull PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXext\033[0m"
+    cd $SHELL_FOLDER/libX11/libXext-1.3.1
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXext\033[0m"
+    cd $SHELL_FOLDER/libX11/libXext-1.3.1
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libICE\033[0m"
+    cd $SHELL_FOLDER/libX11/libICE-1.0.10
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libSM\033[0m"
+    cd $SHELL_FOLDER/libX11/libSM-1.2.3
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXt\033[0m"
+    cd $SHELL_FOLDER/libX11/libXt-1.1.3
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译recordproto\033[0m"
+    cd $SHELL_FOLDER/libX11/recordproto-1.14.2
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译renderproto\033[0m"
+    cd $SHELL_FOLDER/libX11/renderproto-0.11.1
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译fixesproto\033[0m"
+    cd $SHELL_FOLDER/libX11/fixesproto-5.0
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXfixes\033[0m"
+    cd $SHELL_FOLDER/libX11/libXfixes-5.0.3
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXi\033[0m"
+    cd $SHELL_FOLDER/libX11/libXi-1.7.10
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --enable-malloc0returnsnull PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXtst\033[0m"
+    cd $SHELL_FOLDER/libX11/libXtst-1.2.1
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXrender\033[0m"
+    cd $SHELL_FOLDER/libX11/libXrender-0.9.7
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译randrproto\033[0m"
+    cd $SHELL_FOLDER/libX11/randrproto-1.5.0
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+
+    echo "\033[1;4;41;32m编译libXrandr\033[0m"
+    cd $SHELL_FOLDER/libX11/libXrandr-1.3.2
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
 
 build_cups()
 {
@@ -344,6 +493,9 @@ libpng)
 freetype)
     build_freetype
     ;;
+libx11)
+    build_libx11
+    ;;
 cups)
     build_cups
     ;;
@@ -379,6 +531,7 @@ all)
 	build_openssl
 	build_libpng
 	build_freetype
+    build_libx11
     build_cups
 	build_libxml2
 	build_fontconfig
