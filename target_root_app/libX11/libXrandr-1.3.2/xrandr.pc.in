@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: Xrandr
+Description: X RandR Library
+Version: @VERSION@
+Requires: xproto randrproto >= @RANDR_VERSION@
+Requires.private: x11 xext xrender
+Cflags: -I${includedir}
+Libs: -L${libdir} -lXrandr
