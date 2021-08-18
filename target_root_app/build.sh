@@ -142,10 +142,12 @@ build_qt()
     # 编译qt
     echo "\033[1;4;41;32m编译qt\033[0m"
     cd $SHELL_FOLDER/qt-everywhere-src-5.12.11
+    TEMP_PATH=$PATH
 	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
 	$CONFIGURE -opensource -confirm-license -release -optimize-size -strip -ltcg -silent -qpa linuxfb -no-opengl -skip webengine -nomake tools -nomake tests -nomake examples -xplatform linux-riscv64-gnu-g++ -prefix /opt/Qt-5.12.11 -extprefix $SHELL_FOLDER/host_output
 	make -j$PROCESSORS
 	make install
+	export PATH=$TEMP_PATH
 }
 
 build_libmnl()
@@ -184,7 +186,7 @@ build_iperf()
     # 编译iperf
     echo "\033[1;4;41;32m编译iperf\033[0m"
     cd $SHELL_FOLDER/iperf-3.10.1
-    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --with-openssl=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --with-openssl=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
 }
@@ -198,6 +200,7 @@ build_zlib()
     $CONFIGURE --prefix=$SHELL_FOLDER/output
 	make -j$PROCESSORS
     make install
+    unset CC
 }
 
 build_openssh()
@@ -210,6 +213,78 @@ build_openssh()
     #make install
 }
 
+build_libpng()
+{
+    # 编译libpng
+    echo "\033[1;4;41;32m编译libpng\033[0m"
+    cd $SHELL_FOLDER/libpng-1.6.34
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CPPFLAGS=-I$SHELL_FOLDER/output/include LDFLAGS=-L$SHELL_FOLDER/output/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_freetype()
+{
+    # 编译freetype
+    echo "\033[1;4;41;32m编译freetype\033[0m"
+    cd $SHELL_FOLDER/freetype-2.11.0
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --with-zlib=$SHELL_FOLDER/output --with-png=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+
+build_cups()
+{
+    # 编译cups
+    echo "\033[1;4;41;32m编译cups\033[0m"
+    cd $SHELL_FOLDER/cups-2.3.1
+    export STRIPPROG=$CROSS_PREFIX-strip
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install-headers install-libs install-exec
+    unset STRIPPROG
+}
+
+build_libxml2()
+{
+    # 编译libxml2
+    echo "\033[1;4;41;32m编译libxml2\033[0m"
+    cd $SHELL_FOLDER/libxml2-2.9.12
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --without-python --with-sax1 CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_fontconfig()
+{
+    # 编译fontconfig
+    echo "\033[1;4;41;32m编译fontconfig\033[0m"
+    cd $SHELL_FOLDER/fontconfig-2.13.94
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --enable-libxml2 --disable-static FREETYPE_CFLAGS=-I$SHELL_FOLDER/output/include/freetype2 FREETYPE_LIBS="-L$SHELL_FOLDER/output/lib -lfreetype" LIBXML2_CFLAGS=-I$SHELL_FOLDER/output/include/libxml2 LIBXML2_LIBS="-L$SHELL_FOLDER/output/lib -lxml2" CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_libffi()
+{
+    # 编译libffi
+    echo "\033[1;4;41;32m编译libffi\033[0m"
+    cd $SHELL_FOLDER/libffi-3.4.2
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_alsa()
+{
+    # 编译alsa
+    echo "\033[1;4;41;32m编译alsa\033[0m"
+    cd $SHELL_FOLDER/alsa-lib-1.2.5
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
 
 case "$1" in
 hosttool)
@@ -263,6 +338,27 @@ zlib)
 openssh)
     build_openssh
     ;;
+libpng)
+    build_libpng
+    ;;
+freetype)
+    build_freetype
+    ;;
+cups)
+    build_cups
+    ;;
+libxml2)
+    build_libxml2
+    ;;
+fontconfig)
+    build_fontconfig
+    ;;
+libffi)
+    build_libffi
+    ;;
+alsa)
+    build_alsa
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -279,7 +375,15 @@ all)
 	build_qt
 	build_libmnl
 	build_ethtool
+	build_zlib
 	build_openssl
+	build_libpng
+	build_freetype
+    build_cups
+	build_libxml2
+	build_fontconfig
+	build_libffi
+	build_alsa
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

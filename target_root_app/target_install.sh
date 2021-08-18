@@ -150,6 +150,14 @@ install_openssh()
     make install
 }
 
+install_libffi()
+{
+	cd /lib
+	cp $SHELL_FOLDER/output/lib/libffi.so.8.1.0 /lib/libffi.so.8.1.0
+    ln -s libffi.so.8.1.0 libffi.so.8
+	ln -s libffi.so.8 libffi.so
+}
+
 case "$1" in
 bash)
     install_bash
@@ -196,6 +204,9 @@ iperf)
 zlib)
     install_zlib
     ;;
+libffi)
+    install_libffi
+    ;;
 openssh)
     install_openssh
     ;;
@@ -216,6 +227,7 @@ all)
     install_iperf
 	install_zlib
 	install_openssh
+	install_libffi
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
