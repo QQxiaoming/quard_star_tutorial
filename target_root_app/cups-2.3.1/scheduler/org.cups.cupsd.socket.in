@@ -1,0 +1,9 @@
+[Unit]
+Description=CUPS Scheduler
+PartOf=org.cups.cupsd.service
+
+[Socket]
+ListenStream=@CUPS_DEFAULT_DOMAINSOCKET@
+
+[Install]
+WantedBy=sockets.target
