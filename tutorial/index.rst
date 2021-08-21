@@ -26,7 +26,7 @@
    ch17.bash——交叉编译应用<ch17.md>
    ch18.RTC设备与系统控制设备<ch18.md>
    ch19.交叉编译sudo<ch19.md>
-   ch20.交叉编译tree、screen、cu<ch20.md>
+   ch20.交叉编译screen、tree、cu<ch20.md>
    ch21.实时操作系统FreeRTOS移植RISCV-S模式<ch21.md>
    ch22.编译器与C/C++标准库<ch22.md>
    ch23.linux FB应用——Qt库移植<ch23.md>
