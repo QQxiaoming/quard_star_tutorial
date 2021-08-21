@@ -238,6 +238,12 @@ build_libx11()
     # 编译libx11
     echo "\033[1;4;41;32m编译x11\033[0m"
 
+    echo "\033[1;4;41;32mhost编译util-macros\033[0m"
+    cd $SHELL_FOLDER/libX11/util-macros-1.19.3
+    $CONFIGURE --prefix=$SHELL_FOLDER/host_output
+	make -j$PROCESSORS
+    make install
+
     echo "\033[1;4;41;32m编译xproto\033[0m"
     cd $SHELL_FOLDER/libX11/xproto-7.0.31
     $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
@@ -252,12 +258,14 @@ build_libx11()
 
     echo "\033[1;4;41;32m编译inputproto\033[0m"
     cd $SHELL_FOLDER/libX11/inputproto-2.3.2
+    autoreconf -f -i 
     $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
 
     echo "\033[1;4;41;32m编译kbproto\033[0m"
     cd $SHELL_FOLDER/libX11/kbproto-1.0.7
+    autoreconf -f -i 
     $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
@@ -270,6 +278,7 @@ build_libx11()
 
     echo "\033[1;4;41;32m编译xtrans\033[0m"
     cd $SHELL_FOLDER/libX11/xtrans-1.4.0
+    autoreconf -f -i 
     $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
