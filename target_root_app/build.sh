@@ -454,6 +454,46 @@ build_openjdk_zero()
 	export PATH=$TEMP_PATH
 }
 
+build_libuuid()
+{
+    # 编译libuuid
+    echo "\033[1;4;41;32m编译libuuid\033[0m"
+    cd $SHELL_FOLDER/libuuid-1.0.3
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_lzo()
+{
+    # 编译lzo
+    echo "\033[1;4;41;32m编译lzo\033[0m"
+    cd $SHELL_FOLDER/lzo-2.10
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_attr()
+{
+    # 编译attr
+    echo "\033[1;4;41;32m编译attr\033[0m"
+    cd $SHELL_FOLDER/attr-2.5.1
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
+build_mtd_utils()
+{
+    # 编译mtd-utils
+    echo "\033[1;4;41;32m编译mtd-utils\033[0m"
+    cd $SHELL_FOLDER/mtd-utils-2.1.2
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --without-jffs --without-ubifs PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -533,6 +573,18 @@ alsa)
 openjdk_zero)
     build_openjdk_zero
     ;;
+libuuid)
+    build_libuuid
+    ;;
+lzo)
+    build_lzo
+    ;;
+attr)
+    build_attr
+    ;;
+mtd_utils)
+    build_mtd_utils
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -560,6 +612,10 @@ all)
 	build_libffi
 	build_alsa
     build_openjdk_zero
+    build_libuuid
+    build_lzo
+    build_attr
+    build_mtd_utils
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

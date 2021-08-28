@@ -303,6 +303,12 @@
 			compatible = "ns16550a";
 		};
 
+		pflash@40000000 {
+			compatible = "cfi-flash";
+			reg = <0x0 0x20000000 0x0 0x2000000>;
+			bank-width = <4>;
+		};
+		
 		rtc@10003000 {
 			interrupts = <0xb>;
 			interrupt-parent = <0x11>;
