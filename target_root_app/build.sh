@@ -494,6 +494,15 @@ build_mtd_utils()
     make install
 }
 
+build_dtc()
+{
+    # 编译dtc-1.6.1
+    echo "\033[1;4;41;32m编译dtc\033[0m"
+    cd $SHELL_FOLDER/dtc-1.6.1
+	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output libfdt -j$PROCESSORS
+    make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output install-lib install-includes
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -585,6 +594,9 @@ attr)
 mtd_utils)
     build_mtd_utils
     ;;
+dtc)
+    build_dtc
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -616,6 +628,7 @@ all)
     build_lzo
     build_attr
     build_mtd_utils
+    build_dtc
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
