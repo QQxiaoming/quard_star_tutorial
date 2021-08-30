@@ -149,6 +149,19 @@ build_kernel()
     cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 }
 
+build_kernel_kvm()
+{
+    # 编译linux kernel_kvm
+    echo "\033[1;4;41;32m编译linux kernel_kvm\033[0m" 
+    if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
+    mkdir $SHELL_FOLDER/output/linux_kernel
+    fi  
+    cd $SHELL_FOLDER/../linux_riscv_kvm
+    make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
+    make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
+    cp $SHELL_FOLDER/../linux_riscv_kvm/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+}
+
 build_busybox()
 {
     # 编译busybox
@@ -295,6 +308,9 @@ firmware)
     ;;
 kernel)
     build_kernel
+    ;;
+kernel_kvm)
+	build_kernel_kvm
     ;;
 busybox)
     build_busybox
