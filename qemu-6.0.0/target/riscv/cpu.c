@@ -304,6 +304,15 @@ static void riscv_cpu_dump_state(CPUState *cs, FILE *f, int flags)
                 qemu_fprintf(f, "\n");
             }
         }
+        if (riscv_has_ext(env, RVV)) {
+            for (i = 0; i < 32 * cpu->cfg.vlen / 64; i++) {
+                qemu_fprintf(f, " v%d %016" PRIx64,
+                            i, env->vreg[i]);
+                if ((i & 3) == 3) {
+                    qemu_fprintf(f, "\n");
+                }
+            }
+        }
     }
 }
 
@@ -491,7 +500,7 @@ static void riscv_cpu_realize(DeviceState *dev, Error **errp)
                         "Vector extension ELEN must be power of 2");
                 return;
             }
-            if (cpu->cfg.elen > 64 || cpu->cfg.vlen < 8) {
+            if (cpu->cfg.elen > 64 || cpu->cfg.elen < 8) {
                 error_setg(errp,
                         "Vector extension implementation only supports ELEN "
                         "in the range [8, 64]");
