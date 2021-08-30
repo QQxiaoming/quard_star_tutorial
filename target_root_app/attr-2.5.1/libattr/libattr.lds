@@ -1,0 +1,12 @@
+"fgetxattr@ATTR_1.0" = libattr_fgetxattr;
+"flistxattr@ATTR_1.0" = libattr_flistxattr;
+"fremovexattr@ATTR_1.0" = libattr_fremovexattr;
+"fsetxattr@ATTR_1.0" = libattr_fsetxattr;
+"getxattr@ATTR_1.0" = libattr_getxattr;
+"lgetxattr@ATTR_1.0" = libattr_lgetxattr;
+"listxattr@ATTR_1.0" = libattr_listxattr;
+"llistxattr@ATTR_1.0" = libattr_llistxattr;
+"lremovexattr@ATTR_1.0" = libattr_lremovexattr;
+"lsetxattr@ATTR_1.0" = libattr_lsetxattr;
+"removexattr@ATTR_1.0" = libattr_removexattr;
+"setxattr@ATTR_1.0" = libattr_setxattr;

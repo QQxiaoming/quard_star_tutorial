@@ -1,0 +1,12 @@
+TESTS = \
+	test/attr.test \
+	test/root/getfattr.test
+
+EXTRA_DIST += \
+	test/README \
+	test/run \
+	test/sort-getfattr-output \
+	$(TESTS)
+
+AM_TESTS_ENVIRONMENT = PATH="$(abs_top_builddir):$$PATH";
+TEST_LOG_COMPILER = $(srcdir)/test/run

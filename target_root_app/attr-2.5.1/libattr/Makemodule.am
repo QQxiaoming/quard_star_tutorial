@@ -1,0 +1,26 @@
+lib_LTLIBRARIES += libattr.la
+
+# No other library exports version info, otherwise we'd have to add
+# "libattr_" prefix to all these variables.
+LT_CURRENT = 2
+# The configure script will set this for us automatically.
+#LT_REVISION =
+LT_AGE = 1
+LTVERSION = $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+
+libattr_la_DEPENDENCIES = exports libattr/libattr.lds
+libattr_la_SOURCES = \
+	libattr/attr_copy_action.c \
+	libattr/attr_copy_check.c \
+	libattr/attr_copy_fd.c \
+	libattr/attr_copy_file.c \
+	libattr/libattr.c \
+	libattr/syscalls.c \
+	libattr/libattr.h
+libattr_la_CFLAGS = -include libattr/libattr.h
+libattr_la_LDFLAGS = \
+	-Wl,--version-script,$(top_srcdir)/exports \
+	-Wl,$(top_srcdir)/libattr/libattr.lds \
+	-version-info $(LTVERSION)
+
+EXTRA_DIST += libattr/libattr.lds
