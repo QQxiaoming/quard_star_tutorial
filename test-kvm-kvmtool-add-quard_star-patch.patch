@@ -1,14 +1,15 @@
-From 16cdcc469bd2c69139495b00af05b97009c94f1b Mon Sep 17 00:00:00 2001
+From 09d014421e4cfc1e7a6184b6899c1682562addd1 Mon Sep 17 00:00:00 2001
 From: xiaoming <2014500726@smail.xtu.edu.cn>
-Date: Tue, 31 Aug 2021 14:58:59 +0800
+Date: Tue, 31 Aug 2021 21:17:44 +0800
 Subject: [PATCH] add quard_star patch
 
 ---
- Makefile | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+ Makefile     | 12 +++++++-----
+ guest/init.c |  2 +-
+ 2 files changed, 8 insertions(+), 6 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 6920d7f..0afdf62 100644
+index 6920d7f..305440e 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -29,6 +29,8 @@ CSCOPE	:= cscope
@@ -38,6 +39,19 @@ index 6920d7f..0afdf62 100644
 +		LIBS_STATOPT	+= -L$(LIBFDT_PATH)/lib -lfdt
  	endif
  endif
+ 
+diff --git a/guest/init.c b/guest/init.c
+index 52f6567..e69e42f 100644
+--- a/guest/init.c
++++ b/guest/init.c
+@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
+ 	}
+ 
+ 	sync();
+-	reboot(RB_AUTOBOOT);
++	reboot(RB_HALT_SYSTEM);
+ 
+ 	printf("Init failed: %s\n", strerror(errno));
  
 -- 
 2.17.1

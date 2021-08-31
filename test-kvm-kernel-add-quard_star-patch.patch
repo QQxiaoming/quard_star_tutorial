@@ -1,21 +1,21 @@
-From 85b8febe35276d1fd48aafb7937e32929fce4558 Mon Sep 17 00:00:00 2001
+From f784fee0732c2c97ccc59f7ddf51b734a677e196 Mon Sep 17 00:00:00 2001
 From: xiaoming <2014500726@smail.xtu.edu.cn>
-Date: Tue, 31 Aug 2021 14:30:24 +0800
+Date: Tue, 31 Aug 2021 21:18:28 +0800
 Subject: [PATCH] add quard_star patch
 
 ---
- arch/riscv/configs/quard_star_defconfig | 157 ++++++++++++++++++++++++
+ arch/riscv/configs/quard_star_defconfig | 159 ++++++++++++++++++++++++
  drivers/firmware/Kconfig                |   2 +-
  drivers/firmware/qemu_fw_cfg.c          |   4 +
- 3 files changed, 162 insertions(+), 1 deletion(-)
+ 3 files changed, 164 insertions(+), 1 deletion(-)
  create mode 100644 arch/riscv/configs/quard_star_defconfig
 
 diff --git a/arch/riscv/configs/quard_star_defconfig b/arch/riscv/configs/quard_star_defconfig
 new file mode 100644
-index 0000000000..c66be9d031
+index 000000000000..ed27a24558ff
 --- /dev/null
 +++ b/arch/riscv/configs/quard_star_defconfig
-@@ -0,0 +1,157 @@
+@@ -0,0 +1,159 @@
 +CONFIG_SYSVIPC=y
 +CONFIG_POSIX_MQUEUE=y
 +CONFIG_NO_HZ_IDLE=y
@@ -90,6 +90,8 @@ index 0000000000..c66be9d031
 +CONFIG_GPIO_SIFIVE=y
 +# CONFIG_PTP_1588_CLOCK is not set
 +CONFIG_POWER_RESET=y
++CONFIG_POWER_RESET_SYSCON=y
++CONFIG_POWER_RESET_SYSCON_POWEROFF=y
 +CONFIG_DRM=y
 +CONFIG_DRM_RADEON=y
 +CONFIG_DRM_VIRTIO_GPU=y
@@ -175,7 +177,7 @@ index 0000000000..c66be9d031
 +# CONFIG_LEGACY_PTYS is not set
 \ No newline at end of file
 diff --git a/drivers/firmware/Kconfig b/drivers/firmware/Kconfig
-index 1db738d5b3..4eb8d8a3ab 100644
+index 1db738d5b301..4eb8d8a3ab6a 100644
 --- a/drivers/firmware/Kconfig
 +++ b/drivers/firmware/Kconfig
 @@ -186,7 +186,7 @@ config RASPBERRYPI_FIRMWARE
@@ -188,7 +190,7 @@ index 1db738d5b3..4eb8d8a3ab 100644
  	default n
  	help
 diff --git a/drivers/firmware/qemu_fw_cfg.c b/drivers/firmware/qemu_fw_cfg.c
-index 172c751a4f..36b5b26128 100644
+index 172c751a4f6c..36b5b261283f 100644
 --- a/drivers/firmware/qemu_fw_cfg.c
 +++ b/drivers/firmware/qemu_fw_cfg.c
 @@ -225,6 +225,10 @@ static void fw_cfg_io_cleanup(void)

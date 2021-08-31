@@ -1,0 +1,145 @@
+/dts-v1/;
+
+/ {
+	compatible = "linux,dummy-virt";
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+
+	chosen {
+		bootargs = " console=ttyS0 rw rootflags=trans=virtio,version=9p2000.L,cache=loose rootfstype=9p init=/virt/init  ip=dhcp console=ttyS0 earlycon=uart8250,mmio,0x3f8";
+		stdout-path = "serial0";
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x0 0x8000000>;
+	};
+
+	cpus {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+		timebase-frequency = <0x989680>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "riscv";
+			mmu-type = "riscv,sv48";
+			riscv,isa = "rv64imafdcsu";
+			reg = <0x0>;
+			status = "okay";
+
+			interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				phandle = <0x2>;
+			};
+		};
+
+		cpu@1 {
+			device_type = "cpu";
+			compatible = "riscv";
+			mmu-type = "riscv,sv48";
+			riscv,isa = "rv64imafdcsu";
+			reg = <0x1>;
+			status = "okay";
+
+			interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				phandle = <0x3>;
+			};
+		};
+	};
+
+	smb {
+		compatible = "simple-bus";
+		#address-cells = <0x2>;
+		#size-cells = <0x2>;
+		interrupt-parent = <0x1>;
+		ranges;
+
+		interrupt-controller@0c000000 {
+			compatible = "riscv,plic0";
+			reg = <0x0 0xc000000 0x0 0x4000000>;
+			#interrupt-cells = <0x1>;
+			interrupt-controller;
+			riscv,max-priority = <0xf>;
+			riscv,ndev = <0x400>;
+			phandle = <0x1>;
+			interrupts-extended = <0x2 0xffffffff 0x2 0x9 0x3 0xffffffff 0x3 0x9>;
+		};
+
+		virtio@10000000 {
+			compatible = "virtio,mmio";
+			reg = <0x0 0x10000000 0x0 0x200>;
+			dma-coherent;
+			interrupts = <0x5>;
+		};
+
+		virtio@10000200 {
+			compatible = "virtio,mmio";
+			reg = <0x0 0x10000200 0x0 0x200>;
+			dma-coherent;
+			interrupts = <0x6>;
+		};
+
+		virtio@10000400 {
+			compatible = "virtio,mmio";
+			reg = <0x0 0x10000400 0x0 0x200>;
+			dma-coherent;
+			interrupts = <0x7>;
+		};
+
+		U6_16550A@3f8 {
+			compatible = "ns16550a";
+			reg = <0x0 0x3f8 0x0 0x8>;
+			interrupts = <0x1>;
+			clock-frequency = <0x1c2000>;
+		};
+
+		U6_16550A@2f8 {
+			compatible = "ns16550a";
+			reg = <0x0 0x2f8 0x0 0x8>;
+			interrupts = <0x2>;
+			clock-frequency = <0x1c2000>;
+		};
+
+		U6_16550A@3e8 {
+			compatible = "ns16550a";
+			reg = <0x0 0x3e8 0x0 0x8>;
+			interrupts = <0x3>;
+			clock-frequency = <0x1c2000>;
+		};
+
+		U6_16550A@2e8 {
+			compatible = "ns16550a";
+			reg = <0x0 0x2e8 0x0 0x8>;
+			interrupts = <0x4>;
+			clock-frequency = <0x1c2000>;
+		};
+
+		rtc {
+			compatible = "motorola,mc146818";
+			reg = <0x0 0x70 0x0 0x2>;
+		};
+
+		pci {
+			device_type = "pci";
+			#address-cells = <0x3>;
+			#size-cells = <0x2>;
+			#interrupt-cells = <0x1>;
+			compatible = "pci-host-ecam-generic";
+			dma-coherent;
+			bus-range = <0x0 0x1>;
+			reg = <0x0 0x30000000 0x0 0x10000000>;
+			ranges = <0x1000000 0x0 0x0 0x0 0x0 0x0 0x10000 0x2000000 0x0 0x40000000 0x0 0x40000000 0x0 0x40000000>;
+			interrupt-map;
+		};
+	};
+
+	aliases {
+		serial0 = "/U6_16550A@3f8";
+	};
+};
