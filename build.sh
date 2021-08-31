@@ -149,18 +149,45 @@ build_kernel()
     cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 }
 
-build_kernel_kvm()
+build_test_kvm()
 {
     # 编译linux kernel_kvm
     echo "\033[1;4;41;32m编译linux kernel_kvm\033[0m" 
     if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
     mkdir $SHELL_FOLDER/output/linux_kernel
     fi  
-    cd $SHELL_FOLDER/../linux_riscv_kvm
+	if [ ! -d "$SHELL_FOLDER/output/test_kvm" ]; then  
+    mkdir $SHELL_FOLDER/output/test_kvm
+
+	cd $SHELL_FOLDER/output/test_kvm
+	git init linux_riscv_kvm
+	cd $SHELL_FOLDER/output/test_kvm/linux_riscv_kvm
+	git remote add origin https://github.com/kvm-riscv/linux.git
+	git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +86682db59890e7070ec68ebb1beb3eb205debbfd:refs/remotes/origin/riscv_kvm_master
+	git checkout 86682db59890e7070ec68ebb1beb3eb205debbfd   
+	git am $SHELL_FOLDER/test-kvm-kernel-add-quard_star-patch.patch 
+
+	cd $SHELL_FOLDER/output/test_kvm
+	git init kvmtool
+	cd $SHELL_FOLDER/output/test_kvm/kvmtool
+	git remote add origin https://github.com/kvm-riscv/kvmtool.git
+	git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +ae33b66c4126158ab60c9d18236adf8a7cfa1df3:refs/remotes/origin/riscv_master
+	git checkout ae33b66c4126158ab60c9d18236adf8a7cfa1df3
+	git am $SHELL_FOLDER/test-kvm-kvmtool-add-quard_star-patch.patch 
+	fi  
+	
+    cd $SHELL_FOLDER/output/test_kvm/linux_riscv_kvm
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
-    cp $SHELL_FOLDER/../linux_riscv_kvm/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+    cp $SHELL_FOLDER/output/test_kvm/linux_riscv_kvm/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+
+	cd $SHELL_FOLDER/output/test_kvm/kvmtool
+	make clean
+	make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- LIBFDT_PATH=$SHELL_FOLDER/target_root_app/output lkvm-static -j$PROCESSORS
+	cp $SHELL_FOLDER/output/test_kvm/linux_riscv_kvm/arch/riscv/kvm/kvm.ko $SHELL_FOLDER/output/kvm.ko
+	cp $SHELL_FOLDER/output/test_kvm/kvmtool/lkvm-static $SHELL_FOLDER/output/lkvm-static
 }
+
 
 build_busybox()
 {
@@ -274,6 +301,21 @@ build_all()
     build_rootfs
 }
 
+build_test_kvm_all()
+{
+    build_qemu
+    build_lowlevelboot
+    build_opensbi
+    build_sbi_dtb
+    build_trusted_domain
+    build_uboot
+    build_uboot_dtb
+    build_firmware
+    build_test_kvm
+    build_busybox
+    build_rootfs
+}
+
 case "$BUILD_TARGET" in
 --help)
     TARGET="qemu|lowlevelboot|opensbi|sbi_dtb|trusted_domain|uboot|uboot_dtb|firmware|kernel|busybox|rootfs|all"
@@ -309,8 +351,11 @@ firmware)
 kernel)
     build_kernel
     ;;
-kernel_kvm)
-	build_kernel_kvm
+test_kvm)
+	build_test_kvm
+    ;;
+test_kvm_all)
+	build_test_kvm_all
     ;;
 busybox)
     build_busybox
