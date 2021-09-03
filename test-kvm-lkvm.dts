@@ -6,7 +6,7 @@
 	#size-cells = <0x2>;
 
 	chosen {
-		bootargs = " console=ttyS0 rw rootflags=trans=virtio,version=9p2000.L,cache=loose rootfstype=9p init=/virt/init  ip=dhcp console=ttyS0 earlycon=uart8250,mmio,0x3f8";
+		bootargs = " console=ttyS0 rw rootflags=trans=virtio,version=9p2000.L,cache=loose rootfstype=9p init=/virt/init ip=dhcp earlycon=sbi";
 		stdout-path = "serial0";
 	};
 
