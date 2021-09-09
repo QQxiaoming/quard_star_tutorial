@@ -77,6 +77,10 @@ customize4)
 	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
+kgdb)
+	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor stdio --parallel none"
+	DEFAULT_V=":vn:24x80:"
+	;;
 --help)
 	echo $USAGE
 	exit 0
