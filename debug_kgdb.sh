@@ -9,7 +9,7 @@ klog)
 	telnet localhost 3441
     ;;
 kgdb)
-	$GDB_DIR/riscv64-unknown-linux-gnu-gdb -x $SHELL_FOLDER/gdb.script $SHELL_FOLDER/linux-5.10.42/vmlinux 
+	$GDB_DIR/riscv64-unknown-linux-gnu-gdb -x $SHELL_FOLDER/gdb.script
 	;;
 --help)
 	echo "usage qemu klog kgdb"
