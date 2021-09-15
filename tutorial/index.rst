@@ -1,8 +1,9 @@
-目录
+主页
 ----------------------------------
 
 .. toctree::
    :maxdepth: 3
+   :caption: 目录
 
    ch0.引言<ch0.md>
    ch1.搭建qemu环境<ch1.md>
@@ -32,3 +33,9 @@
    ch23.linux FB应用——Qt库移植<ch23.md>
    ch24.qemu网卡/linux内核网络配置<ch24.md>
    ch25.sshd服务配置<ch25.md>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: 其他文章
+
+   kgdb调试linux内核以及驱动模块<kgdb.md>
