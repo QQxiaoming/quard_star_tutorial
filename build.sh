@@ -143,10 +143,10 @@ build_kernel()
     if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
     mkdir $SHELL_FOLDER/output/linux_kernel
     fi  
-    cd $SHELL_FOLDER/linux-5.10.42
+    cd $SHELL_FOLDER/linux-5.10.65
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
-    cp $SHELL_FOLDER/linux-5.10.42/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+    cp $SHELL_FOLDER/linux-5.10.65/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 }
 
 build_busybox()
