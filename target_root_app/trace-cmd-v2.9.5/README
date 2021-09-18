@@ -1,0 +1,49 @@
+
+
+  For more information on contributing please see: https://www.trace-cmd.org
+
+Note: The official repositiory for trace-cmd and KernelShark is here:
+
+ git://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git
+
+For bug reports and issues, please file it here:
+
+ https://bugzilla.kernel.org/buglist.cgi?component=Trace-cmd%2FKernelshark&product=Tools&resolution=---
+
+These files make up the code that create the trace-cmd programs.
+This includes the GUI interface application kernelshark as well
+as trace-graph and trace-view.
+
+These files also make up the code to create the libraries
+
+  libtracecmd and libparsevent
+
+The applications are licensed under the GNU General Public License 2.0
+(see COPYING) and the libraries are licensed under the GNU
+Lesser General Public License 2.1 (See COPYING.LIB).
+
+BUILDING:
+
+To make trace-cmd
+    make
+
+To make the gui
+    make gui
+
+INSTALL:
+
+To install trace-cmd
+    make install
+
+To install the gui
+    make install_gui
+
+Note: The default install is relative to /usr/local
+    The default install directory is /usr/local/bin
+    The default plugin directory is /usr/local/lib/trace-cmd/plugins
+
+To change the default, you can set 'prefix', eg
+mkdir $HOME/test-trace
+make prefix=$HOME/test-trace
+make prefix=$HOME/test-trace install
+

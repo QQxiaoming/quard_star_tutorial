@@ -1,0 +1,496 @@
+TRACE-CMD-REPORT(1)
+===================
+
+NAME
+----
+trace-cmd-report - show in ASCII a trace created by trace-cmd record
+
+SYNOPSIS
+--------
+*trace-cmd report* ['OPTIONS'] ['input-file']
+
+DESCRIPTION
+-----------
+The trace-cmd(1) report command will output a human readable report of a trace
+created by trace-cmd record.
+
+OPTIONS
+-------
+*-i* 'input-file'::
+    By default, trace-cmd report will read the file 'trace.dat'. But the *-i*
+    option open up the given 'input-file' instead. Note, the input file may
+    also be specified as the last item on the command line.
+
+*-e*::
+    This outputs the endianess of the file. trace-cmd report is smart enough
+    to be able to read big endian files on little endian machines, and vise
+    versa.
+
+*-f*::
+    This outputs the list of all functions that have been mapped in the trace.dat file.
+    Note, this list may contain functions that may not appear in the trace, as
+    it is the list of mappings to translate function addresses into function names.
+
+*-P*::
+    This outputs the list of "trace_printk()" data. The raw trace data points
+    to static pointers in the kernel. This must be stored in the trace.dat
+    file.
+
+*-E*::
+    This lists the possible events in the file (but this list is not
+    necessarily the list of events in the file).
+
+*--events*::
+    This will list the event formats that are stored in the trace.dat file.
+
+*--event* regex::
+    This will print events that match the given regex. If a colon is specified,
+    then the characters before the colon will be used to match the system and
+    the characters after the colon will match the event.
+
+     trace-cmd report --event sys:read
+
+    The above will only match events where the system name contains "sys"
+    and the event name contains "read".
+
+     trace-cmd report --event read
+
+    The above will match all events that contain "read" in its name. Also it
+    may list all events of a system that contains "read" as well.
+
+*--check-events*::
+    This will parse the event format strings that are stored in the trace.dat
+    file and return whether the formats can be parsed correctly. It will load
+    plugins unless *-N* is specified.
+
+*-t*::
+    Print the full timestamp. The timestamps in the data file are usually
+    recorded to the nanosecond. But the default display of the timestamp
+    is only to the microsecond. To see the full timestamp, add the *-t* option.
+
+*-F* 'filter'::
+    Add a filter to limit what events are displayed. The format of the filter
+    is:
+
+------------------------------------------
+    <events> ':' <filter>
+    <events> = SYSTEM'/'EVENT  | SYSTEM | EVENT | <events> ',' <events>
+    <filter> = EVENT_FIELD <op> <value> | <filter> '&&' <filter> |
+               <filter> '||' <filter> | '(' <filter> ')' | '!' <filter>
+    <op> = '==' | '!=' | '>=' | '<=' | '>' | '<' | '&' | '|' | '^' |
+           '+' | '-' | '*' | '/' | '%'
+    <value> = NUM | STRING | EVENT_FIELD
+------------------------------------------
+
+    SYSTEM is the name of the system to filter on. If the EVENT is left out,
+    then it applies to all events under the SYSTEM. If only one string is used
+    without the '/' to deliminate between SYSTEM and EVENT, then the filter
+    will be applied to all systems and events that match the given string.
+
+    Whitespace is ignored, such that "sched:next_pid==123" is equivalent to
+    "sched : next_pid == 123".
+
+    STRING is defined with single or double quotes (single quote must end with
+    single quote, and double with double). Whitespace within quotes are not
+    ignored.
+
+    The representation of a SYSTEM or EVENT may also be a regular expression
+    as defined by 'regcomp(3)'.
+
+    The EVENT_FIELD is the name of the field of an event that is being
+    filtered. If the event does not contain the EVENT_FIELD, that part of the
+    equation will be considered false.
+
+------------------------------------------
+    -F 'sched : bogus == 1 || common_pid == 2'
+------------------------------------------
+
+    The "bogus == 1" will always evaluate to FALSE because no event has a
+    field called "bogus", but the "common_pid == 2" will still be evaluated
+    since all events have the field "common_pid". Any "sched" event that was
+    traced by the process with the PID of 2 will be shown.
+
+    Note, the EVENT_FIELD is the field name as shown by an events format
+    (as displayed with *--events*), and not what is found in the output.
+    If the output shows "ID:foo" but the field that "foo" belongs to was
+    called "name" in the event format, then "name" must be used in the filter.
+    The same is true about values. If the value that is displayed is converted
+    by to a string symbol, the filter checks the original value and not the
+    value displayed. For example, to filter on all tasks that were in the
+    running state at a context switch:
+
+------------------------------------------
+    -F 'sched/sched_switch : prev_state==0'
+------------------------------------------
+
+    Although the output displays 'R', having 'prev_stat=="R"' will not work.
+
+    Note: You can also specify 'COMM' as an EVENT_FIELD. This will use the
+    task name (or comm) of the record to compare. For example, to filter out
+    all of the "trace-cmd" tasks:
+
+------------------------------------------
+    -F '.*:COMM != "trace-cmd"'
+------------------------------------------
+
+*-I*::
+    Do not print events where the HARDIRQ latency flag is set.
+    This will filter out most events that are from interrupt context.
+    Note, it may not filter out function traced functions that are
+    in interrupt context but were called before the kernel "in interrupt"
+    flag was set.
+
+*-S*::
+    Do not print events where the SOFTIRQ latency flag is set.
+    This will filter out most events that are from soft interrupt context.
+
+*-v*::
+    This causes the following filters of *-F* to filter out the matching
+    events.
+
+------------------------------------------
+    -v -F 'sched/sched_switch : prev_state == 0'
+------------------------------------------
+
+    Will not display any sched_switch events that have a prev_state of 0.
+    Removing the *-v* will only print out those events.
+
+*-T*::
+    Test the filters of -F. After processing a filter string, the
+    resulting filter will be displayed for each event. This is useful
+    for using a filter for more than one event where a field may not
+    exist in all events. Also it can be used to make sure there are no
+    misspelled event field names, as they will simply be ignored.
+    *-T* is ignored if *-F* is not specified.
+
+*-V*::
+    Show the plugins that are loaded.
+
+*-L*::
+    This will not load system wide plugins. It loads "local only". That is
+    what it finds in the ~/.trace-cmd/plugins directory.
+
+*-N*::
+    This will not load any plugins.
+
+*-n* 'event-re'::
+    This will cause all events that match the option to ignore any registered
+    handler (by the plugins) to print the event. The normal event will be printed
+    instead.  The 'event-re' is a regular expression as defined by 'regcomp(3)'.
+
+*--profile*::
+    With the *--profile* option, "trace-cmd report" will process all the events
+    first, and then output a format showing where tasks have spent their time
+    in the kernel, as well as where they are blocked the most, and where wake up
+    latencies are.
+
+    See trace-cmd-profile(1) for more details and examples.
+
+*-G*::
+    Set interrupt (soft and hard) events as global (associated to CPU
+    instead of tasks). Only works for --profile.
+
+*-H* 'event-hooks'::
+    Add custom event matching to connect any two events together.
+
+    See trace-cmd-profile(1) for format.
+
+*-R*::
+    This will show the events in "raw" format. That is, it will ignore the event's
+    print formatting and just print the contents of each field.
+
+*-r* 'event-re'::
+    This will cause all events that match the option to print its raw fields.
+    The 'event-re' is a regular expression as defined by 'regcomp(3)'.
+
+*-l*::
+    This adds a "latency output" format. Information about interrupts being
+    disabled, soft irq being disabled, the "need_resched" flag being set,
+    preempt count, and big kernel lock are all being recorded with every
+    event. But the default display does not show this information. This option
+    will set display this information with 6 characters. When one of the
+    fields is zero or N/A a \'.\' is shown.
+
+------------------------------------------
+      <idle>-0       0d.h1. 106467.859747: function:             ktime_get <-- tick_check_idle
+------------------------------------------
+
+    The 0d.h1. denotes this information. The first character is never a '.'
+    and represents what CPU the trace was recorded on (CPU 0). The 'd' denotes
+    that interrupts were disabled. The 'h' means that this was called inside
+    an interrupt handler. The '1' is the preemption disabled (preempt_count)
+    was set to one.  The two '.'s are "need_resched" flag and kernel lock
+    counter.  If the "need_resched" flag is set, then that character would be a
+    'N'.
+
+*-w*::
+    If both the 'sched_switch' and 'sched_wakeup' events are enabled, then
+    this option will report the latency between the time the task was first
+    woken, and the time it was scheduled in.
+
+*-q*::
+    Quiet non critical warnings.
+
+*-O*::
+    Pass options to the trace-cmd plugins that are loaded.
+
+     -O plugin:var=value
+
+     The 'plugin:' and '=value' are optional. Value may be left off for options
+     that are boolean. If the 'plugin:' is left off, then any variable that matches
+     in all plugins will be set.
+
+     Example:  -O fgraph:tailprint
+
+*--cpu* <cpu list>::
+    List of CPUs, separated by "," or ":", used for filtering the events.
+    A range of CPUs can be specified using "cpuX-cpuY" notation, where all CPUs
+    in the range between cpuX and cpuY will be included in the list. The order
+    of CPUs in the list must be from lower to greater.
+
+    Example:  "--cpu 0,3" - show events from CPUs 0 and 3
+              "--cpu 2-4" - show events from CPUs 2, 3 and 4
+
+*--stat*::
+    If the trace.dat file recorded the final stats (outputed at the end of record)
+    the *--stat* option can be used to retrieve them.
+
+*--uname*::
+    If the trace.dat file recorded uname during the run, this will retrieve that
+    information.
+
+*--version*::
+    If the trace.dat file recorded the version of the executable used to create
+    it, report that version.
+
+*--ts-offset* offset::
+    Add (or subtract if negative) an offset for all timestamps of the previous
+    data file specified with *-i*. This is useful to merge sort multiple trace.dat
+    files where the difference in the timestamp is known. For example if a trace
+    is done on a virtual guest, and another trace is done on the host. If the
+    host timestamp is 1000 units ahead of the guest, the following can be done:
+
+    trace-cmd report -i host.dat --ts-offset -1000 -i guest.dat
+
+    This will subtract 1000 timestamp units from all the host events as it merges
+    with the guest.dat events. Note, the units is for the raw units recorded in
+    the trace. If the units are nanoseconds, the addition (or subtraction) from
+    the offset will be nanoseconds even if the displayed units are microseconds.
+
+*--ts2secs* HZ::
+    Convert the current clock source into a second (nanosecond resolution)
+    output. When using clocks like x86-tsc, if the frequency is known,
+    by passing in the clock frequency, this will convert the time to seconds.
+
+    This option affects any trace.dat file given with *-i* proceeding it.
+    If this option comes before any *-i* option, then that value becomes
+    the default conversion for all other trace.dat files. If another
+    --ts2secs option appears after a *-i* trace.dat file, than that option
+    will override the default value.
+
+    Example: On a 3.4 GHz machine
+
+      trace-cmd record -p function -C x86-tsc
+
+      trace-cmd report --ts2ns 3400000000
+
+     The report will convert the cycles timestamps into a readable second
+     display. The default display resolution is microseconds, unless *-t*
+     is used.
+
+     The value of --ts-offset must still be in the raw timestamp units, even
+     with this option. The offset will be converted as well.
+
+*--ts-diff*::
+     Show the time differences between events. The difference will appear in
+     parenthesis just after the timestamp.
+
+*--ts-check*::
+     Make sure no timestamp goes backwards, and if it does, print out a warning
+     message of the fact.
+
+EXAMPLES
+--------
+
+Using a trace.dat file that was created with:
+
+------------------------------------------
+    # trace-cmd record -p function -e all sleep 5
+
+
+------------------------------------------
+
+The default report shows:
+
+------------------------------------------
+ # trace-cmd report
+       trace-cmd-16129 [002] 158126.498411: function: __mutex_unlock_slowpath <-- mutex_unlock
+       trace-cmd-16131 [000] 158126.498411: kmem_cache_alloc: call_site=811223c5 ptr=0xffff88003ecf2b40 bytes_req=272 bytes_alloc=320 gfp_flags=GFP_KERNEL|GFP_ZERO
+       trace-cmd-16130 [003] 158126.498411: function:             do_splice_to <-- sys_splice
+           sleep-16133 [001] 158126.498412: function: inotify_inode_queue_event <-- vfs_write
+       trace-cmd-16129 [002] 158126.498420: lock_release: 0xffff88003f1fa4f8 &sb->s_type->i_mutex_key
+       trace-cmd-16131 [000] 158126.498421: function: security_file_alloc <-- get_empty_filp
+           sleep-16133 [001] 158126.498422: function: __fsnotify_parent <-- vfs_write
+       trace-cmd-16130 [003] 158126.498422: function: rw_verify_area <-- do_splice_to
+       trace-cmd-16131 [000] 158126.498424: function: cap_file_alloc_security <-- security_file_alloc
+       trace-cmd-16129 [002] 158126.498425: function: syscall_trace_leave <-- int_check_syscall_exit_work
+           sleep-16133 [001] 158126.498426: function: inotify_dentry_parent_queue_event <-- vfs_write
+       trace-cmd-16130 [003] 158126.498426: function: security_file_permission <-- rw_verify_area
+       trace-cmd-16129 [002] 158126.498428: function: audit_syscall_exit <-- syscall_trace_leave
+[...]
+
+
+------------------------------------------
+
+To see everything but the function traces:
+
+------------------------------------------
+ # trace-cmd report -v -F 'function'
+       trace-cmd-16131 [000] 158126.498411: kmem_cache_alloc: call_site=811223c5 ptr=0xffff88003ecf2b40 bytes_req=272 bytes_alloc=320 gfp_flags=GFP_KERNEL|GFP_ZERO
+       trace-cmd-16129 [002] 158126.498420: lock_release: 0xffff88003f1fa4f8 &sb->s_type->i_mutex_key
+       trace-cmd-16130 [003] 158126.498436: lock_acquire: 0xffffffff8166bf78 read all_cpu_access_lock
+       trace-cmd-16131 [000] 158126.498438: lock_acquire: 0xffff88003df5b520 read &fs->lock
+       trace-cmd-16129 [002] 158126.498446: kfree: call_site=810a7abb ptr=0x0
+       trace-cmd-16130 [003] 158126.498448: lock_acquire: 0xffff880002250a80 &per_cpu(cpu_access_lock, cpu)
+       trace-cmd-16129 [002] 158126.498450: sys_exit_splice:      0xfffffff5
+       trace-cmd-16131 [000] 158126.498454: lock_release: 0xffff88003df5b520 &fs->lock
+           sleep-16133 [001] 158126.498456: kfree: call_site=810a7abb ptr=0x0
+           sleep-16133 [001] 158126.498460: sys_exit_write:       0x1
+       trace-cmd-16130 [003] 158126.498462: kmalloc: call_site=810bf95b ptr=0xffff88003dedc040 bytes_req=24 bytes_alloc=32 gfp_flags=GFP_KERNEL|GFP_ZERO
+
+
+------------------------------------------
+
+To see only the kmalloc calls that were greater than 1000 bytes:
+
+------------------------------------------
+ #trace-cmd report -F 'kmalloc: bytes_req > 1000'
+          <idle>-0     [000] 158128.126641: kmalloc: call_site=81330635 ptr=0xffff88003c2fd000 bytes_req=2096 bytes_alloc=4096 gfp_flags=GFP_ATOMIC
+
+
+------------------------------------------
+
+To see wakeups and sched switches that left the previous task in the running
+state:
+------------------------------------------
+ # trace-cmd report -F 'sched: prev_state == 0 || (success == 1)'
+       trace-cmd-16132 [002] 158126.499951: sched_wakeup: comm=trace-cmd pid=16129 prio=120 success=1 target_cpu=002
+       trace-cmd-16132 [002] 158126.500401: sched_switch: prev_comm=trace-cmd prev_pid=16132 prev_prio=120 prev_state=R ==> next_comm=trace-cmd next_pid=16129 next_prio=120
+          <idle>-0     [003] 158126.500585: sched_wakeup: comm=trace-cmd pid=16130 prio=120 success=1 target_cpu=003
+          <idle>-0     [003] 158126.501241: sched_switch: prev_comm=swapper prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=trace-cmd next_pid=16130 next_prio=120
+       trace-cmd-16132 [000] 158126.502475: sched_wakeup: comm=trace-cmd pid=16131 prio=120 success=1 target_cpu=000
+       trace-cmd-16131 [002] 158126.506516: sched_wakeup: comm=trace-cmd pid=16129 prio=120 success=1 target_cpu=002
+          <idle>-0     [003] 158126.550110: sched_switch: prev_comm=swapper prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=trace-cmd next_pid=16130 next_prio=120
+       trace-cmd-16131 [003] 158126.570243: sched_wakeup: comm=trace-cmd pid=16129 prio=120 success=1 target_cpu=003
+       trace-cmd-16130 [002] 158126.618202: sched_switch: prev_comm=trace-cmd prev_pid=16130 prev_prio=120 prev_state=R ==> next_comm=yum-updatesd next_pid=3088 next_prio=1 20
+       trace-cmd-16129 [003] 158126.622379: sched_wakeup: comm=trace-cmd pid=16131 prio=120 success=1 target_cpu=003
+       trace-cmd-16129 [000] 158126.649287: sched_wakeup: comm=trace-cmd pid=16131 prio=120 success=1 target_cpu=000
+
+
+------------------------------------------
+
+The above needs a little explanation. The filter specifies the "sched"
+subsystem, which includes both sched_switch and sched_wakeup events. Any event
+that does not have the format field "prev_state" or "success", will evaluate
+those expressions as FALSE, and will not produce a match. Using "||" will have
+the "prev_state" test happen for the "sched_switch" event and the "success"
+test happen for the "sched_wakeup" event.
+
+
+------------------------------------------
+  # trace-cmd report -w -F 'sched_switch, sched_wakeup.*'
+[...]
+       trace-cmd-16130 [003] 158131.580616: sched_wakeup: comm=trace-cmd pid=16131 prio=120 success=1 target_cpu=003
+       trace-cmd-16129 [000] 158131.581502: sched_switch: prev_comm=trace-cmd prev_pid=16129 prev_prio=120 prev_state=S ==> next_comm=trace-cmd next_pid=16131 next_prio=120 Latency: 885.901 usecs
+       trace-cmd-16131 [000] 158131.582414: sched_wakeup: comm=trace-cmd pid=16129 prio=120 success=1 target_cpu=000
+       trace-cmd-16132 [001] 158131.583219: sched_switch: prev_comm=trace-cmd prev_pid=16132 prev_prio=120 prev_state=S ==> next_comm=trace-cmd next_pid=16129 next_prio=120 Latency: 804.809 usecs
+           sleep-16133 [002] 158131.584121: sched_wakeup: comm=trace-cmd pid=16120 prio=120 success=1 target_cpu=002
+       trace-cmd-16129 [001] 158131.584128: sched_wakeup: comm=trace-cmd pid=16132 prio=120 success=1 target_cpu=001
+           sleep-16133 [002] 158131.584275: sched_switch: prev_comm=sleep prev_pid=16133 prev_prio=120 prev_state=R ==> next_comm=trace-cmd next_pid=16120 next_prio=120 Latency: 153.915 usecs
+       trace-cmd-16130 [003] 158131.585284: sched_switch: prev_comm=trace-cmd prev_pid=16130 prev_prio=120 prev_state=S ==> next_comm=trace-cmd next_pid=16132 next_prio=120 Latency: 1155.677 usecs
+
+Average wakeup latency: 26626.656 usecs
+
+
+------------------------------------------
+
+The above trace produces the wakeup latencies of the tasks. The "sched_switch"
+event reports each individual latency after writing the event information.
+At the end of the report, the average wakeup latency is reported.
+
+------------------------------------------
+  # trace-cmd report -w -F 'sched_switch, sched_wakeup.*: prio < 100 || next_prio < 100'
+          <idle>-0     [003] 158131.516753: sched_wakeup: comm=ksoftirqd/3 pid=13 prio=49 success=1 target_cpu=003
+          <idle>-0     [003] 158131.516855: sched_switch: prev_comm=swapper prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=ksoftirqd/3 next_pid=13 next_prio=49 Latency: 101.244 usecs
+          <idle>-0     [003] 158131.533781: sched_wakeup: comm=ksoftirqd/3 pid=13 prio=49 success=1 target_cpu=003
+          <idle>-0     [003] 158131.533897: sched_switch: prev_comm=swapper prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=ksoftirqd/3 next_pid=13 next_prio=49 Latency: 115.608 usecs
+          <idle>-0     [003] 158131.569730: sched_wakeup: comm=ksoftirqd/3 pid=13 prio=49 success=1 target_cpu=003
+          <idle>-0     [003] 158131.569851: sched_switch: prev_comm=swapper prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=ksoftirqd/3 next_pid=13 next_prio=49 Latency: 121.024 usecs
+
+Average wakeup latency: 110.021 usecs
+
+
+------------------------------------------
+
+The above version will only show the wakeups and context switches of Real Time
+tasks. The 'prio' used inside the kernel starts at 0 for highest priority.
+That is 'prio' 0 is equivalent to user space real time priority 99, and
+priority 98 is equivalent to user space real time priority 1.
+Prios less than 100 represent Real Time tasks.
+
+An example of the profile:
+------------------------------------------
+ # trace-cmd record --profile sleep 1
+ # trace-cmd report --profile --comm sleep
+task: sleep-21611
+  Event: sched_switch:R (1) Total: 99442 Avg: 99442 Max: 99442 Min:99442
+     <stack> 1 total:99442 min:99442 max:99442 avg=99442
+       => ftrace_raw_event_sched_switch (0xffffffff8105f812)
+       => __schedule (0xffffffff8150810a)
+       => preempt_schedule (0xffffffff8150842e)
+       => ___preempt_schedule (0xffffffff81273354)
+       => cpu_stop_queue_work (0xffffffff810b03c5)
+       => stop_one_cpu (0xffffffff810b063b)
+       => sched_exec (0xffffffff8106136d)
+       => do_execve_common.isra.27 (0xffffffff81148c89)
+       => do_execve (0xffffffff811490b0)
+       => SyS_execve (0xffffffff811492c4)
+       => return_to_handler (0xffffffff8150e3c8)
+       => stub_execve (0xffffffff8150c699)
+  Event: sched_switch:S (1) Total: 1000506680 Avg: 1000506680 Max: 1000506680 Min:1000506680
+     <stack> 1 total:1000506680 min:1000506680 max:1000506680 avg=1000506680
+       => ftrace_raw_event_sched_switch (0xffffffff8105f812)
+       => __schedule (0xffffffff8150810a)
+       => schedule (0xffffffff815084b8)
+       => do_nanosleep (0xffffffff8150b22c)
+       => hrtimer_nanosleep (0xffffffff8108d647)
+       => SyS_nanosleep (0xffffffff8108d72c)
+       => return_to_handler (0xffffffff8150e3c8)
+       => tracesys_phase2 (0xffffffff8150c304)
+  Event: sched_wakeup:21611 (1) Total: 30326 Avg: 30326 Max: 30326 Min:30326
+     <stack> 1 total:30326 min:30326 max:30326 avg=30326
+       => ftrace_raw_event_sched_wakeup_template (0xffffffff8105f653)
+       => ttwu_do_wakeup (0xffffffff810606eb)
+       => ttwu_do_activate.constprop.124 (0xffffffff810607c8)
+       => try_to_wake_up (0xffffffff8106340a)
+------------------------------------------
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-start(1), trace-cmd-stop(1),
+trace-cmd-extract(1), trace-cmd-reset(1), trace-cmd-split(1),
+trace-cmd-list(1), trace-cmd-listen(1), trace-cmd-profile(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

@@ -1,0 +1,628 @@
+<html>
+<head>
+<title>KernelShark</title>
+<link rel="shortcut icon" href="favicon.jpg" /> 
+</head>
+<body>
+
+<h1><img src="images/kernelshark-logo.svg"/></h1>
+
+
+<h1>KernelShark</h1>
+
+<hr><h1><a name="ToC">Table of Contents</a></h1>
+
+<p><b><a name="ToC_1" href="#Introduction">Introduction</a></b></br>
+<menu>
+<li><a name="ToC_1_1" href="#graph-info-line">Graph Info Area</a>
+<li><a name="ToC_1_2" href="#graph-control-line">Graph Control Area</a>
+<li><a name="ToC_1_3" href="#graph_window">The Graph Window</a></h4>
+<li><a name="ToC_1_4" href="#graph-plot-title">Plot Title</a>
+<li><a name="ToC_1_5" href="#list-area">List Area</a>
+</menu>
+
+<p><b><a name="ToC_2" href="#graph">The Graph View</a></b></br>
+<menu>
+<li><a name="ToC_2_1" href="#graph-zoom-in">Zooming In</a>
+<li><a name="ToC_2_2" href="#graph-zoom-out">Zooming Out</a>
+<li><a name="ToC_2_3" href="#graph-marker">Graph Markers</a>
+<li><a name="ToC_2_4" href="#deselect-marker">Deselecting a marker</a></h3>
+<li><a name="ToC_2_5" href="#graph-plots">Graph Plots</a>
+<li><a name="ToC_2_6" href="#graph-plot-task">Task Plots</a>
+<li><a name="ToC_2_7" href="#graph-plot-cpu">CPU Plots</a>
+</menu>
+
+<p><b><a name="ToC_3" href="#list">The List View</a></b></br>
+<menu>
+<li><a name="ToC_3_1" href="#list-select">Selecting an event</a>
+<li><a name="ToC_3_2" href="#list-graph-toggle">Graph follows toggle</a>
+</menu>
+
+<p><b><a name="ToC_4" href="#filters">Filters</a></b></br>
+<menu>
+<li><a name="ToC_4_1" href="#filter-event">Event Filter Dialog</a>
+<li><a name="ToC_4_2" href="#filter-task">Task Filter Dialog</a>
+<li><a name="ToC_4_3" href="#filter-adv-event">Advanced Event Filter</a>
+<li><a name="ToC_4_4" href="#filter-multi">Multiple filters</a>
+</menu>
+
+<p><b><a name="ToC_5" href="#sessions">Sessions</b></br>
+
+
+<h1><a name="Introduction">Introduction</a></h1>
+
+<p>
+KernelShark is a front end reader of <b>trace-cmd(1)</b> output. "trace-cmd record"
+and "trace-cmd extract" create a trace.dat (<b>trace-cmd.dat(5)</b>) file.
+<b>kernelshark</b> can read this file and produce a graph and list view of its data.
+</p>
+
+<img src="images/kshark-open.png">
+
+<p>
+The application has two main viewing areas split by a paned divider. The top half
+is a graphical display of the data and the bottom half is a list view of each
+event. Underneath the menu bar is the graph information area:
+</p>
+
+<h4><a name="graph-info-line">Graph Info Area</a></h4>
+
+<img src="images/kshark-graph-info-line.png">
+
+<p>
+The graph information line displays the timestamp of the time that the pointer
+is located at (or last located at when off the graph area). It then shows the
+information of the event that the pointer is over, which holds the same infomation
+of the event in the list view.
+</p>
+
+<h4><a name="graph-control-line">Graph Control Area</a></h4>
+
+<img src="images/kshark-graph-control-line.png">
+
+<p name="graph-buttons">
+The line of below the graph info area holds the control buttons.
+<ul style="list-style-type:none">
+	<li><img src="images/kshark-graph-control-left.png"> moves the graph to the left</li>
+	<li><img src="images/kshark-graph-control-plus.png"> <a name="graph-plus">zooms the graph in</a></li>
+	<li><img src="images/kshark-graph-control-minus.png"> <a name="graph-minus">zooms the graph out</a></li>
+	<li><img src="images/kshark-graph-control-right.png"> moves the graph to the right</li>
+	<li><img src="images/kshark-graph-control-plusplus.png"> zooms the graph all the way in (to its farthest point)</li>
+	<li><img src="images/kshark-graph-control-minusminus.png"> <a name="graph-minusminus">zooms the graph out</a> (back to the full screen)</li>
+</ul>
+
+After the buttons are the Marker buttons and information windows. See <a href="#graph-marker">Graph Markers</a> for more information.
+
+<h4><a name="graph_window">The Graph Window</a></h4>
+<p>
+The graph is broken into two parts, the plot title section:
+</p>
+
+<h4><a name="graph-plot-title">Plot Title</a></h4>
+
+<img src="images/kshark-graph-plot-title.png">
+
+<p>
+and the plot area:
+</p>
+
+<img src="images/kshark-graph-plot-area.png">
+
+<p>
+The plot area contains the data of the given plot, where plots can be per CPU or
+per task. The top of the plot area shows a timeline. The numbers in the timeline
+are seconds. The time in the timeline is taken from the timestamps within
+the trace.dat file which are architecture dependent. The time usually is the timestamp
+from when the system started.
+</p>
+
+<p>
+Below the graph is the list area.
+</p>
+
+<h4><a name="list-area">List Area</a></h4>
+
+<img src="images/kshark-list-info-area.png">
+
+<p>
+The list area starts with the search boxes (See <a href="#list-search">Searching for Events</a>),
+and the  <a href="#list-graph-toggle">Graph follows toggle button</a>
+
+</p>
+
+<h1><a name="graph">The Graph View</a></h1>
+
+<p>
+The graph view of kernelshark shows graphical plots of the data stored in
+the trace.dat file. The data plots are per CPU or per task.
+When there are too many events within the resolution of the graph,
+the plots will appear as a rainbow colored bar. To make more sense out of
+the graphs, you need to zoom into a given location to see the details of
+that time frame more clearly.
+</p>
+
+<h2><a name="graph-zoom-in">Zooming In</a></h2>
+
+<p>
+There's three ways of zooming it. One is to press and hold the <a href="#graph-plus">plus button</a>
+above the graph, or you can use the mouse. By scrolling the mouse wheel up, it will zoom in. Scolling
+the mouse wheel down will zoom out. The thrid way is to use the left mouse button to get a more
+precised area.
+<p>
+The left mouse method starts by click and holding the left mouse button and then dragging it to the
+right or left. The graph will then zoom in where the event at the start of the shaded area is the
+starting event in the graph view area and the event at the end of the shaded area is the last event in the graph
+view area.
+</p>
+
+<img src="images/kshark-zoom-in-select.png">
+
+<p>
+The area that you selected will now become the new width of the viewable area.
+The smaller the selection, the deeper the zoom. You can continue zooming
+in until you get to the details you are looking for.
+</p>
+
+<img src="images/kshark-zoom-in-3.png">
+
+<p>
+Zooming in further shows individual events and tasks that are scheduled on
+the <a href="#graph-plot-cpu">CPU plots</a>. The thick colored line on the plot
+represents a task is executing. The vertical lines that stick up represent
+individual events. When the CPU is idle (the idle task), there will
+will not be a thick colored line, but the idle task can still have events which are
+displayed.
+</p>
+
+<h2><a name="graph-zoom-out">Zooming Out</a></h2>
+
+<p>
+To zoom back out, simply press and hold the <a href="#graph-minus">minus button</a>,
+scoll the mouse wheel down, or select the <a href="#graph-minusminus">double minus button</a> which will zoom
+completely out and display the full trace.
+</p>
+
+<h2><a name="graph-marker">Graph Markers</a></h2>
+
+<p>
+There are two markers that can be placed on the graph.
+
+<ul style="list-style-type:none">
+	<li>Marker A</li>
+	<li>Marker B</li>
+</ul>
+<p>
+The highlighted marker is the "active marker", and its button is highlighted (as "Marker A" is
+in the diagram below).  By clicking the <a href="#graph-control-line">Marker A</a> button (which is set
+by default), you can place a static marker on the graph. After clicking the
+Marker A button, simply double click on the graph and a nearby event to where you clicked
+will be highlighted by a vertical line that spans the full graph window.
+The timestamp of that event will display after the Marker A button in its information window.
+</p>
+
+<p>
+The list view will also select the event that was selected by the graph.
+</p>
+
+
+<img src="images/kshark-select-a-1.png">
+
+<p>
+
+To set Marker B, click on the <a href="#graph-control-line">Marker B</a> button,
+and then double click on the event in the graph area that you want Marker B
+to be attached to.
+</p>
+<p>
+The list view will also select that event with a separate selection than from
+Marker A. That is, you can see two selections in the list, each representing one 
+of the graph markers.
+</p>
+
+<img src="images/kshark-select-b-1.png">
+
+<p>
+When both the A and B markers are set, the <a href="#graph-control-line">graph control area</a>
+will show the timestamp of where the A and B markers are, as well as the difference
+between the two. All timestamps are in seconds, with a resolution of 1/10 of a microsecond.
+</p>
+
+<h3><a name="deselect-marker">Deselecting a marker</a></h3>
+<p>
+You can deselect a marker by right clicking the graph or list area and select "Deselect".
+
+<h2><a name="graph-plots">Graph Plots</a></h2>
+
+<p>
+The graph data is represented by plots. The data on the plots are either CPU specific or
+task specific. If they are CPU specific, then the data holds the timeline of events that
+happened on a given CPU (which CPU is shown in the <a href="#graph-plot-title">plot title area</a>).
+If the plot is task specific, then the timeline of events are for the given
+task regardless of what CPU it was on at the time. The task name is also shown
+in the plot title area.
+</p>
+
+<p>
+By default, all the CPUs within the loaded trace.dat file are plotted.
+There are two ways to plot a task. One way is to right mouse click over an event
+of a displayed task in the graph or list and select the "Add [task] plot" option.
+The other way is to use the Plots menu.
+</p>
+
+<img src="images/kshark-plot-menu.png">
+
+<h3><a name="graph-plot-task">Task Plots</a></h3>
+
+<p>
+Selecting the "Tasks" menu item will bring up a dialog with all the tasks
+that were found in the trace data. Clicking on the check box will toggle
+the selection of the given task. To select multiple tasks at once, highlight
+the tasks you want to select, then hit the "Enter" key. When you are satisfied
+with the tasks you wish to plot, hit "Apply".
+</p>
+
+<p>
+Note, in order to process the tasks, a linear search is made to find all the
+task's events at the creation of a task plot. This may take a bit of time
+on large data sets. But after the events have been found, they are stored
+in a data store and the processing of the graph will go back to normal speeds.
+</p>
+
+<img src="images/kshark-plot-task-select.png">
+
+<p>
+Selecting a task in this dialog will add the task plot to the bottom of the graph
+area. Unselecting a task in this dialog will remove the plot.
+</p>
+
+<img src="images/kshark-plot-task-result.png">
+
+<p>
+The CPU plots change colors as different tasks run
+on the CPU, and the task plots change color depending on what CPU the task
+is running on. This makes it easy to see how much a task
+bounces around the CPUs. Zooming in on a task plot also shows some more
+characteristics of the task.
+</p>
+
+<img src="images/kshark-plot-task-zoom-1.png">
+
+<p>
+The hollow green bar that is shown in front of some events in the task
+plot represents when the task was woken up from a sleeping state to
+when it actually ran. The hollow red bar between some events shows that
+the task was preempted by another task even though that task
+was still runnable.
+</p>
+
+<p>
+Since the hollow green bar shows the wake up latency of the task, the
+<a href="#graph-marker">A,B markers</a> can be used to measure that time.
+</p>
+
+<img src="images/kshark-plot-task-measure.png">
+
+<p>
+The above shows that the "migrate" task with PID 28797 had a 14 microsecond wake
+up latency. The same can be done with the preemption latency.
+</p>
+
+<img src="images/kshark-plot-task-measure-preempt.png">
+
+<h3><a name="graph-plot-cpu">CPU Plots</a></h3>
+
+<p>
+Selecting the "CPUs" plot menu item pops up a dialog that shows the available CPUs that
+can be plotted.
+<p>
+
+<img src="images/kshark-plot-cpu-1.png">
+
+<p>
+Removing a selected CPU and hitting "Apply" will remove that CPU plot.
+</p>
+
+<img src="images/kshark-plot-cpu-2.png">
+
+<p>
+
+<img src="images/kshark-plot-cpu-result.png">
+
+<h1><a name="list">The List View</a></h1>
+
+<p>
+The list view is in the bottom half paned window and can be expanded or shortened
+with the paned handle.
+</p>
+
+<img src="images/kshark-list-adjust.png">
+
+<p>
+The top of the list view contains the <a href="#list-area">list area</a> which has the list
+search and "<a href="#list-graph-toggle">graph follows</a>" toggle button.
+</p>
+
+<p>
+The columns of the list are:
+</p>
+
+<ul style="list-style-type:none">
+<li><b>#</b> - the position of the event in the full data set.
+<li><b>CPU</b> - the CPU that the event occurred on.
+<li><b>Time Stamp</b> - The timestamp of the event. This is in seconds with 1/10th microsecond
+resolution.
+<li><b>Task</b> - The name of the process that was running when the event occurred.
+<li><b>PID</b> - The process ID of the task that was running when the event occurred.
+<li><b><a name="latency">Latency</a></b> -  The latency is broken into 4 fields:
+  <ol>
+    <li>Interrupts disabled - 'd' if interrupts are disabled, otherwise '.'
+    <li>Need reschedule - 'N' if the kernel was notified that a schedule is needed, otherwise '.'
+    <li>In IRQ - 'h' if in a hard IRQ (hardware triggered), 's' if in a soft IRQ
+      (context where the kernel initiated a the IRQ handler) or if soft IRQs
+      are disabled, 'H' if in a hard IRQ and soft IRQs are disabled or the hard IRQ
+      triggered while processing a soft IRQ, otherwise '.'
+    <li>Preemption counter - The index of the preemption counter. If it is other
+      than zero, then the kernel will not preempt the running tasks, even
+      if a schedule has been requested by some event. If the counter is zero,
+      then '.' is shown.
+  </ol>
+  <p>Note: These may be different depending on the kernel the trace.dat file came from.</p>
+<li><b>Event</b> - The name of the event.
+<li><b>Info</b> - The data output of a particular event.
+</ul>
+
+<p>
+The list search can find an event based on the contents in a row. Select a column, a
+match criteria and the content to match to find the next row that matches the
+search. The match criterion is one of the following:
+</p>
+
+<ul>
+<li><b>contains</b> - the row cell of the selected column contains the match data. This works with numbers
+as well.
+<li><b>full match</b> - the row cell of the selected column matches exactly the match data.
+<li><b>does not have</b> - the row cell of the selected column does not contain the match data.
+</ul>
+
+<p>
+The search will find the next event that has the matching data within the column.
+</p>
+
+<h2><a name="list-select">Selecting an event</a></h2>
+<p>
+A single click on a row will select that row. If the <a href="#list-graph-toggle">Graph follows</a>
+button is selected (which it is by default), the selected <a href="#graph-marker">marker</a>
+will move to the event matching that row. If the <a href="#list-graph-toggle">Graph follows</a>
+is not selected, then the graph will not change.
+<p>
+
+<h2><a name="list-graph-toggle">Graph follows toggle</a></h2>
+
+<p>
+When the "graph follows" toggle is set, then selecting a row in the list view
+will cause the graph to move the <a href="#graph-marker">active marker</a> (either
+A or B) to the event that corresponds to the event in the selected row.
+With the mouse focus on the list, using the keyboard up and down arrow keys will
+move the selection of the list as well as the graph cursor.
+</p>
+
+<img src="images/kshark-list-graph-follow.png">
+
+<p>
+Notice that there is a small square dot on the event within the marker that shows
+where the event is in the Graph that is selected in the List view.
+
+<h1><a name="filters">Filters</a></h1>
+
+<p>
+The amount of data that can be stored in a trace.dat file can be enormous.
+To make any sense out of some traces, it may be required to only display various
+events. The same can be true about tasks.
+Kernelshark has filters for tasks as well as for events.
+</p>
+<img src="images/kshark-filter-menu.png">
+<p>
+The Filter menu on the toolbar consists of:
+
+<ul>
+	<li><b>Import Filter</b>: import a file that holds a saved exported filter</li>
+	<li><b>Export Filter</b>: save the filter to a file, that can be imported at a later time</li>
+	<li><b>Apply filters to Graph</b>: When checked, have the filters affect the Graph area</li>
+	<li><b>Apply filters to List</b>: When checked, have the filters affect the List area</li>
+	<li><b>Show events</b>: Display the <a href="#filter-event">event filter dialog</a></li>
+	<li><b>Show tasks</b>: Display the task filter dialog</li>
+	<li><b>Show CPUs</b>: Display the CPU filter dialog</li>
+	<li><b>Advanced Filtering</b>: Display the Avanced Filtering dialog</li>
+	<li><b>Clear all filters</b>: Remove all filters</li>
+</ul>
+
+<p>
+On start up of KernelShark, the filters, by default, will be applied to both the
+Graph and List areas. You can modify this by selecting the "Filter" menu from the
+tool bark and uncheck the checkboxes next to "Apply filters to Graph" or "Apply filters
+to List". This will not affect the filters themselves, but will affect if the
+filters are applied to the Graph or List areas.
+
+
+<h2><a name="filter-event">Event Filter Dialog</a></h2>
+
+<p>
+The vertial lines that stick up from the task and CPU plots represent events. These can be filtered
+via the Event Filter dialog.
+</p>
+<img src="images/kshark-event-filter-dialog.png">
+<p>
+Selecting the <b>all</b> checkbox will select all events and nothing will be filtered.
+Deselecting the <b>all</b> checkbox will deselect all events. The same is with the <b>system</b>
+checkboxes (the top level ones). Expanding the <b>system</b> tree will show the individual events
+in the system, which can be selected.
+</p>
+<img src="images/kshark-event-filter.png">
+
+
+<h2><a name="filter-task">Task Filter Dialog</a></h2>
+
+<p>
+If only a subset of the tasks are of interest in either the Graph or List view, then
+they can also be filtered. Select the <b>Show tasks</b> menu option the <b>Filter</b>
+menu of the toolbar and the Task Filter dialog will pop up.
+</p>
+<img src="images/kshark-task-filter-dialog.png">
+<p>
+This will "hide" all other tasks except for what was selected in the dialog. Again, the <b>all</b>
+checkbox will select all tasks if selected, and will unselect all tasks when it is unselected.
+</p>
+<img src="images/kshark-task-filter.png">
+
+
+<!--
+<h4><a name="sched-events">The scheduling events</a></h4>
+
+<p>
+The events "sched_switch", "sched_wakeup", and "sched_wakeup_new" are treated
+differently by the task filter. Because these events deal with two tasks
+(previous and next, waker and wakee), if either of the tasks should be visible
+then that event is visible regardless if the other task should be hidden.
+This may seem confusing when an event that is hidden shows up in the Task column.
+</p>
+-->
+
+
+<h3><a name="filter-adv-event">Advanced Event Filter</a></h3>
+
+<p>
+Filtering on events may not be enough. The ability to filter on the content
+of individual events may be needed. In order to accomplish this, the advanced event
+filtering is used. Selecting <b>Advance Filtering</b> from the Filter menu will
+pop up the advanced event filtering dialog.
+</p>
+
+<img src="images/kshark-advance-filter-01.png">
+
+<p>
+Selecting <b>Show Help</b> displays the syntext of the filter format, and the
+helper buttons can be used to find events and their corresponding fields.
+<p>
+
+<img src="images/kshark-advance-filter-02.png">
+
+<p>
+Spaces are ignored. The example used in the dialog figure:
+</p>
+
+<pre>
+  sched/sched_switch : next_prio &lt; 100 && (prev_prio &gt; 100 && prev_pid != 0)
+</pre>
+
+<p>
+The <tt>sched/</tt> is not necessary because without it, the filter will process all events
+named <tt>sched_switch</tt>, and since there is only one event
+that has that name, including the <tt>sched/</tt> is redundant.
+<p>
+
+<p>
+The <tt>next_prio</tt>, <tt>prev_prio</tt> and <tt>prev_pid</tt> are all
+event fields of the <tt>sched_swich</tt> event.
+</p>
+
+<p>
+If just <tt>sched</tt> was used and the <tt>/sched_switch</tt> was omitted, it would
+still be a valid filter, but it would behave differently. By just specifying
+a system, the filter will run on all events within that system. When a field
+is encountered that does not belong to an event, then that compare will be set to false.
+</p>
+
+<pre>
+   sched : prev_pid != 0
+   sched : !(prev_pid == 0)
+</pre>
+
+<p>
+The above two filters are not equivalent. They are for the <tt>sched_switch</tt> event,
+but not for the other events. The first filter will return false for all events
+that do not contain the <tt>prev_pid</tt> field, but the second filter would return
+true for all events that do not contain that field. Again, if the event does
+not contain a field, just that compare will be evaluated to false, not the entire
+expression. This means for events that do not have the <tt>prev_pid</tt> field,
+the above filters would be equivalent to:
+</p>
+
+<pre>
+   sched : FALSE
+   sched : !(FALSE)
+</pre>
+
+<p>
+Letting filters contain fields that do not belong to an event be valid
+allows for various tricks where two events can share the same
+filter.
+</p>
+
+<pre>
+   sched_switch, sched_wake.* : next_pid == 1 || pid == 1
+</pre>
+
+<p>
+The schedule events that have <tt>next_pid</tt> and not <tt>pid</tt> as a field
+will just compare the first part of the <tt>||</tt> and those events with
+<tt>pid</tt> but without <tt>next_pid</tt> will be compared against the second
+part of the <tt>||</tt>
+</p>
+
+<p>
+Notice that event names in the filter can be regular expressions.
+</p>
+
+<p>
+String fields can have regular expressions used in their comparing if
+<tt>=~</tt> or <tt>!~</tt> are used.
+</p>
+
+<pre>
+   sched_switch : next_comm =~ "^events/[23]$"
+</pre>
+
+<p>
+The available regular expressions are described in <b>regex(7)</b>.
+</p>
+
+<p>
+To remove an advanced filter, you can select the <b>Clear all filters</b> from
+the <b>Filter</b> toolbar menu. Or select <b>Advance Filtering</b> again
+and it will show all the current filters.
+<p>
+<img src="images/kshark-advance-filter-delete.png">
+<p>
+Selecting the <b>Delete</b> checkbox and hitting <b>Apply</b> will cause the selected
+advance filter to be removed.
+<h3><a name="filter-multi">Multiple filters</a></h3>
+<p>
+Multiple advance filters will act as a union. That is, if any advance filter matches an
+event, then that event is kept in the events to display.  But the simple filters (events,
+tasks, or CPUs) are then applied against them. For example, to display all ext4 events as
+well as the advanced filter of "sched_switch: next_prio &lt. 100 &amp.&amp. (prev_prio &gt. 100
+&amp.&amp. prev_pid != 0)", selecting <b>ext4</b> from the <b>Filter->Show events</b> that
+selects <b>ext4</b> events, will not show any event. That's because no event will satisfy both
+being in the <b>ext4</b> system and the <b>sched</b>. To handle both, you need to add
+"ext4" as an advance filter, and then both will be applied.
+<p>
+<img src="images/kshark-advance-filter-ext4.png">
+<p>
+Note, when adding just a event system (i.e. <b>ext4</b>), all the events are added individually.
+<p>
+<img src="images/kshark-advance-filter-ext4-events.png">
+<h1><a name="sessions">Sessions</a></h1>
+<p>
+The state of KernelShark can be saved and restored via sessions. When exiting KernelShark
+normally (hitting the "x" or selecting <b>Exit</b>), the state that KernelShark was
+last in will be saved to disk. You can retrieve this last state by selecting from the
+toolbar <b>File->Session->Restore Last Session</b>. This will return you to the state
+that you were in when you last exited KernelShark. That is, the current zoom position,
+with <b>Marker A</b> and <b>Marker B</b> at their previous location, as well as any
+filters applied as they were when you last quit.
+<p>
+You may also save the current state at any time by selecting <b>File->Session->Export Session</b>
+and retrieve it at a later time with <b>File->Session->Import Session</b>
+
+</body>
+</html>

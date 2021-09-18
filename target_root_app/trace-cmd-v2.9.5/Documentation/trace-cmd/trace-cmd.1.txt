@@ -1,0 +1,89 @@
+TRACE-CMD(1)
+============
+
+NAME
+----
+trace-cmd - interacts with Ftrace Linux kernel internal tracer
+
+SYNOPSIS
+--------
+*trace-cmd* 'COMMAND' ['OPTIONS']
+
+DESCRIPTION
+-----------
+The trace-cmd(1) command interacts with the Ftrace tracer that is built inside
+the Linux kernel. It interfaces with the Ftrace specific files found in the
+debugfs file system under the tracing directory. A 'COMMAND' must be
+specified to tell trace-cmd what to do.
+
+
+COMMANDS
+--------
+
+  record  - record a live trace and write a trace.dat file to the
+            local disk or to the network.
+
+  report  - reads a trace.dat file and converts the binary data to a
+            ASCII text readable format.
+
+  hist    - show a histogram of the events.
+
+  stat    - show tracing (ftrace) status of the running system
+
+  options - list the plugin options that are available to *report*
+
+  start   - start the tracing without recording to a trace.dat file.
+
+  stop    - stop tracing (only disables recording, overhead of tracer
+            is still in effect)
+
+  restart - restart tracing from a previous stop (only effects recording)
+
+  extract - extract the data from the kernel buffer and create a trace.dat
+            file.
+
+  reset   - disables all tracing and gives back the system performance.
+            (clears all data from the kernel buffers)
+
+  split   - splits a trace.dat file into smaller files.
+
+  list    - list the available plugins or events that can be recorded.
+
+  listen  - open up a port to listen for remote tracing connections.
+
+  restore - restore the data files of a crashed run of trace-cmd record
+
+  stack   - run and display the stack tracer
+
+  check-events - parse format strings for all trace events and return
+                 whether all formats are parseable
+
+OPTIONS
+-------
+
+*-h*, --help::
+    Display the help text.
+
+Other options see the man page for the corresponding command.
+
+SEE ALSO
+--------
+trace-cmd-record(1), trace-cmd-report(1), trace-cmd-hist(1), trace-cmd-start(1),
+trace-cmd-stop(1), trace-cmd-extract(1), trace-cmd-reset(1),
+trace-cmd-restore(1), trace-cmd-stack(1),
+trace-cmd-split(1), trace-cmd-list(1), trace-cmd-listen(1),
+trace-cmd.dat(5), trace-cmd-check-events(1) trace-cmd-stat(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

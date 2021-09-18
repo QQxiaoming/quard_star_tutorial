@@ -1,0 +1,65 @@
+TRACE-CMD-SNAPSHOT(1)
+=====================
+
+NAME
+----
+trace-cmd-snapshot - take, reset, free, or show a Ftrace kernel snapshot
+
+SYNOPSIS
+--------
+*trace-cmd snapshot* ['OPTIONS']
+
+DESCRIPTION
+-----------
+The trace-cmd(1) snapshot controls or displays the Ftrace Linux kernel
+snapshot feature (if the kernel supports it). This is useful to "freeze"
+an instance of a live trace but without stopping the trace.
+
+  trace-cmd start -p function
+  trace-cmd snapshot -s
+  trace-cmd snapshot
+ [ dumps the content of buffer at 'trace-cmd snapshot -s' ]
+  trace-cmd snapshot -s
+  trace-cmd snapshot
+ [ dumps the new content of the buffer at the last -s operation ]
+
+OPTIONS
+-------
+*-s*::
+    Take a snapshot of the currently running buffer.
+
+*-r*::
+    Clear out the buffer.
+
+*-f*::
+    Free the snapshot buffer. The buffer takes up memory inside the
+    kernel. It is best to free it when not in use. The first -s
+    operation will allocate it if it is not already allocated.
+
+*-c* 'cpu'::
+    Operate on a per cpu snapshot (may not be fully supported by all kernels)
+
+*-B* 'buf'::
+    If a buffer instance was created, then the *-B* option will operate on
+    the snapshot within the buffer.
+    
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-report(1), trace-cmd-start(1),
+trace-cmd-extract(1), trace-cmd-reset(1), trace-cmd-split(1),
+trace-cmd-list(1), trace-cmd-listen(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

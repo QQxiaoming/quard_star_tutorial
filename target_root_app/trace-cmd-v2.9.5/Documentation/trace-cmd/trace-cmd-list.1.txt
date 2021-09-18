@@ -1,0 +1,89 @@
+TRACE-CMD-LIST(1)
+=================
+
+NAME
+----
+trace-cmd-list - list available plugins, events or options for Ftrace.
+
+SYNOPSIS
+--------
+*trace-cmd list* ['OPTIONS']
+
+DESCRIPTION
+-----------
+The trace-cmd(1) list displays the available plugins, events or Ftrace options
+that are configured on the current machine.  If no option is given, then it
+lists all plugins, event systems, events and Ftrace options to standard output.
+
+OPTIONS
+-------
+*-e* ['regex']::
+    This option will list the available events that are enabled on the
+    local system.
+
+    It takes an optional argument that uses 'regcomp(3)' expressions to seach.
+
+    trace-cmd list -e '^sys.*'
+
+*-F*::
+    Used with *-e* 'regex' to show those events formats.
+
+*-l*::
+    Used with *-e* 'regex' to show those events filters.
+
+*-R*::
+    Used with *-e* 'regex' to show those events triggers.
+
+*-s*::
+    This option will list the available event systems.
+
+*-t*::
+    This option will list the available tracers that are enabled on the
+    local system.
+
+*-p*::
+    Same as *-t* and only for legacy purposes.
+
+*-o*::
+    This option will list the available Ftrace options that are configured on
+    the local system.
+
+*-f* ['regex']::
+    This option will list the available filter functions. These are the list of
+    functions on the system that you can trace, or filter on.
+    It takes an optional argument that uses 'regcomp(3)' expressions to seach.
+
+    trace-cmd list -f '^sched.*'
+
+*-P*::
+    List the plugin files that get loaded on trace-cmd report.
+
+*-O*::
+    List plugin options that can be used by trace-cmd report *-O* option.
+
+*-B*::
+    List defined buffer instances (sub buffers).
+
+*-C*::
+    List defined clocks that can be used with trace-cmd record -C.
+    The one in brackets ([]) is the active clock.
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-report(1), trace-cmd-start(1),
+trace-cmd-stop(1), trace-cmd-extract(1), trace-cmd-reset(1),
+trace-cmd-split(1), trace-cmd-listen(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

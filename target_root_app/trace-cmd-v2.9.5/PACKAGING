@@ -1,0 +1,30 @@
+The libtracefs and libtraceevent packages are required for trace-cmd
+and libtracecmd.so
+
+In order to create a package directory with libtraceevent, libtracefs
+and libtracecmd and trace-cmd, you can follow these steps:
+
+ git clone git://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git
+ git clone git://git.kernel.org/pub/scm/libs/libtrace/libtracefs.git
+ git clone git://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git
+
+ cd libtraceevent
+ INSTALL_PATH=/tmp/install ../trace-cmd/make-trace-cmd.sh install
+
+ cd ../libtracefs
+ INSTALL_PATH=/tmp/install ../trace-cmd/make-trace-cmd.sh install
+
+ cd ../trace-cmd
+ INSTALL_PATH=/tmp/install ./make-trace-cmd.sh install install_libs
+
+ cd /tmp/install
+ tar cvjf /tmp/trace-cmd-files.tar.bz2 .
+
+And then the tarball of /tmp/trace-cmd-files.tar.bz2 will can be extracted
+on another machine at the root directory, and trace-cmd will be installed there.
+
+Note, to define a prefix, add a PREFIX variable before calling make-trace-cmd.sh
+
+ For example:
+
+  PREFIX=/usr/local INSTALL_PATH=/tmp/install ./make-trace-cmd.sh install

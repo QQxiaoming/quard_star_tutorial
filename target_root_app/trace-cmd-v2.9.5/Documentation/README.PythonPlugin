@@ -1,0 +1,127 @@
+ PYTHON PLUGIN DOCUMENTATION
+=============================
+
+With the python plugin (make python-plugin) you can now
+write plugins in python. The API exported by the python
+plugin itself (written in C) allows you to access most
+information about a record from python.
+
+To write a python plugin, put a new .py file into a new
+~/.trace-cmd/python/ directory.
+
+The most basic python plugin is this:
+
+--- %< ---
+def register(pevent):
+    pass
+--- >% ---
+
+which obviously does nothing at all.
+
+To register a callback, use the pevent.register_event_handler
+function:
+
+--- %< ---
+import tracecmd
+
+def my_event_handler(trace_seq, event):
+    pass
+
+def register(pevent):
+    pevent.register_event_handler("subsys", "event_name",
+                                  my_event_handler)
+--- >% ---
+
+
+There are four object types that you get, described below.
+
+ tracecmd.PEvent
+-----------------
+
+This is the class of the 'pevent' object above,
+you get one of those via your register callback.
+It has one method and one property:
+ * register_event_handler() - example above, to register
+                              an event handler function
+ * file_endian              - either '<' or '>' indicating
+                              which endianness the file has,
+                              to be used with struct.unpack()
+
+ tracecmd.TraceSeq
+-------------------
+
+This is the class of the 'trace_seq' parameter to your callback
+function. It has only one method, puts(), to put data into the
+buffer. Formatting must be done in python.
+
+ tracecmd.Event
+----------------------
+
+This is the class of the 'event' parameter to your callback
+function. Note that it doesn't just contain the format, but
+also the event data. As such, you can do much with this, and
+this is what you'll usually use. Each instance of this allows
+access to record items via the dict protocol, and you can get
+the items via its keys() methods. So for example, your
+callback could be
+
+--- %< ---
+def my_callback(trace_seq, event):
+    for fieldname in event.keys():
+        field = event[fieldname]
+--- >% ---
+
+Each field returned from the dict protocol is an instance of
+the next (and last) class:
+
+ tracecmd.Field
+----------------------
+
+This is an instance of a field, including its data. It affords
+numerous use cases and is what you'll be using most.
+
+ * If this is an integer field, i.e. 1, 2, 4 or 8 bytes long,
+   you can convert it to the number contained, according to
+   the file's endianness, by simply casting it to a long:
+
+     field = event['myint']
+     value = long(field)
+
+ * You can access the field's data, as field.data, and if the
+   data is really a "__data_loc" type that will be resolved
+   automatically. (If you don't know what this means, don't
+   worry about it and just use field.data)
+
+
+This is it. It's pretty simple. A fully-featured plugin could
+look like this:
+
+--- %< ---
+def my_event_handler(trace_seq, event):
+    trace_seq.puts("myev: %u", long(event['myfield']))
+
+def register(pevent):
+    pevent.register_event_handler("subsys", "event_name",
+                                  my_event_handler)
+--- >% ---
+
+
+ Tips and tricks
+-----------------
+
+Be familiar with the struct module and use it, always
+checking endianness and potentially using pevent.file_endian.
+
+
+If you need access to pevent in your callbacks, simply
+pass it in yourself:
+
+--- %< ---
+def my_event_handler(pevent, trace_seq, event):
+    pass
+
+def register(pevent):
+    pevent.register_event_handler("subsys", "event_name",
+        lambda *args: my_event_handler(pevent, *args)
+    )
+--- >% ---

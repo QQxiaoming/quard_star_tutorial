@@ -503,6 +503,15 @@ build_dtc()
     make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output install-lib install-includes
 }
 
+build_trace_cmd()
+{
+    # 编译trace-cmd-v2.9.5
+    echo "\033[1;4;41;32m编译trace-cmd\033[0m"
+    cd $SHELL_FOLDER/trace-cmd-v2.9.5
+	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=/ libdir_relative=lib -j$PROCESSORS
+	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=$SHELL_FOLDER/output etcdir=$SHELL_FOLDER/output/etc libdir_relative=lib install
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -596,6 +605,9 @@ mtd_utils)
     ;;
 dtc)
     build_dtc
+    ;;
+trace_cmd)
+    build_trace_cmd
     ;;
 all)
     build_hosttool

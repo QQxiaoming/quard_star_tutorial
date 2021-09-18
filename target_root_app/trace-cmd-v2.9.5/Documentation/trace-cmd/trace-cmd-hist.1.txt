@@ -1,0 +1,50 @@
+TRACE-CMD-HIST(1)
+=================
+
+NAME
+----
+trace-cmd-hist - show histogram of events in trace.dat file
+
+SYNOPSIS
+--------
+*trace-cmd hist* ['OPTIONS']['input-file']
+
+DESCRIPTION
+-----------
+The trace-cmd(1) hist displays a histogram form from the trace.dat file.
+Instead of showing the events as they were ordered, it creates a histogram
+that can be displayed per task or for all tasks where the most common
+events appear first. It uses the function tracer and call stacks that it
+finds to try to put together a call graph of the events.
+
+OPTIONS
+-------
+*-i* 'input-file'::
+    By default, trace-cmd hist will read the file 'trace.dat'. But the *-i*
+    option open up the given 'input-file' instead. Note, the input file may
+    also be specified as the last item on the command line.
+
+*-P*::
+    To compact all events and show the call graphs by ignoring tasks
+    and different PIDs, add the *-P* to do so. Instead of showing the
+    task name, it will group all chains together and show "<all pids>".
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-report(1), trace-cmd-start(1),
+trace-cmd-stop(1), trace-cmd-extract(1), trace-cmd-reset(1),
+trace-cmd-split(1), trace-cmd-listen(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

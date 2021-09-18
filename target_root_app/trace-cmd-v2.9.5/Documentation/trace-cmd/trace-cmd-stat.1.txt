@@ -1,0 +1,66 @@
+TRACE-CMD-STAT(1)
+=================
+
+NAME
+----
+trace-cmd-stat - show the status of the tracing (ftrace) system
+
+SYNOPSIS
+--------
+*trace-cmd stat*
+
+DESCRIPTION
+-----------
+The trace-cmd(1) stat displays the various status of the tracing (ftrace)
+system. The status that it shows is:
+
+*Instances:* List all configured ftrace instances.
+
+*Tracer:* if one of the tracers (like function_graph) is active. Otherwise
+  nothing is displayed.
+
+*Events:* Lists the events that are enable.
+
+*Event filters:* Shows any filters that are set for any events
+
+*Function filters:* Shows any filters for the function tracers
+
+*Graph functions:* Shows any functions that the function graph tracer should graph
+
+*Buffers:* Shows the trace buffer size if they have been expanded.
+   By default, tracing buffers are in a compressed format until they are used.
+   If they are compressed, the buffer display will not be shown.
+
+*Trace clock:* If the tracing clock is anything other than the default "local"
+   it will be displayed.
+
+*Trace CPU mask:* If not all available CPUs are in the tracing CPU mask, then
+   the tracing CPU mask will be displayed.
+
+*Trace max latency:* Shows the value of the trace max latency if it is other than zero.
+
+*Kprobes:* Shows any kprobes that are defined for tracing.
+
+*Uprobes:* Shows any uprobes that are defined for tracing.
+
+*Error log:* Dump the content of ftrace error_log file.
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-report(1), trace-cmd-start(1),
+trace-cmd-stop(1), trace-cmd-extract(1), trace-cmd-reset(1),
+trace-cmd-split(1), trace-cmd-listen(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2014 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

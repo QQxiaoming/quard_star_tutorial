@@ -1,0 +1,45 @@
+TRACE-CMD-STACK(1)
+==================
+
+NAME
+----
+trace-cmd-stack - read, enable or disable Ftrace Linux kernel stack tracing.
+
+SYNOPSIS
+--------
+*trace-cmd stack*
+
+DESCRIPTION
+-----------
+The trace-cmd(1) stack enables the Ftrace stack tracer within the kernel.
+The stack tracer enables the function tracer and at each function call
+within the kernel, the stack is checked. When a new maximum usage stack
+is discovered, it is recorded.
+
+When no option is used, the current stack is displayed.
+
+To enable the stack tracer, use the option *--start*, and to disable
+the stack tracer, use the option *--stop*. The output will be the maximum
+stack found since the start was enabled.
+
+Use *--reset* to reset the stack counter to zero.
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-report(1), trace-cmd-start(1),
+trace-cmd-extract(1), trace-cmd-reset(1), trace-cmd-split(1),
+trace-cmd-list(1), trace-cmd-listen(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

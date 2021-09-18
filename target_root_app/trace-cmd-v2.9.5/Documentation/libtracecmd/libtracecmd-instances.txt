@@ -1,0 +1,129 @@
+libtracecmd(3)
+=============
+
+NAME
+----
+tracecmd_buffer_instances, tracecmd_buffer_instance_name, tracecmd_buffer_instance_handle
+- Read tracing instances from a trace file.
+
+SYNOPSIS
+--------
+[verse]
+--
+*#include <trace-cmd.h>*
+
+int *tracecmd_buffer_instances*(struct tracecmd_input pass:[*]_handle_);
+const char pass:[*]*tracecmd_buffer_instance_name*(struct tracecmd_input pass:[*]_handle_, int _indx_);
+struct tracecmd_input pass:[*]*tracecmd_buffer_instance_handle*(struct tracecmd_input pass:[*]_handle_, int _indx_);
+--
+
+DESCRIPTION
+-----------
+This set of APIs can be used to get information and read tracing data
+from tracing instances stored in a trace file.
+
+The _tracecmd_buffer_instances()_ function gets the number of tracing
+instances recorded in a trace file. The top instance is not counted.
+The _handle_ is a tracecmd_input handler returned by
+_tracecmd_open_head()_.
+
+The _tracecmd_buffer_instance_name()_ function gets the name of the
+tracing instance with given index _indx_, recorded in a trace file.
+The _indx_ is a number in the interval [0 .. count-1], where count
+is the number returned by _tracecmd_buffer_instances()_. The _handle_
+is a tracecmd_input handler returned by _tracecmd_open_head()_.
+
+The _tracecmd_buffer_instance_handle()_ allocates and initializes a
+tracecmd_input handle, associated with trace instance with index
+_indx_ from a trace file.  The _handle_ is a tracecmd_input handler
+returned by _tracecmd_open_head()_. The _indx_ is a number in the
+interval [0 .. count-1], where count is the number returned by
+_tracecmd_buffer_instances()_.
+
+RETURN VALUE
+------------
+The _tracecmd_buffer_instances()_ function returns the number of tracing
+instances recorded in a trace file.
+
+The _tracecmd_buffer_instance_name()_ function returns a string, the name
+of a tracing instance, or NULL in case of an error The string must *not*
+be freed.
+
+The _tracecmd_buffer_instance_handle()_ function returns a pointer to
+newly allocated tracecmd_input handler or NULL in case if an error. The
+returned handler must be closed by _tracecmd_close()(3)_
+
+EXAMPLE
+-------
+[source,c]
+--
+#include <trace-cmd.h>
+...
+struct tracecmd_input *handle = tracecmd_open_head("trace.dat");
+	if (!handle) {
+		/* Failed to open trace.dat file */
+	}
+...
+int num = tracecmd_buffer_instances(handle);
+
+	while(num) {
+		struct tracecmd_input *h;
+		char *name;
+
+		name = tracecmd_buffer_instance_name(handle, num);
+		if (!name) {
+			/* Failed to get name of instance num */
+		}
+		h = tracecmd_buffer_instance_handle(handle, num);
+		if (!h) {
+			/* Failed to initialize handler for instance num */
+		}
+
+		...
+		tracecmd_close(h);
+		num--;
+	}
+...
+	tracecmd_close(handle);
+
+--
+FILES
+-----
+[verse]
+--
+*trace-cmd.h*
+	Header file to include in order to have access to the library APIs.
+*-ltracecmd*
+	Linker switch to add when building a program that uses the library.
+--
+
+SEE ALSO
+--------
+_libtracefs(3)_,
+_libtraceevent(3)_,
+_trace-cmd(1)_
+_trace-cmd.dat(5)_
+
+AUTHOR
+------
+[verse]
+--
+*Steven Rostedt* <rostedt@goodmis.org>
+*Tzvetomir Stoyanov* <tz.stoyanov@gmail.com>
+--
+REPORTING BUGS
+--------------
+Report bugs to  <linux-trace-devel@vger.kernel.org>
+
+LICENSE
+-------
+libtracecmd is Free Software licensed under the GNU LGPL 2.1
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2020 VMware, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).

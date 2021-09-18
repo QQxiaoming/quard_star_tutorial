@@ -1,0 +1,138 @@
+libtracecmd(3)
+=============
+
+NAME
+----
+tracecmd_read_cpu_first, tracecmd_read_data, tracecmd_read_at,
+tracecmd_free_record, tracecmd_get_tep - Read recorded events from a trace file.
+
+SYNOPSIS
+--------
+[verse]
+--
+*#include <trace-cmd.h>*
+
+struct tep_record pass:[*]*tracecmd_read_cpu_first*(struct tracecmd_input pass:[*]_handle_, int _cpu_);
+struct tep_record pass:[*]*tracecmd_read_data*(struct tracecmd_input pass:[*]_handle_, int _cpu_);
+struct tep_record pass:[*]*tracecmd_read_at*(struct tracecmd_input pass:[*]_handle_, unsigned long long _offset_, int pass:[*]_cpu_);
+void *tracecmd_free_record*(struct tep_record pass:[*]_record_);
+struct tep_handle pass:[*]*tracecmd_get_tep*(struct tracecmd_input pass:[*]_handle_);
+--
+
+DESCRIPTION
+-----------
+This set of APIs can be used to read tracing data from a trace file opened
+with _tracecmd_open()(3)_, _tracecmd_open_fd()(3)_ or _tracecmd_open_head()(3)_.
+
+The _tracecmd_read_cpu_first()_ function reads the first trace record
+for a given _cpu_ from a trace file associated with _handle_. The returned
+record must be freed with _tracecmd_free_record()_.
+
+The _tracecmd_read_data()_ function reads the next trace record for
+a given _cpu_ from a trace file associated with _handle_ and increments
+the read location pointer, so that the next call to _tracecmd_read_data()_
+will not read the same record again. The returned record must be freed
+with _tracecmd_free_record()_.
+
+The _tracecmd_read_at()_ function reads a trace record from a specific
+_offset_ within the file associated with _handle_. The CPU on which the
+recorded event occurred is stored in the _cpu_. The function does not
+change the current read location pointer. The returned record must be
+freed with _tracecmd_free_record()_.
+
+The _tracecmd_free_record()_ function frees a _record_ returned by any
+of the _tracecmd_read__ APIs.
+
+The _tracecmd_get_tep()_ function returns a tep context for a given
+_handle_.
+
+RETURN VALUE
+------------
+The _tracecmd_read_cpu_first()_, _tracecmd_read_data()_ and
+_tracecmd_read_at()_ functions return a pointer to struct tep_record or
+NULL in case of an error.The returned record must be freed with
+_tracecmd_free_record()_.
+
+The _tracecmd_get_tep()_ function returns a pointer to tep context or
+NULL if there is no tep context for the given _handle_. The returned
+tep pointer must *not* be freed.
+
+EXAMPLE
+-------
+[source,c]
+--
+#include <trace-cmd.h>
+...
+struct tracecmd_input *handle = tracecmd_open("trace.dat");
+	if (!handle) {
+		/* Failed to open trace.dat file */
+	}
+...
+unsigned long long offset = 0;
+struct tep_record *rec;
+int cpu = 0;
+	rec = tracecmd_read_cpu_first(handle, cpu);
+	while (rec) {
+		...
+		if ( /* some interesting record noticed */) {
+			/* store the offset of the interesting record */
+			offset = rec->offset;
+		}
+		...
+		tracecmd_free_record(rec);
+		rec = tracecmd_read_data(handle, cpu);
+	}
+	...
+	if (offset) {
+		rec = tracecmd_read_at(handle, offset, &cpu);
+		if (rec) {
+			/* Got record at offset on cpu */
+			...
+			tracecmd_free_record(rec);
+		}
+	}
+
+...
+	tracecmd_close(hadle);
+
+--
+FILES
+-----
+[verse]
+--
+*trace-cmd.h*
+	Header file to include in order to have access to the library APIs.
+*-ltracecmd*
+	Linker switch to add when building a program that uses the library.
+--
+
+SEE ALSO
+--------
+_libtracefs(3)_,
+_libtraceevent(3)_,
+_trace-cmd(1)_
+_trace-cmd.dat(5)_
+
+AUTHOR
+------
+[verse]
+--
+*Steven Rostedt* <rostedt@goodmis.org>
+*Tzvetomir Stoyanov* <tz.stoyanov@gmail.com>
+--
+REPORTING BUGS
+--------------
+Report bugs to  <linux-trace-devel@vger.kernel.org>
+
+LICENSE
+-------
+libtracecmd is Free Software licensed under the GNU LGPL 2.1
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2020 VMware, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).

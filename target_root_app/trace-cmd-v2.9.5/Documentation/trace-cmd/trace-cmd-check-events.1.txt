@@ -1,0 +1,45 @@
+TRACE-CMD-CHECK_EVENTS(1)
+=========================
+
+NAME
+----
+trace-cmd-check-events - parse the event formats on local system
+
+SYNOPSIS
+--------
+*trace-cmd check-events* ['OPTIONS']
+
+DESCRIPTION
+-----------
+The trace-cmd(1) check-events parses format strings for all the events on the
+local system. It returns whether all the format strings can be parsed
+correctly. It will load plugins unless specified otherwise.
+
+This is useful to check for any trace event format strings which may contain
+some internal kernel function references which cannot be decoded outside of
+the kernel. This may mean that either the unparsed format strings of the trace
+events need to be changed or that a plugin needs to be created to parse them.
+
+OPTIONS
+-------
+*-N* - Don't load plugins
+
+SEE ALSO
+--------
+trace-cmd(1), trace-cmd-record(1), trace-cmd-report(1), trace-cmd-stop(1),
+trace-cmd-extract(1), trace-cmd-reset(1), trace-cmd-split(1),
+trace-cmd-list(1), trace-cmd-listen(1), trace-cmd-start(1)
+
+AUTHOR
+------
+Written by Vaibhav Nagarnaik, <vnagarnaik@google.com>
+
+RESOURCES
+---------
+https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git/
+
+COPYING
+-------
+Copyright \(C) 2011 Google, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+

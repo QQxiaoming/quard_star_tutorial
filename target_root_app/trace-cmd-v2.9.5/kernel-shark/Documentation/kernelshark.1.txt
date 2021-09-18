@@ -1,0 +1,46 @@
+KERNELSHARK(1)
+==============
+
+NAME
+----
+kernelshark - graphical reader for trace-cmd(1) output
+
+SYNOPSIS
+--------
+*kernelshark* ['OPTIONS']
+
+DESCRIPTION
+-----------
+KernelShark is a front end reader of trace-cmd(1) output. It reads a 
+trace-cmd.dat(5) formatted file and produces a graph and list view of the
+data.
+
+OPTIONS
+-------
+*-h*::
+    Display the help text.
+
+*-v*::
+    Display the kernelshark version and exit.
+
+*-i* 'input-file'::
+    Read trace data from the file 'input-file'. By default input is read from
+    'trace.dat'.
+
+SEE ALSO
+--------
+trace-cmd(1)
+
+AUTHOR
+------
+Written by Steven Rostedt, <rostedt@goodmis.org>
+
+RESOURCES
+---------
+git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/trace-cmd.git
+
+COPYING
+-------
+Copyright \(C) 2010 Red Hat, Inc. Free use of this software is granted under
+the terms of the GNU Public License (GPL).
+
