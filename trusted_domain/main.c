@@ -3,6 +3,7 @@
 #include "debug_log.h"
 #include "sbi.h"
 #include "riscv_asm.h"
+#include "profiling.h"
 
 static void task1(void *p_arg)
 { 
@@ -31,6 +32,12 @@ static void vTaskCreate(void *p_arg)
     xTaskCreate(task1,"task1",2048,NULL,4,NULL);
     xTaskCreate(task2,"task2",2048,NULL,4,NULL);
 
+    for(;;)
+    {
+        print_profiling();
+        vTaskDelay(pdMS_TO_TICKS(10000));
+    }
+
     vTaskDelete(NULL);
 }
 
@@ -40,7 +47,7 @@ int main(void)
     
     debug_log_init();
     
-    xTaskCreate(vTaskCreate,"task creat",256,NULL,4,NULL);
+    xTaskCreate(vTaskCreate,"task creat",2048,NULL,4,NULL);
 
 	vTaskStartScheduler();
 	return 0;
