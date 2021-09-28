@@ -1,0 +1,121 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# File management test, Part 1: Append, sender initiated
+runappend sender-init-append $objdir/../src/lsz "-q --append" \
+	$objdir/../src/lrz "-q" \
+	"$srcdir/../src/lsz.c"
+
+# File management test, Part 2: Append, receiver initiated
+runappend receiver-init-append $objdir/../src/lsz "-q" \
+	$objdir/../src/lrz "-q --append" \
+	"$srcdir/../src/lsz.c"
+
+# File management test, Part 3: renaming, sender initiated
+runrename sender-init-rename $objdir/../src/lsz "-q --rename" \
+	$objdir/../src/lrz "-q" \
+	"$z_test_files"
+
+# File management test, Part 4: renaming, receiver initiated
+runrename receiver-init-rename $objdir/../src/lsz "-q" \
+	"$objdir/../src/lrz" "-q --rename" \
+	"$z_test_files"
+
+# File management test, Part 5: protecting, sender init
+runprotect sender-init-protect $objdir/../src/lsz "-q --protect" \
+	$objdir/../src/lrz "-q" \
+	"$z_test_files"
+
+# File management test, Part 6: protect, receiver initiated
+runprotect receiver-init-protect $objdir/../src/lsz "-q" \
+	"$objdir/../src/lrz" "-q --protect" \
+	"$z_test_files"
+
+# File management test, Part 7: sender wishes renaming, receiver overwriting.
+runthem receiver-overwrite $objdir/../src/lsz "-q --rename" \
+	$objdir/../src/lrz "-q --overwrite" \
+	"$z_test_files"
+
+# File management test, Part 8: sender to write only existing,
+# but file does not exist
+set fail_is_ok 1
+runthem sender-overwrite-or-skip $objdir/../src/lsz "-q --overwrite-or-skip" \
+	"$objdir/../src/lrz" "-q" \
+	"$objdir/../src/lrz"
+unset fail_is_ok
+# Part 9: touch file ...
+set name sender-overwrite-or-skip2
+exec mkdir $testdir/$name
+exec touch $testdir/$name/lrz
+set fails [runthem_internal $name $objdir/../src/lsz "-q --overwrite-or-skip" \
+	$objdir/../src/lrz "-q" \
+	"$objdir/../src/lrz" "compare,delete,rmdir" dummy]
+if {$fails == 0} {
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+
+
+exec logger 10
+# Part 10: file exists, sender doesn't wish to overwrite
+set name sender-overwrite-fail
+exec mkdir $testdir/$name
+exec touch $testdir/$name/lrz
+set fail_is_ok 1
+set fails [runthem_internal $name $objdir/../src/lsz "-q" \
+	$objdir/../src/lrz "-q" \
+	"$objdir/../src/lrz" "compare,delete,rmdir" dummy]
+unset fail_is_ok
+if {$fails == 0} {
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+
+exec logger 11
+# Part 11: file exists, sender wishes to overwrite
+set name sender-overwrite
+exec mkdir $testdir/$name
+exec touch $testdir/$name/lrz
+set fails [runthem_internal $name $objdir/../src/lsz "-q --overwrite" \
+	$objdir/../src/lrz "-q" \
+	"$objdir/../src/lrz" "compare,delete,rmdir" dummy]
+if {$fails == 0} {
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+
+exec logger 12
+# part 12: sender unlinks.
+set name sender-unlink
+exec mkdir $testdir/$name
+exec cp $objdir/../src/lrz $testdir/LRZ
+set fails [runthem_internal $name $objdir/../src/lsz "-q --unlink" \
+	$objdir/../src/lrz "-q" \
+	"$testdir/LRZ" "" dummy]
+if [file exists $testdir/LRZ] {
+	incr fails
+	send_log "sender failed to unlink file\n"
+}
+set res [catch "exec cmp $objdir/../src/lrz $testdir/$name/LRZ" dummy]
+if {$res != 0} {
+	send_log "$i: not identical: cmp told\n"
+	send_log "$dummy\n"
+	incr fails
+}
+if {$fails == 0} {
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails
+
+

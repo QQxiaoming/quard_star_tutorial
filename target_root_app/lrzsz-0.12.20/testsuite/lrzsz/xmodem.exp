@@ -1,0 +1,14 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+
+# why ascii mode? xmodem in binary mode appends ^Zs to pad blocks ...
+# 
+runxmodem xmodem $objdir/../src/lsz "-qa" \
+	$objdir/../src/lrz "-qa" $x_test_files
+runxmodem xmodem-1k $objdir/../src/lsz "-qa --1024" \
+	$objdir/../src/lrz "-qa" $x_test_files
+runxmodem xmodem-crc $objdir/../src/lsz "-qa" \
+	$objdir/../src/lrz "-qa --with-crc" $x_test_files

@@ -1,0 +1,130 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# check wether --newer option works
+# case a: should not work if existing file is younger
+set name sz-newer-fail
+exec mkdir $testdir/$name
+exec cp -p $srcdir/../src/lrz.c $testdir/LRZ
+# so existing file ist younger.
+exec touch $testdir/$name/LRZ
+set fail_is_ok 1
+set fails [runthem_internal $name $objdir/../src/lsz "-q --newer" \
+	$objdir/../src/lrz "-q" \
+	"$testdir/LRZ" "compare" dummy]
+unset fail_is_ok
+if {[file size $testdir/$name/LRZ] != 0} {
+	send_log "file has been overwritten\n"
+	incr fails
+}
+if {$fails == 0} {
+	exec rm -rf $testdir/$name
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails
+
+set name rz-newer-fail
+exec mkdir $testdir/$name
+exec cp -p $srcdir/../src/lrz.c $testdir/LRZ
+# so existing file ist younger.
+exec touch $testdir/$name/LRZ
+set fail_is_ok 1
+set fails [runthem_internal $name $objdir/../src/lsz "-q" \
+	$objdir/../src/lrz "-q --newer" \
+	"$testdir/LRZ" "compare" dummy]
+unset fail_is_ok
+if {[file size $testdir/$name/LRZ] != 0} {
+	send_log "file has been overwritten\n"
+	incr fails
+}
+if {$fails == 0} {
+	exec rm -rf $testdir/$name
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails
+
+# check wether --newer option works
+# case b: should work if existing file is older
+set name sz-newer-ok
+exec mkdir $testdir/$name
+exec cp -p $objdir/../src/lrz $testdir/LRZ
+exec touch -r $srcdir/../src/lrz.c $testdir/$name/LRZ
+set fails [runthem_internal $name $objdir/../src/lsz "-q --newer" \
+	"$objdir/../src/lrz" "-q" \
+	"$testdir/LRZ" "compare" dummy]
+if {$fails == 0} {
+	exec rm -rf $testdir/$name
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails
+
+# case b: should work if existing file is older
+set name rz-newer-ok
+exec mkdir $testdir/$name
+exec cp -p $objdir/../src/lrz $testdir/LRZ
+exec touch -r $srcdir/../src/lrz.c $testdir/$name/LRZ
+set fails [runthem_internal $name $objdir/../src/lsz "-q" \
+	"$objdir/../src/lrz" "-q --newer" \
+	"$testdir/LRZ" "compare" dummy]
+if {$fails == 0} {
+	exec rm -rf $testdir/$name
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails
+
+# check wether --newer-or-longer option works
+set name sz-newer-or-longer
+exec mkdir $testdir/$name
+exec cp -p $srcdir/../src/lrz.c $testdir/LRZ
+# so existing file ist younger.
+exec touch $testdir/$name/LRZ
+set fails [runthem_internal $name $objdir/../src/lsz "-q --newer-or-longer" \
+	"$objdir/../src/lrz" "-q" \
+	"$testdir/LRZ" "compare" dummy]
+if {[file size $testdir/$name/LRZ] == 0} {
+	send_log "file has not been overwritten\n"
+	incr fails
+}
+if {$fails == 0} {
+	exec rm -rf $testdir/$name
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails
+
+set name rz-newer-or-longer
+exec mkdir $testdir/$name
+exec cp -p $srcdir/../src/lrz.c $testdir/LRZ
+# so existing file ist younger.
+exec touch $testdir/$name/LRZ
+set fails [runthem_internal $name $objdir/../src/lsz "-q" \
+	"$objdir/../src/lrz" "-q --newer-or-longer" \
+	"$testdir/LRZ" "compare" dummy]
+if {[file size $testdir/$name/LRZ] == 0} {
+	send_log "file has not been overwritten\n"
+	incr fails
+}
+if {$fails == 0} {
+	exec rm -rf $testdir/$name
+	pass "$name"
+} else {
+	fail "$name"
+}
+unset name
+unset fails

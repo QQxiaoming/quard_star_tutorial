@@ -1,0 +1,84 @@
+Summary: lzrz - sz, rz, and friends
+Name: @PACKAGE@
+Version: @VERSION@
+Release: 0
+Copyright: GPL
+Group: Applications/Communications
+Source: ftp://ftp.ohse.de/uwe/releases/@PACKAGE_VERSION@.tar.gz
+BuildRoot: /var/tmp/lrzsz-root
+Summary(de): lzrz - sz, rz und Co.
+Summary(fr): lzrz - sz, rz, et consorts
+Summary(tr): Modem protokolleri
+
+%description
+This collection of commands can be used to download and upload
+files using the Z, X, and Y protocols.  Many terminal programs
+(like minicom) make use of these programs to transfer files.
+
+%description -l de
+Diese Sammlung von Befehlen läßt sich zum Herunter- und 
+Aufwärtsladen von Dateien anhand der Z-, X- und Y-Protokolle benutzen. 
+Viele Terminalprogramme (wie Minicom) setzen diese Programme für die
+Übertragung von Dateien ein. 
+
+%description -l fr
+Cet ensemble de commande sert à télécharger des fichiers en utilisant
+les protocoles Z, X et Y. De nombreux programmes de terminal (comme
+minicom) utilisent ces programmes pour transférer les fichiers.
+
+%description -l tr
+Bu komutlar topluluðu Z, X ve Y protokollerini kullanarak dosya aktarýmý
+için kullanýlabilir. Pek çok uç birim programý (örneðin minicom) dosya
+taþýmak için bu programlarý kullanýr.
+
+%prep
+%setup
+
+%build
+CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr --program-transform-name=s/l//
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+
+make prefix=$RPM_BUILD_ROOT/usr install
+
+strip $RPM_BUILD_ROOT/usr/bin/{rb,rx,rz,sb,sx,sz}
+
+%files
+%defattr(-,root,root)
+%doc AUTHORS COMPATABILITY ChangeLog NEWS README README.gettext TODO THANKS README.cvs README.isdn4linux README.systems README.tests
+/usr/bin/sz
+/usr/bin/sb
+/usr/bin/sx
+/usr/bin/rz
+/usr/bin/rb
+/usr/bin/rx
+/usr/man/man1/sz.1
+/usr/man/man1/rz.1
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%changelog
+* Mon Dec 21 1998 Uwe Ohse <uwe@ohse.de>
+- stole redhats specfile and hacked it.
+  Redhat people: "Upgraded to 0.12.14 and changed makefiles so 
+  gettext isnt built." is that kind of problem the author would
+  have liked to know.
+
+* Sun Aug 16 1998 Jeff Johnson <jbj@redhat.com>
+- build root
+
+* Thu May 07 1998 Prospector System <bugs@redhat.com>
+- translations modified for de, fr, tr
+
+* Tue Oct 21 1997 Donnie Barnes <djb@redhat.com>
+- spec file cleanups 
+
+* Thu Jul 10 1997 Erik Troan <ewt@redhat.com>
+- built against glibc
+
+* Wed Mar 5 1997 msf@redhat.com <Michael Fulbright>
+- Upgraded to 0.12.14 and changed makefiles so gettext isnt built.
+

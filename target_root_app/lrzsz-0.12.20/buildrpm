@@ -1,0 +1,21 @@
+#! /bin/sh
+set -x
+srcdir=$1
+
+arch=`rpm --showrc --rcfile $srcdir/rpmrc | awk '/^build arch/ {print $4}'`
+if test "x$arch" = "x" ; then
+	echo "cannot determinate architecture" >&2
+	exit 1
+fi
+mkdir $arch 2>/dev/null
+didmkdir=$?
+rpm -ba --rcfile $srcdir/rpmrc Specfile 
+ec=$?
+if test $ec ; then
+	mv $arch/* . 
+	ec=$?
+fi
+if test $didmkdir ; then
+	rmdir $arch
+fi
+exit $ec

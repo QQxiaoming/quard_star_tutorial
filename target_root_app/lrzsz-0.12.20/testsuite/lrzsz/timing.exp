@@ -1,0 +1,20 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+send_user "*** these test take some time ***\n"
+
+# delay startup for 10 seconds
+runthem zmodem-delay-sz $objdir/../src/lsz "-q --delay-startup 10" \
+	$objdir/../src/lrz "-q" $z_test_files
+runthem zmodem-delay-rz $objdir/../src/lsz "-q" \
+	$objdir/../src/lrz "-q --delay-startup 10" $z_test_files
+
+# combine with --stop-at
+set fail_is_ok 1
+runthem zmodem-sz-stops $objdir/../src/lsz "-q --stop-at +10" \
+	$objdir/../src/lrz "-q --delay-startup 12" $z_test_files
+runthem zmodem-rz-stops $objdir/../src/lsz "-q --delay-startup 12" \
+	$objdir/../src/lrz "-q --stop-at +10" $z_test_files
+unset fail_is_ok

@@ -1,0 +1,9 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+runthem ymodem $objdir/../src/lsz "-q --ymodem" \
+	$objdir/../src/lrz "-q --ymodem" $y_test_files 
+runthem ymodem-1k $objdir/../src/lsz "-q --ymodem --1024" \
+	$objdir/../src/lrz "-q --ymodem" $y_test_files 

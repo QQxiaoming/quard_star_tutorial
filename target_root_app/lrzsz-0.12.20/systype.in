@@ -1,0 +1,211 @@
+#! /bin/sh
+
+CC="@CC@"
+CFLAGS="@CFLAGS@"
+GCC="@GCC@"
+
+srcdir=@srcdir@
+
+# oper-:arch-:syst-:chip-:kern-
+# oper = operating system type; e.g., sunos-4.1.4
+# arch = machine language; e.g., sparc
+# syst = which binaries can run; e.g., sun4
+# chip = chip model; e.g., micro-2-80
+# kern = kernel version; e.g., sun4m
+# dependence: arch --- chip
+#                 \        \
+#          oper --- syst --- kern
+# so, for example, syst is interpreted in light of oper, but chip is not.
+# anyway, no slashes, no extra colons, no uppercase letters.
+# the point of the extra -'s is to ease parsing: can add hierarchies later.
+# e.g., *:i386-*:*:pentium-*:* would handle pentium-100 as well as pentium,
+# and i386-486 (486s do have more instructions, you know) as well as i386.
+# the idea here is to include ALL useful available information.
+
+sys="`uname -s 2>/dev/null | tr '/:[A-Z]' '..[a-z]'`"
+if [ x"$sys" != x ]
+then
+  unamer="`uname -r 2>/dev/null | tr /: ..`"
+  unamem="`uname -m 2>/dev/null | tr /: ..`"
+  unamev="`uname -v 2>/dev/null | tr /: ..`"
+
+  case "$sys" in
+  bsd.os)
+    # in bsd 4.4, uname -v does not have useful info.
+    # in bsd 4.4, uname -m is arch, not chip.
+    oper="$sys-$unamer"
+    arch="$unamem"
+    syst=""
+    chip="`sysctl -n hw.model 2>/dev/null`"
+    kern=""
+    ;;
+  freebsd)
+    # see above about bsd 4.4
+    oper="$sys-$unamer"
+    arch="$unamem"
+    syst=""
+    chip="`sysctl -n hw.model 2>/dev/null`" # hopefully
+    kern=""
+    ;;
+  netbsd)
+    # see above about bsd 4.4
+    oper="$sys-$unamer"
+    arch="$unamem"
+    syst=""
+    chip="`sysctl -n hw.model 2>/dev/null`" # hopefully
+    kern=""
+    ;;
+  linux)
+    # i'd really like to know what distribution the user has ...
+
+    # as in bsd 4.4, uname -v does not have useful info.
+    oper="$sys-$unamer" # not oper!
+    syst=""
+    chip="$unamem"
+    case "$chip" in
+    i386|i486|i586|i686)
+      arch="i386"
+      ;;
+    alpha)
+      arch="alpha"
+      ;;
+    esac
+    ;;
+  aix)
+    # naturally IBM has to get uname -r and uname -v backwards. dorks.
+    oper="$sys-$unamev-$unamer"
+    arch="`arch  2>/dev/null | tr /: ..`"
+    syst=""
+    chip="$unamem"
+    kern=""
+    ;;
+  sunos)
+    oper="$sys-$unamer-$unamev"
+    arch="`(uname -p 2>/dev/null || mach 2>/dev/null ) | tr /: ..`"
+    syst="`arch 2>/dev/null | tr /: ..`"
+    chip="$unamem" # this is wrong; is there any way to get the real info?
+    kern="`arch -k 2>/dev/null | tr /: ..`"
+    ;;
+  unix_sv)
+    oper="$sys-$unamer-$unamev"
+    arch="`uname -m 2>/dev/null`"
+    syst=""
+    chip="$unamem"
+    kern=""
+    ;;
+  beos)
+  	oper="$sys-$unamer-$unamev"
+	case "$unamem" in
+	*BePC*) 
+		arch="i386";
+		chip="";
+		if /bin/sysinfo -cpu 2>/dev/null >/dev/null ; then
+			(/bin/sysinfo -cpu 2>/dev/null |grep PentiumPro >/dev/null) && chip=ppro; 
+			test "$chip" = "" && \
+				(/bin/sysinfo -cpu 2>/dev/null |grep Pentium >/dev/null) && chip=pentium; 
+		fi
+		;;
+	esac
+  	;;
+  *)
+    need_config_guess=1;
+    ;;
+  esac
+else
+	need_config_guess=1;
+fi
+
+if test "x$need_config_guess" = x1 ; then
+	cg=`$srcdir/config.guess` # cpu-company-system
+	if test "x$cg" = x ; then
+		# damned, config.guess does nothing if it doesn't support the
+		# system.
+		oper="`uname -s 2>/dev/null | tr '/:[A-Z]' '..[a-z]'`"
+		chip="`uname -m 2>/dev/null | tr /: ..`"
+		if test "x$oper" = x ; then
+			oper="unknown"
+		fi
+	else
+		# cpu-company-system
+		# chip-useless-oper+version
+		# i586-unknown-sco3.2v4.2
+		# m68k-hp-hpux9.00
+		# i486-unknown-linux
+		chip="`echo $cg | sed s/-.*//`"
+		oper="`echo $cg | sed s/.*-// | tr '[A-Z]' '[a-z]'`"
+		case "$oper" in
+		*[0-9]*)
+			# sco3.2v4.2
+			# hpux9.00
+			x="`echo $oper|sed 's/[0-9].*//'`"
+			y="`echo $oper|sed 's/^[a-z]*//'`"
+			oper="$x-$y";
+			;;
+		*linux*)	
+			oper=linux-"`uname -r`"
+			;;
+		esac
+	fi
+fi
+
+
+case "$chip" in
+80486)
+  # let's try to be consistent here. (BSD/OS)
+  chip=i486
+  ;;
+i486DX)
+  # respect the hyphen hierarchy. (FreeBSD)
+  chip=i486-dx
+  ;;
+i486.DX2)
+  # respect the hyphen hierarchy. (FreeBSD)
+  chip=i486-dx2
+  ;;
+Intel.586)
+  # no, you nitwits, there is no such chip. (NeXTStep)
+  chip=pentium
+  ;;
+i586)
+  # no, you nitwits, there is no such chip. (Linux)
+  chip=pentium
+  # djb, stop bashing linux alone, bash to GNU people too ...
+  # config.guess also does this!
+  ;;
+i686)
+  # STOP SAYING THAT! (Linux)
+  chip=ppro
+esac
+if test "x$arch" = x ; then
+	if test "x$chip" = i386 -o "x$chip" = i486 -o "x$chip" = "pentium" \
+		-o "x$chip" = "ppro" ; then
+		arch="i386";
+	fi
+fi
+
+x=`echo "$oper-:$arch-:$syst-:$chip-:$kern-" | tr ' [A-Z]' '.[a-z]'`
+
+if test x"$@" = x ; then
+	echo "Future @PACKAGE@ versions will include a list of systems this version" >&2
+	echo "was compiled under (that's what you send this message for). In case" >&2 
+	echo "want to see a shorthand expression of your real name in this list" >&2
+	echo "you may provide it here:" >&2
+	echo "Realname: " >&2
+	read realname
+else
+	realname="$@"
+fi
+
+echo # BeOS /bin/mail doesn't generate any header ...
+echo ""
+echo "SYS: $x"
+echo "PACKAGE: @PACKAGE@ @VERSION@"
+cc="`echo \"$CC\"|sed 's/ .*//'`" 
+x=`$CC --version </dev/null 2>/dev/null`
+echo "CC: $cc $x"
+echo "CFLAGS: $CFLAGS"
+if test "x$realname" = x ; then
+	:
+else
+	echo "REALNAME: $realname"
+fi

@@ -1,0 +1,16 @@
+You can access the lrzsz sources through CVS, using something like
+	export CVSROOT=:pserver:cvsread@tirka.ohse.de:/var/cvs-pub 
+	cvs login
+		use `cvsread' as password
+	cvs checkout lrzsz
+
+But you'll need the same automake version as i use (use finger to 
+find which one i'm using at the moment: 
+	finger uwe-tool-versions@tirka.ohse.de
+). The same might be true für autoconf and gettext.
+Automake _will_ be run because CVS garbles the timestamp of the files
+it checks out. You'll have to live with that.
+
+Tar archives and diffs of the cvs trees and are also available. See 
+	ftp://tirka.ohse.de/uwe/cvs-trees
+They share the same problems, though.

@@ -1,0 +1,57 @@
+In case you see a dump of your environment after running configure
+or config.status you might want to either:
+- downgrade to gettext-0.10.32 (maybe 33 or 34 will work too, but
+  i didn' test them)
+- upgrade to a newer autoconf version (there is none at the moment
+  of this writing - Oct 1998 - and i suspect this state will not
+  change soon)
+- patch your /usr/lib/acgeneral.m4 (see below).
+In any case you should rerun "aclocal" afterwards and 
+"configure" again.
+
+Sorry for the trouble.
+--------------------------------------------------------------------
+
+This little patch solves a problem i found using gettext-0.10.35.
+For some reason AM_GNU_GETTEXT (serial 5) calls 
+AC_LINK_FILES($nls_cv_header_libgt, $nls_cv_header_intl)
+with both variables being empty (at least on my redhat-5.1 
+system).
+This gives an config.status script like this one:
+	ac_sources=" "
+	ac_dests=" "
+
+	srcdir=$ac_given_srcdir
+	while test -n "$ac_sources"; do
+	  set $ac_dests; ac_dest=$1; shift; ac_dests=$*
+	  set $ac_sources; ac_source=$1; shift; ac_sources=$*
+
+"set ; ac_source=$1; shift; ac_sources=$*" produces some not
+so nice looking output ...
+
+I think the right fix is something like that, but maybe Ulrich might want
+to try something else since autoconf seems to be basically unmaintained.
+
+don't forget to rebuild your frozen m4 files:
+	cd /usr/lib/autoconf
+	m4 -F autoconf.m4f autoconf.m4
+	m4 -F autoheader.m4f autoheader.m4
+
+Regards, Uwe
+---------------------------------------------------------
+> --- acgeneral.m4.old	Fri Oct  9 19:42:32 1998
+> +++ acgeneral.m4	Fri Oct  9 19:43:43 1998
+> @@ -2289,7 +2289,7 @@
+>  [EOF
+>  
+>  cat >> $CONFIG_STATUS <<EOF
+> -ac_sources="$1"
+> +ac_sources=`echo "$1" | sed 's/^ *$//'`
+>  ac_dests="$2"
+>  EOF
+>  
+---------------------------------------------------------
+Well, i sent this to the gettext maintainer some months 
+ago, but never got an answer ....
+
+

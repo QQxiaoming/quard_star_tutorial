@@ -1,0 +1,247 @@
+Version 0.12.20 - December 1998, Uwe Ohse
+
+* works on BeOS and stone-aged SCO (sco-3.2v4.2)
+
+* pubdir-"feature" works again.
+
+* "make rpm" creates a rpm file.
+
+* "optimal blklen calculation" was too aggressive, it
+  now does nothing if the user demands fixed blklens.
+
+* various smaller and medium bug fixes.
+
+* a more or less important security bug is fixed (stupid 
+  use of /tmp in a piece of code which is rarely used).
+
+* lrz uses umask to make files unreadable which receiving
+  them.
+
+* "sh systype | mail uwe-generic-counter@ohse.de"
+  sends a success report with a description of the
+  system type.
+
+* --enable-syslog is now default
+
+Version 0.12.19 - January 1998, Uwe Ohse
+
+* 0.12.18 was broken, lsz crashed if receiver found an CRC error.
+
+* lrz options "--rename" and "--escape" didn't work.
+
+* lrz didn't implement senders "overwrite-or-skip" option.
+
+* added dejagnu testsuite. Maybe you need a dejagnu snapshot to
+  use it.
+
+Version 0.12.18 - November 1997, Uwe Ohse
+
+* syslog output now includes user name.
+
+* new script lrzszbug, to be used for bugreports (untested)
+
+* lots of compiler warnings (egcs -Wparanoia [many -W]) removed.
+
+* new options --tcp-server and --tcp-client ADDRESS:PORT for
+  both programs.
+
+Version 0.12.17 - August 1997, Uwe Ohse
+
+* internal cleanup.
+
+* portability enhancements by (Philippe De Muyter <phdm@info.ucl.ac.be>)
+
+* lsz has a new option "--tcp" (no shortopt implemented). lsz transmits
+  one file over normal stdin/stdout (a control file), then opens a
+  tcp connection to transmit all other files. [this should help you,
+  Peter]
+  That _might_ be useful if your telnetd is really stupid.
+
+  (was _not_put on ftp/http server)
+
+Version 0.12.16 - March 1997, Uwe Ohse
+
+* major performance improvement (less CPU time needed - don't expect
+  faster transfers over slow lines). `make vcheck' now show about 50%
+  more throughput.
+
+* updated to gettext-0.12.27 and automake-1.1l
+  (automake-1.1l bug: AC_SUBST in AM_PATH_PROG_WITH_TEST leads
+  to a "$1=@$1@" line in Makefile.in. I hacked around it in
+  /usr/share/aclocal/gettext.m4)
+
+* minor bug fix.
+
+Version 0.12.15 - Februar 1997, Uwe Ohse
+
+* should now compile with pre-ANSI-compilers (tested with HPUX
+  bundled compiler - what a bad program. shame on HP).
+
+* new option --o-sync for lrz, open output file in synchronous write
+  mode (for those poor systems losing interrupts if update locks
+  interrupts too long).
+
+Version 0.12.14 - Januar 1997, Uwe Ohse
+
+* compiles cleaner on SCO, HPUX (even with the native compiler).
+
+* improved error reporting (i think there are still possibilities for
+  further improvements, if anybody case spare time :-)).
+
+Version 0.12.13 - Januar 1997, Uwe Ohse
+
+* no user visible changes
+
+Version 0.12.12 - December 1996, Uwe Ohse
+
+* lrx and lrb (aka lsz --x/ymodem) now default to 128 byte
+  block length (to fix interoperatability problems with
+  some Xmodems [USR courier flash upload]).
+
+* lrz didn't recognize every short option.
+
+* minor performance tweaks.
+
+* replace mktime() if needed.
+
+* updated to autoconf 2.12.
+
+Version 0.12.11 - October 1996, Uwe Ohse
+
+* lrzsz now has a home page, http://www.csl-gmbh.net/~uwe/lrzsz.html.
+  it still needs some work (oh well, it's "under construction" :-).
+
+* lsz/lrz recognize "rshell" as another name for the restricted
+  shell.
+
+* new option --stop-at HH:MM (stop transmission at HH:MM), and
+  --stop-at +N (stop in N seconds).
+
+* don't hang on BSD machines after getting a timeout (SIGALRM).
+  Stupid BSD people ...
+
+* rb (Y-Modem receive): read at max 1000 bytes after getting a
+  bad header, before giving up.
+
+* new option --delay-startup N: wait N seconds before doing 
+  anything (debugging aid).
+
+* Interrupt signal handling turned on under linux (i still don't 
+  know why it was turned off).
+
+* better handling of "sz -", by Philippe De Muyter.
+
+
+Version 0.12.10 - September 1996, Uwe Ohse
+
+* lsz resends init string if it doesn't receive rz's init.
+
+* improved "make check". (Philippe De Muyter <phdm@info.ucl.ac.be>)
+
+* `sz -' should work again (but i cannot test it). Anyway, this will not
+  work if sz cannot read from stdout.
+
+* portability enhancements by (Philippe De Muyter <phdm@info.ucl.ac.be>)
+
+
+Version 0.12.9 - September 1996, Uwe Ohse
+
+* new options --min-bps N and --min-bps-time M: If BPS rate falls under N
+  for at least M seconds (default: 120) transmission will be stopped.
+
+* added some missing error messages.
+
+* updated manual pages.
+
+
+Version 0.12.8 - August 1996, Uwe Ohse
+
+* bug fixes.
+
+* sz and rz now know about a new option:
+  -E, --rename: change name if target exists.
+
+* new option -T, --turbo for sz: sz doesn't escape 4 special characters
+  if this option is given (this should not make problems with any 
+  rz, but could be problematic on certain links where this characters
+  have to be escaped).
+
+* debugged blocksize calculation.
+
+* -+, --append option fixed.
+
+
+Version 0.12.7 - August 1996, Uwe Ohse
+
+* portability enhancements. compiles and runs under hurd.
+
+
+Version 0.12.6 - August 1996, Uwe Ohse
+
+* some portability enhancements (phdm@info.ucl.ac.be)
+* sz and rz now have a new option -B NNN. NNN stands for the
+  size of the disk buffer to use (in Bytes). NNN == auto buffers
+  the whole file. Use it if you get crc errors while accessing
+  the disk.
+
+
+Version 0.12.5 - August 1996, Uwe Ohse
+
+* some portability enhancements (getopt.c)
+* install creates symlinks from l[rs]z to l[rs][bx]
+
+
+Version 0.12.4 - June 1996, Uwe Ohse
+
+* some bug fixes
+
+* `rz -r' should now really work
+
+* `make check' and `make vcheck' now try to check crash recovery
+
+
+Version 0.12.3 - June 1996, Uwe Ohse
+
+* just a few bugfixes.
+
+
+Version 0.12.2 - June 1996, by Uwe Ohse
+
+* German translation
+
+* internationalized
+
+* went away from flat directory structure
+
+* added termios support
+
+* added syslog support
+
+* turned to automake
+
+* lrz want give received files execution permission if running under
+  rsh.
+
+
+New in lrzsz-0.12b:
+
+- lrz: remote command execution is disabled per default. This 
+  fixes a major security hole.
+- lrz now defaults to restricted mode.
+- lrz has a more restricted mode in which creation of directories
+  and invisible files is not allowed. See lrz.1 for more information.
+- rz and sz now recognize x- or y-modem-mode even if named lsb or lsx 
+  (instead of sb or sx).
+- timeout code is enabled again, can be turned of with the -O option.
+- PUBDIR is now optional. configure with --enable-pubdir=/path if you
+  really want a public writeable directory (i don't, so the default
+  is no such directory).
+- turned to GNU autoconf.
+- added timesync protocol extension by Peter Mandrella. See timesync.doc
+  and the man pages for more information.
+- added crash recovery (this is a really simple extension to the 
+  receivers file opening code). Both lrz and lsz no have a -r switch
+  to request resume of a former transfer.
+- many major and minor performance hacks.
+- new: 8K blocksize (a common extension in the DOS world). Turn on
+  with the -8 option to lsz (lrz handles this automatically).

@@ -1,0 +1,364 @@
+# change to tmp dir
+
+set z8_test_files ""
+set z_test_files ""
+set y_test_files ""
+set x_test_files ""
+set objdir [absolute $objdir]
+set srcdir [absolute $srcdir]
+
+set srcdir2 [exec sh -c "cd $srcdir/.. && pwd"]
+set objdir2 [exec sh -c "cd $objdir/.. && pwd"]
+
+set SZBUFSIZE "-B 524288"
+set RZBUFSIZE "-B 524288"
+set env(LANG) C
+#puts "LANG=$env(LANG)"
+
+foreach i [glob -nocomplain $srcdir/../src/l?z.c] {
+    set z_test_files "$z_test_files $i"
+    set x_test_files "$x_test_files $i"
+}
+foreach i [glob -nocomplain $objdir/../src/l?z] {
+    set z_test_files "$z_test_files $i"
+    set y_test_files "$y_test_files $i"
+}
+foreach i [glob -nocomplain /pub/gnu/emacs-*.tar.gz] {
+    set z8_test_files "$z8_test_files $i"
+}
+#puts "objdir=$objdir\n"
+#puts "srcdir=$srcdir\n"
+#puts "x_test_files=$x_test_files\n"
+#puts "y_test_files=$y_test_files\n"
+#puts "z_test_files=$z_test_files\n"
+#puts "z8_test_files=$z8_test_files\n"
+
+# change to tmp dir
+set TMPDIR [getenv TMPDIR]
+#puts "T=$TMPDIR\n"
+if [string compare "x$TMPDIR" "x"] then {
+	set MYTEMP "$TMPDIR"
+} else {
+	set MYTEMP "/tmp"
+}
+set OLDDIR [pwd]
+set testdir "$MYTEMP/test.lrzsz"
+exec rm -rf $testdir
+exec mkdir $testdir
+exec sh -c "mkfifo $testdir/pipe || mknod $testdir/pipe p"
+
+proc runthem_internal { name sz szopts rz rzopts files flags up} {
+	global MYTEMP
+	global OLDDIR
+	global testdir
+	global verbose
+	global fail_is_ok
+	upvar $up up_p
+	if {[string match "*mkdir*" $flags] == 1} {
+	    exec mkdir $testdir/$name
+	}
+    set fails 0
+    cd $MYTEMP
+	catch "exec sh -c \"($sz $szopts $files) <$testdir/pipe | \
+			(cd $testdir/$name ; exec $rz $rzopts >>../pipe)\"" dummy
+	set up_p $dummy
+	foreach i $files {
+		set bn [file tail $i]
+		set v $verbose
+		if {[string match "*compare*" $flags] == 1} {
+			set res [catch "exec cmp $i $testdir/$name/$bn" dummy]
+			set verbose $v
+			if {$res == 0} {
+				if {[string match "*delete*" $flags] == 1} {
+					catch "file delete $testdir/$name/$bn" dummy
+				}
+			} else {
+				send_log "$i: not identical: cmp told\n"
+				send_log "$dummy\n"
+				incr fails
+			}
+		} else {
+			if {[string match "*delete*" $flags] == 1} {
+				catch "file delete $testdir/$name/$bn" dummy
+			}
+		}
+	}
+	if {[string match "*rmdir*" $flags] == 1} {
+		set res [catch "exec rmdir $testdir/$name" dummy]
+		if {$res != 0} {
+			send_log "rmdir failed: $dummy\n"
+			incr fails
+		}
+	}
+    if [info exists "fail_is_ok"] {
+    	if {$fails > 0} {
+    		set fails 0;
+    	} else {
+    		set fails 1;
+    	}
+    }
+    cd $OLDDIR
+    return $fails
+}
+
+# own test function for xmodem: xmodem can't transfer file names
+proc runxmodem { name sz szopts rz rzopts files } {
+	global MYTEMP
+	global OLDDIR
+	global testdir
+	global verbose
+	verbose "Testing $name" 1
+    exec mkdir $testdir/$name
+    set failed 0
+    cd $MYTEMP
+	foreach i $files {
+		set bn [file tail $i]
+   		set output [catch "set done [exec sh -c "($sz $szopts --xmodem $i 2>/dev/null) \
+			<$testdir/pipe | \
+	    	(cd $testdir/$name ; exec $rz $rzopts --xmodem $bn >>../pipe 2>/dev/null)"]]"]
+		set res [catch "exec cmp $i $testdir/$name/$bn" dummy]
+		if {$res == 0} {
+			catch "file delete $testdir/$name/$bn" dummy
+		} else {
+			send_log "$i: not identical: cmp told\n"
+			send_log "$dummy\n"
+			set failed 1
+		}
+	}
+    set res [catch "exec rmdir $testdir/$name" dummy]
+	if {$res != 0} {
+			send_log "rmdir: $dummy\n"
+		set failed 1
+	}
+    cd $OLDDIR
+	if {$failed == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+proc runthem { name sz szopts rz rzopts files } {
+	verbose "Testing $name" 1
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts"  \
+		"$files" "mkdir,compare,delete,rmdir" dummy]
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+proc runabuse { name sz szopts rz rzopts files } {
+	global fail_is_ok
+	global testdir
+
+	set fail_is_ok 1
+	verbose "Testing $name" 1
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts"  \
+		"$files" "mkdir" output]
+	if {$fails == 1 && [string match "*ZRINIT*" $output]} {
+		set fails 0
+	}
+	if {$fails == 1 && [string match "*Broken pipe*" $output]} {
+		set fails 0
+	}
+	if {$fails == 1 && [string match "*caught signal*" $output]} {
+		set fails 0
+	}
+	if {$fails == 1 && [string match "*exited abnormally*" $output]} {
+		set fails 0
+	}
+	if {$fails == 0} {
+		exec rm -rf "$testdir/$name"
+		pass "$name"
+	} else {
+#puts "fails=$fails"
+		fail "$name"
+	}
+	unset fail_is_ok
+}
+
+proc runthem0 { name sz szopts rz rzopts files } {
+	verbose "Testing $name (write to /dev/null)" 1
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts" \
+		"$files" "mkdir,rmdir" dummy]
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+proc runappend { name sz szopts rz rzopts file} {
+	global testdir
+	verbose "Testing $name" 1
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts" \
+		"$file $file" "mkdir" dummy]
+	if {$fails == 0} {
+		set compare "$testdir/$name/compare"
+		set bn [file tail $file]
+		exec rm -f $compare
+		exec cp $file $compare
+		exec cat $file >>$compare
+
+		set res [catch "exec cmp $testdir/$name/$bn $compare" dummy]
+		if {$res != 0} {
+			incr fails
+		} else {
+			catch "file delete $testdir/$name/$bn" dummy
+			catch "file delete $compare" dummy
+		}
+	}
+	if {$fails == 0} {
+    	set res [catch "exec rmdir $testdir/$name" dummy]
+		if {$res != 0} {
+			incr fails
+		}
+    }
+
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+#
+proc runrename { name sz szopts rz rzopts files} {
+	global testdir
+	verbose "Testing $name" 1
+	exec mkdir $testdir/$name
+	foreach i $files {
+		set bn [file tail $i]
+		exec touch "$testdir/$name/$bn"
+		exec echo "1234" ">$testdir/$name/$bn.0"
+	}
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts" \
+		"$files" "" dummy]
+	if {$fails == 0} {
+		foreach i $files {
+			set bn [file tail $i]
+			set f "$testdir/$name/$bn"
+			if {[file size $f] != 0} {
+				incr fails
+				send_log "$f: size !=0\n"
+			} else {
+				set s [file size $f.0]
+				if {$s == 0 || $s>5} {
+					incr fails
+				send_log "$f: size !=5\n"
+				} else {
+					set compare "$f.1"
+					set res [catch "exec cmp $i $compare" dummy]
+					if {$res != 0} {
+						incr fails
+						send_log "$f: compare failed\n"
+					} else {
+						catch "file delete $f" dummy
+						catch "file delete $f.0" dummy
+						catch "file delete $f.1" dummy
+					}
+				}
+			}
+		}
+	}
+	if {$fails == 0} {
+    	set res [catch "exec rmdir $testdir/$name" dummy]
+		if {$res != 0} {
+			incr fails
+		}
+    }
+
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+proc runresume { name sz szopts rz rzopts files} {
+	global testdir
+	global srcdir
+	verbose "Testing $name" 1
+	exec mkdir $testdir/$name
+	set trash $srcdir/../src/Makefile.in
+	foreach i $files {
+		set bn [file tail $i]
+		catch "exec dd if=$trash of=$testdir/$name/$bn bs=256 count=5" dummy
+	}
+
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts" \
+		"$files" "" dummy]
+	if {$fails == 0} {
+		foreach i $files {
+			set bn [file tail $i]
+			set f "$testdir/$name/$bn"
+			set res [catch "exec cmp $i $f" dummy]
+			if {$res == 0} {
+				send_log "receiver did not resume but file is OK\n"
+				puts "receiver did not resume but file is OK - error, but not critical"
+				incr fails
+			} else {
+				catch "exec dd if=$i of=$f.1 bs=256 count=5" dummy
+				catch "exec dd if=$f bs=256 skip=5 >>$f.1" dummy
+				set res [catch "exec cmp $i $f.1" dummy]
+				if {$res == 0} {
+					catch "file delete $f" dummy
+					catch "file delete $f.1" dummy
+				} else {
+					send_log "sender resumed, but files differ. This is really bad\n"
+					puts "sender resumed, but files differ. This is really bad"
+					incr fails
+				}
+			}
+		}
+	}
+	if {$fails == 0} {
+    	set res [catch "exec rmdir $testdir/$name" dummy]
+		if {$res != 0} {
+			incr fails
+		}
+    }
+
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+# --protect option
+proc runprotect { name sz szopts rz rzopts files} {
+	global testdir
+	verbose "Testing $name" 1
+	exec mkdir $testdir/$name
+	foreach i $files {
+		set bn [file tail $i]
+		exec touch "$testdir/$name/$bn"
+	}
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts" \
+		"$files" "" dummy]
+	foreach i $files {
+		set bn [file tail $i]
+		set f "$testdir/$name/$bn"
+		if {[file size $f] != 0} {
+			incr fails
+			send_log "$f: size !=0 - overwritten, nit protected\n"
+		} else {
+			catch "file delete $f" dummy
+		}
+	}
+	if {$fails == 0} {
+    	set res [catch "exec rmdir $testdir/$name" dummy]
+		if {$res != 0} {
+			incr fails
+		}
+    }
+
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}

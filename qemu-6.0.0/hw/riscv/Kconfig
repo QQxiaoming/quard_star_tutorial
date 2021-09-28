@@ -37,10 +37,15 @@ config RISCV_VIRT
 
 config QUARD_STAR
     bool
+    select GOLDFISH_RTC
+    select MSI_NONBROKEN
+    select PFLASH_CFI01
     select SERIAL
     select SIFIVE_CLINT
     select SIFIVE_PLIC
-    select PFLASH_CFI01
+    select SIFIVE_TEST
+    select VIRTIO_MMIO
+    select FW_CFG_DMA
 
 config SIFIVE_E
     bool

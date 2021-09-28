@@ -1,0 +1,19 @@
+From "ease of use" onwards:
+
+"make fastcheck"
+	will do a simple self check, sending lsz, lrz, lsz.c and lrz.c
+	over a named pipe. 
+	This test just covers basic zmodem functionality, and it's
+	the only one which will work under BeOS: All other tests
+	need "real" named pipes, /pipe under BeOS simply hasn't
+	the right semantics.
+
+"make vcheck" and "make oldcheck-local"
+	will do a fast check of the most important features.
+	"vcheck" gives some more output, especially CPS-rates.
+
+"make check"
+	will do a _long_ regression test.
+	Some tests need special programs (omen.sz, omen.rz, zmtx, zmrx).
+	Some might only work on my system.
+	In any case you'll need dejagnu for this.

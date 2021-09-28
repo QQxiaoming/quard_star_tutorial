@@ -1,0 +1,21 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# check wether --junk-path and --full-path work.
+runthem junk-and-full $objdir/../src/lsz "-q --full-path" \
+	$objdir/../src/lrz "-q --junk-path" \
+	"$objdir2/src/lsz"
+
+# --full-path alone, must fail
+set fail_is_ok 1
+runthem full-only $objdir/../src/lsz "-q --full-path" \
+	$objdir/../src/lrz "-q" \
+	"$objdir2/src/lsz"
+unset fail_is_ok
+
+# --junk-path alone, must work
+runthem junk-only $objdir/../src/lsz "-q" \
+	"$objdir/../src/lrz" "-q --junk-path" \
+	"$objdir2/src/lsz"

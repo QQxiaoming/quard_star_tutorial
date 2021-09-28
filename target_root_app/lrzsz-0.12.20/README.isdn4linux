@@ -1,0 +1,9 @@
+There is a problem with isdn4linux: lsz seems to stop the transmission
+after sending some kilobytes.
+I've been told that the packet size used in the X.75i protocol defaults
+to a too high value which is outside the specification. Workaround:
+initialize isdn4linux with "AT&B1024" (some boards can deal with higher
+values, maxbe up to 2000 Bytes).
+
+Thanks to Andreas Romeyke <andreas_romeyke@l2.maus.de> and Frank Thieme
+<frank_thieme@l2.maus.de>.

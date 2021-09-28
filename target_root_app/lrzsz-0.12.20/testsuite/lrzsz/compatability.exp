@@ -1,0 +1,68 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+set omen_sz [which omen.sz]
+set omen_rz [which omen.rz]
+set zmtx [which zmtx]
+set zmrx [which zmrx]
+# one short file - omen is slow ...
+set files "$srcdir/../src/lsz.c $srcdir/../src/lsyslog.c"
+if [string compare "$omen_sz" 0] {
+	set bn [file tail $omen_sz]
+	runthem compat-$bn $omen_sz "" \
+    	$objdir/../src/lrz "-q" $files
+	runthem compat-$bn-delay $omen_sz "" \
+    	$objdir/../src/lrz "-q --delay-startup 10" $files
+    # oops. omen.sz has a really bad error behaviour
+	runthem compat-$bn-errors $omen_sz "" \
+    	$objdir/../src/lrz "-q --errors 32768" $files
+} else {
+	set bn [file tail $omen_sz]
+	unsupported "compat-$bn: $bn not available"
+	unsupported "compat-$bn-delay: $bn not available"
+	unsupported "compat-$bn-errors: $bn not available"
+}
+if [string compare "$zmtx" 0] {
+	set bn [file tail $zmtx]
+	runthem compat-$bn $zmtx "" \
+    	$objdir/../src/lrz "-q" $files
+	runthem compat-$bn-delay $zmtx "" \
+    	$objdir/../src/lrz "-q --delay-startup 10" $files
+	runthem compat-$bn-errors $zmtx "" \
+    	$objdir/../src/lrz "-q --errors 32768" $files
+} else {
+	unsupported "compat-zmtx: zmtx not available"
+	unsupported "compat-zmtx-delay: zmtx not available"
+	unsupported "compat-zmtx-errors: zmtx not available"
+}
+
+if [string compare "$omen_rz" 0] {
+	set bn [file tail $omen_rz]
+	runthem compat-$bn $objdir/../src/lsz "-q" \
+    	$omen_rz "" $files
+	runthem compat-$bn-delay "$objdir/../src/lsz" "-q --delay-startup 10" \
+    	$omen_rz "" $z_test_files
+	runthem compat-$bn-turbo "$objdir/../src/lsz" "-q --turbo" \
+    	$omen_rz "" $z_test_files
+} else {
+	unsupported "compat-omen_rz: omen.rz bn not available"
+	unsupported "compat-omen_rz-delay: omen.rz bn not available"
+	unsupported "compat-omen_rz-errors: omen.rz not available"
+}
+
+if [string compare "$zmrx" 0] {
+	set bn [file tail $zmrx]
+	runthem compat-$bn $objdir/../src/lsz "-q" \
+    	$zmrx "" $files
+	runthem compat-$bn-delay "$objdir/../src/lsz" "-q --delay-startup 10" \
+    	$zmrx "" $z_test_files
+	runthem compat-$bn-turbo "$objdir/../src/lsz" "-q --turbo" \
+    	$zmrx "" $z_test_files
+} else {
+	unsupported "compat-zmrx: zmrx bn not available"
+	unsupported "compat-zmrx-delay: zmrx bn not available"
+	unsupported "compat-zmrx-errors: zmrx not available"
+}
+unset bn

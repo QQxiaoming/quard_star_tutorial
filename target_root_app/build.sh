@@ -512,6 +512,20 @@ build_trace_cmd()
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=$SHELL_FOLDER/output etcdir=$SHELL_FOLDER/output/etc libdir_relative=lib install
 }
 
+build_lrzsz()
+{
+    # 编译lrzsz-0.12.20
+    echo "\033[1;4;41;32mlrzsz\033[0m"
+    cd $SHELL_FOLDER/lrzsz-0.12.20
+    export CXX=$CROSS_PREFIX-g++
+    export CC=$CROSS_PREFIX-gcc 
+    $CONFIGURE --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output 
+    make -j$PROCESSORS
+    make install
+    unset CXX
+    unset CC
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -609,6 +623,9 @@ dtc)
 trace_cmd)
     build_trace_cmd
     ;;
+lrzsz)
+    build_lrzsz
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -641,6 +658,8 @@ all)
     build_attr
     build_mtd_utils
     build_dtc
+    build_trace_cmd
+    build_lrzsz
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

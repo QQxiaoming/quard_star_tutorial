@@ -1,0 +1,8 @@
+proc lrzsz_version {} {
+	global objdir
+    set tmp [exec "$objdir/../src/lsz" "--version"]
+    regexp "lrzsz. (\[0-9.\]+)" $tmp tmp version
+    clone_output "$objdir/../src/lsz version $version\n"
+} 
+proc lrzsz_exit {} {}
+

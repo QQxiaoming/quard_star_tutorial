@@ -1,0 +1,245 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# ZMCRC test. Belongs to filemanagment ...
+
+# Part 1: file exists, same length, crc identical. sender init
+set name crc-check-sender-equal-crc
+exec mkdir $testdir/$name
+exec cp -p $objdir/../src/lrz $testdir/$name/lrz
+
+# this deals with different touch -t conventions. (POSIX/pre-posix-HPUX in this case)
+catch "exec sh -c \"touch -t 020304051980.06 $testdir/$name/lrz || touch -t 198002030405.06 $testdir/$name/lrz\"" dummy
+catch "exec ls -l $testdir/$name/lrz 2>/dev/null" timestamp
+set fails [runthem_internal $name "$objdir/../src/lsz -B 10240" "-q --crc-check" \
+	$objdir/../src/lrz "-q" \
+	"$objdir/../src/lrz" "" dummy]
+if {$fails == 0} {
+	set res [catch "exec cmp $objdir/../src/lrz $testdir/$name/lrz" dummy]
+	if {$res == 0} {
+		catch "exec ls -l $testdir/$name/lrz 2>/dev/null" dummy
+		if {0!=[string compare "$dummy" "$timestamp"]} {
+			send_log "timestamp changed\n"
+			send_log "1. $timestamp\n"
+			send_log "2. $dummy\n"
+			incr fails
+		} else {
+			send_log "timestamp ok\n"
+			send_log "1. $timestamp\n"
+			send_log "2. $dummy\n"
+		}
+	} else {
+		send_log "files not identical: cmp told\n"
+		send_log "$dummy\n"
+		incr fails
+	}
+} else {
+	incr fails
+}
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy timestamp
+
+# Part 2: file exists, same length, crc identical. sender init. no mmap
+# (ZCRC code on sender side is different if using mmap)
+set name crc-check-sender-equal-crc-no-mmap
+exec mkdir $testdir/$name
+exec cp -p $objdir/../src/lrz $testdir/$name/lrz
+catch "exec sh -c \"touch -t 020304051980.06 $testdir/$name/lrz || touch -t 198002030405.06 $testdir/$name/lrz\"" dummy
+catch "exec ls -l $testdir/$name/lrz 2>/dev/null" timestamp
+set fails [runthem_internal $name "/tmp/out $objdir/../src/lsz -B 10240" "-q --crc-check" \
+	$objdir/../src/lrz "-q" \
+	"$objdir/../src/lrz" "" dummy]
+if {$fails == 0} {
+	set res [catch "exec cmp $objdir/../src/lrz $testdir/$name/lrz" dummy]
+	if {$res == 0} {
+		catch "exec ls -l $testdir/$name/lrz 2>/dev/null" dummy
+		if {0!=[string compare "$dummy" "$timestamp"]} {
+			send_log "timestamp changed\n"
+			send_log "1. $timestamp\n"
+			send_log "2. $dummy\n"
+			incr fails
+		} else {
+			send_log "timestamp ok\n"
+			send_log "1. $timestamp\n"
+			send_log "2. $dummy\n"
+		}
+	} else {
+		send_log "files not identical: cmp told\n"
+		send_log "$dummy\n"
+		incr fails
+	}
+} else {
+	incr fails
+}
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy timestamp
+
+# Part 3: file exists, same length, crc identical. receiver init
+set name crc-check-receiver-equal-crc
+exec mkdir $testdir/$name
+exec cp -p $objdir/../src/lrz $testdir/$name/lrz
+catch "exec sh -c \"touch -t 020304051980.06 $testdir/$name/lrz || touch -t 198002030405.06 $testdir/$name/lrz\"" dummy
+catch "exec ls -l $testdir/$name/lrz 2>/dev/null" timestamp
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q" \
+	$objdir/../src/lrz "-q --crc-check" \
+	"$objdir/../src/lrz" "" dummy]
+if {$fails == 0} {
+	set res [catch "exec cmp $objdir/../src/lrz $testdir/$name/lrz" dummy]
+	if {$res == 0} {
+		catch "exec ls -l $testdir/$name/lrz 2>/dev/null" dummy
+		if {0!=[string compare "$dummy" "$timestamp"]} {
+			send_log "timestamp changed\n"
+			send_log "1. $timestamp\n"
+			send_log "2. $dummy\n"
+			incr fails
+		} else {
+			send_log "timestamp ok\n"
+			send_log "1. $timestamp\n"
+			send_log "2. $dummy\n"
+		}
+	} else {
+		send_log "files not identical: cmp told\n"
+		send_log "$dummy\n"
+		incr fails
+	}
+} else {
+	incr fails
+}
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy timestamp
+
+# from now on ignore who initiates the crc-check. We know that both sides 
+# can init it, from Part 1 & 2.
+
+exec logger 4
+# Part 4: file exists, same length, crc differs. 
+set name crc-check-diff-crc
+exec mkdir $testdir/$name
+exec cp $objdir/../src/lrz $testdir/$name/lrz
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz conv=notrunc bs=512 count=1"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q --crc-check" \
+	"$objdir/../src/lrz" "-q" \
+	"$objdir/../src/lrz" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy
+
+# Part 5: file exists, different length, same crc.
+set name crc-check-diff-len
+exec mkdir $testdir/$name
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz.c conv=notrunc bs=256 count=81"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q --crc-check" \
+	$objdir/../src/lrz "-q" \
+	"$srcdir/../src/lrz.c" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy
+
+exec logger 6
+# Part 6: file exists, different length, diff crc.
+set name crc-check-diff-len-crc
+exec mkdir $testdir/$name
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz.c conv=notrunc bs=256 count=81"
+catch "exec dd if=$objdir/../src/lrz of=$testdir/$name/lrz.c conv=notrunc bs=512 count=1"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q --crc-check" \
+	$objdir/../src/lrz "-q" \
+	"$srcdir/../src/lrz.c" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy
+
+
+exec logger 7
+# Part 7: file exists, different length, same crc. try resume
+set name crc-check-diff-len-resume-sender
+exec mkdir $testdir/$name
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz.c conv=notrunc bs=256 count=81"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q -r --crc-check" \
+	$objdir/../src/lrz "-q" \
+	"$srcdir/../src/lrz.c" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy
+
+exec logger part 8
+# Part 8: file exists, different length, same crc. try resume (receiver)
+set name crc-check-diff-len-resume-receiver
+exec mkdir $testdir/$name
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz.c conv=notrunc bs=256 count=81"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q --crc-check" \
+	$objdir/../src/lrz "-q -r" \
+	"$srcdir/../src/lrz.c" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy
+
+exec logger part 9
+# Part 9: file exists, different length + crc. try resume (sender)
+set name crc-check-diff-len-resume-receiver
+exec mkdir $testdir/$name
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz.c conv=notrunc bs=256 count=81"
+catch "exec dd if=$objdir/../src/lrz of=$testdir/$name/lrz.c conv=notrunc bs=512 count=1"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q --crc-check -r" \
+	$objdir/../src/lrz "-q" \
+	"$srcdir/../src/lrz.c" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy
+
+exec logger part 10
+# Part 9: file exists, different crc, same length. try resume (sender)
+set name crc-check-diff-crc-resume-receiver
+exec mkdir $testdir/$name
+catch "exec dd if=$srcdir/../src/lrz.c of=$testdir/$name/lrz.c conv=notrunc"
+catch "exec dd if=$objdir/../src/lrz of=$testdir/$name/lrz.c conv=notrunc bs=512 count=1"
+set fails [runthem_internal $name "$objdir/../src/lsz" "-q --crc-check -r" \
+	$objdir/../src/lrz "-q" \
+	"$srcdir/../src/lrz.c" "rmdir,compare,delete" dummy]
+if {$fails == 0} {
+	pass "$name"
+	exec rm -rf $testdir/$name
+} else {
+	fail "$name"
+}
+unset name fails dummy

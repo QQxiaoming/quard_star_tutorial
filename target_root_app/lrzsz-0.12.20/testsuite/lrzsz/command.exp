@@ -1,0 +1,75 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# i would really like to throw that code out of zmodem ...
+# but then again: somebody might need it, and it's disabled by default.
+# so check first: is it _really_ disabled?
+
+#puts RES=[getenv ZMODEM_RESTRICTED]
+if {[string compare [getenv ZMODEM_RESTRICTED] ""] != 0} {
+	unsetenv ZMODEM_RESTRICTED
+}
+
+proc runcommand { name sz szopts rz rzopts expect_fail} {
+	global MYTEMP
+	global testdir
+	set magic XXXYYYZZZ
+	verbose "Testing $name" 1
+	catch "exec rm -f $testdir/command_tmp"
+	set fails [runthem_internal "$name" "$sz" "$szopts" "$rz" "$rzopts"  \
+	"\\\"echo $magic \\>$testdir/command_tmp\\\"" "mkdir,rmdir" dummy]
+	if {[file exists  $testdir/command_tmp] == 0} {
+		set fails 1;
+	}
+	if {$fails == 0} {
+		catch "set dummy [grep $testdir/command_tmp $magic]"
+		if [string compare $magic $dummy] {
+			incr fails
+			send_log "grep fetch not $magic\n";
+		}
+	} else {
+		send_log "call failed\n";
+	}
+	if [string compare $expect_fail "OK"] {
+		if {$fails > 0} {
+			set fails 0;
+		} else {
+			set fails 1;
+		}
+	}
+	if {$fails == 0} {
+		pass "$name"
+	} else {
+		fail "$name"
+	}
+}
+
+runcommand command-disabled $objdir/../src/lsz "-q -c" \
+    "$objdir/../src/lrz" "" FAIL
+runcommand command-enabled-restricted $objdir/../src/lsz "-q -c" \
+    "$objdir/../src/lrz" "-C" FAIL
+runcommand command-enabled-unrestricted $objdir/../src/lsz "-q -c" \
+    "$objdir/../src/lrz" "--unrestrict --allow-commands" OK
+# same for -i
+runcommand i-command-disabled $objdir/../src/lsz "-q -i" \
+    "$objdir/../src/lrz" "" FAIL
+runcommand i-command-enabled-restricted $objdir/../src/lsz "-q -i" \
+    "$objdir/../src/lrz" "-C" FAIL
+runcommand i-command-enabled-unrestricted $objdir/../src/lsz "-q -i" \
+    "$objdir/../src/lrz" "--unrestrict --allow-commands" OK
+
+# basic tests done
+
+#set and unset ZMODEM_RESTRICTED. Should work.
+runcommand command-restricted-by-env "$objdir/../src/lsz" "-q -c" \
+    "env ZMODEM_RESTRICTED=1 sh -c '$objdir/../src/lrz -qUC'" "" OK
+#    "strace -vfs 128 -o /tmp/o2 env ZMODEM_RESTRICTED=1 sh -c \"$objdir/../src/lrz -qUC\"" "" OK
+# must not work.
+runcommand command-rbash-receiver "$objdir/../src/lsz" "-q -c" \
+    "env SHELL=rbash sh -c '$objdir/../src/lrz -qUC'" "" FAIL
+# must not work.
+runcommand command-rbash-sender "env SHELL=rbash sh -c '$objdir/../src/lsz -qc'" "" \
+    "$objdir/../src/lrz" "-qUC" FAIL
+

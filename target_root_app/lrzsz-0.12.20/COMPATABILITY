@@ -1,0 +1,25 @@
+ZModem standard:
+    lrzsz is compatible with standard zmodem as long as you don't use
+    certain options:
+    -8 is incompatible with the standard, but should work with most
+       DOS/Atari/Amiga ZModems. It's a common extension, but a dangerous
+       one. Do not use it unless you know that the receiver can handle it.
+    -S is incompatible with certain ZModems which use the TIMESYNC bit
+       for other purposes (timesync is a protocol extension by Peter
+       Mandrella, read timesync.doc for more information). The default
+       is to disable timesync, you must use the `S' option to enable it.
+
+
+Calling conventions:
+    lrzsz is not fully compatible with older UNIX ZModems:
+    - PUBDIR (/var/spool/uucppublic) is normally disabled. If you like
+      public writable directories please use:
+        configure --enable-pubdir=/var/spool/uucppublic
+    - lrz defaults to restricted mode, in which the sender must not upload
+      any files outside the working directory or PUBDIR (if pubdir is
+      enabled). With the old version you had to set SHELL=rsh.
+      For more information read the SECURITY paragraph in lrz.1.
+    - lrz: remote command execution is disabled. To enable it use -C (but
+      be careful - the sender might delete all your files).
+    - lrz: does not set executable bits for any files it received under
+      a restricted shell.

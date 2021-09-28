@@ -1,0 +1,12 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# check --escape option
+runthem zmodem-escape-sz $objdir/../src/lsz "-q --escape" \
+	$objdir/../src/lrz "-q" $z_test_files
+runthem zmodem-escape-rz $objdir/../src/lsz "-q" \
+	$objdir/../src/lrz "-q -e" $z_test_files
+runthem zmodem-escape-both $objdir/../src/lsz "-q --escape" \
+	$objdir/../src/lrz "-q --escape" $z_test_files

@@ -1,0 +1,9 @@
+load_lib "lrzsz.exp"
+if $tracelevel then {
+    strace $tracelevel
+}
+
+# check 16 bit crc
+# only sender knows this option
+runthem zmodem-crc16-sz $objdir/../src/lsz "-q --16-bit-crc" \
+	$objdir/../src/lrz "-q" $z_test_files

@@ -1,0 +1,13 @@
+- make argv[0]-recognition of X/YModem work with program_name_transform.
+- look into VMIN code: how to determine if it's usable (it isn't unter
+  FreeBSD and NetBSD (might have changed) and possibly many other 
+  system), and what is the max value?
+  Anyway - we don't *need* it. It just reduces system load (but that's
+  not a real problem - zmodem over a ISDN/modem link is not much load).
+- provide a way to not use any CRC check (for those people who
+  a) think that lrzsz is to slow for their serial lines, or b) think
+  that their transmission lines are safe. Oh well, some people don't
+  learn without having pain).
+- improve error reporting.
+- clean up Output in verbose mode. (document what's printed if
+  verbose is `n')

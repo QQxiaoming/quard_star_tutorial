@@ -1,0 +1,75 @@
+#!/usr/bin/make -f
+version=@VERSION@
+package=@PACKAGE@
+
+tmpdir = $(shell pwd)/debian/tmp
+instdirs = $(tmpdir) \
+	$(tmpdir)/DEBIAN \
+	$(tmpdir)/usr/bin \
+	$(tmpdir)/usr/doc/lrzsz \
+	$(tmpdir)/usr/man/man1
+
+checkversion:
+	if grep $(version) debian/changelog >/dev/null ; then \
+		: ; else \
+		mv -f debian/changelog debian/changelog.tmp ; \
+		( echo "$(package) ($(version)) unstable; urgency=low" ; \
+		  echo "" ; \
+		  echo "  * sorry, see ../ChangeLog. automagically generated debian/changelog" ; \
+		  echo "" ; \
+		  echo " -- Uwe Ohse <uwe@ohse.de>  "`date +'%a, %d %b %Y %H:%M:%S +0200'` ; \
+		  echo "" ; echo "" ; \
+		  cat debian/changelog.tmp ; \
+		) >debian/changelog ; \
+		rm -f debian/changelog.tmp ; \
+	fi
+
+build: checkversion
+	$(checkdir)
+	CFLAGS=-O2 LDFLAGS= ./configure --program-transform-name=s/l// --prefix=/usr
+	$(MAKE)
+	touch build
+
+clean:
+	$(checkdir)
+	-rm -f build
+	-$(MAKE) distclean
+	-rm -rf *~ debian/tmp debian/*~ debian/files*
+
+binary-indep:  checkroot build
+	$(checkdir)
+
+binary-arch:   checkroot build $(instdirs)
+	dpkg-shlibdeps src/lsz
+	dpkg-gencontrol >debian/tmp/DEBIAN/control
+	$(MAKE) INSTALL_PROGRAM='install -c -s' prefix=$(tmpdir)/usr install
+	install -m 644 debian/copyright $(tmpdir)/usr/doc/$(package)/copyright
+	install -m 644 debian/changelog $(tmpdir)/usr/doc/$(package)/changelog.Debian
+	install -m 644 ChangeLog $(tmpdir)/usr/doc/$(package)/changelog
+	chown -R root.root $(tmpdir)
+	chmod -R g-ws $(tmpdir)
+	dpkg --build $(tmpdir) ..
+
+define checkdir
+	test -f debian/rules
+endef
+
+# Below here is fairly generic really
+
+binary:        binary-indep binary-arch
+
+source diff:
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+checkroot:
+	$(checkdir)
+	test root = "`whoami`"
+
+.PHONY: binary diff clean checkroot zapdirs
+
+zapdirs:
+	-rm -rf $(tmpdir)
+
+$(instdirs): zapdirs
+	install -d -m 755 $@
+	chmod g-s $@
