@@ -46,7 +46,10 @@ config QUARD_STAR
     select SIFIVE_TEST
     select VIRTIO_MMIO
     select FW_CFG_DMA
-
+    select I2C
+    select IMX_I2C
+    select DS1338 # I2C RTC+NVRAM
+    
 config SIFIVE_E
     bool
     select MSI_NONBROKEN

@@ -682,6 +682,15 @@ config I2C_IMX
 	  This driver can also be built as a module.  If so, the module
 	  will be called i2c-imx.
 
+config I2C_IMX_QUARD
+	tristate "IMX I2C quard version interface"
+	help
+	  Say Y here if you want to use the IIC bus controller on
+	  the riscv quard star board.
+
+	  This driver can also be built as a module.  If so, the module
+	  will be called i2c-imx-quard.
+
 config I2C_IMX_LPI2C
 	tristate "IMX Low Power I2C interface"
 	depends on ARCH_MXC || COMPILE_TEST

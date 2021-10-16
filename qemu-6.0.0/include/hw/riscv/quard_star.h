@@ -19,27 +19,34 @@
 #ifndef HW_RISCV_QUARD_STAR__H
 #define HW_RISCV_QUARD_STAR__H
 
+#include "hw/cpu/cluster.h"
 #include "hw/riscv/riscv_hart.h"
 #include "hw/sysbus.h"
 #include "hw/block/flash.h"
 #include "qom/object.h"
+#include "hw/i2c/i2c.h"
+#include "hw/i2c/imx_i2c.h"
 
-#define QUARD_STAR_CPUS_MAX 8
-#define QUARD_STAR_SOCKETS_MAX 8
+#define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
+#define QUARD_STAR_COMPUTE_CPU_COUNT       8
 
 #define TYPE_RISCV_QUARD_STAR_MACHINE MACHINE_TYPE_NAME("quard-star")
-typedef struct RISCVVirtState RISCVVirtState;
-DECLARE_INSTANCE_CHECKER(RISCVVirtState, RISCV_VIRT_MACHINE,
+typedef struct QuardStarState QuardStarState;
+DECLARE_INSTANCE_CHECKER(QuardStarState, RISCV_VIRT_MACHINE,
                          TYPE_RISCV_QUARD_STAR_MACHINE)
 
-struct RISCVVirtState {
+struct QuardStarState {
     /*< private >*/
     MachineState parent;
 
     /*< public >*/
-    RISCVHartArrayState soc[QUARD_STAR_SOCKETS_MAX];
-    DeviceState *plic[QUARD_STAR_SOCKETS_MAX];
+    CPUClusterState r_cluster;
+    CPUClusterState c_cluster;
+    RISCVHartArrayState r_cpus[QUARD_STAR_MANAGEMENT_CPU_COUNT];
+    RISCVHartArrayState c_cpus[QUARD_STAR_COMPUTE_CPU_COUNT];
+    DeviceState *plic;
     PFlashCFI01 *flash;
+    IMXI2CState i2c[3];
     FWCfgState *fw_cfg;
 };
 
@@ -52,6 +59,9 @@ enum {
     QUARD_STAR_UART1,
     QUARD_STAR_UART2,
     QUARD_STAR_RTC,
+    QUARD_STAR_I2C0,
+    QUARD_STAR_I2C1,
+    QUARD_STAR_I2C2,
     QUARD_STAR_TEST,
     QUARD_STAR_VIRTIO,
     QUARD_STAR_FW_CFG,
@@ -66,6 +76,9 @@ enum {
     QUARD_STAR_UART1_IRQ = 11,
     QUARD_STAR_UART2_IRQ = 12,
     QUARD_STAR_RTC_IRQ = 13,
+    QUARD_STAR_I2C0_IRQ = 14,
+    QUARD_STAR_I2C1_IRQ = 15,
+    QUARD_STAR_I2C2_IRQ = 16,
 };
 
 #define QUARD_STAR_PLIC_HART_CONFIG    "MS"
@@ -77,7 +90,5 @@ enum {
 #define QUARD_STAR_PLIC_ENABLE_STRIDE  0x80
 #define QUARD_STAR_PLIC_CONTEXT_BASE   0x200000
 #define QUARD_STAR_PLIC_CONTEXT_STRIDE 0x1000
-#define QUARD_STAR_PLIC_SIZE(__num_context) \
-    (QUARD_STAR_PLIC_CONTEXT_BASE + (__num_context) * QUARD_STAR_PLIC_CONTEXT_STRIDE)
 
 #endif

@@ -245,10 +245,37 @@
 		};
 		
 		rtc:rtc@10003000 {
-			interrupts = <0xb>;
+			interrupts = <0xd>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10003000 0x0 0x1000>;
 			compatible = "google,goldfish-rtc";
+		};
+
+		i2c0: i2c@10004000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,imx-i2c-quard";
+			reg = <0x0 0x10004000 0x0 0x1000>;
+			interrupts = <0xe>;
+			interrupt-parent = <&plic>;
+		};
+		
+		i2c1: i2c@10005000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,imx-i2c-quard";
+			reg = <0x0 0x10005000 0x0 0x1000>;
+			interrupts = <0xf>;
+			interrupt-parent = <&plic>;
+		};		
+		
+		i2c2: i2c@10006000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,imx-i2c-quard";
+			reg = <0x0 0x10006000 0x0 0x1000>;
+			interrupts = <0x10>;
+			interrupt-parent = <&plic>;
 		};
 
 		test:test@100000 {
