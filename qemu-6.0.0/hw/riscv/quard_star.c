@@ -292,7 +292,10 @@ static void quard_star_machine_init(MachineState *machine)
     sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[2]), 0, memmap[QUARD_STAR_I2C2].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->i2c[2]), 0,
                     qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2C2_IRQ));
-    i2c_slave_create_simple(s->i2c[0].bus, "ds1338", 0x68);
+    I2CSlave *i2c_dev = i2c_slave_new("at24c-eeprom", 0x50);
+    DeviceState *dev = DEVICE(i2c_dev);
+    qdev_prop_set_uint32(dev, "rom-size", 8*1024);
+    i2c_slave_realize_and_unref(i2c_dev, s->i2c[0].bus, &error_abort);
 }
 
 static void quard_star_machine_instance_init(Object *obj)
