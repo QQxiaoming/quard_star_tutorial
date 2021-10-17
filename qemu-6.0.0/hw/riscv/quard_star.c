@@ -52,6 +52,8 @@ static const MemMapEntry virt_memmap[] = {
     [QUARD_STAR_I2C0]   = { 0x10004000,        0x1000 },
     [QUARD_STAR_I2C1]   = { 0x10005000,        0x1000 },
     [QUARD_STAR_I2C2]   = { 0x10006000,        0x1000 },
+    [QUARD_STAR_SPI0]   = { 0x10007000,        0x1000 },
+    [QUARD_STAR_SPI1]   = { 0x10008000,        0x1000 },
     [QUARD_STAR_VIRTIO] = { 0x10100000,        0x1000 }, //Eight consecutive groups
     [QUARD_STAR_FW_CFG] = { 0x10108000,          0x18 },
     [QUARD_STAR_FLASH]  = { 0x20000000,     0x2000000 },
@@ -296,6 +298,27 @@ static void quard_star_machine_init(MachineState *machine)
     DeviceState *dev = DEVICE(i2c_dev);
     qdev_prop_set_uint32(dev, "rom-size", 8*1024);
     i2c_slave_realize_and_unref(i2c_dev, s->i2c[0].bus, &error_abort);
+
+    object_initialize_child(OBJECT(machine), "spi0", &s->spi[0], TYPE_SIFIVE_SPI);
+    sysbus_realize(SYS_BUS_DEVICE(&s->spi[0]), &error_abort);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->spi[0]), 0, memmap[QUARD_STAR_SPI0].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[0]), 0,
+                           qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI0_IRQ));
+    object_initialize_child(OBJECT(machine), "spi1", &s->spi[1], TYPE_SIFIVE_SPI);
+    sysbus_realize(SYS_BUS_DEVICE(&s->spi[1]), &error_abort);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->spi[1]), 0, memmap[QUARD_STAR_SPI1].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[1]), 0,
+                           qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI1_IRQ));
+    DeviceState *flash_dev = qdev_new("is25wp256");
+    DriveInfo *dinfo = drive_get_next(IF_MTD);
+    if (dinfo) {
+        qdev_prop_set_drive_err(flash_dev, "drive",
+                                blk_by_legacy_dinfo(dinfo),
+                                &error_fatal);
+    }
+    qdev_realize_and_unref(flash_dev, BUS(s->spi[0].spi), &error_fatal);
+    qemu_irq flash_cs = qdev_get_gpio_in_named(flash_dev, SSI_GPIO_CS, 0);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[0]), 1, flash_cs);
 }
 
 static void quard_star_machine_instance_init(Object *obj)

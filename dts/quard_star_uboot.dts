@@ -283,6 +283,33 @@
 			interrupt-parent = <&plic>;
 		};
 
+		qspi0: spi@10007000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,spi0-quard";
+			reg = <0x0 0x10007000 0x0 0x1000>;
+			interrupts = <0x11>;
+			interrupt-parent = <&plic>;
+
+			flash@0 {
+				compatible = "issi,is25wp256", "jedec,spi-nor";
+				reg = <0>;
+				spi-max-frequency = <50000000>;
+				m25p,fast-read;
+				spi-tx-bus-width = <4>;
+				spi-rx-bus-width = <4>;
+			};
+		};
+
+		qspi1: spi@10008000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,spi0-quard";
+			reg = <0x0 0x10008000 0x0 0x1000>;
+			interrupts = <0x12>;
+			interrupt-parent = <&plic>;
+		};
+
 		test:test@100000 {
 			reg = <0x0 0x100000 0x0 0x1000>;
 			compatible = "sifive,test1", "sifive,test0", "syscon";

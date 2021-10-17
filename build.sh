@@ -134,6 +134,10 @@ build_firmware()
     dd of=fw.bin bs=1k conv=notrunc seek=2K if=$SHELL_FOLDER/output/opensbi/fw_jump.bin
     dd of=fw.bin bs=1k conv=notrunc seek=4K if=$SHELL_FOLDER/output/trusted_domain/trusted_fw.bin
     dd of=fw.bin bs=1k conv=notrunc seek=8K if=$SHELL_FOLDER/output/uboot/u-boot.bin
+
+    if [ ! -f "$SHELL_FOLDER/output/fw/nor_fw.bin" ]; then  
+        dd of=nor_fw.bin bs=1k count=32k if=/dev/zero
+    fi
 }
 
 build_kernel()

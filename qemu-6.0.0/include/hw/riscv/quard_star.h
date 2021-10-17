@@ -26,6 +26,8 @@
 #include "qom/object.h"
 #include "hw/i2c/i2c.h"
 #include "hw/i2c/imx_i2c.h"
+#include "hw/ssi/ssi.h"
+#include "hw/ssi/sifive_spi.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
 #define QUARD_STAR_COMPUTE_CPU_COUNT       8
@@ -47,6 +49,7 @@ struct QuardStarState {
     DeviceState *plic;
     PFlashCFI01 *flash;
     IMXI2CState i2c[3];
+    SiFiveSPIState spi[2];
     FWCfgState *fw_cfg;
 };
 
@@ -62,6 +65,8 @@ enum {
     QUARD_STAR_I2C0,
     QUARD_STAR_I2C1,
     QUARD_STAR_I2C2,
+    QUARD_STAR_SPI0,
+    QUARD_STAR_SPI1,
     QUARD_STAR_TEST,
     QUARD_STAR_VIRTIO,
     QUARD_STAR_FW_CFG,
@@ -79,6 +84,8 @@ enum {
     QUARD_STAR_I2C0_IRQ = 14,
     QUARD_STAR_I2C1_IRQ = 15,
     QUARD_STAR_I2C2_IRQ = 16,
+    QUARD_STAR_SPI0_IRQ = 17,
+    QUARD_STAR_SPI1_IRQ = 18,
 };
 
 #define QUARD_STAR_PLIC_HART_CONFIG    "MS"

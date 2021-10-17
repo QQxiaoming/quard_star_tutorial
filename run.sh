@@ -92,6 +92,7 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -m 1G \
 -smp 8 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin \
+-drive if=mtd,format=raw,file=$SHELL_FOLDER/output/fw/nor_fw.bin \
 -drive file=$SHELL_FOLDER/output/rootfs/rootfs.img,format=raw,id=drive0 \
 -fsdev local,security_model=mapped-xattr,id=fsdev0,path=$SHELL_FOLDER \
 -netdev user,id=net0,net=192.168.31.0/24,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80 \
