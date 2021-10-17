@@ -40,74 +40,42 @@
 #include "sysemu/sysemu.h"
 
 static const MemMapEntry virt_memmap[] = {
-    [QUARD_STAR_MROM]   = {        0x0,        0x8000 },
-    [QUARD_STAR_SRAM]   = {     0x8000,        0x8000 },
-    [QUARD_STAR_TEST]   = {   0x100000,        0x1000 },
-    [QUARD_STAR_CLINT]  = {  0x2000000,       0x10000 },
-    [QUARD_STAR_PLIC]   = {  0xc000000,     0x4000000 },
-    [QUARD_STAR_UART0]  = { 0x10000000,        0x1000 },
-    [QUARD_STAR_UART1]  = { 0x10001000,        0x1000 },
-    [QUARD_STAR_UART2]  = { 0x10002000,        0x1000 },
-    [QUARD_STAR_RTC]    = { 0x10003000,        0x1000 },
-    [QUARD_STAR_I2C0]   = { 0x10004000,        0x1000 },
-    [QUARD_STAR_I2C1]   = { 0x10005000,        0x1000 },
-    [QUARD_STAR_I2C2]   = { 0x10006000,        0x1000 },
-    [QUARD_STAR_SPI0]   = { 0x10007000,        0x1000 },
-    [QUARD_STAR_SPI1]   = { 0x10008000,        0x1000 },
-    [QUARD_STAR_VIRTIO] = { 0x10100000,        0x1000 }, //Eight consecutive groups
-    [QUARD_STAR_FW_CFG] = { 0x10108000,          0x18 },
-    [QUARD_STAR_FLASH]  = { 0x20000000,     0x2000000 },
-    [QUARD_STAR_DRAM]   = { 0x80000000,           0x0 },
+    [QUARD_STAR_MROM]    = { 0x00000000,    0x8000 },
+    [QUARD_STAR_SRAM]    = { 0x00008000,    0x8000 },
+
+    [QUARD_STAR_TEST]    = { 0x00100000,    0x1000 },
+    [QUARD_STAR_CLINT]   = { 0x02000000,   0x10000 },
+    [QUARD_STAR_PLIC]    = { 0x0c000000, 0x4000000 },
+
+    [QUARD_STAR_UART0]   = { 0x10000000,    0x1000 },
+    [QUARD_STAR_UART1]   = { 0x10001000,    0x1000 },
+    [QUARD_STAR_UART2]   = { 0x10002000,    0x1000 },
+    [QUARD_STAR_RTC]     = { 0x10003000,    0x1000 },
+    [QUARD_STAR_I2C0]    = { 0x10004000,    0x1000 },
+    [QUARD_STAR_I2C1]    = { 0x10005000,    0x1000 },
+    [QUARD_STAR_I2C2]    = { 0x10006000,    0x1000 },
+    [QUARD_STAR_SPI0]    = { 0x10007000,    0x1000 },
+    [QUARD_STAR_SPI1]    = { 0x10008000,    0x1000 },
+
+    [QUARD_STAR_VIRTIO0] = { 0x10100000,    0x1000 },
+    [QUARD_STAR_VIRTIO1] = { 0x10101000,    0x1000 },
+    [QUARD_STAR_VIRTIO2] = { 0x10102000,    0x1000 },
+    [QUARD_STAR_VIRTIO3] = { 0x10103000,    0x1000 },
+    [QUARD_STAR_VIRTIO4] = { 0x10104000,    0x1000 },
+    [QUARD_STAR_VIRTIO5] = { 0x10105000,    0x1000 },
+    [QUARD_STAR_VIRTIO6] = { 0x10106000,    0x1000 },
+    [QUARD_STAR_VIRTIO7] = { 0x10107000,    0x1000 },
+    [QUARD_STAR_FW_CFG]  = { 0x10108000,      0x18 },
+
+    [QUARD_STAR_FLASH]   = { 0x20000000, 0x2000000 },
+    [QUARD_STAR_DRAM]    = { 0x80000000,       0x0 },
 };
 
-#define QUARD_STAR_FLASH_SECTOR_SIZE (256 * KiB)
-
-static PFlashCFI01 *quard_star_flash_create(QuardStarState *s,
-                                       const char *name,
-                                       const char *alias_prop_name)
+static void quard_star_setup_rom_reset_vec(MachineState *machine, 
+                                RISCVHartArrayState *harts, hwaddr start_addr,
+                                hwaddr rom_base, hwaddr rom_size,
+                                uint64_t kernel_entry, uint32_t fdt_load_addr)
 {
-    DeviceState *dev = qdev_new(TYPE_PFLASH_CFI01);
-
-    qdev_prop_set_uint64(dev, "sector-length", QUARD_STAR_FLASH_SECTOR_SIZE);
-    qdev_prop_set_uint8(dev, "width", 4);
-    qdev_prop_set_uint8(dev, "device-width", 2);
-    qdev_prop_set_bit(dev, "big-endian", false);
-    qdev_prop_set_uint16(dev, "id0", 0x89);
-    qdev_prop_set_uint16(dev, "id1", 0x18);
-    qdev_prop_set_uint16(dev, "id2", 0x00);
-    qdev_prop_set_uint16(dev, "id3", 0x00);
-    qdev_prop_set_string(dev, "name", name);
-
-    object_property_add_child(OBJECT(s), name, OBJECT(dev));
-    object_property_add_alias(OBJECT(s), alias_prop_name,
-                              OBJECT(dev), "drive");
-
-    return PFLASH_CFI01(dev);
-}
-
-static void quard_star_flash_map(PFlashCFI01 *flash,
-                            hwaddr base, hwaddr size,
-                            MemoryRegion *sysmem)
-{
-    DeviceState *dev = DEVICE(flash);
-
-    assert(QEMU_IS_ALIGNED(size, QUARD_STAR_FLASH_SECTOR_SIZE));
-    assert(size / QUARD_STAR_FLASH_SECTOR_SIZE <= UINT32_MAX);
-    qdev_prop_set_uint32(dev, "num-blocks", size / QUARD_STAR_FLASH_SECTOR_SIZE);
-    sysbus_realize_and_unref(SYS_BUS_DEVICE(dev), &error_fatal);
-
-    memory_region_add_subregion(sysmem, base,
-                                sysbus_mmio_get_region(SYS_BUS_DEVICE(dev),
-                                                       0));
-}
-
-static void quard_star_setup_rom_reset_vec(MachineState *machine, RISCVHartArrayState *harts,
-                               hwaddr start_addr,
-                               hwaddr rom_base, hwaddr rom_size,
-                               uint64_t kernel_entry,
-                               uint32_t fdt_load_addr)
-{
-    int i;
     uint32_t start_addr_hi32 = 0x00000000;
 
     if (!riscv_is_32bit(harts)) {
@@ -136,7 +104,7 @@ static void quard_star_setup_rom_reset_vec(MachineState *machine, RISCVHartArray
     }
 
     /* copy in the reset vector in little_endian byte order */
-    for (i = 0; i < ARRAY_SIZE(reset_vec); i++) {
+    for (int i = 0; i < ARRAY_SIZE(reset_vec); i++) {
         reset_vec[i] = cpu_to_le32(reset_vec[i]);
     }
 
@@ -144,40 +112,37 @@ static void quard_star_setup_rom_reset_vec(MachineState *machine, RISCVHartArray
                           rom_base, &address_space_memory);
 }
 
-static void quard_star_machine_init(MachineState *machine)
+static void quard_star_cpu_create(MachineState *machine)
 {
-    const MemMapEntry *memmap = virt_memmap;
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
-    MemoryRegion *system_memory = get_system_memory();
-    MemoryRegion *main_mem = g_new(MemoryRegion, 1);
-    MemoryRegion *sram_mem = g_new(MemoryRegion, 1);
-    MemoryRegion *mask_rom = g_new(MemoryRegion, 1);
     RISCVHartArrayState *cpus;
-    int i, j, base_hartid, hart_count;
-    char *plic_hart_config, *cpus_name;
-    size_t plic_hart_config_len;
+    int base_hartid, hart_count;
+    char *cpus_name;
 
-    object_initialize_child(OBJECT(machine), "r-cluster", &s->r_cluster, TYPE_CPU_CLUSTER);
+    object_initialize_child(OBJECT(machine), "r-cluster", 
+                                    &s->r_cluster, TYPE_CPU_CLUSTER);
     qdev_prop_set_uint32(DEVICE(&s->r_cluster), "cluster-id", 0);
 
-    object_initialize_child(OBJECT(machine), "c-cluster", &s->c_cluster, TYPE_CPU_CLUSTER);
+    object_initialize_child(OBJECT(machine), "c-cluster",
+                                    &s->c_cluster, TYPE_CPU_CLUSTER);
     qdev_prop_set_uint32(DEVICE(&s->c_cluster), "cluster-id", 1);
-
-    for (i = 0; i < 2; i++) {
+    
+    for (int i = 0; i < 2; i++) {
         if(i < QUARD_STAR_MANAGEMENT_CPU_COUNT) {
             base_hartid = 0;
             hart_count = QUARD_STAR_MANAGEMENT_CPU_COUNT;
             cpus_name = g_strdup_printf("r_cpus%d", i);
             cpus = &s->r_cpus[i];
-            object_initialize_child(OBJECT(&s->r_cluster), cpus_name, cpus,
-                                    TYPE_RISCV_HART_ARRAY);
+            object_initialize_child(OBJECT(&s->r_cluster), cpus_name,
+                                        cpus, TYPE_RISCV_HART_ARRAY);
         } else {
             base_hartid = QUARD_STAR_MANAGEMENT_CPU_COUNT;
             hart_count = machine->smp.cpus - QUARD_STAR_MANAGEMENT_CPU_COUNT;
-            cpus_name = g_strdup_printf("c_cpus%d", i-QUARD_STAR_MANAGEMENT_CPU_COUNT);
+            cpus_name = g_strdup_printf("c_cpus%d",
+                                          i-QUARD_STAR_MANAGEMENT_CPU_COUNT);
             cpus = &s->c_cpus[i-QUARD_STAR_MANAGEMENT_CPU_COUNT];
-            object_initialize_child(OBJECT(&s->c_cluster), cpus_name, cpus,
-                                    TYPE_RISCV_HART_ARRAY);
+            object_initialize_child(OBJECT(&s->c_cluster), cpus_name, 
+                                        cpus, TYPE_RISCV_HART_ARRAY);
         }
         g_free(cpus_name);
         object_property_set_str(OBJECT(cpus), "cpu-type",
@@ -187,24 +152,32 @@ static void quard_star_machine_init(MachineState *machine)
         object_property_set_int(OBJECT(cpus), "num-harts",
                                 hart_count, &error_abort);
         object_property_set_int(OBJECT(cpus), "resetvec", 
-                                virt_memmap[QUARD_STAR_MROM].base, &error_abort);
+                                virt_memmap[QUARD_STAR_MROM].base, 
+                                &error_abort);
         sysbus_realize(SYS_BUS_DEVICE(cpus), &error_abort);
     }
 
     qdev_realize(DEVICE(&s->r_cluster), NULL, &error_abort);
     qdev_realize(DEVICE(&s->c_cluster), NULL, &error_abort);
+}
+
+static void quard_star_interrupt_controller_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+    size_t plic_hart_config_len;
+    char *plic_hart_config;
 
     sifive_clint_create(
-        memmap[QUARD_STAR_CLINT].base,
-        memmap[QUARD_STAR_CLINT].size, 0, machine->smp.cpus,
+        virt_memmap[QUARD_STAR_CLINT].base,
+        virt_memmap[QUARD_STAR_CLINT].size, 0, machine->smp.cpus,
         SIFIVE_SIP_BASE, SIFIVE_TIMECMP_BASE, SIFIVE_TIME_BASE,
         SIFIVE_CLINT_TIMEBASE_FREQ, true);
 
     plic_hart_config_len =
         (strlen(QUARD_STAR_PLIC_HART_CONFIG) + 1) * machine->smp.cpus;
     plic_hart_config = g_malloc0(plic_hart_config_len);
-    for (j = 0; j < machine->smp.cpus; j++) {
-        if (j != 0) {
+    for (int i = 0; i < machine->smp.cpus; i++) {
+        if (i != 0) {
             strncat(plic_hart_config, ",", plic_hart_config_len);
         }
         strncat(plic_hart_config, QUARD_STAR_PLIC_HART_CONFIG,
@@ -213,7 +186,7 @@ static void quard_star_machine_init(MachineState *machine)
     }
 
     s->plic = sifive_plic_create(
-        memmap[QUARD_STAR_PLIC].base,
+        virt_memmap[QUARD_STAR_PLIC].base,
         plic_hart_config, 0,
         QUARD_STAR_PLIC_NUM_SOURCES,
         QUARD_STAR_PLIC_NUM_PRIORITIES,
@@ -223,92 +196,154 @@ static void quard_star_machine_init(MachineState *machine)
         QUARD_STAR_PLIC_ENABLE_STRIDE,
         QUARD_STAR_PLIC_CONTEXT_BASE,
         QUARD_STAR_PLIC_CONTEXT_STRIDE,
-        memmap[QUARD_STAR_PLIC].size);
+        virt_memmap[QUARD_STAR_PLIC].size);
     g_free(plic_hart_config);
+}
+
+static void quard_star_memory_create(MachineState *machine)
+{
+    MemoryRegion *system_memory = get_system_memory();
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+    MemoryRegion *main_mem = g_new(MemoryRegion, 1);
+    MemoryRegion *sram_mem = g_new(MemoryRegion, 1);
+    MemoryRegion *mask_rom = g_new(MemoryRegion, 1);
 
     memory_region_init_ram(main_mem, NULL, "riscv_quard_star_board.dram",
                            machine->ram_size, &error_fatal);
-    memory_region_add_subregion(system_memory, memmap[QUARD_STAR_DRAM].base,
-        main_mem);
+    memory_region_add_subregion(system_memory, 
+                                virt_memmap[QUARD_STAR_DRAM].base, main_mem);
 
     memory_region_init_ram(sram_mem, NULL, "riscv_quard_star_board.sram",
-                           memmap[QUARD_STAR_SRAM].size, &error_fatal);
-    memory_region_add_subregion(system_memory, memmap[QUARD_STAR_SRAM].base,
-        sram_mem);
+                           virt_memmap[QUARD_STAR_SRAM].size, &error_fatal);
+    memory_region_add_subregion(system_memory, 
+                                virt_memmap[QUARD_STAR_SRAM].base, sram_mem);
 
     memory_region_init_rom(mask_rom, NULL, "riscv_quard_star_board.mrom",
-                           memmap[QUARD_STAR_MROM].size, &error_fatal);
-    memory_region_add_subregion(system_memory, memmap[QUARD_STAR_MROM].base,
-                                mask_rom);
+                           virt_memmap[QUARD_STAR_MROM].size, &error_fatal);
+    memory_region_add_subregion(system_memory, 
+                                virt_memmap[QUARD_STAR_MROM].base, mask_rom);
 
-    quard_star_setup_rom_reset_vec(machine, &s->r_cpus[0], virt_memmap[QUARD_STAR_FLASH].base,
+    quard_star_setup_rom_reset_vec(machine, &s->r_cpus[0], 
+                              virt_memmap[QUARD_STAR_FLASH].base,
                               virt_memmap[QUARD_STAR_MROM].base,
                               virt_memmap[QUARD_STAR_MROM].size,
                               0x0, 0x0);
+}
 
-    serial_mm_init(system_memory, memmap[QUARD_STAR_UART0].base,
+static void quard_star_serial_create(MachineState *machine)
+{    
+    MemoryRegion *system_memory = get_system_memory();
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    serial_mm_init(system_memory, virt_memmap[QUARD_STAR_UART0].base,
         0, qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_UART0_IRQ), 399193,
         serial_hd(0), DEVICE_LITTLE_ENDIAN);
-    serial_mm_init(system_memory, memmap[QUARD_STAR_UART1].base,
+    serial_mm_init(system_memory, virt_memmap[QUARD_STAR_UART1].base,
         0, qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_UART1_IRQ), 399193,
         serial_hd(1), DEVICE_LITTLE_ENDIAN);
-    serial_mm_init(system_memory, memmap[QUARD_STAR_UART2].base,
+    serial_mm_init(system_memory, virt_memmap[QUARD_STAR_UART2].base,
         0, qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_UART2_IRQ), 399193,
         serial_hd(2), DEVICE_LITTLE_ENDIAN);
+}
 
-    sysbus_create_simple("goldfish_rtc", memmap[QUARD_STAR_RTC].base,
+static void quard_star_syscon_create(MachineState *machine)
+{    
+    sifive_test_create(virt_memmap[QUARD_STAR_TEST].base);
+}
+
+static void quard_star_rtc_create(MachineState *machine)
+{    
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    sysbus_create_simple("goldfish_rtc", virt_memmap[QUARD_STAR_RTC].base,
         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_RTC_IRQ));
+}
 
-    sifive_test_create(memmap[QUARD_STAR_TEST].base);
+static void quard_star_flash_create(MachineState *machine)
+{ 
+    MemoryRegion *system_memory = get_system_memory();
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+    uint64_t flash_sector_size = 256 * KiB;
+    DeviceState *dev = qdev_new(TYPE_PFLASH_CFI01);
 
-    for (i = 0; i < QUARD_STAR_COUNT; i++) {
-        sysbus_create_simple("virtio-mmio",
-            memmap[QUARD_STAR_VIRTIO].base + i * memmap[QUARD_STAR_VIRTIO].size,
-            qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_IRQ + i));
-    }
-
-    s->fw_cfg = fw_cfg_init_mem_wide(memmap[QUARD_STAR_FW_CFG].base + 8, 
-                                     memmap[QUARD_STAR_FW_CFG].base,  8, 
-                                     memmap[QUARD_STAR_FW_CFG].base + 16,
-                                     &address_space_memory);
-    fw_cfg_add_i16(s->fw_cfg, FW_CFG_NB_CPUS, (uint16_t)machine->smp.cpus);
-    rom_set_fw(s->fw_cfg);
-
-    s->flash = quard_star_flash_create(s, "quard-star.flash0", "pflash0");
+    qdev_prop_set_uint64(dev, "sector-length", flash_sector_size);
+    qdev_prop_set_uint8(dev, "width", 4);
+    qdev_prop_set_uint8(dev, "device-width", 2);
+    qdev_prop_set_bit(dev, "big-endian", false);
+    qdev_prop_set_uint16(dev, "id0", 0x89);
+    qdev_prop_set_uint16(dev, "id1", 0x18);
+    qdev_prop_set_uint16(dev, "id2", 0x00);
+    qdev_prop_set_uint16(dev, "id3", 0x00);
+    qdev_prop_set_string(dev, "name", "quard-star.flash0");
+    object_property_add_child(OBJECT(s), "quard-star.flash0", OBJECT(dev));
+    object_property_add_alias(OBJECT(s), "pflash0",
+                              OBJECT(dev), "drive");
+    s->flash = PFLASH_CFI01(dev);
     pflash_cfi01_legacy_drive(s->flash, drive_get(IF_PFLASH, 0, 0));
-    quard_star_flash_map(s->flash, virt_memmap[QUARD_STAR_FLASH].base,
-                         virt_memmap[QUARD_STAR_FLASH].size, system_memory);
+
+    assert(QEMU_IS_ALIGNED(virt_memmap[QUARD_STAR_FLASH].size, 
+                                flash_sector_size));
+    assert(virt_memmap[QUARD_STAR_FLASH].size/flash_sector_size <= UINT32_MAX);
+    qdev_prop_set_uint32(dev, "num-blocks", 
+                    virt_memmap[QUARD_STAR_FLASH].size / flash_sector_size);
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(dev), &error_fatal);
+
+    memory_region_add_subregion(system_memory, 
+                            virt_memmap[QUARD_STAR_FLASH].base,
+                            sysbus_mmio_get_region(SYS_BUS_DEVICE(dev), 0));
+}
+
+static void quard_star_i2c_create(MachineState *machine)
+{ 
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
 
     object_initialize_child(OBJECT(machine), "i2c0", &s->i2c[0], TYPE_IMX_I2C);
     sysbus_realize(SYS_BUS_DEVICE(&s->i2c[0]), &error_abort);
-    sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[0]), 0, memmap[QUARD_STAR_I2C0].base);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[0]), 0, 
+                        virt_memmap[QUARD_STAR_I2C0].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->i2c[0]), 0,
                     qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2C0_IRQ));
+
     object_initialize_child(OBJECT(machine), "i2c1", &s->i2c[1], TYPE_IMX_I2C);
     sysbus_realize(SYS_BUS_DEVICE(&s->i2c[1]), &error_abort);
-    sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[1]), 0, memmap[QUARD_STAR_I2C1].base);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[1]), 0, 
+                        virt_memmap[QUARD_STAR_I2C1].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->i2c[1]), 0,
                     qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2C1_IRQ));
+
     object_initialize_child(OBJECT(machine), "i2c2", &s->i2c[2], TYPE_IMX_I2C);
     sysbus_realize(SYS_BUS_DEVICE(&s->i2c[2]), &error_abort);
-    sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[2]), 0, memmap[QUARD_STAR_I2C2].base);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->i2c[2]), 0, 
+                        virt_memmap[QUARD_STAR_I2C2].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->i2c[2]), 0,
                     qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2C2_IRQ));
+
     I2CSlave *i2c_dev = i2c_slave_new("at24c-eeprom", 0x50);
     DeviceState *dev = DEVICE(i2c_dev);
     qdev_prop_set_uint32(dev, "rom-size", 8*1024);
     i2c_slave_realize_and_unref(i2c_dev, s->i2c[0].bus, &error_abort);
+}
 
-    object_initialize_child(OBJECT(machine), "spi0", &s->spi[0], TYPE_SIFIVE_SPI);
+static void quard_star_spi_create(MachineState *machine)
+{ 
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    object_initialize_child(OBJECT(machine), "spi0", &s->spi[0],
+                                TYPE_SIFIVE_SPI);
     sysbus_realize(SYS_BUS_DEVICE(&s->spi[0]), &error_abort);
-    sysbus_mmio_map(SYS_BUS_DEVICE(&s->spi[0]), 0, memmap[QUARD_STAR_SPI0].base);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->spi[0]), 0, 
+                            virt_memmap[QUARD_STAR_SPI0].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[0]), 0,
-                           qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI0_IRQ));
-    object_initialize_child(OBJECT(machine), "spi1", &s->spi[1], TYPE_SIFIVE_SPI);
+                    qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI0_IRQ));
+
+    object_initialize_child(OBJECT(machine), "spi1", &s->spi[1],
+                                TYPE_SIFIVE_SPI);
     sysbus_realize(SYS_BUS_DEVICE(&s->spi[1]), &error_abort);
-    sysbus_mmio_map(SYS_BUS_DEVICE(&s->spi[1]), 0, memmap[QUARD_STAR_SPI1].base);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->spi[1]), 0, 
+                            virt_memmap[QUARD_STAR_SPI1].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[1]), 0,
-                           qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI1_IRQ));
+                    qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI1_IRQ));
+                    
     DeviceState *flash_dev = qdev_new("is25wp256");
     DriveInfo *dinfo = drive_get_next(IF_MTD);
     if (dinfo) {
@@ -319,6 +354,64 @@ static void quard_star_machine_init(MachineState *machine)
     qdev_realize_and_unref(flash_dev, BUS(s->spi[0].spi), &error_fatal);
     qemu_irq flash_cs = qdev_get_gpio_in_named(flash_dev, SSI_GPIO_CS, 0);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[0]), 1, flash_cs);
+}
+
+static void quard_star_virtio_mmio_create(MachineState *machine)
+{    
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO0].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO0_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO1].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO1_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO2].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO2_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO3].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO3_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO4].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO4_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO5].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO5_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO6].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO6_IRQ));
+    sysbus_create_simple("virtio-mmio",
+        virt_memmap[QUARD_STAR_VIRTIO7].base,
+        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_VIRTIO7_IRQ));
+}
+
+static void quard_star_fw_cfg_create(MachineState *machine)
+{    
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    s->fw_cfg = fw_cfg_init_mem_wide(virt_memmap[QUARD_STAR_FW_CFG].base + 8, 
+                                     virt_memmap[QUARD_STAR_FW_CFG].base,  8, 
+                                     virt_memmap[QUARD_STAR_FW_CFG].base + 16,
+                                     &address_space_memory);
+    fw_cfg_add_i16(s->fw_cfg, FW_CFG_NB_CPUS, (uint16_t)machine->smp.cpus);
+    rom_set_fw(s->fw_cfg);
+}
+
+static void quard_star_machine_init(MachineState *machine)
+{
+    quard_star_cpu_create(machine);
+    quard_star_interrupt_controller_create(machine);
+    quard_star_memory_create(machine);
+    quard_star_flash_create(machine);
+    quard_star_syscon_create(machine);
+    quard_star_rtc_create(machine);
+    quard_star_serial_create(machine);
+    quard_star_i2c_create(machine);
+    quard_star_spi_create(machine);
+
+    quard_star_virtio_mmio_create(machine);
+    quard_star_fw_cfg_create(machine);
 }
 
 static void quard_star_machine_instance_init(Object *obj)
