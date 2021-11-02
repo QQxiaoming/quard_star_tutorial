@@ -1,0 +1,386 @@
+/dts-v1/;
+
+/ {
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+	compatible = "riscv-quard-star";
+	model = "riscv-quard-star,qemu";
+
+	fw_cfg:fw_cfg@10108000 {
+		dma-coherent;
+		reg = <0x0 0x10108000 0x0 0x18>;
+		compatible = "qemu,fw-cfg-mmio";
+		status = "disabled";
+	};
+
+	cpus {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+		timebase-frequency = <0x989680>;
+
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			reg = <0x0>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core0_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu1: cpu@1 {
+			device_type = "cpu";
+			reg = <0x1>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core1_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu2: cpu@2 {
+			device_type = "cpu";
+			reg = <0x2>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core2_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu3: cpu@3 {
+			device_type = "cpu";
+			reg = <0x3>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core3_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu4: cpu@4 {
+			device_type = "cpu";
+			reg = <0x4>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core4_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu5: cpu@5 {
+			device_type = "cpu";
+			reg = <0x5>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core5_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu6: cpu@6 {
+			device_type = "cpu";
+			reg = <0x6>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core6_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu7: cpu@7 {
+			device_type = "cpu";
+			reg = <0x7>;
+			status = "okay";
+			compatible = "riscv";
+			riscv,isa = "rv64imafdcsu";
+			mmu-type = "riscv,sv48";
+
+			core7_ic:interrupt-controller {
+				#interrupt-cells = <0x1>;
+				interrupt-controller;
+				compatible = "riscv,cpu-intc";
+			};
+		};
+
+		cpu-map {
+
+			cluster0 {
+
+				core0 {
+					cpu = <&cpu0>;
+				};
+
+				core1 {
+					cpu = <&cpu1>;
+				};
+
+				core2 {
+					cpu = <&cpu2>;
+				};
+
+				core3 {
+					cpu = <&cpu3>;
+				};
+
+				core4 {
+					cpu = <&cpu4>;
+				};
+
+				core5 {
+					cpu = <&cpu5>;
+				};
+
+				core6 {
+					cpu = <&cpu6>;
+				};
+
+				core7 {
+					cpu = <&cpu7>;
+				};
+			};
+		};
+	};
+
+	soc {
+		#address-cells = <0x2>;
+		#size-cells = <0x2>;
+		compatible = "simple-bus";
+		ranges;
+
+		plic:plic@c000000 {
+			riscv,ndev = <0x35>;
+			reg = <0x0 0xc000000 0x0 0x210000>;
+			interrupts-extended = <&core0_ic 0xb &core0_ic 0x9>,
+								  <&core1_ic 0xb &core1_ic 0x9>,
+								  <&core2_ic 0xb &core2_ic 0x9>,
+								  <&core3_ic 0xb &core3_ic 0x9>,
+								  <&core4_ic 0xb &core4_ic 0x9>,
+								  <&core5_ic 0xb &core5_ic 0x9>,
+								  <&core6_ic 0xb &core6_ic 0x9>,
+								  <&core7_ic 0xb &core7_ic 0x9>;
+			interrupt-controller;
+			compatible = "riscv,plic0";
+			#interrupt-cells = <0x1>;
+			#address-cells = <0x0>;
+		};
+
+		clint:clint@2000000 {
+			interrupts-extended = <&core0_ic 0x3 &core0_ic 0x7>,
+								  <&core1_ic 0x3 &core1_ic 0x7>,
+								  <&core2_ic 0x3 &core2_ic 0x7>,
+								  <&core3_ic 0x3 &core3_ic 0x7>,
+								  <&core4_ic 0x3 &core4_ic 0x7>,
+								  <&core5_ic 0x3 &core5_ic 0x7>,
+								  <&core6_ic 0x3 &core6_ic 0x7>,
+								  <&core7_ic 0x3 &core7_ic 0x7>;
+			reg = <0x0 0x2000000 0x0 0x10000>;
+			compatible = "riscv,clint0";
+		};
+
+		uart0:uart0@10000000 {
+			interrupts = <0xa>;
+			interrupt-parent = <&plic>;
+			clock-frequency = <0x384000>;
+			reg = <0x0 0x10000000 0x0 0x100>;
+			compatible = "ns16550a";
+			status = "disabled";
+		};
+
+		uart1:uart1@10001000 {
+			interrupts = <0xb>;
+			interrupt-parent = <&plic>;
+			clock-frequency = <0x384000>;
+			reg = <0x0 0x10001000 0x0 0x100>;
+			compatible = "ns16550a";
+			status = "disabled";
+		};
+
+		uart2:uart2@10002000 {
+			interrupts = <0xc>;
+			interrupt-parent = <&plic>;
+			clock-frequency = <0x384000>;
+			reg = <0x0 0x10002000 0x0 0x100>;
+			compatible = "ns16550a";
+			status = "disabled";
+		};
+		
+		pflash:pflash@20000000 {
+			compatible = "cfi-flash";
+			reg = <0x0 0x20000000 0x0 0x2000000>;
+			bank-width = <4>;
+			status = "disabled";
+		};
+		
+		rtc:rtc@10003000 {
+			interrupts = <0xd>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10003000 0x0 0x1000>;
+			compatible = "google,goldfish-rtc";
+			status = "disabled";
+		};
+
+		i2c0: i2c@10004000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,imx-i2c-quard";
+			reg = <0x0 0x10004000 0x0 0x1000>;
+			interrupts = <0xe>;
+			interrupt-parent = <&plic>;
+			status = "disabled";
+		};
+		
+		i2c1: i2c@10005000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,imx-i2c-quard";
+			reg = <0x0 0x10005000 0x0 0x1000>;
+			interrupts = <0xf>;
+			interrupt-parent = <&plic>;
+			status = "disabled";
+		};		
+		
+		i2c2: i2c@10006000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,imx-i2c-quard";
+			reg = <0x0 0x10006000 0x0 0x1000>;
+			interrupts = <0x10>;
+			interrupt-parent = <&plic>;
+			status = "disabled";
+		};
+
+		qspi0: spi@10007000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,spi0-quard";
+			reg = <0x0 0x10007000 0x0 0x1000>;
+			interrupts = <0x11>;
+			interrupt-parent = <&plic>;
+			status = "disabled";
+		};
+
+		qspi1: spi@10008000 {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			compatible = "quard,spi0-quard";
+			reg = <0x0 0x10008000 0x0 0x1000>;
+			interrupts = <0x12>;
+			interrupt-parent = <&plic>;
+			status = "disabled";
+		};
+
+		test:test@100000 {
+			reg = <0x0 0x100000 0x0 0x1000>;
+			compatible = "sifive,test1", "sifive,test0", "syscon";
+			status = "disabled";
+		};
+
+		reboot:reboot {
+			value = <0x7777>;
+			offset = <0x0>;
+			regmap = <&test>;
+			compatible = "syscon-reboot";
+			status = "disabled";
+		};
+	
+		virtio_mmio0:virtio_mmio@10107000 {
+			interrupts = <0x8>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10107000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio1:virtio_mmio@10106000 {
+			interrupts = <0x7>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10106000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio2:virtio_mmio@10105000 {
+			interrupts = <0x6>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10105000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio3:virtio_mmio@10104000 {
+			interrupts = <0x5>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10104000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio4:virtio_mmio@10103000 {
+			interrupts = <0x4>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10103000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio5:virtio_mmio@10102000 {
+			interrupts = <0x3>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10102000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio6:virtio_mmio@10101000 {
+			interrupts = <0x2>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10101000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+
+		virtio_mmio7:virtio_mmio@10100000 {
+			interrupts = <0x1>;
+			interrupt-parent = <&plic>;
+			reg = <0x0 0x10100000 0x0 0x1000>;
+			compatible = "virtio,mmio";
+			status = "disabled";
+		};
+	};
+};

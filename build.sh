@@ -54,7 +54,8 @@ build_sbi_dtb()
     # 生成sbi.dtb
     echo "\033[1;4;41;32m生成sbi.dtb\033[0m"
     cd $SHELL_FOLDER/dts
-    dtc -I dts -O dtb -o $SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb quard_star_sbi.dts
+    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_sbi.dts > quard_star_sbi.dtb.dts.tmp
+    dtc -i $SHELL_FOLDER/dts -I dts -O dtb -o $SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb quard_star_sbi.dtb.dts.tmp 
 }
 
 build_trusted_domain()
@@ -91,7 +92,8 @@ build_uboot_dtb()
     # 生成uboot.dtb
     echo "\033[1;4;41;32m生成uboot.dtb\033[0m"
     cd $SHELL_FOLDER/dts
-    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dts
+    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
+    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
 }
 
 build_firmware()
