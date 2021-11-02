@@ -230,6 +230,11 @@ build_rootfs()
         if [ ! -d "$TARGET_ROOTFS_DIR/mnt" ]; then  
         mkdir $TARGET_ROOTFS_DIR/mnt
         fi
+        if [ ! -d "$TARGET_ROOTFS_DIR/var" ]; then  
+        mkdir $TARGET_ROOTFS_DIR/var
+        mkdir $TARGET_ROOTFS_DIR/var/log
+        mkdir $TARGET_ROOTFS_DIR/var/run
+        fi
         if [ ! -d "$TARGET_ROOTFS_DIR/lib" ]; then  
         mkdir $TARGET_ROOTFS_DIR/lib
         cd $TARGET_ROOTFS_DIR
