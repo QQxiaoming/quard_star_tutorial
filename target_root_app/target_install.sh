@@ -90,7 +90,7 @@ install_qt()
     cp -r $SHELL_FOLDER/host_output/plugins/generic /opt/Qt-5.12.11/plugins/
     cp $SHELL_FOLDER/host_output/lib/*.so.5.12.11 /opt/Qt-5.12.11/lib/
     cd /opt/Qt-5.12.11/lib
-    for file in `ls /opt/Qt-5.12.11/lib`
+    for file in /opt/Qt-5.12.11/lib/*
     do
         if [ -f $file ]; then  
             filename0=${file%.*.*.*}
