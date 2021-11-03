@@ -1,5 +1,5 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-PROCESSORS=`cat /proc/cpuinfo |grep "processor"|wc -l`
+PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 
 install_make()
 {

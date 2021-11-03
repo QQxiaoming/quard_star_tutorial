@@ -1,5 +1,5 @@
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-PROCESSORS=`cat /proc/cpuinfo |grep "processor"|wc -l`
+PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
 CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
 

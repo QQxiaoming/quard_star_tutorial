@@ -2,7 +2,7 @@
 set -e
 
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-PROCESSORS=`cat /proc/cpuinfo |grep "processor"|wc -l`
+PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 GLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
 GLIB_ELF_CROSS_PREFIX=$GLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
 GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR=$GLIB_ELF_CROSS_COMPILE_DIR/sysroot
@@ -14,7 +14,6 @@ BUILD_ROOTFS_OPT=$2
 
 build_qemu()
 {
-    # 编译qemu
     echo "------------------------------ 编译qemu ------------------------------"
     cd $SHELL_FOLDER/qemu-6.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu" ]; then  
@@ -26,7 +25,6 @@ build_qemu()
 
 build_lowlevelboot()
 {
-    # 编译lowlevelboot
     echo "-------------------------- 编译lowlevelboot --------------------------"
     if [ ! -d "$SHELL_FOLDER/output/lowlevelboot" ]; then  
     mkdir $SHELL_FOLDER/output/lowlevelboot
@@ -40,7 +38,6 @@ build_lowlevelboot()
 
 build_opensbi()
 {
-    # 编译opensbi
     echo "---------------------------- 编译opensbi -----------------------------"
     if [ ! -d "$SHELL_FOLDER/output/opensbi" ]; then  
     mkdir $SHELL_FOLDER/output/opensbi
@@ -54,7 +51,6 @@ build_opensbi()
 
 build_sbi_dtb()
 {
-    # 生成sbi.dtb
     echo "---------------------------- 生成sbi.dtb -----------------------------"
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_sbi.dts > quard_star_sbi.dtb.dts.tmp
@@ -63,7 +59,6 @@ build_sbi_dtb()
 
 build_trusted_domain()
 {
-    # 编译trusted_domain
     echo "------------------------- 编译trusted_domain -------------------------"
     if [ ! -d "$SHELL_FOLDER/output/trusted_domain" ]; then  
     mkdir $SHELL_FOLDER/output/trusted_domain
@@ -76,7 +71,6 @@ build_trusted_domain()
 
 build_uboot()
 {
-    # 编译uboot
     echo "----------------------------- 编译uboot ------------------------------"
     if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then  
     mkdir $SHELL_FOLDER/output/uboot
@@ -92,7 +86,6 @@ build_uboot()
 
 build_uboot_dtb()
 {
-    # 生成uboot.dtb
     echo "--------------------------- 生成uboot.dtb ----------------------------"
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
@@ -101,31 +94,30 @@ build_uboot_dtb()
 
 build_firmware()
 {
-    # 合成firmware固件
     echo "--------------------------- 合成firmware固件 ---------------------------"
     if [ ! -f "$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin" ]; then  
         echo "not found lowlevel_fw.bin, please ./build.sh lowlevelboot"
-        exit -1
+        exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb" ]; then  
         echo "not found quard_star_sbi.dtb, please ./build.sh sbi_dtb"
-        exit -1
+        exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/uboot/quard_star_uboot.dtb" ]; then  
         echo "not found quard_star_uboot.dtb, please ./build.sh uboot_dtb"
-        exit -1
+        exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/opensbi/fw_jump.bin" ]; then  
         echo "not found fw_jump.bin, please ./build.sh opensbi"
-        exit -1
+        exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/trusted_domain/trusted_fw.bin" ]; then  
         echo "not found trusted_fw.bin, please ./build.sh trusted_domain"
-        exit -1
+        exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/uboot/u-boot.bin" ]; then  
         echo "not found u-boot.bin, please ./build.sh uboot"
-        exit -1
+        exit 255
     fi
     if [ ! -d "$SHELL_FOLDER/output/fw" ]; then  
     mkdir $SHELL_FOLDER/output/fw
@@ -147,7 +139,6 @@ build_firmware()
 
 build_kernel()
 {
-    # 编译linux kernel
     echo "-------------------------- 编译linux kernel --------------------------"
     if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
     mkdir $SHELL_FOLDER/output/linux_kernel
@@ -160,7 +151,6 @@ build_kernel()
 
 build_busybox()
 {
-    # 编译busybox
     echo "---------------------------- 编译busybox -----------------------------"
     if [ ! -d "$SHELL_FOLDER/output/busybox" ]; then  
     mkdir $SHELL_FOLDER/output/busybox
@@ -173,19 +163,18 @@ build_busybox()
 
 build_rootfs()
 {
-    # 合成文件系统映像
     echo "----------------------------- 合成文件系统映像 -----------------------------"
     if [ ! -f "$SHELL_FOLDER/output/linux_kernel/Image" ]; then  
         echo "not found Image, please ./build.sh kernel"
-        exit -1
+        exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/uboot/quard_star_uboot.dtb" ]; then  
         echo "not found quard_star_uboot.dtb, please ./build.sh uboot_dtb"
-        exit -1
+        exit 255
     fi
     if [ ! -d "$SHELL_FOLDER/output/busybox" ]; then  
         echo "not found busybox, please ./build.sh busybox"
-        exit -1
+        exit 255
     fi
     MAKE_ROOTFS_DIR=$SHELL_FOLDER/output/rootfs
     TARGET_ROOTFS_DIR=$MAKE_ROOTFS_DIR/rootfs
@@ -248,14 +237,14 @@ build_rootfs()
         cp -r $GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_ROOTFS_DIR
-        pkexec $SHELL_FOLDER/build_rootfs/build.sh $MAKE_ROOTFS_DIR
+        pkexec $SHELL_FOLDER/build_rootfs/build_fs.sh $MAKE_ROOTFS_DIR
         ;;
     bootfs)
         cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
         $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
-        pkexec $SHELL_FOLDER/build_rootfs/build_only_bootfs.sh $MAKE_ROOTFS_DIR
+        pkexec $SHELL_FOLDER/build_rootfs/build_fs_only_bootfs.sh $MAKE_ROOTFS_DIR
         ;;
     *)
         echo "skip build rootfs.img!"

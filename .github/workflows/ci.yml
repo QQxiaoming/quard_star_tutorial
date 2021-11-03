@@ -40,10 +40,10 @@ jobs:
           DOWNLOAD_URL_BASE=https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/
           wget $DOWNLOAD_URL_BASE/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
           # prebuilt toolchain from riscv official is not ok, due to medlow compile
-          # see The default code model, medlow, can only access addresses below 0x80000000 on a 64-bit part, 
-          # or the entire memory on a 32-bit part due to wraparound. If you want to access memory above 2GB on a 64-bit part, 
-          # you have to use the medany code model, via the -mcmodel=medany compiler option. If you are linking with libraries, 
-          # like the C library, then those libraries must also be compiled with medany. It you are building your own toolchain, 
+          # see The default code model, medlow, can only access addresses below 0x80000000 on a 64-bit part,
+          # or the entire memory on a 32-bit part due to wraparound. If you want to access memory above 2GB on a 64-bit part,
+          # you have to use the medany code model, via the -mcmodel=medany compiler option. If you are linking with libraries,
+          # like the C library, then those libraries must also be compiled with medany. It you are building your own toolchain,
           # this works best if you use --with-cmodel=medany when configuring
           #wget $DOWNLOAD_URL_BASE/riscv64-elf-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
           #tar -xzf riscv64-elf-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
@@ -78,24 +78,24 @@ jobs:
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
           du -sh /opt/gcc-riscv64-unknown-linux-gnu
           du -sh /opt/gcc-riscv64-unknown-elf
-      
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: build
           path: |
             build.tar.gz
-      
+
       - name: Upload prebuilt toolchain
         uses: actions/upload-artifact@v2.2.4
         with:
           name: prebuilt_toolchain
           path: |
             toolchain.tar.gz
-      
+
       - name: Run tests
         run: |
           timeout --foreground -s SIGKILL 2m bash run.sh nographic > >(tee run_qemu.log) || {
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
-            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && exit 0; else echo "Failed in init process" && exit 1; fi; 
+            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && exit 0; else echo "Failed in init process" && exit 1; fi;
           }
