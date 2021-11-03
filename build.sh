@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 PROCESSORS=`cat /proc/cpuinfo |grep "processor"|wc -l`
 GLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
@@ -12,7 +15,7 @@ BUILD_ROOTFS_OPT=$2
 build_qemu()
 {
     # 编译qemu
-    echo "\033[1;4;41;32m编译qemu\033[0m"
+    echo "------------------------------ 编译qemu ------------------------------"
     cd $SHELL_FOLDER/qemu-6.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu  --target-list=riscv64-softmmu --enable-gtk  --enable-virtfs --disable-gio
@@ -24,7 +27,7 @@ build_qemu()
 build_lowlevelboot()
 {
     # 编译lowlevelboot
-    echo "\033[1;4;41;32m编译lowlevelboot\033[0m"
+    echo "-------------------------- 编译lowlevelboot --------------------------"
     if [ ! -d "$SHELL_FOLDER/output/lowlevelboot" ]; then  
     mkdir $SHELL_FOLDER/output/lowlevelboot
     fi  
@@ -38,7 +41,7 @@ build_lowlevelboot()
 build_opensbi()
 {
     # 编译opensbi
-    echo "\033[1;4;41;32m编译opensbi\033[0m"
+    echo "---------------------------- 编译opensbi -----------------------------"
     if [ ! -d "$SHELL_FOLDER/output/opensbi" ]; then  
     mkdir $SHELL_FOLDER/output/opensbi
     fi  
@@ -52,7 +55,7 @@ build_opensbi()
 build_sbi_dtb()
 {
     # 生成sbi.dtb
-    echo "\033[1;4;41;32m生成sbi.dtb\033[0m"
+    echo "---------------------------- 生成sbi.dtb -----------------------------"
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_sbi.dts > quard_star_sbi.dtb.dts.tmp
     dtc -i $SHELL_FOLDER/dts -I dts -O dtb -o $SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb quard_star_sbi.dtb.dts.tmp 
@@ -61,7 +64,7 @@ build_sbi_dtb()
 build_trusted_domain()
 {
     # 编译trusted_domain
-    echo "\033[1;4;41;32m编译trusted_domain\033[0m"
+    echo "------------------------- 编译trusted_domain -------------------------"
     if [ ! -d "$SHELL_FOLDER/output/trusted_domain" ]; then  
     mkdir $SHELL_FOLDER/output/trusted_domain
     fi  
@@ -74,7 +77,7 @@ build_trusted_domain()
 build_uboot()
 {
     # 编译uboot
-    echo "\033[1;4;41;32m编译uboot\033[0m"
+    echo "----------------------------- 编译uboot ------------------------------"
     if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then  
     mkdir $SHELL_FOLDER/output/uboot
     fi  
@@ -90,7 +93,7 @@ build_uboot()
 build_uboot_dtb()
 {
     # 生成uboot.dtb
-    echo "\033[1;4;41;32m生成uboot.dtb\033[0m"
+    echo "--------------------------- 生成uboot.dtb ----------------------------"
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
     dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
@@ -99,7 +102,7 @@ build_uboot_dtb()
 build_firmware()
 {
     # 合成firmware固件
-    echo "\033[1;4;41;32m合成firmware固件\033[0m"
+    echo "--------------------------- 合成firmware固件 ---------------------------"
     if [ ! -f "$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin" ]; then  
         echo "not found lowlevel_fw.bin, please ./build.sh lowlevelboot"
         exit -1
@@ -145,7 +148,7 @@ build_firmware()
 build_kernel()
 {
     # 编译linux kernel
-    echo "\033[1;4;41;32m编译linux kernel\033[0m"
+    echo "-------------------------- 编译linux kernel --------------------------"
     if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
     mkdir $SHELL_FOLDER/output/linux_kernel
     fi  
@@ -158,7 +161,7 @@ build_kernel()
 build_busybox()
 {
     # 编译busybox
-    echo "\033[1;4;41;32m编译busybox\033[0m"
+    echo "---------------------------- 编译busybox -----------------------------"
     if [ ! -d "$SHELL_FOLDER/output/busybox" ]; then  
     mkdir $SHELL_FOLDER/output/busybox
     fi  
@@ -171,7 +174,7 @@ build_busybox()
 build_rootfs()
 {
     # 合成文件系统映像
-    echo "\033[1;4;41;32m合成文件系统映像\033[0m"
+    echo "----------------------------- 合成文件系统映像 -----------------------------"
     if [ ! -f "$SHELL_FOLDER/output/linux_kernel/Image" ]; then  
         echo "not found Image, please ./build.sh kernel"
         exit -1
@@ -243,12 +246,15 @@ build_rootfs()
         fi
         cp -r $GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR/lib/* $TARGET_ROOTFS_DIR/lib/
         cp -r $GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
+        $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
+        $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_ROOTFS_DIR
         pkexec $SHELL_FOLDER/build_rootfs/build.sh $MAKE_ROOTFS_DIR
         ;;
     bootfs)
         cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
         $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
+        $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
         pkexec $SHELL_FOLDER/build_rootfs/build_only_bootfs.sh $MAKE_ROOTFS_DIR
         ;;
     *)
@@ -321,4 +327,4 @@ all)
 	;;
 esac
 
-echo "\033[1;4;41;32m完成\033[0m"
+echo "----------------------------------- 完成 -----------------------------------"
