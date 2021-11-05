@@ -98,7 +98,7 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=mtd,format=raw,file=$SHELL_FOLDER/output/fw/nor_fw.bin \
 -drive file=$SHELL_FOLDER/output/rootfs/rootfs.img,format=raw,id=drive0 \
 -fsdev local,security_model=mapped-xattr,id=fsdev0,path=$SHELL_FOLDER \
--netdev user,id=net0,net=192.168.31.0/24,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80 \
+-netdev user,id=net0,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,id=hd0,drive=drive0 \
 -device virtio-gpu-device,id=video0,xres=$WIDTH,yres=$HEIGHT \
