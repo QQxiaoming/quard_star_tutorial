@@ -1,6 +1,3 @@
-# scan virtio-net and virtio-blk device
-virtio scan
-
 # try use tftp load boot.cfg
 mw.l ${kernel_addr_r} 0x0
 dhcp ${kernel_addr_r} /boot.cfg
