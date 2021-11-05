@@ -115,50 +115,40 @@ static void quard_star_setup_rom_reset_vec(MachineState *machine,
 static void quard_star_cpu_create(MachineState *machine)
 {
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
-    RISCVHartArrayState *cpus;
-    int base_hartid, hart_count;
-    char *cpus_name;
-
-    object_initialize_child(OBJECT(machine), "r-cluster", 
-                                    &s->r_cluster, TYPE_CPU_CLUSTER);
-    qdev_prop_set_uint32(DEVICE(&s->r_cluster), "cluster-id", 0);
 
     object_initialize_child(OBJECT(machine), "c-cluster",
                                     &s->c_cluster, TYPE_CPU_CLUSTER);
-    qdev_prop_set_uint32(DEVICE(&s->c_cluster), "cluster-id", 1);
-    
-    for (int i = 0; i < 2; i++) {
-        if(i < QUARD_STAR_MANAGEMENT_CPU_COUNT) {
-            base_hartid = 0;
-            hart_count = QUARD_STAR_MANAGEMENT_CPU_COUNT;
-            cpus_name = g_strdup_printf("r_cpus%d", i);
-            cpus = &s->r_cpus[i];
-            object_initialize_child(OBJECT(&s->r_cluster), cpus_name,
-                                        cpus, TYPE_RISCV_HART_ARRAY);
-        } else {
-            base_hartid = QUARD_STAR_MANAGEMENT_CPU_COUNT;
-            hart_count = machine->smp.cpus - QUARD_STAR_MANAGEMENT_CPU_COUNT;
-            cpus_name = g_strdup_printf("c_cpus%d",
-                                          i-QUARD_STAR_MANAGEMENT_CPU_COUNT);
-            cpus = &s->c_cpus[i-QUARD_STAR_MANAGEMENT_CPU_COUNT];
-            object_initialize_child(OBJECT(&s->c_cluster), cpus_name, 
-                                        cpus, TYPE_RISCV_HART_ARRAY);
-        }
-        g_free(cpus_name);
-        object_property_set_str(OBJECT(cpus), "cpu-type",
-                                machine->cpu_type, &error_abort);
-        object_property_set_int(OBJECT(cpus), "hartid-base",
-                                base_hartid, &error_abort);
-        object_property_set_int(OBJECT(cpus), "num-harts",
-                                hart_count, &error_abort);
-        object_property_set_int(OBJECT(cpus), "resetvec", 
-                                virt_memmap[QUARD_STAR_MROM].base, 
-                                &error_abort);
-        sysbus_realize(SYS_BUS_DEVICE(cpus), &error_abort);
-    }
-
-    qdev_realize(DEVICE(&s->r_cluster), NULL, &error_abort);
+    qdev_prop_set_uint32(DEVICE(&s->c_cluster), "cluster-id", 0);
+    object_initialize_child(OBJECT(&s->c_cluster), "c-cpus",
+                                &s->c_cpus, TYPE_RISCV_HART_ARRAY);
+    object_property_set_str(OBJECT(&s->c_cpus), "cpu-type",
+                            machine->cpu_type, &error_abort);
+    object_property_set_int(OBJECT(&s->c_cpus), "hartid-base",
+                            0, &error_abort);
+    object_property_set_int(OBJECT(&s->c_cpus), "num-harts",
+                            QUARD_STAR_COMPUTE_CPU_COUNT, &error_abort);
+    object_property_set_int(OBJECT(&s->c_cpus), "resetvec", 
+                            virt_memmap[QUARD_STAR_MROM].base, 
+                            &error_abort);
+    sysbus_realize(SYS_BUS_DEVICE(&s->c_cpus), &error_abort);
     qdev_realize(DEVICE(&s->c_cluster), NULL, &error_abort);
+
+    object_initialize_child(OBJECT(machine), "r-cluster", 
+                                    &s->r_cluster, TYPE_CPU_CLUSTER);
+    qdev_prop_set_uint32(DEVICE(&s->r_cluster), "cluster-id", 1);
+    object_initialize_child(OBJECT(&s->r_cluster), "r-cpus", 
+                            &s->r_cpus, TYPE_RISCV_HART_ARRAY);
+    object_property_set_str(OBJECT(&s->r_cpus), "cpu-type",
+                            machine->cpu_type, &error_abort);
+    object_property_set_int(OBJECT(&s->r_cpus), "hartid-base",
+                            7, &error_abort);
+    object_property_set_int(OBJECT(&s->r_cpus), "num-harts",
+                            QUARD_STAR_MANAGEMENT_CPU_COUNT, &error_abort);
+    object_property_set_int(OBJECT(&s->r_cpus), "resetvec", 
+                            virt_memmap[QUARD_STAR_MROM].base, 
+                            &error_abort);
+    sysbus_realize(SYS_BUS_DEVICE(&s->r_cpus), &error_abort);
+    qdev_realize(DEVICE(&s->r_cluster), NULL, &error_abort);
 }
 
 static void quard_star_interrupt_controller_create(MachineState *machine)
@@ -223,7 +213,7 @@ static void quard_star_memory_create(MachineState *machine)
     memory_region_add_subregion(system_memory, 
                                 virt_memmap[QUARD_STAR_MROM].base, mask_rom);
 
-    quard_star_setup_rom_reset_vec(machine, &s->r_cpus[0], 
+    quard_star_setup_rom_reset_vec(machine, &s->r_cpus, 
                               virt_memmap[QUARD_STAR_FLASH].base,
                               virt_memmap[QUARD_STAR_MROM].base,
                               virt_memmap[QUARD_STAR_MROM].size,
@@ -426,7 +416,8 @@ static void quard_star_machine_class_init(ObjectClass *oc, void *data)
     mc->init = quard_star_machine_init;
     mc->max_cpus = QUARD_STAR_MANAGEMENT_CPU_COUNT +
                    QUARD_STAR_COMPUTE_CPU_COUNT;
-    mc->min_cpus = QUARD_STAR_MANAGEMENT_CPU_COUNT + 1;
+    mc->min_cpus = QUARD_STAR_MANAGEMENT_CPU_COUNT +
+                   QUARD_STAR_COMPUTE_CPU_COUNT;
     mc->default_cpus = mc->min_cpus;
     mc->default_cpu_type = TYPE_RISCV_CPU_BASE;
     mc->pci_allow_0_address = true;

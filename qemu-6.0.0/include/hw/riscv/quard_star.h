@@ -30,7 +30,7 @@
 #include "hw/ssi/sifive_spi.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
-#define QUARD_STAR_COMPUTE_CPU_COUNT       8
+#define QUARD_STAR_COMPUTE_CPU_COUNT       7
 
 #define TYPE_RISCV_QUARD_STAR_MACHINE MACHINE_TYPE_NAME("quard-star")
 typedef struct QuardStarState QuardStarState;
@@ -44,8 +44,8 @@ struct QuardStarState {
     /*< public >*/
     CPUClusterState r_cluster;
     CPUClusterState c_cluster;
-    RISCVHartArrayState r_cpus[QUARD_STAR_MANAGEMENT_CPU_COUNT];
-    RISCVHartArrayState c_cpus[QUARD_STAR_COMPUTE_CPU_COUNT];
+    RISCVHartArrayState r_cpus;
+    RISCVHartArrayState c_cpus;
     DeviceState *plic;
     PFlashCFI01 *flash;
     IMXI2CState i2c[3];
