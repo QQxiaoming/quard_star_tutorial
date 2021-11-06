@@ -24,10 +24,12 @@
 #include "hw/sysbus.h"
 #include "hw/block/flash.h"
 #include "qom/object.h"
+#include "hw/register.h"
 #include "hw/i2c/i2c.h"
 #include "hw/i2c/imx_i2c.h"
 #include "hw/ssi/ssi.h"
 #include "hw/ssi/sifive_spi.h"
+#include "hw/usb/hcd-dwc3.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
 #define QUARD_STAR_COMPUTE_CPU_COUNT       7
@@ -51,6 +53,7 @@ struct QuardStarState {
     IMXI2CState i2c[3];
     SiFiveSPIState spi[2];
     FWCfgState *fw_cfg;
+    USBDWC3 usb;
 };
 
 enum {
@@ -77,6 +80,7 @@ enum {
     QUARD_STAR_VIRTIO6,
     QUARD_STAR_VIRTIO7,
     QUARD_STAR_FW_CFG,
+    QUARD_STAR_USB,
     QUARD_STAR_FLASH,
     QUARD_STAR_DRAM,
 };
@@ -99,6 +103,7 @@ enum {
     QUARD_STAR_I2C2_IRQ = 16,
     QUARD_STAR_SPI0_IRQ = 17,
     QUARD_STAR_SPI1_IRQ = 18,
+    QUARD_STAR_USB_IRQ = 19,
 };
 
 #define QUARD_STAR_PLIC_HART_CONFIG    "MS"

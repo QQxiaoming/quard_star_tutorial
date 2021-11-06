@@ -153,3 +153,96 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     2021.08.21(上午):继续加速把系列博客编辑完成，一口气完成3节，目前到了ch19节，已有计划还剩下ch20-ch25这6节，争取接下来几天全部更新完成，加油↖(^ω^)↗。
 - 
     2021.08.21(晚上):没想到早上说尽快把文档编辑完成，结果下午到晚上一口气就全部更完了，后面这个项目就将真正进入缓更期了，笔者后面也需要去学习补充自己还不熟悉的技术栈了。
+
+- 
+    2021.10.16(下午):又回来更新这个项目了，首先就是给我们的虚拟SOC添加三个i2c控制器，这里我们选择qemu已有的实现imx-i2c，这个是在NXP的imx系列中的i2c ip，还是比较顺利的，很容易就添加好了，之后我们在i2c0上挂载一块 at24c64 eeprom，编写设备树文件，在linux内核中添加相关驱动，很轻松就识别到了i2c控制器以及at24c64，执行如下命令可以测试eeprom的读写情况。
+
+    ```
+    echo hello > /sys/bus/i2c/devices/0-0050/eeprom
+    cat /sys/bus/i2c/devices/0-0050/eeprom
+    ```
+
+- 
+    2021.10.17(上午):继续给我们的虚拟SOC添加两个spi控制器，这里我们选择qemu已有的实现sifive_spi，轻车熟路，之后我们在spi0上挂载一块is25wp256的norflash，编写设备树文件，在linux内核中添加相关驱动，记得添加mtd设备驱动，然后就很顺利的看到有/dev/mtd1的设备出现（mtd0是之前我们的SOC内部直连的并行pflash），mtd设备测试就不多说了，直接操作mtdblock1就可以，也可以使用mtd_debug小工具来操作。我们的soc内部控制器开始越来越丰富了，因此这里要整理一下qemu-6.0.0/hw/riscv/quard_star.c代码，之前是基本上从virt.c简化而来的，由于侧重点不同因此对于我们来说其代码可读性不好，这里我重构了下，针对每个不同的控制器分别编写独立的create函数，现在代码整洁多了。
+
+    ```c
+    static void quard_star_machine_init(MachineState *machine)
+    {
+        quard_star_cpu_create(machine);
+        quard_star_interrupt_controller_create(machine);
+        quard_star_memory_create(machine);
+        quard_star_flash_create(machine);
+        quard_star_syscon_create(machine);
+        quard_star_rtc_create(machine);
+        quard_star_serial_create(machine);
+        quard_star_i2c_create(machine);
+        quard_star_spi_create(machine);
+
+        quard_star_virtio_mmio_create(machine);
+        quard_star_fw_cfg_create(machine);
+    }
+    ```
+
+- 
+    2021.10.30(上午):最近心情状态稳定很多，还挺开心的，继续更新这个项目，首先就是设备树文件，之前也是为了直观一点点添加内容的，这对于初学者渐进式的学习很有帮助，但是随着设备数信息愈发膨胀，平铺式的写法将难以阅读，必须重构为结构化的形式，这里重新编写以下三个文件quard_star_sbi.dts、quard_star_uboot.dts、quard_star.dtsi，dtsi为公共的SOC内部设备信息，另外两份dts则引用dtsi并针对各自的需要使能相关控制器，而挂载到控制器之上的外部设备同样也写在dts中而不是dtsi中。另外将这个仓库导入CodeFactor中，根据提示优化了部分风格不良的代码，后续不仅要让代码正确运行，还要对代码风格和可读性做进一步要求。
+
+- 
+    2021.11.06(上午):首先是优化了uboot中distro boot script，现在我们支持tftpboot，后续debug时就不用每次构建带有内核信息的文件系统，仅仅需要编译生成启动固件然后通过tftp加载即可，脚本内容如下，是通过加载主机tftp服务器中boot.cfg文件判断是否内容为“tftp”，如果没有这个文件或内容不是tftp则还是走之前的启动流程。
+
+    ```
+    # try use tftp load boot.cfg
+    mw.l ${kernel_addr_r} 0x0
+    dhcp ${kernel_addr_r} /boot.cfg
+
+    # load bootfile according to boot.cfg
+    if itest.l *${kernel_addr_r} == 0x70746674; 
+    then 
+        echo tftpboot...
+        dhcp ${kernel_addr_r} /linux_kernel/Image
+        dhcp ${fdt_addr_r} /uboot/quard_star_uboot.dtb
+    else
+        echo virtioboot...
+        load virtio 0:1 ${kernel_addr_r} /Image
+        load virtio 0:1 ${fdt_addr_r} /quard_star.dtb
+    fi
+
+    # boot kernel
+    booti ${kernel_addr_r} - ${fdt_addr_r}
+    ```
+
+- 
+    2021.11.06(下午):应该是这周最后一次更新，说起来今天还有点小忧伤，这篇更新完毕晚上准备给自己做顿盐焗鸡翅。不扯废话了，这次我们给虚拟SOC添加一个USB控制器，qemu中有dwc3的半成品实现，为啥是半成品呢————因为只实现了host模式，而没有实现otg。dwc3这个控制器想必做嵌入式的朋友都太熟悉了，Synopsys的ip，我在非常多的SOC中都见过这个控制器。阅读代码看到这个dwc3仿真似乎是Xilinx写的，被包含在xlnx-usb-subsystem中一部分，这里我们不使用XILINX_VERSAL的代码，直接创建一个dwc3设备。代码还是很简单的，如下：
+
+    ```c
+    static void quard_star_usbs_create(MachineState *machine)
+    {
+        QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+        object_initialize_child(OBJECT(s), "dwc3", &s->usb,
+                                TYPE_USB_DWC3);
+
+        sysbus_realize(SYS_BUS_DEVICE(&s->usb), &error_fatal);
+
+        sysbus_mmio_map(SYS_BUS_DEVICE(&s->usb), 0, 
+                                virt_memmap[QUARD_STAR_USB].base);
+        qdev_pass_gpios(DEVICE(&s->usb.sysbus_xhci), DEVICE(&s->usb), SYSBUS_DEVICE_GPIO_IRQ);
+        sysbus_connect_irq(SYS_BUS_DEVICE(&s->usb), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_USB_IRQ));
+    }
+    ```
+
+    编写设备树文件，然后配置内核CONFIG_USB_DWC3=y，运行，这里居然出现了oops，看起来是访问异常，难道说部分寄存器没实现导致读写出错了吗？翻看了代码qemu-6.0.0/hw/usb/hcd-dwc3.c:587这边模拟器是register_read_memory/register_write_memory来访问寄存器的，qemu和内核两头加打印，最终定位到是内核linux-5.10.65/drivers/usb/dwc3/core.c:290这里访问DWC3_DCTL出错，其实问题很明确，qemu注释写明了只支持host因此device相关的寄存器都是没有实现的，那么内核里的驱动为什么还访问设备寄存器呢，毕竟我们在设备树里指定了dr_mode为host，最终修改283行判断代码添加另一个条件检查dr_mode来跳过device寄存器。考虑Xilinx自己的驱动代码是5.13才加入内核主线的，因此查了下最新的内核5.15的驱动代码有所变化，但这个判断条件仍没有修改，是否修复了看不出来，这里就先暂且放下，先按我这个修改使用。
+
+    ```c
+    if (dwc->current_dr_role == DWC3_GCTL_PRTCAP_HOST ||
+        dwc->dr_mode == USB_DR_MODE_HOST)
+    return 0;
+    ```
+
+    搞定之后进入系统一切顺利，使用lsusb可以看到控制器信息。
+
+    ```
+    [~]#lsusb 
+    Bus 001 Device 001: ID 1d6b:0002
+    Bus 002 Device 001: ID 1d6b:0003
+    ```

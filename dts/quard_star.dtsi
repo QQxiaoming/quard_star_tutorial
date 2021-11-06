@@ -305,6 +305,21 @@
 			status = "disabled";
 		};
 
+		usb: dwc3@11000000 {
+			compatible = "snps,dwc3";
+			reg = <0x0 0x11000000 0x0 0x10000>;
+			interrupts = <0x13>;
+			interrupt-parent = <&plic>;
+			status = "disabled";
+			phy-names = "usb3-phy";
+			dr_mode = "host";
+			snps,quirk-frame-length-adjustment = <0x20>;
+			snps,dis_u2_susphy_quirk;
+			snps,dis_u3_susphy_quirk;
+			snps,refclk_fladj;
+			snps,mask_phy_reset;
+		};
+
 		test:test@100000 {
 			reg = <0x0 0x100000 0x0 0x1000>;
 			compatible = "sifive,test1", "sifive,test0", "syscon";
