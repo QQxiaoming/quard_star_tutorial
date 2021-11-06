@@ -354,6 +354,8 @@ static void quard_star_usbs_create(MachineState *machine)
 
     object_initialize_child(OBJECT(s), "dwc3", &s->usb,
                             TYPE_USB_DWC3);
+    qdev_prop_set_uint32(DEVICE(&s->usb), "intrs", 1);
+    qdev_prop_set_uint32(DEVICE(&s->usb), "slots", 2);
 
     sysbus_realize(SYS_BUS_DEVICE(&s->usb), &error_fatal);
 

@@ -135,6 +135,9 @@ build_firmware()
     if [ ! -f "$SHELL_FOLDER/output/fw/nor_fw.bin" ]; then  
         dd of=nor_fw.bin bs=1k count=32k if=/dev/zero
     fi
+    if [ ! -f "$SHELL_FOLDER/output/fw/usb.img" ]; then  
+        dd of=usb.img bs=1k count=32k if=/dev/zero
+    fi
 }
 
 build_kernel()

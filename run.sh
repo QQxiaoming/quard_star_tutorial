@@ -96,6 +96,7 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -smp 8 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin \
 -drive if=mtd,format=raw,file=$SHELL_FOLDER/output/fw/nor_fw.bin \
+-drive if=none,id=usbdisk,format=raw,file=$SHELL_FOLDER/output/fw/usb.img \
 -drive file=$SHELL_FOLDER/output/rootfs/rootfs.img,format=raw,id=drive0 \
 -fsdev local,security_model=mapped-xattr,id=fsdev0,path=$SHELL_FOLDER \
 -netdev user,id=net0,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80 \
@@ -106,5 +107,6 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device virtio-keyboard-device,id=input1 \
 -device virtio-9p-device,id=fs0,fsdev=fsdev0,mount_tag=hostshare \
 -device virtio-net-device,netdev=net0 \
+-device usb-storage,drive=usbdisk \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
 $GRAPHIC_PARAM $FULL_SCREEN
