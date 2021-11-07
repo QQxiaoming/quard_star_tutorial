@@ -305,6 +305,19 @@
 			status = "disabled";
 		};
 
+		gpio: gpio@10009000 {
+			compatible = "sifive,gpio0";
+			interrupt-parent = <&plic>;
+			interrupts = <32>, <33>, <34>, <35>, <36>, <37>, <38>, <39>,
+						 <40>, <41>, <42>, <43>, <44>, <45>, <46>, <47>;
+			reg = <0x0 0x10009000 0x0 0x1000>;
+			gpio-controller;
+			#gpio-cells = <2>;
+			interrupt-controller;
+			#interrupt-cells = <2>;
+			status = "disabled";
+		};
+
 		usb: dwc3@11000000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0x11000000 0x0 0x10000>;
@@ -318,6 +331,15 @@
 			snps,dis_u3_susphy_quirk;
 			snps,refclk_fladj;
 			snps,mask_phy_reset;
+		};
+
+		dma: dma@12000000 {
+			compatible = "sifive,fu540-c000-pdma";
+			reg = <0x0 0x12000000 0x0 0x8000>;
+			interrupt-parent = <&plic>;
+			interrupts = <48 49 50 51 52 53 54 55>;
+			#dma-cells = <1>;
+			status = "disabled";
 		};
 
 		test:test@100000 {

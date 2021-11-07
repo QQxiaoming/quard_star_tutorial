@@ -30,6 +30,8 @@
 #include "hw/ssi/ssi.h"
 #include "hw/ssi/sifive_spi.h"
 #include "hw/usb/hcd-dwc3.h"
+#include "hw/gpio/sifive_gpio.h"
+#include "hw/dma/sifive_pdma.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
 #define QUARD_STAR_COMPUTE_CPU_COUNT       7
@@ -54,6 +56,8 @@ struct QuardStarState {
     SiFiveSPIState spi[2];
     FWCfgState *fw_cfg;
     USBDWC3 usb;
+    SIFIVEGPIOState gpio;
+    SiFivePDMAState dma;
 };
 
 enum {
@@ -70,6 +74,7 @@ enum {
     QUARD_STAR_I2C2,
     QUARD_STAR_SPI0,
     QUARD_STAR_SPI1,
+    QUARD_STAR_GPIO,
     QUARD_STAR_TEST,
     QUARD_STAR_VIRTIO0,
     QUARD_STAR_VIRTIO1,
@@ -81,6 +86,7 @@ enum {
     QUARD_STAR_VIRTIO7,
     QUARD_STAR_FW_CFG,
     QUARD_STAR_USB,
+    QUARD_STAR_DMA,
     QUARD_STAR_FLASH,
     QUARD_STAR_DRAM,
 };
@@ -94,6 +100,7 @@ enum {
     QUARD_STAR_VIRTIO5_IRQ = 6,
     QUARD_STAR_VIRTIO6_IRQ = 7,
     QUARD_STAR_VIRTIO7_IRQ = 8,
+
     QUARD_STAR_UART0_IRQ = 10,
     QUARD_STAR_UART1_IRQ = 11,
     QUARD_STAR_UART2_IRQ = 12,
@@ -104,6 +111,9 @@ enum {
     QUARD_STAR_SPI0_IRQ = 17,
     QUARD_STAR_SPI1_IRQ = 18,
     QUARD_STAR_USB_IRQ = 19,
+
+    QUARD_STAR_GPIO_IRQ = 32, /* 32-47 */
+    QUARD_STAR_DMA_IRQ = 48,  /* 48-55 */
 };
 
 #define QUARD_STAR_PLIC_HART_CONFIG    "MS"

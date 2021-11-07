@@ -3,6 +3,9 @@ set -e
 
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 
+DEBUG_PARAM=""
+#DEBUG_PARAM="-d help -D qemu.log"
+
 VC=\
 "full-screen | \
 1920x1080 | \
@@ -98,6 +101,7 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=mtd,format=raw,file=$SHELL_FOLDER/output/fw/nor_fw.bin \
 -drive if=none,id=usbdisk,format=raw,file=$SHELL_FOLDER/output/fw/usb.img \
 -drive file=$SHELL_FOLDER/output/rootfs/rootfs.img,format=raw,id=drive0 \
+-chardev pty,id=ttyusb0 \
 -fsdev local,security_model=mapped-xattr,id=fsdev0,path=$SHELL_FOLDER \
 -netdev user,id=net0,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80 \
 -global virtio-mmio.force-legacy=false \
@@ -108,5 +112,6 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device virtio-9p-device,id=fs0,fsdev=fsdev0,mount_tag=hostshare \
 -device virtio-net-device,netdev=net0 \
 -device usb-storage,drive=usbdisk \
+-device usb-serial,always-plugged=true,chardev=ttyusb0 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
-$GRAPHIC_PARAM $FULL_SCREEN
+$GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM
