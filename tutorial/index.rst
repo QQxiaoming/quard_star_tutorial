@@ -1,6 +1,8 @@
 主页
 ----------------------------------
 
+.. image:: ../doc/img/img3.png
+
 .. toctree::
    :maxdepth: 3
    :caption: 目录
