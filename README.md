@@ -181,7 +181,7 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
         quard_star_serial_create(machine);
         quard_star_i2c_create(machine);
         quard_star_spi_create(machine);
-
+    
         quard_star_virtio_mmio_create(machine);
         quard_star_fw_cfg_create(machine);
     }
@@ -197,7 +197,7 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     # try use tftp load boot.cfg
     mw.l ${kernel_addr_r} 0x0
     dhcp ${kernel_addr_r} /boot.cfg
-
+    
     # load bootfile according to boot.cfg
     if itest.l *${kernel_addr_r} == 0x70746674; 
     then 
@@ -209,24 +209,24 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
         load virtio 0:1 ${kernel_addr_r} /Image
         load virtio 0:1 ${fdt_addr_r} /quard_star.dtb
     fi
-
+    
     # boot kernel
     booti ${kernel_addr_r} - ${fdt_addr_r}
     ```
 
 - 
-    2021.11.06(下午):应该是这周最后一次更新，说起来今天还有点小忧伤，这篇更新完毕晚上准备给自己做顿盐焗鸡翅。不扯废话了，这次我们给虚拟SOC添加一个USB控制器，qemu中有dwc3的半成品实现，为啥是半成品呢————因为只实现了host模式，而没有实现otg。dwc3这个控制器想必做嵌入式的朋友都太熟悉了，Synopsys的ip，我在非常多的SOC中都见过这个控制器。阅读代码看到这个dwc3仿真似乎是Xilinx写的，被包含在xlnx-usb-subsystem中一部分，这里我们不使用XILINX_VERSAL的代码，直接创建一个dwc3设备。代码还是很简单的，如下：
+    2021.11.06(下午):应该是这周最后一次更新，说起来今天还有点小忧伤，这篇更新完毕晚上准备给自己做顿盐焗鸡翅。不扯废话了，这次我们给虚拟SOC添加一个USB控制器，qemu中有dwc3的半成品实现，为啥是半成品呢——因为只实现了host模式，而没有实现otg。dwc3这个控制器想必做嵌入式的朋友都太熟悉了，Synopsys的ip，我在非常多的SOC中都见过这个控制器。阅读代码看到这个dwc3仿真似乎是Xilinx写的，被包含在xlnx-usb-subsystem中一部分，这里我们不使用XILINX_VERSAL的代码，直接创建一个dwc3设备。代码还是很简单的，如下：
 
     ```c
     static void quard_star_usbs_create(MachineState *machine)
     {
         QuardStarState *s = RISCV_VIRT_MACHINE(machine);
-
+    
         object_initialize_child(OBJECT(s), "dwc3", &s->usb,
                                 TYPE_USB_DWC3);
-
+    
         sysbus_realize(SYS_BUS_DEVICE(&s->usb), &error_fatal);
-
+    
         sysbus_mmio_map(SYS_BUS_DEVICE(&s->usb), 0, 
                                 virt_memmap[QUARD_STAR_USB].base);
         qdev_pass_gpios(DEVICE(&s->usb.sysbus_xhci), DEVICE(&s->usb), SYSBUS_DEVICE_GPIO_IRQ);

@@ -48,4 +48,16 @@ config SOC_KENDRYTE_K210_DTB_BUILTIN
 	  This option should be selected if no bootloader is being used.
 	  If unsure, say Y.
 
+config SOC_QUARD_STAR
+	bool "QEMU Quard-Star Machine"
+	select CLINT_TIMER if RISCV_M_MODE
+	select POWER_RESET
+	select POWER_RESET_SYSCON
+	select POWER_RESET_SYSCON_POWEROFF
+	select GOLDFISH
+	select RTC_DRV_GOLDFISH if RTC_CLASS
+	select SIFIVE_PLIC
+	help
+	  This enables support for QEMU Quard-Star Machine.
+
 endmenu

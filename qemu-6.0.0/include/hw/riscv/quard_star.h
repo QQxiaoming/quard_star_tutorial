@@ -32,6 +32,7 @@
 #include "hw/usb/hcd-dwc3.h"
 #include "hw/gpio/sifive_gpio.h"
 #include "hw/dma/sifive_pdma.h"
+#include "hw/sd/cadence_sdhci.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
 #define QUARD_STAR_COMPUTE_CPU_COUNT       7
@@ -58,6 +59,7 @@ struct QuardStarState {
     USBDWC3 usb;
     SIFIVEGPIOState gpio;
     SiFivePDMAState dma;
+    CadenceSDHCIState sdhost;
 };
 
 enum {
@@ -75,6 +77,7 @@ enum {
     QUARD_STAR_SPI0,
     QUARD_STAR_SPI1,
     QUARD_STAR_GPIO,
+    QUARD_STAR_SDIO,
     QUARD_STAR_TEST,
     QUARD_STAR_VIRTIO0,
     QUARD_STAR_VIRTIO1,
@@ -111,6 +114,7 @@ enum {
     QUARD_STAR_SPI0_IRQ = 17,
     QUARD_STAR_SPI1_IRQ = 18,
     QUARD_STAR_USB_IRQ = 19,
+    QUARD_STAR_SDIO_IRQ = 20,
 
     QUARD_STAR_GPIO_IRQ = 32, /* 32-47 */
     QUARD_STAR_DMA_IRQ = 48,  /* 48-55 */

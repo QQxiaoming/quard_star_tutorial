@@ -57,6 +57,7 @@ static const MemMapEntry virt_memmap[] = {
     [QUARD_STAR_SPI0]    = { 0x10007000,    0x1000 },
     [QUARD_STAR_SPI1]    = { 0x10008000,    0x1000 },
     [QUARD_STAR_GPIO]    = { 0x10009000,    0x1000 },
+    [QUARD_STAR_SDIO]    = { 0x1000a000,    0x1000 },
 
     [QUARD_STAR_VIRTIO0] = { 0x10100000,    0x1000 },
     [QUARD_STAR_VIRTIO1] = { 0x10101000,    0x1000 },
@@ -383,7 +384,6 @@ static void quard_star_gpio_create(MachineState *machine)
         sysbus_connect_irq(SYS_BUS_DEVICE(&s->gpio), i,
             qdev_get_gpio_in(DEVICE(s->plic),QUARD_STAR_GPIO_IRQ + i));
     }
-
 }
 
 static void quard_star_dma_create(MachineState *machine)
@@ -399,6 +399,29 @@ static void quard_star_dma_create(MachineState *machine)
     for (i = 0; i < SIFIVE_PDMA_IRQS; i++) {
         sysbus_connect_irq(SYS_BUS_DEVICE(&s->dma), i,
             qdev_get_gpio_in(DEVICE(s->plic),QUARD_STAR_DMA_IRQ + i));
+    }
+}
+
+static void quard_star_sdio_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+    DriveInfo *dinfo = drive_get_next(IF_SD);
+
+    object_initialize_child(OBJECT(s), "sdhost", &s->sdhost, TYPE_CADENCE_SDHCI);
+    
+    sysbus_realize(SYS_BUS_DEVICE(&s->sdhost), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->sdhost), 0, 
+                            virt_memmap[QUARD_STAR_SDIO].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->sdhost), 0,
+                    qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SDIO_IRQ));
+
+    if (dinfo) {
+        CadenceSDHCIState *sdhci = &(s->sdhost);
+        DeviceState *card = qdev_new(TYPE_SD_CARD);
+
+        qdev_prop_set_drive_err(card, "drive", blk_by_legacy_dinfo(dinfo),
+                                &error_fatal);
+        qdev_realize_and_unref(card, sdhci->bus, &error_fatal);
     }
 }
 
@@ -458,6 +481,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_usb_create(machine);
     quard_star_gpio_create(machine);
     quard_star_dma_create(machine);
+    quard_star_sdio_create(machine);
 
     quard_star_virtio_mmio_create(machine);
     quard_star_fw_cfg_create(machine);
