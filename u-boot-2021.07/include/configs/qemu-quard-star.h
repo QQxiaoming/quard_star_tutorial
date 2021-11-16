@@ -23,6 +23,9 @@
 #define RISCV_MMODE_TIMER_FREQ		1000000
 #define RISCV_SMODE_TIMER_FREQ		1000000
 
+#define CONFIG_TFTP_PORT
+#define CONFIG_TFTP_TSIZE
+
 /* Environment options */
 #ifndef CONFIG_SPL_BUILD
 #define BOOT_TARGET_DEVICES(func) \

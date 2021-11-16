@@ -33,7 +33,7 @@
 #include "hw/riscv/numa.h"
 #include "hw/intc/sifive_clint.h"
 #include "hw/intc/sifive_plic.h"
-#include "hw/misc/sifive_test.h"
+#include "hw/misc/quard_star_syscon.h"
 #include "chardev/char.h"
 #include "sysemu/arch_init.h"
 #include "sysemu/device_tree.h"
@@ -241,9 +241,9 @@ static void quard_star_serial_create(MachineState *machine)
         serial_hd(2), DEVICE_LITTLE_ENDIAN);
 }
 
-static void quard_star_syscon_create(MachineState *machine)
+static void quard_star_system_control_create(MachineState *machine)
 {    
-    sifive_test_create(virt_memmap[QUARD_STAR_TEST].base);
+    quard_star_syscon_create(virt_memmap[QUARD_STAR_TEST].base);
 }
 
 static void quard_star_rtc_create(MachineState *machine)
@@ -473,7 +473,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_interrupt_controller_create(machine);
     quard_star_memory_create(machine);
     quard_star_flash_create(machine);
-    quard_star_syscon_create(machine);
+    quard_star_system_control_create(machine);
     quard_star_rtc_create(machine);
     quard_star_serial_create(machine);
     quard_star_i2c_create(machine);
