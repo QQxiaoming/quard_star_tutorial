@@ -23,6 +23,18 @@ build_qemu()
     make install
 }
 
+build_mask_rom()
+{
+    echo "---------------------------- 编译mask_rom ----------------------------"
+    if [ ! -d "$SHELL_FOLDER/output/mask_rom" ]; then  
+    mkdir $SHELL_FOLDER/output/mask_rom
+    fi  
+    cd $SHELL_FOLDER/mask_rom
+    make CROSS_COMPILE=$NEWLIB_ELF_CROSS_PREFIX- clean
+    make CROSS_COMPILE=$NEWLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
+    cp ./build/mask_rom.* $SHELL_FOLDER/output/mask_rom/
+}
+
 build_lowlevelboot()
 {
     echo "-------------------------- 编译lowlevelboot --------------------------"
@@ -261,6 +273,7 @@ build_rootfs()
 build_all()
 {
     build_qemu
+    build_mask_rom
     build_lowlevelboot
     build_opensbi
     build_sbi_dtb
@@ -275,7 +288,7 @@ build_all()
 
 case "$BUILD_TARGET" in
 --help)
-    TARGET="qemu|lowlevelboot|opensbi|sbi_dtb|trusted_domain|uboot|uboot_dtb|firmware|kernel|busybox|rootfs|all"
+    TARGET="qemu|mask_rom|lowlevelboot|opensbi|sbi_dtb|trusted_domain|uboot|uboot_dtb|firmware|kernel|busybox|rootfs|all"
     ROOTFS_OPT="all|bootfs"
     USAGE="usage $0 [$TARGET] [$ROOTFS_OPT]"
 	echo $USAGE
@@ -283,6 +296,9 @@ case "$BUILD_TARGET" in
 	;;
 qemu)
     build_qemu
+    ;;
+mask_rom)
+    build_mask_rom
     ;;
 lowlevelboot)
     build_lowlevelboot

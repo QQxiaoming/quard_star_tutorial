@@ -94,7 +94,7 @@ customize4)
 esac
 
 $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
--M quard-star \
+-M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin" \
 -m 1G \
 -smp 8 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin,id=mtd0 \

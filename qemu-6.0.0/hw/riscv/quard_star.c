@@ -40,8 +40,8 @@
 #include "sysemu/sysemu.h"
 
 static const MemMapEntry virt_memmap[] = {
-    [QUARD_STAR_MROM]    = { 0x00000000,    0x8000 },
-    [QUARD_STAR_SRAM]    = { 0x00008000,    0x8000 },
+    [QUARD_STAR_MROM]    = { 0x00000000,   0x80000 },
+    [QUARD_STAR_SRAM]    = { 0x00080000,   0x80000 },
 
     [QUARD_STAR_TEST]    = { 0x00100000,    0x1000 },
     [QUARD_STAR_CLINT]   = { 0x02000000,   0x10000 },
@@ -81,6 +81,7 @@ static void quard_star_setup_rom_reset_vec(MachineState *machine,
                                 hwaddr rom_base, hwaddr rom_size,
                                 uint64_t kernel_entry, uint32_t fdt_load_addr)
 {
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
     uint32_t start_addr_hi32 = 0x00000000;
 
     if (!riscv_is_32bit(harts)) {
@@ -113,8 +114,18 @@ static void quard_star_setup_rom_reset_vec(MachineState *machine,
         reset_vec[i] = cpu_to_le32(reset_vec[i]);
     }
 
-    rom_add_blob_fixed_as("mrom.reset", reset_vec, sizeof(reset_vec),
+    
+    if(s->mask_rom_path){
+        int image_size = load_image_targphys_as(s->mask_rom_path, rom_base,
+                                            rom_size, &address_space_memory);
+        if (image_size < 0) {
+            error_report("Could not load mrom '%s'", s->mask_rom_path);
+            exit(1);
+        }
+    } else {
+        rom_add_blob_fixed_as("mrom.reset", reset_vec, sizeof(reset_vec),
                           rom_base, &address_space_memory);
+    }
 }
 
 static void quard_star_cpu_create(MachineState *machine)
@@ -491,6 +502,21 @@ static void quard_star_machine_instance_init(Object *obj)
 {
 }
 
+static char *quard_star_machine_get_kernel(Object *obj, Error **errp)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(obj);
+
+    return g_strdup(s->mask_rom_path);
+}
+
+static void quard_star_machine_set_kernel(Object *obj, const char *value, Error **errp)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(obj);
+
+    g_free(s->mask_rom_path);
+    s->mask_rom_path = g_strdup(value);
+}
+
 static void quard_star_machine_class_init(ObjectClass *oc, void *data)
 {
     MachineClass *mc = MACHINE_CLASS(oc);
@@ -508,6 +534,11 @@ static void quard_star_machine_class_init(ObjectClass *oc, void *data)
     mc->cpu_index_to_instance_props = riscv_numa_cpu_index_to_props;
     mc->get_default_cpu_node_id = riscv_numa_get_default_cpu_node_id;
     mc->numa_mem_supported = true;
+
+    object_class_property_add_str(OBJECT_CLASS(mc), "mask-rom-path",
+        quard_star_machine_get_kernel, quard_star_machine_set_kernel);
+    object_class_property_set_description(OBJECT_CLASS(mc), "mask-rom-path",
+        "Quard Star Mask ROM image file");
 }
 
 static const TypeInfo quard_star_machine_typeinfo = {

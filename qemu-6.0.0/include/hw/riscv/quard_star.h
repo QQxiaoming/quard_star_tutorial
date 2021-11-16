@@ -60,6 +60,8 @@ struct QuardStarState {
     SIFIVEGPIOState gpio;
     SiFivePDMAState dma;
     CadenceSDHCIState sdhost;
+    
+    char *mask_rom_path;
 };
 
 enum {
