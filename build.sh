@@ -42,10 +42,9 @@ build_lowlevelboot()
     mkdir $SHELL_FOLDER/output/lowlevelboot
     fi  
     cd $SHELL_FOLDER/lowlevelboot
-    $NEWLIB_ELF_CROSS_PREFIX-gcc -x assembler-with-cpp -c startup.s -o $SHELL_FOLDER/output/lowlevelboot/startup.o
-    $NEWLIB_ELF_CROSS_PREFIX-gcc -nostartfiles -T./boot.lds -Wl,-Map=$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.map -Wl,--gc-sections $SHELL_FOLDER/output/lowlevelboot/startup.o -o $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf
-    $NEWLIB_ELF_CROSS_PREFIX-objcopy -O binary -S $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin
-    $NEWLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.elf > $SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.lst
+    make CROSS_COMPILE=$NEWLIB_ELF_CROSS_PREFIX- clean
+    make CROSS_COMPILE=$NEWLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
+    cp ./build/lowlevelboot.* $SHELL_FOLDER/output/lowlevelboot/
 }
 
 build_opensbi()
@@ -107,8 +106,8 @@ build_uboot_dtb()
 build_firmware()
 {
     echo "--------------------------- 合成firmware固件 ---------------------------"
-    if [ ! -f "$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin" ]; then  
-        echo "not found lowlevel_fw.bin, please ./build.sh lowlevelboot"
+    if [ ! -f "$SHELL_FOLDER/output/lowlevelboot/lowlevelboot.bin" ]; then  
+        echo "not found lowlevelboot.bin, please ./build.sh lowlevelboot"
         exit 255
     fi
     if [ ! -f "$SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb" ]; then  
@@ -137,7 +136,7 @@ build_firmware()
     cd $SHELL_FOLDER/output/fw
     rm -rf fw.bin
     dd of=fw.bin bs=1k count=32k if=/dev/zero
-    dd of=fw.bin bs=1k conv=notrunc seek=0 if=$SHELL_FOLDER/output/lowlevelboot/lowlevel_fw.bin
+    dd of=fw.bin bs=1k conv=notrunc seek=0 if=$SHELL_FOLDER/output/lowlevelboot/lowlevelboot.bin
     dd of=fw.bin bs=1k conv=notrunc seek=512 if=$SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb
     dd of=fw.bin bs=1k conv=notrunc seek=1K if=$SHELL_FOLDER/output/uboot/quard_star_uboot.dtb
     dd of=fw.bin bs=1k conv=notrunc seek=2K if=$SHELL_FOLDER/output/opensbi/fw_jump.bin

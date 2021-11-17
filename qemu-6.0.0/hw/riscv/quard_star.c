@@ -40,8 +40,8 @@
 #include "sysemu/sysemu.h"
 
 static const MemMapEntry virt_memmap[] = {
-    [QUARD_STAR_MROM]    = { 0x00000000,   0x80000 },
-    [QUARD_STAR_SRAM]    = { 0x00080000,   0x80000 },
+    [QUARD_STAR_MROM]    = { 0x00000000,   0x20000 },
+    [QUARD_STAR_SRAM]    = { 0x00020000,   0xe0000 },
 
     [QUARD_STAR_TEST]    = { 0x00100000,    0x1000 },
     [QUARD_STAR_CLINT]   = { 0x02000000,   0x10000 },

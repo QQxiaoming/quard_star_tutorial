@@ -27,27 +27,45 @@ customize1 | \
 customize2 | \
 customize3"
 
-USAGE="usage $0 [$MODE] [$VC]"
+BOOT=\
+"pflash | \
+spi | \
+sd"
+
+USAGE="usage $0 [$MODE] [$VC] [$BOOT]"
 
 if [ $# != 1 ] ; then
 	if [ $# != 2 ] ; then
+		if [ $# != 3 ] ; then
 		echo $USAGE
 		exit 1
+		fi
 	fi
 fi
 
-if [ $# != 2 ] ; then
+if [ $# == 1 ] ; then
 	DEFAULT_VC="1280x720"
+	DBOOTCFG="pflash"
 else
 	case "$2" in
 	full-screen)
 		DEFAULT_VC="$(xrandr -q 2>/dev/null | awk '/*/{print $1}')"
 		FULL_SCREEN=-full-screen
 		;;
+	default)
+		DEFAULT_VC="1280x720"
+		;;
 	*)
 		DEFAULT_VC=$2
 		;;
 	esac
+	if [ $# == 2 ] ; then
+		DBOOTCFG="pflash"
+	else
+		if [ $# == 3 ] ; then
+			DBOOTCFG=$3
+		fi
+	fi
 fi
 
 WIDTH="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\1/g')"
@@ -115,5 +133,5 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
--global quard-star-syscon.boot-cfg="pflash" \
+-global quard-star-syscon.boot-cfg="$DBOOTCFG" \
 $GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM

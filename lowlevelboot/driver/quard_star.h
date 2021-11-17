@@ -11,9 +11,8 @@
 
 #define PRIM_HART			0
 
-#define SYSCON_ADDR		    CONS(0x00100000, UL)
 #define NS16550_ADDR		CONS(0x10000000, UL)
-#define SIFIVE_SPI_ADDR		CONS(0x10007000, UL)
+#define SYSCON_ADDR		    CONS(0x00100000, UL)
 
 #ifndef __ASSEMBLER__
 

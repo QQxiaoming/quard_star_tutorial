@@ -23,8 +23,8 @@ static int _puts(char *str)
     while (*str && (counter < UART_LOG_BUFF_SIZE))
     {
         if(*str == '\n')
-	        vOutNS16550( NS16550_ADDR, '\r' );
-	    vOutNS16550( NS16550_ADDR, *str++ );
+	        ns16550_tx(NS16550_ADDR, '\r');
+	    ns16550_tx(NS16550_ADDR, *str++);
         counter++;
     }
     return counter;

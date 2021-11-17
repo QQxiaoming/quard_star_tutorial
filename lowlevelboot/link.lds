@@ -5,8 +5,13 @@ __stack_size = 0x400;
 
 MEMORY
 {
-	rom (rxa) : ORIGIN = 0x00000000, LENGTH = 128K
-	ram (wxa) : ORIGIN = 0x000e0000, LENGTH = 128K
+	/*
+     * Fake ROM area :
+     * when pflash boot VMA is 0x20000000, This part of the code is Address-independent
+     * when other boot is in sram 0x00020000
+     */
+	rom   (rxai!w) : ORIGIN = 0x00020000, LENGTH = 384K
+	ram   (rxaiw)  : ORIGIN = 0x00080000, LENGTH = 512K
 }
 
 SECTIONS
@@ -16,6 +21,7 @@ SECTIONS
     .init :
     {
         KEEP (*(SORT_NONE(.init)))
+        KEEP (*(SORT_NONE(.init.*)))
     } >rom AT>rom 
 
     .ilalign :

@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-void vOutNS16550( uintptr_t addr, unsigned char c );
+void ns16550_tx(uintptr_t addr, unsigned char c);
 
 #endif /* NS16550_H_ */

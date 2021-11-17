@@ -1,4 +1,4 @@
-
+	.global _run
 
 	.macro loop,cunt
     li		t1,	0xffff
@@ -29,22 +29,34 @@
 _pen:
 	.word   1
 
-	.section .text
+	.section .init
 	.globl _start
 	.type _start,@function
 _start:
     csrr    a0, mhartid
 	beq		a0, zero, _no_wait
+	
 _loop:
 	loop	0x1000
 	la		t0, _pen
 	lw		t0, 0(t0)
 	beq		t0, zero, _run
 	j       _loop
+
 _no_wait:
 	la		t0, _pen
 	la		t1, 1
 	sw		t1, 0(t0)
+	jal 	lowlevel_init
+
+_probe_code_env:
+	la 		t0, _start
+	li		t1,	0x200
+	slli	t1,	t1, 20
+	beq		t0, t1, code_in_pflash
+	j	    code_in_sram
+
+code_in_pflash:
 	//load opensbi_fw.bin 
 	//[0x20200000:0x20400000] --> [0xBFF80000:0xC0000000]
     li		a0,	0x202
