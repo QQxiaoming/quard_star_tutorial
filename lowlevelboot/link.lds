@@ -1,7 +1,7 @@
 OUTPUT_ARCH( "riscv" )
 ENTRY( _start )
 
-__stack_size = 0x400;
+__stack_size = 0x1000;
 
 MEMORY
 {
@@ -119,6 +119,12 @@ SECTIONS
         PROVIDE( _data_lma = . );
     } >rom AT>rom 
 
+    nldata (NOLOAD) :
+    {
+        . = ALIGN(8);
+        *(.data.startup) 
+    } >ram AT>ram 
+    
     .dalign :
     {
         . = ALIGN(8);

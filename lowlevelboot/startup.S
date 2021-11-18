@@ -23,7 +23,7 @@
 2:
 	.endm
 
-	.section .data
+	.section .data.startup
 	.globl  _pen
 	.type	_pen,%object
 _pen:
@@ -39,12 +39,24 @@ _start:
 _loop:
 	loop	0x1000
 	la		t0, _pen
+	la 		t1, _start
+	li		t2,	0x200
+	slli	t2,	t2, 20
+	bne		t1, t2, 1f
+	sub		t0, t0, t2
+1:
 	lw		t0, 0(t0)
 	beq		t0, zero, _run
 	j       _loop
 
 _no_wait:
 	la		t0, _pen
+	la 		t1, _start
+	li		t2,	0x200
+	slli	t2,	t2, 20
+	bne		t1, t2, 1f
+	sub		t0, t0, t2
+1:
 	la		t1, 1
 	sw		t1, 0(t0)
 	jal 	lowlevel_init
@@ -119,6 +131,12 @@ _run:
 	slli	t0,	t0, 8
 	add 	t0,	a1, t0
 	la		t1, _pen
+	la 		t2, _start
+	li		t3,	0x200
+	slli	t3,	t3, 20
+	bne		t2, t3, 1f
+	sub		t1, t1, t3
+1:
 	sw		zero, 0(t1)
     jr      t0
 
