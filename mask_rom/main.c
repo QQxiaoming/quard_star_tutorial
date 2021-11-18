@@ -1,13 +1,12 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "debug_log.h"
-#include "sifive_spi.h"
+#include "spi_flash.h"
 #include "syscon.h"
 
 #define MASKROM_VERSION "v0.1"
 
-static volatile bool copy_finsh = false;
-static volatile int secondary_start_flag = 0x0;
+__attribute__((section(".data.startup"))) volatile bool copy_finsh = false;
 static volatile uint64_t boot_addr = 0x20000000;
 static void _delay(int cont)
 {
@@ -32,25 +31,25 @@ static bool uart_update_request(void)
 
 int main(void)
 {
-	while(secondary_start_flag != 0xFE);
 	debug_log("Quard Star MaskRom %s\n",MASKROM_VERSION);
 	switch (syscon_get_boot_source())
 	{
 	case SYSCON_PFLASH_BOOT:
 		/* 无需加载，直接跳转0x20000000 boot */
 		boot_addr = 0x20000000;
+		debug_log("PFLASH_BOOT\n");
 		break;
 	case SYSCON_SPI_BOOT:
-		/* TODO:加载256K到sram 0x20000，跳转0x20000 boot */
-		sifive_spi_init_hw(SIFIVE_SPI_ADDR);
+		/* 加载256K到sram 0x20000，跳转0x20000 boot */
+		spi_flash_init();
+		spi_flash_load(0x20000,0x0,256*1024);
 		boot_addr = 0x20000;
-		debug_log("TODO: SPI_BOOT\n");
-		while(1);
+		debug_log("SPI_BOOT\n");
 		break;
 	case SYSCON_SD_BOOT:
 		/* TODO:加载256K到sram 0x20000，跳转0x20000 boot */
 		boot_addr = 0x20000;
-		debug_log("TODO: SD_BOOT\n");
+		debug_log(" TODO:SD_BOOT\n");
 		while(1);
 		break;
 	default:
@@ -74,10 +73,7 @@ int main(void)
 
 int secondary_main(void)
 {
-	int mhartid = 0;
 	_delay(10000);
-	__asm volatile("csrr %0, mhartid":"=r"(mhartid));
-	secondary_start_flag |= 0x1 << mhartid;
 	while(!copy_finsh);
 	jump(boot_addr);
 	return 0;

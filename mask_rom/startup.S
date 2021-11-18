@@ -1,6 +1,7 @@
 #include "riscv_encoding.h"
 #include "quard_star.h"
 
+	.extern secondary_start_flag
 	.section .init
 	.globl _start
 	.type _start,@function
@@ -16,6 +17,9 @@ _start:
 	li   a1, PRIM_HART
     csrr a0, mhartid
 	bne  a0, a1, secondary
+	
+	la		t0, copy_finsh
+	sb		zero, 0(t0)
 
   	csrw sie, 0
   	csrw sip, 0
@@ -76,7 +80,7 @@ ecall_err:
 	j ecall_err
 	
 secondary:
-	li t0, 0x100
+	li t0, 0x80
     csrr t1, mhartid
 	mul t0, t0, t1
 	la t1, heap_end

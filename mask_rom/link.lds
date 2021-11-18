@@ -113,6 +113,12 @@ SECTIONS
         PROVIDE( _data_lma = . );
     } >rom AT>rom 
 
+    nldata (NOLOAD) :
+    {
+        . = ALIGN(8);
+        *(.data.startup) 
+    } >ram AT>ram 
+    
     .dalign :
     {
         . = ALIGN(8);

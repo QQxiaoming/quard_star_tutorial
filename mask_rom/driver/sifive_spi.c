@@ -1,6 +1,6 @@
+#include <stdlib.h>
 #include <stdint.h>
 #include "sifive_spi.h"
-#include "debug_log.h"
 
 typedef struct
 {
@@ -30,11 +30,10 @@ typedef struct
 
 #define BIT(x)  (0x1 << x)
 
-/* sckmode bits */
-#define SIFIVE_SPI_SCKMODE_PHA           BIT(0)
-#define SIFIVE_SPI_SCKMODE_POL           BIT(1)
-#define SIFIVE_SPI_SCKMODE_MODE_MASK     (SIFIVE_SPI_SCKMODE_PHA | \
-					  SIFIVE_SPI_SCKMODE_POL)
+/* csmode bits */
+#define SIFIVE_SPI_CSMODE_MODE_AUTO      0U
+#define SIFIVE_SPI_CSMODE_MODE_HOLD      2U
+#define SIFIVE_SPI_CSMODE_MODE_OFF       3U
 
 /* delay0 bits */
 #define SIFIVE_SPI_DELAY0_CSSCK(x)       ((uint32_t)(x))
@@ -58,21 +57,86 @@ typedef struct
 #define SIFIVE_SPI_FMT_LEN(x)            ((uint32_t)(x) << 16)
 #define SIFIVE_SPI_FMT_LEN_MASK          (0xfU << 16)
 
+/* txdata bits */
+#define SIFIVE_SPI_TXDATA_DATA_MASK      0xffU
+#define SIFIVE_SPI_TXDATA_FULL           BIT(31)
+
+/* rxdata bits */
+#define SIFIVE_SPI_RXDATA_DATA_MASK      0xffU
+#define SIFIVE_SPI_RXDATA_EMPTY          BIT(31)
+
+/* ie and ip bits */
+#define SIFIVE_SPI_IP_TXWM               BIT(0)
+#define SIFIVE_SPI_IP_RXWM               BIT(1)
+
+
+static void sifive_spi_rx(sifive_spi_t *reg, uint8_t *rx_ptr)
+{
+	uint32_t data;
+	do {
+		data = reg->SIFIVE_SPI_REG_RXDATA;
+	} while (data & SIFIVE_SPI_RXDATA_EMPTY);
+
+	if (rx_ptr)
+		*rx_ptr = data & SIFIVE_SPI_RXDATA_DATA_MASK;
+}
+
+static void sifive_spi_tx(sifive_spi_t *reg, const uint8_t *tx_ptr)
+{
+	uint32_t data;
+	uint8_t tx_data = (tx_ptr) ? *tx_ptr & SIFIVE_SPI_TXDATA_DATA_MASK :
+				SIFIVE_SPI_TXDATA_DATA_MASK;
+
+	do {
+		data = reg->SIFIVE_SPI_REG_TXDATA;
+	} while (data & SIFIVE_SPI_TXDATA_FULL);
+
+	reg->SIFIVE_SPI_REG_TXDATA = tx_data;
+}
+
+void sifive_spi_send(uintptr_t addr, const uint8_t *tx_ptr, uint32_t size)
+{
+	sifive_spi_t *reg = (sifive_spi_t *)addr;
+	reg->SIFIVE_SPI_REG_FMT = SIFIVE_SPI_FMT_DIR | SIFIVE_SPI_FMT_LEN(8);
+
+	for(int i=0;i<size;i++) {
+		sifive_spi_tx(reg,&tx_ptr[i]);
+	}
+	while(!(reg->SIFIVE_SPI_REG_IP&SIFIVE_SPI_IP_TXWM));
+}
+
+void sifive_spi_recv(uintptr_t addr, uint8_t *rx_ptr, uint32_t size)
+{
+	sifive_spi_t *reg = (sifive_spi_t *)addr;
+	reg->SIFIVE_SPI_REG_FMT = SIFIVE_SPI_FMT_LEN(8);
+
+	for(int i=0;i<size;i++) {
+		sifive_spi_tx(reg,NULL);
+	}
+	while(!(reg->SIFIVE_SPI_REG_IP&SIFIVE_SPI_IP_RXWM));
+
+	for(int i=0;i<size;i++) {
+		sifive_spi_rx(reg,&rx_ptr[i]);
+	}
+}
+
+void sifive_spi_set_cs(uintptr_t addr, bool set)
+{
+	sifive_spi_t *reg = (sifive_spi_t *)addr;
+	if(set) {
+		reg->SIFIVE_SPI_REG_CSMODE = SIFIVE_SPI_CSMODE_MODE_HOLD;
+		reg->SIFIVE_SPI_REG_CSDEF = 1;
+		reg->SIFIVE_SPI_REG_CSID = 0;
+	} else {
+		reg->SIFIVE_SPI_REG_CSMODE = SIFIVE_SPI_CSMODE_MODE_AUTO;
+		reg->SIFIVE_SPI_REG_CSDEF = 1;
+		reg->SIFIVE_SPI_REG_CSID = 0;
+	}
+}
+
 void sifive_spi_init_hw(uintptr_t addr)
 {
 	sifive_spi_t *reg = (sifive_spi_t *)addr;
-	uint32_t cs_bits;
-    uint32_t cs_inactive;
-
-	/* probe the number of CS lines */
-	cs_inactive = reg->SIFIVE_SPI_REG_CSDEF;
-	reg->SIFIVE_SPI_REG_CSDEF = 0xffffffffU;
-	cs_bits = reg->SIFIVE_SPI_REG_CSDEF;
-	reg->SIFIVE_SPI_REG_CSDEF = cs_inactive;
-	if (!cs_bits) {
-		debug_log("Could not auto probe CS lines\n");
-		return;
-	}
 
 	/* Watermark interrupts are disabled by default */
 	reg->SIFIVE_SPI_REG_IE = 0;
@@ -87,6 +151,4 @@ void sifive_spi_init_hw(uintptr_t addr)
 
 	/* Exit specialized memory-mapped SPI flash mode */
 	reg->SIFIVE_SPI_REG_FCTRL = 0;
-	
-    debug_log("sifive_spi_init_hw done\n");
 }
