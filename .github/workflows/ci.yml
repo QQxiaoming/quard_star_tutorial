@@ -99,6 +99,7 @@ jobs:
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && killall qemu-system-riscv64 && exit 0; else echo "Failed in init process" && exit 1; fi;
           }
+          rm run_qemu.log
 
       - name: Run tests spi boot
         run: |
@@ -106,6 +107,7 @@ jobs:
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && killall qemu-system-riscv64 && exit 0; else echo "Failed in init process" && exit 1; fi;
           }
+          rm run_qemu.log
 
       - name: Run tests sd boot
         run: |
@@ -113,3 +115,4 @@ jobs:
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && killall qemu-system-riscv64 && exit 0; else echo "Failed in init process" && exit 1; fi;
           }
+          rm run_qemu.log

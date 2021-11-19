@@ -264,3 +264,15 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     Bus 001 Device 001: ID 1d6b:0002
     Bus 002 Device 001: ID 1d6b:0003
     ```
+
+- 
+    2021.11.07(上午):添加了gpio和dma控制器，比较简单好理解的控制器。
+
+- 
+    2021.11.07(下午):添加了sdmmc控制器，现在我们可以有sd卡了。
+
+- 
+    2021.11.14(下午):这周没怎么开发这个项目，因为R星发布了GTA三部曲最终版，童年经典游戏，所以果断回味经典去了。不过还是有进度的，计划给这个项目做一个maskrom添加多种boot方式和升级固件的功能，因此初步完成了syscon的设计，添加了一个boot状态寄存器，可以通过qemu参数指定boot状态。稍晚点把代码整理好提交。
+
+- 
+    2021.11.19(晚上):把maskrom中pflash/spi/sd三种boot的代码完成了，这里要强调下spi和sdhci的驱动编写的非常简单而粗糙，为什么呢，因为我们要简化maskrom的代码设计，尽可能使用极少的rom和ram空间，真实的soc设计时这些静态ram的成本是很高的。lowlevelboot代码增加了spi和sd的情况，这里注意下代码改为在sram的地址空间执行，但是之前pflash的代码因为我们使用了纯汇编编写，因此地址是无关的，除了一个_pen变量的取址方式是需要pc，这边特殊处理下即可，这样我们的lowlevelboot代码就可以在pflash和sarm两种方式都能执行正确了。现在maskrom代码就只差升级功能没完成了，这里我计划使用xmodem协议，另外计划再写个PC升级工具用于配合升级流程。另外又整理了一些框图流程图。
