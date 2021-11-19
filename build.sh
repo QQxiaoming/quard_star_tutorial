@@ -144,11 +144,9 @@ build_firmware()
     dd of=fw.bin bs=1k conv=notrunc seek=8K if=$SHELL_FOLDER/output/uboot/u-boot.bin
 
     cp fw.bin norflash.img
+    cp fw.bin sd.img
     if [ ! -f "$SHELL_FOLDER/output/fw/usb.img" ]; then  
         dd of=usb.img bs=1k count=32k if=/dev/zero
-    fi
-    if [ ! -f "$SHELL_FOLDER/output/fw/sd.img" ]; then  
-        dd of=sd.img bs=1k count=32k if=/dev/zero
     fi
 }
 

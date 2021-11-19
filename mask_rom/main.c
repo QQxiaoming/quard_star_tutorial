@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "debug_log.h"
 #include "spi_flash.h"
+#include "sdcard.h"
 #include "syscon.h"
 
 #define MASKROM_VERSION "v0.1"
@@ -32,29 +33,6 @@ static bool uart_update_request(void)
 int main(void)
 {
 	debug_log("Quard Star MaskRom %s\n",MASKROM_VERSION);
-	switch (syscon_get_boot_source())
-	{
-	case SYSCON_PFLASH_BOOT:
-		/* 无需加载，直接跳转0x20000000 boot */
-		boot_addr = 0x20000000;
-		debug_log("PFLASH_BOOT\n");
-		break;
-	case SYSCON_SPI_BOOT:
-		/* 加载256K到sram 0x20000，跳转0x20000 boot */
-		spi_flash_init();
-		spi_flash_load(0x20000,0x0,256*1024);
-		boot_addr = 0x20000;
-		debug_log("SPI_BOOT\n");
-		break;
-	case SYSCON_SD_BOOT:
-		/* TODO:加载256K到sram 0x20000，跳转0x20000 boot */
-		boot_addr = 0x20000;
-		debug_log(" TODO:SD_BOOT\n");
-		while(1);
-		break;
-	default:
-		break;
-	}
 	if(syscon_get_update()) {
 		debug_log("U\nP\nD\nA\nT\nE\n.\n.\n.\n");
 		if(uart_update_request()) {
@@ -65,6 +43,32 @@ int main(void)
 		} else {
 			debug_log("Timeout, we will boot...\n");
 		}
+	}
+	switch (syscon_get_boot_source())
+	{
+	case SYSCON_PFLASH_BOOT:
+		/* 无需加载，直接跳转0x20000000 boot */
+		debug_log("PFLASH_BOOT\n");
+		boot_addr = 0x20000000;
+		break;
+	case SYSCON_SPI_BOOT:
+		/* 加载256K到sram 0x20000，跳转0x20000 boot */
+		debug_log("SPI_BOOT\n");
+		spi_flash_init();
+		debug_log("load lowlevelboot.bin\n");
+		spi_flash_load(0x20000,0x0,256*1024);
+		boot_addr = 0x20000;
+		break;
+	case SYSCON_SD_BOOT:
+		/* 加载256K到sram 0x20000，跳转0x20000 boot */
+		debug_log("SD_BOOT\n");
+		sdcard_init();
+		debug_log("load lowlevelboot.bin\n");
+		sdcard_load(0x20000,0x0,256*1024);
+		boot_addr = 0x20000;
+		break;
+	default:
+		break;
 	}
 	copy_finsh = true;
 	jump(boot_addr);

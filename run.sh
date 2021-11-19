@@ -45,7 +45,7 @@ fi
 
 if [ $# == 1 ] ; then
 	DEFAULT_VC="1280x720"
-	DBOOTCFG="pflash"
+	DBOOTCFG="sd"
 else
 	case "$2" in
 	full-screen)
@@ -60,7 +60,7 @@ else
 		;;
 	esac
 	if [ $# == 2 ] ; then
-		DBOOTCFG="pflash"
+		DBOOTCFG="sd"
 	else
 		if [ $# == 3 ] ; then
 			DBOOTCFG=$3

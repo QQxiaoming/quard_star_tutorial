@@ -28,7 +28,7 @@ typedef struct
 	volatile uint32_t SIFIVE_SPI_REG_IP;     /* 0x74 Interrupt Pendings Register */
 } sifive_spi_t;
 
-#define BIT(x)  (0x1 << x)
+#define BIT(x)                           (0x1 << x)
 
 /* csmode bits */
 #define SIFIVE_SPI_CSMODE_MODE_AUTO      0U

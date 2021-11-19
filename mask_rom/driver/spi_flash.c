@@ -114,6 +114,10 @@ void spi_flash_load(uint64_t addr, uint32_t offset, uint32_t size)
 	sifive_spi_send(SIFIVE_SPI_ADDR,offset_arry,3);
     for(int i=0;i < size; i+=8) {
         sifive_spi_recv(SIFIVE_SPI_ADDR,buffer+i,8);
+        if((i%(size/64))==0){
+            debug_log("#");
+        }
     }
+    debug_log("\n");
     sifive_spi_set_cs(SIFIVE_SPI_ADDR,false);
 }
