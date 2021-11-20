@@ -30,3 +30,21 @@ void ns16550_tx(uintptr_t addr, unsigned char c)
 	while ((reg->LSR_REG & LSR_THRE) == 0) ;
 	reg->THR_REG = c;
 }
+
+int ns16550_rx(uintptr_t addr, unsigned char *c, uint32_t timeout)
+{
+	ns16550_t *reg = (ns16550_t *)addr;
+	
+	while ((reg->LSR_REG & LSR_DR) == 0){
+		if(timeout != 0xFFFFFFFF) {
+			if(timeout == 0) {
+				return -1;
+			}
+			timeout--;
+		}
+	}
+	if(c) {
+		*c = reg->THR_REG;
+	}
+	return 0;
+}

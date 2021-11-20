@@ -56,6 +56,7 @@ OBJ_DIR = $(BUILD_DIR)/obj
 C_SOURCES =  \
 		${wildcard $(TOP_DIR)/driver/*.c} \
 		${wildcard $(TOP_DIR)/riscv/*.c} \
+		${wildcard $(TOP_DIR)/xmodem/*.c} \
 		${wildcard $(TOP_DIR)/*.c}
 
 # ASM sources
@@ -89,6 +90,7 @@ AS_INCLUDES = \
 C_INCLUDES = \
 		-I $(TOP_DIR)/riscv \
 		-I $(TOP_DIR)/driver \
+		-I $(TOP_DIR)/xmodem \
 		-I $(TOP_DIR)
 
 

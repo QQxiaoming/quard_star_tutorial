@@ -90,9 +90,9 @@ void spi_flash_init(void)
 	sifive_spi_send(SIFIVE_SPI_ADDR,&cmd,1);
 	sifive_spi_recv(SIFIVE_SPI_ADDR,jedec_date,6);
     sifive_spi_set_cs(SIFIVE_SPI_ADDR,false);
-    debug_log("spi flash jedec id %x_%x_%x_%x_%x_%x\n",
-					jedec_date[0],jedec_date[1],jedec_date[2],
-					jedec_date[3],jedec_date[4],jedec_date[5]);
+    //debug_log("spi flash jedec id %x_%x_%x_%x_%x_%x\n",
+	//				jedec_date[0],jedec_date[1],jedec_date[2],
+	//				jedec_date[3],jedec_date[4],jedec_date[5]);
 }
 
 /* 
@@ -108,7 +108,7 @@ void spi_flash_load(uint64_t addr, uint32_t offset, uint32_t size)
                                 (offset& 0xFF00) >> 8,
                                  offset & 0xFF   
                              };
-
+    debug_log("Load address: 0x%lx\nLoading: ",addr);
     sifive_spi_set_cs(SIFIVE_SPI_ADDR,true);
 	sifive_spi_send(SIFIVE_SPI_ADDR,&cmd,1);
 	sifive_spi_send(SIFIVE_SPI_ADDR,offset_arry,3);
@@ -118,6 +118,12 @@ void spi_flash_load(uint64_t addr, uint32_t offset, uint32_t size)
             debug_log("#");
         }
     }
-    debug_log("\n");
     sifive_spi_set_cs(SIFIVE_SPI_ADDR,false);
+    if(size >= 1024*1024) {
+        debug_log(" %dMiB\n",size/1024/1024);
+    } else if(size >= 1024) {
+        debug_log(" %dKiB\n",size/1024);
+    } else {
+        debug_log(" %dB\n",size);
+    }
 }

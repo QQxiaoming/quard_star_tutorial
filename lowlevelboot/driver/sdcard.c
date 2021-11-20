@@ -53,13 +53,15 @@ void sdcard_init(void)
 	//sdhci_read_resp(SDHCI_ADDR,resp,SDHCI_CMD_RESP_SHORT);
     //debug_log("cmd7 resp 0x%x\n",resp[0]);
 
-    debug_log("sdcard_init done\n");
+    //debug_log("sdcard_init done\n");
 }
 
 void sdcard_load(uint64_t addr, uint32_t offset, uint32_t size)
 {
     uint8_t *buffer = (uint8_t *)addr;
 	//uint32_t resp = 0;
+
+    debug_log("Load address: 0x%lx\nLoading: ",addr);
 	
 	/* send cmd16 */
 	sdhci_send_cmd(SDHCI_ADDR,16,512,SDHCI_CMD_RESP_SHORT,NULL);
@@ -75,5 +77,11 @@ void sdcard_load(uint64_t addr, uint32_t offset, uint32_t size)
             debug_log("#");
         }
     }
-	debug_log("\n");
+    if(size >= 1024*1024) {
+        debug_log(" %dMiB\n",size/1024/1024);
+    } else if(size >= 1024) {
+        debug_log(" %dKiB\n",size/1024);
+    } else {
+        debug_log(" %dB\n",size);
+    }
 }
