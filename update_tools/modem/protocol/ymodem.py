@@ -134,7 +134,7 @@ class YMODEM(XMODEM):
             if error_count >= retry:
                 self.abort(timeout=timeout)
                 return None
-            elif crc_mode and error_count < (retry / 2):
+            if crc_mode and error_count < (retry / 2):
                 if not self.putc(CRC):
                     time.sleep(delay)
                     error_count += 1
@@ -153,10 +153,9 @@ class YMODEM(XMODEM):
                 if cancel:
                     log.error(error.ABORT_RECV_CAN_CAN)
                     return None
-                else:
-                    log.debug(error.DEBUG_RECV_CAN)
-                    cancel = 1
-                    continue
+                log.debug(error.DEBUG_RECV_CAN)
+                cancel = 1
+                continue
             elif char in [SOH, STX]:
                 break
             else:
@@ -174,10 +173,9 @@ class YMODEM(XMODEM):
                     if cancel:
                         log.error(error.ABORT_RECV_CAN_CAN)
                         return None
-                    else:
-                        log.debug(debug.DEBUG_RECV_CAN)
-                        cancel = 1
-                        continue
+                    log.debug(debug.DEBUG_RECV_CAN)
+                    cancel = 1
+                    continue
                 elif char in [SOH, STX]:
                     seq1 = ord(self.getc(1))
                     seq2 = 0xff - ord(self.getc(1))
@@ -203,8 +201,7 @@ class YMODEM(XMODEM):
                                 self.putc(NAK)
                                 self.abort(timeout=timeout)
                                 return False
-                            else:
-                                self.putc(ACK)
+                            self.putc(ACK)
                             break
 
                     # Request retransmission if something went wrong

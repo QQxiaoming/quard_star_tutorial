@@ -59,8 +59,7 @@ class XMODEM(Modem):
                     # We abort if we receive two consecutive <CAN> bytes
                     if cancel:
                         return False
-                    else:
-                        cancel = 1
+                    cancel = 1
                 else:
                     log.error(error.ERROR_EXPECT_NAK_CRC % ord(char))
 
@@ -96,7 +95,7 @@ class XMODEM(Modem):
                 log.error(error.ABORT_ERROR_LIMIT)
                 self.abort(timeout=timeout)
                 return None
-            elif crc_mode and error_count < (retry / 2):
+            if crc_mode and error_count < (retry / 2):
                 log.debug(error.DEBUG_TRY_CRC)
                 if not self.putc(CRC):
                     time.sleep(delay)
@@ -114,7 +113,7 @@ class XMODEM(Modem):
                 continue
             elif char in [SOH, STX]:
                 break
-            elif char == CAN:
+            if char == CAN:
                 if cancel:
                     log.error(error.ABORT_RECV_CAN_CAN)
                     return None
@@ -143,8 +142,7 @@ class XMODEM(Modem):
                     # We abort if we receive two consecutive <CAN> bytes
                     if cancel:
                         return None
-                    else:
-                        cancel = 1
+                    cancel = 1
                 else:
                     log.debug(error.DEBUG_EXPECT_SOH_EOT % ord(char))
                     error_count += 1
@@ -228,9 +226,9 @@ class XMODEM(Modem):
         log.debug(error.DEBUG_SEND_EOT)
         if self._send_eot(error_count, retry, timeout):
             return True
-        else:
-            log.error(error.ERROR_SEND_EOT)
-            return False
+
+        log.error(error.ERROR_SEND_EOT)
+        return False
 
     def _send_packet(self, sequence, data, packet_size, crc_mode, crc,
         error_count, retry, timeout):
@@ -290,13 +288,13 @@ class XMODEM(Modem):
             if char == ACK:
                 # <EOT> confirmed
                 return True
-            else:
-                error_count += 1
-                if error_count >= retry:
-                    # Excessive amounts of retransmissions requested,
-                    # abort transfer
-                    log.error(error.ABORT_ERROR_LIMIT)
-                    return False
+
+            error_count += 1
+            if error_count >= retry:
+                # Excessive amounts of retransmissions requested,
+                # abort transfer
+                log.error(error.ABORT_ERROR_LIMIT)
+                return False
 
     def _wait_recv(self, error_count, timeout):
         '''
@@ -313,7 +311,7 @@ class XMODEM(Modem):
             if char:
                 if char in [NAK, CRC]:
                     return char
-                elif char == CAN:
+                if char == CAN:
                     # Cancel at two consecutive cancels
                     if cancel:
                         log.error(error.ABORT_RECV_CAN_CAN)

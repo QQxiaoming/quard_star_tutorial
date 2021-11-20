@@ -41,9 +41,8 @@ class XMODEMCRC(XMODEM):
                     if cancel:
                         log.error(error.ABORT_RECV_CAN_CAN)
                         return False
-                    else:
-                        log.debug(error.DEBUG_RECV_CAN)
-                        cancel = 1
+                    log.debug(error.DEBUG_RECV_CAN)
+                    cancel = 1
                 else:
                     log.error(error.ABORT_EXPECT_NAK_CRC % ord(char))
 
@@ -80,7 +79,7 @@ class XMODEMCRC(XMODEM):
                 log.error(error.ABORT_ERROR_LIMIT)
                 self.abort(timeout=timeout)
                 return None
-            elif crc_mode and error_count < (retry / 2):
+            if crc_mode and error_count < (retry / 2):
                 if not self.putc(CRC):
                     time.sleep(delay)
                     error_count += 1
@@ -99,8 +98,7 @@ class XMODEMCRC(XMODEM):
             elif char == CAN:
                 if cancel:
                     return None
-                else:
-                    cancel = 1
+                cancel = 1
             else:
                 error_count += 1
 
@@ -122,8 +120,7 @@ class XMODEMCRC(XMODEM):
                     # Cancel at two consecutive <CAN> bytes
                     if cancel:
                         return None
-                    else:
-                        cancel = 1
+                    cancel = 1
                 else:
                     log.error(error.ABORT_EXPECT_SOH_EOT % ord(char))
                     error_count += 1

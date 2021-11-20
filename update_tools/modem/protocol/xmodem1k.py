@@ -41,9 +41,8 @@ class XMODEM1K(XMODEM):
                     if cancel:
                         log.debug(error.DEBUG_RECV_CAN)
                         return False
-                    else:
-                        log.error(error.ABORT_RECV_CAN_CAN)
-                        cancel = 1
+                    log.error(error.ABORT_RECV_CAN_CAN)
+                    cancel = 1
                 else:
                     log.error(error.ERROR_EXPECT_NAK_CRC % ord(char))
 
@@ -54,9 +53,8 @@ class XMODEM1K(XMODEM):
 
         if self._send_stream(stream, crc_mode, retry, timeout):
             return True
-        else:
-            log.error(error.ABORT_SEND_STREAM)
-            return False
+        log.error(error.ABORT_SEND_STREAM)
+        return False
 
     def recv(self, stream, crc_mode=1, retry=16, timeout=60, delay=1):
         '''
@@ -80,7 +78,7 @@ class XMODEM1K(XMODEM):
             if error_count >= retry:
                 self.abort(timeout=timeout)
                 return None
-            elif crc_mode and error_count < (retry / 2):
+            if crc_mode and error_count < (retry / 2):
                 if not self.putc(CRC):
                     time.sleep(delay)
                     error_count += 1
@@ -102,8 +100,7 @@ class XMODEM1K(XMODEM):
             elif char == CAN:
                 if cancel:
                     return None
-                else:
-                    cancel = 1
+                cancel = 1
             else:
                 error_count += 1
 
@@ -130,9 +127,8 @@ class XMODEM1K(XMODEM):
                     if cancel:
                         log.error(error.ABORT_RECV_CAN_CAN)
                         return None
-                    else:
-                        log.debug(error.DEBUG_RECV_CAN)
-                        cancel = 1
+                    log.debug(error.DEBUG_RECV_CAN)
+                    cancel = 1
                 else:
                     log.error(error.ERROR_EXPECT_SOH_EOT % ord(char))
                     error_count += 1
