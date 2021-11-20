@@ -42,12 +42,14 @@ enum {
 };
 
 enum {
-    CONTROL_REG = 0x0,
-    BOOT_REG    = 0x4,
-    VERSION_REG = 0x8
+    CONTROL_REG   = 0x0,
+    BOOT_REG      = 0x4,
+    USER_BOOT_REG = 0x8,
+    VERSION_REG   = 0xc
 };
 
 static uint64_t quard_star_syscon_bootreg = QUARD_STAR_SYSCON_PFLASH_BOOT | QUARD_STAR_SYSCON_UART_UPDATE;
+static uint64_t quard_star_syscon_userbootreg = 0;
 
 static uint64_t quard_star_syscon_read(void *opaque, hwaddr addr, unsigned int size)
 {
@@ -57,6 +59,8 @@ static uint64_t quard_star_syscon_read(void *opaque, hwaddr addr, unsigned int s
         return 0;
     case BOOT_REG:
         return quard_star_syscon_bootreg;    
+    case USER_BOOT_REG:
+        return quard_star_syscon_userbootreg;    
     case VERSION_REG:
         return QUARD_STAR_SYSCON_VERSION;
     default:
@@ -83,6 +87,8 @@ static void quard_star_syscon_write(void *opaque, hwaddr addr,
         default:
             break;
         }
+    } else if(addr == USER_BOOT_REG) {
+        quard_star_syscon_userbootreg = val64;
     }
     qemu_log_mask(LOG_GUEST_ERROR, "%s: write: addr=0x%x val=0x%016" PRIx64 "\n",
                   __func__, (int)addr, val64);

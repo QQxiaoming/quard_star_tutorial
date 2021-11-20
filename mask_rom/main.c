@@ -36,6 +36,7 @@ int main(void)
 			if(uart_update_xmodem_recv(0x20000,256*1024)) {
 				/* 数据正确则jump */
 				debug_log("UART_BOOT\n");
+				syscon_set_user_update(SYSCON_UART_UPDATE);
 				copy_finsh = true;
 				jump(boot_addr);
 			}

@@ -36,6 +36,7 @@ class QuarUpdate:
         time.sleep(0.01)
         with open('../output/lowlevelboot/lowlevelboot.bin', 'rb') as (stream):
             self.xmodem.send(stream)
+        self.tn.read_until(b'Quard Star Updater', 30000)
         self.tn.close()
         logging.info('update firmware done!')
 

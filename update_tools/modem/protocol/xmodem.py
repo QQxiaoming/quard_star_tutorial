@@ -316,9 +316,8 @@ class XMODEM(Modem):
                         log.error(error.ABORT_RECV_CAN_CAN)
                         self.abort(timeout=timeout)
                         return False
-                    else:
-                        log.debug(error.DEBUG_RECV_CAN)
-                        cancel = 1
+                    log.debug(error.DEBUG_RECV_CAN)
+                    cancel = 1
                 else:
                     # Ignore the rest
                     pass

@@ -12,5 +12,7 @@
 
 uint32_t syscon_get_boot_source(void);
 bool syscon_get_update(void);
+void syscon_set_user_update(uint32_t flag);
+uint32_t syscon_get_user_update(void);
 
 #endif /* SYSCON_H */

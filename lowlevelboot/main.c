@@ -5,6 +5,14 @@
 #include "spi_flash.h"
 #include "sdcard.h"
 
+static void _delay(int cont)
+{
+    while (cont--)
+    {
+		__asm volatile("nop");
+    }
+}
+
 void spi_flash_boot(void)
 {
 	spi_flash_init();
@@ -57,26 +65,33 @@ void sd_boot(void)
 
 int main(void)
 {
-	debug_log("Quard Star LowLevelBoot\n");
-
 	/* in lowlevel_init ddr already init*/
 	
-	switch (syscon_get_boot_source())
+	if(syscon_get_user_update()&SYSCON_UART_UPDATE)
 	{
-	case SYSCON_SPI_BOOT:
-		debug_log("In SPI BOOT...\n");
-		spi_flash_boot();
-		break;
-	case SYSCON_SD_BOOT:
-		debug_log("In SD BOOT...\n");
-		sd_boot();
-		break;
-	default:
-		debug_log("BOOT err...\n");
-		while(1);
-		break;
+		debug_log("Quard Star Updater\n");
+		while(1){
+			debug_log("TODO:Updater\n");
+			_delay(1000000000);
+		}
+	} else {
+		debug_log("Quard Star LowLevelBoot\n");
+		switch (syscon_get_boot_source())
+		{
+		case SYSCON_SPI_BOOT:
+			debug_log("In SPI BOOT...\n");
+			spi_flash_boot();
+			break;
+		case SYSCON_SD_BOOT:
+			debug_log("In SD BOOT...\n");
+			sd_boot();
+			break;
+		default:
+			debug_log("BOOT err...\n");
+			while(1);
+			break;
+		}
 	}
-
 	return 0;
 }
 

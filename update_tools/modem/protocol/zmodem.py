@@ -426,7 +426,7 @@ class ZMODEM(Modem):
                 header[ZP2] << 0x10 | \
                 header[ZP3] << 0x18
 
-        # FIXME: stream to file handle directly
+        # TODO: stream to file handle directly
         kind = FRAMEOK
         size = 0
         while kind == FRAMEOK:
