@@ -29,7 +29,7 @@ int main(void)
 {
 	debug_log("Quard Star MaskRom %s\n",MASKROM_VERSION);
 	if(syscon_get_update()) {
-		debug_log("U\nP\nD\nA\nT\nE\n.\n.\n.\n");
+		debug_log("UPDATE...\n");
 		if(uart_update_request()) {
 			/* 通过串口将fw写入sram 0x20000，跳转0x20000 boot */
 			boot_addr = 0x20000;

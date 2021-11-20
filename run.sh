@@ -102,7 +102,7 @@ customize4)
 	DEFAULT_V=":vn:24x80:"
 	;;
 update_test)
-	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,nowait --serial telnet::3442,server,wait --serial telnet::3443,server,nowait --monitor none --parallel none"
+	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,wait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor stdio --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 --help)
