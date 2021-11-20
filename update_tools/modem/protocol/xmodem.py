@@ -117,9 +117,8 @@ class XMODEM(Modem):
                 if cancel:
                     log.error(error.ABORT_RECV_CAN_CAN)
                     return None
-                else:
-                    log.debug(error.DEBUG_RECV_CAN)
-                    cancel = 1
+                log.debug(error.DEBUG_RECV_CAN)
+                cancel = 1
             else:
                 error_count += 1
 
@@ -354,13 +353,11 @@ class XMODEM(Modem):
                     log.error(error.ABORT_ERROR_LIMIT)
                     self.abort(timeout=timeout)
                     return None
-                else:
-                    continue
+                continue
             elif char == CAN:
                 if cancel:
                     return None
-                else:
-                    cancel = 1
+                cancel = 1
             elif char in [SOH, STX]:
                 packet_size = 128 if char == SOH else 1024
                 # Check the requested packet size, only YMODEM has a variable
@@ -393,23 +390,21 @@ class XMODEM(Modem):
                 # packet
                 self.getc(packet_size + 1 + crc_mode)
                 self.putc(NAK)
-            elif char == EOT:
-                # We are done, acknowledge <EOT>
-                self.putc(ACK)
-                return income_size
             elif char == CAN:
                 # Cancel at two consecutive cancels
                 if cancel:
                     return False
-                else:
-                    cancel = 1
-                    self.putc(ACK)
-                    char = self.getc(1, timeout)
-                    continue
-            else:
-                log.debug(error.DEBUG_EXPECT_SOH_EOT % ord(char))
-                error_count += 1
-                if error_count >= retry:
-                    log.error(error.ABORT_ERROR_LIMIT)
-                    self.abort()
-                    return False
+                cancel = 1
+                self.putc(ACK)
+                char = self.getc(1, timeout)
+                continue
+            elif char == EOT:
+                # We are done, acknowledge <EOT>
+                self.putc(ACK)
+                return income_size
+            log.debug(error.DEBUG_EXPECT_SOH_EOT % ord(char))
+            error_count += 1
+            if error_count >= retry:
+                log.error(error.ABORT_ERROR_LIMIT)
+                self.abort()
+                return False

@@ -91,9 +91,9 @@ class ZMODEM(Modem):
             # Special cases
             if char in [ZCRCE, ZCRCG, ZCRCQ, ZCRCW]:
                 return char | ZDLEESC
-            elif char == ZRUB0:
+            if char == ZRUB0:
                 return 0x7f
-            elif char == ZRUB1:
+            if char == ZRUB1:
                 return 0xff
             # Escape sequence
             if char & 0x60 == 0x40:
@@ -130,14 +130,14 @@ class ZMODEM(Modem):
         if sub_frame_kind == ZCRCG:
             return FRAMEOK, data
         # Frame ends
-        elif sub_frame_kind == ZCRCE:
+        if sub_frame_kind == ZCRCE:
             return ENDOFFRAME, data
         # Frame continues; ZACK expected
-        elif sub_frame_kind == ZCRCQ:
+        if sub_frame_kind == ZCRCQ:
             self._send_pos_header(ZACK, pos, timeout)
             return FRAMEOK, data
         # Frame ends; ZACK expected
-        elif sub_frame_kind == ZCRCW:
+        if sub_frame_kind == ZCRCW:
             self._send_pos_header(ZACK, pos, timeout)
             return ENDOFFRAME, data
 
@@ -426,7 +426,7 @@ class ZMODEM(Modem):
                 header[ZP2] << 0x10 | \
                 header[ZP3] << 0x18
 
-        # TODO: stream to file handle directly
+        # FIXME: stream to file handle directly
         kind = FRAMEOK
         size = 0
         while kind == FRAMEOK:
