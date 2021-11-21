@@ -199,6 +199,8 @@ class XMODEM(Modem):
             data = stream.read(packet_size)
             # Check if we're done sending
             if not data:
+                if self.report:
+                    self.report('end',None)
                 break
 
             # Select optimal packet size when using YMODEM
@@ -217,6 +219,9 @@ class XMODEM(Modem):
                 crc, error_count, retry, timeout):
                 log.error(error.ERROR_SEND_PACKET)
                 return False
+
+            if self.report:
+                self.report('send',packet_size)
 
             # Next sequence
             sequence = (sequence + 1) % 0x100
@@ -367,10 +372,10 @@ class XMODEM(Modem):
                     self.abort(timeout=timeout)
                     return False
 
-                seq1 = ord(self.getc(1))
-                seq2 = 0xff - ord(self.getc(1))
+                seq1 = int.from_bytes(self.getc(1),'little',False)
+                seq2 = 0xff - int.from_bytes(self.getc(1),'little',False)
 
-                if seq1 == sequence and seq2 == sequence:
+                if seq1 == sequence and seq2 == (0xff - sequence):
                     data = self.getc(packet_size + 1 + crc_mode)
                     data = self._check_crc(data, crc_mode)
 
@@ -380,6 +385,9 @@ class XMODEM(Modem):
                         stream.write(data)
                         self.putc(ACK)
                         sequence = (sequence + 1) % 0x100
+
+                        if self.report:
+                            self.report('recv',packet_size)
 
                         # Waiting for new packet
                         char = self.getc(1, timeout)
@@ -400,8 +408,10 @@ class XMODEM(Modem):
             elif char == EOT:
                 # We are done, acknowledge <EOT>
                 self.putc(ACK)
+                if self.report:
+                    self.report('end',None)
                 return income_size
-            log.debug(error.DEBUG_EXPECT_SOH_EOT % ord(char))
+            log.debug(error.DEBUG_EXPECT_SOH_EOT % int.from_bytes(char,'little',False))
             error_count += 1
             if error_count >= retry:
                 log.error(error.ABORT_ERROR_LIMIT)

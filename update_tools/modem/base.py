@@ -1,5 +1,6 @@
 from modem.const import CRC16_MAP, CRC32_MAP
 from modem.tools import crc16, crc32
+from zlib import crc32 as _crc32
 
 
 class Modem(object):
@@ -7,17 +8,18 @@ class Modem(object):
     Base modem class.
     '''
 
-    def __init__(self, getc, putc):
+    def __init__(self, getc, putc, report=None):
         self.getc = getc
         self.putc = putc
+        self.report = report
 
     def calc_checksum(self, data, checksum=0):
         '''
         Calculate the checksum for a given block of data, can also be used to
         update a checksum.
 
-            >>> csum = modem.calc_checksum('hello')
-            >>> csum = modem.calc_checksum('world', csum)
+            >>> csum = modem.calc_checksum(b'hello')
+            >>> csum = modem.calc_checksum(b'world', csum)
             >>> hex(csum)
             '0x3c'
 
@@ -29,36 +31,37 @@ class Modem(object):
         Calculate the 16 bit Cyclic Redundancy Check for a given block of data,
         can also be used to update a CRC.
 
-            >>> crc = modem.calc_crc16('hello')
-            >>> crc = modem.calc_crc16('world', crc)
+            >>> crc = modem.calc_crc16(b'hello')
+            >>> crc = modem.calc_crc16(b'world', crc)
             >>> hex(crc)
-            '0xd5e3'
+            '0x4ab3'
 
         '''
         for char in data:
             crc = crc16(char, crc)
-        return crc
+        return crc & 0xffff
 
     def calc_crc32(self, data, crc=0):
         '''
         Calculate the 32 bit Cyclic Redundancy Check for a given block of data,
         can also be used to update a CRC.
 
-            >>> crc = modem.calc_crc32('hello')
-            >>> crc = modem.calc_crc32('world', crc)
+            >>> crc = modem.calc_crc32(b'hello')
+            >>> crc = modem.calc_crc32(b'world', crc)
             >>> hex(crc)
-            '0x20ad'
+            '0xf9eb20ad'
 
         '''
         for char in data:
             crc = crc32(char, crc)
-        return crc
+        return crc & 0xffffffff
+        #return _crc32(data, crc) & 0xffffffff
 
     def _check_crc(self, data, crc_mode):
         '''
         Depending on crc_mode check CRC or checksum on data.
 
-            >>> data = self._check_crc(data,crc_mode,quiet=quiet,debug=debug)
+            >>> data = self._check_crc(data,crc_mode)
             >>> if data:
             >>>    income_size += len(data)
             >>>    stream.write(data)
