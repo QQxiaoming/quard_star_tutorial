@@ -122,7 +122,8 @@ jobs:
       - name: Run tests uart update
         run: |
           cd update_tools
-          conda create -n tools python=3.9.7
+          conda create -n tools python=3.9.7 -y
+          conda init bash
           conda activate tools
           pip3 install -r requirements_pip.txt
           timeout --foreground -s SIGKILL 5m bash run.sh update_test > >(tee run_qemu.log) &
