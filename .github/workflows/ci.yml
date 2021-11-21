@@ -23,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - uses: s-weigand/setup-conda@v1
+
       - name: Install prerequisites
         run: |
           sudo apt update
@@ -116,3 +118,14 @@ jobs:
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!" ; then echo "Pass simulation" && killall qemu-system-riscv64 && exit 0; else echo "Failed in init process" && exit 1; fi;
           }
           rm run_qemu.log
+      
+      - name: Run tests uart update
+        run: |
+          cd update_tools
+          conda create --name tools --file requirements.txt
+          conda activate tools
+          timeout --foreground -s SIGKILL 5m bash run.sh update_test > >(tee run_qemu.log) &
+          sleep 1
+          timeout --foreground -s SIGKILL 5m bash python3 quard_star_tools.py > >(tee run_tools.log) || {
+            if cat run_tools.log | grep "update firmware done!" ; then echo "Pass simulation" && killall qemu-system-riscv64 && exit 0; else echo "Failed in update process" && exit 1; fi;
+          }
