@@ -102,7 +102,6 @@ jobs:
             toolchain.tar.gz
 
       - name: Run tests pflash boot
-        shell: bash -l {0}
         run: |
           timeout --foreground -s SIGKILL 5m bash run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
@@ -111,7 +110,6 @@ jobs:
           rm run_qemu.log
 
       - name: Run tests spi boot
-        shell: bash -l {0}
         run: |
           timeout --foreground -s SIGKILL 5m bash run.sh nographic default spi > >(tee run_qemu.log) || {
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
@@ -120,7 +118,6 @@ jobs:
           rm run_qemu.log
 
       - name: Run tests sd boot
-        shell: bash -l {0}
         run: |
           timeout --foreground -s SIGKILL 5m bash run.sh nographic default sd > >(tee run_qemu.log) || {
             if cat run_qemu.log | grep "init process" ; then echo "Kernel boot successfully" ; else echo "Kernel boot failed" && exit 1; fi;
@@ -139,6 +136,4 @@ jobs:
           timeout --foreground -s SIGKILL 5m bash run.sh update_test > >(tee run_qemu.log) &
           cd update_tools
           sleep 1
-          timeout --foreground -s SIGKILL 5m python3 quard_star_tools.py > >(tee run_tools.log) || {
-            if cat run_tools.log | grep "update firmware done!" ; then echo "Pass simulation" && killall qemu-system-riscv64 && exit 0; else echo "Failed in update process" && exit 1; fi;
-          }
+          timeout --foreground -s SIGKILL 5m python3 quard_star_tools.py
