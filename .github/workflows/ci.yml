@@ -30,6 +30,7 @@ jobs:
 
       - name: Install prerequisites
         run: |
+          source /usr/share/miniconda/condabin/activate 
           sudo apt update
           sudo apt install -y wget device-tree-compiler ninja-build git build-essential \
                 pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev \
@@ -125,6 +126,7 @@ jobs:
       - name: Run tests uart update
         run: |
           cd update_tools
+          source /usr/share/miniconda/condabin/activate 
           conda create -n tools python=3.9.7 -y
           conda activate tools
           pip3 install -r requirements_pip.txt
