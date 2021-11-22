@@ -1,9 +1,11 @@
+import sys
 import logging
 from modem.const import CRC16_MAP, CRC32_MAP
 
 # Configure logging
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s',
     datefmt='%m/%d/%Y %I:%M:%S %p',
+    stream=sys.stdout,
     level=logging.DEBUG)
 
 log = logging.getLogger('modem')
