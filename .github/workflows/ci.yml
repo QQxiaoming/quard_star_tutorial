@@ -105,20 +105,21 @@ jobs:
         shell: bash -l {0}
         run: |
           timeout --foreground -s SIGKILL 5m bash run.sh nographic default pfalsh > >(tee run_qemu.log) || {
+            echo
             if cat run_qemu.log | grep "init process"
             then
               echo "Kernel boot successfully"
             else
               echo "Kernel boot failed"
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               exit 1
             fi
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
             then
-              killall qemu-system-riscv64 
-              echo "Pass simulation" 
+              killall qemu-system-riscv64
+              echo "Pass simulation"
             else
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               echo "Failed in init process"
               exit 1
             fi
@@ -128,20 +129,21 @@ jobs:
         shell: bash -l {0}
         run: |
           timeout --foreground -s SIGKILL 5m bash run.sh nographic default spi > >(tee run_qemu.log) || {
+            echo
             if cat run_qemu.log | grep "init process"
             then
               echo "Kernel boot successfully"
             else
               echo "Kernel boot failed"
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               exit 1
             fi
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
             then
-              killall qemu-system-riscv64 
-              echo "Pass simulation" 
+              killall qemu-system-riscv64
+              echo "Pass simulation"
             else
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               echo "Failed in init process"
               exit 1
             fi
@@ -151,25 +153,26 @@ jobs:
         shell: bash -l {0}
         run: |
           timeout --foreground -s SIGKILL 5m bash run.sh nographic default sd > >(tee run_qemu.log) || {
+            echo
             if cat run_qemu.log | grep "init process"
             then
               echo "Kernel boot successfully"
             else
               echo "Kernel boot failed"
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               exit 1
             fi
             if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
             then
-              killall qemu-system-riscv64 
-              echo "Pass simulation" 
+              killall qemu-system-riscv64
+              echo "Pass simulation"
             else
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               echo "Failed in init process"
               exit 1
             fi
           }
-          
+
       - name: Run tests uart update
         shell: bash -l {0}
         run: |
@@ -184,10 +187,10 @@ jobs:
           timeout --foreground -s SIGKILL 5m python3 quard_star_tools.py > >(tee run_tools.log) && {
             if cat run_tools.log | grep "update firmware done"
             then
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               echo "Pass simulation"
             else
-              killall qemu-system-riscv64 
+              killall qemu-system-riscv64
               echo "Failed in updater process"
               exit 1
             fi

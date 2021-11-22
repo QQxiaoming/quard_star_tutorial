@@ -26,7 +26,6 @@ class QuarUpdate:
                 data = self.recv_data[:size]
                 self.recv_data=self.recv_data[size:]
                 return data
-        print(data)
 
     def putc(self, data, timeout=1):
         return self.tn.write(data)
@@ -42,9 +41,9 @@ class QuarUpdate:
             def hum_convert(value):
                  units = ["B", "KB", "MB", "GB", "TB", "PB"]
                  size = 1024.0
-                 for i in range(len(units)):
+                 for i,item in enumerate(units):
                      if (value / size) < 1:
-                         return "%.2f%s" % (value, units[i])
+                         return "%.2f%s" % (value, item)
                      value = value / size
             sys.stdout.write(' '+hum_convert(self.fsize)+'\n')
         sys.stdout.flush()
