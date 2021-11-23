@@ -62,6 +62,9 @@ class QuarUpdate:
 
 if __name__ == '__main__':
     logging.getLogger("modem").setLevel(logging.WARNING)
-    update = QuarUpdate('../output/lowlevelboot/lowlevelboot.bin')
+    filepath = './lowlevelboot.bin'
+    if len(sys.argv) >= 1:
+        filepath = sys.argv[1]
+    update = QuarUpdate(filepath)
     update.run()
     

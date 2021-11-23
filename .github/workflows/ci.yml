@@ -82,7 +82,7 @@ jobs:
           sed -i 's/pkexec/sudo/g' build.sh
           bash build.sh
           du -sh output
-          tar -czf build.tar.gz output/ run.sh
+          tar -czf build.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
           du -sh /opt/gcc-riscv64-unknown-linux-gnu
           du -sh /opt/gcc-riscv64-unknown-elf
@@ -104,7 +104,7 @@ jobs:
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 5m bash run.sh nographic default pfalsh > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m bash run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -128,7 +128,7 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 5m bash run.sh nographic default spi > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m bash run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -152,7 +152,7 @@ jobs:
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 5m bash run.sh nographic default sd > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m bash run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -176,15 +176,12 @@ jobs:
       - name: Run tests uart update
         shell: bash -l {0}
         run: |
-          cd update_tools
           conda create -n tools python=3.9.7 -y
           conda activate tools
-          pip3 install -r requirements_pip.txt
-          cd ..
-          timeout --foreground -s SIGKILL 5m bash run.sh update_test > >(tee run_qemu.log) &
-          cd update_tools
+          pip3 install -r ./update_tools/requirements_pip.txt
+          timeout --foreground -s SIGKILL 3m bash run.sh update_test > >(tee run_qemu.log) &
           sleep 5
-          timeout --foreground -s SIGKILL 5m python3 quard_star_tools.py > >(tee run_tools.log) && {
+          timeout --foreground -s SIGKILL 3m bash update_tools.sh > >(tee run_tools.log) && {
             if cat run_tools.log | grep "update firmware done"
             then
               killall qemu-system-riscv64

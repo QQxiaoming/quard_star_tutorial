@@ -275,7 +275,156 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     2021.11.14(下午):这周没怎么开发这个项目，因为R星发布了GTA三部曲最终版，童年经典游戏，所以果断回味经典去了。不过还是有进度的，计划给这个项目做一个maskrom添加多种boot方式和升级固件的功能，因此初步完成了syscon的设计，添加了一个boot状态寄存器，可以通过qemu参数指定boot状态。稍晚点把代码整理好提交。
 
 - 
-    2021.11.19(晚上):把maskrom中pflash/spi/sd三种boot的代码完成了，这里要强调下maskrom中的spi和sdhci的驱动编写的非常简单而粗糙，为什么呢，因为我们要简化maskrom的代码设计，尽可能使用极少的rom和ram空间，真实的soc设计时这些静态ram的成本是很高的，当然这份驱动代码还要考虑更多性能和兼容性的问题，这里我们没有仔细斟酌，仅作示例。lowlevelboot代码增加了spi和sd的情况，这里注意下代码改为在sram的地址空间执行，但是之前pflash的代码因为我们使用了纯汇编编写，因此地址是无关的，除了一个_pen变量的取址方式是需要pc，这边特殊处理下即可，这样我们的lowlevelboot代码就可以在pflash和sarm两种方式都能执行正确了。现在maskrom代码就只差升级功能没完成了，这里我计划使用xmodem协议，另外计划再写个PC升级工具用于配合升级流程。另外又整理了一些框图流程图。
+    2021.11.19(晚上):把maskrom中pflash/spi/sd三种boot的代码完成了，这里要强调下maskrom中的spi和sdhci的驱动编写的非常简单而粗糙，为什么呢，因为我们要简化maskrom的代码设计，尽可能使用极少的rom和ram空间，真实的soc设计时这些静态ram的成本是很高的，当然这份驱动代码还要考虑更多性能和兼容性的问题，这里我们没有仔细斟酌，仅作示例（这里发现了个奇怪的现象，spi的驱动在maskrom和lowlevelboot状态下性能差异很大，这可能是qemu的问题，后续有空研究下）。lowlevelboot代码增加了spi和sd的情况，这里注意下代码改为在sram的地址空间执行，但是之前pflash的代码因为我们使用了纯汇编编写，因此地址是无关的，除了一个_pen变量的取址方式是需要pc，这边特殊处理下即可，这样我们的lowlevelboot代码就可以在pflash和sarm两种方式都能执行正确了。现在maskrom代码就只差升级功能没完成了，这里我计划使用xmodem协议，另外计划再写个PC升级工具用于配合升级流程。另外又整理了一些框图流程图。
 
 - 
     2021.11.20(早上):移植xmodem传输协议到mask_rom，成功测试可以通过uart烧写lowlevelboot.bin到sram内，需要做一个好用的pc工具来对接升级，计划考虑用pyqt或者Qt来写。
+
+- 
+    2021.11.21(晚上):优化代码，添加CI来对uart升级功能进行测试，但是CI问题很多，conda的环境总是有问题，好在终于解决了，而且把之前的CI脚本做了更新，现在代码更加干净整洁了。另外，我今天心情特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕，特别糟糕。我想我是否应该去看心理医生了。哭。
+
+- 
+    2021.11.22(晚上):状态恢复了，心情很好很开心，是的，我现在情绪波动真的很大，我也不知道该怎么处理。好了聊正事，心情不错，今天抽空研究下为什么之前写的spi flash的驱动在maskrom上运行及其慢，而进入lowlevelboot阶段则不会运行那么慢了，虽然作为示例驱动实现的写法为低效率的轮寻，但也不应该在不同阶段执行速度不一样，这里怀疑是qemu本身实现的问题。首先qemu是拥有一个tcg子系统，用于将guest指令转换为host上的指令，我们可以从这里入手，首先运行qemu时添加参数-d op -D qemu.log，这样会将运行产生的tcg中间IR码打印出来，如下示例:
+
+    ```
+    OP:
+        ld_i32 tmp0,env,$0xfffffffffffffff0
+        brcond_i32 tmp0,$0x0,lt,$L0
+
+        ---- 0000000000000000
+        mov_i32 tmp0,$0x1
+        st_i32 tmp0,env,$0xfffffffffffff168
+        mov_i64 x3/gp,$0xe2000
+        goto_tb $0x0
+        mov_i64 pc,$0x4
+        exit_tb $0x7fe43effe000
+        set_label $L0
+        exit_tb $0x7fe43effe003
+    
+    …………
+    ```
+
+    好嘛，这一看才发现，在maskrom阶段执行的IR码的翻译都是一条一条单指令翻译的，而到lowlevelboot阶段则是按照TB块翻译的，难怪仿真效率差这么多，这看起来像是bug，我们来追踪下qemu源码看下为什么会产生这种现象。首先找到：qemu-6.0.0/accel/tcg/translate-all.c:1862，代码片段：
+
+    ```c
+    phys_pc = get_page_addr_code(env, pc);
+
+    if (phys_pc == -1) {
+        /* Generate a one-shot TB with 1 insn in it */
+        //QQM mark
+        cflags = (cflags & ~CF_COUNT_MASK) | CF_LAST_IO | 1;
+    }
+    ```
+
+    这里如果phys_pc为-1,则TB块的大小为1,实测果然是这里为-1了，而我们的pc地址在maskrom阶段是0地址开始的，继续追踪代码到qemu-6.0.0/accel/tcg/cputlb.c:1518，函数get_page_addr_code_hostp中代码片段如下：
+
+    ```c
+    if (unlikely(!tlb_hit(entry->addr_code, addr))) {
+        if (!VICTIM_TLB_HIT(addr_code, addr)) {
+            tlb_fill(env_cpu(env), addr, 0, MMU_INST_FETCH, mmu_idx, 0);
+            index = tlb_index(env, mmu_idx, addr);
+            entry = tlb_entry(env, mmu_idx, addr);
+
+            if (unlikely(entry->addr_code & TLB_INVALID_MASK)) {
+                /*
+                 * The MMU protection covers a smaller range than a target
+                 * page, so we must redo the MMU check for every insn.
+                 */
+                return -1;
+            }
+        }
+        assert(tlb_hit(entry->addr_code, addr));
+    }
+    ```
+    
+    这里条件entry->addr_code & TLB_INVALID_MASK为真，这里非常有问题，为什么0地址在上电状态下TLB_INVALID_MASK，其他地址就没这个问题，继续跟踪发现函数tlb_set_page_with_attrs中代码片段如下：
+
+    ```
+    if (size < TARGET_PAGE_SIZE) {
+        /* Repeat the MMU check and TLB fill on every access.  */
+        address |= TLB_INVALID_MASK;
+    }
+    ```
+
+    向上追踪此处的异常size来源于tlb_set_page，而针对RISCV平台的调用在发生在qemu-6.0.0/target/riscv/cpu_helper.c文件内riscv_cpu_tlb_fill函数内通过get_physical_address_pmp获取tlb_size后传递给tlb_set_page，到这里就进入到riscv的平台专有代码的，看来距离真相接近了。继续追踪代码发现在qemu-6.0.0/target/riscv/pmp.c文件内的pmp_is_range_in_tlb-->pmp_get_tlb_size函数tlb_sa在第一个4K区域内，会返回1这个size。
+
+    ```c
+    static target_ulong pmp_get_tlb_size(CPURISCVState *env, int pmp_index,
+                                        target_ulong tlb_sa, target_ulong tlb_ea)
+    {
+        target_ulong pmp_sa = env->pmp_state.addr[pmp_index].sa;
+        target_ulong pmp_ea = env->pmp_state.addr[pmp_index].ea;
+
+        if (pmp_sa >= tlb_sa && pmp_ea <= tlb_ea) {
+            //printf("1 %ld %ld %ld %ld\n",pmp_sa,tlb_sa,pmp_ea,tlb_ea);
+            return pmp_ea - pmp_sa + 1;
+        }
+
+        if (pmp_sa >= tlb_sa && pmp_sa <= tlb_ea && pmp_ea >= tlb_ea) {
+            return tlb_ea - pmp_sa + 1;
+        }
+
+        if (pmp_ea <= tlb_ea && pmp_ea >= tlb_sa && pmp_sa <= tlb_sa) {
+            return pmp_ea - tlb_sa + 1;
+        }
+
+        return 0;
+    }
+    ```
+
+    这里的问题就是env->pmp_state.addr[pmp_index].sa和env->pmp_state.addr[pmp_index].ea都等于0,而代码运行在这里时，pmp_state根本就没有做任何配置，sa和ea都是内存alloc后的默认值，阅读pmp_update_rule_addr实现不难发现，上电状态下pmp模块应该为PMP_AMATCH_OFF状态sa应为0,ea应为最大值，这样之前的pmp_is_range_in_tlb就不会返回那个奇怪的1值了。这里显然是个严重问题，guest在未初始配置pmp时，tlb_size获取错误。
+
+    ```c
+    void pmp_update_rule_addr(CPURISCVState *env, uint32_t pmp_index)
+    {
+        uint8_t this_cfg = env->pmp_state.pmp[pmp_index].cfg_reg;
+        target_ulong this_addr = env->pmp_state.pmp[pmp_index].addr_reg;
+        target_ulong prev_addr = 0u;
+        target_ulong sa = 0u;
+        target_ulong ea = 0u;
+
+        if (pmp_index >= 1u) {
+            prev_addr = env->pmp_state.pmp[pmp_index - 1].addr_reg;
+        }
+
+        switch (pmp_get_a_field(this_cfg)) {
+        case PMP_AMATCH_OFF:
+            sa = 0u;
+            ea = -1;
+            break;
+
+        case PMP_AMATCH_TOR:
+            sa = prev_addr << 2; /* shift up from [xx:0] to [xx+2:2] */
+            ea = (this_addr << 2) - 1u;
+            break;
+
+        case PMP_AMATCH_NA4:
+            sa = this_addr << 2; /* shift up from [xx:0] to [xx+2:2] */
+            ea = (sa + 4u) - 1u;
+            break;
+
+        case PMP_AMATCH_NAPOT:
+            pmp_decode_napot(this_addr, &sa, &ea);
+            break;
+
+        default:
+            sa = 0u;
+            ea = 0u;
+            break;
+        }
+
+        env->pmp_state.addr[pmp_index].sa = sa;
+        env->pmp_state.addr[pmp_index].ea = ea;
+    }
+    ```
+
+    由于这部分代码逻辑比较复杂，目前我还没找到一个合适的地方添加对pmp_state.addr初值的init，所以，目前我的解决办法是在maskrom代码内一开始的位置添加
+
+    ```asm
+    csrw pmpcfg0, 0
+  	csrw pmpcfg1, 0
+  	csrw pmpcfg2, 0
+  	csrw pmpcfg3, 0
+    ```
+
+    以此将pmp配置到正确的初始值，修改和再次测试spi flash的驱动，果然问题解决。最后qemu的tcg非常有意思，这里推荐一些[博客](https://airbus-seclab.github.io/qemu_blog/tcg_p1.html)给大家，感兴趣可以阅读。

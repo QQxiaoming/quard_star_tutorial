@@ -13,6 +13,12 @@ _start:
 	la  gp, __global_pointer$
 .option pop
 
+	// FIXME:fix qemu pmp not init 0x0 addr tlb_size is 1 issue
+  	csrw pmpcfg0, 0
+  	csrw pmpcfg1, 0
+  	csrw pmpcfg2, 0
+  	csrw pmpcfg3, 0
+
 	// Continue primary hart
 	li   a1, PRIM_HART
     csrr a0, mhartid
