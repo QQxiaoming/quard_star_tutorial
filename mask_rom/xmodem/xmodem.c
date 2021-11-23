@@ -244,5 +244,5 @@ int xmodemInTime(unsigned char *c, unsigned short timeout)
 
 void xmodemInFlush(void)
 {
-	while(xmodemInTime(NULL,XMODEM_TIMEOUT_DELAY) >= 0);
+	return;
 }
