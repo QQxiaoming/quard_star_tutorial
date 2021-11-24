@@ -1,8 +1,8 @@
 import glob
 import os
-from modem.const import *
-from modem.tools import log
-from modem.protocol.xmodem import XMODEM
+from quard_updater.modem.const import *
+from quard_updater.modem.tools import log
+from quard_updater.modem.protocol.xmodem import XMODEM
 
 
 class YMODEM(XMODEM):

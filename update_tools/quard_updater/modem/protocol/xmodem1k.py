@@ -1,20 +1,20 @@
-from modem import error
-from modem.const import *
-from modem.protocol.xmodem import XMODEM
+from quard_updater.modem import error
+from quard_updater.modem.const import *
+from quard_updater.modem.tools import log
+from quard_updater.modem.protocol.xmodem import XMODEM
 
 
-class XMODEMCRC(XMODEM):
+class XMODEM1K(XMODEM):
     '''
-    XMODEMCRC protocol implementation, expects an object to read from and an
+    XMODEM1K protocol implementation, expects an object to read from and an
     object to write to.
     '''
 
-    # Protocol identifier
-    protocol = PROTOCOL_XMODEMCRC
+    protocol = PROTOCOL_XMODEM1K
 
     def send(self, stream, retry=16, timeout=60):
         '''
-        Send a stream via the XMODEMCRC protocol.
+        Send a stream via the XMODEM1K protocol.
 
             >>> stream = file('/etc/issue', 'rb')
             >>> print modem.send(stream)
@@ -39,26 +39,26 @@ class XMODEMCRC(XMODEM):
                     break
                 elif char == CAN:
                     if cancel:
-                        log.error(error.ABORT_RECV_CAN_CAN)
+                        log.debug(error.DEBUG_RECV_CAN)
                         return False
-                    log.debug(error.DEBUG_RECV_CAN)
+                    log.error(error.ABORT_RECV_CAN_CAN)
                     cancel = 1
                 else:
-                    log.error(error.ABORT_EXPECT_NAK_CRC % ord(char))
+                    log.error(error.ERROR_EXPECT_NAK_CRC % ord(char))
 
             error_count += 1
             if error_count >= retry:
                 self.abort(timeout=timeout)
                 return False
 
-        if not self._send_stream(stream, crc_mode, retry, timeout):
-            log.error(error.ABORT_SEND_STREAM)
-            return False
-        return True
+        if self._send_stream(stream, crc_mode, retry, timeout):
+            return True
+        log.error(error.ABORT_SEND_STREAM)
+        return False
 
     def recv(self, stream, crc_mode=1, retry=16, timeout=60, delay=1):
         '''
-        Receive a stream via the XMODEMCRC protocol.
+        Receive a stream via the XMODEM1K protocol.
 
             >>> stream = file('/etc/issue', 'wb')
             >>> print modem.recv(stream)
@@ -76,7 +76,6 @@ class XMODEMCRC(XMODEM):
             # first try CRC mode, if this fails,
             # fall back to checksum mode
             if error_count >= retry:
-                log.error(error.ABORT_ERROR_LIMIT)
                 self.abort(timeout=timeout)
                 return None
             if crc_mode and error_count < (retry / 2):
@@ -94,6 +93,9 @@ class XMODEMCRC(XMODEM):
                 error_count += 1
                 continue
             elif char == SOH:
+                #crc_mode = 0
+                break
+            elif char in [STX, CAN]:
                 break
             elif char == CAN:
                 if cancel:
@@ -111,18 +113,24 @@ class XMODEMCRC(XMODEM):
         while True:
             while True:
                 if char == SOH:
+                    packet_size = 128
+                    break
+                elif char == STX:
+                    packet_size = 1024
                     break
                 elif char == EOT:
                     # SEND LAST <ACK>
                     self.putc(ACK)
                     return income_size
                 elif char == CAN:
-                    # Cancel at two consecutive <CAN> bytes
+                    # cancel at two consecutive cancels
                     if cancel:
+                        log.error(error.ABORT_RECV_CAN_CAN)
                         return None
+                    log.debug(error.DEBUG_RECV_CAN)
                     cancel = 1
                 else:
-                    log.error(error.ABORT_EXPECT_SOH_EOT % ord(char))
+                    log.error(error.ERROR_EXPECT_SOH_EOT % ord(char))
                     error_count += 1
                     if error_count >= retry:
                         self.abort()
@@ -134,7 +142,7 @@ class XMODEMCRC(XMODEM):
             seq1 = ord(self.getc(1))
             seq2 = 0xff - ord(self.getc(1))
             if seq1 == sequence and seq2 == sequence:
-                # Sequence is ok, read packet
+                # sequence is ok, read packet
                 # packet_size + checksum
                 data = self.getc(packet_size + 1 + crc_mode)
                 data = self._check_crc(data, crc_mode)
@@ -149,7 +157,7 @@ class XMODEMCRC(XMODEM):
             else:
                 # consume data
                 self.getc(packet_size + 1 + crc_mode)
-                log.error(error.ABORT_INVALID_SEQ)
+                log.debug(error.ERROR_INVALID_SEQ)
 
             # something went wrong, request retransmission
             self.putc(NAK)

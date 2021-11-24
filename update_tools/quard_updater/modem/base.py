@@ -1,5 +1,5 @@
-from modem.const import CRC16_MAP, CRC32_MAP
-from modem.tools import crc16, crc32
+from quard_updater.modem.const import CRC16_MAP, CRC32_MAP
+from quard_updater.modem.tools import crc16, crc32
 from zlib import crc32 as _crc32
 
 

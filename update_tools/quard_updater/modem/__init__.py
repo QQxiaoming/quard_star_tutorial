@@ -7,11 +7,11 @@ __license__ = 'MIT'
 __version__ = '0.2.4'
 
 import gettext
-from modem.protocol.xmodem import XMODEM
-from modem.protocol.xmodem1k import XMODEM1K
-from modem.protocol.xmodemcrc import XMODEMCRC
-from modem.protocol.ymodem import YMODEM
-from modem.protocol.zmodem import ZMODEM
+from quard_updater.modem.protocol.xmodem import XMODEM
+from quard_updater.modem.protocol.xmodem1k import XMODEM1K
+from quard_updater.modem.protocol.xmodemcrc import XMODEMCRC
+from quard_updater.modem.protocol.ymodem import YMODEM
+from quard_updater.modem.protocol.zmodem import ZMODEM
 
 gettext.install('modem')
 

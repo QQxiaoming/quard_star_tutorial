@@ -1,6 +1,6 @@
 import sys
 import logging
-from modem.const import CRC16_MAP, CRC32_MAP
+from quard_updater.modem.const import CRC16_MAP, CRC32_MAP
 
 # Configure logging
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s',
@@ -8,7 +8,8 @@ logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s',
     stream=sys.stdout,
     level=logging.DEBUG)
 
-log = logging.getLogger('modem')
+log = logging.getLogger('quard_updater.modem')
+log.setLevel(logging.WARNING)
 
 def crc16(data, crc=0):
     crc = (crc << 8) ^ CRC16_MAP[((crc >> 0x08) ^ (data)) & 0xff]

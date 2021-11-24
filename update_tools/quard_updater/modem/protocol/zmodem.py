@@ -1,9 +1,9 @@
 import datetime
 import os
 import time
-from modem.base import Modem
-from modem.const import *
-from modem.tools import log
+from quard_updater.modem.base import Modem
+from quard_updater.modem.const import *
+from quard_updater.modem.tools import log
 
 
 class ZMODEM(Modem):
