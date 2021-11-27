@@ -20,7 +20,7 @@ static void _delay(int cont)
 
 static int getbyte(unsigned char *c)
 {
-	return ns16550_rx(NS16550_ADDR,c,100000);
+	return ns16550_rx(NS16550_ADDR,c,1000000);
 }
 
 static void sendbyte(unsigned char c)
