@@ -117,7 +117,7 @@ riscv64-unknown-linux-gnu-gdb -x ./gdb.script
 
 三个终端最终启动后结果如图：
 
-![ex1-0](./img/ex1-0.png)
+![ext1-0](./img/ext1-0.png)
 
 ## 调试技巧
 
