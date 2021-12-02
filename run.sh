@@ -6,6 +6,11 @@ SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 DEBUG_PARAM=""
 #DEBUG_PARAM="-d help -D qemu.log"
 
+PLUGINS_PARAM=""
+#PLUGINS_PATH=$SHELL_FOLDER/qemu-6.0.0/build/contrib/plugins/libhotblocks.so
+#PLUGINS_PATH=$SHELL_FOLDER/qemu-6.0.0/build/tests/plugin/libsyscall.so
+#PLUGINS_PARAM="-plugin $PLUGINS_PATH -d plugin"
+
 VC=\
 "full-screen | \
 1920x1080 | \
@@ -101,6 +106,11 @@ customize4)
 	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
+customize5)
+	# vnc base port is 5900, so this 1 is 5901
+	GRAPHIC_PARAM="-display vnc=127.0.0.1:1 --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor telnet::3430,server,nowait --parallel none"
+	DEFAULT_V=":vn:24x80:"
+	;;
 update_test)
 	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,wait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor stdio --parallel none"
 	DEFAULT_V=":vn:24x80:"
@@ -138,4 +148,4 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
 -global quard-star-syscon.boot-cfg="$DBOOTCFG" \
-$GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM
+$GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM

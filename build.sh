@@ -17,7 +17,7 @@ build_qemu()
     echo "------------------------------ 编译qemu ------------------------------"
     cd $SHELL_FOLDER/qemu-6.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu" ]; then  
-    ./configure --prefix=$SHELL_FOLDER/output/qemu  --target-list=riscv64-softmmu --enable-gtk  --enable-virtfs --disable-gio
+    ./configure --prefix=$SHELL_FOLDER/output/qemu --target-list=riscv64-softmmu --enable-gtk  --enable-virtfs --disable-gio --enable-plugins
     fi  
     make -j$PROCESSORS
     make install
