@@ -66,10 +66,10 @@ BoardWindow::BoardWindow(QWidget *parent) :
         "-fw_cfg",    "name=opt/qemu_cmdline,string=qemu_vc=:vn:24x80:",
         "-global",    "quard-star-syscon.boot-cfg=sd",
         "-display",   "vnc=127.0.0.1:1",                /*vnc base port is 5900, so this 1 is 5901*/
-        "--serial",   "telnet::3441,server,nowait",
-        "--serial",   "telnet::3442,server,nowait",
-        "--serial",   "telnet::3443,server,nowait",
-        "--monitor",  "telnet::3430,server,nowait",
+        "--serial",   "telnet:127.0.0.1:3441,server,nowait",
+        "--serial",   "telnet:127.0.0.1:3442,server,nowait",
+        "--serial",   "telnet:127.0.0.1:3443,server,nowait",
+        "--monitor",  "telnet:127.0.0.1:3430,server,nowait",
         "--parallel", "none",
     };
 
