@@ -292,7 +292,6 @@ void QVNCClientWidget::onServerMessage()
     response = socket.read(1);
     switch (response.at(0))
     {
-
     // ***************************************************************************************
     // ***************************** Frame Buffer Update *************************************
     // ***************************************************************************************
@@ -544,7 +543,6 @@ quint32 QVNCClientWidget::translateRfbKey(int key, bool modifier)
 
     switch (key)
     {
-
     case Qt::Key_Backspace:
         k = XK_BackSpace;
         break;
@@ -923,7 +921,6 @@ quint32 QVNCClientWidget::translateRfbKey(int key, bool modifier)
 
     if (k == 5000)
     {
-
         if (!modifier)
         {
             switch (key)

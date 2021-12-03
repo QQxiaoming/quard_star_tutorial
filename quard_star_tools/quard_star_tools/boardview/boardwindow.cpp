@@ -161,7 +161,6 @@ void BoardWindow::mousePressEvent(QMouseEvent *event)
 
 void BoardWindow::mouseMoveEvent(QMouseEvent *event)
 {
-
     if(isMousePressed)
     {
         QPoint deltaPos = event->pos() - mStartPos;
@@ -215,7 +214,6 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 } else if(spaceList[i].name == "soc") {
                     QFileDialog::getOpenFileName(this, tr("Select IMG"), pflashImgPath, "IMG files(*.img *.bin)");
                 }
-
             }
         }
         qDebug() << event->pos().x();

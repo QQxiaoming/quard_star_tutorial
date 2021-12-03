@@ -32,14 +32,15 @@ class QuardUpdate(object):
 
     def update_run(self):
         if self.fsize:
+            logging.info('Wait Connect Quard Star MaskROM...')
             self.hw_port_io_init()
-            self.hw_port_io_recv_until(b'UPDATE...\r\n',30000)
+            self.hw_port_io_recv_until(b'UPDATE...\r\n',3000)
             self.hw_port_io_send(b'Q')
             logging.info('Connect Quard Star MaskROM Success! Please wait...')
             time.sleep(0.01)
             with open(self.filePath, 'rb') as (stream):
                 self.xmodem.send(stream)
-            self.hw_port_io_recv_until(b'Quard Star Updater', 30000)
+            self.hw_port_io_recv_until(b'Quard Star Updater', 3000)
             self.hw_port_io_close()
             logging.info('update firmware done!')
             return True
