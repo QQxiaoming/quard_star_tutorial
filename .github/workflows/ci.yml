@@ -101,6 +101,28 @@ jobs:
           path: |
             toolchain.tar.gz
 
+      - name: Run tests uart update
+        shell: bash -l {0}
+        run: |
+          conda create -n tools python=3.9.7 -y
+          conda activate tools
+          pip3 install -r ./update_tools/requirements_pip.txt
+          echo "run.sh update_test"
+          timeout --foreground -s SIGKILL 3m bash run.sh update_test > >(tee run_qemu.log) &
+          sleep 5
+          echo "update_tools.sh"
+          timeout --foreground -s SIGKILL 3m bash update_tools.sh > >(tee run_tools.log) && {
+            if cat run_tools.log | grep "update firmware done"
+            then
+              killall qemu-system-riscv64
+              echo "Pass simulation"
+            else
+              killall qemu-system-riscv64
+              echo "Failed in updater process"
+              exit 1
+            fi
+          }
+
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
@@ -169,28 +191,6 @@ jobs:
             else
               killall qemu-system-riscv64
               echo "Failed in init process"
-              exit 1
-            fi
-          }
-
-      - name: Run tests uart update
-        shell: bash -l {0}
-        run: |
-          conda create -n tools python=3.9.7 -y
-          conda activate tools
-          pip3 install -r ./update_tools/requirements_pip.txt
-          echo "run.sh update_test"
-          timeout --foreground -s SIGKILL 3m bash run.sh update_test > >(tee run_qemu.log) &
-          sleep 5
-          echo "update_tools.sh"
-          timeout --foreground -s SIGKILL 3m bash update_tools.sh > >(tee run_tools.log) && {
-            if cat run_tools.log | grep "update firmware done"
-            then
-              killall qemu-system-riscv64
-              echo "Pass simulation"
-            else
-              killall qemu-system-riscv64
-              echo "Failed in updater process"
               exit 1
             fi
           }

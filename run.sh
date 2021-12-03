@@ -95,24 +95,24 @@ customize1)
 	DEFAULT_V=":vn:$COLS""x""$ROWS:"
 	;;
 customize2)
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor stdio --parallel none"
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor stdio --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 customize3)
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
+	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor none --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 customize4)
-	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor none --parallel none"
+	GRAPHIC_PARAM="-nographic --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor none --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 customize5)
 	# vnc base port is 5900, so this 1 is 5901
-	GRAPHIC_PARAM="-display vnc=127.0.0.1:1 --serial telnet::3441,server,nowait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor telnet::3430,server,nowait --parallel none"
+	GRAPHIC_PARAM="-display vnc=127.0.0.1:1 --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor telnet:127.0.0.1:3430,server,nowait --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 update_test)
-	GRAPHIC_PARAM="-nographic --serial telnet::3441,server,wait --serial telnet::3442,server,nowait --serial telnet::3443,server,nowait --monitor stdio --parallel none"
+	GRAPHIC_PARAM="-nographic --serial telnet:127.0.0.1:3441,server,wait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor stdio --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 --help)

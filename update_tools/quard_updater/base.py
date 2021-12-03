@@ -34,6 +34,7 @@ class QuardUpdate(object):
         if self.fsize:
             logging.info('Wait Connect Quard Star MaskROM...')
             self.hw_port_io_init()
+            logging.info('hw_port_io_init')
             self.hw_port_io_recv_until(b'UPDATE...\r\n',3000)
             self.hw_port_io_send(b'Q')
             logging.info('Connect Quard Star MaskROM Success! Please wait...')
