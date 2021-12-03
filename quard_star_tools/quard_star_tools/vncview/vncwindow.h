@@ -12,8 +12,10 @@ class VncWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    VncWindow(QWidget *parent = nullptr);
+    VncWindow(QString addr, int port, QWidget *parent = nullptr);
     ~VncWindow();
+    QString severaddr;
+    int severport;
 
 private slots:
     void refresh_clicked();

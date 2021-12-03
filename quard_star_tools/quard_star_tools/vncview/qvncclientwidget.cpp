@@ -55,20 +55,14 @@ bool QVNCClientWidget::sendSetEncodings(void)
         quint8 msgType;
         quint8 padding;
         quint16 numOfEncodings;
-        qint32 encoding[8];
+        qint32 encoding[2];
     } enc;
     enc.msgType = RFBProtol::SetEncodings;
     enc.padding = 0;
-    enc.numOfEncodings = qToBigEndian((quint16)8);
+    enc.numOfEncodings = qToBigEndian((quint16)2);
     enc.encoding[0] = qToBigEndian((qint32)RFBProtol::Encodings::Raw);      //raw
-    enc.encoding[1] = qToBigEndian((qint32)RFBProtol::Encodings::ZRLE);     //zrle
-    enc.encoding[2] = qToBigEndian((qint32)RFBProtol::Encodings::CopyRect); //copyrect
-    enc.encoding[3] = qToBigEndian((qint32)RFBProtol::Encodings::TRLE);
-    enc.encoding[4] = qToBigEndian((qint32)RFBProtol::Encodings::Hextile);           //hextile
-    enc.encoding[5] = qToBigEndian((qint32)RFBProtol::Encodings::RRE);               //rre
-    enc.encoding[6] = qToBigEndian((qint32)RFBProtol::Encodings::DesktopSizePseudo); //desktopsize
-    enc.encoding[7] = qToBigEndian((qint32)RFBProtol::Encodings::CursorSizePseudo);  //richcursor
-    if (socket.write((char *)&enc, 36) != 36)
+    enc.encoding[1] = qToBigEndian((qint32)RFBProtol::Encodings::CursorSizePseudo);  //richcursor
+    if (socket.write((char *)&enc, 12) != 12)
     {
         qDebug("   fail to set encodings");
         return false;

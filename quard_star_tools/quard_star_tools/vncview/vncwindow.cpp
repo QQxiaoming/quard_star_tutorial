@@ -1,12 +1,19 @@
+#include <QThread>
+
 #include "vncwindow.h"
 #include "ui_vncwindow.h"
 
-VncWindow::VncWindow(QWidget *parent)
-    : QMainWindow(parent)
+VncWindow::VncWindow(QString addr, int port, QWidget *parent)
+    : QMainWindow(parent),severaddr(addr),severport(port)
     , ui(new Ui::VncWindow)
 {
+    int retry = 0;
     ui->setupUi(this);
-    if(ui->vncView->connectToVncServer("127.0.0.1","",5901)) {
+    while((!ui->vncView->connectToVncServer(severaddr,"",port))&&retry<5) {
+        retry++;
+        QThread::sleep(1*retry);
+    }
+    if(retry<5) {
         ui->vncView->startFrameBufferUpdate();
     }
 

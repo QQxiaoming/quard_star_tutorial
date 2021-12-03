@@ -47,7 +47,7 @@ bool uart_update_request(void)
 {
 	unsigned char c = 0;
 	/* 等待来自串口的升级请求*/
-	ns16550_rx(NS16550_ADDR, &c,2000000);
+	ns16550_rx(NS16550_ADDR, &c,4000000);
 	if(c == 'Q') {
 		return true;
 	} else {

@@ -2,6 +2,8 @@
 #define TELNETWINDOW_H
 
 #include <QMainWindow>
+#include <QPlainTextEdit>
+
 #include "QTelnet.h"
 
 namespace Ui {
@@ -26,9 +28,10 @@ protected:
     void keyPressEvent(QKeyEvent *event);
     
 private:
+    void insertPlainText(QByteArray data);
     Ui::TelnetWindow *ui;
     QTelnet *telnet;
-
+    QByteArray datapool;
 };
 
 #endif // TELNETWINDOW_H
