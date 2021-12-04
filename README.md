@@ -5,6 +5,8 @@
 
 # 基于qemu从0开始构建嵌入式linux系统
 
+![logo](./doc/img/img6.gif)
+
 ## 引言
 
 本项目旨在真正从0开始构建嵌入式linux系统，为了剖析芯片从上电开始执行第一条指令到整个系统运行，相关应用服务启动，因此不使用市面上真实的板子，基于qemu定制模拟器开发板，且不使用qemu提供的快速加载elf的文件方式，因而我们需要下载qemu-6.0.0源码，自己编写(或使用qemu自带的)硬件ip相关模拟代码定制属于自己的硬件板卡。本项目同步制作[博客专栏](https://blog.csdn.net/weixin_39871788/category_11180842.html)(2021.8.11:目前开始使用readthedocs构建[文档](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/index.html)，与博客内容相同)，因此项目尽量保证每增加一个feature就提交一次，方便索引跟踪开发过程以方便对应到博客的具体章节。
@@ -429,3 +431,9 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
     ```
 
     以此将pmp配置到正确的初始值，修改和再次测试spi flash的驱动，果然问题解决。最后qemu的tcg非常有意思，这里推荐一些[博客](https://airbus-seclab.github.io/qemu_blog/tcg_p1.html)给大家，感兴趣可以阅读。
+
+- 
+    2021.12.04(凌晨):目前项目功能添加的差不多了，没有太多想法，只差些细节优化可以慢慢来做。然后这两天突发奇想想给这个项目做个漂亮的GUI前端，以一块开发板的形式展现出来，可以点击开发板上的开关启动qemu，并且点击串口，vga接口来查看仿真的输出，点击flash器件加载固件等等，虽说技术价值不大，但是很好玩很有趣就好了。经过一天的努力，终于肝到凌晨这个工具初具形态了。我来录制个gif给大家看看。
+
+    ![img7](./doc/img/img7.gif)
+

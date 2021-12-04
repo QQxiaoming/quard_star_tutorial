@@ -14,6 +14,8 @@
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub stars
 
+.. image:: ../doc/img/img6.gif
+
 ********
 硬件架构
 ********

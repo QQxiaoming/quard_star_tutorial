@@ -36,7 +36,7 @@ BoardWindow::BoardWindow(QWidget *parent) :
     this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
     
     QPixmap pix;
-    pix.load(":/boardview/icons/board.png",0,Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+    pix.load(":/boardview/icons/board_green.png",0,Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 
@@ -144,7 +144,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void BoardWindow::paintEvent(QPaintEvent *event)
 {
-    QString paths = ":/boardview/icons/board.png";
+    QString paths = ":/boardview/icons/board_green.png";
     QPainter painter(this);
     QFont font;
     QPen pen;
@@ -170,9 +170,9 @@ void BoardWindow::paintEvent(QPaintEvent *event)
     }
     
     if(powerOn){
-        pen.setWidth(20);
+        pen.setWidth(10);
         painter.setPen(pen);
-        painter.drawLine(220,450,235,450);
+        painter.drawLine(225,558,235,558);
     }
     event->accept();
 }
@@ -249,8 +249,7 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 }
             }
         }
-        qDebug() << event->pos().x();
-        qDebug() << event->pos().y();
+        qDebug() << event->pos().x() << event->pos().y();
     }
     event->accept();
 }
