@@ -23,7 +23,6 @@ static QString norflashImgPath = envPath + "/fw/norflash.img";
 static QString sdImgPath = envPath + "/fw/sd.img";
 static QString usbflashImgPath = envPath + "/fw/usb.img";
 static QString rootfsImgPath = envPath + "/rootfs/rootfs.img";
-static QString program = envPath + "/qemu/bin/qemu-system-riscv64";
 
 BoardWindow::BoardWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -41,7 +40,30 @@ BoardWindow::BoardWindow(QWidget *parent) :
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 
+    qemu_process = new QProcess(this);
+    telnet[0] = new TelnetWindow("127.0.0.1",3441,this);
+    telnet[1] = new TelnetWindow("127.0.0.1",3442,this);
+    telnet[2] = new TelnetWindow("127.0.0.1",3443,this);
+    telnet[3] = new TelnetWindow("127.0.0.1",3430,this);
+    vnc = new VncWindow("127.0.0.1",5901,this);
+}
 
+BoardWindow::~BoardWindow()
+{
+    qemu_process->kill();
+    qemu_process->waitForFinished(-1);
+    delete qemu_process;
+    delete ui;
+    delete vnc;
+    delete telnet[0];
+    delete telnet[1];
+    delete telnet[2];
+    delete telnet[3];
+}
+
+void BoardWindow::powerSwitch(bool power)
+{
+    QString program = envPath + "/qemu/bin/qemu-system-riscv64";
     QStringList arguments = {
         "-M",         "quard-star,mask-rom-path="+maskromImgPath,
         "-m",         "1G",
@@ -73,26 +95,24 @@ BoardWindow::BoardWindow(QWidget *parent) :
         "--parallel", "none",
     };
 
-    qemu_process = new QProcess(this);
-    qemu_process->start(program, arguments);
-    telnet[0] = new TelnetWindow("127.0.0.1",3441,this);
-    telnet[1] = new TelnetWindow("127.0.0.1",3442,this);
-    telnet[2] = new TelnetWindow("127.0.0.1",3443,this);
-    telnet[3] = new TelnetWindow("127.0.0.1",3430,this);
-    vnc = new VncWindow("127.0.0.1",5901,this);
-}
 
-BoardWindow::~BoardWindow()
-{
-    qemu_process->kill();
-    qemu_process->waitForFinished(-1);
-    delete qemu_process;
-    delete ui;
-    delete vnc;
-    delete telnet[0];
-    delete telnet[1];
-    delete telnet[2];
-    delete telnet[3];
+    if(power) {
+        qemu_process->kill();
+        qemu_process->waitForFinished(-1);
+        qemu_process->start(program, arguments);
+        for (int i=0;i<200;i++) {
+            QThread::msleep(10);
+            qApp->processEvents();
+        }
+        telnet[0]->reConnect();
+        telnet[1]->reConnect();
+        telnet[2]->reConnect();
+        telnet[3]->reConnect();
+        vnc->reConnect();
+    } else {
+        qemu_process->kill();
+        qemu_process->waitForFinished(-1);
+    }
 }
 
 void BoardWindow::about()
@@ -143,12 +163,17 @@ void BoardWindow::paintEvent(QPaintEvent *event)
             painter.drawLine(spaceList[i].x2,spaceList[i].y1,spaceList[i].x2,spaceList[i].y2);
             painter.drawLine(spaceList[i].x1,spaceList[i].y2,spaceList[i].x2,spaceList[i].y2);
             if(spaceList[i].dir == 0)
-                painter.drawText(spaceList[i].x1-10,spaceList[i].y1-15,spaceList[i].name);
+                painter.drawText(spaceList[i].x1,spaceList[i].y1-15,spaceList[i].name);
             else if(spaceList[i].dir == 1)
-                painter.drawText(spaceList[i].x1-10,spaceList[i].y2+15+30,spaceList[i].name);
+                painter.drawText(spaceList[i].x1,spaceList[i].y2+15+30,spaceList[i].name);
         }
     }
     
+    if(powerOn){
+        pen.setWidth(20);
+        painter.setPen(pen);
+        painter.drawLine(220,450,235,450);
+    }
     event->accept();
 }
 
@@ -199,7 +224,7 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
         for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
             if( event->pos().x() >= spaceList[i].x1 && event->pos().x() <= spaceList[i].x2 &&
                 event->pos().y() >= spaceList[i].y1 && event->pos().y() <= spaceList[i].y2) {
-                if(spaceList[i].name == "hdmi") {
+                if(spaceList[i].name == "vga") {
                     vnc->show();
                 } else if(spaceList[i].name == "uart0") {
                     telnet[0]->show();
@@ -207,12 +232,20 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                     telnet[1]->show();
                 } else if(spaceList[i].name == "uart2") {
                     telnet[2]->show();
-                } else if(spaceList[i].name == "power") {
+                } else if(spaceList[i].name == "jtag") {
                     telnet[3]->show();
-                } else if(spaceList[i].name == "nand") {
-                    QFileDialog::getOpenFileName(this, tr("Select IMG"), norflashImgPath, "IMG files(*.img *.bin)");
+                } else if(spaceList[i].name == "sd") {
+                    QFileDialog::getOpenFileName(this, tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
+                } else if(spaceList[i].name == "nor") {
+                    QFileDialog::getOpenFileName(this, tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "soc") {
-                    QFileDialog::getOpenFileName(this, tr("Select IMG"), pflashImgPath, "IMG files(*.img *.bin)");
+                    QFileDialog::getOpenFileName(this, tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
+                } else if(spaceList[i].name == "usb0") {
+                    QFileDialog::getOpenFileName(this, tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
+                } else if(spaceList[i].name == "switch") {
+                    powerOn = !powerOn;
+                    this->repaint();
+                    powerSwitch(powerOn);
                 }
             }
         }

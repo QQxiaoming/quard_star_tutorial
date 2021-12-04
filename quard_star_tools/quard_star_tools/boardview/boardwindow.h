@@ -22,6 +22,7 @@ class BoardWindow : public QMainWindow
 public:
     explicit BoardWindow(QWidget *parent = nullptr);
     ~BoardWindow();
+    void powerSwitch(bool power);
 
 private slots:
     void about();
@@ -37,6 +38,7 @@ protected:
 private:
     Ui::BoardWindow *ui;
     bool isMousePressed = false;
+    bool powerOn = false;
     QPoint mStartPos;
     QProcess *qemu_process;
     VncWindow *vnc;
@@ -48,18 +50,23 @@ private:
         int x1,x2,y1,y2;
         int dir;
         bool draw;
-    }spaceList[11] = {
-        {"hdmi",360,440,735,830,0,false},
-        {"uart0",204,231,36,98,1,false},
-        {"uart1",316,343,36,98,1,false},
-        {"uart2",428,455,36,98,1,false},
-        {"power",138,246,736,839,0,false},
-        {"soc",353,559,252,463,0,false},
-        {"ddr",604,748,250,468,0,false},
-        {"eth",1011,1317,40,273,1,false},
-        {"usb0",1070,1319,353,537,0,false},
-        {"usb1",1065,1313,612,798,0,false},
-        {"nand",132,280,122,302,0,false},
+    }spaceList[16] = {
+        {"vga",552,816,12,148,1,false},
+        {"uart0",45,134,68,158,1,false},
+        {"uart1",45,134,189,277,1,false},
+        {"uart2",45,134,310,400,1,false},
+        {"power",128,231,559,742,0,false},
+        {"soc",310,506,225,410,0,false},
+        {"ddr",535,648,225,410,0,false},
+        {"eth",854,1068,69,250,1,false},
+        {"usb0",854,1068,291,438,0,false},
+        {"usb1",854,1068,478,626,0,false},
+        {"nand",220,373,69,159,1,false},
+        {"nor",433,514,78,141,1,false},
+        {"sd",675,795,548,697,0,false},
+        {"switch",260,438,559,636,0,false},
+        {"jtag",45,134,429,539,0,false},
+        {"audio",522,592,548,708,0,false},
     };
 };
 

@@ -19,8 +19,9 @@ public:
     ~TelnetWindow();
     QString severaddr;
     int severport;
+    void reConnect(void);
 
-public slots:
+private slots:
     void addText(const char *msg, int count);
     void refresh_clicked();
 

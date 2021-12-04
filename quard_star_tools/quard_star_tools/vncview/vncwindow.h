@@ -14,6 +14,7 @@ class VncWindow : public QMainWindow
 public:
     VncWindow(QString addr, int port, QWidget *parent = nullptr);
     ~VncWindow();
+    void reConnect(void);
     QString severaddr;
     int severport;
 

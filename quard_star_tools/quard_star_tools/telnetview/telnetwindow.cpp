@@ -23,8 +23,6 @@ TelnetWindow::TelnetWindow(QString addr, int port, QWidget *parent) :
    	
     connect(telnet, SIGNAL(newData(const char*,int)), this, SLOT(addText(const char*,int)) );
     connect(ui->refresh_pushbuttion, SIGNAL(clicked()), this, SLOT(refresh_clicked()));
-
-    telnet->connectToHost(severaddr,severport);
 }
 
 TelnetWindow::~TelnetWindow()
@@ -92,12 +90,17 @@ void TelnetWindow::addText(const char *msg, int count)
     }while(1);
 }
 
-void TelnetWindow::refresh_clicked()
+void TelnetWindow::reConnect(void)
 {
     if( telnet->isConnected() ){
         telnet->disconnectFromHost();
     }
     telnet->connectToHost(severaddr,severport);
+}
+
+void TelnetWindow::refresh_clicked()
+{
+    reConnect();
 }
 
 void TelnetWindow::keyPressEvent(QKeyEvent *event)
