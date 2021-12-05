@@ -11,24 +11,21 @@
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
 
-const QString VERSION = APP_VERSION;
-const QString GIT_TAG =
-#include <git_tag.inc>
-;
+extern QString VERSION;
+extern QString GIT_TAG;
 
-static QString envPath = "/home/qqm/Downloads/quard_star_tutorial/output";
-static QString maskromImgPath = envPath + "/mask_rom/mask_rom.bin";
-static QString pflashImgPath = envPath + "/fw/fw.bin";
-static QString norflashImgPath = envPath + "/fw/norflash.img";
-static QString sdImgPath = envPath + "/fw/sd.img";
-static QString usbflashImgPath = envPath + "/fw/usb.img";
-static QString rootfsImgPath = envPath + "/rootfs/rootfs.img";
-
-BoardWindow::BoardWindow(QWidget *parent) :
+BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::BoardWindow)
+    ui(new Ui::BoardWindow),envPath(path),skinColor(color)
 {
     ui->setupUi(this);
+
+    maskromImgPath = envPath + "/mask_rom/mask_rom.bin";
+    pflashImgPath = envPath + "/fw/fw.bin";
+    norflashImgPath = envPath + "/fw/norflash.img";
+    sdImgPath = envPath + "/fw/sd.img";
+    usbflashImgPath = envPath + "/fw/usb.img";
+    rootfsImgPath = envPath + "/rootfs/rootfs.img";
 
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
     QRect screen = QGuiApplication::screenAt(this->mapToGlobal({this->width()/2,0}))->geometry();
@@ -36,7 +33,10 @@ BoardWindow::BoardWindow(QWidget *parent) :
     this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
     
     QPixmap pix;
-    pix.load(":/boardview/icons/board_green.png",0,Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+    QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
+    if(!skinFile.isFile())
+        skinColor = "green";
+    pix.load(":/boardview/icons/board_"+skinColor+".png",0,Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 
@@ -144,7 +144,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void BoardWindow::paintEvent(QPaintEvent *event)
 {
-    QString paths = ":/boardview/icons/board_green.png";
+    QString paths = ":/boardview/icons/board_"+skinColor+".png";
     QPainter painter(this);
     QFont font;
     QPen pen;
@@ -249,7 +249,6 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 }
             }
         }
-        qDebug() << event->pos().x() << event->pos().y();
     }
     event->accept();
 }

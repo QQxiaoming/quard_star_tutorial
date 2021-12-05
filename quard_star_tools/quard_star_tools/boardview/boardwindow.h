@@ -20,7 +20,7 @@ class BoardWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit BoardWindow(QWidget *parent = nullptr);
+    explicit BoardWindow(QString path,QString color = "green",QWidget *parent = nullptr);
     ~BoardWindow();
     void powerSwitch(bool power);
 
@@ -44,6 +44,14 @@ private:
     VncWindow *vnc;
     TelnetWindow *telnet[4];
     void show_vnc(void);
+    QString envPath;
+    QString skinColor;
+    QString maskromImgPath;
+    QString pflashImgPath;
+    QString norflashImgPath;
+    QString sdImgPath;
+    QString usbflashImgPath;
+    QString rootfsImgPath;
     struct space
     {
         QString name;
