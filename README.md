@@ -437,3 +437,5 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 
     ![img7](./doc/img/img7.gif)
 
+- 
+    2021.12.05(晚上):gui前端tools修修代码风格，添加命令行选项，更新主界面里不美观的建模，这里特别鸣谢[MignonZhu](https://github.com/MignonZhu)提供3D模型的，让UI变的更加好看。另外GIMP我现在使用相当熟练了，完全不输PS，甚至更好。
