@@ -172,7 +172,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
     if(powerOn){
         pen.setWidth(10);
         painter.setPen(pen);
-        painter.drawLine(225,558,235,558);
+        painter.drawLine(263,612,283,612);
     }
     event->accept();
 }
