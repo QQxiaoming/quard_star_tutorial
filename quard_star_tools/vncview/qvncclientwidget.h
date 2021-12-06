@@ -149,7 +149,7 @@ private:
     bool sendSetEncodings(void);
     bool sendSetPixelFormat(void);
     quint32 translateRfbKey(int key, bool modifier);
-    quint8 translateRfbPointer(int mouseStatus, int &posX, int &posY);
+    quint8 translateRfbPointer(unsigned int mouseStatus, int &posX, int &posY);
 };
 
 #endif // QVNCCLIENTWIDGET_H

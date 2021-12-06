@@ -31,7 +31,9 @@ bool QVNCClientWidget::sendSetPixelFormat()
         quint8 msgType;
         quint8 padding[3];
         RFBProtol::PixelFormat pixfmt;
-    } setpixfmt = {0};
+    } setpixfmt;
+
+    memset(&setpixfmt,0,sizeof(setpixfmt));
 
     setpixfmt.msgType = RFBProtol::SetPixelFormat; //message type
     setpixfmt.pixfmt = pixelFormat;
@@ -59,12 +61,12 @@ bool QVNCClientWidget::sendSetEncodings(void)
     } enc;
     enc.msgType = RFBProtol::SetEncodings;
     enc.padding = 0;
-    enc.numOfEncodings = qToBigEndian((quint16)2);
-    enc.encoding[0] = qToBigEndian((qint32)RFBProtol::Encodings::Raw);      //raw
-    enc.encoding[1] = qToBigEndian((qint32)RFBProtol::Encodings::CursorSizePseudo);  //richcursor
+    enc.numOfEncodings = qToBigEndian(static_cast<quint16>(2));
+    enc.encoding[0] = qToBigEndian(static_cast<qint32>(RFBProtol::Encodings::Raw));      //raw
+    enc.encoding[1] = qToBigEndian(static_cast<qint32>(RFBProtol::Encodings::CursorSizePseudo));  //richcursor
     if (socket.write((char *)&enc, 12) != 12)
     {
-        qDebug("   fail to set encodings");
+        qDebug("fail to set encodings");
         return false;
     }
 
@@ -75,7 +77,7 @@ bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port
 {
     if (isConnectedToServer())
         disconnectFromVncServer();
-    socket.connectToHost(QHostAddress(ip), port);
+    socket.connectToHost(QHostAddress(ip), static_cast<quint16>(port));
     if (socket.waitForConnected())
     {
         QByteArray response;
@@ -157,9 +159,9 @@ bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port
                     socket.write("\x01"); // ClientInit message (non-zeo: shared, zero:exclusive)
                     socket.waitForReadyRead();
                     response = socket.read(2); // framebuffer-width in pixels
-                    frameBufferWidth = qMakeU16(response.at(0), response.at(1));
+                    frameBufferWidth = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
                     response = socket.read(2); // framebuffer-height in pixels
-                    frameBufferHeight = qMakeU16(response.at(0), response.at(1));
+                    frameBufferHeight = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
 
                     // Pixel Format
                     // ***************************
@@ -227,24 +229,26 @@ void QVNCClientWidget::sendFrameBufferUpdateRequest(int incremental)
 {
     QByteArray frameBufferUpdateRequest(10, 0);
     frameBufferUpdateRequest[0] = RFBProtol::FramebufferUpdateRequest; // message type must be 3
-    frameBufferUpdateRequest[1] = incremental;                         // incremental mode is zero for now (can help optimize the VNC client)
+    frameBufferUpdateRequest[1] = static_cast<char>(incremental);      // incremental mode is zero for now (can help optimize the VNC client)
     frameBufferUpdateRequest[2] = 0;                                   // x position
     frameBufferUpdateRequest[3] = 0;                                   // x position
     frameBufferUpdateRequest[4] = 0;                                   // y position
     frameBufferUpdateRequest[5] = 0;                                   // y position
 
-    frameBufferUpdateRequest[6] = (frameBufferWidth >> 8) & 0xFF;  // width
-    frameBufferUpdateRequest[7] = (frameBufferWidth >> 0) & 0xFF;  // width
-    frameBufferUpdateRequest[8] = (frameBufferHeight >> 8) & 0xFF; // height
-    frameBufferUpdateRequest[9] = (frameBufferHeight >> 0) & 0xFF; // height
+    frameBufferUpdateRequest[6] = static_cast<char>((frameBufferWidth >> 8) & 0xFF);  // width
+    frameBufferUpdateRequest[7] = static_cast<char>((frameBufferWidth >> 0) & 0xFF);  // width
+    frameBufferUpdateRequest[8] = static_cast<char>((frameBufferHeight >> 8) & 0xFF); // height
+    frameBufferUpdateRequest[9] = static_cast<char>((frameBufferHeight >> 0) & 0xFF); // height
 
     socket.write(frameBufferUpdateRequest);
 }
+
 void QVNCClientWidget::setFullScreen(bool full)
 {
     isScaled = full;
-    resizeEvent(NULL);
+    resizeEvent(nullptr);
 }
+
 void QVNCClientWidget::resizeEvent(QResizeEvent *e)
 {
     if (isScaled)
@@ -281,6 +285,8 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
     else
         painter.drawImage(paintTargetX, paintTargetY, screen);
     painter.end();
+
+    event->accept();
 }
 
 void QVNCClientWidget::onServerMessage()
@@ -300,7 +306,7 @@ void QVNCClientWidget::onServerMessage()
         response = socket.read(1); // padding
         response = socket.read(2); // number of rectangles
 
-        numOfRects = qMakeU16(response.at(0), response.at(1));
+        numOfRects = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
 
         for (int i = 0; i < numOfRects; i++)
         {
@@ -368,7 +374,7 @@ void QVNCClientWidget::onServerMessage()
         emit frameBufferUpdated();
         break;
     default:
-        qDebug() << "server to client message type:" << (quint8)response.at(0);
+        qDebug() << "server to client message type:" << static_cast<quint8>(response.at(0));
         response = socket.readAll();
         break;
     }
@@ -387,10 +393,10 @@ void QVNCClientWidget::keyPressEvent(QKeyEvent *event)
 
     quint32 key = translateRfbKey(event->key(), event->modifiers() == Qt::NoModifier ? false : true);
 
-    message[4] = (key >> 24) & 0xFF;
-    message[5] = (key >> 16) & 0xFF;
-    message[6] = (key >> 8) & 0xFF;
-    message[7] = (key >> 0) & 0xFF;
+    message[4] = static_cast<char>((key >> 24) & 0xFF);
+    message[5] = static_cast<char>((key >> 16) & 0xFF);
+    message[6] = static_cast<char>((key >> 8) & 0xFF);
+    message[7] = static_cast<char>((key >> 0) & 0xFF);
 
     socket.write(message);
     event->accept();
@@ -407,10 +413,10 @@ void QVNCClientWidget::keyReleaseEvent(QKeyEvent *event)
 
     quint32 key = translateRfbKey(event->key(), event->modifiers() == Qt::NoModifier ? false : true);
 
-    message[4] = (key >> 24) & 0xFF;
-    message[5] = (key >> 16) & 0xFF;
-    message[6] = (key >> 8) & 0xFF;
-    message[7] = (key >> 0) & 0xFF;
+    message[4] = static_cast<char>((key >> 24) & 0xFF);
+    message[5] = static_cast<char>((key >> 16) & 0xFF);
+    message[6] = static_cast<char>((key >> 8) & 0xFF);
+    message[7] = static_cast<char>((key >> 0) & 0xFF);
 
     socket.write(message);
     event->accept();
@@ -428,11 +434,11 @@ void QVNCClientWidget::mouseMoveEvent(QMouseEvent *event)
 
     QByteArray message(6, 0);
     message[0] = RFBProtol::PointerEvent; // mouse event
-    message[1] = btnMask;
-    message[2] = (posX >> 8) & 0xFF;
-    message[3] = (posX >> 0) & 0xFF;
-    message[4] = (posY >> 8) & 0xFF;
-    message[5] = (posY >> 0) & 0xFF;
+    message[1] = static_cast<char>(btnMask);
+    message[2] = static_cast<char>((posX >> 8) & 0xFF);
+    message[3] = static_cast<char>((posX >> 0) & 0xFF);
+    message[4] = static_cast<char>((posY >> 8) & 0xFF);
+    message[5] = static_cast<char>((posY >> 0) & 0xFF);
     socket.write(message);
     event->accept();
 }
@@ -450,11 +456,11 @@ void QVNCClientWidget::mousePressEvent(QMouseEvent *event)
 
     QByteArray message(6, 0);
     message[0] = RFBProtol::PointerEvent; // mouse event
-    message[1] = btnMask;
-    message[2] = (posX >> 8) & 0xFF;
-    message[3] = (posX >> 0) & 0xFF;
-    message[4] = (posY >> 8) & 0xFF;
-    message[5] = (posY >> 0) & 0xFF;
+    message[1] = static_cast<char>(btnMask);
+    message[2] = static_cast<char>((posX >> 8) & 0xFF);
+    message[3] = static_cast<char>((posX >> 0) & 0xFF);
+    message[4] = static_cast<char>((posY >> 8) & 0xFF);
+    message[5] = static_cast<char>((posY >> 0) & 0xFF);
     socket.write(message);
     event->accept();
 }
@@ -471,11 +477,11 @@ void QVNCClientWidget::mouseReleaseEvent(QMouseEvent *event)
 
     QByteArray message(6, 0);
     message[0] = RFBProtol::PointerEvent; // mouse event
-    message[1] = btnMask;
-    message[2] = (posX >> 8) & 0xFF;
-    message[3] = (posX >> 0) & 0xFF;
-    message[4] = (posY >> 8) & 0xFF;
-    message[5] = (posY >> 0) & 0xFF;
+    message[1] = static_cast<char>(btnMask);
+    message[2] = static_cast<char>((posX >> 8) & 0xFF);
+    message[3] = static_cast<char>((posX >> 0) & 0xFF);
+    message[4] = static_cast<char>((posY >> 8) & 0xFF);
+    message[5] = static_cast<char>((posY >> 0) & 0xFF);
     socket.write(message);
     event->accept();
 }
@@ -499,19 +505,19 @@ void QVNCClientWidget::wheelEvent(QWheelEvent *event)
 
     QByteArray message(6, 0);
     message[0] = RFBProtol::PointerEvent; // mouse event
-    message[1] = btnMask | bitmask;
-    message[2] = (posX >> 8) & 0xFF;
-    message[3] = (posX >> 0) & 0xFF;
-    message[4] = (posY >> 8) & 0xFF;
-    message[5] = (posY >> 0) & 0xFF;
+    message[1] = static_cast<char>(btnMask | bitmask);
+    message[2] = static_cast<char>((posX >> 8) & 0xFF);
+    message[3] = static_cast<char>((posX >> 0) & 0xFF);
+    message[4] = static_cast<char>((posY >> 8) & 0xFF);
+    message[5] = static_cast<char>((posY >> 0) & 0xFF);
     socket.write(message);
-    message[1] = btnMask & (~bitmask);
+    message[1] = static_cast<char>(btnMask & (~bitmask));
     QThread::msleep(10);
     socket.write(message);
     event->accept();
 }
 
-quint8 QVNCClientWidget::translateRfbPointer(int mouseStatus, int &posX, int &posY)
+quint8 QVNCClientWidget::translateRfbPointer(unsigned int mouseStatus, int &posX, int &posY)
 {
     quint8 buttonMask = 0; //bit:0-2 represent left,middle and right button (after 2 is wheel button, up down left right) 1:down 0:up
     if (mouseStatus & Qt::LeftButton)
@@ -522,8 +528,8 @@ quint8 QVNCClientWidget::translateRfbPointer(int mouseStatus, int &posX, int &po
         buttonMask |= 0x04;
     if (isScaled)
     {
-        posX = (double(posX) / double(width())) * double(frameBufferWidth);
-        posY = (double(posY) / double(height())) * double(frameBufferHeight);
+        posX = static_cast<int>((double(posX) / double(width())) * double(frameBufferWidth));
+        posY = static_cast<int>((double(posY) / double(height())) * double(frameBufferHeight));
     }
     else
     {
@@ -1167,7 +1173,7 @@ static unsigned char pc2[48] = {
 
 void deskey(unsigned char *key, short edf) /* Thanks to James Gillogly & Phil Karn! */
 {
-    register int i, j, l, m, n;
+    int i, j, l, m, n;
     unsigned char pc1m[56], pcr[56];
     unsigned long kn[32];
 
@@ -1213,11 +1219,11 @@ void deskey(unsigned char *key, short edf) /* Thanks to James Gillogly & Phil Ka
     return;
 }
 
-static void cookey(register unsigned long *raw1)
+static void cookey(unsigned long *raw1)
 {
-    register unsigned long *cook, *raw0;
+    unsigned long *cook, *raw0;
     unsigned long dough[32];
-    register int i;
+     int i;
 
     cook = dough;
     for (i = 0; i < 16; i++, raw1++)
@@ -1236,21 +1242,31 @@ static void cookey(register unsigned long *raw1)
     return;
 }
 
-void cpkey(register unsigned long *into)
+void cpkey(unsigned long *into)
 {
-    register unsigned long *from, *endp;
+    unsigned long *from, *endp;
 
-    from = KnL, endp = &KnL[32];
+    Q_UNUSED(Kn3);
+    Q_UNUSED(KnR);
+    Q_UNUSED(Df_Key);
+
+    from = KnL;
+    endp = &KnL[32];
     while (from < endp)
         *into++ = *from++;
     return;
 }
 
-void usekey(register unsigned long *from)
+void usekey(unsigned long *from)
 {
-    register unsigned long *to, *endp;
+    unsigned long *to, *endp;
 
-    to = KnL, endp = &KnL[32];
+    Q_UNUSED(Kn3);
+    Q_UNUSED(KnR);
+    Q_UNUSED(Df_Key);
+
+    to = KnL;
+    endp = &KnL[32];
     while (to < endp)
         *to++ = *from++;
     return;
@@ -1266,29 +1282,29 @@ void des(unsigned char *inblock, unsigned char *outblock)
     return;
 }
 
-static void scrunch(register unsigned char *outof, register unsigned long *into)
+static void scrunch(unsigned char *outof, unsigned long *into)
 {
-    *into = (*outof++ & 0xffL) << 24;
-    *into |= (*outof++ & 0xffL) << 16;
-    *into |= (*outof++ & 0xffL) << 8;
-    *into++ |= (*outof++ & 0xffL);
-    *into = (*outof++ & 0xffL) << 24;
-    *into |= (*outof++ & 0xffL) << 16;
-    *into |= (*outof++ & 0xffL) << 8;
-    *into |= (*outof & 0xffL);
+    *into = static_cast<unsigned long>((*outof++ & 0xffL) << 24);
+    *into |= static_cast<unsigned long>((*outof++ & 0xffL) << 16);
+    *into |= static_cast<unsigned long>((*outof++ & 0xffL) << 8);
+    *into++ |= static_cast<unsigned long>((*outof++ & 0xffL));
+    *into = static_cast<unsigned long>((*outof++ & 0xffL) << 24);
+    *into |= static_cast<unsigned long>((*outof++ & 0xffL) << 16);
+    *into |= static_cast<unsigned long>((*outof++ & 0xffL) << 8);
+    *into |= static_cast<unsigned long>((*outof & 0xffL));
     return;
 }
 
-static void unscrun(register unsigned long *outof, register unsigned char *into)
+static void unscrun(unsigned long *outof, unsigned char *into)
 {
-    *into++ = (unsigned char)((*outof >> 24) & 0xffL);
-    *into++ = (unsigned char)((*outof >> 16) & 0xffL);
-    *into++ = (unsigned char)((*outof >> 8) & 0xffL);
-    *into++ = (unsigned char)(*outof++ & 0xffL);
-    *into++ = (unsigned char)((*outof >> 24) & 0xffL);
-    *into++ = (unsigned char)((*outof >> 16) & 0xffL);
-    *into++ = (unsigned char)((*outof >> 8) & 0xffL);
-    *into = (unsigned char)(*outof & 0xffL);
+    *into++ = static_cast<unsigned char>((*outof >> 24) & 0xffL);
+    *into++ = static_cast<unsigned char>((*outof >> 16) & 0xffL);
+    *into++ = static_cast<unsigned char>((*outof >> 8) & 0xffL);
+    *into++ = static_cast<unsigned char>(*outof++ & 0xffL);
+    *into++ = static_cast<unsigned char>((*outof >> 24) & 0xffL);
+    *into++ = static_cast<unsigned char>((*outof >> 16) & 0xffL);
+    *into++ = static_cast<unsigned char>((*outof >> 8) & 0xffL);
+    *into = static_cast<unsigned char>(*outof & 0xffL);
     return;
 }
 
@@ -1436,10 +1452,10 @@ static unsigned long SP8[64] = {
     0x10041040L, 0x00041000L, 0x00041000L, 0x00001040L,
     0x00001040L, 0x00040040L, 0x10000000L, 0x10041000L};
 
-static void desfunc(register unsigned long *block, register unsigned long *keys)
+static void desfunc(unsigned long *block, unsigned long *keys)
 {
-    register unsigned long fval, work, right, leftt;
-    register int round;
+    unsigned long fval, work, right, leftt;
+    int round;
 
     leftt = block[0];
     right = block[1];
