@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  main_build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -194,3 +194,36 @@ jobs:
               exit 1
             fi
           }
+          
+  qemu_windows_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build_docker_image
+        shell: bash
+        run: |
+          cd qemu-6.0.0
+          ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
+          
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: qemu/fedora:latest
+          options: -w /home/runner/work/quard_star_tutorial/quard_star_tutorial -v /home/runner:/home/runner
+          shell: bash -l {0}
+          run: |
+            SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
+            cd qemu-6.0.0
+            ./configure --prefix=$SHELL_FOLDER/output/qemu --cross-prefix=x86_64-w64-mingw32- --target-list=riscv64-softmmu --enable-gtk --disable-gio
+            make -j16
+            make install
+            cd -
+            cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu/
+            tar -czf qemu.tar.gz $SHELL_FOLDER/output/qemu
+            
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: qemu_windows_x64
+          path: |
+            qemu.tar.gz
