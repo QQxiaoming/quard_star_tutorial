@@ -219,11 +219,10 @@ jobs:
             make install
             cd -
             cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu/
-            tar -czf qemu.tar.gz $SHELL_FOLDER/output/qemu
             
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: qemu_windows_x64
           path: |
-            qemu.tar.gz
+            output/qemu
