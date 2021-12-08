@@ -81,6 +81,7 @@ jobs:
           # replace pkexec with sudo for ci
           sed -i 's/pkexec/sudo/g' build.sh
           ./build.sh
+          tar -czf build.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
           du -sh /opt/gcc-riscv64-unknown-linux-gnu
           du -sh /opt/gcc-riscv64-unknown-elf
@@ -90,10 +91,7 @@ jobs:
         with:
           name: build
           path: |
-            output/
-            update_tools/
-            run.sh
-            update_tools.sh
+            build.tar.gz
 
       - name: Upload prebuilt toolchain
         uses: actions/upload-artifact@v2.2.4
@@ -230,6 +228,8 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
+        with:
+          version: '5.12.12'
       
       - name: Install prerequisites
         shell: bash -l {0}
@@ -270,6 +270,7 @@ jobs:
         uses: jurplel/install-qt-action@v2.14.0
         with:
           arch: win64_mingw81
+          version: '5.12.12'
 
       - name: Build all
         run: |
