@@ -260,7 +260,7 @@ jobs:
     steps:
       - name: sparseCheckout
         run: |
-          git clone --filter=blob:none --no-checkout --depth 1 --single-branch -b "$env:GITHUB_REF/#refs\/heads\//" --sparse "https://$env:GITHUB_ACTOR:$env:GITHUB_TOKEN@github.com/$env:GITHUB_REPOSITORY.git" .
+          git clone --filter=blob:none --no-checkout --depth 1 --single-branch -b "$env:GITHUB_REF" --sparse "https://$env:GITHUB_ACTOR:$env:GITHUB_TOKEN@github.com/$env:GITHUB_REPOSITORY.git" .
           git config core.protectNTFS false
           git sparse-checkout init --cone
           git sparse-checkout add quard_star_tools
