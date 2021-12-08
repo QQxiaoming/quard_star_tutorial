@@ -80,9 +80,7 @@ jobs:
         run: |
           # replace pkexec with sudo for ci
           sed -i 's/pkexec/sudo/g' build.sh
-          bash build.sh
-          du -sh output
-          tar -czf build.tar.gz output/ update_tools/ run.sh update_tools.sh
+          ./build.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
           du -sh /opt/gcc-riscv64-unknown-linux-gnu
           du -sh /opt/gcc-riscv64-unknown-elf
@@ -92,7 +90,10 @@ jobs:
         with:
           name: build
           path: |
-            build.tar.gz
+            output/
+            update_tools/
+            run.sh
+            update_tools.sh
 
       - name: Upload prebuilt toolchain
         uses: actions/upload-artifact@v2.2.4
@@ -108,10 +109,10 @@ jobs:
           conda activate tools
           pip3 install -r ./update_tools/requirements_pip.txt
           echo "run.sh update_test"
-          timeout --foreground -s SIGKILL 3m bash run.sh update_test > >(tee run_qemu.log) &
+          timeout --foreground -s SIGKILL 3m run.sh update_test > >(tee run_qemu.log) &
           sleep 8
           echo "update_tools.sh"
-          timeout --foreground -s SIGKILL 3m bash update_tools.sh > >(tee run_tools.log) && {
+          timeout --foreground -s SIGKILL 3m update_tools.sh > >(tee run_tools.log) && {
             if cat run_tools.log | grep "update firmware done"
             then
               killall qemu-system-riscv64
@@ -126,7 +127,7 @@ jobs:
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m bash run.sh nographic default pfalsh > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -150,7 +151,7 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m bash run.sh nographic default spi > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -174,7 +175,7 @@ jobs:
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m bash run.sh nographic default sd > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -201,7 +202,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: build_docker_image
-        shell: bash
+        shell: bash -l {0}
         run: |
           cd qemu-6.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
@@ -212,17 +213,12 @@ jobs:
           options: -w /home/runner/work/quard_star_tutorial/quard_star_tutorial -v /home/runner:/home/runner
           shell: bash -l {0}
           run: |
-            SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-            cd qemu-6.0.0
-            ./configure --prefix=$SHELL_FOLDER/output/qemu --cross-prefix=x86_64-w64-mingw32- --target-list=riscv64-softmmu --enable-gtk --disable-gio
-            make -j16
-            make install
-            cd -
-            cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu/
+            ./build.sh qemu_w64
             
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: qemu_windows_x64
           path: |
-            output/qemu
+            output/qemu_w64
+            run.bat

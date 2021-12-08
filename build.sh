@@ -23,6 +23,18 @@ build_qemu()
     make install
 }
 
+build_qemu_w64()
+{
+    echo "---------------------------- 编译qemu_w64 ----------------------------"
+    cd $SHELL_FOLDER/qemu-6.0.0
+    if [ ! -d "$SHELL_FOLDER/output/qemu_w64" ]; then  
+    ./configure --prefix=$SHELL_FOLDER/output/qemu_w64 --cross-prefix=x86_64-w64-mingw32- --target-list=riscv64-softmmu --enable-gtk --disable-gio
+    fi  
+    make -j$PROCESSORS
+    make install
+    cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu_w64/
+}
+
 build_mask_rom()
 {
     echo "---------------------------- 编译mask_rom ----------------------------"
@@ -291,6 +303,9 @@ case "$BUILD_TARGET" in
 	;;
 qemu)
     build_qemu
+    ;;
+qemu_w64)
+    build_qemu_w64
     ;;
 mask_rom)
     build_mask_rom
