@@ -80,14 +80,18 @@ void BoardWindow::powerSwitch(bool power)
         "-drive",     "if=sd,format=raw,file="+sdImgPath+",id=sd0",
         "-drive",     "if=none,format=raw,file="+rootfsImgPath+",id=disk0",
         "-chardev",   "socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1",
+#if defined(Q_OS_LINUX)
         "-fsdev",     "local,security_model=mapped-xattr,path="+envPath+",id=fsdev0",
+#endif
         "-netdev",    "user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp="+envPath+",bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0",
         "-global",    "virtio-mmio.force-legacy=false",
         "-device",    "virtio-blk-device,drive=disk0,id=hd0",
         "-device",    "virtio-gpu-device,xres=1280,yres=720,id=video0",
         "-device",    "virtio-mouse-device,id=input0",
         "-device",    "virtio-keyboard-device,id=input1",
+#if defined(Q_OS_LINUX)
         "-device",    "virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0",
+#endif
         "-device",    "virtio-net-device,netdev=net0",
         "-device",    "usb-storage,drive=usb0",
         "-device",    "usb-serial,always-plugged=true,chardev=usb1",
