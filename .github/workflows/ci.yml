@@ -258,9 +258,9 @@ jobs:
     runs-on: windows-2019
 
     steps:
-      - uses: Bhacaz/checkout-files@v1
+      - uses: albumprinter/SparseCheckout-Action@v1
         with:
-          files: quard_star_tools
+          paths: quard_star_tools
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
