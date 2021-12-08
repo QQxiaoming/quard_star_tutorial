@@ -254,16 +254,11 @@ jobs:
           path: |
             ./quard_star_tools/release/out/quard_star_tools
 
-      - name: Run tests
-        shell: bash -l {0}
-        run: |
-          ./quard_star_tools/release/out/quard_star_tools --version
-
   quard_star_tools_w64_build:
     runs-on: windows-2019
 
     steps:
-      - uses: Bhacaz/checkout-files
+      - uses: Bhacaz/checkout-files@v1
         with:
           files: quard_star_tools
 
@@ -288,7 +283,3 @@ jobs:
           name: quard_star_tools_w64
           path: |
             ./quard_star_tools/release/out
-
-      - name: Run tests
-        run: |
-          ./quard_star_tools/release/out/quard_star_tools --version
