@@ -109,10 +109,10 @@ jobs:
           conda activate tools
           pip3 install -r ./update_tools/requirements_pip.txt
           echo "run.sh update_test"
-          timeout --foreground -s SIGKILL 3m run.sh update_test > >(tee run_qemu.log) &
+          timeout --foreground -s SIGKILL 3m ./run.sh update_test > >(tee run_qemu.log) &
           sleep 8
           echo "update_tools.sh"
-          timeout --foreground -s SIGKILL 3m update_tools.sh > >(tee run_tools.log) && {
+          timeout --foreground -s SIGKILL 3m ./update_tools.sh > >(tee run_tools.log) && {
             if cat run_tools.log | grep "update firmware done"
             then
               killall qemu-system-riscv64
@@ -127,7 +127,7 @@ jobs:
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m run.sh nographic default pfalsh > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -151,7 +151,7 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m run.sh nographic default spi > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -175,7 +175,7 @@ jobs:
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m run.sh nographic default sd > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
