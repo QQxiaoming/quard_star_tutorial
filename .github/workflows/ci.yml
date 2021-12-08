@@ -258,9 +258,21 @@ jobs:
     runs-on: windows-2019
 
     steps:
-      - uses: albumprinter/SparseCheckout-Action@v1
-        with:
-          paths: quard_star_tools
+      - name: sparseCheckout
+        run: |
+          REPO="https://${GITHUB_ACTOR}:${{ inputs.token }}@github.com/${GITHUB_REPOSITORY}.git"
+          # For a partial checkout we need a branch name (like issue/APP-XXXX)
+          # Now, follow the hands:
+          #   GITHUB_HEAD_REF is defined only for pull_request triggers and it's a branch name
+          #   GITHUB_REF is defined only for branch push triggers and it's a ref (ref/heads/issue/APP-XXXX)
+          PR_BRANCH=${GITHUB_HEAD_REF}
+          PUSH_BRANCH=${GITHUB_REF#refs/heads/}
+          BRANCH="${PR_BRANCH:-${PUSH_BRANCH}}" # Pick one of the two
+          git clone --filter=blob:none --no-checkout --depth 1 --single-branch -b "$BRANCH" --sparse "$REPO" .
+          git config core.protectNTFS false
+          git sparse-checkout init --cone
+          git sparse-checkout add quard_star_tools
+          git checkout
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
