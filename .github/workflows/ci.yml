@@ -241,8 +241,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd quard_star_tools
-          git fetch --tags --force
-          git describe --always --long --dirty --abbrev=10 --tags | awk '{print "\""$0"\""}' > git_tag.inc
+          git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           sed -i 's/$$PWD\/tools\/upx-3.91-amd64_linux\/upx/upx-ucl/g' quard_star_tools.pro
           qmake -makefile
@@ -264,7 +263,9 @@ jobs:
     runs-on: windows-2019
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: Bhacaz/checkout-files
+        with:
+          files: quard_star_tools
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
@@ -274,8 +275,7 @@ jobs:
       - name: Build all
         run: |
           cd quard_star_tools
-          git fetch --tags --force
-          git describe --always --long --dirty --abbrev=10 --tags | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
+          git describe --always --long --dirty --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
           ./tools/sed/sed.exe -i "s/git_tag.inc/git_tag.ci.inc/g" quard_star_tools.pro
           qmake -makefile
           mingw32-make
@@ -287,8 +287,8 @@ jobs:
         with:
           name: quard_star_tools_w64
           path: |
-            ./release/out
+            ./quard_star_tools/release/out
 
       - name: Run tests
         run: |
-          ./release/out/quard_star_tools --version
+          ./quard_star_tools/release/out/quard_star_tools --version
