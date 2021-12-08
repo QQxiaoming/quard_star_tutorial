@@ -63,7 +63,13 @@ BoardWindow::~BoardWindow()
 
 void BoardWindow::powerSwitch(bool power)
 {
+#if defined(Q_OS_WIN)
+    QString program = envPath + "/qemu_w64/qemu-system-riscv64.exe";
+#elif defined(Q_OS_LINUX)
     QString program = envPath + "/qemu/bin/qemu-system-riscv64";
+#else
+    QString program = envPath + "qemu-system-riscv64";
+#endif
     QStringList arguments = {
         "-M",         "quard-star,mask-rom-path="+maskromImgPath,
         "-m",         "1G",

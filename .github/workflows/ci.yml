@@ -81,10 +81,10 @@ jobs:
           # replace pkexec with sudo for ci
           sed -i 's/pkexec/sudo/g' build.sh
           ./build.sh
+          # perupload
+          sudo rm -rf ./output/rootfs/bootfs ./output/rootfs/rootfs ./output/rootfs/target
           tar -czf build.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
-          du -sh /opt/gcc-riscv64-unknown-linux-gnu
-          du -sh /opt/gcc-riscv64-unknown-elf
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
@@ -194,7 +194,7 @@ jobs:
             fi
           }
 
-  qemu_windows_build:
+  qemu_w64_build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -204,7 +204,7 @@ jobs:
         run: |
           cd qemu-6.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
-          
+
       - uses: addnab/docker-run-action@v3
         with:
           image: qemu/fedora:latest
@@ -212,11 +212,11 @@ jobs:
           shell: bash -l {0}
           run: |
             ./build.sh qemu_w64
-            
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: qemu_windows_x64
+          name: qemu_w64
           path: |
             output/qemu_w64
             run.bat
@@ -230,7 +230,7 @@ jobs:
         uses: jurplel/install-qt-action@v2.14.0
         with:
           version: '5.12.12'
-      
+
       - name: Install prerequisites
         shell: bash -l {0}
         run: |
@@ -253,6 +253,7 @@ jobs:
           name: quard_star_tools
           path: |
             ./quard_star_tools/release/out/quard_star_tools
+            ./quard_star_tools/run_quard_star_tools.sh
 
   quard_star_tools_w64_build:
     runs-on: windows-2019
@@ -287,3 +288,4 @@ jobs:
           name: quard_star_tools_w64
           path: |
             ./quard_star_tools/release/out
+            ./quard_star_tools/run_quard_star_tools.bat
