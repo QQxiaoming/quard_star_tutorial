@@ -195,7 +195,7 @@ jobs:
               exit 1
             fi
           }
-          
+
   qemu_windows_build:
     runs-on: ubuntu-20.04
     steps:
@@ -222,3 +222,73 @@ jobs:
           path: |
             output/qemu_w64
             run.bat
+
+  quard_star_tools_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2.14.0
+      
+      - name: Install prerequisites
+        shell: bash -l {0}
+        run: |
+          sudo apt update
+          sudo apt install -y make gcc upx-ucl
+
+      - name: Build all
+        shell: bash -l {0}
+        run: |
+          cd quard_star_tools
+          git fetch --tags --force
+          git describe --always --long --dirty --abbrev=10 --tags | awk '{print "\""$0"\""}' > git_tag.inc
+          sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
+          sed -i 's/$$PWD\/tools\/upx-3.91-amd64_linux\/upx/upx-ucl/g' quard_star_tools.pro
+          qmake -makefile
+          make
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: quard_star_tools
+          path: |
+            ./quard_star_tools/release/out/quard_star_tools
+
+      - name: Run tests
+        shell: bash -l {0}
+        run: |
+          ./quard_star_tools/release/out/quard_star_tools --version
+
+  quard_star_tools_w64_build:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2.14.0
+        with:
+          arch: win64_mingw81
+
+      - name: Build all
+        run: |
+          cd quard_star_tools
+          git fetch --tags --force
+          git describe --always --long --dirty --abbrev=10 --tags | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
+          ./tools/sed/sed.exe -i "s/git_tag.inc/git_tag.ci.inc/g" quard_star_tools.pro
+          qmake -makefile
+          mingw32-make
+          windeployqt.exe ./release/out/quard_star_tools.exe
+          Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/lib/*.dll ./release/out/
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: quard_star_tools_w64
+          path: |
+            ./release/out
+
+      - name: Run tests
+        run: |
+          ./release/out/quard_star_tools --version
