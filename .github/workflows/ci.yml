@@ -302,8 +302,8 @@ jobs:
           mingw32-make
           windeployqt.exe ./release/out/quard_star_tools.exe
           Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/lib/*.dll ./release/out/
-          Rename-Item ./release/out ./release/quard_star_tools_w64
-          Rename-Item ./release ./gui_tools       
+          Rename-Item ./release/out quard_star_tools_w64
+          Rename-Item ./release gui_tools       
           
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
