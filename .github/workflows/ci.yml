@@ -265,8 +265,9 @@ jobs:
           make
           cd ./tools/ci_build_deb
           ./build.sh
-          mv ./quard_star_tools/release/out ./quard_star_tools/release/quard_star_tools
-          mv ./quard_star_tools/release ./quard_star_tools/gui_tools
+          cd -
+          mv ./release/out ./release/quard_star_tools
+          mv ./release ./gui_tools
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
