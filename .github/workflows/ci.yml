@@ -40,32 +40,48 @@ jobs:
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
                 libattr1-dev device-tree-compiler bison flex
 
+      - name: Cache toolchain
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-toolchain
+        with:
+          path: |
+            /opt/gcc-riscv64-unknown-linux-gnu
+            /opt/gcc-riscv64-unknown-elf
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
       - name: Download and extract prebuilt toolchain
         shell: bash -l {0}
         run: |
-          # download prebuilt toolchain
-          DOWNLOAD_URL_BASE=https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/
-          wget $DOWNLOAD_URL_BASE/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
-          # prebuilt toolchain from riscv official is not ok, due to medlow compile
-          # see The default code model, medlow, can only access addresses below 0x80000000 on a 64-bit part,
-          # or the entire memory on a 32-bit part due to wraparound. If you want to access memory above 2GB on a 64-bit part,
-          # you have to use the medany code model, via the -mcmodel=medany compiler option. If you are linking with libraries,
-          # like the C library, then those libraries must also be compiled with medany. It you are building your own toolchain,
-          # this works best if you use --with-cmodel=medany when configuring
-          #wget $DOWNLOAD_URL_BASE/riscv64-elf-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
-          #tar -xzf riscv64-elf-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
           RISCV_GLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-linux-gnu
           RISCV_NEWLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-elf
-          # wget all prebuilt toolchain
-          wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
-          wget $DOWNLOAD_URL_BASE/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
-          tar -xzf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
-          mv riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14 $RISCV_NEWLIBC_TOOLCHAIN
+          if [ ! -d "$RISCV_GLIBC_TOOLCHAIN" ]; then
+          # download prebuilt toolchain
+          wget https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
           tar -xzf riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
           mv riscv $RISCV_GLIBC_TOOLCHAIN
           rm -f *.tar.gz
           # strip binaries
-          cd /opt
+          cd $RISCV_GLIBC_TOOLCHAIN
+          set +e
+          for i in `find libexec bin -type f`
+          do
+          strip -s $i
+          done
+          cd -
+          $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
+          fi  
+          if [ ! -d "$RISCV_NEWLIBC_TOOLCHAIN" ]; then
+          # download prebuilt toolchain
+          wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+          tar -xzf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+          mv riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14 $RISCV_NEWLIBC_TOOLCHAIN
+          rm -f *.tar.gz
+          # strip binaries
+          cd $RISCV_NEWLIBC_TOOLCHAIN
           set +e
           for i in `find libexec bin -type f`
           do
@@ -73,7 +89,7 @@ jobs:
           done
           cd -
           $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
-          $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
+          fi
 
       - name: Build all
         shell: bash -l {0}
@@ -228,8 +244,6 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
-        with:
-          version: '5.12.12'
 
       - name: Install prerequisites
         shell: bash -l {0}
@@ -243,16 +257,18 @@ jobs:
           cd quard_star_tools
           git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
-          sed -i 's/$$PWD\/tools\/upx-3.91-amd64_linux\/upx/upx-ucl/g' quard_star_tools.pro
+          sed -i 's/upx-ucl/cp $$DESTDIR\/$$TARGET $$DESTDIR\/quard_star_tools_temp; upx-ucl/g' quard_star_tools.pro
           qmake -makefile
           make
+          cd ./tools/ci_build_deb
+          ./build.sh
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools
           path: |
-            ./quard_star_tools/release/out/quard_star_tools
+            ./quard_star_tools/release/out
             ./quard_star_tools/run_quard_star_tools.sh
 
   quard_star_tools_w64_build:
@@ -261,7 +277,7 @@ jobs:
     steps:
       - name: sparseCheckout
         run: |
-          git clone --filter=blob:none --no-checkout --depth 1 --single-branch -b main --sparse "https://$env:GITHUB_ACTOR:$env:GITHUB_TOKEN@github.com/$env:GITHUB_REPOSITORY.git" .
+          git clone --filter=blob:none --no-checkout --depth 1 --single-branch -b "$env:GITHUB_REF".Split('/')[2] --sparse "https://$env:GITHUB_ACTOR:$env:GITHUB_TOKEN@github.com/$env:GITHUB_REPOSITORY.git" .
           git config core.protectNTFS false
           git sparse-checkout init --cone
           git sparse-checkout add quard_star_tools

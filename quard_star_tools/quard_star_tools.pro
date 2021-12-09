@@ -59,11 +59,29 @@ UI_DIR      = $$build_type/ui
 win32:{
     RC_LANG = 0x0004
     VERSION = 0.0.1.0
+
+    contains(TARGET_ARCH, x86_64) {
+        CONFIG(release, debug|release) {
+            AFTER_LINK_CMD_LINE = $$PWD/tools/upx-3.96-win64/upx.exe --best -f $$DESTDIR/$${TARGET}.exe
+            QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
+        }
+    } else {
+        QMAKE_LFLAGS += -Wl,--large-address-aware
+        CONFIG(release, debug|release) {
+            AFTER_LINK_CMD_LINE = $$PWD/tools/upx-3.96-win32/upx.exe --best -f $$DESTDIR/$${TARGET}.exe
+            QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
+        }
+    }
 }
 
 unix:!macx:{
     QMAKE_RPATHDIR=$ORIGIN
     QMAKE_LFLAGS += -no-pie
+
+    CONFIG(release, debug|release) {
+        AFTER_LINK_CMD_LINE = upx-ucl --best -f $$DESTDIR/$$TARGET
+        QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
+    }
 
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
