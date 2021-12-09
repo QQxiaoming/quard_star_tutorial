@@ -265,13 +265,15 @@ jobs:
           make
           cd ./tools/ci_build_deb
           ./build.sh
+          mv ./quard_star_tools/release/out ./quard_star_tools/release/quard_star_tools
+          mv ./quard_star_tools/release ./quard_star_tools/gui_tools
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools
           path: |
-            ./quard_star_tools/release/out
+            ./quard_star_tools/gui_tools/quard_star_tools
             ./quard_star_tools/run_quard_star_tools.sh
 
   quard_star_tools_w64_build:
@@ -300,11 +302,13 @@ jobs:
           mingw32-make
           windeployqt.exe ./release/out/quard_star_tools.exe
           Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/lib/*.dll ./release/out/
-
+          Rename-Item ./release/out ./release/quard_star_tools_w64
+          Rename-Item ./release ./gui_tools       
+          
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools_w64
           path: |
-            ./quard_star_tools/release/out
+            ./quard_star_tools/gui_tools/quard_star_tools_w64
             ./quard_star_tools/run_quard_star_tools.bat
