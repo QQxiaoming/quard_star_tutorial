@@ -99,15 +99,15 @@ jobs:
           ./build.sh
           # perupload
           sudo rm -rf ./output/rootfs/bootfs ./output/rootfs/rootfs ./output/rootfs/target
-          tar -czf build.tar.gz output/ update_tools/ run.sh update_tools.sh
+          tar -czf output.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: build
+          name: output
           path: |
-            build.tar.gz
+            output.tar.gz
 
       - name: Upload prebuilt toolchain
         uses: actions/upload-artifact@v2.2.4
@@ -266,16 +266,16 @@ jobs:
           cd ./tools/ci_build_deb
           ./build.sh
           cd -
-          mv ./release/out ./release/quard_star_tools
-          mv ./release ./gui_tools
+          mkdir gui_tools
+          mv ./release/out ./gui_tools/quard_star_tools
+          tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools
           path: |
-            ./quard_star_tools/gui_tools/quard_star_tools
-            ./quard_star_tools/run_quard_star_tools.sh
+            ./quard_star_tools/quard_star_tools.tar.gz
 
   quard_star_tools_w64_build:
     runs-on: windows-2019
