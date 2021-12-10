@@ -127,7 +127,12 @@ void BoardWindow::powerSwitch(bool power)
 
 void BoardWindow::about()
 {
-    QMessageBox::about(this, "About", "Version \n " + VERSION + "\nCommit \n " + GIT_TAG + "\nAuthor\n qiaoqm@aliyun.com \nWebsite\n https://github.com/QQxiaoming/quard_star_tutorial");
+    QMessageBox::about(this, tr("About"), tr("Version")+" \n "+VERSION+"\n"+tr("Commit")+" \n "+GIT_TAG+"\n"+tr("Author")+"\n qiaoqm@aliyun.com \n"+tr("Website")+"\n https://github.com/QQxiaoming/quard_star_tutorial");
+}
+
+void BoardWindow::aboutQt()
+{
+    QMessageBox::aboutQt(this);
 }
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
@@ -135,10 +140,16 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
     QMenu *menu = new QMenu(this);
 
     QAction *pAbout= new QAction(tr("About"), this);
-    QIcon icoNew(":/boardview/icons/about.png");
-    pAbout->setIcon(icoNew);
+    QIcon icoAbout(":/boardview/icons/about.png");
+    pAbout->setIcon(icoAbout);
     menu->addAction(pAbout);
     connect(pAbout,SIGNAL(triggered()),this,SLOT(about()));
+
+    QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
+    QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
+    pAboutQt->setIcon(icoAboutQt);
+    menu->addAction(pAboutQt);
+    connect(pAboutQt,SIGNAL(triggered()),this,SLOT(aboutQt()));
 
     QAction *pExit = new QAction(tr("Exit"), this);
     QIcon icoExit(":/boardview/icons/exit.png");
@@ -189,8 +200,10 @@ void BoardWindow::paintEvent(QPaintEvent *event)
 
 void BoardWindow::mousePressEvent(QMouseEvent *event)
 {
-    isMousePressed = true;
-    mStartPos = event->pos();
+    if( event->button() == Qt::LeftButton) {
+        isMousePressed = true;
+        mStartPos = event->pos();
+    }
     event->accept();
 }
 
@@ -224,7 +237,9 @@ void BoardWindow::mouseMoveEvent(QMouseEvent *event)
 
 void BoardWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-    isMousePressed = false;
+    if( event->button() == Qt::LeftButton) {
+        isMousePressed = false;
+    }
     event->accept();
 }
 
@@ -245,13 +260,13 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 } else if(spaceList[i].name == "jtag") {
                     telnet[3]->show();
                 } else if(spaceList[i].name == "sd") {
-                    QFileDialog::getOpenFileName(this, tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
+                    sdImgPath = QFileDialog::getOpenFileName(this, tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "nor") {
-                    QFileDialog::getOpenFileName(this, tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
+                    norflashImgPath = QFileDialog::getOpenFileName(this, tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "soc") {
-                    QFileDialog::getOpenFileName(this, tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
+                    pflashImgPath = QFileDialog::getOpenFileName(this, tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "usb0") {
-                    QFileDialog::getOpenFileName(this, tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
+                    usbflashImgPath = QFileDialog::getOpenFileName(this, tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "switch") {
                     powerOn = !powerOn;
                     this->repaint();

@@ -7,7 +7,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 }
 CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += APP_VERSION="\\\"V0.0.1\\\""
+DEFINES += APP_VERSION="\\\"V0.0.2\\\""
 
 INCLUDEPATH += \
         -I . \
@@ -36,10 +36,11 @@ FORMS += \
     vncview/vncwindow.ui
 
 RESOURCES += \
-    res/images.qrc
+    res/resource.qrc
 
 TRANSLATIONS += \
-    lang/quard_star_tools_zh_CN.ts
+    lang/quard_star_tools_zh_CN.ts \
+    lang/quard_star_tools_en_US.ts
 
 # 输出配置
 build_type =
@@ -57,8 +58,9 @@ UI_DIR      = $$build_type/ui
 
 # 平台配置
 win32:{
+    VERSION = 0.0.2.0
     RC_LANG = 0x0004
-    VERSION = 0.0.1.0
+    RC_ICONS = "icons\icon.ico"
 
     contains(TARGET_ARCH, x86_64) {
         CONFIG(release, debug|release) {

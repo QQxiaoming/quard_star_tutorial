@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QTranslator>
+#include <QLibraryInfo>
 
 QString VERSION = APP_VERSION;
 QString GIT_TAG =
@@ -81,6 +82,9 @@ private:
 
 CommandLineParser* CommandLineParser::self = nullptr;
 #define  AppComLineParser   CommandLineParser::instance()
+static QTranslator qtTranslator;
+static QTranslator qtbaseTranslator;
+static QTranslator appTranslator;
 
 int main(int argc, char *argv[])
 {
@@ -99,6 +103,27 @@ int main(int argc, char *argv[])
     AppComLineParser->process(application);
     QString env_path = AppComLineParser->getOpt("env_path");
     QString skin_color = AppComLineParser->getOpt("skin_color");
+
+    QLocale locale;
+    switch(locale.language()) {
+    case QLocale::Chinese:
+        qtTranslator.load("qt_zh_CN.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        application.installTranslator(&qtTranslator);
+        qtbaseTranslator.load("qtbase_zh_CN.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        application.installTranslator(&qtbaseTranslator);
+        appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm");
+        application.installTranslator(&appTranslator);
+        break;
+    default:
+    case QLocale::English:
+        qtTranslator.load("qt_en.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        application.installTranslator(&qtTranslator);
+        qtbaseTranslator.load("qtbase_en.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        application.installTranslator(&qtbaseTranslator);
+        appTranslator.load(":/lang/lang/quard_star_tools_en_US.qm");
+        application.installTranslator(&appTranslator);
+        break;
+    }
 
     BoardWindow window(env_path,skin_color);
     window.show();

@@ -26,6 +26,7 @@ public:
 
 private slots:
     void about();
+    void aboutQt();
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);

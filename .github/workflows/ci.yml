@@ -73,7 +73,7 @@ jobs:
           done
           cd -
           $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
-          fi  
+          fi
           if [ ! -d "$RISCV_NEWLIBC_TOOLCHAIN" ]; then
           # download prebuilt toolchain
           wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
@@ -214,7 +214,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      
+
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
 
@@ -261,6 +261,7 @@ jobs:
           git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           sed -i 's/upx-ucl/cp $$DESTDIR\/$$TARGET $$DESTDIR\/quard_star_tools_temp; upx-ucl/g' quard_star_tools.pro
+          lrelease quard_star_tools.pro
           qmake -makefile
           make
           cd ./tools/ci_build_deb
@@ -299,13 +300,14 @@ jobs:
           cd quard_star_tools
           git describe --always --long --dirty --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
           ./tools/sed/sed.exe -i "s/git_tag.inc/git_tag.ci.inc/g" quard_star_tools.pro
+          lrelease quard_star_tools.pro
           qmake -makefile
           mingw32-make
           windeployqt.exe ./release/out/quard_star_tools.exe
           Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/lib/*.dll ./release/out/
           Rename-Item ./release/out quard_star_tools_w64
-          Rename-Item ./release gui_tools       
-          
+          Rename-Item ./release gui_tools
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
