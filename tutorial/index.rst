@@ -10,6 +10,9 @@
 .. image:: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial/badge
    :target: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial
    :alt: CodeFactor
+.. image:: https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
+   :alt: GitHub All Releases
 .. image:: https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub stars
