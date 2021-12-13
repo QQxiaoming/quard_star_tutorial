@@ -360,6 +360,15 @@
 			cdns,phy-dll-delay-sdclk-hsmmc = <21>;
 		};
 
+		i2s: audio-controller@1000b000 {
+			compatible = "quard,quard-star-i2s";
+			#sound-dai-cells = <0>;
+			reg = <0x0 0x1000b000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <0x15>;
+			status = "disabled";
+		};
+
 		usb: dwc3@11000000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0x11000000 0x0 0x10000>;

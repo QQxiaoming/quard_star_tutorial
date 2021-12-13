@@ -34,6 +34,7 @@
 #include "hw/intc/sifive_clint.h"
 #include "hw/intc/sifive_plic.h"
 #include "hw/misc/quard_star_syscon.h"
+#include "hw/audio/wm8750.h"
 #include "chardev/char.h"
 #include "sysemu/arch_init.h"
 #include "sysemu/device_tree.h"
@@ -58,6 +59,7 @@ static const MemMapEntry virt_memmap[] = {
     [QUARD_STAR_SPI1]    = { 0x10008000,    0x1000 },
     [QUARD_STAR_GPIO]    = { 0x10009000,    0x1000 },
     [QUARD_STAR_SDIO]    = { 0x1000a000,    0x1000 },
+    [QUARD_STAR_I2S]     = { 0x1000b000,    0x1000 },
 
     [QUARD_STAR_VIRTIO0] = { 0x10100000,    0x1000 },
     [QUARD_STAR_VIRTIO1] = { 0x10101000,    0x1000 },
@@ -324,10 +326,13 @@ static void quard_star_i2c_create(MachineState *machine)
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->i2c[2]), 0,
                     qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2C2_IRQ));
 
-    I2CSlave *i2c_dev = i2c_slave_new("at24c-eeprom", 0x50);
-    DeviceState *dev = DEVICE(i2c_dev);
+    s->at24c_dev = i2c_slave_new("at24c-eeprom", 0x50);
+    DeviceState *dev = DEVICE(s->at24c_dev);
     qdev_prop_set_uint32(dev, "rom-size", 8*1024);
-    i2c_slave_realize_and_unref(i2c_dev, s->i2c[0].bus, &error_abort);
+    i2c_slave_realize_and_unref(s->at24c_dev, s->i2c[0].bus, &error_abort);
+
+    s->wm8750_dev = i2c_slave_new(TYPE_WM8750, 0x1a);
+    i2c_slave_realize_and_unref(s->wm8750_dev, s->i2c[1].bus, &error_abort);
 }
 
 static void quard_star_spi_create(MachineState *machine)
@@ -434,6 +439,20 @@ static void quard_star_sdio_create(MachineState *machine)
                                 &error_fatal);
         qdev_realize_and_unref(card, sdhci->bus, &error_fatal);
     }
+}
+
+static void quard_star_i2s_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+    
+    s->i2s = qdev_new(TYPE_MV88W8618_AUDIO);
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(s->i2s), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(s->i2s), 0, virt_memmap[QUARD_STAR_I2S].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(s->i2s), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2S_IRQ));
+
+    object_property_set_link(OBJECT(s->i2s), "wm8750", OBJECT(s->wm8750_dev),
+                             NULL);
 }
 
 static void quard_star_virtio_mmio_create(MachineState *machine)

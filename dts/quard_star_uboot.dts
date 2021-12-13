@@ -52,6 +52,11 @@
 
 &i2c1 {
 	status = "okay";
+
+	codec: wm8750@1a {
+		compatible = "wlf,wm8750";
+		reg = <0x1a>;
+	};
 };
 
 &i2c2 {
@@ -84,6 +89,10 @@
 };
 
 &usb {
+	status = "okay";
+};
+
+&i2s {
 	status = "okay";
 };
 
