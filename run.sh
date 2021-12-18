@@ -3,6 +3,9 @@ set -e
 
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 
+GDB_START=""
+#GDB_START="gdb --args"
+
 DEBUG_PARAM=""
 #DEBUG_PARAM="-d help -D qemu.log"
 
@@ -125,7 +128,7 @@ update_test)
 	;;
 esac
 
-$SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
+$GDB_START $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin" \
 -m 1G \
 -smp 8 \
