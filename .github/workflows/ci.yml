@@ -38,8 +38,7 @@ jobs:
                 bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev \
                 libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz \
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
-                libattr1-dev device-tree-compiler libpulse-dev bison flex
-
+                libattr1-dev device-tree-compiler bison flex
       - name: Cache toolchain
         uses: actions/cache@v2
         env:
@@ -52,7 +51,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
       - name: Download and extract prebuilt toolchain
         shell: bash -l {0}
         run: |
@@ -90,7 +88,6 @@ jobs:
           cd -
           $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
           fi
-
       - name: Build all
         shell: bash -l {0}
         run: |
@@ -101,21 +98,18 @@ jobs:
           sudo rm -rf ./output/rootfs/bootfs ./output/rootfs/rootfs ./output/rootfs/target
           tar -czf output.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
-
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: output
           path: |
             output.tar.gz
-
       - name: Upload prebuilt toolchain
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: prebuilt_toolchain
           path: |
             toolchain.tar.gz
-
       - name: Run tests uart update
         shell: bash -l {0}
         run: |
@@ -137,7 +131,6 @@ jobs:
               exit 1
             fi
           }
-
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
@@ -161,7 +154,6 @@ jobs:
               exit 1
             fi
           }
-
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
@@ -185,7 +177,6 @@ jobs:
               exit 1
             fi
           }
-
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
@@ -209,7 +200,6 @@ jobs:
               exit 1
             fi
           }
-
   qemu_w64_build:
     runs-on: ubuntu-20.04
     steps:
@@ -223,7 +213,6 @@ jobs:
         run: |
           cd qemu-6.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
-
       - uses: addnab/docker-run-action@v3
         with:
           image: qemu/fedora:latest
@@ -231,15 +220,13 @@ jobs:
           shell: bash -l {0}
           run: |
             ./build.sh qemu_w64
-
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: qemu_w64
           path: |
             output/qemu_w64
             run.bat
-
   quard_star_tools_build:
     runs-on: ubuntu-20.04
     steps:
@@ -253,7 +240,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y make gcc upx-ucl
-
       - name: Build all
         shell: bash -l {0}
         run: |
@@ -270,14 +256,12 @@ jobs:
           mkdir gui_tools
           mv ./release/out ./gui_tools/quard_star_tools
           tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
-
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools
           path: |
             ./quard_star_tools/quard_star_tools.tar.gz
-
   quard_star_tools_w64_build:
     runs-on: windows-2019
 
@@ -289,7 +273,6 @@ jobs:
           git sparse-checkout init --cone
           git sparse-checkout add quard_star_tools
           git checkout
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
         with:
@@ -307,23 +290,21 @@ jobs:
           Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/lib/*.dll ./release/out/
           Rename-Item ./release/out quard_star_tools_w64
           Rename-Item ./release gui_tools
-
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools_w64
           path: |
             ./quard_star_tools/gui_tools/quard_star_tools_w64
             ./quard_star_tools/run_quard_star_tools.bat
-
   release_linux:
     runs-on: ubuntu-20.04
     needs: [main_build, quard_star_tools_build]
     steps:
-      - uses: actions/upload-artifact@v2.1.0
+      - uses: actions/download-artifact@v2
         with:
           name: output
-      - uses: actions/upload-artifact@v2.1.0
+      - uses: actions/download-artifact@v2
         with:
           name: quard_star_tools
       - name: release_packet
@@ -352,23 +333,22 @@ jobs:
           rm -rf ./output/uboot/u-boot.map
           tar -czf release_linux.tar.gz gui_tools/ update_tools/ output/ run.sh update_tools.sh run_quard_star_tools.sh
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: release_linux
           path: |
             release_linux.tar.gz
-
   release_windows:
     runs-on: ubuntu-20.04
     needs: [main_build, qemu_w64_build, quard_star_tools_w64_build]
     steps:
-      - uses: actions/upload-artifact@v2.1.0
+      - uses: actions/download-artifact@v2
         with:
           name: output
-      - uses: actions/upload-artifact@v2.1.0
+      - uses: actions/download-artifact@v2
         with:
           name: qemu_w64
-      - uses: actions/upload-artifact@v2.1.0
+      - uses: actions/download-artifact@v2
         with:
           name: quard_star_tools_w64
       - name: release_packet
@@ -396,7 +376,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.map
           zip -r release_win64.zip gui_tools/ output/ run.bat run_quard_star_tools.bat
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: release_win64
           path: |
