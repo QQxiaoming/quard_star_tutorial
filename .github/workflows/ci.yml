@@ -103,14 +103,14 @@ jobs:
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: output
           path: |
             output.tar.gz
 
       - name: Upload prebuilt toolchain
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: prebuilt_toolchain
           path: |
@@ -233,7 +233,7 @@ jobs:
             ./build.sh qemu_w64
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: qemu_w64
           path: |
@@ -272,7 +272,7 @@ jobs:
           tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: quard_star_tools
           path: |
@@ -309,7 +309,7 @@ jobs:
           Rename-Item ./release gui_tools
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: quard_star_tools_w64
           path: |
@@ -320,10 +320,10 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [main_build, quard_star_tools_build]
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/upload-artifact@v2.1.0
         with:
           name: output
-      - uses: actions/download-artifact@v2
+      - uses: actions/upload-artifact@v2.1.0
         with:
           name: quard_star_tools
       - name: release_packet
@@ -352,7 +352,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.map
           tar -czf release_linux.tar.gz gui_tools/ update_tools/ output/ run.sh update_tools.sh run_quard_star_tools.sh
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: release_linux
           path: |
@@ -362,13 +362,13 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [main_build, qemu_w64_build, quard_star_tools_w64_build]
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/upload-artifact@v2.1.0
         with:
           name: output
-      - uses: actions/download-artifact@v2
+      - uses: actions/upload-artifact@v2.1.0
         with:
           name: qemu_w64
-      - uses: actions/download-artifact@v2
+      - uses: actions/upload-artifact@v2.1.0
         with:
           name: quard_star_tools_w64
       - name: release_packet
@@ -396,7 +396,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.map
           zip -r release_win64.zip gui_tools/ output/ run.bat run_quard_star_tools.bat
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.1
         with:
           name: release_win64
           path: |
