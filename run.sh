@@ -146,6 +146,7 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device virtio-net-device,netdev=net0 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
+-device wm8750,audiodev=pa \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
 -global quard-star-syscon.boot-cfg="$DBOOTCFG" \
 $GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM

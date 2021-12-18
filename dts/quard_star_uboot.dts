@@ -15,6 +15,13 @@
 		device_type = "memory";
 		reg = <0x0 0x80000000 0x0 0x40000000>;
 	};
+
+	sound {
+		compatible = "audio-graph-card";
+		label = "QUARD_STAR_BOARD";
+		dais = <&i2s_port>;
+		status = "disabled"; //TODO:In development
+	};
 };
 
 &cpu7 {
@@ -56,6 +63,11 @@
 	codec: wm8750@1a {
 		compatible = "wlf,wm8750";
 		reg = <0x1a>;
+		codec_port: port {
+			codec_endpoint: endpoint {
+				remote-endpoint = <&i2s_endpoint>;
+			};
+		};
 	};
 };
 
@@ -94,6 +106,15 @@
 
 &i2s {
 	status = "okay";
+
+	i2s_port: port {
+		i2s_endpoint: endpoint {
+			remote-endpoint = <&codec_endpoint>;
+			dai-format = "i2s";
+			frame-master;
+			bitclock-master;
+		};
+	};
 };
 
 &dma {

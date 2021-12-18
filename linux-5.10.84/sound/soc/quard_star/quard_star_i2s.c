@@ -8,14 +8,23 @@
 #include <linux/regmap.h>
 #include <linux/reset.h>
 #include <linux/spinlock.h>
+#include <linux/dma-mapping.h>
 
 #include <sound/dmaengine_pcm.h>
 #include <sound/pcm_params.h>
 
-static void __iomem *i2s_base;
+struct quard_star_i2s_data {
+	void __iomem *base;
+	struct platform_device *pdev;
+	struct snd_soc_dai_driver *dai_drv;
+	struct snd_dmaengine_dai_dma_data dma_data_tx;
+	char *dmabuffer;
+};
 
-static irqreturn_t quard_star_i2s_isr(int irq, void *devid)
+static irqreturn_t quard_star_i2s_isr(int irq, void *priv)
 {
+	struct quard_star_i2s_data *i2s = (struct quard_star_i2s_data *)priv;
+	(void)i2s;
 	pr_err("quard_star_i2s_isr\n");
 	return IRQ_HANDLED;
 }
@@ -63,8 +72,11 @@ static void quard_star_i2s_shutdown(struct snd_pcm_substream *substream,
 
 static int quard_star_dai_probe(struct snd_soc_dai *cpu_dai)
 {
+	struct quard_star_i2s_data *i2s = dev_get_drvdata(cpu_dai->dev);
+
 	pr_err("quard_star_dai_probe\n");
-	return -1;
+	//snd_soc_dai_init_dma_data(cpu_dai, &i2s->dma_data_tx, NULL);
+	return 0;
 }
 
 static const struct snd_soc_dai_ops quard_star_i2s_pcm_dai_ops = {
@@ -88,29 +100,6 @@ static struct snd_soc_dai_driver dai_drv = {
 		.formats = SNDRV_PCM_FMTBIT_S16_LE |
 				   SNDRV_PCM_FMTBIT_S32_LE,
 	},
-	.capture = {
-		.stream_name = "capture",
-		.channels_min = 1,
-		.channels_max = 2,
-		.rates = SNDRV_PCM_RATE_8000_192000,
-		.formats = SNDRV_PCM_FMTBIT_S16_LE |
-				   SNDRV_PCM_FMTBIT_S32_LE,
-	},
-};
-
-static const struct snd_pcm_hardware quard_star_pcm_hw = {
-	.info = SNDRV_PCM_INFO_INTERLEAVED | SNDRV_PCM_INFO_MMAP,
-	.buffer_bytes_max = 8 * PAGE_SIZE,
-	.period_bytes_min = 1024,
-	.period_bytes_max = 4 * PAGE_SIZE,
-	.periods_min = 2,
-	.periods_max = 8,
-};
-
-static const struct snd_dmaengine_pcm_config quard_star_pcm_config = {
-	.pcm_hardware	= &quard_star_pcm_hw,
-	.prepare_slave_config = snd_dmaengine_pcm_prepare_slave_config,
-	.prealloc_buffer_size = PAGE_SIZE * 8,
 };
 
 static const struct snd_soc_component_driver quard_star_i2s_component = {
@@ -127,14 +116,30 @@ static int quard_star_i2s_remove(struct platform_device *pdev)
 
 static int quard_star_i2s_probe(struct platform_device *pdev)
 {
+	struct quard_star_i2s_data *i2s;
 	struct resource *res;
 	int irq, ret;
-	return -1;
+
+	i2s = devm_kzalloc(&pdev->dev, sizeof(*i2s), GFP_KERNEL);
+	if (!i2s)
+		return -ENOMEM;
+
+	platform_set_drvdata(pdev, i2s);
+
+	i2s->pdev = pdev;
+	i2s->dai_drv = &dai_drv;
+
+	i2s->dmabuffer = dma_alloc_coherent(&pdev->dev, 4096, &i2s->dma_data_tx.addr, GFP_KERNEL);
+	if (!i2s->dmabuffer) {
+		return -ENOMEM;
+	}
+	i2s->dma_data_tx.addr_width = DMA_SLAVE_BUSWIDTH_UNDEFINED;
+	i2s->dma_data_tx.maxburst = 4;
 
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-	i2s_base = devm_ioremap_resource(&pdev->dev, res);
-	if (IS_ERR(i2s_base))
-		return PTR_ERR(i2s_base);
+	i2s->base = devm_ioremap_resource(&pdev->dev, res);
+	if (IS_ERR(i2s->base))
+		return PTR_ERR(i2s->base);
 
 	/* Get irqs */
 	irq = platform_get_irq(pdev, 0);
@@ -142,16 +147,9 @@ static int quard_star_i2s_probe(struct platform_device *pdev)
 		return irq;
 
 	ret = devm_request_irq(&pdev->dev, irq, quard_star_i2s_isr, IRQF_ONESHOT,
-			       dev_name(&pdev->dev), i2s_base);
+			       dev_name(&pdev->dev), i2s);
 	if (ret) {
 		dev_err(&pdev->dev, "irq request returned %d\n", ret);
-		return ret;
-	}
-
-	ret = snd_dmaengine_pcm_register(&pdev->dev, &quard_star_pcm_config, 0);
-	if (ret) {
-		if (ret != -EPROBE_DEFER)
-			dev_err(&pdev->dev, "PCM DMA register error %d\n", ret);
 		return ret;
 	}
 
@@ -161,7 +159,6 @@ static int quard_star_i2s_probe(struct platform_device *pdev)
 		snd_dmaengine_pcm_unregister(&pdev->dev);
 		return ret;
 	}
-
 
 	return 0;
 }
