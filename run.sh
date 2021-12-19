@@ -4,7 +4,7 @@ set -e
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 
 GDB_START=""
-#GDB_START="gdb --args"
+#GDB_START="gdb --args" #use this need build qemu with --enable-debug option
 
 DEBUG_PARAM=""
 #DEBUG_PARAM="-d help -D qemu.log"
@@ -140,6 +140,7 @@ $GDB_START $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
 -netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0 \
+-audiodev sdl,id=sdl0 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,drive=disk0,id=hd0 \
 -device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0 \
@@ -149,6 +150,7 @@ $GDB_START $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device virtio-net-device,netdev=net0 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
+-device wm8750,audiodev=sdl0 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
 -global quard-star-syscon.boot-cfg="$DBOOTCFG" \
 $GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM

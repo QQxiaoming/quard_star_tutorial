@@ -446,13 +446,12 @@ static void quard_star_i2s_create(MachineState *machine)
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
     
     s->i2s = qdev_new(TYPE_MV88W8618_AUDIO);
+    object_property_set_link(OBJECT(s->i2s), "wm8750", OBJECT(s->wm8750_dev),
+                             NULL);
     sysbus_realize_and_unref(SYS_BUS_DEVICE(s->i2s), &error_fatal);
     sysbus_mmio_map(SYS_BUS_DEVICE(s->i2s), 0, virt_memmap[QUARD_STAR_I2S].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(s->i2s), 0,
                         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2S_IRQ));
-
-    object_property_set_link(OBJECT(s->i2s), "wm8750", OBJECT(s->wm8750_dev),
-                             NULL);
 }
 
 static void quard_star_virtio_mmio_create(MachineState *machine)
@@ -512,6 +511,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_gpio_create(machine);
     quard_star_dma_create(machine);
     quard_star_sdio_create(machine);
+    quard_star_i2s_create(machine);
 
     quard_star_virtio_mmio_create(machine);
     quard_star_fw_cfg_create(machine);
