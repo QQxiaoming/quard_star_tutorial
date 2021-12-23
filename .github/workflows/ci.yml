@@ -102,6 +102,8 @@ jobs:
           sudo rm -rf ./output/rootfs/bootfs ./output/rootfs/rootfs ./output/rootfs/target
           tar -czf output.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
+          sed -i 's/-audiodev sdl,id=audio0/ /g' run.sh
+          sed -i 's/-device wm8750,audiodev=audio0/ /g' run.sh
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
