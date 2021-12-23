@@ -277,6 +277,8 @@ do_command(char c)
 		    "~R      start recording to file\r\n"
 		    "~S      set speed\r\n"
 		    "~X      send file with XMODEM\r\n"
+		    "~^D     exit cu\r\n"
+		    "~^Z     kill cu\r\n"
 		    "~?      get this summary\r\n"
 		);
 		break;

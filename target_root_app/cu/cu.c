@@ -71,7 +71,7 @@ extern long long strtonum(const char *nptr, long long minval, long long maxval,c
 __dead void
 usage(void)
 {
-	fprintf(stderr, "usage: %s [-l line] [-s speed | -speed] [-h | --halfduplex]\n",
+	fprintf(stderr, "usage: %s [-l dev(device)] [-s speed(Baud rate)] [-h (Locally echo enable)]\n",
 	    __progname);
 	exit(1);
 }

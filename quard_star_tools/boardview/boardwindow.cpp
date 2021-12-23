@@ -84,6 +84,11 @@ void BoardWindow::powerSwitch(bool power)
         "-fsdev",     "local,security_model=mapped-xattr,path="+envPath+",id=fsdev0",
 #endif
         "-netdev",    "user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp="+envPath+",bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0",
+#if defined(Q_OS_LINUX)
+        "-audiodev",  "sdl,id=audio0",
+#elif defined(Q_OS_WIN)
+        "-audiodev",  "dsound,id=audio0",
+#endif
         "-global",    "virtio-mmio.force-legacy=false",
         "-device",    "virtio-blk-device,drive=disk0,id=hd0",
         "-device",    "virtio-gpu-device,xres=1280,yres=720,id=video0",
@@ -95,6 +100,7 @@ void BoardWindow::powerSwitch(bool power)
         "-device",    "virtio-net-device,netdev=net0",
         "-device",    "usb-storage,drive=usb0",
         "-device",    "usb-serial,always-plugged=true,chardev=usb1",
+        "-device",    "wm8750,audiodev=audio0",
         "-fw_cfg",    "name=opt/qemu_cmdline,string=qemu_vc=:vn:24x80:",
         "-global",    "quard-star-syscon.boot-cfg=sd",
         "-display",   "vnc=127.0.0.1:1",                /*vnc base port is 5900, so this 1 is 5901*/
