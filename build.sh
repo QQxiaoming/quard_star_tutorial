@@ -180,7 +180,7 @@ build_busybox()
     if [ ! -d "$SHELL_FOLDER/output/busybox" ]; then  
     mkdir $SHELL_FOLDER/output/busybox
     fi  
-    cd $SHELL_FOLDER/busybox-1.33.1
+    cd $SHELL_FOLDER/busybox-1.33.2
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- install
