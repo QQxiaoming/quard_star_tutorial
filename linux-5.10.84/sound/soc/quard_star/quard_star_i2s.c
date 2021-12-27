@@ -13,6 +13,26 @@
 #include <sound/dmaengine_pcm.h>
 #include <sound/pcm_params.h>
 
+/* Audio register offsets */
+#define MP_AUDIO_PLAYBACK_MODE  0x00
+#define MP_AUDIO_CLOCK_DIV      0x18
+#define MP_AUDIO_IRQ_STATUS     0x20
+#define MP_AUDIO_IRQ_ENABLE     0x24
+#define MP_AUDIO_TX_START_LO    0x28
+#define MP_AUDIO_TX_THRESHOLD   0x2C
+#define MP_AUDIO_TX_STATUS      0x38
+#define MP_AUDIO_TX_START_HI    0x40
+
+/* Status register and IRQ enable bits */
+#define MP_AUDIO_TX_HALF        (1 << 6)
+#define MP_AUDIO_TX_FULL        (1 << 7)
+
+/* Playback mode bits */
+#define MP_AUDIO_16BIT_SAMPLE   (1 << 0)
+#define MP_AUDIO_PLAYBACK_EN    (1 << 7)
+#define MP_AUDIO_CLOCK_24MHZ    (1 << 9)
+#define MP_AUDIO_MONO           (1 << 14)
+
 struct quard_star_i2s_data {
 	void __iomem *base;
 	struct platform_device *pdev;
@@ -24,28 +44,27 @@ struct quard_star_i2s_data {
 static irqreturn_t quard_star_i2s_isr(int irq, void *priv)
 {
 	struct quard_star_i2s_data *i2s = (struct quard_star_i2s_data *)priv;
-	(void)i2s;
-	pr_err("quard_star_i2s_isr\n");
+	dev_dbg(&i2s->pdev->dev,"quard_star_i2s_isr\n");
 	return IRQ_HANDLED;
 }
 
 static int quard_star_i2s_set_sysclk(struct snd_soc_dai *cpu_dai,
 				int clk_id, unsigned int freq, int dir)
 {
-	pr_err("quard_star_i2s_set_sysclk\n");
+	dev_dbg(cpu_dai->dev, "I2S MCLK frequency is %uHz dir %x\n", freq, dir);
 	return 0;
 }
 
 static int quard_star_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai, unsigned int fmt)
 {
-	pr_err("quard_star_i2s_set_dai_fmt\n");
+	dev_dbg(cpu_dai->dev, "fmt %x\n", fmt);
 	return 0;
 }
 
 static int quard_star_i2s_startup(struct snd_pcm_substream *substream,
 			     struct snd_soc_dai *cpu_dai)
 {
-	pr_err("quard_star_i2s_startup\n");
+	dev_dbg(cpu_dai->dev,"quard_star_i2s_startup\n");
 	return 0;
 }
 
@@ -53,29 +72,30 @@ static int quard_star_i2s_hw_params(struct snd_pcm_substream *substream,
 			       struct snd_pcm_hw_params *params,
 			       struct snd_soc_dai *cpu_dai)
 {
-	pr_err("quard_star_i2s_hw_params\n");
+	dev_dbg(cpu_dai->dev,"quard_star_i2s_hw_params\n");
 	return 0;
 }
 
 static int quard_star_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
 			     struct snd_soc_dai *cpu_dai)
 {
-	pr_err("quard_star_i2s_trigger\n");
+	dev_dbg(cpu_dai->dev,"quard_star_i2s_trigger\n");
 	return 0;
 }
 
 static void quard_star_i2s_shutdown(struct snd_pcm_substream *substream,
 			       struct snd_soc_dai *cpu_dai)
 {
-	pr_err("quard_star_i2s_shutdown\n");
+	dev_dbg(cpu_dai->dev,"quard_star_i2s_shutdown\n");
 }
 
 static int quard_star_dai_probe(struct snd_soc_dai *cpu_dai)
 {
 	struct quard_star_i2s_data *i2s = dev_get_drvdata(cpu_dai->dev);
 
-	pr_err("quard_star_dai_probe\n");
-	//snd_soc_dai_init_dma_data(cpu_dai, &i2s->dma_data_tx, NULL);
+	iowrite32(i2s->dma_data_tx.addr&0xFFFF,i2s->base+MP_AUDIO_TX_START_LO);
+	iowrite32((i2s->dma_data_tx.addr>>16)&0xFFFF,i2s->base+MP_AUDIO_TX_START_HI);
+	snd_soc_dai_init_dma_data(cpu_dai, &i2s->dma_data_tx, NULL);
 	return 0;
 }
 
