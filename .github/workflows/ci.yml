@@ -10,6 +10,7 @@ on:
       - 'README_zh_CN.md'
       - 'DEVELOPNOTE.md'
       - '.readthedocs.yaml'
+
   pull_request:
     branches: [ main ]
     paths-ignore:
@@ -19,6 +20,7 @@ on:
       - 'README_zh_CN.md'
       - 'DEVELOPNOTE.md'
       - '.readthedocs.yaml'
+
   workflow_dispatch:
 
 jobs:
@@ -36,13 +38,14 @@ jobs:
         shell: bash -l {0}
         run: |
           sudo apt update
-          sudo apt install -y wget device-tree-compiler ninja-build git build-essential \
-                pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev \
-                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex \
-                bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev \
-                libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz \
+          sudo apt install -y wget device-tree-compiler ninja-build git build-essential          \
+                pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev  \
+                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex                  \
+                bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev        \
+                libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz    \
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
                 libattr1-dev device-tree-compiler bison flex
+
       - name: Cache toolchain
         uses: actions/cache@v2
         env:
@@ -55,43 +58,45 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
       - name: Download and extract prebuilt toolchain
         shell: bash -l {0}
         run: |
           RISCV_GLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-linux-gnu
           RISCV_NEWLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-elf
           if [ ! -d "$RISCV_GLIBC_TOOLCHAIN" ]; then
-          # download prebuilt toolchain
-          wget https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
-          tar -xzf riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
-          mv riscv $RISCV_GLIBC_TOOLCHAIN
-          rm -f *.tar.gz
-          # strip binaries
-          cd $RISCV_GLIBC_TOOLCHAIN
-          set +e
-          for i in `find libexec bin -type f`
-          do
-          strip -s $i
-          done
-          cd -
-          $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
+            # download prebuilt toolchain
+            wget https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+            tar -xzf riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+            mv riscv $RISCV_GLIBC_TOOLCHAIN
+            rm -f *.tar.gz
+            # strip binaries
+            cd $RISCV_GLIBC_TOOLCHAIN
+            set +e
+            for i in `find libexec bin -type f`
+            do
+              strip -s $i
+            done
+            cd -
+            $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
           fi
           if [ ! -d "$RISCV_NEWLIBC_TOOLCHAIN" ]; then
-          # download prebuilt toolchain
-          wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
-          tar -xzf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
-          mv riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14 $RISCV_NEWLIBC_TOOLCHAIN
-          rm -f *.tar.gz
-          # strip binaries
-          cd $RISCV_NEWLIBC_TOOLCHAIN
-          set +e
-          for i in `find libexec bin -type f`
-          do
-          strip -s $i
-          done
-          cd -
-          $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
+            # download prebuilt toolchain
+            wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+            tar -xzf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+            mv riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14 $RISCV_NEWLIBC_TOOLCHAIN
+            rm -f *.tar.gz
+            # strip binaries
+            cd $RISCV_NEWLIBC_TOOLCHAIN
+            set +e
+            for i in `find libexec bin -type f`
+            do
+              strip -s $i
+            done
+            cd -
+            $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
           fi
+
       - name: Build all
         shell: bash -l {0}
         run: |
@@ -103,18 +108,21 @@ jobs:
           tar -czf output.tar.gz output/ update_tools/ run.sh update_tools.sh
           tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
           sed -i 's/-audiodev sdl,id=audio0/-audiodev none,id=audio0/g' run.sh
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: output
           path: |
             output.tar.gz
+
       - name: Upload prebuilt toolchain
         uses: actions/upload-artifact@v2.2.4
         with:
           name: prebuilt_toolchain
           path: |
             toolchain.tar.gz
+
       - name: Run tests uart update
         shell: bash -l {0}
         run: |
@@ -136,6 +144,7 @@ jobs:
               exit 1
             fi
           }
+
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
@@ -159,6 +168,7 @@ jobs:
               exit 1
             fi
           }
+
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
@@ -182,6 +192,7 @@ jobs:
               exit 1
             fi
           }
+
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
@@ -205,6 +216,7 @@ jobs:
               exit 1
             fi
           }
+
   qemu_w64_build:
     runs-on: ubuntu-20.04
     steps:
@@ -218,6 +230,7 @@ jobs:
         run: |
           cd qemu-6.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
+
       - uses: addnab/docker-run-action@v3
         with:
           image: qemu/fedora:latest
@@ -225,6 +238,7 @@ jobs:
           shell: bash -l {0}
           run: |
             ./build.sh qemu_w64
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
@@ -232,6 +246,7 @@ jobs:
           path: |
             output/qemu_w64
             run.bat
+
   quard_star_tools_build:
     runs-on: ubuntu-20.04
     steps:
@@ -245,6 +260,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y make gcc upx-ucl
+
       - name: Build all
         shell: bash -l {0}
         run: |
@@ -261,12 +277,14 @@ jobs:
           mkdir gui_tools
           mv ./release/out ./gui_tools/quard_star_tools
           tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools
           path: |
             ./quard_star_tools/quard_star_tools.tar.gz
+
   quard_star_tools_w64_build:
     runs-on: windows-2019
 
@@ -278,6 +296,7 @@ jobs:
           git sparse-checkout init --cone
           git sparse-checkout add quard_star_tools
           git checkout
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.14.0
         with:
@@ -295,6 +314,7 @@ jobs:
           Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/x86_64-w64-mingw32/lib/*.dll ./release/out/
           Rename-Item ./release/out quard_star_tools_w64
           Rename-Item ./release gui_tools
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
@@ -302,6 +322,7 @@ jobs:
           path: |
             ./quard_star_tools/gui_tools/quard_star_tools_w64
             ./quard_star_tools/run_quard_star_tools.bat
+
   release_linux:
     runs-on: ubuntu-20.04
     needs: [main_build, quard_star_tools_build]
@@ -309,9 +330,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: output
+
       - uses: actions/download-artifact@v2
         with:
           name: quard_star_tools
+
       - name: release_packet
         shell: bash -l {0}
         run: |
@@ -337,12 +360,14 @@ jobs:
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
           tar -czf release_linux.tar.gz gui_tools/ update_tools/ output/ run.sh update_tools.sh run_quard_star_tools.sh
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: release_linux
           path: |
             release_linux.tar.gz
+
   release_windows:
     runs-on: ubuntu-20.04
     needs: [main_build, qemu_w64_build, quard_star_tools_w64_build]
@@ -350,12 +375,15 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: output
+
       - uses: actions/download-artifact@v2
         with:
           name: qemu_w64
+
       - uses: actions/download-artifact@v2
         with:
           name: quard_star_tools_w64
+
       - name: release_packet
         shell: bash -l {0}
         run: |
@@ -380,6 +408,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
           zip -r release_win64.zip gui_tools/ output/ run.bat run_quard_star_tools.bat
+
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
