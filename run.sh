@@ -14,6 +14,9 @@ PLUGINS_PARAM=""
 #PLUGINS_PATH=$SHELL_FOLDER/qemu-6.0.0/build/tests/plugin/libsyscall.so
 #PLUGINS_PARAM="-plugin $PLUGINS_PATH -d plugin"
 
+NETDEV_PARAM=user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0
+#NETDEV_PARAM=tap,ifname=tap0,script=no,downscript=no,id=net0
+
 VC=\
 "full-screen | \
 1920x1080 | \
@@ -139,7 +142,7 @@ $GDB_START $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=none,format=raw,file=$SHELL_FOLDER/output/rootfs/rootfs.img,id=disk0 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
--netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0 \
+-netdev $NETDEV_PARAM \
 -audiodev sdl,id=audio0 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,drive=disk0,id=hd0 \
