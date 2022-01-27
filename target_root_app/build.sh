@@ -514,6 +514,42 @@ build_lrzsz()
     unset CC
 }
 
+build_libexpat()
+{
+    echo "---------------------------- 编译libexpat ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf expat-2.4.3.tar.gz
+    cd $SHELL_FOLDER/expat-2.4.3
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+}
+
+build_libdaemon()
+{
+    echo "---------------------------- 编译libdaemon ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libdaemon-0.14.tar.gz
+    cd $SHELL_FOLDER/libdaemon-0.14
+    autoreconf -f -i 
+    echo "ac_cv_func_setpgrp_void=yes" > config.cache
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --config-cache --disable-lynx CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+}
+
+build_avahi()
+{
+    # 编译avahi
+    echo "------------------------------ 编译avahi ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf avahi-0.7.tar.gz
+    cd $SHELL_FOLDER/avahi-0.7
+    ./configure --host=riscv64-linux-gnu --prefix=/usr/ --with-xml=expat --enable-libdaemon --with-distro=none --disable-glib --disable-gobject --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 --disable-dbus --disable-gdbm --disable-python --disable-pygtk --disable-python-dbus --disable-mono --disable-monodoc CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc CPPFLAGS="-I$SHELL_FOLDER/output/include" LDFLAGS="-L$SHELL_FOLDER/output/lib" LIBDAEMON_CFLAGS="-I$SHELL_FOLDER/output/include" LIBDAEMON_LIBS="-L$SHELL_FOLDER/output/lib -ldaemon"
+    make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -614,6 +650,15 @@ trace_cmd)
 lrzsz)
     build_lrzsz
     ;;
+libexpat)
+    build_libexpat
+    ;;
+libdaemon)
+    build_libdaemon
+    ;;
+avahi)
+    build_avahi
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -648,6 +693,9 @@ all)
     build_dtc
     build_trace_cmd
     build_lrzsz
+    build_libexpat
+    build_libdaemon
+    build_avahi
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
