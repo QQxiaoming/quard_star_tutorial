@@ -19,7 +19,7 @@ config_tap()
     brctl addbr br0
     ip addr flush dev $ETH_NAME
     brctl addif br0 $ETH_NAME
-    tunctl -t tap0 -u qqm
+    tunctl -t tap0 -u $USER_NAME
     brctl addif br0 tap0
     ifconfig $ETH_NAME up
     ifconfig tap0 up

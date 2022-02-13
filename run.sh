@@ -3,8 +3,11 @@ set -e
 
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 
-GDB_START=""
-#GDB_START="gdb --args" #use this need build qemu with --enable-debug option
+HOST_GDB_PARAM=""
+#HOST_GDB_PARAM="gdb --args" #use this need build qemu with --enable-debug option
+
+TARGET_GDB_PARAM=""
+#TARGET_GDB_PARAM="-s -S"
 
 DEBUG_PARAM=""
 #DEBUG_PARAM="-d help -D qemu.log"
@@ -131,7 +134,7 @@ update_test)
 	;;
 esac
 
-$GDB_START $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
+$HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin" \
 -m 1G \
 -smp 8 \
@@ -156,4 +159,4 @@ $GDB_START $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -device wm8750,audiodev=audio0 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
 -global quard-star-syscon.boot-cfg="$DBOOTCFG" \
-$GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM
+$GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM $TARGET_GDB_PARAM
