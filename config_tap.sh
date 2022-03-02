@@ -29,7 +29,7 @@ config_tap()
     ip addr flush dev $ETH_NAME
 
     # static
-    ip addr add 169.254.105.176/16 broadcast 169.254.255.255 dev br0
+    ip addr add 169.254.105.176/16 brd + dev br0
     # dynamic
     #dhclient -v br0
 }
@@ -44,7 +44,7 @@ release_tap()
     ifconfig $ETH_NAME up
 
     # static
-    ip addr add 169.254.105.176/16 broadcast 169.254.255.255 dev $ETH_NAME
+    ip addr add 169.254.105.176/16 brd + dev $ETH_NAME
     # dynamic
     #dhclient -v $ETH_NAME
 }

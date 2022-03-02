@@ -550,6 +550,18 @@ build_avahi()
     make install DESTDIR=$SHELL_FOLDER/output
 }
 
+build_iperf3()
+{
+    # 编译iperf3
+    echo "----------------------------- 编译iperf3 -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf iperf-3.10.1.tar.gz
+    cd $SHELL_FOLDER/iperf-3.10.1
+    ./configure --enable-static-bin --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --without-openssl CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc
+    make -j$PROCESSORS
+    make install
+}
+
 case "$1" in
 hosttool)
     build_hosttool
@@ -659,6 +671,9 @@ libdaemon)
 avahi)
     build_avahi
     ;;
+iperf3)
+    build_iperf3
+    ;;
 all)
     build_hosttool
     export PATH=$SHELL_FOLDER/host_output/bin:$PATH
@@ -696,6 +711,7 @@ all)
     build_libexpat
     build_libdaemon
     build_avahi
+    build_iperf3
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"

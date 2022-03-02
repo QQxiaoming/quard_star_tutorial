@@ -218,9 +218,97 @@ tap0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
+最后一般情况下的无线网卡sta是不支持网桥的，因此tap方式只能和有线网卡桥接。[更多参考](https://blog.stdio.io/954)。
+
 ## 字符设备（-chardev）
 
+qemu中创建字符设备的典型应用就是模拟ttyUSB的设备，如下参数配置可以在宿主机打开一个telnet服务器，我们可以从外部连接到qemu内部，配合device选项可以关联到内部的usb-serial。
+
+```
+-chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1
+```
+
+```
+-device usb-serial,always-plugged=true,chardev=usb1 \
+```
+
+字符设备支持如下类型：
+
+```
+qqm@ubuntu: qemu-system-riscv64 -chardev help      
+Available chardev backend types: 
+  ringbuf
+  mux
+  pipe
+  null
+  msmouse
+  socket
+  vc
+  parallel
+  memory
+  udp
+  file
+  pty
+  serial
+  wctablet
+  stdio
+  testdev
+```
+
+具体字符设备类型还可以指定更多参数，示例如下：
+
+```
+qemu-system-riscv64 -chardev sockeet,help
+chardev options:
+  abstract=<bool (on/off)>
+  append=<bool (on/off)>
+  backend=<str>
+  chardev=<str>
+  cols=<num>
+  debug=<num>
+  delay=<bool (on/off)>
+  fd=<str>
+  height=<num>
+  host=<str>
+  ipv4=<bool (on/off)>
+  ipv6=<bool (on/off)>
+  localaddr=<str>
+  localport=<str>
+  logappend=<bool (on/off)>
+  logfile=<str>
+  mux=<bool (on/off)>
+  name=<str>
+  nodelay=<bool (on/off)>
+  path=<str>
+  port=<str>
+  reconnect=<num>
+  rows=<num>
+  server=<bool (on/off)>
+  signal=<bool (on/off)>
+  size=<size>
+  telnet=<bool (on/off)>
+  tight=<bool (on/off)>
+  tls-authz=<str>
+  tls-creds=<str>
+  tn3270=<bool (on/off)>
+  to=<num>
+  wait=<bool (on/off)>
+  websocket=<bool (on/off)>
+  width=<num>
+```
+
 ## 文件系统设备（-fsdev）
+
+-fsdev并不常用，但在使用virtio-9p-device设备时会很有用，使用虚拟机软件时，一般都提供一个共享目录功能，让虚拟机和主机可以同时访问同一目录，方便交互文件，virtio-9p-device设备就能实现类似功能，示例参数配置如下：
+
+```
+-fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0
+-device virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0
+```
+
+由-fsdev选项配置宿主机要共享的路径（path参数），共享模型（security_model参数）指的是关于共享目录的权限处理，这里建议时使用mapped-xattr映射权限，这样在host下权限为运行qemu用户的权限，guest有权进行读和写。
+
+另外qemu支持virtio-9p-device需要的libattr1-dev，否则无法支持这一功能。 
 
 ## 音频设备（-audiodev）
 
