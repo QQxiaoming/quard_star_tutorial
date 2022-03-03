@@ -312,10 +312,134 @@ chardev options:
 
 ## 音频设备（-audiodev）
 
+-audiodev用于指定创建host上的音频设备，配置id，以便连接到guest上的音频仿真硬件,该选项参数如下：
+
+```
+-audiodev [driver=]driver,id=id[,prop[=value][,...]]
+                specifies the audio backend to use
+                id= identifier of the backend
+                timer-period= timer period in microseconds
+                in|out.mixing-engine= use mixing engine to mix streams inside QEMU
+                in|out.fixed-settings= use fixed settings for host audio
+                in|out.frequency= frequency to use with fixed settings
+                in|out.channels= number of channels to use with fixed settings
+                in|out.format= sample format to use with fixed settings
+                valid values: s8, s16, s32, u8, u16, u32, f32
+                in|out.voices= number of voices to use
+                in|out.buffer-length= length of buffer in microseconds
+-audiodev none,id=id,[,prop[=value][,...]]
+                dummy driver that discards all output
+-audiodev alsa,id=id[,prop[=value][,...]]
+                in|out.dev= name of the audio device to use
+                in|out.period-length= length of period in microseconds
+                in|out.try-poll= attempt to use poll mode
+                threshold= threshold (in microseconds) when playback starts
+-audiodev oss,id=id[,prop[=value][,...]]
+                in|out.dev= path of the audio device to use
+                in|out.buffer-count= number of buffers
+                in|out.try-poll= attempt to use poll mode
+                try-mmap= try using memory mapped access
+                exclusive= open device in exclusive mode
+                dsp-policy= set timing policy (0..10), -1 to use fragment mode
+-audiodev pa,id=id[,prop[=value][,...]]
+                server= PulseAudio server address
+                in|out.name= source/sink device name
+                in|out.latency= desired latency in microseconds
+-audiodev sdl,id=id[,prop[=value][,...]]
+                in|out.buffer-count= number of buffers
+-audiodev wav,id=id[,prop[=value][,...]]
+                path= path of wav file to record
+```
+
+这里要注意你的qemu不一定支持这么多音频框架，需要在编译qemu时指定config选项：
+
+```
+--audio-drv-list=pa,alsa,sdl,oss
+```
+
+如果在windows上的qemu，则不支持以上框架，一般用dsound框架。
+
 ## 全局参数（-global）
 
-## 其他设备（-device）
+-global一般用于配置qemu的全局参数选项，可配置的内容非常多，格式如下：
+
+```
+global options:
+  driver=<str>
+  property=<str>
+  value=<str>
+```
+
+示例如下：
+
+```
+-global virtio-mmio.force-legacy=false
+-global quard-star-syscon.boot-cfg="$DBOOTCFG"
+```
+
+如何查看可用的选项呢？我这里没找到更好的办法，原则上如果你有qemu的源码，在源码中搜索DEFINE_PROP即可看到类似如下的代码：
+
+```c
+    DEFINE_PROP_STRING("boot-cfg", QuardStarSysconState, boot_cfg),
+    DEFINE_PROP_BOOL("update-cfg", QuardStarSysconState, update_cfg, true),
+```
+
+这里的选项均作为global的可配置参数使用，这部分参数配置最好能阅读qemu的源码理解使用，否则不建议配置这些参数。
+
+## 设备（-device）
+
+-device常用于指定guest上总线挂载的外部设备，例如virtio-mmio、usb、pci等总线，示例如下：
+
+```
+-device virtio-blk-device,drive=disk0,id=hd0 \
+-device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0 \
+-device virtio-mouse-device,id=input0 \
+-device virtio-keyboard-device,id=input1 \
+-device virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0 \
+-device virtio-net-device,netdev=net0 \
+-device usb-storage,drive=usb0 \
+-device usb-serial,always-plugged=true,chardev=usb1 \
+-device wm8750,audiodev=audio0 \
+```
+
+注意有些设备需要匹配host上的真实设备驱动模拟，一般要匹配类似chardev\audiodev\fsdev\netdev。
 
 ## 显示选项（-display）
 
+-display与-audiodev情况类似，主要是看qemu在编译时配置那些gui框架，目前建议在ubuntu上使用gtk效果良好。
+
+```
+-display sdl[,alt_grab=on|off][,ctrl_grab=on|off]
+            [,window_close=on|off][,gl=on|core|es|off]
+-display gtk[,grab_on_hover=on|off][,gl=on|off]|
+-display vnc=<display>[,<optargs>]
+-display curses[,charset=<encoding>]
+-display egl-headless[,rendernode=<file>]
+-display none
+                select display backend type
+                The default display is equivalent to
+                "-display gtk"
+-nographic      disable graphical output and redirect serial I/Os to console
+```
+
+配置示例：
+
+```
+--display gtk,zoom-to-fit=false
+```
+
+如果你不想仿真GUI时可以使用-nographic选项。
+
 ## 终端选项（--serial　--parallel　--monitor）
+
+终端包括三类串行终端，并行终端，qemu命令监控终端。
+
+终端对应的host设备可以是以下选项：
+
+```
+--serial stdio
+--serial vc:1280x720
+--serial telnet:127.0.0.1:3441,server,nowait
+```
+
+绑定stdio即host的标准输入输出，vc:1280x720即GUI显示窗口（注意配置合适的分辨率），telnet为打开一个服务器用于终端交互。
