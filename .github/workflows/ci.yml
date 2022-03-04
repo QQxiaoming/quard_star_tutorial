@@ -115,6 +115,7 @@ jobs:
           name: output
           path: |
             output.tar.gz
+          retention-days: 1
 
       - name: Upload prebuilt toolchain
         uses: actions/upload-artifact@v2.2.4
@@ -246,6 +247,7 @@ jobs:
           path: |
             output/qemu_w64
             run.bat
+          retention-days: 1
 
   quard_star_tools_build:
     runs-on: ubuntu-20.04
@@ -284,6 +286,7 @@ jobs:
           name: quard_star_tools
           path: |
             ./quard_star_tools/quard_star_tools.tar.gz
+          retention-days: 1
 
   quard_star_tools_w64_build:
     runs-on: windows-2019
@@ -322,6 +325,7 @@ jobs:
           path: |
             ./quard_star_tools/gui_tools/quard_star_tools_w64
             ./quard_star_tools/run_quard_star_tools.bat
+          retention-days: 1
 
   release_linux:
     runs-on: ubuntu-20.04
