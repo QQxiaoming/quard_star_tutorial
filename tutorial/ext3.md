@@ -443,3 +443,45 @@ global options:
 ```
 
 绑定stdio即host的标准输入输出，vc:1280x720即GUI显示窗口（注意配置合适的分辨率），telnet为打开一个服务器用于终端交互。
+
+## 调试选项（-s -d）
+
+很多人使用qemu有一个最大的原因就是对目标代码进行验证仿真调试，以便解决在真机上不便于调试的情况。这里介绍两个调试分析相关的选项。
+
+### -s
+
+-s -S或-gdb tcp::1234 -S选项用于启动gdb服务，启动后qemu不立即运行guest，而是等待主机gdb发起连接，此时使用gdb输入target remote:1234可以进行相关调试，与真机调试无异。
+
+### -d
+
+如果qemu参数添加-d help，可以得到如下输出结果
+
+```
+Log items (comma separated):
+out_asm         show generated host assembly code for each compiled TB
+in_asm          show target assembly code for each compiled TB
+op              show micro ops for each compiled TB
+op_opt          show micro ops after optimization
+op_ind          show micro ops before indirect lowering
+int             show interrupts/exceptions in short format
+exec            show trace before each executed TB (lots of logs)
+cpu             show CPU registers before entering a TB (lots of logs)
+fpu             include FPU registers in the 'cpu' logging
+mmu             log MMU-related activities
+pcall           x86 only: show protected mode far calls/returns/exceptions
+cpu_reset       show CPU state before CPU resets
+unimp           log unimplemented functionality
+guest_errors    log when the guest OS does something invalid (eg accessing a
+non-existent register)
+page            dump pages at beginning of user mode emulation
+nochain         do not chain compiled TBs so that "exec" and "cpu" show
+complete traces
+plugin          output from TCG plugins
+
+strace          log every user-mode syscall, its input, and its result
+trace:PATTERN   enable trace events
+
+Use "-d trace:help" to get a list of trace events.
+```
+
+其中非常有用的选项，如：-d in_asm/int/page/mmu/strace -D qemu.log都可以给我们输出很多guest运行时的信息到qemu.log文件中，因此可以进行一些非侵入式观察调试行为，便于软件分析。
