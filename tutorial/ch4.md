@@ -153,6 +153,6 @@ $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 
 ![ch4-1](./img/ch4-1.png)
 
-如果你看到了上面的打印输出，那么恭喜你，你之前的qemu添加的外设工作正确，且本节中的固件也都一切正常，到这里本篇顺利完成。这一节主要进行了固件代码demo编写。下一篇就要开始制作一个加载固件将程序的第一级loader程序加载到ddr内执行，但在此之前我们需要熟悉IC Boot设计中常见的流程，了解BL0，BL1，BL2等等，以及RISCV提出的OPENSBI规范。
+如果你看到了上面的打印输出，那么恭喜你，你之前的qemu添加的外设工作正确，且本节中的固件也都一切正常，到这里本篇顺利完成。这一节主要进行了固件代码demo编写。下一篇就要开始制作一个加载固件将程序的第一级loader程序加载到ddr内执行，但在此之前我们需要熟悉SOC Boot设计中常见的流程，了解BL0，BL1，BL2等等，以及RISCV提出的OPENSBI规范。
 
 > 本教程的<br>github仓库：https://github.com/QQxiaoming/quard_star_tutorial<br>gitee仓库：https://gitee.com/QQxiaoming/quard_star_tutorial<br>本节所在tag：ch4

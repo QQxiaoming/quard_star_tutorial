@@ -52,7 +52,7 @@ object_property_set_int(OBJECT(&s->soc[i]), "num-harts",
 sysbus_realize(SYS_BUS_DEVICE(&s->soc[i]), &error_abort);
 ```
 
-定义内存相关资源，这里定义一个cpu内部的一片maskrom，一片sram，和一片ddr内存，maskrom用于cpu启动时固定执行其内部的代码，sram为早期启动代码时数据存放空间，ddr一般在真实板卡上是需要对应控制器初始化后才能使用，但在qemu模拟时直接将其配置为了可以使用的内存了，但我们追求真实，不在早起启动时使用这片内存空间。
+定义内存相关资源，这里定义一个cpu内部的一片maskrom，一片sram，和一片ddr内存，maskrom用于cpu启动时固定执行其内部的代码，sram为早期启动代码时数据存放空间，ddr一般在真实板卡上是需要对应控制器初始化后才能使用，但在qemu模拟时直接将其配置为了可以使用的内存了，但我们追求真实，不在早期启动时使用这片内存空间。
 
 ```c
 static const MemMapEntry virt_memmap[] = {
@@ -109,7 +109,7 @@ quard_star_setup_rom_reset_vec(machine, &s->soc[0], memmap[QUARD_STAR_MROM].base
 
 ### 编译运行
 
-为了方便运行，我们再创建个run.sh脚本用于运行quard-star 板
+为了方便运行，我们再创建个run.sh脚本用于运行quard-star板
 
 ```shell
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
