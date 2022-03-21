@@ -425,9 +425,9 @@ build_alsa_lib()
     # 编译alsa-lib
     echo "---------------------------- 编译alsa-lib ----------------------------"
     cd $SHELL_FOLDER/alsa-lib-1.2.5
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=/ --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
-    make install
+    make install DESTDIR=$SHELL_FOLDER/output
 }
 
 build_alsa_utils()
@@ -437,9 +437,9 @@ build_alsa_utils()
     cd $SHELL_FOLDER
     tar -jxvf alsa-utils-1.2.5.1.tar.bz2
     cd $SHELL_FOLDER/alsa-utils-1.2.5.1
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --with-alsa-inc-prefix=$SHELL_FOLDER/output/include --with-alsa-prefix=$SHELL_FOLDER/output/lib --disable-alsamixer --disable-xmlto --disable-nls --disable-bat --with-udev-rules-dir=$SHELL_FOLDER/output/lib/udev --with-asound-state-dir=$SHELL_FOLDER/output/var/lib/alsa --disable-alsaconf CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=/ --with-alsa-inc-prefix=$SHELL_FOLDER/output/include --with-alsa-prefix=$SHELL_FOLDER/output/lib --disable-alsamixer --disable-xmlto --disable-nls --disable-bat --with-udev-rules-dir=$SHELL_FOLDER/output/lib/udev --with-asound-state-dir=$SHELL_FOLDER/output/var/lib/alsa --disable-alsaconf CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    make install
+    make install DESTDIR=$SHELL_FOLDER/output
 }
 
 build_openjdk_zero()

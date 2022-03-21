@@ -44,27 +44,27 @@ struct quard_star_i2s_data {
 static irqreturn_t quard_star_i2s_isr(int irq, void *priv)
 {
 	struct quard_star_i2s_data *i2s = (struct quard_star_i2s_data *)priv;
-	dev_dbg(&i2s->pdev->dev,"quard_star_i2s_isr\n");
+	dev_info(&i2s->pdev->dev,"TODO:quard_star_i2s_isr\n");
 	return IRQ_HANDLED;
 }
 
 static int quard_star_i2s_set_sysclk(struct snd_soc_dai *cpu_dai,
 				int clk_id, unsigned int freq, int dir)
 {
-	dev_dbg(cpu_dai->dev, "I2S MCLK frequency is %uHz dir %x\n", freq, dir);
+	dev_info(cpu_dai->dev, "TODO:I2S MCLK frequency is %uHz dir %x\n", freq, dir);
 	return 0;
 }
 
 static int quard_star_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai, unsigned int fmt)
 {
-	dev_dbg(cpu_dai->dev, "fmt %x\n", fmt);
+	dev_info(cpu_dai->dev, "TODO:quard_star_i2s_set_dai_fmt fmt %x\n", fmt);
 	return 0;
 }
 
 static int quard_star_i2s_startup(struct snd_pcm_substream *substream,
 			     struct snd_soc_dai *cpu_dai)
 {
-	dev_dbg(cpu_dai->dev,"quard_star_i2s_startup\n");
+	dev_info(cpu_dai->dev,"TODO:quard_star_i2s_startup\n");
 	return 0;
 }
 
@@ -72,21 +72,21 @@ static int quard_star_i2s_hw_params(struct snd_pcm_substream *substream,
 			       struct snd_pcm_hw_params *params,
 			       struct snd_soc_dai *cpu_dai)
 {
-	dev_dbg(cpu_dai->dev,"quard_star_i2s_hw_params\n");
+	dev_info(cpu_dai->dev,"TODO:quard_star_i2s_hw_params\n");
 	return 0;
 }
 
 static int quard_star_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
 			     struct snd_soc_dai *cpu_dai)
 {
-	dev_dbg(cpu_dai->dev,"quard_star_i2s_trigger\n");
+	dev_info(cpu_dai->dev,"TODO:quard_star_i2s_trigger\n");
 	return 0;
 }
 
 static void quard_star_i2s_shutdown(struct snd_pcm_substream *substream,
 			       struct snd_soc_dai *cpu_dai)
 {
-	dev_dbg(cpu_dai->dev,"quard_star_i2s_shutdown\n");
+	dev_info(cpu_dai->dev,"TODO:quard_star_i2s_shutdown\n");
 }
 
 static int quard_star_dai_probe(struct snd_soc_dai *cpu_dai)
