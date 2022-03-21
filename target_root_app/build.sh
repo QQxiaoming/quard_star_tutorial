@@ -420,13 +420,25 @@ build_libffi()
     make install
 }
 
-build_alsa()
+build_alsa_lib()
 {
-    # 编译alsa
-    echo "------------------------------ 编译alsa ------------------------------"
+    # 编译alsa-lib
+    echo "---------------------------- 编译alsa-lib ----------------------------"
     cd $SHELL_FOLDER/alsa-lib-1.2.5
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
+    make install
+}
+
+build_alsa_utils()
+{
+    # 编译alsa-utils
+    echo "--------------------------- 编译alsa-utils ---------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf alsa-utils-1.2.5.1.tar.bz2
+    cd $SHELL_FOLDER/alsa-utils-1.2.5.1
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --with-alsa-inc-prefix=$SHELL_FOLDER/output/include --with-alsa-prefix=$SHELL_FOLDER/output/lib --disable-alsamixer --disable-xmlto --disable-nls --disable-bat --with-udev-rules-dir=$SHELL_FOLDER/output/lib/udev --with-asound-state-dir=$SHELL_FOLDER/output/var/lib/alsa --disable-alsaconf CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
     make install
 }
 
@@ -635,8 +647,11 @@ fontconfig)
 libffi)
     build_libffi
     ;;
-alsa)
-    build_alsa
+alsa_lib)
+    build_alsa_lib
+    ;;
+alsa_utils)
+    build_alsa_utils
     ;;
 openjdk_zero)
     build_openjdk_zero
@@ -699,7 +714,8 @@ all)
 	build_libxml2
 	build_fontconfig
 	build_libffi
-	build_alsa
+	build_alsa_lib
+    build_alsa_utils
     build_openjdk_zero
     build_libuuid
     build_lzo
