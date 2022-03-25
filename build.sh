@@ -344,7 +344,8 @@ all)
     build_all
     ;;
 *)
-    build_all
+	echo $USAGE
+	exit 255
 	;;
 esac
 
