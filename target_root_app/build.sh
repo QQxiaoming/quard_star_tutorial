@@ -464,10 +464,14 @@ build_libuuid()
 {
     # 编译libuuid
     echo "----------------------------- 编译libuuid -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libuuid-1.0.3.tar.gz
     cd $SHELL_FOLDER/libuuid-1.0.3
+    patch -p1 < ../libuuid-1.0.3.patch
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libuuid-1.0.3
 }
 
 build_lzo()
