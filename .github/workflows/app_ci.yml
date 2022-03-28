@@ -93,3 +93,17 @@ jobs:
           # replace pkexec with sudo for ci
           cd target_root_app
           ./build.sh all
+          mv host_output host_tools
+          mv output target_sysroot
+          tar -czf host_tools.tar.gz host_output/
+          tar -czf target_sysroot.tar.gz target_sysroot/
+          mv host_tools.tar.gz ../host_tools.tar.gz
+          mv target_sysroot.tar.gz ../target_sysroot.tar.gz
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: release_win64
+          path: |
+            host_tools.tar.gz
+            target_sysroot.tar.gz
