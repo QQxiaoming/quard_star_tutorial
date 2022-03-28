@@ -37,10 +37,13 @@ build_make()
 {
     # 编译make
     echo "------------------------------ 编译make ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf make-4.3.tar.gz
     cd $SHELL_FOLDER/make-4.3
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/make-4.3
 }
 
 build_ncurses()
