@@ -417,10 +417,13 @@ build_libffi()
 {
     # 编译libffi
     echo "----------------------------- 编译libffi -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libffi-3.4.2.tar.gz
     cd $SHELL_FOLDER/libffi-3.4.2
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libffi-3.4.2
 }
 
 build_alsa_lib()
