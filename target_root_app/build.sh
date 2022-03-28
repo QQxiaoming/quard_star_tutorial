@@ -424,6 +424,8 @@ build_alsa_lib()
 {
     # 编译alsa-lib
     echo "---------------------------- 编译alsa-lib ----------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf alsa-lib-1.2.5.tar.bz2
     cd $SHELL_FOLDER/alsa-lib-1.2.5
     ./configure --host=riscv64-linux-gnu --prefix=/ --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
