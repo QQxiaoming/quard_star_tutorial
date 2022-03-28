@@ -475,12 +475,27 @@ build_alsa_utils()
 build_openjdk_zero()
 {
     echo "----------------------------- 编译openjdk -----------------------------"
+    if [ ! -d "$SHELL_FOLDER/host_output/opt/jdk-10" ]; then
+        if [ ! -d "$SHELL_FOLDER/host_output" ]; then
+            mkdir $SHELL_FOLDER/host_output
+        fi            
+        if [ ! -d "$SHELL_FOLDER/host_output/opt" ]; then
+            mkdir $SHELL_FOLDER/host_output/opt
+        fi
+        cd $SHELL_FOLDER/host_output/opt
+        wget https://download.java.net/openjdk/jdk10/ri/jdk-10_linux-x64_bin_ri.tar.gz
+        tar -xzvf jdk-10_linux-x64_bin_ri.tar.gz
+    fi
     cd $SHELL_FOLDER/jdk11u-dev-113c646a33d2
     TEMP_PATH=$PATH
 	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
     bash configure --with-boot-jdk=$SHELL_FOLDER/host_output/opt/jdk-10 --with-jvm-variants=zero --openjdk-target=riscv64-unknown-linux-gnu --prefix=$SHELL_FOLDER/output --enable-headless-only=yes --disable-warnings-as-errors --with-alsa=$SHELL_FOLDER/output --with-x=$SHELL_FOLDER/output --with-cups=$SHELL_FOLDER/output --with-fontconfig=$SHELL_FOLDER/output --with-libffi=$SHELL_FOLDER/output --with-freetype-include=$SHELL_FOLDER/output/include/freetype2 --with-freetype-lib=$SHELL_FOLDER/output/lib
     make
 	export PATH=$TEMP_PATH
+    if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
+        mkdir $SHELL_FOLDER/output/opt
+    fi
+    mv ./build/linux-riscv64-normal-zero-release/jdk $SHELL_FOLDER/output/opt/jdk
 }
 
 build_libuuid()
