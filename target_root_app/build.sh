@@ -474,10 +474,13 @@ build_lzo()
 {
     # 编译lzo
     echo "------------------------------- 编译lzo -------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf lzo-2.10.tar.gz
     cd $SHELL_FOLDER/lzo-2.10
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/lzo-2.10
 }
 
 build_attr()
