@@ -511,6 +511,8 @@ build_trace_cmd()
 {
     # 编译trace-cmd-v2.9.5
     echo "---------------------------- 编译trace-cmd ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf trace-cmd-v2.9.5.tar.gz
     cd $SHELL_FOLDER/trace-cmd-v2.9.5
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=/ libdir_relative=lib -j$PROCESSORS
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=$SHELL_FOLDER/output etcdir=$SHELL_FOLDER/output/etc libdir_relative=lib install
