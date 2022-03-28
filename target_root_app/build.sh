@@ -211,10 +211,13 @@ build_libpng()
 {
     # 编译libpng
     echo "----------------------------- 编译libpng -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libpng-1.6.34.tar.gz
     cd $SHELL_FOLDER/libpng-1.6.34
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CPPFLAGS=-I$SHELL_FOLDER/output/include LDFLAGS=-L$SHELL_FOLDER/output/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libpng-1.6.34
 }
 
 build_freetype()
