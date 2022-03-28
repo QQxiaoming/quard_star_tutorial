@@ -500,8 +500,9 @@ build_mtd_utils()
 build_dtc()
 {
     # 编译dtc-1.6.1
-    echo "\033[1;4;41;32m\033[0m"
     echo "------------------------------- 编译dtc -------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf dtc-1.6.1.tar.gz
     cd $SHELL_FOLDER/dtc-1.6.1
 	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output libfdt -j$PROCESSORS
     make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output install-lib install-includes
