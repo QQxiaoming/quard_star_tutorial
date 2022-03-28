@@ -175,26 +175,19 @@ build_openssl()
     make install_sw
 }
 
-build_iperf()
-{
-    # 编译iperf
-    echo "------------------------------ 编译iperf ------------------------------"
-    cd $SHELL_FOLDER/iperf-3.10.1
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --with-openssl=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
-	make -j$PROCESSORS
-    make install
-}
-
 build_zlib()
 {
     # 编译zlib
     echo "------------------------------ 编译zlib ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf zlib-1.2.11.tar.gz
     cd $SHELL_FOLDER/zlib-1.2.11
 	export CC=$CROSS_PREFIX-gcc 
     ./configure --prefix=$SHELL_FOLDER/output
 	make -j$PROCESSORS
     make install
     unset CC
+    rm -rf $SHELL_FOLDER/zlib-1.2.11
 }
 
 build_openssh()
@@ -667,9 +660,6 @@ ethtool)
     ;;
 openssl)
     build_openssl
-    ;;
-iperf)
-    build_iperf
     ;;
 zlib)
     build_zlib
