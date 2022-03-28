@@ -99,6 +99,7 @@ build_tree()
     cd $SHELL_FOLDER/tree-1.8.0
     make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc -j$PROCESSORS
     make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc install
+    rm -rf $SHELL_FOLDER/tree-1.8.0
 }
 
 build_libevent()
@@ -432,6 +433,7 @@ build_alsa_lib()
     ./configure --host=riscv64-linux-gnu --prefix=/ --disable-static  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/alsa-lib-1.2.5
 }
 
 build_alsa_utils()
@@ -444,6 +446,7 @@ build_alsa_utils()
     ./configure --host=riscv64-linux-gnu --prefix=/ --with-alsa-inc-prefix=$SHELL_FOLDER/output/include --with-alsa-prefix=$SHELL_FOLDER/output/lib --disable-alsamixer --disable-xmlto --disable-nls --disable-bat --with-udev-rules-dir=$SHELL_FOLDER/output/lib/udev --with-asound-state-dir=$SHELL_FOLDER/output/var/lib/alsa --disable-alsaconf CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/alsa-utils-1.2.5.1
 }
 
 build_openjdk_zero()
@@ -487,6 +490,7 @@ build_attr()
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/attr-2.5.1
 }
 
 build_mtd_utils()
@@ -508,6 +512,7 @@ build_dtc()
     cd $SHELL_FOLDER/dtc-1.6.1
 	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output libfdt -j$PROCESSORS
     make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output install-lib install-includes
+    rm -rf $SHELL_FOLDER/dtc-1.6.1
 }
 
 build_trace_cmd()
@@ -519,6 +524,7 @@ build_trace_cmd()
     cd $SHELL_FOLDER/trace-cmd-v2.9.5
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=/ libdir_relative=lib -j$PROCESSORS
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=$SHELL_FOLDER/output etcdir=$SHELL_FOLDER/output/etc libdir_relative=lib install
+    rm -rf $SHELL_FOLDER/trace-cmd-v2.9.5
 }
 
 build_lrzsz()
@@ -535,6 +541,7 @@ build_lrzsz()
     make install
     unset CXX
     unset CC
+    rm -rf $SHELL_FOLDER/lrzsz-0.12.20
 }
 
 build_libexpat()
@@ -546,6 +553,7 @@ build_libexpat()
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/expat-2.4.3
 }
 
 build_libdaemon()
@@ -559,6 +567,7 @@ build_libdaemon()
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --config-cache --disable-lynx CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libdaemon-0.14
 }
 
 build_avahi()
@@ -571,6 +580,7 @@ build_avahi()
     ./configure --host=riscv64-linux-gnu --prefix=/usr/ --with-xml=expat --enable-libdaemon --with-distro=none --disable-glib --disable-gobject --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 --disable-dbus --disable-gdbm --disable-python --disable-pygtk --disable-python-dbus --disable-mono --disable-monodoc CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc CPPFLAGS="-I$SHELL_FOLDER/output/include" LDFLAGS="-L$SHELL_FOLDER/output/lib" LIBDAEMON_CFLAGS="-I$SHELL_FOLDER/output/include" LIBDAEMON_LIBS="-L$SHELL_FOLDER/output/lib -ldaemon"
     make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/avahi-0.7
 }
 
 build_iperf3()
@@ -580,9 +590,11 @@ build_iperf3()
     cd $SHELL_FOLDER
     tar -xzvf iperf-3.10.1.tar.gz
     cd $SHELL_FOLDER/iperf-3.10.1
+    patch -p1 < ../iperf-3.10.1.patch
     ./configure --enable-static-bin --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --without-openssl CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/iperf-3.10.1
 }
 
 case "$1" in
