@@ -497,10 +497,13 @@ build_mtd_utils()
 {
     # 编译mtd-utils
     echo "---------------------------- 编译mtd-utils ----------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf mtd-utils-2.1.2.tar.bz2
     cd $SHELL_FOLDER/mtd-utils-2.1.2
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --without-jffs --without-ubifs PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/mtd-utils-2.1.2
 }
 
 build_dtc()
