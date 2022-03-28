@@ -405,12 +405,14 @@ build_libxml2()
 build_fontconfig()
 {
     # 编译fontconfig
-    echo "\033[1;4;41;32m编译\033[0m"
     echo "--------------------------- 编译fontconfig ---------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf fontconfig-2.13.94.tar.gz
     cd $SHELL_FOLDER/fontconfig-2.13.94
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --enable-libxml2 --disable-static FREETYPE_CFLAGS=-I$SHELL_FOLDER/output/include/freetype2 FREETYPE_LIBS="-L$SHELL_FOLDER/output/lib -lfreetype" LIBXML2_CFLAGS=-I$SHELL_FOLDER/output/include/libxml2 LIBXML2_LIBS="-L$SHELL_FOLDER/output/lib -lxml2" CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/fontconfig-2.13.94
 }
 
 build_libffi()
