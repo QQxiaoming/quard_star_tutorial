@@ -384,12 +384,16 @@ build_cups()
 {
     # 编译cups
     echo "------------------------------ 编译cups ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf cups-2.3.1-source.tar.gz
     cd $SHELL_FOLDER/cups-2.3.1
     export STRIPPROG=$CROSS_PREFIX-strip
+    patch -p1 < ../cups-2.3.1-source.patch
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install-headers install-libs install-exec
     unset STRIPPROG
+    rm -rf $SHELL_FOLDER/cups-2.3.1
 }
 
 build_libxml2()
