@@ -154,11 +154,14 @@ build_libmnl()
 {
     # 编译libmnl
     echo "----------------------------- 编译libmnl -----------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf libmnl-1.0.4.tar.bz2
     cd $SHELL_FOLDER/libmnl-1.0.4
     autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libmnl-1.0.4
 }
 
 build_ethtool()
