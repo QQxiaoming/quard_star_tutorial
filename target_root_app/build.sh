@@ -94,6 +94,8 @@ build_tree()
 {
     # 编译tree
     echo "------------------------------ 编译tree ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf tree-1.8.0.tgz
     cd $SHELL_FOLDER/tree-1.8.0
     make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc -j$PROCESSORS
     make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc install
