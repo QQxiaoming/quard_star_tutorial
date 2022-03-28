@@ -520,6 +520,8 @@ build_lrzsz()
 {
     # 编译lrzsz-0.12.20
     echo "------------------------------ 编译lrzsz ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf lrzsz-0.12.20.tar.gz
     cd $SHELL_FOLDER/lrzsz-0.12.20
     export CXX=$CROSS_PREFIX-g++
     export CC=$CROSS_PREFIX-gcc 
