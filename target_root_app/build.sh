@@ -479,6 +479,8 @@ build_attr()
 {
     # 编译attr
     echo "------------------------------ 编译attr ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf attr-2.5.1.tar.gz
     cd $SHELL_FOLDER/attr-2.5.1
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
