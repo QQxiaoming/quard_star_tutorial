@@ -109,10 +109,13 @@ build_libevent()
 {
     # 编译libevent
     echo "---------------------------- 编译libevent ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libevent-2.1.12-stable.tar.gz
     cd $SHELL_FOLDER/libevent-2.1.12-stable
     ./configure --host=riscv64-linux-gnu --disable-openssl --disable-static --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libevent-2.1.12-stable
 }
 
 build_screen()
