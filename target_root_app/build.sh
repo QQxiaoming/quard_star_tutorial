@@ -221,10 +221,13 @@ build_freetype()
 {
     # 编译freetype
     echo "---------------------------- 编译freetype ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf freetype-2.11.0.tar.xz
     cd $SHELL_FOLDER/freetype-2.11.0
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --with-zlib=$SHELL_FOLDER/output --with-png=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/freetype-2.11.0
 }
 
 build_libx11()
