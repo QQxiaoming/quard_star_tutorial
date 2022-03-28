@@ -396,10 +396,13 @@ build_libxml2()
 {
     # 编译libxml2
     echo "----------------------------- 编译libxml2 -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libxml2-2.9.12.tar.gz
     cd $SHELL_FOLDER/libxml2-2.9.12
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --without-python --with-sax1 CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libxml2-2.9.12
 }
 
 build_fontconfig()
