@@ -168,10 +168,13 @@ build_ethtool()
 {
     # 编译ethtool
     echo "----------------------------- 编译ethtool -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf ethtool-5.13.tar.gz
     cd $SHELL_FOLDER/ethtool-5.13
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output MNL_CFLAGS=-I$SHELL_FOLDER/output/include MNL_LIBS="-L$SHELL_FOLDER/output/lib -lmnl" CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/ethtool-5.13
 }
 
 build_openssl()
