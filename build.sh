@@ -1,8 +1,19 @@
 #!/bin/bash
 set -e
 
+UNAMEOUT="$(uname -s)"
+case "${UNAMEOUT}" in
+    Linux*)     
+        PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
+        ;;
+    Darwin*)    
+        PROCESSORS=4
+        ;;
+    *)
+        PROCESSORS=4
+        ;;
+esac
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 GLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
 GLIB_ELF_CROSS_PREFIX=$GLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
 GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR=$GLIB_ELF_CROSS_COMPILE_DIR/sysroot
@@ -33,6 +44,17 @@ build_qemu_w64()
     make -j$PROCESSORS
     make install
     cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu_w64/
+}
+
+build_qemu_macos()
+{
+    echo "---------------------------- 编译qemu_macos ----------------------------"
+    cd $SHELL_FOLDER/qemu-6.0.0
+    if [ ! -d "$SHELL_FOLDER/output/qemu_macos" ]; then  
+    ./configure --prefix=$SHELL_FOLDER/output/qemu_macos --target-list=riscv64-softmmu
+    fi  
+    make -j$PROCESSORS
+    make install
 }
 
 build_mask_rom()
@@ -306,6 +328,9 @@ qemu)
     ;;
 qemu_w64)
     build_qemu_w64
+    ;;
+qemu_macos)
+    build_qemu_macos
     ;;
 mask_rom)
     build_mask_rom

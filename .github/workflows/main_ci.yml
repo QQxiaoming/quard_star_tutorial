@@ -251,6 +251,27 @@ jobs:
             run.bat
           retention-days: 1
 
+  qemu_macos_build:
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install prerequisites
+        run: |
+          brew install libffi gettext glib pkg-config autoconf automake pixman ninja
+          
+      - name: Build all
+        run: |
+          ./build.sh qemu_macos
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: qemu_macos
+          path: |
+            output/qemu_macos
+          retention-days: 1
+
   quard_star_tools_build:
     runs-on: ubuntu-20.04
     steps:
@@ -347,7 +368,7 @@ jobs:
           tar -xzvf output.tar.gz
           tar -xzvf quard_star_tools.tar.gz
           rm -rf output.tar.gz quard_star_tools.tar.gz
-          rm -rf output/busybox output/qemu_w64
+          rm -rf output/busybox
           rm -rf ./output/lowlevelboot/lowlevelboot.elf
           rm -rf ./output/lowlevelboot/lowlevelboot.hex
           rm -rf ./output/lowlevelboot/lowlevelboot.lst
@@ -421,3 +442,47 @@ jobs:
           name: release_win64
           path: |
             release_win64.zip
+
+  release_macos:
+    runs-on: ubuntu-20.04
+    needs: [main_build, qemu_macos_build]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: output
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: qemu_macos
+
+      - name: release_packet
+        shell: bash -l {0}
+        run: |
+          tar -xzvf output.tar.gz
+          rm -rf output.tar.gz
+          rm -rf output/busybox output/qemu
+          rm -rf ./output/lowlevelboot/lowlevelboot.elf
+          rm -rf ./output/lowlevelboot/lowlevelboot.hex
+          rm -rf ./output/lowlevelboot/lowlevelboot.lst
+          rm -rf ./output/lowlevelboot/lowlevelboot.map
+          rm -rf ./output/mask_rom/mask_rom.elf
+          rm -rf ./output/mask_rom/mask_rom.hex
+          rm -rf ./output/mask_rom/mask_rom.lst
+          rm -rf ./output/mask_rom/mask_rom.map
+          rm -rf ./output/opensbi/fw_jump.elf
+          rm -rf ./output/opensbi/fw_jump.lst
+          rm -rf ./output/trusted_domain/trusted_fw.elf
+          rm -rf ./output/trusted_domain/trusted_fw.hex
+          rm -rf ./output/trusted_domain/trusted_fw.lst
+          rm -rf ./output/trusted_domain/trusted_fw.map
+          rm -rf ./output/uboot/u-boot.elf
+          rm -rf ./output/uboot/u-boot.lst
+          rm -rf ./output/uboot/u-boot.map
+          tar -czf release_macos.tar.gz output/ run.sh
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: release_macos
+          path: |
+            release_macos.tar.gz
