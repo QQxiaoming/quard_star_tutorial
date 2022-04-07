@@ -521,6 +521,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.elf
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
+          mv ./quard_star_tools/gui_tools ./gui_tools
           tar -czf release_macos.tar.gz gui_tools/ output/ run.sh
 
       - name: Upload build asserts
