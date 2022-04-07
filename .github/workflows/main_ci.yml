@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
     paths-ignore:
+      - '.github/workflows/app_ci.yml'
       - 'target_root_app/**'
       - 'doc/**'
       - 'tutorial/**'
@@ -15,6 +16,7 @@ on:
   pull_request:
     branches: [ main ]
     paths-ignore:
+      - '.github/workflows/app_ci.yml'
       - 'target_root_app/**'
       - 'doc/**'
       - 'tutorial/**'
@@ -350,6 +352,43 @@ jobs:
             ./quard_star_tools/run_quard_star_tools.bat
           retention-days: 1
 
+  quard_star_tools_macos_build:
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2.14.0
+
+      - name: Install prerequisites
+        run: |
+          ruby - e  "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null  2 > /dev/null
+          brew install --build-from-source upx
+
+      - name: Build all
+        shell: bash -l {0}
+        run: |
+          cd quard_star_tools
+          git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          sed -i'.original' -e 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
+          lrelease quard_star_tools.pro
+          qmake -makefile
+          make
+          cd ./release/out
+          macdeployqt quard_star_tools.app -dmg -verbose=2
+          cd -
+          mkdir ./gui_tools
+          mkdir ./gui_tools/quard_star_tools_macos
+          mv ./release/out/quard_star_tools.dmg ./gui_tools/quard_star_tools_macos/quard_star_tools.dmg
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: quard_star_tools_macos
+          path: |
+            ./quard_star_tools/gui_tools/quard_star_tools_macos
+          retention-days: 1
+
   release_linux:
     runs-on: ubuntu-20.04
     needs: [main_build, quard_star_tools_build]
@@ -445,7 +484,7 @@ jobs:
 
   release_macos:
     runs-on: ubuntu-20.04
-    needs: [main_build, qemu_macos_build]
+    needs: [main_build, qemu_macos_build, quard_star_tools_macos_build]
     steps:
       - uses: actions/download-artifact@v2
         with:
@@ -454,6 +493,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: qemu_macos
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: quard_star_tools_macos
 
       - name: release_packet
         shell: bash -l {0}
@@ -478,7 +521,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.elf
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
-          tar -czf release_macos.tar.gz output/ run.sh
+          tar -czf release_macos.tar.gz gui_tools/ output/ run.sh
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
