@@ -473,7 +473,6 @@ jobs:
       - name: Run tests uart update
         shell: bash -l {0}
         run: |
-          cd release_linux
           conda create -n tools python=3.9.7 -y
           conda activate tools
           pip3 install -r ./update_tools/requirements_pip.txt
@@ -496,7 +495,6 @@ jobs:
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
-          cd release_linux
           timeout --foreground -s SIGKILL 3m ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
@@ -521,7 +519,6 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          cd release_linux
           timeout --foreground -s SIGKILL 3m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
@@ -546,7 +543,6 @@ jobs:
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
-          cd release_linux
           timeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
