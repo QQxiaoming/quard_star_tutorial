@@ -380,13 +380,14 @@ jobs:
           mkdir ./gui_tools
           mkdir ./gui_tools/quard_star_tools_macos
           mv ./release/out/quard_star_tools.dmg ./gui_tools/quard_star_tools_macos/quard_star_tools.dmg
+          tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: quard_star_tools_macos
           path: |
-            ./quard_star_tools/gui_tools/quard_star_tools_macos
+            ./quard_star_tools/quard_star_tools.tar.gz
           retention-days: 1
 
   release_linux:
@@ -502,7 +503,8 @@ jobs:
         shell: bash -l {0}
         run: |
           tar -xzvf output.tar.gz
-          rm -rf output.tar.gz
+          tar -xzvf quard_star_tools.tar.gz
+          rm -rf output.tar.gz quard_star_tools.tar.gz
           rm -rf output/busybox output/qemu
           rm -rf ./output/lowlevelboot/lowlevelboot.elf
           rm -rf ./output/lowlevelboot/lowlevelboot.hex
