@@ -265,13 +265,14 @@ jobs:
       - name: Build all
         run: |
           ./build.sh qemu_macos
+          tar -czf qemu_macos.tar.gz output/
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
           name: qemu_macos
           path: |
-            output/qemu_macos
+            qemu_macos.tar.gz
           retention-days: 1
 
   quard_star_tools_build:
@@ -504,8 +505,10 @@ jobs:
         run: |
           tar -xzvf output.tar.gz
           tar -xzvf quard_star_tools.tar.gz
+          tar -xzvf qemu_macos.tar.gz
           rm -rf output.tar.gz quard_star_tools.tar.gz
           rm -rf output/busybox output/qemu
+          rm -rf ./gui_tools/quard_star_tools_macos/._quard_star_tools.dmg
           rm -rf ./output/lowlevelboot/lowlevelboot.elf
           rm -rf ./output/lowlevelboot/lowlevelboot.hex
           rm -rf ./output/lowlevelboot/lowlevelboot.lst
