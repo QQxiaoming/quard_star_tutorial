@@ -1,9 +1,12 @@
 主页
 ----------------------------------
 
-.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ci.yml/badge.svg?branch=main
-   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ci.yml
-   :alt: CI
+.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml/badge.svg?branch=main
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml
+   :alt: MAIN_CI
+.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml/badge.svg?branch=main
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml
+   :alt: APP_CI
 .. image:: https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest
    :target: https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest
    :alt: Documentation Status
