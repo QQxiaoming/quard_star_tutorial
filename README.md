@@ -9,7 +9,7 @@
 
 English | [简体中文](./README_zh_CN.md)
 
-![logo](./doc/img/img6.gif)
+![Logo](./doc/img/img6.gif)
 
 ## Introduction
 
@@ -17,7 +17,7 @@ This project aims to build an embedded linux system from zero. In order to analy
 
 ## Environment setup
 
-ubuntu18.04 needs to use apt to install the package:
+Ubuntu18.04 needs to use apt to install the package:
 
 ```shell
 sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev device-tree-compiler bison flex
@@ -27,20 +27,20 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 
 The figure below shows the current virtual hardware architecture, which will be continuously updated as the project progresses.
 
-![hardware architecture](./doc/img/img3.png)
+![Hardware architecture](./doc/img/img3.png)
 
 ## Software flow
 
 The following figure shows the current software process, which will be continuously updated as the project progresses.
 
-![software flow](./doc/img/img4.png)
+![Software flow](./doc/img/img4.png)
 
 ## Memory distribution
 
 The following figure shows the current memory distribution, which will be continuously updated as the project progresses.
 
-![memory distribution](./doc/img/img5.png)
+![Memory distribution](./doc/img/img5.png)
 
 ## Development record
 
-[develop note](./DEVELOPNOTE.md)
+[Develop note](./DEVELOPNOTE.md)
