@@ -128,8 +128,6 @@ jobs:
           path: |
             toolchain.tar.gz
 
-
-
   qemu_w64_build:
     runs-on: ubuntu-20.04
     steps:
@@ -435,7 +433,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
           mv ./quard_star_tools/gui_tools ./gui_tools
-          tar -czf release_macos.tar.gz gui_tools/ output/ run.sh
+          tar -czf release_macos.tar.gz gui_tools/ output/ run.sh run_quard_star_tools.sh
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
