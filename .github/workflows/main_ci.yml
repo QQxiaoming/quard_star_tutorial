@@ -133,8 +133,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-        continue-on-error: true
+      #- uses: satackey/action-docker-layer-caching@v0.0.11
+      #  continue-on-error: true
 
       - name: build_docker_image
         shell: bash -l {0}
@@ -514,10 +514,10 @@ jobs:
             fi
           }
 
-      - name: Run tests spi boot
+      - name: Run tests sd boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m ./run.sh nographic default spi > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -538,10 +538,10 @@ jobs:
             fi
           }
 
-      - name: Run tests sd boot
+      - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 7m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
