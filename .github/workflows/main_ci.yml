@@ -133,14 +133,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      #- uses: satackey/action-docker-layer-caching@v0.0.11
-      #  continue-on-error: true
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
 
       - name: build_docker_image
         shell: bash -l {0}
         run: |
           cd qemu-7.0.0
-          ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
+          ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora-win64-cross.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
 
       - uses: addnab/docker-run-action@v3
         with:
