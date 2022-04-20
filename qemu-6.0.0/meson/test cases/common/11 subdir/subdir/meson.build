@@ -1,1 +1,0 @@
-executable('prog', 'prog.c')
