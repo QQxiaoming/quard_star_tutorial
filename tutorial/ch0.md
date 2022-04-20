@@ -7,7 +7,7 @@
 ubuntu18.04需要使用apt安装的包:
 
 ```shell
-sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev device-tree-compiler bison flex
+sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev libsdl2-dev device-tree-compiler bison flex
 ```
 
 > 本教程的<br>github仓库：https://github.com/QQxiaoming/quard_star_tutorial<br>gitee仓库：https://gitee.com/QQxiaoming/quard_star_tutorial （由于仓库体积过大，gitee已无法同步github仓库内容更新，建议可以先用gitee克隆仓库，然后修改远端地址为gitehub地址再进行同步）<br>readthedocs文档：https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest

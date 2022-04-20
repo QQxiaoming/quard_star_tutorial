@@ -43,8 +43,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y wget device-tree-compiler ninja-build git build-essential          \
-                pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev  \
-                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex                  \
+                pkg-config zlib1g-dev libsdl2-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev      \
+                libpixman-1-dev libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex  \
                 bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev        \
                 libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz    \
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
@@ -139,7 +139,7 @@ jobs:
       - name: build_docker_image
         shell: bash -l {0}
         run: |
-          cd qemu-6.0.0
+          cd qemu-7.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
 
       - uses: addnab/docker-run-action@v3
@@ -460,8 +460,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y wget device-tree-compiler ninja-build git build-essential          \
-                pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev  \
-                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex                  \
+                pkg-config zlib1g-dev libsdl2-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev      \
+                libpixman-1-dev libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex  \
                 bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev        \
                 libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz    \
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \

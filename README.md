@@ -13,14 +13,14 @@ English | [简体中文](./README_zh_CN.md)
 
 ## Introduction
 
-This project aims to build an embedded linux system from zero. In order to analyze the chip from power-on to execute the first instruction to the entire system running, related application services are started, so the real board on the market is not used, based on the qemu custom simulator Development board, and does not use the fast loading elf file method provided by qemu, so we need to download the qemu-6.0.0 source code, write our own (or use qemu's own) hardware ip-related simulation code to customize our own hardware board. This project is synchronously produced [blog column](https://blog.csdn.net/weixin_39871788/category_11180842.html)(2021.8.11: Currently starting to use readthedocs to build [document](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/index.html), the same as the blog content), so the project should try to ensure that it is submitted every time a feature is added, so that the index can track the development process and correspond to the specific chapters of the blog.
+This project aims to build an embedded linux system from zero. In order to analyze the chip from power-on to execute the first instruction to the entire system running, related application services are started, so the real board on the market is not used, based on the qemu custom simulator Development board, and does not use the fast loading elf file method provided by qemu, so we need to download the qemu source code, write our own (or use qemu's own) hardware ip-related simulation code to customize our own hardware board. This project is synchronously produced [blog column](https://blog.csdn.net/weixin_39871788/category_11180842.html)(2021.8.11: Currently starting to use readthedocs to build [document](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/index.html), the same as the blog content), so the project should try to ensure that it is submitted every time a feature is added, so that the index can track the development process and correspond to the specific chapters of the blog.
 
 ## Environment setup
 
 Ubuntu18.04 needs to use apt to install the package:
 
 ```shell
-sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev device-tree-compiler bison flex
+sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev libsdl2-dev device-tree-compiler bison flex
 ```
 
 ## Hardware architecture
