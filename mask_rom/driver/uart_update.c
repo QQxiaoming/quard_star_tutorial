@@ -20,7 +20,7 @@ static void _delay(int cont)
 
 static int getbyte(unsigned char *c)
 {
-	return ns16550_rx(NS16550_ADDR,c,1000000);
+	return ns16550_rx(NS16550_ADDR,c,2500);
 }
 
 static void sendbyte(unsigned char c)
@@ -47,7 +47,7 @@ bool uart_update_request(void)
 {
 	unsigned char c = 0;
 	/* 等待来自串口的升级请求*/
-	ns16550_rx(NS16550_ADDR, &c,4000000);
+	ns16550_rx(NS16550_ADDR, &c,10000);
 	if(c == 'Q') {
 		return true;
 	} else {

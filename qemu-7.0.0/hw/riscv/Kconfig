@@ -49,6 +49,32 @@ config RISCV_VIRT
     select VIRTIO_MMIO
     select FW_CFG_DMA
 
+config QUARD_STAR
+    bool
+    select QUARD_STAR_SYSCON
+    select GOLDFISH_RTC
+    select MSI_NONBROKEN
+    select PFLASH_CFI01
+    select SERIAL
+    select RISCV_ACLINT
+    select RISCV_APLIC
+    select RISCV_IMSIC
+    select SIFIVE_PLIC
+    select SIFIVE_GPIO
+    select SIFIVE_PDMA
+    select VIRTIO_MMIO
+    select FW_CFG_DMA
+    select I2C
+    select IMX_I2C
+    select AT24C
+    select SSI
+    select SIFIVE_SPI
+    select USB_DWC3
+    select USB
+    select CADENCE_SDHCI
+    select MARVELL_88W8618
+    select WM8750
+
 config SIFIVE_E
     bool
     select MSI_NONBROKEN

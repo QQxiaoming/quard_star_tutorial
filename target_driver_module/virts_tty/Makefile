@@ -21,5 +21,5 @@ install:
 else
 	obj-m := virts_tty.o
 	virts_tty-objs := \
-		$(call FIND_SRC_FILE,./)
+		$(call FIND_SRC_FILE,.)
 endif
