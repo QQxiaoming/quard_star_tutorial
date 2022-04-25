@@ -11,6 +11,7 @@ on:
       - 'README.md'
       - 'README_zh_CN.md'
       - 'DEVELOPNOTE.md'
+      - 'CHANGELOG.md'
       - '.readthedocs.yaml'
 
   pull_request:
@@ -23,6 +24,7 @@ on:
       - 'README.md'
       - 'README_zh_CN.md'
       - 'DEVELOPNOTE.md'
+      - 'CHANGELOG.md'
       - '.readthedocs.yaml'
 
   workflow_dispatch:
@@ -541,7 +543,7 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          timeout --foreground -s SIGKILL 7m ./run.sh nographic default spi > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 5m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
