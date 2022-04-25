@@ -12,6 +12,30 @@
 		opensbi-domains {
 		    compatible = "opensbi,domain,config";
 
+            tmem0: tmem0 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBF800000>;
+                order = <22>;
+            };
+
+            tmem1: tmem1 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFC00000>;
+                order = <21>;
+            };
+
+            tmem2: tmem2 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFE00000>;
+                order = <20>;
+            };
+
+            tmem3: tmem3 {
+                compatible = "opensbi,domain,memregion";
+                base = <0x0 0xBFF00000>;
+                order = <19>;
+            };
+
             tuart: tuart {
                 compatible = "opensbi,domain,memregion";
                 base = <0x0 0x10002000>;
@@ -29,7 +53,7 @@
             tdomain: trusted-domain {
                 compatible = "opensbi,domain,instance";
                 possible-harts = <&cpu7>;
-                regions = <&tuart 0x7>, <&allmem 0x7>;
+                regions = <&tmem0 0x7>, <&tmem1 0x7>, <&tmem2 0x7>, <&tmem3 0x7>, <&tuart 0x7>, <&allmem 0x7>;
                 boot-hart = <&cpu7>;
                 next-arg1 = <0x0 0x00000000>;
 		        next-addr = <0x0 0xBF800000>;
@@ -40,7 +64,7 @@
 		    udomain: untrusted-domain {
 		        compatible = "opensbi,domain,instance";
 		        possible-harts = <&cpu0 &cpu1 &cpu2 &cpu3 &cpu4 &cpu5 &cpu6>;
-		        regions = <&tuart 0x0>, <&allmem 0x7>;
+		        regions = <&tmem0 0x0>, <&tmem1 0x0>, <&tmem2 0x0>, <&tmem3 0x0>, <&tuart 0x0>, <&allmem 0x7>;
 				boot-hart = <&cpu0>;
 		        next-arg1 = <0x0 0xB0000000>;
 		        next-addr = <0x0 0xB0200000>;
@@ -119,4 +143,3 @@
 &test {
 	status = "okay";
 };
-		

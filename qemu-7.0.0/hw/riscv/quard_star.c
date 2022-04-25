@@ -31,6 +31,8 @@
 #include "hw/riscv/boot.h"
 #include "hw/riscv/numa.h"
 #include "hw/intc/riscv_aclint.h"
+#include "hw/intc/riscv_aplic.h"
+#include "hw/intc/riscv_imsic.h"
 #include "hw/intc/sifive_plic.h"
 #include "hw/misc/quard_star_syscon.h"
 #include "hw/audio/wm8750.h"
@@ -42,7 +44,7 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_MROM]        = { 0x00000000,   0x20000 },
     [QUARD_STAR_SRAM]        = { 0x00020000,   0xe0000 },
     
-    [QUARD_STAR_TEST]        = { 0x00100000,    0x1000 },
+    [QUARD_STAR_SYSCTL]      = { 0x00100000,    0x1000 },
     [QUARD_STAR_CLINT]       = { 0x02000000,   0x10000 },
     [QUARD_STAR_PLIC]        = { 0x0c000000, 0x4000000 },
 
@@ -256,7 +258,7 @@ static void quard_star_serial_create(MachineState *machine)
 
 static void quard_star_system_control_create(MachineState *machine)
 {    
-    quard_star_syscon_create(quard_star_memmap[QUARD_STAR_TEST].base);
+    quard_star_syscon_create(quard_star_memmap[QUARD_STAR_SYSCTL].base);
 }
 
 static void quard_star_rtc_create(MachineState *machine)
