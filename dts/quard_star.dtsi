@@ -395,16 +395,16 @@
 			status = "disabled";
 		};
 
-		test:test@100000 {
+		syscon:syscon@100000 {
 			reg = <0x0 0x100000 0x0 0x1000>;
-			compatible = "sifive,test1", "sifive,test0", "syscon";
+			compatible = "quard,quard-star-syscon","sifive,test1", "sifive,test0", "syscon";
 			status = "disabled";
 		};
 
 		reboot:reboot {
 			value = <0x7777>;
 			offset = <0x0>;
-			regmap = <&test>;
+			regmap = <&syscon>;
 			compatible = "syscon-reboot";
 			status = "disabled";
 		};

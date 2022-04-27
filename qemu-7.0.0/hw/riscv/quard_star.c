@@ -172,7 +172,6 @@ static void quard_star_cpu_create(MachineState *machine)
 static void quard_star_interrupt_controller_create(MachineState *machine)
 {
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
-    size_t plic_hart_config_len;
     char *plic_hart_config;
 
     riscv_aclint_swi_create(
@@ -183,18 +182,7 @@ static void quard_star_interrupt_controller_create(MachineState *machine)
         RISCV_ACLINT_DEFAULT_MTIMECMP, RISCV_ACLINT_DEFAULT_MTIME,
         RISCV_ACLINT_DEFAULT_TIMEBASE_FREQ, true);
 
-    plic_hart_config_len =
-        (strlen(QUARD_STAR_PLIC_HART_CONFIG) + 1) * machine->smp.cpus;
-    plic_hart_config = g_malloc0(plic_hart_config_len);
-    for (int i = 0; i < machine->smp.cpus; i++) {
-        if (i != 0) {
-            strncat(plic_hart_config, ",", plic_hart_config_len);
-        }
-        strncat(plic_hart_config, QUARD_STAR_PLIC_HART_CONFIG,
-            plic_hart_config_len);
-        plic_hart_config_len -= (strlen(QUARD_STAR_PLIC_HART_CONFIG) + 1);
-    }
-
+    plic_hart_config = riscv_plic_hart_config_string(machine->smp.cpus);
     s->plic = sifive_plic_create(
         quard_star_memmap[QUARD_STAR_PLIC].base,
         plic_hart_config,  machine->smp.cpus, 0,

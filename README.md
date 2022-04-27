@@ -5,7 +5,7 @@
 [![GitHub All Releases](https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg)](https://github.com/QQxiaoming/quard_star_tutorial/releases)
 [![GitHub stars](https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
 
-# Construction of embedded linux system based on qemu
+# Building Embedded Linux System based on QEMU
 
 English | [简体中文](./README_zh_CN.md)
 
@@ -13,9 +13,9 @@ English | [简体中文](./README_zh_CN.md)
 
 ## Introduction
 
-This project aims to build an embedded linux system from zero. In order to analyze the chip from power-on to execute the first instruction to the entire system running, related application services are started, so the real board on the market is not used, based on the qemu custom simulator Development board, and does not use the fast loading elf file method provided by qemu, so we need to download the qemu source code, write our own (or use qemu's own) hardware ip-related simulation code to customize our own hardware board. This project is synchronously produced [blog column](https://blog.csdn.net/weixin_39871788/category_11180842.html)(2021.8.11: Currently starting to use readthedocs to build [document](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/index.html), the same as the blog content), so the project should try to ensure that it is submitted every time a feature is added, so that the index can track the development process and correspond to the specific chapters of the blog.
+This project aims to build an Embedded Linux System. In order to analyze the chip from power-on to execute the first instruction to the entire system running, related application services are started, so the real board on the market is not used, based on the qemu simulator Development board, and does not use the fast loading elf file method provided by qemu, so we need to download the qemu source code, write our own (or use qemu's own) hardware ip-core simulation code to customize our own hardware board. This project is synchronously produced [Blog](https://blog.csdn.net/weixin_39871788/category_11180842.html)(2021.8.11: Now I start building the [documentation](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/index.html) using readthedocs, the content is the same as the blog), so the project should try to ensure that it is submitted every time a feature is added, so that the index can track the development process and correspond to the specific chapters of the blog.
 
-## Environment setup
+## Environment Setup
 
 Ubuntu18.04 needs to use apt to install the package:
 
@@ -23,24 +23,24 @@ Ubuntu18.04 needs to use apt to install the package:
 sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev libsdl2-dev device-tree-compiler bison flex
 ```
 
-## Hardware architecture
+## Hardware Architecture
 
 The figure below shows the current virtual hardware architecture, which will be continuously updated as the project progresses.
 
-![Hardware architecture](./doc/img/img3.png)
+![Hardware Architecture](./doc/img/img3.png)
 
-## Software flow
+## Software Flow
 
-The following figure shows the current software process, which will be continuously updated as the project progresses.
+The following figure shows the current software flow, which will be continuously updated as the project progresses.
 
-![Software flow](./doc/img/img4.png)
+![Software Flow](./doc/img/img4.png)
 
-## Memory distribution
+## Memory Distribution
 
 The following figure shows the current memory distribution, which will be continuously updated as the project progresses.
 
-![Memory distribution](./doc/img/img5.png)
+![Memory Distribution](./doc/img/img5.png)
 
-## Development record
+## Development Note
 
-[Develop note](./DEVELOPNOTE.md)
+[Develop Note](./DEVELOPNOTE.md)
