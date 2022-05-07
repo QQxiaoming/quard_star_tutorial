@@ -2,7 +2,7 @@
 #ifndef KVM__LINUX_KERNEL_H_
 #define KVM__LINUX_KERNEL_H_
 
-#include "asm/kernel.h"
+//#include "asm/kernel.h"
 
 #define __round_mask(x, y)	((__typeof__(x))((y)-1))
 #define round_down(x, y)	((x) & ~__round_mask(x, y))
