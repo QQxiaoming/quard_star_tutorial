@@ -547,6 +547,14 @@ build_dtc()
     rm -rf $SHELL_FOLDER/dtc-1.6.1
 }
 
+build_kvmtool()
+{
+    # 编译kvmtool
+    cd $SHELL_FOLDER/kvmtool
+	make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- LIBFDT_PATH=$SHELL_FOLDER/output lkvm-static -j$PROCESSORS
+	cp lkvm-static $SHELL_FOLDER/output/bin/lkvm-static
+}
+
 build_trace_cmd()
 {
     # 编译trace-cmd-v2.9.5
@@ -720,6 +728,9 @@ mtd_utils)
 dtc)
     build_dtc
     ;;
+kvmtool)
+    build_kvmtool
+    ;;
 trace_cmd)
     build_trace_cmd
     ;;
@@ -767,6 +778,7 @@ all)
     build_attr
     build_mtd_utils
     build_dtc
+    build_kvmtool
     build_trace_cmd
     build_lrzsz
     build_libexpat
