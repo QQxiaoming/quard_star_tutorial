@@ -6,7 +6,7 @@ dhcp ${kernel_addr_r} /boot.cfg
 if itest.l *${kernel_addr_r} == 0x70746674; 
 then 
     echo tftpboot...
-    dhcp ${kernel_addr_r} /linux_kernel/Image
+    dhcp ${kernel_addr_r} /linux_kernel_next/Image
     dhcp ${fdt_addr_r} /uboot/quard_star_uboot.dtb
 else
     echo virtioboot...

@@ -17,7 +17,7 @@ PLUGINS_PARAM=""
 #PLUGINS_PATH=$SHELL_FOLDER/qemu-7.0.0/build/tests/plugin/libsyscall.so
 #PLUGINS_PARAM="-plugin $PLUGINS_PATH -d plugin"
 
-NETDEV_PARAM=user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0
+NETDEV_PARAM=user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel_next/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0
 #NETDEV_PARAM=tap,ifname=tap0,script=no,downscript=no,id=net0
 
 VC=\

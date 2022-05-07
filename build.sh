@@ -187,13 +187,13 @@ build_firmware()
 build_kernel()
 {
     echo "-------------------------- 编译linux kernel --------------------------"
-    if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
-    mkdir $SHELL_FOLDER/output/linux_kernel
+    if [ ! -d "$SHELL_FOLDER/output/linux_kernel_next" ]; then  
+    mkdir $SHELL_FOLDER/output/linux_kernel_next
     fi  
-    cd $SHELL_FOLDER/linux-5.10.108
+    cd $SHELL_FOLDER/linux-next
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
-    cp $SHELL_FOLDER/linux-5.10.108/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+    cp $SHELL_FOLDER/linux-next/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel_next/Image
 }
 
 build_busybox()
@@ -211,7 +211,7 @@ build_busybox()
 build_rootfs()
 {
     echo "----------------------------- 合成文件系统映像 -----------------------------"
-    if [ ! -f "$SHELL_FOLDER/output/linux_kernel/Image" ]; then  
+    if [ ! -f "$SHELL_FOLDER/output/linux_kernel_next/Image" ]; then  
         echo "not found Image, please ./build.sh kernel"
         exit 255
     fi
@@ -249,7 +249,7 @@ build_rootfs()
         dd if=/dev/zero of=rootfs.img bs=1M count=1024
         pkexec $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $MAKE_ROOTFS_DIR/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
         fi
-        cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
+        cp $SHELL_FOLDER/output/linux_kernel_next/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
         $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
         cp -r $SHELL_FOLDER/output/busybox/* $TARGET_ROOTFS_DIR/
@@ -287,7 +287,7 @@ build_rootfs()
         pkexec $SHELL_FOLDER/build_rootfs/build_fs.sh $MAKE_ROOTFS_DIR
         ;;
     bootfs)
-        cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
+        cp $SHELL_FOLDER/output/linux_kernel_next/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
         $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR

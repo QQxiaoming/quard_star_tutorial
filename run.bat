@@ -17,7 +17,7 @@ set "GRAPHIC_PARAM=--display gtk,zoom-to-fit=false --serial %DEFAULT_VC% --seria
 -drive if=sd,format=raw,file=./output/fw/sd.img,id=sd0 ^
 -drive if=none,format=raw,file=./output/rootfs/rootfs.img,id=disk0 ^
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 ^
--netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=./output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0 ^
+-netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=./output,bootfile=/linux_kernel_next/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0 ^
 -audiodev dsound,id=audio0 ^
 -global virtio-mmio.force-legacy=false ^
 -device virtio-blk-device,drive=disk0,id=hd0 ^
