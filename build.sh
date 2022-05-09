@@ -135,6 +135,8 @@ build_uboot_dtb()
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
     dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
+    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot_kgdb.dts > quard_star_uboot_kgdb.dtb.dts.tmp
+    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot_kgdb.dtb quard_star_uboot_kgdb.dtb.dts.tmp
 }
 
 build_firmware()

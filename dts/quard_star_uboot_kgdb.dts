@@ -1,0 +1,162 @@
+#include "quard_star.dtsi"
+
+/ {
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+	compatible = "riscv-quard-star";
+	model = "riscv-quard-star,qemu";
+
+	chosen {
+		bootargs = "root=/dev/vda2 rw console=ttyS0 earlycon=sbi nokaslr kgdboc=ttyS1,115200 kgdbwait";
+		stdout-path = "/soc/uart0@10000000";
+	};
+
+	memory@80000000 {
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x0 0x40000000>;
+	};
+
+	sound {
+		compatible = "audio-graph-card";
+		label = "QUARD_STAR_BOARD";
+		dais = <&i2s_port>;
+		status = "okay";
+	};
+};
+
+&cpu7 {
+	status = "disabled";
+};
+
+&fw_cfg {
+	status = "okay";
+};
+
+&uart0 {
+	status = "okay";
+};
+
+&uart1 {
+	status = "okay";
+};
+
+&pflash {
+	status = "okay";
+};
+
+&rtc {
+	status = "okay";
+};
+
+&i2c0 {
+	status = "okay";
+	
+	eeprom: eeprom@50 {
+		compatible = "atmel,24c64";
+		reg = <0x50>;
+	};
+};
+
+&i2c1 {
+	status = "okay";
+
+	codec: wm8750@1a {
+		compatible = "wlf,wm8750";
+		reg = <0x1a>;
+		codec_port: port {
+			codec_endpoint: endpoint {
+				remote-endpoint = <&i2s_endpoint>;
+			};
+		};
+	};
+};
+
+&i2c2 {
+	status = "okay";
+};
+
+&qspi0 {
+	status = "okay";
+	
+	flash@0 {
+		compatible = "issi,is25wp256", "jedec,spi-nor";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+		m25p,fast-read;
+		spi-tx-bus-width = <4>;
+		spi-rx-bus-width = <4>;
+	};
+};
+
+&qspi1 {
+	status = "okay";
+};
+
+&gpio {
+	status = "okay";
+};
+
+&sdmmc {
+	status = "okay";
+};
+
+&usb {
+	status = "okay";
+};
+
+&i2s {
+	status = "okay";
+
+	i2s_port: port {
+		i2s_endpoint: endpoint {
+			remote-endpoint = <&codec_endpoint>;
+			dai-format = "i2s";
+			frame-master;
+			bitclock-master;
+		};
+	};
+};
+
+&dma {
+	status = "okay";
+};
+
+&syscon {
+	status = "okay";
+};
+
+&reboot {
+	status = "okay";
+};
+
+&virtio_mmio0 {
+	status = "okay";
+};
+
+&virtio_mmio1 {
+	status = "okay";
+};
+
+&virtio_mmio2 {
+	status = "okay";
+};
+
+&virtio_mmio3 {
+	status = "okay";
+};
+
+&virtio_mmio4 {
+	status = "okay";
+};
+
+&virtio_mmio5 {
+	status = "okay";
+};
+
+&virtio_mmio6 {
+	status = "okay";
+};
+
+&virtio_mmio7 {
+	status = "okay";
+};
