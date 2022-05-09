@@ -19,6 +19,9 @@
 .. image:: https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub stars
+.. image:: https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg
+   :target: https://github.com/QQxiaoming/quard_star_tutorial
+   :alt: GitHub forks
 
 .. image:: ../doc/img/img6.gif
 
