@@ -228,5 +228,5 @@ Python Exception <class 'gdb.MemoryError'> Cannot access memory at address
 
 ## 总结
 
-OK，kgdb的简单使用基本上就没有问题，kgdb不是一个很常用的调试手段，但也许在一些特殊情况下能解决一些问题，尤其是嵌入式开发中。本文涉及到的代码均已开源，可以在 https://github.com/QQxiaoming/quard_star_tutorial/tree/experiment/kgdb ，experiment/kgdb分支中找到。
+OK，kgdb的简单使用基本上就没有问题，kgdb不是一个很常用的调试手段，但也许在一些特殊情况下能解决一些问题，尤其是嵌入式开发中。本文涉及到的代码均已开源，可以在 https://github.com/QQxiaoming/quard_star_tutorial/tree/ext1 ，tag:ext1中找到。
 
