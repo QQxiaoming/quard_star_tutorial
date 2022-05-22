@@ -19,6 +19,9 @@
 .. image:: https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub stars
+.. image:: https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg
+   :target: https://github.com/QQxiaoming/quard_star_tutorial
+   :alt: GitHub forks
 
 .. image:: ../doc/img/img6.gif
 
@@ -39,7 +42,7 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: 目录
+   :caption: 正文
 
    ch0.引言<ch0.md>
    ch1.搭建qemu环境<ch1.md>
@@ -72,7 +75,7 @@
 
 .. toctree::
    :maxdepth: 3
-   :caption: 其他文章
+   :caption: 扩展文章
 
    kgdb调试linux内核以及驱动模块<ext1.md>
    gcc编译选项pg在嵌入式profile中应用<ext2.md>
