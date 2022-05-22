@@ -195,6 +195,7 @@ build_kernel()
     cd $SHELL_FOLDER/linux-next
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
+    make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- tools/perf -j$PROCESSORS V=1
     cp $SHELL_FOLDER/linux-next/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel_next/Image
 }
 
