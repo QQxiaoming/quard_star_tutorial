@@ -485,6 +485,7 @@ build_openjdk_zero()
         cd $SHELL_FOLDER/host_output/opt
         wget https://download.java.net/openjdk/jdk10/ri/jdk-10_linux-x64_bin_ri.tar.gz
         tar -xzvf jdk-10_linux-x64_bin_ri.tar.gz
+        rm -rf jdk-10_linux-x64_bin_ri.tar.gz
     fi
     cd $SHELL_FOLDER/jdk11u-dev-113c646a33d2
     TEMP_PATH=$PATH

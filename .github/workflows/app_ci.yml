@@ -90,12 +90,227 @@ jobs:
             $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
           fi
 
-      - name: Build all
+      - name: Build hosttool
         shell: bash -l {0}
         run: |
-          # replace pkexec with sudo for ci
           cd target_root_app
-          ./build.sh all
+          ./build.sh hosttool
+
+      - name: Build make
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh make
+
+      - name: Build ncurses
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh ncurses
+
+      - name: Build bash
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh bash
+
+      - name: Build sudo
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh sudo
+
+      - name: Build screenfetch
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh screenfetch
+
+      - name: Build tree
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh tree
+
+      - name: Build libevent
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libevent
+
+      - name: Build screen
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh screen
+
+      - name: Build cu
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh cu
+
+      - name: Build qt
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh qt
+
+      - name: Build libmnl
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libmnl
+
+      - name: Build ethtool
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh ethtool
+
+      - name: Build zlib
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh zlib
+
+      - name: Build openssl
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh openssl
+
+      - name: Build libpng
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libpng
+
+      - name: Build freetype
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh freetype
+
+      - name: Build libx11
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          alias aclocal-1.15='aclocal-1.16'
+          ./build.sh libx11
+
+      - name: Build cups
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh cups
+
+      - name: Build libxml2
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libxml2
+
+      - name: Build fontconfig
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh fontconfig
+
+      - name: Build libffi
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libffi
+
+      - name: Build alsa_lib
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh alsa_lib
+
+      - name: Build alsa_utils
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh alsa_utils
+
+      - name: Build openjdk_zero
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh openjdk_zero
+
+      - name: Build libuuid
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libuuid
+
+      - name: Build lzo
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh lzo
+
+      - name: Build attr
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh attr
+
+      - name: Build mtd_utils
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh mtd_utils
+
+      - name: Build dtc
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh dtc
+
+      - name: Build trace_cmd
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh trace_cmd
+
+      - name: Build lrzsz
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh lrzsz
+
+      - name: Build libexpat
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libexpat
+
+      - name: Build libdaemon
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libdaemon
+
+      - name: Build avahi
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh avahi
+
+      - name: Build iperf3
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh iperf3
+
+      - name: Packet all
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
           mv host_output host_tools
           mv output target_sysroot
           tar -czf host_tools.tar.gz host_tools/
