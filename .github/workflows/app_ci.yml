@@ -90,12 +90,6 @@ jobs:
             $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
           fi
 
-      - name: Build hosttool
-        shell: bash -l {0}
-        run: |
-          cd target_root_app
-          sed -i 's/ACLOCAL_PATH/ACLOCAL_NOT_PATH/g' build.sh
-
       - name: Build make
         shell: bash -l {0}
         run: |
@@ -196,7 +190,6 @@ jobs:
         shell: bash -l {0}
         run: |
           cd target_root_app
-          alias aclocal-1.15='aclocal-1.16'
           ./build.sh libx11
 
       - name: Build cups
@@ -311,6 +304,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd target_root_app
+          rm -rf host_output/opt/jdk-10
           mv host_output host_tools
           mv output target_sysroot
           tar -czf host_tools.tar.gz host_tools/

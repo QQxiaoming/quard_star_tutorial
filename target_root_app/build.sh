@@ -3,36 +3,6 @@ PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
 CROSS_PREFIX=$CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
 
-case "$1" in
-hosttool)
-    echo "skip export!"
-	;;
-all)
-    echo "lazy export!"
-	;;
-*)
-    export PATH=$SHELL_FOLDER/host_output/bin:$PATH
-    export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
-	;;
-esac
-
-build_hosttool()
-{
-    # 编译automake
-    echo "---------------------------- 编译automake ----------------------------"
-    cd $SHELL_FOLDER/automake-1.16.1
-    autoreconf -f -i 
-    ./configure --prefix=$SHELL_FOLDER/host_output
-    make -j$PROCESSORS
-    make install
-    # 编译pkgconfig
-    echo "---------------------------- 编译pkgconfig ----------------------------"
-    cd $SHELL_FOLDER/pkg-config-0.29.2
-    ./configure --prefix=$SHELL_FOLDER/host_output
-    make -j$PROCESSORS
-    make install
-}
-
 build_make()
 {
     # 编译make
@@ -232,7 +202,7 @@ build_freetype()
     cd $SHELL_FOLDER
     tar -xvJf freetype-2.11.0.tar.xz
     cd $SHELL_FOLDER/freetype-2.11.0
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --with-zlib=$SHELL_FOLDER/output --with-png=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --with-harfbuzz=no --with-zlib=$SHELL_FOLDER/output --with-png=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/freetype-2.11.0
@@ -248,15 +218,18 @@ build_libx11()
     ./configure --prefix=$SHELL_FOLDER/host_output
 	make -j$PROCESSORS
     make install
+    export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
 
     echo "----------------------------- 编译xproto -----------------------------"
     cd $SHELL_FOLDER/libX11/xproto-7.0.31
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
 
     echo "---------------------------- 编译xextproto ----------------------------"
     cd $SHELL_FOLDER/libX11/xextproto-7.3.0
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
@@ -296,6 +269,7 @@ build_libx11()
 
     echo "----------------------------- 编译libXau -----------------------------"
     cd $SHELL_FOLDER/libX11/libXau-1.0.9
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
@@ -308,7 +282,7 @@ build_libx11()
 
     echo "----------------------------- 编译libX11 -----------------------------"
     cd $SHELL_FOLDER/libX11/libX11-1.7.2
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --enable-malloc0returnsnull PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --enable-malloc0returnsnull --disable-xf86bigfont PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
 
@@ -320,12 +294,14 @@ build_libx11()
 
     echo "----------------------------- 编译libICE -----------------------------"
     cd $SHELL_FOLDER/libX11/libICE-1.0.10
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
 
     echo "------------------------------ 编译libSM ------------------------------"
     cd $SHELL_FOLDER/libX11/libSM-1.2.3
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
@@ -356,6 +332,7 @@ build_libx11()
 
     echo "---------------------------- 编译libXfixes ----------------------------"
     cd $SHELL_FOLDER/libX11/libXfixes-5.0.3
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
@@ -380,6 +357,7 @@ build_libx11()
 
     echo "--------------------------- 编译randrproto ---------------------------"
     cd $SHELL_FOLDER/libX11/randrproto-1.5.0
+    autoreconf -f -i 
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
@@ -400,7 +378,7 @@ build_cups()
     cd $SHELL_FOLDER/cups-2.3.1
     export STRIPPROG=$CROSS_PREFIX-strip
     patch -p1 < ../cups-2.3.1-source.patch
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --disable-libusb --disable-dbus CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install-headers install-libs install-exec
     unset STRIPPROG
@@ -414,7 +392,7 @@ build_libxml2()
     cd $SHELL_FOLDER
     tar -xzvf libxml2-2.9.12.tar.gz
     cd $SHELL_FOLDER/libxml2-2.9.12
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --without-python --with-sax1 CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --without-python --with-sax1 --with-zlib=$SHELL_FOLDER/output --without-lzma CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/libxml2-2.9.12
@@ -559,8 +537,8 @@ build_dtc()
     cd $SHELL_FOLDER
     tar -xzvf dtc-1.6.1.tar.gz
     cd $SHELL_FOLDER/dtc-1.6.1
-	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output libfdt -j$PROCESSORS
-    make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output install-lib install-includes
+	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_PYTHON=1 libfdt -j$PROCESSORS
+    make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_PYTHON=1 install-lib install-includes
     rm -rf $SHELL_FOLDER/dtc-1.6.1
 }
 
@@ -647,9 +625,6 @@ build_iperf3()
 }
 
 case "$1" in
-hosttool)
-    build_hosttool
-    ;;
 make)
     build_make
     ;;
@@ -759,9 +734,6 @@ iperf3)
     build_iperf3
     ;;
 all)
-    build_hosttool
-    export PATH=$SHELL_FOLDER/host_output/bin:$PATH
-    export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
     build_make
     build_ncurses
     build_bash
