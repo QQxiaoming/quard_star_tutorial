@@ -145,12 +145,6 @@ jobs:
           cd target_root_app
           ./build.sh cu
 
-      - name: Build qt
-        shell: bash -l {0}
-        run: |
-          cd target_root_app
-          ./build.sh qt
-
       - name: Build libmnl
         shell: bash -l {0}
         run: |
@@ -186,6 +180,12 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh freetype
+
+      - name: Build libuuid
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libuuid
 
       - name: Build libx11
         shell: bash -l {0}
@@ -235,12 +235,6 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh openjdk_zero
-
-      - name: Build libuuid
-        shell: bash -l {0}
-        run: |
-          cd target_root_app
-          ./build.sh libuuid
 
       - name: Build lzo
         shell: bash -l {0}
@@ -301,6 +295,12 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh iperf3
+
+      - name: Build qt
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh qt
 
       - name: Packet all
         shell: bash -l {0}

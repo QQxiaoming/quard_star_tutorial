@@ -676,6 +676,9 @@ libpng)
 freetype)
     build_freetype
     ;;
+libuuid)
+    build_libuuid
+    ;;
 libx11)
     build_libx11
     ;;
@@ -699,9 +702,6 @@ alsa_utils)
     ;;
 openjdk_zero)
     build_openjdk_zero
-    ;;
-libuuid)
-    build_libuuid
     ;;
 lzo)
     build_lzo
@@ -743,13 +743,13 @@ all)
     build_libevent
     build_screen
     build_cu
-	build_qt
 	build_libmnl
 	build_ethtool
 	build_zlib
 	build_openssl
 	build_libpng
 	build_freetype
+    build_libuuid
     build_libx11
     build_cups
 	build_libxml2
@@ -758,7 +758,6 @@ all)
 	build_alsa_lib
     build_alsa_utils
     build_openjdk_zero
-    build_libuuid
     build_lzo
     build_attr
     build_mtd_utils
@@ -769,6 +768,7 @@ all)
     build_libdaemon
     build_avahi
     build_iperf3
+	build_qt
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
