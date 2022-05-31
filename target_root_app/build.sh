@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
@@ -367,6 +370,8 @@ build_libx11()
     ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+
+    unset ACLOCAL_PATH
 }
 
 build_cups()
