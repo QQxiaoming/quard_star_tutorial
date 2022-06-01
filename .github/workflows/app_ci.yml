@@ -260,6 +260,12 @@ jobs:
           cd target_root_app
           ./build.sh dtc
 
+      - name: Build kvmtool
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh kvmtool
+
       - name: Build trace_cmd
         shell: bash -l {0}
         run: |
