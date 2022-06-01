@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
 CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
@@ -20,32 +23,41 @@ build_ncurses()
 {
     # 编译ncurses
     echo "----------------------------- 编译ncurses -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf ncurses-6.2.tar.gz
     cd $SHELL_FOLDER/ncurses-6.2
     ./configure --host=riscv64-linux-gnu --with-shared --without-normal --without-debug CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    make  install.libs DESTDIR=$SHELL_FOLDER/output
+    make install.libs DESTDIR=$SHELL_FOLDER/output
     #make install.progs
     #make install.data
+    rm -rf $SHELL_FOLDER/ncurses-6.2
 }
 
 build_bash()
 {
     # 编译bash
     echo "------------------------------ 编译bash ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf bash-5.1.8.tar.gz
     cd $SHELL_FOLDER/bash-5.1.8
     ./configure --host=riscv64 --prefix=$SHELL_FOLDER/output CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/bash-5.1.8
 }
 
 build_sudo()
 {
     # 编译sudo
     echo "------------------------------ 编译sudo ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf sudo-SUDO_1_9_7p1.tar.gz
     cd $SHELL_FOLDER/sudo-SUDO_1_9_7p1
     ./configure --host=riscv64-linux-gnu CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     #make install-binaries
+    rm -rf $SHELL_FOLDER/sudo-SUDO_1_9_7p1
 }
 
 build_screenfetch()
@@ -92,10 +104,13 @@ build_screen()
 {
     # 编译screen
     echo "----------------------------- 编译screen -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf screen-4.8.0.tar.gz
     cd $SHELL_FOLDER/screen-4.8.0
     ./configure --host=riscv64-linux-gnu CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     #make install
+    rm -rf $SHELL_FOLDER/screen-4.8.0
 }
 
 build_cu()
@@ -151,10 +166,13 @@ build_openssl()
 {
     # 编译openssl
     echo "----------------------------- 编译openssl -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf openssl-1.1.1j.tar.gz
     cd $SHELL_FOLDER/openssl-1.1.1j
 	./Configure linux-generic64 no-asm --prefix=$SHELL_FOLDER/output --cross-compile-prefix=$CROSS_PREFIX-
 	make -j$PROCESSORS
     make install_sw
+    rm -rf $SHELL_FOLDER/openssl-1.1.1j
 }
 
 build_zlib()
@@ -176,10 +194,13 @@ build_openssh()
 {
     # 编译openssh
     echo "----------------------------- 编译openssh -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf openssh-8.6p1.tar.gz
     cd $SHELL_FOLDER/openssh-8.6p1
     ./configure --host=riscv64-linux-gnu --with-openssl=$SHELL_FOLDER/output --with-zlib=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     #make install
+    rm -rf $SHELL_FOLDER/openssh-8.6p1
 }
 
 build_libpng()
