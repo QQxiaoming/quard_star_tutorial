@@ -11,7 +11,7 @@ TARGET_DIR=$2
 
 mount_fs()
 {
-    losetup -o 0 --sizelimit 1073741824 /dev/loop70 $TARGET_DIR/rootfs.img -P
+    losetup -o 0 --sizelimit 2147483648 /dev/loop70 $TARGET_DIR/rootfs.img -P
     if [ -d "$TARGET_DIR/target" ]; then  
     rm -rf $TARGET_DIR/target
     fi
