@@ -266,6 +266,12 @@ jobs:
           cd target_root_app
           ./build.sh kvmtool
 
+      - name: Build gdb
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh gdb
+
       - name: Build trace_cmd
         shell: bash -l {0}
         run: |
@@ -307,6 +313,12 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh qt
+
+      - name: Build qt example
+        shell: bash -l {0}
+        run: |
+          cd target_user_app/qt_example
+          ./build.sh
 
       - name: Packet all
         shell: bash -l {0}
