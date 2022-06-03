@@ -133,6 +133,20 @@ build_qt()
 	make -j$PROCESSORS
 	make install
 	export PATH=$TEMP_PATH
+    if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
+        mkdir $SHELL_FOLDER/output/opt
+    fi
+    if [ ! -d "$SHELL_FOLDER/output/opt/Qt-5.12.11" ]; then
+        mkdir $SHELL_FOLDER/output/opt/Qt-5.12.11
+    fi
+    cp -r $SHELL_FOLDER/host_output/lib $SHELL_FOLDER/output/opt/Qt-5.12.11/lib
+    cp -r $SHELL_FOLDER/host_output/plugins $SHELL_FOLDER/output/opt/Qt-5.12.11/plugins
+    cp -r $SHELL_FOLDER/host_output/translations $SHELL_FOLDER/output/opt/Qt-5.12.11/translations
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/cmake
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/pkgconfig
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/*.prl
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/*.a
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/*.la
 }
 
 build_libmnl()
@@ -497,7 +511,7 @@ build_openjdk_zero()
     if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
         mkdir $SHELL_FOLDER/output/opt
     fi
-    mv ./build/linux-riscv64-normal-zero-release/jdk $SHELL_FOLDER/output/opt/jdk
+    mv ./build/linux-riscv64-normal-zero-release/jdk $SHELL_FOLDER/output/opt/open-jdk11
 }
 
 build_libuuid()
@@ -571,6 +585,25 @@ build_kvmtool()
     cd $SHELL_FOLDER/kvmtool
 	make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- LIBFDT_PATH=$SHELL_FOLDER/output lkvm-static -j$PROCESSORS
 	cp lkvm-static $SHELL_FOLDER/output/bin/lkvm-static
+}
+
+build_gdb()
+{
+    # 编译gdb-8.2.1
+    echo "------------------------------- 编译gdb -------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf gdb-10.1.tar.gz
+    cd $SHELL_FOLDER/gdb-10.1
+    TEMP_PATH=$PATH
+	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
+    export CXX=$CROSS_PREFIX-g++ 
+    export CC=$CROSS_PREFIX-gcc 
+    export AR=$CROSS_PREFIX-ar
+    ./configure --host=riscv64-linux-gnu --disable-ld --disable-gas --disable-sim --disable-gprofng --prefix=$SHELL_FOLDER/output/opt/gdb
+    make -j$PROCESSORS
+    make install-gdb install-gdbserver
+	export PATH=$TEMP_PATH
+    rm -rf $SHELL_FOLDER/gdb-10.1
 }
 
 build_trace_cmd()
@@ -749,6 +782,9 @@ dtc)
 kvmtool)
     build_kvmtool
     ;;
+gdb)
+    build_gdb
+    ;;
 trace_cmd)
     build_trace_cmd
     ;;
@@ -797,6 +833,7 @@ all)
     build_mtd_utils
     build_dtc
     build_kvmtool
+    build_gdb
     build_trace_cmd
     build_lrzsz
     build_libexpat
