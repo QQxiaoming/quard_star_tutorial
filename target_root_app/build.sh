@@ -688,6 +688,19 @@ build_iperf3()
     rm -rf $SHELL_FOLDER/iperf-3.10.1
 }
 
+build_util_linux()
+{
+    # 编译util-linux
+    echo "--------------------------- 编译util-linux ---------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf util-linux-2.38.tar.gz
+    cd $SHELL_FOLDER/util-linux-2.38
+    ./configure --host=riscv64-linux-gnu --prefix=/ --without-tinfo --without-python --disable-makeinstall-chown CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/util-linux-2.38
+}
+
 case "$1" in
 make)
     build_make
@@ -803,6 +816,9 @@ avahi)
 iperf3)
     build_iperf3
     ;;
+util_linux)
+    build_util_linux
+    ;;
 all)
     build_make
     build_ncurses
@@ -840,6 +856,7 @@ all)
     build_libdaemon
     build_avahi
     build_iperf3
+    build_util_linux
 	build_qt
     ;;
 *)

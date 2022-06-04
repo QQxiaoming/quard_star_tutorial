@@ -182,6 +182,10 @@ build_firmware()
     if [ ! -f "$SHELL_FOLDER/output/fw/usb.img" ]; then  
         dd of=usb.img bs=1k count=32k if=/dev/zero
     fi
+    if [ ! -f "$SHELL_FOLDER/output/fw/nandflash.img" ]; then  
+        # 256 + 8 = 264
+        dd bs=1k count=264k if=/dev/zero | tr '\000' '\377' > nandflash.img
+    fi
 }
 
 build_kernel()

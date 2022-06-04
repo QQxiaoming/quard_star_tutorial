@@ -72,6 +72,7 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_FW_CFG]      = { 0x10108000,      0x18 },
     
     [QUARD_STAR_USB]         = { 0x11000000,   0x10000 },
+    [QUARD_STAR_NAND]        = { 0x11010000,   0x20000 },
     [QUARD_STAR_DMA]         = { 0x12000000,  0x100000 },
     
     [QUARD_STAR_FLASH]       = { 0x20000000, 0x2000000 },
@@ -444,6 +445,28 @@ static void quard_star_i2s_create(MachineState *machine)
                         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_I2S_IRQ));
 }
 
+static void quard_star_nand_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+    DriveInfo *dinfo;
+
+    s->nand = qdev_new("onenand");
+    qdev_prop_set_uint16(s->nand, "manufacturer_id", NAND_MFR_SAMSUNG);
+    /* Either 0x40 or 0x48 are OK for the device ID */
+    qdev_prop_set_uint16(s->nand, "device_id", 0x48);
+    qdev_prop_set_uint16(s->nand, "version_id", 0);
+    qdev_prop_set_int32(s->nand, "shift", 1);
+    dinfo = drive_get(IF_MTD, 1, 0);
+    if (dinfo) {
+        qdev_prop_set_drive_err(s->nand, "drive", blk_by_legacy_dinfo(dinfo),
+                                &error_fatal);
+    }
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(s->nand), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(s->nand), 0, quard_star_memmap[QUARD_STAR_NAND].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(s->nand), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_NAND_IRQ));
+}
+
 static void quard_star_virtio_mmio_create(MachineState *machine)
 {    
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
@@ -502,6 +525,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_dma_create(machine);
     quard_star_sdio_create(machine);
     quard_star_i2s_create(machine);
+    quard_star_nand_create(machine);
 
     quard_star_virtio_mmio_create(machine);
     quard_star_fw_cfg_create(machine);
