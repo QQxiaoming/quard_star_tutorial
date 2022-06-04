@@ -139,7 +139,8 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -m 1G \
 -smp 8 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin,id=mtd0 \
--drive if=mtd,format=raw,file=$SHELL_FOLDER/output/fw/norflash.img,id=mtd1 \
+-drive if=mtd,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/norflash.img,id=mtd1 \
+-drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2 \
 -drive if=none,format=raw,file=$SHELL_FOLDER/output/fw/usb.img,id=usb0 \
 -drive if=sd,format=raw,file=$SHELL_FOLDER/output/fw/sd.img,id=sd0 \
 -drive if=none,format=raw,file=$SHELL_FOLDER/output/rootfs/rootfs.img,id=disk0 \

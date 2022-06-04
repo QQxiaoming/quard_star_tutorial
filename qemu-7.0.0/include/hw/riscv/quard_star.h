@@ -61,6 +61,7 @@ struct QuardStarState {
     SiFivePDMAState dma;
     CadenceSDHCIState sdhost;
     DeviceState *i2s;
+    DeviceState *nand;
     
     I2CSlave *at24c_dev;
     I2CSlave *wm8750_dev;
@@ -85,6 +86,7 @@ enum {
     QUARD_STAR_GPIO,
     QUARD_STAR_SDIO,
     QUARD_STAR_I2S,
+    QUARD_STAR_NAND,
     QUARD_STAR_SYSCTL,
     QUARD_STAR_VIRTIO0,
     QUARD_STAR_VIRTIO1,
@@ -123,6 +125,7 @@ enum {
     QUARD_STAR_USB_IRQ = 19,
     QUARD_STAR_SDIO_IRQ = 20,
     QUARD_STAR_I2S_IRQ = 21,
+    QUARD_STAR_NAND_IRQ = 22,
 
     QUARD_STAR_GPIO_IRQ = 32, /* 32-47 */
     QUARD_STAR_DMA_IRQ = 48,  /* 48-55 */

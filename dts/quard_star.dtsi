@@ -386,6 +386,14 @@
 			snps,mask_phy_reset;
 		};
 
+		nand: nand@11010000 {
+			compatible = "quard,quard-star-onenand";
+			reg = <0x0 0x11010000 0x0 0x20000>;
+			interrupt-parent = <&plic>;
+			interrupts = <0x16>;
+			status = "disabled";
+		};
+
 		dma: dma@12000000 {
 			compatible = "sifive,fu540-c000-pdma";
 			reg = <0x0 0x12000000 0x0 0x8000>;
