@@ -171,19 +171,32 @@ build_firmware()
     fi  
     cd $SHELL_FOLDER/output/fw
     rm -rf fw.bin
-    dd of=fw.bin bs=1k count=32k if=/dev/zero
+    dd of=fw.bin bs=1k count=12k if=/dev/zero
     dd of=fw.bin bs=1k conv=notrunc seek=0 if=$SHELL_FOLDER/output/lowlevelboot/lowlevelboot.bin
     dd of=fw.bin bs=1k conv=notrunc seek=512 if=$SHELL_FOLDER/output/opensbi/quard_star_sbi.dtb
     dd of=fw.bin bs=1k conv=notrunc seek=1K if=$SHELL_FOLDER/output/uboot/quard_star_uboot.dtb
     dd of=fw.bin bs=1k conv=notrunc seek=2K if=$SHELL_FOLDER/output/opensbi/fw_jump.bin
     dd of=fw.bin bs=1k conv=notrunc seek=4K if=$SHELL_FOLDER/output/trusted_domain/trusted_fw.bin
     dd of=fw.bin bs=1k conv=notrunc seek=8K if=$SHELL_FOLDER/output/uboot/u-boot.bin
+    
+    rm -rf pflash.img
+    dd bs=1k count=32k if=/dev/zero | tr '\000' '\377' > pflash.img
+    dd of=pflash.img bs=1k conv=notrunc seek=0 if=fw.bin
 
-    cp fw.bin norflash.img
-    cp fw.bin sd.img
-    if [ ! -f "$SHELL_FOLDER/output/fw/usb.img" ]; then  
-        dd of=usb.img bs=1k count=32k if=/dev/zero
+    if [ ! -f "$SHELL_FOLDER/output/fw/norflash.img" ]; then  
+        dd bs=1k count=32k if=/dev/zero | tr '\000' '\377' > norflash.img
     fi
+    dd of=norflash.img bs=1k conv=notrunc seek=0 if=fw.bin
+
+    if [ ! -f "$SHELL_FOLDER/output/fw/sd.img" ]; then  
+        dd bs=1k count=32k if=/dev/zero | tr '\000' '\377' > sd.img
+    fi
+    dd of=sd.img bs=1k conv=notrunc seek=0 if=fw.bin
+
+    if [ ! -f "$SHELL_FOLDER/output/fw/usb.img" ]; then  
+        dd bs=1k count=32k if=/dev/zero | tr '\000' '\377' > usb.img
+    fi
+
     if [ ! -f "$SHELL_FOLDER/output/fw/nandflash.img" ]; then  
         # 256 + 8 = 264
         dd bs=1k count=264k if=/dev/zero | tr '\000' '\377' > nandflash.img
