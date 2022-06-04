@@ -138,7 +138,7 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin" \
 -m 1G \
 -smp 8 \
--drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/fw.bin,id=mtd0 \
+-drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/pflash.img,id=mtd0 \
 -drive if=mtd,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/norflash.img,id=mtd1 \
 -drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2 \
 -drive if=none,format=raw,file=$SHELL_FOLDER/output/fw/usb.img,id=usb0 \
