@@ -50,6 +50,7 @@ private:
     QString maskromImgPath;
     QString pflashImgPath;
     QString norflashImgPath;
+    QString nandflashImgPath;
     QString sdImgPath;
     QString usbflashImgPath;
     QString rootfsImgPath;
