@@ -185,6 +185,11 @@ build_firmware()
 
     if [ ! -f "$SHELL_FOLDER/output/fw/norflash.img" ]; then  
         dd bs=1k count=32k if=/dev/zero | tr '\000' '\377' > norflash.img
+        rm -rf jff2s_dir jffs2.bin
+        mkdir jff2s_dir
+        mkfs.jffs2 -lqn -e64 -s320 -p0x1400000 -r jff2s_dir -o jffs2.bin
+        dd of=norflash.img bs=1k conv=notrunc seek=12K if=jffs2.bin
+        rm -rf jff2s_dir jffs2.bin
     fi
     dd of=norflash.img bs=1k conv=notrunc seek=0 if=fw.bin
 

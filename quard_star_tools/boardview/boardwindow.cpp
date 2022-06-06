@@ -21,8 +21,9 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     ui->setupUi(this);
 
     maskromImgPath = envPath + "/mask_rom/mask_rom.bin";
-    pflashImgPath = envPath + "/fw/fw.bin";
+    pflashImgPath = envPath + "/fw/pflash.img";
     norflashImgPath = envPath + "/fw/norflash.img";
+    nandflashImgPath = envPath + "/fw/nandflash.img";
     sdImgPath = envPath + "/fw/sd.img";
     usbflashImgPath = envPath + "/fw/usb.img";
     rootfsImgPath = envPath + "/rootfs/rootfs.img";
@@ -75,7 +76,8 @@ void BoardWindow::powerSwitch(bool power)
         "-m",         "1G",
         "-smp",       "8",
         "-drive",     "if=pflash,bus=0,unit=0,format=raw,file="+pflashImgPath+",id=mtd0",
-        "-drive",     "if=mtd,format=raw,file="+norflashImgPath+",id=mtd1",
+        "-drive",     "if=mtd,bus=0,unit=0,format=raw,file="+norflashImgPath+",id=mtd1",
+        "-drive",     "if=mtd,bus=1,unit=0,format=raw,file="+nandflashImgPath+",id=mtd2",
         "-drive",     "if=none,format=raw,file="+usbflashImgPath+",id=usb0",
         "-drive",     "if=sd,format=raw,file="+sdImgPath+",id=sd0",
         "-drive",     "if=none,format=raw,file="+rootfsImgPath+",id=disk0",
@@ -269,6 +271,8 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                     sdImgPath = QFileDialog::getOpenFileName(this, tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "nor") {
                     norflashImgPath = QFileDialog::getOpenFileName(this, tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
+                } else if(spaceList[i].name == "nand") {
+                    nandflashImgPath = QFileDialog::getOpenFileName(this, tr("Select NandFlash IMG"), nandflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "soc") {
                     pflashImgPath = QFileDialog::getOpenFileName(this, tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "usb0") {

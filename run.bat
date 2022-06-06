@@ -11,8 +11,9 @@ set "GRAPHIC_PARAM=--display gtk,zoom-to-fit=false --serial %DEFAULT_VC% --seria
 -M quard-star,mask-rom-path=./output/mask_rom/mask_rom.bin ^
 -m 1G ^
 -smp 8 ^
--drive if=pflash,bus=0,unit=0,format=raw,file=./output/fw/fw.bin,id=mtd0 ^
--drive if=mtd,format=raw,file=./output/fw/norflash.img,id=mtd1 ^
+-drive if=pflash,bus=0,unit=0,format=raw,file=./output/fw/pflash.img,id=mtd0 ^
+-drive if=mtd,bus=0,unit=0,format=raw,file=./output/fw/norflash.img,id=mtd1 ^
+-drive if=mtd,bus=1,unit=0,format=raw,file=./output/fw/nandflash.img,id=mtd2 ^
 -drive if=none,format=raw,file=./output/fw/usb.img,id=usb0 ^
 -drive if=sd,format=raw,file=./output/fw/sd.img,id=sd0 ^
 -drive if=none,format=raw,file=./output/rootfs/rootfs.img,id=disk0 ^
