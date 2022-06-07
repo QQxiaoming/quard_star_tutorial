@@ -250,6 +250,7 @@ build_libx11()
 
     echo "--------------------------- 编译util-macros ---------------------------"
     cd $SHELL_FOLDER/libX11/util-macros-1.19.3
+    autoreconf -f -i 
     ./configure --prefix=$SHELL_FOLDER/host_output
 	make -j$PROCESSORS
     make install
