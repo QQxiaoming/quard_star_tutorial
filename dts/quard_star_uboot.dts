@@ -92,12 +92,12 @@
 			#size-cells = <1>;
 
 			partition@0 {
-				reg = <0x00000000 0x00C00000>;
+				reg = <0x00000000 0xC00000>;
 				label = "spi0_0_fw_image";
 				read-only;
 			};
 			partition@C00000 {
-				reg = <0x00C00000 0x02000000>;
+				reg = <0x00C00000 0x1400000>;
 				label = "spi0_0_user";
 			};
 		};
