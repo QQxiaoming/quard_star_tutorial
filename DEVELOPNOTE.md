@@ -411,4 +411,4 @@
     2022.04.23(晚上):搞错了，freertos相关代码在cpu7中运行到中途出现了无法继续调度的问题是由于之前一次修改设备树时没有配置好保留内存区域导致linux启动后覆盖了cpu7需要的内存空间导致的，目前问题已解决。
 
 - 
-    2022.06.05(下午):添加了onenand ip用于学习nand falsh相关内容，以及ubifs，我们使用这个模型qemu-7.0.0/hw/block/onenand.c，添加到我们的quard star soc中，另外注意该ip的寄存器空间size为0x20000。这里要注意下，模拟的flash大小为256M，但是运行时使用-drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2这个提供的文件映像应为264M，因为驱动内会使用最后8M的空间来存储坏快表。
+    2022.06.05(下午):添加了onenand ip用于学习nand falsh相关内容，以及ubifs，我们使用这个模型qemu-7.0.0/hw/block/onenand.c，添加到我们的quard star soc中，另外注意该ip的寄存器空间size为0x20000。这里要注意下，模拟的flash大小为256M，但是运行时使用-drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2这个提供的文件映像应为264M，因为驱动内会使用最后8M的备用区空间来存储坏快表等信息。

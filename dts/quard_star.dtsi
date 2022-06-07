@@ -16,7 +16,7 @@
 	cpus {
 		#address-cells = <0x1>;
 		#size-cells = <0x0>;
-		timebase-frequency = <0x989680>;
+		timebase-frequency = <10000000>;
 
 		cpu0: cpu@0 {
 			device_type = "cpu";
@@ -207,8 +207,10 @@
 		ranges;
 
 		plic:plic@c000000 {
-			riscv,ndev = <0x35>;
+			compatible = "riscv,plic0";
 			reg = <0x0 0xc000000 0x0 0x210000>;
+			#interrupt-cells = <0x1>;
+			#address-cells = <0x0>;
 			interrupts-extended = <&core0_ic 0xb &core0_ic 0x9>,
 								  <&core1_ic 0xb &core1_ic 0x9>,
 								  <&core2_ic 0xb &core2_ic 0x9>,
@@ -218,9 +220,7 @@
 								  <&core6_ic 0xb &core6_ic 0x9>,
 								  <&core7_ic 0xb &core7_ic 0x9>;
 			interrupt-controller;
-			compatible = "riscv,plic0";
-			#interrupt-cells = <0x1>;
-			#address-cells = <0x0>;
+			riscv,ndev = <53>;
 		};
 
 		clint:clint@2000000 {
