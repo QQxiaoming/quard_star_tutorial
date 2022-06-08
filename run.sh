@@ -20,6 +20,9 @@ PLUGINS_PARAM=""
 NETDEV_PARAM=user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel_next/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0
 #NETDEV_PARAM=tap,ifname=tap0,script=no,downscript=no,id=net0
 
+HOST_VCAN_PARAM=""
+#HOST_VCAN_PARAM="-object can-host-socketcan,id=socketcan0,if=vcan0,canbus=canbus0"
+
 VC=\
 "full-screen | \
 1920x1080 | \
@@ -135,7 +138,7 @@ update_test)
 esac
 
 $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
--M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin" \
+-M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin",canbus=canbus0 \
 -m 1G \
 -smp 8 \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/pflash.img,id=mtd0 \
@@ -145,6 +148,7 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=sd,format=raw,file=$SHELL_FOLDER/output/fw/sd.img,id=sd0 \
 -drive if=none,format=raw,file=$SHELL_FOLDER/output/rootfs/rootfs.img,id=disk0 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
+-object can-bus,id=canbus0 $HOST_VCAN_PARAM \
 -fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
 -netdev $NETDEV_PARAM \
 -audiodev sdl,id=audio0 \

@@ -60,6 +60,7 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_GPIO]        = { 0x10009000,    0x1000 },
     [QUARD_STAR_SDIO]        = { 0x1000a000,    0x1000 },
     [QUARD_STAR_I2S]         = { 0x1000b000,    0x1000 },
+    [QUARD_STAR_CAN]         = { 0x1000c000,    0x1000 },
     
     [QUARD_STAR_VIRTIO0]     = { 0x10100000,    0x1000 },
     [QUARD_STAR_VIRTIO1]     = { 0x10101000,    0x1000 },
@@ -467,6 +468,23 @@ static void quard_star_nand_create(MachineState *machine)
                         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_NAND_IRQ));
 }
 
+static void quard_star_can_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    object_initialize_child(OBJECT(s), "can", &s->can, TYPE_XLNX_ZYNQMP_CAN);
+
+    object_property_set_int(OBJECT(&s->can), "ext_clk_freq",
+                            (24*1000*1000), &error_abort);
+    object_property_set_link(OBJECT(&s->can), "canbus",
+                                OBJECT(s->canbus), &error_fatal);
+
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(&s->can), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->can), 0, quard_star_memmap[QUARD_STAR_CAN].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->can), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_CAN_IRQ));
+}
+
 static void quard_star_virtio_mmio_create(MachineState *machine)
 {    
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
@@ -526,6 +544,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_sdio_create(machine);
     quard_star_i2s_create(machine);
     quard_star_nand_create(machine);
+    quard_star_can_create(machine);
 
     quard_star_virtio_mmio_create(machine);
     quard_star_fw_cfg_create(machine);
@@ -535,20 +554,11 @@ static void quard_star_machine_instance_init(Object *obj)
 {
 }
 
-static char *quard_star_machine_get_kernel(Object *obj, Error **errp)
-{
-    QuardStarState *s = RISCV_VIRT_MACHINE(obj);
-
-    return g_strdup(s->mask_rom_path);
-}
-
-static void quard_star_machine_set_kernel(Object *obj, const char *value, Error **errp)
-{
-    QuardStarState *s = RISCV_VIRT_MACHINE(obj);
-
-    g_free(s->mask_rom_path);
-    s->mask_rom_path = g_strdup(value);
-}
+static Property quard_star_props[] = {
+    DEFINE_PROP_STRING("mask-rom-path", QuardStarState, mask_rom_path),
+    DEFINE_PROP_LINK("canbus", QuardStarState, canbus, TYPE_CAN_BUS, CanBusState *),
+    DEFINE_PROP_END_OF_LIST()
+};
 
 static void quard_star_machine_class_init(ObjectClass *oc, void *data)
 {
@@ -568,10 +578,7 @@ static void quard_star_machine_class_init(ObjectClass *oc, void *data)
     mc->get_default_cpu_node_id = riscv_numa_get_default_cpu_node_id;
     mc->numa_mem_supported = true;
 
-    object_class_property_add_str(OBJECT_CLASS(mc), "mask-rom-path",
-        quard_star_machine_get_kernel, quard_star_machine_set_kernel);
-    object_class_property_set_description(OBJECT_CLASS(mc), "mask-rom-path",
-        "Quard Star Mask ROM image file");
+    device_class_set_props(DEVICE_CLASS(oc), quard_star_props);
 }
 
 static const TypeInfo quard_star_machine_typeinfo = {

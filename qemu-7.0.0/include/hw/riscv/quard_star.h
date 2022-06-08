@@ -33,6 +33,8 @@
 #include "hw/gpio/sifive_gpio.h"
 #include "hw/dma/sifive_pdma.h"
 #include "hw/sd/cadence_sdhci.h"
+#include "net/can_emu.h"
+#include "hw/net/xlnx-zynqmp-can.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
 #define QUARD_STAR_COMPUTE_CPU_COUNT       7
@@ -62,6 +64,8 @@ struct QuardStarState {
     CadenceSDHCIState sdhost;
     DeviceState *i2s;
     DeviceState *nand;
+    XlnxZynqMPCANState can;
+    CanBusState *canbus;
     
     I2CSlave *at24c_dev;
     I2CSlave *wm8750_dev;
@@ -87,6 +91,7 @@ enum {
     QUARD_STAR_SDIO,
     QUARD_STAR_I2S,
     QUARD_STAR_NAND,
+    QUARD_STAR_CAN,
     QUARD_STAR_SYSCTL,
     QUARD_STAR_VIRTIO0,
     QUARD_STAR_VIRTIO1,
@@ -126,6 +131,7 @@ enum {
     QUARD_STAR_SDIO_IRQ = 20,
     QUARD_STAR_I2S_IRQ = 21,
     QUARD_STAR_NAND_IRQ = 22,
+    QUARD_STAR_CAN_IRQ = 23,
 
     QUARD_STAR_GPIO_IRQ = 32, /* 32-47 */
     QUARD_STAR_DMA_IRQ = 48,  /* 48-55 */
