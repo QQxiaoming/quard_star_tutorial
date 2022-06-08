@@ -179,6 +179,13 @@
 		};
 	};
 
+	pclk:pclk {
+		compatible="fixed-clock";
+		clock-frequency=<48000000>;
+		clock-output-names="pclk";
+		#clock-cells = <0>;
+	};
+
 	i2c_clk:i2c_clk {
 		compatible="fixed-clock";
 		clock-frequency=<24000000>;
@@ -197,6 +204,13 @@
 		compatible="fixed-clock";
 		clock-frequency=<96000000>;
 		clock-output-names="sdmmc_clk";
+		#clock-cells = <0>;
+	};
+
+	can_clk:can_clk {
+		compatible="fixed-clock";
+		clock-frequency=<24000000>;
+		clock-output-names="can_clk";
 		#clock-cells = <0>;
 	};
 
@@ -392,6 +406,18 @@
 			interrupt-parent = <&plic>;
 			interrupts = <0x16>;
 			status = "disabled";
+		};
+
+		can: can@1000c000 {
+			compatible = "xlnx,zynq-can-1.0";
+			status = "disabled";
+			clock-names = "can_clk", "pclk";
+			clocks = <&can_clk>, <&pclk>;
+			reg = <0x0 0x1000c000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <0x17>;
+			tx-fifo-depth = <0x40>;
+			rx-fifo-depth = <0x40>;
 		};
 
 		dma: dma@12000000 {

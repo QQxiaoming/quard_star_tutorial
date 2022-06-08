@@ -702,6 +702,34 @@ build_util_linux()
     rm -rf $SHELL_FOLDER/util-linux-2.38
 }
 
+build_iproute2()
+{
+    # 编译iproute2
+    echo "---------------------------- 编译iproute2 ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf iproute2-5.9.0.tar.gz
+    cd $SHELL_FOLDER/iproute2-5.9.0
+    PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig CC=$CROSS_PREFIX-gcc AR=$CROSS_PREFIX-ar ./configure
+    make -j$PROCESSORS
+    PREFIX=/ make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/iproute2-5.9.0
+}
+
+build_can_utils()
+{
+    # 编译can-utils
+    echo "---------------------------- 编译can-utils ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf can-utils-2021.08.0.tar.gz
+    cd $SHELL_FOLDER/can-utils-2021.08.0
+    mkdir build
+    cd build
+    CC=$CROSS_PREFIX-gcc cmake -DCMAKE_INSTALL_PREFIX=$SHELL_FOLDER/output ..
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/can-utils-2021.08.0
+}
+
 case "$1" in
 make)
     build_make
@@ -820,6 +848,12 @@ iperf3)
 util_linux)
     build_util_linux
     ;;
+iproute2)
+    build_iproute2
+    ;;
+can-utils)
+    build_can_utils
+    ;;
 all)
     build_make
     build_ncurses
@@ -858,6 +892,8 @@ all)
     build_avahi
     build_iperf3
     build_util_linux
+    build_iproute2
+    build_can_utils
 	build_qt
     ;;
 *)
