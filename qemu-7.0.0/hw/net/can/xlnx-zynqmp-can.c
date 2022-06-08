@@ -257,10 +257,6 @@ REG32(AFIR4, 0x80)
 #define XCAN_IDR_SRR_MASK		0x00100000U
 #define XCAN_IDR_ID1_SHIFT		21
 #define XCAN_IDR_ID2_SHIFT		1
-#define CAN_RTR_FLAG            0x40000000U
-#define CAN_EFF_FLAG            0x80000000U
-#define CAN_SFF_MASK            0x000007FFU
-#define CAN_EFF_MASK            0x1FFFFFFFU
 #define CAN_SFF_ID_BITS		    11
 #define CAN_EFF_ID_BITS		    29
 
@@ -399,8 +395,6 @@ static void can_exit_sleep_mode(XlnxZynqMPCANState *s)
     update_status_register_mode_bits(s);
 }
 
-
-
 static uint32_t id_xcan2can(uint32_t id)
 {
     uint32_t ret_id = 0; 
@@ -410,15 +404,15 @@ static uint32_t id_xcan2can(uint32_t id)
 		ret_id = (id & XCAN_IDR_ID1_MASK) >> 3;
 		ret_id |= (id & XCAN_IDR_ID2_MASK) >>
 				XCAN_IDR_ID2_SHIFT;
-		ret_id |= CAN_EFF_FLAG;
+		ret_id |= QEMU_CAN_EFF_FLAG;
 		if (id & XCAN_IDR_RTR_MASK)
-			ret_id |= CAN_RTR_FLAG;
+			ret_id |= QEMU_CAN_RTR_FLAG;
 	} else {
 		/* The received frame is a standard format frame */
 		ret_id = (id & XCAN_IDR_ID1_MASK) >>
 				XCAN_IDR_ID1_SHIFT;
 		if (id & XCAN_IDR_SRR_MASK)
-			ret_id |= CAN_RTR_FLAG;
+			ret_id |= QEMU_CAN_RTR_FLAG;
 	}
     return ret_id;
 }
@@ -426,21 +420,21 @@ static uint32_t id_xcan2can(uint32_t id)
 static uint32_t id_can2xcan(uint32_t id)
 {
     uint32_t ret_id = 0;
-    if (id & CAN_EFF_FLAG) {
+    if (id & QEMU_CAN_EFF_FLAG) {
         /* Extended CAN ID format */
-        ret_id = ((id & CAN_EFF_MASK) << XCAN_IDR_ID2_SHIFT) &
+        ret_id = ((id & QEMU_CAN_EFF_MASK) << XCAN_IDR_ID2_SHIFT) &
             XCAN_IDR_ID2_MASK;
-        ret_id |= (((id & CAN_EFF_MASK) >>
+        ret_id |= (((id & QEMU_CAN_EFF_MASK) >>
             (CAN_EFF_ID_BITS - CAN_SFF_ID_BITS)) <<
             XCAN_IDR_ID1_SHIFT) & XCAN_IDR_ID1_MASK;
         ret_id |= XCAN_IDR_IDE_MASK | XCAN_IDR_SRR_MASK;
-        if (id & CAN_RTR_FLAG)
+        if (id & QEMU_CAN_RTR_FLAG)
             ret_id |= XCAN_IDR_RTR_MASK;
     } else {
         /* Standard CAN ID format */
-        ret_id = ((id & CAN_SFF_MASK) << XCAN_IDR_ID1_SHIFT) &
+        ret_id = ((id & QEMU_CAN_SFF_MASK) << XCAN_IDR_ID1_SHIFT) &
             XCAN_IDR_ID1_MASK;
-        if (id & CAN_RTR_FLAG)
+        if (id & QEMU_CAN_RTR_FLAG)
             ret_id |= XCAN_IDR_SRR_MASK;
     }
     return ret_id;
