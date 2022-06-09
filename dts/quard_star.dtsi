@@ -186,6 +186,27 @@
 		#clock-cells = <0>;
 	};
 
+	pwm_clk:pwm_clk {
+		compatible="fixed-clock";
+		clock-frequency=<24000000>;
+		clock-output-names="pwm_clk";
+		#clock-cells = <0>;
+	};
+
+	timer_clk:timer_clk {
+		compatible="fixed-clock";
+		clock-frequency=<24000000>;
+		clock-output-names="timer_clk";
+		#clock-cells = <0>;
+	};
+
+	adc_clk:adc_clk {
+		compatible="fixed-clock";
+		clock-frequency=<24000000>;
+		clock-output-names="adc_clk";
+		#clock-cells = <0>;
+	};
+
 	i2c_clk:i2c_clk {
 		compatible="fixed-clock";
 		clock-frequency=<24000000>;
@@ -251,7 +272,7 @@
 		};
 
 		uart0:uart0@10000000 {
-			interrupts = <0xa>;
+			interrupts = <10>;
 			interrupt-parent = <&plic>;
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10000000 0x0 0x100>;
@@ -260,7 +281,7 @@
 		};
 
 		uart1:uart1@10001000 {
-			interrupts = <0xb>;
+			interrupts = <11>;
 			interrupt-parent = <&plic>;
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10001000 0x0 0x100>;
@@ -269,7 +290,7 @@
 		};
 
 		uart2:uart2@10002000 {
-			interrupts = <0xc>;
+			interrupts = <12>;
 			interrupt-parent = <&plic>;
 			clock-frequency = <0x384000>;
 			reg = <0x0 0x10002000 0x0 0x100>;
@@ -285,7 +306,7 @@
 		};
 		
 		rtc:rtc@10003000 {
-			interrupts = <0xd>;
+			interrupts = <13>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10003000 0x0 0x1000>;
 			compatible = "google,goldfish-rtc";
@@ -297,7 +318,7 @@
 			#size-cells = <0>;
 			compatible = "fsl,imx1-i2c";
 			reg = <0x0 0x10004000 0x0 0x1000>;
-			interrupts = <0xe>;
+			interrupts = <14>;
 			interrupt-parent = <&plic>;
 			clocks = <&i2c_clk>;
 			status = "disabled";
@@ -308,7 +329,7 @@
 			#size-cells = <0>;
 			compatible = "fsl,imx1-i2c";
 			reg = <0x0 0x10005000 0x0 0x1000>;
-			interrupts = <0xf>;
+			interrupts = <15>;
 			interrupt-parent = <&plic>;
 			clocks = <&i2c_clk>;
 			status = "disabled";
@@ -319,7 +340,7 @@
 			#size-cells = <0>;
 			compatible = "fsl,imx1-i2c";
 			reg = <0x0 0x10006000 0x0 0x1000>;
-			interrupts = <0x10>;
+			interrupts = <16>;
 			interrupt-parent = <&plic>;
 			clocks = <&i2c_clk>;
 			status = "disabled";
@@ -330,7 +351,7 @@
 			#size-cells = <0>;
 			compatible = "sifive,spi0";
 			reg = <0x0 0x10007000 0x0 0x1000>;
-			interrupts = <0x11>;
+			interrupts = <17>;
 			interrupt-parent = <&plic>;
 			clocks = <&spi_clk>;
 			status = "disabled";
@@ -341,7 +362,7 @@
 			#size-cells = <0>;
 			compatible = "sifive,spi0";
 			reg = <0x0 0x10008000 0x0 0x1000>;
-			interrupts = <0x12>;
+			interrupts = <18>;
 			interrupt-parent = <&plic>;
 			clocks = <&spi_clk>;
 			status = "disabled";
@@ -364,7 +385,7 @@
 			compatible = "cdns,sd4hc";
 			reg = <0x0 0x1000a000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
-			interrupts = <0x14>;
+			interrupts = <20>;
 			clocks = <&sdmmc_clk>;
 			bus-width = <8>;
 			mmc-ddr-1_8v;
@@ -381,14 +402,54 @@
 			#sound-dai-cells = <0>;
 			reg = <0x0 0x1000b000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
-			interrupts = <0x15>;
+			interrupts = <21>;
+			status = "disabled";
+		};
+
+		can: can@1000c000 {
+			compatible = "xlnx,zynq-can-1.0";
+			status = "disabled";
+			clock-names = "can_clk", "pclk";
+			clocks = <&can_clk>, <&pclk>;
+			reg = <0x0 0x1000c000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <23>;
+			tx-fifo-depth = <0x40>;
+			rx-fifo-depth = <0x40>;
+		};
+
+		pwm: pwm@1000d000 {
+			compatible = "sifive,pwm0";
+			reg = <0x0 0x1000d000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <28>, <29>, <30>, <31>;
+			clocks = <&pwm_clk>;
+			#pwm-cells = <3>;
+			status = "disabled";
+		};
+
+		adc: adc@1000e000 {
+			compatible = "xlnx,zynq-xadc-1.00.a";
+			reg = <0x0 0x1000e000 0x0 0x20>;
+			interrupt-parent = <&plic>;
+			interrupts = <24>;
+			clocks = <&adc_clk>;
+			status = "disabled";
+		};
+
+		timer: timer@1000f000 {
+			compatible = "cdns,ttc";
+			reg = <0x0 0x1000f000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <25>, <26>, <27>;
+			clocks = <&timer_clk>;
 			status = "disabled";
 		};
 
 		usb: dwc3@11000000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0x11000000 0x0 0x10000>;
-			interrupts = <0x13>;
+			interrupts = <19>;
 			interrupt-parent = <&plic>;
 			status = "disabled";
 			phy-names = "usb3-phy";
@@ -404,20 +465,8 @@
 			compatible = "quard,quard-star-onenand";
 			reg = <0x0 0x11010000 0x0 0x20000>;
 			interrupt-parent = <&plic>;
-			interrupts = <0x16>;
+			interrupts = <22>;
 			status = "disabled";
-		};
-
-		can: can@1000c000 {
-			compatible = "xlnx,zynq-can-1.0";
-			status = "disabled";
-			clock-names = "can_clk", "pclk";
-			clocks = <&can_clk>, <&pclk>;
-			reg = <0x0 0x1000c000 0x0 0x1000>;
-			interrupt-parent = <&plic>;
-			interrupts = <0x17>;
-			tx-fifo-depth = <0x40>;
-			rx-fifo-depth = <0x40>;
 		};
 
 		dma: dma@12000000 {
@@ -444,7 +493,7 @@
 		};
 	
 		virtio_mmio0:virtio_mmio@10107000 {
-			interrupts = <0x8>;
+			interrupts = <8>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10107000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -452,7 +501,7 @@
 		};
 
 		virtio_mmio1:virtio_mmio@10106000 {
-			interrupts = <0x7>;
+			interrupts = <7>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10106000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -460,7 +509,7 @@
 		};
 
 		virtio_mmio2:virtio_mmio@10105000 {
-			interrupts = <0x6>;
+			interrupts = <6>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10105000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -468,7 +517,7 @@
 		};
 
 		virtio_mmio3:virtio_mmio@10104000 {
-			interrupts = <0x5>;
+			interrupts = <5>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10104000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -476,7 +525,7 @@
 		};
 
 		virtio_mmio4:virtio_mmio@10103000 {
-			interrupts = <0x4>;
+			interrupts = <4>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10103000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -484,7 +533,7 @@
 		};
 
 		virtio_mmio5:virtio_mmio@10102000 {
-			interrupts = <0x3>;
+			interrupts = <3>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10102000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -492,7 +541,7 @@
 		};
 
 		virtio_mmio6:virtio_mmio@10101000 {
-			interrupts = <0x2>;
+			interrupts = <2>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10101000 0x0 0x1000>;
 			compatible = "virtio,mmio";
@@ -500,7 +549,7 @@
 		};
 
 		virtio_mmio7:virtio_mmio@10100000 {
-			interrupts = <0x1>;
+			interrupts = <1>;
 			interrupt-parent = <&plic>;
 			reg = <0x0 0x10100000 0x0 0x1000>;
 			compatible = "virtio,mmio";

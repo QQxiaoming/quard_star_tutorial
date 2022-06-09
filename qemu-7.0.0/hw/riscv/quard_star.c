@@ -61,6 +61,11 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_SDIO]        = { 0x1000a000,    0x1000 },
     [QUARD_STAR_I2S]         = { 0x1000b000,    0x1000 },
     [QUARD_STAR_CAN]         = { 0x1000c000,    0x1000 },
+    [QUARD_STAR_PWM]         = { 0x1000d000,    0x1000 },
+    [QUARD_STAR_ADC]         = { 0x1000e000,    0x1000 },
+    [QUARD_STAR_TIMER]       = { 0x1000f000,    0x1000 },
+    //[QUARD_STAR_ETH]         = { 0x10010000,    0x1000 }, //TODO:
+    //[QUARD_STAR_LTDC]        = { 0x10011000,    0x1000 }, //TODO:
     
     [QUARD_STAR_VIRTIO0]     = { 0x10100000,    0x1000 },
     [QUARD_STAR_VIRTIO1]     = { 0x10101000,    0x1000 },
@@ -485,6 +490,45 @@ static void quard_star_can_create(MachineState *machine)
                         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_CAN_IRQ));
 }
 
+static void quard_star_pwm_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    object_initialize_child(OBJECT(s), "pwm", &s->pwm, TYPE_SIFIVE_PWM);
+
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(&s->pwm), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->pwm), 0, quard_star_memmap[QUARD_STAR_PWM].base);
+
+    for (int j = 0; j < SIFIVE_PWM_IRQS; j++) {
+        sysbus_connect_irq(SYS_BUS_DEVICE(&s->pwm), j,
+                            qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_PWM_IRQ + j));
+    }
+}
+
+static void quard_star_adc_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    s->adc = qdev_new(TYPE_ZYNQ_XADC);
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(s->adc), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(s->adc), 0, quard_star_memmap[QUARD_STAR_ADC].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(s->adc), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_ADC_IRQ));
+}
+
+static void quard_star_timer_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    s->timer = qdev_new("cadence_ttc");
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(s->timer), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(s->timer), 0, quard_star_memmap[QUARD_STAR_TIMER].base);
+    for (int j = 0; j < 3; j++) {
+        sysbus_connect_irq(SYS_BUS_DEVICE(s->timer), j,
+                            qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_TIMER_IRQ + j));
+    }
+}
+
 static void quard_star_virtio_mmio_create(MachineState *machine)
 {    
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
@@ -545,6 +589,9 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_i2s_create(machine);
     quard_star_nand_create(machine);
     quard_star_can_create(machine);
+    quard_star_pwm_create(machine);
+    quard_star_adc_create(machine);
+    quard_star_timer_create(machine);
 
     quard_star_virtio_mmio_create(machine);
     quard_star_fw_cfg_create(machine);
