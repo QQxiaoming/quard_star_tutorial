@@ -37,6 +37,7 @@
 #include "hw/net/xlnx-zynqmp-can.h"
 #include "hw/timer/sifive_pwm.h"
 #include "hw/adc/zynq-xadc.h"
+#include "hw/net/cadence_gem.h"
 
 #define QUARD_STAR_MANAGEMENT_CPU_COUNT    1
 #define QUARD_STAR_COMPUTE_CPU_COUNT       7
@@ -71,6 +72,7 @@ struct QuardStarState {
     SiFivePwmState pwm;
     DeviceState *adc;
     DeviceState *timer;
+    DeviceState *eth;
 
     I2CSlave *at24c_dev;
     I2CSlave *wm8750_dev;
@@ -100,6 +102,7 @@ enum {
     QUARD_STAR_PWM,
     QUARD_STAR_ADC,
     QUARD_STAR_TIMER,
+    QUARD_STAR_ETH,
     QUARD_STAR_SYSCTL,
     QUARD_STAR_VIRTIO0,
     QUARD_STAR_VIRTIO1,
@@ -126,6 +129,7 @@ enum {
     QUARD_STAR_VIRTIO6_IRQ = 7,
     QUARD_STAR_VIRTIO7_IRQ = 8,
 
+    QUARD_STAR_ETH_IRQ = 9,
     QUARD_STAR_UART0_IRQ = 10,
     QUARD_STAR_UART1_IRQ = 11,
     QUARD_STAR_UART2_IRQ = 12,
