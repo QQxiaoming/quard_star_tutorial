@@ -146,6 +146,7 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin",canbus=canbus0 \
 -m 1G \
 -smp 8 \
+-global quard-star-syscon.boot-cfg="$DBOOTCFG" \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/pflash.img,id=mtd0 \
 -drive if=mtd,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/norflash.img,id=mtd1 \
 -drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2 \
@@ -154,20 +155,19 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -drive if=none,format=raw,file=$SHELL_FOLDER/output/rootfs/rootfs.img,id=disk0 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -object can-bus,id=canbus0 $HOST_VCAN_PARAM \
--fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
 $NETDEV0_PARAM $NETDEV1_PARAM \
 -audiodev sdl,id=audio0 \
--net nic,netdev=net1 \
--global virtio-mmio.force-legacy=false \
--device virtio-blk-device,drive=disk0,id=hd0 \
--device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0 \
--device virtio-mouse-device,id=input0 \
--device virtio-keyboard-device,id=input1 \
--device virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0 \
--device virtio-net-device,netdev=net0 \
+-net nic,netdev=net0 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
 -device wm8750,audiodev=audio0 \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
--global quard-star-syscon.boot-cfg="$DBOOTCFG" \
+-fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
+-global virtio-mmio.force-legacy=false \
+-device virtio-blk-device,drive=disk0,id=hd0 \
+-device virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0 \
+-device virtio-net-device,netdev=net1 \
+-device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0 \
+-device virtio-mouse-device,id=input0 \
+-device virtio-keyboard-device,id=input1 \
 $GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM $TARGET_GDB_PARAM
