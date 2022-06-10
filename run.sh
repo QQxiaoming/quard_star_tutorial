@@ -17,8 +17,13 @@ PLUGINS_PARAM=""
 #PLUGINS_PATH=$SHELL_FOLDER/qemu-7.0.0/build/tests/plugin/libsyscall.so
 #PLUGINS_PARAM="-plugin $PLUGINS_PATH -d plugin"
 
-NETDEV_PARAM=user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel_next/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0
-#NETDEV_PARAM=tap,ifname=tap0,script=no,downscript=no,id=net0
+NETDEV0_PARAM="-netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu_net0,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel_next/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0"
+#NETDEV0_PARAM="-netdev tap,ifname=tap0,script=no,downscript=no,id=net0"
+#NETDEV0_PARAM=""
+
+NETDEV1_PARAM="-netdev user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1"
+#NETDEV1_PARAM="-netdev tap,ifname=tap0,script=no,downscript=no,id=net1"
+#NETDEV1_PARAM=""
 
 HOST_VCAN_PARAM=""
 #HOST_VCAN_PARAM="-object can-host-socketcan,id=socketcan0,if=vcan0,canbus=canbus0"
@@ -150,8 +155,9 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -object can-bus,id=canbus0 $HOST_VCAN_PARAM \
 -fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
--netdev $NETDEV_PARAM \
+$NETDEV0_PARAM $NETDEV1_PARAM \
 -audiodev sdl,id=audio0 \
+-net nic,netdev=net1 \
 -global virtio-mmio.force-legacy=false \
 -device virtio-blk-device,drive=disk0,id=hd0 \
 -device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0 \

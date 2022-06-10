@@ -235,6 +235,13 @@
 		#clock-cells = <0>;
 	};
 
+	eth_clk:eth_clk {
+		compatible="fixed-clock";
+		clock-frequency=<48000000>;
+		clock-output-names="eth_clk";
+		#clock-cells = <0>;
+	};
+
 	soc {
 		#address-cells = <0x2>;
 		#size-cells = <0x2>;
@@ -443,6 +450,20 @@
 			interrupt-parent = <&plic>;
 			interrupts = <25>, <26>, <27>;
 			clocks = <&timer_clk>;
+			status = "disabled";
+		};
+
+		eth: ethernet@10010000 {
+			compatible = "sifive,fu540-c000-gem";
+			reg = <0x0 0x10010000 0x0 0x2000>,
+			      <0x0 0x10012000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <9>;
+			local-mac-address = [00 00 00 00 00 00];
+			clock-names = "pclk", "hclk";
+			clocks = <&eth_clk>, <&eth_clk>;
+			#address-cells = <1>;
+			#size-cells = <0>;
 			status = "disabled";
 		};
 

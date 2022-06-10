@@ -46,11 +46,11 @@ jobs:
           sudo apt update
           sudo apt install -y wget device-tree-compiler ninja-build git build-essential          \
                 pkg-config zlib1g-dev libsdl2-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev      \
-                libpixman-1-dev libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex  \
-                bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev        \
+                libpixman-1-dev libfdt-dev autoconf automake libtool librbd-dev libmpc-dev       \
+                libaio-dev make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev   \
                 libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz    \
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
-                libattr1-dev device-tree-compiler bison gperf intltool mtd-utils
+                libattr1-dev device-tree-compiler flex bison gperf intltool mtd-utils
 
       - name: Cache toolchain
         uses: actions/cache@v2

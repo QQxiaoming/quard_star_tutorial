@@ -412,3 +412,21 @@
 
 - 
     2022.06.05(下午):添加了onenand ip用于学习nand falsh相关内容，以及ubifs，我们使用这个模型qemu-7.0.0/hw/block/onenand.c，添加到我们的quard star soc中，另外注意该ip的寄存器空间size为0x20000。这里要注意下，模拟的flash大小为256M，但是运行时使用-drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2这个提供的文件映像应为264M，因为驱动内会使用最后8M的备用区空间来存储坏快表等信息。
+
+- 
+    2022.06.09(晚上):最近添加了can/pwm/timer/adc这些模型到quard star soc中，均验证正确，然后今天添加了cadence的gem网卡模型，编写好设备树dts文件后，运行却发现uboot无法启动了，而且完全没有打印输出，经过一番查找定位，终于找到了问题，u-boot-2021.07/drivers/serial/serial-uclass.c:79:serial_find_console_or_panic函数未能正常完成而产生了panic_str断言，继续追逐最终确认在以下代码处返回了-ENOMEM（-12）错误最终导致问题。
+    
+    ```c
+    -> u-boot-2021.07/drivers/serial/serial-uclass.c:69:
+        lists_bind_fdt(gd->dm_root, offset_to_ofnode(node), devp, false)
+    -> u-boot-2021.07/drivers/core/lists.c:245:
+        ret = device_bind_with_driver_data(parent, entry, name, id->data, node, &dev);
+    -> u-boot-2021.07/drivers/core/device.c:62:
+        dev = calloc(1, sizeof(struct udevice));
+    ```
+
+    其实根本原因是由于dtb文件的大小增加导致uboot在代码重定向前的堆内存开销增大导致的，因此修改办法为，在uboot中的qemu-quard-star_defconfig文件增加以下配置覆盖默认的堆内存大小。
+    
+    ```
+    CONFIG_SYS_MALLOC_F_LEN=0x10000
+    ```
