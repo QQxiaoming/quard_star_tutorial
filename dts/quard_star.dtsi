@@ -262,7 +262,7 @@
 								  <&core6_ic 0xb &core6_ic 0x9>,
 								  <&core7_ic 0xb &core7_ic 0x9>;
 			interrupt-controller;
-			riscv,ndev = <53>;
+			riscv,ndev = <64>;
 		};
 
 		clint:clint@2000000 {
@@ -378,8 +378,8 @@
 		gpio: gpio@10009000 {
 			compatible = "sifive,gpio0";
 			interrupt-parent = <&plic>;
-			interrupts = <32>, <33>, <34>, <35>, <36>, <37>, <38>, <39>,
-						 <40>, <41>, <42>, <43>, <44>, <45>, <46>, <47>;
+			interrupts = <36>, <37>, <38>, <39>, <40>, <41>, <42>, <43>,
+						 <44>, <45>, <46>, <47>, <48>, <49>, <50>, <51>;
 			reg = <0x0 0x10009000 0x0 0x1000>;
 			gpio-controller;
 			#gpio-cells = <2>;
@@ -429,7 +429,7 @@
 			compatible = "sifive,pwm0";
 			reg = <0x0 0x1000d000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
-			interrupts = <28>, <29>, <30>, <31>;
+			interrupts = <32>, <33>, <34>, <35>;
 			clocks = <&pwm_clk>;
 			#pwm-cells = <3>;
 			status = "disabled";
@@ -448,7 +448,7 @@
 			compatible = "cdns,ttc";
 			reg = <0x0 0x1000f000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
-			interrupts = <25>, <26>, <27>;
+			interrupts = <29>, <30>, <31>;
 			clocks = <&timer_clk>;
 			status = "disabled";
 		};
@@ -458,7 +458,7 @@
 			reg = <0x0 0x10010000 0x0 0x2000>,
 			      <0x0 0x10012000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
-			interrupts = <9>;
+			interrupts = <25>;
 			local-mac-address = [52 54 00 12 34 55];
 			clock-names = "pclk", "hclk";
 			clocks = <&eth_clk>, <&eth_clk>;
@@ -494,7 +494,7 @@
 			compatible = "sifive,fu540-c000-pdma";
 			reg = <0x0 0x12000000 0x0 0x8000>;
 			interrupt-parent = <&plic>;
-			interrupts = <48 49 50 51 52 53 54 55>;
+			interrupts = <52 53 54 55 56 57 58 59>;
 			#dma-cells = <1>;
 			status = "disabled";
 		};
