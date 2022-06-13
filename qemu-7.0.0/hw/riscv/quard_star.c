@@ -69,6 +69,7 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_ADC]         = { 0x1000e000,    0x1000 },
     [QUARD_STAR_TIMER]       = { 0x1000f000,    0x1000 },
     [QUARD_STAR_ETH]         = { 0x10010000,    0x3000 },
+    [QUARD_STAR_LCDC]        = { 0x10013000,    0x1000 },
     
     [QUARD_STAR_VIRTIO0]     = { 0x10100000,    0x1000 },
     [QUARD_STAR_VIRTIO1]     = { 0x10101000,    0x1000 },
@@ -551,6 +552,18 @@ static void quard_star_eth_create(MachineState *machine)
         quard_star_memmap[QUARD_STAR_ETH].base+0x2000, 0x1000);
 }
 
+static void quard_star_lcdc_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    s->lcdc = qdev_new("pl111");
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(s->lcdc), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(s->lcdc), 0, quard_star_memmap[QUARD_STAR_LCDC].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(s->lcdc), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_LCDC_IRQ));
+}
+
+
 static void quard_star_virtio_mmio_create(MachineState *machine)
 {    
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
@@ -615,6 +628,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_adc_create(machine);
     quard_star_timer_create(machine);
     quard_star_eth_create(machine);
+    quard_star_lcdc_create(machine);
 
     quard_star_virtio_mmio_create(machine);
     quard_star_fw_cfg_create(machine);

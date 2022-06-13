@@ -242,6 +242,13 @@
 		#clock-cells = <0>;
 	};
 
+	lcdc_clk:lcdc_clk {
+		compatible="fixed-clock";
+		clock-frequency=<96000000>;
+		clock-output-names="lcdc_clk";
+		#clock-cells = <0>;
+	};
+
 	soc {
 		#address-cells = <0x2>;
 		#size-cells = <0x2>;
@@ -464,6 +471,18 @@
 			clocks = <&eth_clk>, <&eth_clk>;
 			#address-cells = <1>;
 			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		lcdc: lcdc@10013000 {
+			compatible = "arm,pl111", "arm,primecell";
+			reg = <0x0 0x10013000 0x0 0x1000>;
+			interrupt-names = "combined";
+			interrupt-parent = <&plic>;
+			interrupts = <26>;
+			clocks = <&lcdc_clk>, <&pclk>;
+			clock-names = "clcdclk", "apb_pclk";
+			max-memory-bandwidth = <94371840>; /* Bps, 1024x768@60 16bpp */
 			status = "disabled";
 		};
 

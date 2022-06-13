@@ -73,6 +73,7 @@ struct QuardStarState {
     DeviceState *adc;
     DeviceState *timer;
     DeviceState *eth;
+    DeviceState *lcdc;
 
     I2CSlave *at24c_dev;
     I2CSlave *wm8750_dev;
@@ -103,6 +104,7 @@ enum {
     QUARD_STAR_ADC,
     QUARD_STAR_TIMER,
     QUARD_STAR_ETH,
+    QUARD_STAR_LCDC,
     QUARD_STAR_SYSCTL,
     QUARD_STAR_VIRTIO0,
     QUARD_STAR_VIRTIO1,
@@ -145,6 +147,7 @@ enum {
     QUARD_STAR_CAN_IRQ     = 23,
     QUARD_STAR_ADC_IRQ     = 24,
     QUARD_STAR_ETH_IRQ     = 25,
+    QUARD_STAR_LCDC_IRQ    = 26,
 
     QUARD_STAR_TIMER_IRQ   = 29, /* 29-31 */
     QUARD_STAR_PWM_IRQ     = 32, /* 32-35 */

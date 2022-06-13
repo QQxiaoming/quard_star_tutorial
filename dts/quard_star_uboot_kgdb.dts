@@ -22,6 +22,29 @@
 		dais = <&i2s_port>;
 		status = "okay";
 	};
+
+	panel {
+		compatible = "panel-dpi";
+		label = "lcd";
+
+		panel-timing {
+			clock-frequency = <25175000>;
+			hactive = <640>;
+			hback-porch = <40>;
+			hfront-porch = <24>;
+			hsync-len = <96>;
+			vactive = <480>;
+			vback-porch = <32>;
+			vfront-porch = <11>;
+			vsync-len = <2>;
+		};
+
+		port {
+			lcdc_panel: endpoint {
+				remote-endpoint = <&lcdc_pads>;
+			};
+		};
+	};
 };
 
 &cpu7 {
@@ -155,6 +178,16 @@
 
 &eth {
 	status = "okay";
+};
+
+&lcdc {
+	status = "okay";
+
+	port {
+		lcdc_pads: endpoint {
+			remote-endpoint = <&lcdc_panel>;
+		};
+	};
 };
 
 &dma {
