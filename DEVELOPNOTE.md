@@ -430,3 +430,34 @@
     ```
     CONFIG_SYS_MALLOC_F_LEN=0x10000
     ```
+
+- 
+    2022.06.12(上午): 添加PL111后在5.10版本的kernel配置驱动就可以正确启用设备，但是在linux-next上却无法正确完成设备枚举，而且居然没有任何错误打印。因此跟踪了下问题，首先定位到drivers/gpu/drm/pl111/pl111_drv.c:72:pl111_modeset_init返回了-EPROBE_DEFER错误，由于无法找到panel，因此转而跟踪drivers/gpu/drm/panel/panel-simple.c发现启动过程中完全没有调用panel_simple_platform_probe函数，这是什么原因呢？为此只好去调查内核的驱动框架的代码，定位这个文件——drivers/base/dd.c，设备通过设备树解析后开始进一步匹配attach，大致路径为device_attach-->__device_attach_driver-->driver_match_device/driver_probe_device，此时发现match_device正常，probe_device失败，进一步调查__driver_probe_device-->really_probe-->device_links_check_suppliers，此时发现位于drivers/base/core.c:890:device_links_check_suppliers函数1038行返回了-EPROBE_DEFER错误，因此panel-simple就完全没有去调用probe函数，这里打印出dev_name(link->supplier)信息发现，原来是添加的设备树新添加的power-supply和backlight本身没有probe，因此panel就无法probe，原来只是自己忘记配置这两个驱动在config文件里了🤣，我搁着绕了一大圈，就这么简单个小错误，在此记录下以示警戒自己，不过这次阅读代码也有好处，就是把内核的驱动框架和设备树解析更加熟悉了。
+
+    ```dts
+    panel {
+		compatible = "panel-dpi";
+		label = "lcd";
+		power-supply = <&reg_3p3v>;
+		backlight = <&backlight>;
+		status = "okay";
+
+		panel-timing {
+			clock-frequency = <25175000>;
+			hactive = <640>;
+			hback-porch = <40>;
+			hfront-porch = <24>;
+			hsync-len = <96>;
+			vactive = <480>;
+			vback-porch = <32>;
+			vfront-porch = <11>;
+			vsync-len = <2>;
+		};
+
+		port {
+			lcdc_panel: endpoint {
+				remote-endpoint = <&lcdc_pads>;
+			};
+		};
+	};
+    ``` 

@@ -23,9 +23,28 @@
 		status = "okay";
 	};
 
+	reg_3p3v: regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "3P3V";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+		status = "okay";
+	};
+
+	backlight: backlight {
+		compatible = "gpio-backlight";
+		gpios = <&gpio 0 0>;
+		default-on;
+		status = "okay";
+	};
+
 	panel {
 		compatible = "panel-dpi";
 		label = "lcd";
+		power-supply = <&reg_3p3v>;
+		backlight = <&backlight>;
+		status = "okay";
 
 		panel-timing {
 			clock-frequency = <25175000>;
@@ -77,6 +96,7 @@
 	eeprom: eeprom@50 {
 		compatible = "atmel,24c64";
 		reg = <0x50>;
+		vcc-supply = <&reg_3p3v>;
 	};
 };
 
@@ -189,7 +209,6 @@
 		};
 	};
 };
-
 
 &dma {
 	status = "okay";
