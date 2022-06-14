@@ -23,9 +23,20 @@
 		status = "okay";
 	};
 
+	reg_3p3v: regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "3P3V";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+		status = "okay";
+	};
+
 	panel {
 		compatible = "panel-dpi";
 		label = "lcd";
+		power-supply = <&reg_3p3v>;
+		status = "okay";
 
 		panel-timing {
 			clock-frequency = <25175000>;
