@@ -675,6 +675,12 @@ config VIDEO_SEPS525
 	  Enable support for the Syncoam PM-OLED display driver (RGB 160x128).
 	  Currently driver is supporting only SPI interface.
 
+config VIDEO_PL111
+	bool "Enable video support for PL111"
+	depends on DM_VIDEO
+	help
+	  Enable support for the Syncoam PL111 display driver.
+
 source "drivers/video/nexell/Kconfig"
 
 config VIDEO
