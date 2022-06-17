@@ -228,6 +228,13 @@
 		#clock-cells = <0>;
 	};
 
+	wdt_clk:wdt_clk {
+		compatible="fixed-clock";
+		clock-frequency=<24000000>;
+		clock-output-names="wdt_clk";
+		#clock-cells = <0>;
+	};
+
 	can_clk:can_clk {
 		compatible="fixed-clock";
 		clock-frequency=<24000000>;
@@ -430,6 +437,15 @@
 			interrupts = <23>;
 			tx-fifo-depth = <0x40>;
 			rx-fifo-depth = <0x40>;
+		};
+
+		wdt: watchdog@20bc000 {
+			compatible = "fsl,imx21-wdt";
+			reg = <0x0 0x10014000 0x0 0x1000>;
+			interrupt-parent = <&plic>;
+			interrupts = <27>;
+			clocks = <&wdt_clk>;
+			status = "disabled";
 		};
 
 		pwm: pwm@1000d000 {

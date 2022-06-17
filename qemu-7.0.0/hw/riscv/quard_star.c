@@ -70,6 +70,7 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_TIMER]       = { 0x1000f000,    0x1000 },
     [QUARD_STAR_ETH]         = { 0x10010000,    0x3000 },
     [QUARD_STAR_LCDC]        = { 0x10013000,    0x1000 },
+    [QUARD_STAR_WDT]         = { 0x10014000,    0x1000 },
     
     [QUARD_STAR_VIRTIO0]     = { 0x10100000,    0x1000 },
     [QUARD_STAR_VIRTIO1]     = { 0x10101000,    0x1000 },
@@ -494,6 +495,19 @@ static void quard_star_can_create(MachineState *machine)
                         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_CAN_IRQ));
 }
 
+static void quard_star_wdt_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    object_initialize_child(OBJECT(s), "wdt", &s->wdt, TYPE_IMX2_WDT);
+
+    sysbus_realize_and_unref(SYS_BUS_DEVICE(&s->wdt), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->wdt), 0, quard_star_memmap[QUARD_STAR_WDT].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->wdt), 0,
+                        qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_WDT_IRQ));
+    
+}
+
 static void quard_star_pwm_create(MachineState *machine)
 {
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
@@ -624,6 +638,7 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_i2s_create(machine);
     quard_star_nand_create(machine);
     quard_star_can_create(machine);
+    quard_star_wdt_create(machine);
     quard_star_pwm_create(machine);
     quard_star_adc_create(machine);
     quard_star_timer_create(machine);

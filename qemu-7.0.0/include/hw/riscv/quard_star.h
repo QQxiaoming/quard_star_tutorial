@@ -35,6 +35,7 @@
 #include "hw/sd/cadence_sdhci.h"
 #include "net/can_emu.h"
 #include "hw/net/xlnx-zynqmp-can.h"
+#include "hw/watchdog/wdt_imx2.h"
 #include "hw/timer/sifive_pwm.h"
 #include "hw/adc/zynq-xadc.h"
 #include "hw/net/cadence_gem.h"
@@ -69,6 +70,7 @@ struct QuardStarState {
     DeviceState *nand;
     XlnxZynqMPCANState can;
     CanBusState *canbus;
+    IMX2WdtState   wdt;
     SiFivePwmState pwm;
     DeviceState *adc;
     DeviceState *timer;
@@ -100,6 +102,7 @@ enum {
     QUARD_STAR_I2S,
     QUARD_STAR_NAND,
     QUARD_STAR_CAN,
+    QUARD_STAR_WDT,
     QUARD_STAR_PWM,
     QUARD_STAR_ADC,
     QUARD_STAR_TIMER,
@@ -148,7 +151,8 @@ enum {
     QUARD_STAR_ADC_IRQ     = 24,
     QUARD_STAR_ETH_IRQ     = 25,
     QUARD_STAR_LCDC_IRQ    = 26,
-
+    QUARD_STAR_WDT_IRQ     = 27,
+    
     QUARD_STAR_TIMER_IRQ   = 29, /* 29-31 */
     QUARD_STAR_PWM_IRQ     = 32, /* 32-35 */
     QUARD_STAR_GPIO_IRQ    = 36, /* 36-51 */
