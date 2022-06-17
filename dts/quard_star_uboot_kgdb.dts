@@ -7,7 +7,7 @@
 	model = "riscv-quard-star,qemu";
 
 	chosen {
-		bootargs = "root=/dev/vda2 rw console=ttyS0 earlycon=sbi nokaslr kgdboc=ttyS1,115200 kgdbwait";
+		bootargs = "root=/dev/vda2 rw console=ttyS0 earlycon=sbi fbcon=map:1023 fbcon=logo-pos:center nokaslr kgdboc=ttyS1,115200 kgdbwait";
 		stdout-path = "/soc/uart0@10000000";
 	};
 
@@ -202,10 +202,27 @@
 
 &lcdc {
 	status = "okay";
+	u-boot,dm-pre-reloc;
 
 	port {
 		lcdc_pads: endpoint {
 			remote-endpoint = <&lcdc_panel>;
+		};
+	};
+
+	display-timings { /* only for u-boot */
+		u-boot,dm-pre-reloc;
+		640x480 {
+			clock-frequency = <25175000>;
+			hactive = <640>;
+			hback-porch = <40>;
+			hfront-porch = <24>;
+			hsync-len = <96>;
+			vactive = <480>;
+			vback-porch = <32>;
+			vfront-porch = <11>;
+			vsync-len = <2>;
+			u-boot,dm-pre-reloc;
 		};
 	};
 };
