@@ -1,0 +1,25 @@
+{# Import the theme's layout. #}
+{% extends '!layout.html' %}
+
+{%- block extrahead %}
+{# Add custom things to the head HTML tag #}
+{% block font %}
+<link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+<link href="https://fonts.loli.net/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+<style>
+  body,
+  input {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+  }
+
+  code,
+  kbd,
+  pre {
+    font-family: "Roboto Mono", "Courier New", Courier, monospace
+  }
+</style>
+{% endblock %}
+{# Call the parent block #}
+{{ super() }}
+{%- endblock %}
