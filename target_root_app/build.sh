@@ -587,8 +587,8 @@ build_kvmtool()
 {
     # 编译kvmtool
     cd $SHELL_FOLDER/kvmtool
-	make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- LIBFDT_PATH=$SHELL_FOLDER/output lkvm-static -j$PROCESSORS
-	cp lkvm-static $SHELL_FOLDER/output/bin/lkvm-static
+	make ARCH=riscv CROSS_COMPILE=$CROSS_PREFIX- LIBFDT_PATH=$SHELL_FOLDER/output lkvm -j$PROCESSORS
+	cp lkvm $SHELL_FOLDER/output/bin/lkvm
 }
 
 build_gdb()
