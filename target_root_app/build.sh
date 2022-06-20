@@ -730,6 +730,58 @@ build_can_utils()
     rm -rf $SHELL_FOLDER/can-utils-2021.08.0
 }
 
+build_confuse()
+{
+    # 编译confuse
+    echo "----------------------------- 编译confuse -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf confuse-3.3.tar.gz
+    cd $SHELL_FOLDER/confuse-3.3
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/confuse-3.3
+}
+
+build_libite()
+{
+    # 编译libite
+    echo "----------------------------- 编译libite -----------------------------"    
+    cd $SHELL_FOLDER
+    tar -xzvf libite-2.5.2.tar.gz
+    cd $SHELL_FOLDER/libite-2.5.2
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --without-symlink CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libite-2.5.2
+}
+
+build_libuev()
+{
+    # 编译libuev
+    echo "----------------------------- 编译libuev -----------------------------"    
+    cd $SHELL_FOLDER
+    tar -xzvf libuev-2.4.0.tar.gz
+    cd $SHELL_FOLDER/libuev-2.4.0
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libuev-2.4.0
+}
+
+build_watchdogd()
+{
+    # 编译watchdogd
+    echo "---------------------------- 编译watchdogd ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf watchdogd-3.5.tar.gz
+    cd $SHELL_FOLDER/watchdogd-3.5
+    ./configure --host=riscv64-linux-gnu --prefix=/ --disable-static PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/watchdogd-3.5
+}
+
 case "$1" in
 make)
     build_make
@@ -854,6 +906,18 @@ iproute2)
 can-utils)
     build_can_utils
     ;;
+libuev)
+    build_libuev
+    ;;
+libite)
+    build_libite
+    ;;
+confuse)
+    build_confuse
+    ;;
+watchdogd)
+    build_watchdogd
+    ;;
 all)
     build_make
     build_ncurses
@@ -894,6 +958,10 @@ all)
     build_util_linux
     build_iproute2
     build_can_utils
+    build_libuev
+    build_libite
+    build_confuse
+    build_watchdogd
 	build_qt
     ;;
 *)
