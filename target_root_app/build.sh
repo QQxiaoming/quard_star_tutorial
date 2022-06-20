@@ -186,6 +186,7 @@ build_openssl()
 	./Configure linux-generic64 no-asm --prefix=$SHELL_FOLDER/output --cross-compile-prefix=$CROSS_PREFIX-
 	make -j$PROCESSORS
     make install_sw
+    rm $SHELL_FOLDER/output/lib/libssl.a
     rm -rf $SHELL_FOLDER/openssl-1.1.1j
 }
 
@@ -200,6 +201,7 @@ build_zlib()
     ./configure --prefix=$SHELL_FOLDER/output
 	make -j$PROCESSORS
     make install
+    rm $SHELL_FOLDER/output/lib/libz.a
     unset CC
     rm -rf $SHELL_FOLDER/zlib-1.2.11
 }
@@ -523,7 +525,7 @@ build_libuuid()
     tar -xzvf libuuid-1.0.3.tar.gz
     cd $SHELL_FOLDER/libuuid-1.0.3
     patch -p1 < ../libuuid-1.0.3.patch
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/libuuid-1.0.3
@@ -536,7 +538,7 @@ build_lzo()
     cd $SHELL_FOLDER
     tar -xzvf lzo-2.10.tar.gz
     cd $SHELL_FOLDER/lzo-2.10
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --enable-shared --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/lzo-2.10
@@ -549,7 +551,7 @@ build_attr()
     cd $SHELL_FOLDER
     tar -xzvf attr-2.5.1.tar.gz
     cd $SHELL_FOLDER/attr-2.5.1
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/attr-2.5.1
@@ -577,6 +579,7 @@ build_dtc()
     cd $SHELL_FOLDER/dtc-1.6.1
 	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_PYTHON=1 libfdt -j$PROCESSORS
     make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_PYTHON=1 install-lib install-includes
+    rm  $SHELL_FOLDER/output/lib/libfdt.a
     rm -rf $SHELL_FOLDER/dtc-1.6.1
 }
 
@@ -642,7 +645,7 @@ build_libexpat()
     cd $SHELL_FOLDER
     tar -xzvf expat-2.4.3.tar.gz
     cd $SHELL_FOLDER/expat-2.4.3
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output  CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/expat-2.4.3
@@ -656,7 +659,7 @@ build_libdaemon()
     cd $SHELL_FOLDER/libdaemon-0.14
     autoreconf -f -i 
     echo "ac_cv_func_setpgrp_void=yes" > config.cache
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --config-cache --disable-lynx CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --disable-static --config-cache --disable-lynx CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/libdaemon-0.14
@@ -669,7 +672,7 @@ build_avahi()
     cd $SHELL_FOLDER
     tar -xzvf avahi-0.7.tar.gz
     cd $SHELL_FOLDER/avahi-0.7
-    ./configure --host=riscv64-linux-gnu --prefix=/usr/ --with-xml=expat --enable-libdaemon --with-distro=none --disable-glib --disable-gobject --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 --disable-dbus --disable-gdbm --disable-python --disable-pygtk --disable-python-dbus --disable-mono --disable-monodoc CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc CPPFLAGS="-I$SHELL_FOLDER/output/include" LDFLAGS="-L$SHELL_FOLDER/output/lib" LIBDAEMON_CFLAGS="-I$SHELL_FOLDER/output/include" LIBDAEMON_LIBS="-L$SHELL_FOLDER/output/lib -ldaemon"
+    ./configure --host=riscv64-linux-gnu --prefix=/usr/ --disable-static --with-xml=expat --enable-libdaemon --with-distro=none --disable-glib --disable-gobject --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 --disable-dbus --disable-gdbm --disable-python --disable-pygtk --disable-python-dbus --disable-mono --disable-monodoc CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc CPPFLAGS="-I$SHELL_FOLDER/output/include" LDFLAGS="-L$SHELL_FOLDER/output/lib" LIBDAEMON_CFLAGS="-I$SHELL_FOLDER/output/include" LIBDAEMON_LIBS="-L$SHELL_FOLDER/output/lib -ldaemon"
     make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/avahi-0.7
@@ -683,9 +686,10 @@ build_iperf3()
     tar -xzvf iperf-3.10.1.tar.gz
     cd $SHELL_FOLDER/iperf-3.10.1
     patch -p1 < ../iperf-3.10.1.patch
-    ./configure --enable-static-bin --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --without-openssl CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --enable-static-bin --without-openssl CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc
     make -j$PROCESSORS
     make install
+    rm  $SHELL_FOLDER/output/lib/libiperf.a
     rm -rf $SHELL_FOLDER/iperf-3.10.1
 }
 
