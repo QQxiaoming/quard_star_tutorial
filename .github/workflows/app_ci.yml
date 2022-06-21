@@ -248,12 +248,6 @@ jobs:
           cd target_root_app
           ./build.sh attr
 
-      - name: Build mtd_utils
-        shell: bash -l {0}
-        run: |
-          cd target_root_app
-          ./build.sh mtd_utils
-
       - name: Build dtc
         shell: bash -l {0}
         run: |
@@ -344,6 +338,12 @@ jobs:
           cd target_root_app
           ./build.sh watchdogd
 
+      - name: Build mtd_utils
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh mtd_utils
+
       - name: Build qt
         shell: bash -l {0}
         run: |
@@ -371,7 +371,13 @@ jobs:
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: release
+          name: target_sysroot
+          path: |
+            target_sysroot.tar.gz
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: host_tools
           path: |
             host_tools.tar.gz
-            target_sysroot.tar.gz
