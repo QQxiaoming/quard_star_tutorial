@@ -26,7 +26,7 @@ build_ncurses()
     cd $SHELL_FOLDER
     tar -xzvf ncurses-6.2.tar.gz
     cd $SHELL_FOLDER/ncurses-6.2
-    ./configure --host=riscv64-linux-gnu --with-shared --without-normal --without-debug CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=/ --with-shared --without-normal --without-debug CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install.libs DESTDIR=$SHELL_FOLDER/output
     #make install.progs
@@ -41,7 +41,7 @@ build_bash()
     cd $SHELL_FOLDER
     tar -xzvf bash-5.1.8.tar.gz
     cd $SHELL_FOLDER/bash-5.1.8
-    ./configure --host=riscv64 --prefix=$SHELL_FOLDER/output CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64 --prefix=$SHELL_FOLDER/output CCFLAGS=-I$SHELL_FOLDER/output/include LDFLAGS=-L$SHELL_FOLDER/output/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install
     rm -rf $SHELL_FOLDER/bash-5.1.8
@@ -65,14 +65,14 @@ build_screenfetch()
     # 编译screenFetch
     echo "--------------------------- 编译screenFetch ---------------------------"
     cd $SHELL_FOLDER/screenFetch-3.9.1
-    if [ ! -d "$SHELL_FOLDER/output/usr" ]; then  
-    mkdir $SHELL_FOLDER/output/usr
-    mkdir $SHELL_FOLDER/output/usr/bin
+    if [ ! -d "$SHELL_FOLDER/output" ]; then  
+    mkdir $SHELL_FOLDER/output
+    mkdir $SHELL_FOLDER/output/bin
     fi  
-    if [ ! -d "$SHELL_FOLDER/output/usr/bin" ]; then  
-    mkdir $SHELL_FOLDER/output/usr/bin
+    if [ ! -d "$SHELL_FOLDER/output/bin" ]; then  
+    mkdir $SHELL_FOLDER/output/bin
     fi 
-    cp screenfetch-dev $SHELL_FOLDER/output/usr/bin/screenfetch
+    cp screenfetch-dev $SHELL_FOLDER/output/bin/screenfetch
 }
 
 build_tree()
@@ -83,7 +83,7 @@ build_tree()
     tar -xzvf tree-1.8.0.tgz
     cd $SHELL_FOLDER/tree-1.8.0
     make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc -j$PROCESSORS
-    make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc install
+    make prefix=$SHELL_FOLDER/output MANDIR=$SHELL_FOLDER/output/share/man/man1 CC=$CROSS_PREFIX-gcc install
     rm -rf $SHELL_FOLDER/tree-1.8.0
 }
 
@@ -107,7 +107,7 @@ build_screen()
     cd $SHELL_FOLDER
     tar -xzvf screen-4.8.0.tar.gz
     cd $SHELL_FOLDER/screen-4.8.0
-    ./configure --host=riscv64-linux-gnu CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu CCFLAGS=-I$SHELL_FOLDER/output/include LDFLAGS=-L$SHELL_FOLDER/output/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     #make install
     rm -rf $SHELL_FOLDER/screen-4.8.0
@@ -484,7 +484,7 @@ build_alsa_utils()
     cd $SHELL_FOLDER
     tar -jxvf alsa-utils-1.2.5.1.tar.bz2
     cd $SHELL_FOLDER/alsa-utils-1.2.5.1
-    ./configure --host=riscv64-linux-gnu --prefix=/ --with-alsa-inc-prefix=$SHELL_FOLDER/output/include --with-alsa-prefix=$SHELL_FOLDER/output/lib --disable-alsamixer --disable-xmlto --disable-nls --disable-bat --with-udev-rules-dir=$SHELL_FOLDER/output/lib/udev --with-asound-state-dir=$SHELL_FOLDER/output/var/lib/alsa --disable-alsaconf CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=/ --with-alsa-inc-prefix=$SHELL_FOLDER/output/include --with-alsa-prefix=$SHELL_FOLDER/output/lib --disable-alsamixer --disable-xmlto --disable-nls --disable-bat --with-udev-rules-dir=/lib/udev --with-asound-state-dir=/var/lib/alsa --disable-alsaconf CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/alsa-utils-1.2.5.1
@@ -619,6 +619,7 @@ build_trace_cmd()
     cd $SHELL_FOLDER/trace-cmd-v2.9.5
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=/ libdir_relative=lib -j$PROCESSORS
 	make CROSS_COMPILE=${CROSS_PREFIX}- CC=${CROSS_PREFIX}-gcc AR=${CROSS_PREFIX}-ar prefix=$SHELL_FOLDER/output etcdir=$SHELL_FOLDER/output/etc libdir_relative=lib install
+    rm -rf $SHELL_FOLDER/output/lib/libtraceevent.a
     rm -rf $SHELL_FOLDER/trace-cmd-v2.9.5
 }
 
@@ -631,7 +632,7 @@ build_lrzsz()
     cd $SHELL_FOLDER/lrzsz-0.12.20
     export CXX=$CROSS_PREFIX-g++
     export CC=$CROSS_PREFIX-gcc 
-    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output 
+    ./configure --host=riscv64-linux-gnu --prefix=$SHELL_FOLDER/output --mandir=$SHELL_FOLDER/output/share/man
     make -j$PROCESSORS
     make install
     unset CXX
@@ -672,7 +673,7 @@ build_avahi()
     cd $SHELL_FOLDER
     tar -xzvf avahi-0.7.tar.gz
     cd $SHELL_FOLDER/avahi-0.7
-    ./configure --host=riscv64-linux-gnu --prefix=/usr/ --disable-static --with-xml=expat --enable-libdaemon --with-distro=none --disable-glib --disable-gobject --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 --disable-dbus --disable-gdbm --disable-python --disable-pygtk --disable-python-dbus --disable-mono --disable-monodoc CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc CPPFLAGS="-I$SHELL_FOLDER/output/include" LDFLAGS="-L$SHELL_FOLDER/output/lib" LIBDAEMON_CFLAGS="-I$SHELL_FOLDER/output/include" LIBDAEMON_LIBS="-L$SHELL_FOLDER/output/lib -ldaemon"
+    ./configure --host=riscv64-linux-gnu --prefix=/ --disable-static --with-xml=expat --enable-libdaemon --with-distro=none --disable-glib --disable-gobject --disable-qt3 --disable-qt4 --disable-gtk --disable-gtk3 --disable-dbus --disable-gdbm --disable-python --disable-pygtk --disable-python-dbus --disable-mono --disable-monodoc CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc CPPFLAGS="-I$SHELL_FOLDER/output/include" LDFLAGS="-L$SHELL_FOLDER/output/lib" LIBDAEMON_CFLAGS="-I$SHELL_FOLDER/output/include" LIBDAEMON_LIBS="-L$SHELL_FOLDER/output/lib -ldaemon"
     make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/avahi-0.7
@@ -700,7 +701,7 @@ build_util_linux()
     cd $SHELL_FOLDER
     tar -xzvf util-linux-2.38.tar.gz
     cd $SHELL_FOLDER/util-linux-2.38
-    ./configure --host=riscv64-linux-gnu --prefix=/ --without-tinfo --without-python --disable-makeinstall-chown CCFLAGS=-I$SHELL_FOLDER/output/usr/include LDFLAGS=-L$SHELL_FOLDER/output/usr/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
+    ./configure --host=riscv64-linux-gnu --prefix=/ --with-bashcompletiondir=/share/bash-completion/completions --without-libz --without-tinfo --without-python --disable-makeinstall-chown CCFLAGS=-I$SHELL_FOLDER/output/include LDFLAGS=-L$SHELL_FOLDER/output/lib CXX=$CROSS_PREFIX-g++ CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
     make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/util-linux-2.38
