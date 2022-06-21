@@ -1,0 +1,35 @@
+--- ./configure	2022-06-21 21:39:02.971665062 +0800
++++ ./configure	2022-06-21 21:40:03.226327787 +0800
+@@ -286,32 +286,11 @@
+     fi
+     rm -f $TMPDIR/dbtest.c $TMPDIR/dbtest
+ }
+-
+ check_strlcpy()
+ {
+-    cat >$TMPDIR/strtest.c <<EOF
+-#include <string.h>
+-int main(int argc, char **argv) {
+-	char dst[10];
+-	strlcpy(dst, "test", sizeof(dst));
+-	return 0;
+-}
+-EOF
+-    if $CC -I$INCLUDE -o $TMPDIR/strtest $TMPDIR/strtest.c >/dev/null 2>&1; then
+-	echo "no"
+-    else
+-	if ${PKG_CONFIG} libbsd --exists; then
+-		echo 'CFLAGS += -DHAVE_LIBBSD' `${PKG_CONFIG} libbsd --cflags` >>$CONFIG
+-		echo 'LDLIBS +=' `${PKG_CONFIG} libbsd --libs` >> $CONFIG
+-		echo "no"
+-	else
+ 		echo 'CFLAGS += -DNEED_STRLCPY' >>$CONFIG
+ 		echo "yes"
+-	fi
+-    fi
+-    rm -f $TMPDIR/strtest.c $TMPDIR/strtest
+ }
+-
+ check_cap()
+ {
+ 	if ${PKG_CONFIG} libcap --exists; then

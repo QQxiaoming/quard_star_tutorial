@@ -1051,11 +1051,10 @@ build_iproute2()
     cd $SHELL_FOLDER
     tar -xzvf iproute2-5.9.0.tar.gz
     cd $SHELL_FOLDER/iproute2-5.9.0
-    export PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig
-    CC=$CROSS_PREFIX-gcc AR=$CROSS_PREFIX-ar ./configure
+    patch -p1 < ../iproute2-5.9.0.patch
+    PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig CC=$CROSS_PREFIX-gcc AR=$CROSS_PREFIX-ar ./configure
     make -j$PROCESSORS
     PREFIX=/ make install DESTDIR=$SHELL_FOLDER/output
-    unset PKG_CONFIG_PATH
     rm -rf $SHELL_FOLDER/iproute2-5.9.0
 }
 
