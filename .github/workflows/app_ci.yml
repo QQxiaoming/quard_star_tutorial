@@ -308,6 +308,12 @@ jobs:
           cd target_root_app
           ./build.sh util_linux 
 
+      - name: Build iproute2
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh iproute2
+
       - name: Build can-utils
         shell: bash -l {0}
         run: |

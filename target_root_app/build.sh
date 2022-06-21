@@ -1029,6 +1029,8 @@ build_util_linux()
         --host=riscv64-linux-gnu \
         --prefix=/ \
         --with-bashcompletiondir=/share/bash-completion/completions \
+        --disable-static \
+        --disable-libuuid \
         --without-libz \
         --without-tinfo \
         --without-python \
