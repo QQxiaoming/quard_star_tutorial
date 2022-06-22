@@ -42,6 +42,7 @@ build_ncurses()
     make install.libs DESTDIR=$SHELL_FOLDER/output
     #make install.progs
     #make install.data
+    rm -rf $SHELL_FOLDER/output/lib/libncurses++.a
     rm -rf $SHELL_FOLDER/ncurses-6.2
 }
 
@@ -248,6 +249,7 @@ build_openssl()
 	make -j$PROCESSORS
     make install_sw
     rm $SHELL_FOLDER/output/lib/libssl.a
+    rm $SHELL_FOLDER/output/lib/libcrypto.a
     rm -rf $SHELL_FOLDER/openssl-1.1.1j
 }
 
