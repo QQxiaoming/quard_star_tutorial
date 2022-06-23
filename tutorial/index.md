@@ -1,0 +1,23 @@
+# 主页
+
+[![MAIN_CI](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml/badge.svg?branch=main)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml)
+[![APP_CI](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml/badge.svg?branch=main)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml)
+[![Documentation Status](https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest)](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest)
+[![CodeFactor](https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial/badge)](https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial)
+[![GitHub All Releases](https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg)](https://github.com/QQxiaoming/quard_star_tutorial/releases)
+[![GitHub stars](https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
+[![GitHub forks](https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
+
+![Logo](../doc/img/img6.gif)
+
+## 硬件架构
+
+![硬件架构](../doc/img/img3.png)
+
+## 软件流程
+
+![软件流程](../doc/img/img4.png)
+
+## 内存分布
+
+![内存分布](../doc/img/img5.png)

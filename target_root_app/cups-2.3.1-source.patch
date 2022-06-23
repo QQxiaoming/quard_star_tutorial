@@ -16,3 +16,22 @@
  	| rl78-* | romp-* | rs6000-* | rx-* \
  	| sh-* | sh[1234]-* | sh[24]a-* | sh[24]aeb-* | sh[23]e-* | sh[34]eb-* | sheb-* | shbe-* \
  	| shle-* | sh[1234]le-* | sh3ele-* | sh64-* | sh64le-* \
+--- ./configure	2022-06-21 17:46:18.280324059 +0800
++++ ./configure	2022-06-21 17:46:27.292678210 +0800
+@@ -6151,16 +6151,6 @@
+ 	fi
+ fi
+ 
+-if test "$libdir" = "\${exec_prefix}/lib"; then
+-	case "$host_os_name" in
+-		linux*)
+-			if test -d /usr/lib64 -a ! -d /usr/lib64/fakeroot; then
+-				libdir="$exec_prefix/lib64"
+-			fi
+-			;;
+-	esac
+-fi
+-
+ 
+ # Check whether --with-privateinclude was given.
+ if test "${with_privateinclude+set}" = set; then :

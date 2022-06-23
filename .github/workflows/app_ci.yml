@@ -248,12 +248,6 @@ jobs:
           cd target_root_app
           ./build.sh attr
 
-      - name: Build mtd_utils
-        shell: bash -l {0}
-        run: |
-          cd target_root_app
-          ./build.sh mtd_utils
-
       - name: Build dtc
         shell: bash -l {0}
         run: |
@@ -308,6 +302,54 @@ jobs:
           cd target_root_app
           ./build.sh iperf3
 
+      - name: Build util_linux
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh util_linux 
+
+      - name: Build iproute2
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh iproute2
+
+      - name: Build can-utils
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh can-utils
+
+      - name: Build libuev
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libuev
+
+      - name: Build libite
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libite
+
+      - name: Build confuse
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh confuse
+
+      - name: Build watchdogd
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh watchdogd
+
+      - name: Build mtd_utils
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh mtd_utils
+
       - name: Build qt
         shell: bash -l {0}
         run: |
@@ -335,7 +377,13 @@ jobs:
       - name: Upload build asserts
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: release
+          name: target_sysroot
+          path: |
+            target_sysroot.tar.gz
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: host_tools
           path: |
             host_tools.tar.gz
-            target_sysroot.tar.gz
