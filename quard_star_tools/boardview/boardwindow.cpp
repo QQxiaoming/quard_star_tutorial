@@ -27,6 +27,8 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     sdImgPath = envPath + "/fw/sd.img";
     usbflashImgPath = envPath + "/fw/usb.img";
     rootfsImgPath = envPath + "/rootfs/rootfs.img";
+    vcan_name = "";//TODO:add config host vcan
+    tap_name = "";//TODO:add config host tap
 
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
     QRect screen = QGuiApplication::screenAt(this->mapToGlobal({this->width()/2,0}))->geometry();
@@ -72,47 +74,88 @@ void BoardWindow::powerSwitch(bool power)
     QString program = envPath + "qemu-system-riscv64";
 #endif
     QStringList arguments = {
-        "-M",         "quard-star,mask-rom-path="+maskromImgPath,
-        "-m",         "1G",
-        "-smp",       "8",
-        "-drive",     "if=pflash,bus=0,unit=0,format=raw,file="+pflashImgPath+",id=mtd0",
-        "-drive",     "if=mtd,bus=0,unit=0,format=raw,file="+norflashImgPath+",id=mtd1",
-        "-drive",     "if=mtd,bus=1,unit=0,format=raw,file="+nandflashImgPath+",id=mtd2",
-        "-drive",     "if=none,format=raw,file="+usbflashImgPath+",id=usb0",
-        "-drive",     "if=sd,format=raw,file="+sdImgPath+",id=sd0",
-        "-drive",     "if=none,format=raw,file="+rootfsImgPath+",id=disk0",
-        "-chardev",   "socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1",
+        "-M",         
+            "quard-star,mask-rom-path="+maskromImgPath+",canbus=canbus0",
+        "-m",         
+            "1G",
+        "-smp",       
+            "8",
+        "-global",    
+            "quard-star-syscon.boot-cfg=sd",
+        "-drive",     
+            "if=pflash,bus=0,unit=0,format=raw,file="+pflashImgPath+",id=mtd0",
+        "-drive",     
+            "if=mtd,bus=0,unit=0,format=raw,file="+norflashImgPath+",id=mtd1",
+        "-drive",     
+            "if=mtd,bus=1,unit=0,format=raw,file="+nandflashImgPath+",id=mtd2",
+        "-drive",     
+            "if=none,format=raw,file="+usbflashImgPath+",id=usb0",
+        "-drive",     
+            "if=sd,format=raw,file="+sdImgPath+",id=sd0",
+        "-drive",     
+            "if=none,format=raw,file="+rootfsImgPath+",id=disk0",
+        "-chardev",   
+            "socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1",
+        "-object",    
+            "can-bus,id=canbus0",
+        [&]() -> QString { if(vcan_name.isEmpty()) return ""; else return "-object"; }(),
+            [&]() -> QString { if(vcan_name.isEmpty()) return ""; else return "can-host-socketcan,id=socketcan0,if="+vcan_name+",canbus=canbus0"; }(),
+        "-netdev",
+            [&]() -> QString { if(tap_name.isEmpty()) return  
+                "user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu_net0,dns=192.168.31.56,tftp="+envPath+",bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0"; else return
+                "tap,ifname="+tap_name+",script=no,downscript=no,id=net0"; }(),
+        "-netdev",    
+            "user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1",
 #if defined(Q_OS_LINUX)
-        "-fsdev",     "local,security_model=mapped-xattr,path="+envPath+",id=fsdev0",
-#endif
-        "-netdev",    "user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu,dns=192.168.31.56,tftp="+envPath+",bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0",
-#if defined(Q_OS_LINUX)
-        "-audiodev",  "sdl,id=audio0",
+        "-audiodev",  
+            "sdl,id=audio0",
 #elif defined(Q_OS_WIN)
-        "-audiodev",  "dsound,id=audio0",
+        "-audiodev",  
+            "dsound,id=audio0",
 #endif
-        "-global",    "virtio-mmio.force-legacy=false",
-        "-device",    "virtio-blk-device,drive=disk0,id=hd0",
-        "-device",    "virtio-gpu-device,xres=1280,yres=720,id=video0",
-        "-device",    "virtio-mouse-device,id=input0",
-        "-device",    "virtio-keyboard-device,id=input1",
+        "-net",       
+            "nic,netdev=net0",
+        "-device",    
+            "usb-storage,drive=usb0",
+        "-device",    
+            "usb-serial,always-plugged=true,chardev=usb1",
+        "-device",   
+            "wm8750,audiodev=audio0",
+        "-fw_cfg",    
+            "name=opt/qemu_cmdline,string=qemu_vc=:vn:24x80:",
 #if defined(Q_OS_LINUX)
-        "-device",    "virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0",
+        "-fsdev",     
+            "local,security_model=mapped-xattr,path="+envPath+",id=fsdev0",
 #endif
-        "-device",    "virtio-net-device,netdev=net0",
-        "-device",    "usb-storage,drive=usb0",
-        "-device",    "usb-serial,always-plugged=true,chardev=usb1",
-        "-device",    "wm8750,audiodev=audio0",
-        "-fw_cfg",    "name=opt/qemu_cmdline,string=qemu_vc=:vn:24x80:",
-        "-global",    "quard-star-syscon.boot-cfg=sd",
-        "-display",   "vnc=127.0.0.1:1",                /*vnc base port is 5900, so this 1 is 5901*/
-        "--serial",   "telnet:127.0.0.1:3441,server,nowait",
-        "--serial",   "telnet:127.0.0.1:3442,server,nowait",
-        "--serial",   "telnet:127.0.0.1:3443,server,nowait",
-        "--monitor",  "telnet:127.0.0.1:3430,server,nowait",
-        "--parallel", "none",
+        "-global",    
+            "virtio-mmio.force-legacy=false",
+        "-device",    
+            "virtio-blk-device,drive=disk0,id=hd0",
+#if defined(Q_OS_LINUX)
+        "-device",    
+            "virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0",
+#endif
+        "-device",    
+            "virtio-net-device,netdev=net1",
+        "-device",    
+            "virtio-gpu-device,xres=1280,yres=720,id=video0",
+        "-device",    
+            "virtio-mouse-device,id=input0",
+        "-device",    
+            "virtio-keyboard-device,id=input1",
+        "-display",   
+            "vnc=127.0.0.1:1",                /*vnc base port is 5900, so this 1 is 5901*/
+        "--serial",   
+            "telnet:127.0.0.1:3441,server,nowait",
+        "--serial",   
+            "telnet:127.0.0.1:3442,server,nowait",
+        "--serial",   
+            "telnet:127.0.0.1:3443,server,nowait",
+        "--monitor",  
+            "telnet:127.0.0.1:3430,server,nowait",
+        "--parallel", 
+            "none",
     };
-
 
     if(power) {
         qemu_process->kill();
