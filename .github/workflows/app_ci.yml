@@ -169,6 +169,12 @@ jobs:
           cd target_root_app
           ./build.sh openssl
 
+      - name: Build openssh
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh openssh
+
       - name: Build libpng
         shell: bash -l {0}
         run: |

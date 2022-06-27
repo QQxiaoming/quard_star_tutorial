@@ -39,9 +39,7 @@ build_ncurses()
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    make install.libs DESTDIR=$SHELL_FOLDER/output
-    #make install.progs
-    #make install.data
+    make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/output/lib/libncurses++.a
     rm -rf $SHELL_FOLDER/ncurses-6.2
 }
@@ -77,8 +75,9 @@ build_sudo()
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    #make install-binaries
-    rm -rf $SHELL_FOLDER/sudo-SUDO_1_9_7p1
+    # FIXME:sudo的install比较特殊,目前是在目标系统内执行make install
+    #make install
+    #rm -rf $SHELL_FOLDER/sudo-SUDO_1_9_7p1
 }
 
 build_screenfetch()
@@ -136,12 +135,13 @@ build_screen()
     cd $SHELL_FOLDER/screen-4.8.0
     ./configure \
         --host=riscv64-linux-gnu \
+        --prefix=/ \
         CCFLAGS=-I$SHELL_FOLDER/output/include \
         LDFLAGS=-L$SHELL_FOLDER/output/lib \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    #make install
+    make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/screen-4.8.0
 }
 
@@ -281,10 +281,12 @@ build_openssh()
         --host=riscv64-linux-gnu \
         --with-openssl=$SHELL_FOLDER/output \
         --with-zlib=$SHELL_FOLDER/output \
+        --prefix=/ \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
-    #make install
+    # FIXME:在host上使用nokeys安装，目标系统内需自行添加keys
+    make install-nokeys DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/openssh-8.6p1
 }
 
@@ -1205,6 +1207,7 @@ build_i2c_tools()
 
 build_libgpiod()
 {
+    # 编译libgpiod
     echo "---------------------------- 编译libgpiod ----------------------------"
     cd $SHELL_FOLDER
     tar -xzvf libgpiod-1.6.3.tar.gz
@@ -1241,6 +1244,7 @@ build_libusb()
 
 build_strace()
 {
+    # 编译strace
     echo "----------------------------- 编译strace -----------------------------"
     cd $SHELL_FOLDER
     tar -xvJf strace-5.13.tar.xz
@@ -1420,6 +1424,7 @@ all)
 	build_ethtool
 	build_zlib
 	build_openssl
+    build_openssh
 	build_libpng
 	build_freetype
     build_libuuid
