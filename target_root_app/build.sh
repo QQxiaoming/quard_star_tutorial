@@ -1173,6 +1173,88 @@ build_mtd_utils()
     rm -rf $SHELL_FOLDER/mtd-utils-2.1.2
 }
 
+build_coreutils()
+{
+    # 编译coreutils
+    echo "---------------------------- 编译coreutils ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf coreutils-9.1.tar.xz
+    cd $SHELL_FOLDER/coreutils-9.1
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=/ \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/coreutils-9.1
+}
+
+build_i2c_tools()
+{
+    # 编译i2c_tools
+    echo "---------------------------- 编译i2c_tools ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf i2c-tools-3.0.2.tar.gz
+    cd $SHELL_FOLDER/i2c-tools-3.0.2
+    make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc -j$PROCESSORS
+    make prefix=$SHELL_FOLDER/output install 
+    rm -rf $SHELL_FOLDER/i2c-tools-3.0.2
+}
+
+build_libgpiod()
+{
+    echo "---------------------------- 编译libgpiod ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libgpiod-1.6.3.tar.gz
+    cd $SHELL_FOLDER/libgpiod-1.6.3
+    ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes ./autogen.sh \
+        --enable-tools=yes \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libgpiod-1.6.3
+}
+
+build_libusb()
+{
+    # 编译libusb
+    echo "----------------------------- 编译libusb -----------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf libusb-1.0.24.tar.bz2
+    cd $SHELL_FOLDER/libusb-1.0.24
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --disable-udev \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libusb-1.0.24
+}
+
+build_strace()
+{
+    echo "----------------------------- 编译strace -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf strace-5.13.tar.xz
+    cd $SHELL_FOLDER/strace-5.13
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/strace-5.13
+}
+
 case "$1" in
 make)
     build_make
@@ -1309,6 +1391,21 @@ watchdogd)
 mtd_utils)
     build_mtd_utils
     ;;
+coreutils)
+    build_coreutils
+    ;;
+i2c_tools)
+    build_i2c_tools
+    ;;
+libgpiod)
+    build_libgpiod
+    ;;
+libusb)
+    build_libusb
+    ;;
+strace)
+    build_strace
+    ;;
 all)
     build_make
     build_ncurses
@@ -1353,6 +1450,11 @@ all)
     build_confuse
     build_watchdogd
     build_mtd_utils
+    build_coreutils
+    build_i2c_tools
+    build_libgpiod
+    build_libusb
+    build_strace
 	build_qt
     ;;
 *)
