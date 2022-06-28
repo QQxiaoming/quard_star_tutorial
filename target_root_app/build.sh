@@ -280,6 +280,7 @@ build_openssh()
     cd $SHELL_FOLDER/openssh-8.6p1
     ./configure \
         --host=riscv64-linux-gnu \
+        --disable-strip \
         --with-openssl=$SHELL_FOLDER/output \
         --with-zlib=$SHELL_FOLDER/output \
         --prefix=/ \
