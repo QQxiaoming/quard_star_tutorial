@@ -36,6 +36,7 @@ build_ncurses()
         --with-shared \
         --without-normal \
         --without-debug \
+        --disable-stripping \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
