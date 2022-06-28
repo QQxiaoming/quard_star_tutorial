@@ -8,7 +8,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
 [![GitHub forks](https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
 
-![Logo](../img/img6.gif)
+![Logo](./img/img6.gif)
 
 ## 硬件架构
 

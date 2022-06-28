@@ -23,22 +23,22 @@
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub forks
 
-.. image:: ../doc/img/img6.gif
+.. image:: ./img/img6.gif
 
 ********
 硬件架构
 ********
-.. image:: ../doc/img/img3.png
+.. image:: ./img/img3.png
 
 ********
 软件流程
 ********
-.. image:: ../doc/img/img4.png
+.. image:: ./img/img4.png
 
 ********
 内存分布
 ********
-.. image:: ../doc/img/img5.png
+.. image:: ./img/img5.png
 
 .. toctree::
    :maxdepth: 3
