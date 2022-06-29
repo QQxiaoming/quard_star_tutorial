@@ -6,7 +6,7 @@ define FIND_SRC_FILE
 endef
 
 ifeq ($(KERNELRELEASE), )
-KERNELDIR := ../../linux-5.10.108
+KERNELDIR := ../../linux-next
 PWD :=$(shell pwd)
 default:
 	$(MAKE) -C $(KERNELDIR)  M=$(PWD) ARCH=riscv CROSS_COMPILE=$(GLIB_ELF_CROSS_PREFIX)-
