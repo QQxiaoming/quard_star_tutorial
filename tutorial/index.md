@@ -8,16 +8,16 @@
 [![GitHub stars](https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
 [![GitHub forks](https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial)
 
-![Logo](../doc/img/img6.gif)
+![Logo](./img/img6.gif)
 
 ## 硬件架构
 
-![硬件架构](../doc/img/img3.png)
+![硬件架构](./img/img3.png)
 
 ## 软件流程
 
-![软件流程](../doc/img/img4.png)
+![软件流程](./img/img4.png)
 
 ## 内存分布
 
-![内存分布](../doc/img/img5.png)
+![内存分布](./img/img5.png)

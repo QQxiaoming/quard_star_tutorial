@@ -33,7 +33,7 @@ jobs:
           sudo apt update
           sudo apt install -y wget device-tree-compiler ninja-build git build-essential          \
                 pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev libpixman-1-dev  \
-                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex                  \
+                libfdt-dev autoconf automake libtool librbd-dev libaio-dev flex autoconf-archive \
                 bison make cmake gcc python3 ninja-build vim swig python3-dev libedit-dev        \
                 libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz    \
                 ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev \
@@ -168,6 +168,12 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh openssl
+
+      - name: Build openssh
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh openssh
 
       - name: Build libpng
         shell: bash -l {0}
@@ -349,6 +355,60 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh mtd_utils
+
+      - name: Build coreutils
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh coreutils
+
+      - name: Build i2c_tools
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh i2c_tools
+
+      - name: Build libgpiod
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libgpiod
+
+      - name: Build libusb
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libusb
+
+      - name: Build strace
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh strace
+
+      - name: Build libnl
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libnl
+
+      - name: Build readline
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh readline
+
+      - name: Build libpcap
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libpcap
+
+      - name: Build dropwatch
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh dropwatch
 
       - name: Build qt
         shell: bash -l {0}

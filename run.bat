@@ -30,7 +30,7 @@ set "GRAPHIC_PARAM=--display gtk,zoom-to-fit=false --serial %DEFAULT_VC% --seria
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=%DEFAULT_V%" ^
 -global virtio-mmio.force-legacy=false ^
 -device virtio-blk-device,drive=disk0,id=hd0 ^
--device virtio-net-device,netdev=net0 ^
+-device virtio-net-device,netdev=net1 ^
 -device virtio-gpu-device,xres=%WIDTH%,yres=%HEIGHT%,id=video0 ^
 -device virtio-mouse-device,id=input0 ^
 -device virtio-keyboard-device,id=input1 ^

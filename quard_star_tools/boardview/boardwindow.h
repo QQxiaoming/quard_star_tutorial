@@ -54,6 +54,8 @@ private:
     QString sdImgPath;
     QString usbflashImgPath;
     QString rootfsImgPath;
+    QString vcan_name;
+    QString tap_name;
     struct space
     {
         QString name;

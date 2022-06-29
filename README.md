@@ -10,7 +10,7 @@
 
 English | [简体中文](./README_zh_CN.md)
 
-![Logo](./doc/img/img6.gif)
+![Logo](./tutorial/img/img6.gif)
 
 ## Introduction
 
@@ -28,19 +28,19 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 
 The figure below shows the current virtual hardware architecture, which will be continuously updated as the project progresses.
 
-![Hardware Architecture](./doc/img/img3.png)
+![Hardware Architecture](./tutorial/img/img3.png)
 
 ## Software Flow
 
 The following figure shows the current software flow, which will be continuously updated as the project progresses.
 
-![Software Flow](./doc/img/img4.png)
+![Software Flow](./tutorial/img/img4.png)
 
 ## Memory Distribution
 
 The following figure shows the current memory distribution, which will be continuously updated as the project progresses.
 
-![Memory Distribution](./doc/img/img5.png)
+![Memory Distribution](./tutorial/img/img5.png)
 
 ## Development Note
 

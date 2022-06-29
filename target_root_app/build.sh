@@ -36,12 +36,11 @@ build_ncurses()
         --with-shared \
         --without-normal \
         --without-debug \
+        --disable-stripping \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    make install.libs DESTDIR=$SHELL_FOLDER/output
-    #make install.progs
-    #make install.data
+    make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/output/lib/libncurses++.a
     rm -rf $SHELL_FOLDER/ncurses-6.2
 }
@@ -77,8 +76,9 @@ build_sudo()
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    #make install-binaries
-    rm -rf $SHELL_FOLDER/sudo-SUDO_1_9_7p1
+    # FIXME:sudo的install比较特殊,目前是在目标系统内执行make install
+    #make install
+    #rm -rf $SHELL_FOLDER/sudo-SUDO_1_9_7p1
 }
 
 build_screenfetch()
@@ -136,12 +136,13 @@ build_screen()
     cd $SHELL_FOLDER/screen-4.8.0
     ./configure \
         --host=riscv64-linux-gnu \
+        --prefix=/ \
         CCFLAGS=-I$SHELL_FOLDER/output/include \
         LDFLAGS=-L$SHELL_FOLDER/output/lib \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    #make install
+    make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/screen-4.8.0
 }
 
@@ -279,12 +280,15 @@ build_openssh()
     cd $SHELL_FOLDER/openssh-8.6p1
     ./configure \
         --host=riscv64-linux-gnu \
+        --disable-strip \
         --with-openssl=$SHELL_FOLDER/output \
         --with-zlib=$SHELL_FOLDER/output \
+        --prefix=/ \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
-    #make install
+    # FIXME:在host上使用nokeys安装，目标系统内需自行添加keys
+    make install-nokeys DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/openssh-8.6p1
 }
 
@@ -1173,6 +1177,186 @@ build_mtd_utils()
     rm -rf $SHELL_FOLDER/mtd-utils-2.1.2
 }
 
+build_coreutils()
+{
+    # 编译coreutils
+    echo "---------------------------- 编译coreutils ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf coreutils-9.1.tar.xz
+    cd $SHELL_FOLDER/coreutils-9.1
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=/ \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output
+    rm -rf $SHELL_FOLDER/coreutils-9.1
+}
+
+build_i2c_tools()
+{
+    # 编译i2c_tools
+    echo "---------------------------- 编译i2c_tools ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf i2c-tools-3.0.2.tar.gz
+    cd $SHELL_FOLDER/i2c-tools-3.0.2
+    make prefix=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc -j$PROCESSORS
+    make prefix=$SHELL_FOLDER/output install 
+    rm -rf $SHELL_FOLDER/i2c-tools-3.0.2
+}
+
+build_libgpiod()
+{
+    # 编译libgpiod
+    echo "---------------------------- 编译libgpiod ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libgpiod-1.6.3.tar.gz
+    cd $SHELL_FOLDER/libgpiod-1.6.3
+    ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes ./autogen.sh \
+        --enable-tools=yes \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libgpiod-1.6.3
+}
+
+build_libusb()
+{
+    # 编译libusb
+    echo "----------------------------- 编译libusb -----------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf libusb-1.0.24.tar.bz2
+    cd $SHELL_FOLDER/libusb-1.0.24
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --disable-udev \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libusb-1.0.24
+}
+
+build_strace()
+{
+    # 编译strace
+    echo "----------------------------- 编译strace -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf strace-5.13.tar.xz
+    cd $SHELL_FOLDER/strace-5.13
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/strace-5.13
+}
+
+build_libnl()
+{
+    # 编译libnl
+    echo "------------------------------ 编译libnl ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libnl-3.2.25.tar.gz
+    cd $SHELL_FOLDER/libnl-3.2.25
+    autoreconf -f -i 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libnl-3.2.25
+}
+
+build_readline()
+{
+    # 编译readline
+    echo "---------------------------- 编译readline ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf readline-8.1.2.tar.gz
+    cd $SHELL_FOLDER/readline-8.1.2
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/readline-8.1.2
+}
+
+build_libpcap()
+{
+    # 编译libpcap
+    echo "----------------------------- 编译libpcap -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libpcap-1.10.1.tar.gz
+    cd $SHELL_FOLDER/libpcap-1.10.1
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/output/lib/libpcap.a
+    rm -rf $SHELL_FOLDER/libpcap-1.10.1
+}
+
+build_dropwatch()
+{
+    # 编译dropwatch
+    echo "---------------------------- 编译dropwatch ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf dropwatch-1.5.4.tar.gz
+    cd $SHELL_FOLDER/dropwatch-1.5.4
+    ./autogen.sh 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --without-bfd \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        READLINE_CFLAGS="-I$SHELL_FOLDER/output/include" \
+        READLINE_LIBS="-L$SHELL_FOLDER/output/lib -lreadline -lncurses" \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/dropwatch-1.5.4
+}
+
+build_tcpdump()
+{
+    # 编译tcpdump
+    echo "----------------------------- 编译tcpdump -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf tcpdump-4.99.1.tar.gz
+    cd $SHELL_FOLDER/tcpdump-4.99.1
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/tcpdump-4.99.1
+}
+
 case "$1" in
 make)
     build_make
@@ -1309,6 +1493,36 @@ watchdogd)
 mtd_utils)
     build_mtd_utils
     ;;
+coreutils)
+    build_coreutils
+    ;;
+i2c_tools)
+    build_i2c_tools
+    ;;
+libgpiod)
+    build_libgpiod
+    ;;
+libusb)
+    build_libusb
+    ;;
+strace)
+    build_strace
+    ;;
+libnl)
+    build_libnl
+    ;;
+readline)
+    build_readline
+    ;;
+libpcap)
+    build_libpcap
+    ;;
+dropwatch)
+    build_dropwatch
+    ;;
+tcpdump)
+    build_tcpdump
+    ;;
 all)
     build_make
     build_ncurses
@@ -1323,6 +1537,7 @@ all)
 	build_ethtool
 	build_zlib
 	build_openssl
+    build_openssh
 	build_libpng
 	build_freetype
     build_libuuid
@@ -1353,6 +1568,16 @@ all)
     build_confuse
     build_watchdogd
     build_mtd_utils
+    build_coreutils
+    build_i2c_tools
+    build_libgpiod
+    build_libusb
+    build_strace
+    build_libnl
+    build_readline
+    build_libpcap
+    build_dropwatch
+    build_tcpdump
 	build_qt
     ;;
 *)
