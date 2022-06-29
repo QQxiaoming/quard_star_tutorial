@@ -13,13 +13,13 @@ default:
 clean:
 	rm -rf .tmp_versions Module.symvers *.mod *.mod.c *.o *.ko .*.cmd built-in.a Module.markers modules.order .cache.mk
 load:
-	insmod virts_tty.ko
+	insmod virts.ko
 unload:
-	rmmod virts_tty
+	rmmod virts
 install:
-	cp virts_tty.ko /lib/modules/$(shell uname -r)/kernel/drivers/virts_tty.ko
+	cp virts.ko /lib/modules/$(shell uname -r)/kernel/drivers/virts.ko
 else
-	obj-m := virts_tty.o
-	virts_tty-objs := \
+	obj-m := virts.o
+	virts-objs := \
 		$(call FIND_SRC_FILE,.)
 endif

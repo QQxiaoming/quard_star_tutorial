@@ -386,6 +386,30 @@ jobs:
           cd target_root_app
           ./build.sh strace
 
+      - name: Build libnl
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libnl
+
+      - name: Build readline
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh readline
+
+      - name: Build libpcap
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh libpcap
+
+      - name: Build dropwatch
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh dropwatch
+
       - name: Build qt
         shell: bash -l {0}
         run: |

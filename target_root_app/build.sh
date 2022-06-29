@@ -1261,6 +1261,102 @@ build_strace()
     rm -rf $SHELL_FOLDER/strace-5.13
 }
 
+build_libnl()
+{
+    # 编译libnl
+    echo "------------------------------ 编译libnl ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libnl-3.2.25.tar.gz
+    cd $SHELL_FOLDER/libnl-3.2.25
+    autoreconf -f -i 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libnl-3.2.25
+}
+
+build_readline()
+{
+    # 编译readline
+    echo "---------------------------- 编译readline ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf readline-8.1.2.tar.gz
+    cd $SHELL_FOLDER/readline-8.1.2
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/readline-8.1.2
+}
+
+build_libpcap()
+{
+    # 编译libpcap
+    echo "----------------------------- 编译libpcap -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf libpcap-1.10.1.tar.gz
+    cd $SHELL_FOLDER/libpcap-1.10.1
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/output/lib/libpcap.a
+    rm -rf $SHELL_FOLDER/libpcap-1.10.1
+}
+
+build_dropwatch()
+{
+    # 编译dropwatch
+    echo "---------------------------- 编译dropwatch ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf dropwatch-1.5.4.tar.gz
+    cd $SHELL_FOLDER/dropwatch-1.5.4
+    ./autogen.sh 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --without-bfd \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        READLINE_CFLAGS="-I$SHELL_FOLDER/output/include" \
+        READLINE_LIBS="-L$SHELL_FOLDER/output/lib -lreadline -lncurses" \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/dropwatch-1.5.4
+}
+
+build_tcpdump()
+{
+    # 编译tcpdump
+    echo "----------------------------- 编译tcpdump -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf tcpdump-4.99.1.tar.gz
+    cd $SHELL_FOLDER/tcpdump-4.99.1
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/tcpdump-4.99.1
+}
+
 case "$1" in
 make)
     build_make
@@ -1412,6 +1508,21 @@ libusb)
 strace)
     build_strace
     ;;
+libnl)
+    build_libnl
+    ;;
+readline)
+    build_readline
+    ;;
+libpcap)
+    build_libpcap
+    ;;
+dropwatch)
+    build_dropwatch
+    ;;
+tcpdump)
+    build_tcpdump
+    ;;
 all)
     build_make
     build_ncurses
@@ -1462,6 +1573,11 @@ all)
     build_libgpiod
     build_libusb
     build_strace
+    build_libnl
+    build_readline
+    build_libpcap
+    build_dropwatch
+    build_tcpdump
 	build_qt
     ;;
 *)
