@@ -10,7 +10,7 @@
 
 [English](./README.md) | 简体中文
 
-![logo](./docs/img/img6.gif)
+![logo](./tutorial/img/img6.gif)
 
 ## 引言
 
@@ -28,19 +28,19 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 
 下图为目前的虚拟硬件架构，随着项目推进会持续更新。
 
-![硬件架构](./docs/img/img3.png)
+![硬件架构](./tutorial/img/img3.png)
 
 ## 软件流程
 
 下图为目前的软件流程，随着项目推进会持续更新。
 
-![软件流程](./docs/img/img4.png)
+![软件流程](./tutorial/img/img4.png)
 
 ## 内存分布
 
 下图为目前的内存分布，随着项目推进会持续更新。
 
-![内存分布](./docs/img/img5.png)
+![内存分布](./tutorial/img/img5.png)
 
 ## 开发记录
 
