@@ -2,8 +2,8 @@
 #define QTELNET_H
 
 #include <QObject>
-#include <qtcpsocket.h>
-#include <qsize.h>
+#include <QTcpSocket>
+#include <QSize>
 #include <QString>
 
 #define IncommingBufferSize	(1500)

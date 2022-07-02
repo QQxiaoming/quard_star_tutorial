@@ -8,6 +8,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += APP_VERSION="\\\"V0.0.2\\\""
+QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
 INCLUDEPATH += \
         -I . \
@@ -18,6 +19,7 @@ INCLUDEPATH += \
 SOURCES += \
     main.cpp \
     boardview/boardwindow.cpp \
+    boardview/netselectbox.cpp \
     telnetview/QTelnet.cpp \
     telnetview/telnetwindow.cpp \
     vncview/qvncclientwidget.cpp \
@@ -25,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     boardview/boardwindow.h \
+    boardview/netselectbox.h \
     telnetview/QTelnet.h \
     telnetview/telnetwindow.h \
     vncview/qvncclientwidget.h \
@@ -32,6 +35,7 @@ HEADERS += \
 
 FORMS += \
     boardview/boardwindow.ui \
+    boardview/netselectbox.ui \
     telnetview/telnetwindow.ui \
     vncview/vncwindow.ui
 
