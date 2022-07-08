@@ -47,6 +47,8 @@ static int quard_star_onenand_probe(struct platform_device *pdev)
 
 	nand->mtd.priv = &nand->onenand;
 	nand->mtd.name = dev_name(dev);
+	nand->mtd.dev.parent = dev;
+	mtd_set_of_node(&nand->mtd, dev->of_node);
 	err = onenand_scan(&nand->mtd, 1);
 	if (err < 0) {
 		dev_err(dev, "onenand_scan err\n");
