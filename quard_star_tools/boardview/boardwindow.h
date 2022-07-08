@@ -10,6 +10,7 @@
 
 #include "vncwindow.h"
 #include "telnetwindow.h"
+#include "netselectbox.h"
 
 namespace Ui {
 class BoardWindow;
@@ -22,7 +23,9 @@ class BoardWindow : public QMainWindow
 public:
     explicit BoardWindow(QString path,QString color = "green",QWidget *parent = nullptr);
     ~BoardWindow();
-    void powerSwitch(bool power);
+    bool powerSwitch(bool power);
+    QString vcan_name;
+    QString tap_name;
 
 private slots:
     void about();
@@ -44,6 +47,7 @@ private:
     QProcess *qemu_process;
     VncWindow *vnc;
     TelnetWindow *telnet[4];
+    NetSelectBox *netSelect;
     void show_vnc(void);
     QString envPath;
     QString skinColor;
@@ -54,8 +58,6 @@ private:
     QString sdImgPath;
     QString usbflashImgPath;
     QString rootfsImgPath;
-    QString vcan_name;
-    QString tap_name;
     struct space
     {
         QString name;

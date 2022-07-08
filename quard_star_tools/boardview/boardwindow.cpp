@@ -27,8 +27,8 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     sdImgPath = envPath + "/fw/sd.img";
     usbflashImgPath = envPath + "/fw/usb.img";
     rootfsImgPath = envPath + "/rootfs/rootfs.img";
-    vcan_name = "";//TODO:add config host vcan
-    tap_name = "";//TODO:add config host tap
+    vcan_name = "";
+    tap_name = "";
 
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
     QRect screen = QGuiApplication::screenAt(this->mapToGlobal({this->width()/2,0}))->geometry();
@@ -49,6 +49,7 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     telnet[2] = new TelnetWindow("127.0.0.1",3443,this);
     telnet[3] = new TelnetWindow("127.0.0.1",3430,this);
     vnc = new VncWindow("127.0.0.1",5901,this);
+    netSelect = new NetSelectBox(this);
 }
 
 BoardWindow::~BoardWindow()
@@ -57,6 +58,7 @@ BoardWindow::~BoardWindow()
     qemu_process->waitForFinished(-1);
     delete qemu_process;
     delete ui;
+    delete netSelect;
     delete vnc;
     delete telnet[0];
     delete telnet[1];
@@ -64,7 +66,7 @@ BoardWindow::~BoardWindow()
     delete telnet[3];
 }
 
-void BoardWindow::powerSwitch(bool power)
+bool BoardWindow::powerSwitch(bool power)
 {
 #if defined(Q_OS_WIN)
     QString program = envPath + "/qemu_w64/qemu-system-riscv64.exe";
@@ -157,6 +159,7 @@ void BoardWindow::powerSwitch(bool power)
             "none",
     };
 
+    arguments.removeAll(QString(""));
     if(power) {
         qemu_process->kill();
         qemu_process->waitForFinished(-1);
@@ -164,6 +167,14 @@ void BoardWindow::powerSwitch(bool power)
         for (int i=0;i<200;i++) {
             QThread::msleep(10);
             qApp->processEvents();
+        }
+
+        if(qemu_process->state() == QProcess::NotRunning) {
+            int exitcode = qemu_process->exitCode();
+            if(exitcode != 0) {
+                QMessageBox::critical(this, tr("Error"), tr("power up error!"));
+                return false;
+            }
         }
         telnet[0]->reConnect();
         telnet[1]->reConnect();
@@ -174,6 +185,8 @@ void BoardWindow::powerSwitch(bool power)
         qemu_process->kill();
         qemu_process->waitForFinished(-1);
     }
+
+    return true;
 }
 
 void BoardWindow::about()
@@ -310,6 +323,8 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                     telnet[2]->show();
                 } else if(spaceList[i].name == "jtag") {
                     telnet[3]->show();
+                } else if(spaceList[i].name == "eth") {
+                    netSelect->show();
                 } else if(spaceList[i].name == "sd") {
                     sdImgPath = QFileDialog::getOpenFileName(this, tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "nor") {
@@ -323,7 +338,10 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 } else if(spaceList[i].name == "switch") {
                     powerOn = !powerOn;
                     this->repaint();
-                    powerSwitch(powerOn);
+                    if(!powerSwitch(powerOn)){
+                        powerOn = !powerOn;
+                        this->repaint();
+                    }
                 }
             }
         }
