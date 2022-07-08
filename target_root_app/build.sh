@@ -1375,6 +1375,24 @@ build_spi_tools()
     rm -rf $SHELL_FOLDER/spi-tools-1.0.1
 }
 
+build_ell()
+{
+    # 编译ell
+    echo "------------------------------- 编译ell -------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf ell-0.5.1.tar.gz
+    cd $SHELL_FOLDER/ell-0.5.1
+    autoreconf -f -i 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/ell-0.5.1
+}
+
 case "$1" in
 make)
     build_make
@@ -1544,6 +1562,9 @@ tcpdump)
 spi_tools)
     build_spi_tools
     ;;
+ell)
+    build_ell
+    ;;
 all)
     build_make
     build_ncurses
@@ -1600,6 +1621,7 @@ all)
     build_dropwatch
     build_tcpdump
     build_spi_tools
+    build_ell
 	build_qt
     ;;
 *)
