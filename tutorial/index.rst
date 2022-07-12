@@ -22,6 +22,12 @@
 .. image:: https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub forks
+.. image:: https://gitee.com/QQxiaoming/quard_star_tutorial/badge/star.svg?theme=dark
+   :target: https://gitee.com/QQxiaoming/quard_star_tutorial
+   :alt: Gitee stars
+.. image:: https://gitee.com/QQxiaoming/quard_star_tutorial/badge/fork.svg?theme=dark
+   :target: https://gitee.com/QQxiaoming/quard_star_tutorial
+   :alt: Gitee forks
 
 .. image:: ./img/img6.gif
 
