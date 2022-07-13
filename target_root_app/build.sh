@@ -339,15 +339,20 @@ build_libx11()
     echo "------------------------------- 编译x11 -------------------------------"
 
     echo "--------------------------- 编译util-macros ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf util-macros-1.19.3.tar.gz
     cd $SHELL_FOLDER/libX11/util-macros-1.19.3
     autoreconf -f -i 
     ./configure \
         --prefix=$SHELL_FOLDER/host_output
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/util-macros-1.19.3
     export ACLOCAL_PATH=$SHELL_FOLDER/host_output/share/aclocal
 
     echo "----------------------------- 编译xproto -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf xproto-7.0.31.tar.gz
     cd $SHELL_FOLDER/libX11/xproto-7.0.31
     autoreconf -f -i 
     ./configure \
@@ -357,8 +362,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/xproto-7.0.31
 
     echo "---------------------------- 编译xextproto ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf xextproto-7.3.0.tar.gz
     cd $SHELL_FOLDER/libX11/xextproto-7.3.0
     autoreconf -f -i 
     ./configure \
@@ -368,8 +376,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/xextproto-7.3.0
 
     echo "--------------------------- 编译inputproto ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf inputproto-2.3.2.tar.gz
     cd $SHELL_FOLDER/libX11/inputproto-2.3.2
     autoreconf -f -i 
     ./configure \
@@ -379,8 +390,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/inputproto-2.3.2
 
     echo "----------------------------- 编译kbproto -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf kbproto-1.0.7.tar.gz
     cd $SHELL_FOLDER/libX11/kbproto-1.0.7
     autoreconf -f -i 
     ./configure \
@@ -390,18 +404,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
-
-    echo "--------------------------- 编译util-macros ---------------------------"
-    cd $SHELL_FOLDER/libX11/util-macros-1.19.3
-    ./configure \
-        --host=riscv64-linux-gnu \
-        --prefix=$SHELL_FOLDER/output \
-        CXX=$CROSS_PREFIX-g++ \
-        CC=$CROSS_PREFIX-gcc 
-	make -j$PROCESSORS
-    make install
+    rm -rf $SHELL_FOLDER/libX11/kbproto-1.0.7
 
     echo "----------------------------- 编译xtrans -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf xtrans-1.4.0.tar.gz
     cd $SHELL_FOLDER/libX11/xtrans-1.4.0
     autoreconf -f -i 
     ./configure \
@@ -412,8 +419,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/xtrans-1.4.0
 
     echo "---------------------------- 编译xcb-proto ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xvJf xcb-proto-1.14.tar.xz
     cd $SHELL_FOLDER/libX11/xcb-proto-1.14
     ./configure \
         --host=riscv64-linux-gnu \
@@ -422,8 +432,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/xcb-proto-1.14
 
     echo "----------------------------- 编译libXau -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXau-1.0.9.tar.gz
     cd $SHELL_FOLDER/libX11/libXau-1.0.9
     autoreconf -f -i 
     ./configure \
@@ -435,9 +448,13 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXau-1.0.9
 
     echo "----------------------------- 编译libxcb -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libxcb-1.14.tar.gz
     cd $SHELL_FOLDER/libX11/libxcb-1.14
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -447,9 +464,13 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libxcb-1.14
 
     echo "----------------------------- 编译libX11 -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libX11-1.7.2.tar.gz
     cd $SHELL_FOLDER/libX11/libX11-1.7.2
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -461,20 +482,28 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libX11-1.7.2
 
     echo "----------------------------- 编译libXext -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXext-1.3.1.tar.gz
     cd $SHELL_FOLDER/libX11/libXext-1.3.1
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
         --disable-static \
+        --enable-malloc0returnsnull \
         PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXext-1.3.1
 
     echo "----------------------------- 编译libICE -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libICE-1.0.10.tar.gz
     cd $SHELL_FOLDER/libX11/libICE-1.0.10
     autoreconf -f -i 
     ./configure \
@@ -486,8 +515,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libICE-1.0.10
 
     echo "------------------------------ 编译libSM ------------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libSM-1.2.3.tar.gz
     cd $SHELL_FOLDER/libX11/libSM-1.2.3
     autoreconf -f -i 
     ./configure \
@@ -499,21 +531,30 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libSM-1.2.3
 
     echo "------------------------------ 编译libXt ------------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXt-1.1.3.tar.gz
     cd $SHELL_FOLDER/libX11/libXt-1.1.3
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
         --disable-static \
+        --enable-malloc0returnsnull \
         PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXt-1.1.3
 
     echo "--------------------------- 编译recordproto ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf recordproto-1.14.2.tar.gz
     cd $SHELL_FOLDER/libX11/recordproto-1.14.2
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -522,9 +563,13 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/recordproto-1.14.2
 
     echo "--------------------------- 编译renderproto ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf renderproto-0.11.1.tar.gz
     cd $SHELL_FOLDER/libX11/renderproto-0.11.1
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -533,9 +578,13 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/renderproto-0.11.1
 
     echo "--------------------------- 编译fixesproto ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf fixesproto-5.0.tar.gz
     cd $SHELL_FOLDER/libX11/fixesproto-5.0
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -544,8 +593,11 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/fixesproto-5.0
 
     echo "---------------------------- 编译libXfixes ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXfixes-5.0.3.tar.gz
     cd $SHELL_FOLDER/libX11/libXfixes-5.0.3
     autoreconf -f -i 
     ./configure \
@@ -557,9 +609,13 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXfixes-5.0.3
 
     echo "------------------------------ 编译libXi ------------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXi-1.7.10.tar.gz
     cd $SHELL_FOLDER/libX11/libXi-1.7.10
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -570,9 +626,13 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXi-1.7.10
 
     echo "----------------------------- 编译libXtst -----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXtst-1.2.1.tar.gz
     cd $SHELL_FOLDER/libX11/libXtst-1.2.1
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
@@ -582,20 +642,28 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXtst-1.2.1
 
     echo "--------------------------- 编译libXrender ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXrender-0.9.7.tar.gz
     cd $SHELL_FOLDER/libX11/libXrender-0.9.7
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
         --disable-static \
+        --enable-malloc0returnsnull \
         PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXrender-0.9.7
 
     echo "--------------------------- 编译randrproto ---------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf randrproto-1.5.0.tar.gz
     cd $SHELL_FOLDER/libX11/randrproto-1.5.0
     autoreconf -f -i 
     ./configure \
@@ -606,18 +674,24 @@ build_libx11()
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/randrproto-1.5.0
 
     echo "---------------------------- 编译libXrandr ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf libXrandr-1.3.2.tar.gz
     cd $SHELL_FOLDER/libX11/libXrandr-1.3.2
+    autoreconf -f -i 
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=$SHELL_FOLDER/output \
         --disable-static \
+        --enable-malloc0returnsnull \
         PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
     make install
+    rm -rf $SHELL_FOLDER/libX11/libXrandr-1.3.2
 
     unset ACLOCAL_PATH
 }

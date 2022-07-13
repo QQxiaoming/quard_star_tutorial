@@ -410,6 +410,24 @@ jobs:
           cd target_root_app
           ./build.sh dropwatch
 
+      - name: Build tcpdump
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh tcpdump
+
+      - name: Build spi_tools
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh spi_tools
+
+      - name: Build ell
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh ell
+
       - name: Build qt
         shell: bash -l {0}
         run: |

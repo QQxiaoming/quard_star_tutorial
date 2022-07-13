@@ -326,15 +326,15 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 } else if(spaceList[i].name == "eth") {
                     netSelect->show();
                 } else if(spaceList[i].name == "sd") {
-                    sdImgPath = QFileDialog::getOpenFileName(this, tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
+                    sdImgPath = getOpenFileName(tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "nor") {
-                    norflashImgPath = QFileDialog::getOpenFileName(this, tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
+                    norflashImgPath = getOpenFileName(tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "nand") {
-                    nandflashImgPath = QFileDialog::getOpenFileName(this, tr("Select NandFlash IMG"), nandflashImgPath, "IMG files(*.img *.bin)");
+                    nandflashImgPath = getOpenFileName(tr("Select NandFlash IMG"), nandflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "soc") {
-                    pflashImgPath = QFileDialog::getOpenFileName(this, tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
+                    pflashImgPath = getOpenFileName(tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "usb0") {
-                    usbflashImgPath = QFileDialog::getOpenFileName(this, tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
+                    usbflashImgPath = getOpenFileName(tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
                 } else if(spaceList[i].name == "switch") {
                     powerOn = !powerOn;
                     this->repaint();
@@ -347,4 +347,14 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
         }
     }
     event->accept();
+}
+
+QString BoardWindow::getOpenFileName(const QString &caption, const QString &fileName, const QString &filter)
+{
+    QString path = QFileDialog::getOpenFileName(this, caption, fileName, filter);
+    if(path.isEmpty()) {
+        return fileName;
+    } else {
+        return path;
+    }
 }

@@ -40,6 +40,9 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
 
 private:
+    QString getOpenFileName(const QString &caption = QString(),
+                            const QString &fileName = QString(),
+                            const QString &filter = QString());
     Ui::BoardWindow *ui;
     bool isMousePressed = false;
     bool powerOn = false;

@@ -2,6 +2,16 @@
 
 ## [Unrelease]
 
+## [0.0.3] - 2021-07-12
+
+- rootfs更新为2G空间
+- 添加onenand flash emulator（uboot、kernel驱动支持）
+- 添加can controller emulator（kernel驱动支持）
+- 添加pwm/timer/adc emulator（kernel驱动支持）
+- 添加eth emulator （uboot、kernel驱动支持）
+- 添加lcdc emulator （uboot、kernel驱动支持）
+- 添加watchdog emulator （kernel驱动支持）
+
 ## [0.0.2] - 2021-04-25
 
 - busybox更新到1.33.2
