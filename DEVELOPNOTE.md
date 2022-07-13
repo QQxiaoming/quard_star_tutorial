@@ -414,6 +414,196 @@
     2022.06.05(下午):添加了onenand ip用于学习nand falsh相关内容，以及ubifs，我们使用这个模型qemu-7.0.0/hw/block/onenand.c，添加到我们的quard star soc中，另外注意该ip的寄存器空间size为0x20000。这里要注意下，模拟的flash大小为256M，但是运行时使用-drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2这个提供的文件映像应为264M，因为驱动内会使用最后8M的备用区空间来存储坏快表等信息。
 
 - 
+    2022.06.08(晚上):添加了xlnx-can ip，基本没有遇到什么问题，不过在测试host上使用vcan与guest上的can通信，结果发现数据包字节序似乎不正确，因此对比kernel内的驱动代码以及qemu的代码发现xlnx的can格式和socket can格式是不匹配的，需要转换，这里阅读《ug1085-zynq-ultrascale-trm.pdf》的Table 20‐3: CAN Message Format就能发现这个问题，奇怪的是qemu-7.0.0/hw/net/can/xlnx-zynqmp-can.c内实现的似乎没有转换xlnx CAN Message Format而是把Socket CAN Format直接转发了，因此导致了错误。我这里添加或修改以下函数，问题得到解决（这里我没有向qemu上游发送patch，因为我不确定是否真实的zynq也存在该问题）：
+
+    ```c
+    #define XCAN_IDR_IDE_MASK		0x00080000U
+    #define XCAN_IDR_ID1_MASK		0xFFE00000U
+    #define XCAN_IDR_ID2_MASK		0x0007FFFEU
+    #define XCAN_IDR_RTR_MASK		0x00000001U
+    #define XCAN_IDR_SRR_MASK		0x00100000U
+    #define XCAN_IDR_ID1_SHIFT		21
+    #define XCAN_IDR_ID2_SHIFT		1
+    #define CAN_SFF_ID_BITS		    11
+    #define CAN_EFF_ID_BITS		    29
+    
+    static uint32_t id_xcan2can(uint32_t id)
+    {
+        uint32_t ret_id = 0; 
+        /* Change Xilinx CAN ID format to socketCAN ID format */
+        if (id & XCAN_IDR_IDE_MASK) {
+            /* The received frame is an Extended format frame */
+            ret_id = (id & XCAN_IDR_ID1_MASK) >> 3;
+            ret_id |= (id & XCAN_IDR_ID2_MASK) >>
+                    XCAN_IDR_ID2_SHIFT;
+            ret_id |= QEMU_CAN_EFF_FLAG;
+            if (id & XCAN_IDR_RTR_MASK)
+                ret_id |= QEMU_CAN_RTR_FLAG;
+        } else {
+            /* The received frame is a standard format frame */
+            ret_id = (id & XCAN_IDR_ID1_MASK) >>
+                    XCAN_IDR_ID1_SHIFT;
+            if (id & XCAN_IDR_SRR_MASK)
+                ret_id |= QEMU_CAN_RTR_FLAG;
+        }
+        return ret_id;
+    }
+
+    static uint32_t id_can2xcan(uint32_t id)
+    {
+        uint32_t ret_id = 0;
+        if (id & QEMU_CAN_EFF_FLAG) {
+            /* Extended CAN ID format */
+            ret_id = ((id & QEMU_CAN_EFF_MASK) << XCAN_IDR_ID2_SHIFT) &
+                XCAN_IDR_ID2_MASK;
+            ret_id |= (((id & QEMU_CAN_EFF_MASK) >>
+                (CAN_EFF_ID_BITS - CAN_SFF_ID_BITS)) <<
+                XCAN_IDR_ID1_SHIFT) & XCAN_IDR_ID1_MASK;
+            ret_id |= XCAN_IDR_IDE_MASK | XCAN_IDR_SRR_MASK;
+            if (id & QEMU_CAN_RTR_FLAG)
+                ret_id |= XCAN_IDR_RTR_MASK;
+        } else {
+            /* Standard CAN ID format */
+            ret_id = ((id & QEMU_CAN_SFF_MASK) << XCAN_IDR_ID1_SHIFT) &
+                XCAN_IDR_ID1_MASK;
+            if (id & QEMU_CAN_RTR_FLAG)
+                ret_id |= XCAN_IDR_SRR_MASK;
+        }
+        return ret_id;
+    }
+
+    static void generate_frame(qemu_can_frame *frame, uint32_t *data)
+    {
+        frame->can_id = id_xcan2can(data[0]);
+        frame->can_dlc = FIELD_EX32(data[1], TXFIFO_DLC, DLC);
+
+        frame->data[0] = FIELD_EX32(data[2], TXFIFO_DATA1, DB0);
+        frame->data[1] = FIELD_EX32(data[2], TXFIFO_DATA1, DB1);
+        frame->data[2] = FIELD_EX32(data[2], TXFIFO_DATA1, DB2);
+        frame->data[3] = FIELD_EX32(data[2], TXFIFO_DATA1, DB3);
+
+        frame->data[4] = FIELD_EX32(data[3], TXFIFO_DATA2, DB4);
+        frame->data[5] = FIELD_EX32(data[3], TXFIFO_DATA2, DB5);
+        frame->data[6] = FIELD_EX32(data[3], TXFIFO_DATA2, DB6);
+        frame->data[7] = FIELD_EX32(data[3], TXFIFO_DATA2, DB7);
+    }
+
+    static void update_rx_fifo(XlnxZynqMPCANState *s, const qemu_can_frame *frame)
+    {
+        bool filter_pass = false;
+        uint16_t timestamp = 0;
+
+        /* If no filter is enabled. Message will be stored in FIFO. */
+        if (!((ARRAY_FIELD_EX32(s->regs, AFR, UAF1)) |
+        (ARRAY_FIELD_EX32(s->regs, AFR, UAF2)) |
+        (ARRAY_FIELD_EX32(s->regs, AFR, UAF3)) |
+        (ARRAY_FIELD_EX32(s->regs, AFR, UAF4)))) {
+            filter_pass = true;
+        }
+
+        /*
+        * Messages that pass any of the acceptance filters will be stored in
+        * the RX FIFO.
+        */
+        if (ARRAY_FIELD_EX32(s->regs, AFR, UAF1)) {
+            uint32_t id_masked = s->regs[R_AFMR1] & frame->can_id;
+            uint32_t filter_id_masked = s->regs[R_AFMR1] & s->regs[R_AFIR1];
+
+            if (filter_id_masked == id_masked) {
+                filter_pass = true;
+            }
+        }
+
+        if (ARRAY_FIELD_EX32(s->regs, AFR, UAF2)) {
+            uint32_t id_masked = s->regs[R_AFMR2] & frame->can_id;
+            uint32_t filter_id_masked = s->regs[R_AFMR2] & s->regs[R_AFIR2];
+
+            if (filter_id_masked == id_masked) {
+                filter_pass = true;
+            }
+        }
+
+        if (ARRAY_FIELD_EX32(s->regs, AFR, UAF3)) {
+            uint32_t id_masked = s->regs[R_AFMR3] & frame->can_id;
+            uint32_t filter_id_masked = s->regs[R_AFMR3] & s->regs[R_AFIR3];
+
+            if (filter_id_masked == id_masked) {
+                filter_pass = true;
+            }
+        }
+
+        if (ARRAY_FIELD_EX32(s->regs, AFR, UAF4)) {
+            uint32_t id_masked = s->regs[R_AFMR4] & frame->can_id;
+            uint32_t filter_id_masked = s->regs[R_AFMR4] & s->regs[R_AFIR4];
+
+            if (filter_id_masked == id_masked) {
+                filter_pass = true;
+            }
+        }
+
+        if (!filter_pass) {
+            trace_xlnx_can_rx_fifo_filter_reject(frame->can_id, frame->can_dlc);
+            return;
+        }
+
+        /* Store the message in fifo if it passed through any of the filters. */
+        if (filter_pass && frame->can_dlc <= MAX_DLC) {
+
+            if (fifo32_is_full(&s->rx_fifo)) {
+                ARRAY_FIELD_DP32(s->regs, INTERRUPT_STATUS_REGISTER, RXOFLW, 1);
+            } else {
+                timestamp = CAN_TIMER_MAX - ptimer_get_count(s->can_timer);
+
+                fifo32_push(&s->rx_fifo, id_can2xcan(frame->can_id));
+
+                fifo32_push(&s->rx_fifo, deposit32(0, R_RXFIFO_DLC_DLC_SHIFT,
+                                                R_RXFIFO_DLC_DLC_LENGTH,
+                                                frame->can_dlc) |
+                                        deposit32(0, R_RXFIFO_DLC_RXT_SHIFT,
+                                                R_RXFIFO_DLC_RXT_LENGTH,
+                                                timestamp));
+
+                /* First 32 bit of the data. */
+                fifo32_push(&s->rx_fifo, deposit32(0, R_TXFIFO_DATA1_DB0_SHIFT,
+                                                R_TXFIFO_DATA1_DB0_LENGTH,
+                                                frame->data[0]) |
+                                        deposit32(0, R_TXFIFO_DATA1_DB1_SHIFT,
+                                                R_TXFIFO_DATA1_DB1_LENGTH,
+                                                frame->data[1]) |
+                                        deposit32(0, R_TXFIFO_DATA1_DB2_SHIFT,
+                                                R_TXFIFO_DATA1_DB2_LENGTH,
+                                                frame->data[2]) |
+                                        deposit32(0, R_TXFIFO_DATA1_DB3_SHIFT,
+                                                R_TXFIFO_DATA1_DB3_LENGTH,
+                                                frame->data[3]));
+                /* Last 32 bit of the data. */
+                fifo32_push(&s->rx_fifo, deposit32(0, R_TXFIFO_DATA2_DB4_SHIFT,
+                                                R_TXFIFO_DATA2_DB4_LENGTH,
+                                                frame->data[4]) |
+                                        deposit32(0, R_TXFIFO_DATA2_DB5_SHIFT,
+                                                R_TXFIFO_DATA2_DB5_LENGTH,
+                                                frame->data[5]) |
+                                        deposit32(0, R_TXFIFO_DATA2_DB6_SHIFT,
+                                                R_TXFIFO_DATA2_DB6_LENGTH,
+                                                frame->data[6]) |
+                                        deposit32(0, R_TXFIFO_DATA2_DB7_SHIFT,
+                                                R_TXFIFO_DATA2_DB7_LENGTH,
+                                                frame->data[7]));
+
+                ARRAY_FIELD_DP32(s->regs, INTERRUPT_STATUS_REGISTER, RXOK, 1);
+                trace_xlnx_can_rx_data(frame->can_id, frame->can_dlc,
+                                    frame->data[0], frame->data[1],
+                                    frame->data[2], frame->data[3],
+                                    frame->data[4], frame->data[5],
+                                    frame->data[6], frame->data[7]);
+            }
+
+            can_update_irq(s);
+        }
+    }
+    ```
+
+- 
     2022.06.09(晚上):最近添加了can/pwm/timer/adc这些模型到quard star soc中，均验证正确，然后今天添加了cadence的gem网卡模型，编写好设备树dts文件后，运行却发现uboot无法启动了，而且完全没有打印输出，经过一番查找定位，终于找到了问题，u-boot-2021.07/drivers/serial/serial-uclass.c:79:serial_find_console_or_panic函数未能正常完成而产生了panic_str断言，继续追逐最终确认在以下代码处返回了-ENOMEM（-12）错误最终导致问题。
     
     ```c
