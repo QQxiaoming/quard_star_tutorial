@@ -1107,8 +1107,8 @@ build_util_linux()
     cd $SHELL_FOLDER/util-linux-2.38
     ./configure \
         --host=riscv64-linux-gnu \
-        --prefix=/ \
-        --with-bashcompletiondir=/share/bash-completion/completions \
+        --prefix=$SHELL_FOLDER/output \
+        --with-bashcompletiondir=$SHELL_FOLDER/output/share/bash-completion/completions \
         --disable-static \
         --disable-libuuid \
         --without-libz \
@@ -1120,7 +1120,7 @@ build_util_linux()
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
-    make install DESTDIR=$SHELL_FOLDER/output
+    make install
     rm -rf $SHELL_FOLDER/util-linux-2.38
 }
 
@@ -1467,6 +1467,92 @@ build_ell()
     rm -rf $SHELL_FOLDER/ell-0.5.1
 }
 
+build_pcre()
+{
+    # 编译pcre
+    echo "------------------------------ 编译pcre ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf pcre-8.37.tar.gz
+    cd $SHELL_FOLDER/pcre-8.37
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/pcre-8.37
+}
+
+build_elfutils()
+{
+    # 编译elfutils
+    echo "---------------------------- 编译elfutils ----------------------------"
+    cd $SHELL_FOLDER
+    tar -jxvf elfutils-0.187.tar.bz2
+    cd $SHELL_FOLDER/elfutils-0.187
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --disable-debuginfod \
+        --disable-libdebuginfod \
+        CFLAGS=-I$SHELL_FOLDER/output/include \
+        LDFLAGS="-L$SHELL_FOLDER/output/lib -lz" \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/output/lib/libasm.a
+    rm -rf $SHELL_FOLDER/output/lib/libdw.a
+    rm -rf $SHELL_FOLDER/output/lib/libelf.a
+    rm -rf $SHELL_FOLDER/elfutils-0.187
+}
+
+build_glib2()
+{
+    # 编译glib2
+    echo "------------------------------ 编译glib2 ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf glib-2.69.3.tar.xz
+    cd $SHELL_FOLDER/glib-2.69.3
+    PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        meson _build \
+        --cross-file $SHELL_FOLDER/meson.ini \
+        -Dselinux=disabled \
+        -Dprefix=$SHELL_FOLDER/output
+    ninja -C _build
+    ninja -C _build install
+    rm -rf $SHELL_FOLDER/glib-2.69.3
+}
+
+build_irqbalance()
+{
+    # 编译irqbalance
+    echo "--------------------------- 编译irqbalance ---------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf irqbalance-1.9.0.tar.gz
+    cd $SHELL_FOLDER/irqbalance-1.9.0
+    ./autogen.sh
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --without-irqbalance-ui \
+        --without-libcap-ng \
+        NCURSESW_CFLAGS=-I$SHELL_FOLDER/output/include \
+        NCURSESW_LIBS="-L$SHELL_FOLDER/output/lib -lncurses" \
+        GLIB2_CFLAGS="-I$SHELL_FOLDER/output/lib/glib-2.0/include -I$SHELL_FOLDER/output/include/glib-2.0" \
+        GLIB2_LIBS="-L$SHELL_FOLDER/output/lib -lglib-2.0 -lpcre" \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/irqbalance-1.9.0
+}
+
 case "$1" in
 make)
     build_make
@@ -1639,6 +1725,18 @@ spi_tools)
 ell)
     build_ell
     ;;
+pcre)
+    build_pcre
+    ;;
+elfutils)
+    build_elfutils
+    ;;
+glib2)
+    build_glib2
+    ;;
+irqbalance)
+    build_irqbalance
+    ;;
 all)
     build_make
     build_ncurses
@@ -1696,6 +1794,9 @@ all)
     build_tcpdump
     build_spi_tools
     build_ell
+    build_pcre
+    build_glib2
+    build_irqbalance
 	build_qt
     ;;
 *)
