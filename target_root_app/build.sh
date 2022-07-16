@@ -1553,6 +1553,34 @@ build_irqbalance()
     rm -rf $SHELL_FOLDER/irqbalance-1.9.0
 }
 
+build_lighttpd()
+{
+    # 编译lighttpd
+    echo "---------------------------- 编译lighttpd ----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf lighttpd-1.4.65.tar.gz
+    cd $SHELL_FOLDER/lighttpd-1.4.65
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --enable-shared \
+        --disable-lfs \
+        --without-valgrind \
+        --without-bzip2 \
+        --without-lua \
+        --with-pcre \
+        --with-openssl \
+        CFLAGS=-I$SHELL_FOLDER/output/include \
+        LDFLAGS="-L$SHELL_FOLDER/output/lib" \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/lighttpd-1.4.65
+}
+
 case "$1" in
 make)
     build_make
@@ -1737,6 +1765,9 @@ glib2)
 irqbalance)
     build_irqbalance
     ;;
+lighttpd)
+    build_lighttpd
+    ;;
 all)
     build_make
     build_ncurses
@@ -1797,6 +1828,7 @@ all)
     build_pcre
     build_glib2
     build_irqbalance
+    build_lighttpd
 	build_qt
     ;;
 *)
