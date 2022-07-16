@@ -13,6 +13,9 @@
 .. image:: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial/badge
    :target: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial
    :alt: CodeFactor
+.. image:: https://img.shields.io/github/tag/QQxiaoming/quard_star_tutorial.svg
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
+   :alt: GitHub tag (latest SemVer)
 .. image:: https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg
    :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
    :alt: GitHub All Releases
