@@ -1,0 +1,63 @@
+name: windows
+
+on:
+  workflow_run:
+    workflows: ["MAIN_CI"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  release_windows:
+    runs-on: ubuntu-20.04
+    if: github.event.workflow_run.conclusion == 'success'
+    steps:
+      - uses: dawidd6/action-download-artifact@v2.21.1
+        with:
+          workflow: main_ci.yml
+          workflow_conclusion: success
+          name: output
+
+      - uses: dawidd6/action-download-artifact@v2.21.1
+        with:
+          workflow: main_ci.yml
+          workflow_conclusion: success
+          name: qemu_w64
+
+      - uses: dawidd6/action-download-artifact@v2.21.1
+        with:
+          workflow: main_ci.yml
+          workflow_conclusion: success
+          name: quard_star_tools_w64
+
+      - name: release_packet
+        shell: bash -l {0}
+        run: |
+          tar -xzvf output.tar.gz
+          rm -rf output.tar.gz update_tools.sh update_tools run.sh
+          rm -rf output/busybox output/qemu
+          rm -rf ./output/lowlevelboot/lowlevelboot.elf
+          rm -rf ./output/lowlevelboot/lowlevelboot.hex
+          rm -rf ./output/lowlevelboot/lowlevelboot.lst
+          rm -rf ./output/lowlevelboot/lowlevelboot.map
+          rm -rf ./output/mask_rom/mask_rom.elf
+          rm -rf ./output/mask_rom/mask_rom.hex
+          rm -rf ./output/mask_rom/mask_rom.lst
+          rm -rf ./output/mask_rom/mask_rom.map
+          rm -rf ./output/opensbi/fw_jump.elf
+          rm -rf ./output/opensbi/fw_jump.lst
+          rm -rf ./output/trusted_domain/trusted_fw.elf
+          rm -rf ./output/trusted_domain/trusted_fw.hex
+          rm -rf ./output/trusted_domain/trusted_fw.lst
+          rm -rf ./output/trusted_domain/trusted_fw.map
+          rm -rf ./output/uboot/u-boot.elf
+          rm -rf ./output/uboot/u-boot.lst
+          rm -rf ./output/uboot/u-boot.map
+          zip -r release_win64.zip gui_tools/ output/ run.bat run_quard_star_tools.bat
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: release_win64
+          path: |
+            release_win64.zip
