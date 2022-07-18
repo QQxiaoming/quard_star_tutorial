@@ -1,12 +1,15 @@
 主页
 ----------------------------------
 
-.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml/badge.svg?branch=main
-   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml
-   :alt: MAIN_CI
-.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml/badge.svg?branch=main
-   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml
-   :alt: APP_CI
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?style=flat-square&logo=linux
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml
+   :alt: Linux ci
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?style=flat-square&logo=windows
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml
+   :alt: Windows ci
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/macos?style=flat-square&logo=apple
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml
+   :alt: Macos ci
 .. image:: https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest
    :target: https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest
    :alt: Documentation Status
