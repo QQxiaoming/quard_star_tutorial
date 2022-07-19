@@ -1,12 +1,12 @@
 #include <QPainter>
 #include <QMenu>
 #include <QGuiApplication>
-#include <QDesktopWidget>
 #include <QScreen>
 #include <QMessageBox>
 #include <QThread>
 #include <QBitmap>
 #include <QFileDialog>
+#include <QPoint>
 
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
@@ -31,7 +31,7 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     tap_name = "";
 
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
-    QRect screen = QGuiApplication::screenAt(this->mapToGlobal({this->width()/2,0}))->geometry();
+    QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     QRect size = this->geometry();
     this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
 

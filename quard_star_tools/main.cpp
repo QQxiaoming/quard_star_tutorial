@@ -88,8 +88,10 @@ static QTranslator appTranslator;
 
 int main(int argc, char *argv[])
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
     QApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
     QApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
@@ -105,22 +107,27 @@ int main(int argc, char *argv[])
     QString skin_color = AppComLineParser->getOpt("skin_color");
 
     QLocale locale;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    QString qlibpath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#else
+    QString qlibpath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
     switch(locale.language()) {
     case QLocale::Chinese:
-        qtTranslator.load("qt_zh_CN.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        if(!qtTranslator.load("qt_zh_CN.qm",qlibpath)) qDebug() << "err qtTranslator.load";
         application.installTranslator(&qtTranslator);
-        qtbaseTranslator.load("qtbase_zh_CN.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        if(!qtbaseTranslator.load("qtbase_zh_CN.qm",qlibpath)) qDebug() << "err qtTranslator.load";
         application.installTranslator(&qtbaseTranslator);
-        appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm");
+        if(!appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm")) qDebug() << "err qtTranslator.load";
         application.installTranslator(&appTranslator);
         break;
     default:
     case QLocale::English:
-        qtTranslator.load("qt_en.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        if(!qtTranslator.load("qt_en.qm",qlibpath)) qDebug() << "err qtTranslator.load";
         application.installTranslator(&qtTranslator);
-        qtbaseTranslator.load("qtbase_en.qm",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        if(!qtbaseTranslator.load("qtbase_en.qm",qlibpath)) qDebug() << "err qtTranslator.load";
         application.installTranslator(&qtbaseTranslator);
-        appTranslator.load(":/lang/lang/quard_star_tools_en_US.qm");
+        if(!appTranslator.load(":/lang/lang/quard_star_tools_en_US.qm")) qDebug() << "err qtTranslator.load";
         application.installTranslator(&appTranslator);
         break;
     }
