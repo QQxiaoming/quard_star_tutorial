@@ -1,18 +1,24 @@
 主页
 ----------------------------------
 
-.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml/badge.svg?branch=main
-   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/main_ci.yml
-   :alt: MAIN_CI
-.. image:: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml/badge.svg?branch=main
-   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/app_ci.yml
-   :alt: APP_CI
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?style=flat-square&logo=linux
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml
+   :alt: Linux ci
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?style=flat-square&logo=windows
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml
+   :alt: Windows ci
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/macos?style=flat-square&logo=apple
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml
+   :alt: Macos ci
 .. image:: https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest
    :target: https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest
    :alt: Documentation Status
 .. image:: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial/badge
    :target: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial
    :alt: CodeFactor
+.. image:: https://img.shields.io/github/tag/QQxiaoming/quard_star_tutorial.svg
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
+   :alt: GitHub tag (latest SemVer)
 .. image:: https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg
    :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
    :alt: GitHub All Releases
@@ -86,3 +92,4 @@
    kgdb调试linux内核以及驱动模块<ext1.md>
    gcc编译选项pg在嵌入式profile中应用<ext2.md>
    qemu常用参数选项说明<ext3.md>
+   使用qemu的gdbstub调试<ext4.md>

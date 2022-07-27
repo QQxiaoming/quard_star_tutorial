@@ -1,12 +1,12 @@
 #include <QPainter>
 #include <QMenu>
 #include <QGuiApplication>
-#include <QDesktopWidget>
 #include <QScreen>
 #include <QMessageBox>
 #include <QThread>
 #include <QBitmap>
 #include <QFileDialog>
+#include <QPoint>
 
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
@@ -31,10 +31,10 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     tap_name = "";
 
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
-    QRect screen = QGuiApplication::screenAt(this->mapToGlobal({this->width()/2,0}))->geometry();
+    QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     QRect size = this->geometry();
     this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
-    
+
     QPixmap pix;
     QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
     if(!skinFile.isFile())
@@ -191,7 +191,19 @@ bool BoardWindow::powerSwitch(bool power)
 
 void BoardWindow::about()
 {
-    QMessageBox::about(this, tr("About"), tr("Version")+" \n "+VERSION+"\n"+tr("Commit")+" \n "+GIT_TAG+"\n"+tr("Author")+"\n qiaoqm@aliyun.com \n"+tr("Website")+"\n https://github.com/QQxiaoming/quard_star_tutorial");
+    QMessageBox::about(this, tr("About"),
+        tr(
+            "<p>Version</p>"
+            "<p>&nbsp;%1</p>"
+            "<p>Commit</p>"
+            "<p>&nbsp;%2</p>"
+            "<p>Author</p>"
+            "<p>&nbsp;qiaoqm@aliyun.com</p>"
+            "<p>Website</p>"
+            "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
+            "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
+        ).arg(VERSION,GIT_TAG)
+    );
 }
 
 void BoardWindow::aboutQt()

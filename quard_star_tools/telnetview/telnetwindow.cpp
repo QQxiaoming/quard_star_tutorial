@@ -1,5 +1,7 @@
 #include <QScrollBar>
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QRegExp>
+#endif
 #include "telnetwindow.h"
 #include "ui_telnetwindow.h"
 
@@ -69,12 +71,12 @@ void TelnetWindow::addText(const char *msg, int count)
             datapool = datapool + data;
             if(datapool.length()>6){
                 if(escapeSequenceExpression.indexIn(datapool) == 0){
-                    QByteArray cut = datapool.left(escapeSequenceExpression.matchedLength());
+                    //QByteArray cut = datapool.left(escapeSequenceExpression.matchedLength());
                     //qDebug() << cut;
                     data = datapool.mid(escapeSequenceExpression.matchedLength());
                     datapool.clear();
                 } else if(escapeSequenceExpression1.indexIn(datapool) == 0){
-                    QByteArray cut = datapool.left(escapeSequenceExpression1.matchedLength());
+                    //QByteArray cut = datapool.left(escapeSequenceExpression1.matchedLength());
                     //qDebug() << cut;
                     data = datapool.mid(escapeSequenceExpression1.matchedLength());
                     datapool.clear();

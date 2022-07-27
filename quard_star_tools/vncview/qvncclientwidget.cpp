@@ -426,8 +426,13 @@ void QVNCClientWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if (!isConnectedToServer())
         return;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    int posX = event->position().x();
+    int posY = event->position().y();
+#else
     int posX = event->x();
     int posY = event->y();
+#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -448,8 +453,13 @@ void QVNCClientWidget::mousePressEvent(QMouseEvent *event)
     setFocus();
     if (!isConnectedToServer())
         return;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    int posX = event->position().x();
+    int posY = event->position().y();
+#else
     int posX = event->x();
     int posY = event->y();
+#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -469,8 +479,13 @@ void QVNCClientWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     if (!isConnectedToServer())
         return;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    int posX = event->position().x();
+    int posY = event->position().y();
+#else
     int posX = event->x();
     int posY = event->y();
+#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -490,8 +505,13 @@ void QVNCClientWidget::wheelEvent(QWheelEvent *event)
 {
     if (!isConnectedToServer())
         return;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    int posX = event->position().x();
+    int posY = event->position().y();
+#else
     int posX = event->x();
     int posY = event->y();
+#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -522,7 +542,7 @@ quint8 QVNCClientWidget::translateRfbPointer(unsigned int mouseStatus, int &posX
     quint8 buttonMask = 0; //bit:0-2 represent left,middle and right button (after 2 is wheel button, up down left right) 1:down 0:up
     if (mouseStatus & Qt::LeftButton)
         buttonMask |= 0x01;
-    if (mouseStatus & Qt::MidButton)
+    if (mouseStatus & Qt::MiddleButton)
         buttonMask |= 0x02;
     if (mouseStatus & Qt::RightButton)
         buttonMask |= 0x04;

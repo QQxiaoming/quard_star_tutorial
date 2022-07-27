@@ -15,7 +15,7 @@ char QTelnet::_arrCR[2]           = { 13, 0 };
 QTelnet::QTelnet(QObject *parent) :
 	QTcpSocket(parent), m_actualSB(0)
 {
-	connect( this, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(socketError(QAbstractSocket::SocketError)) );
+    connect( this, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(socketError(QAbstractSocket::SocketError)) );
 	connect( this, SIGNAL(readyRead()),		this, SLOT(onReadyRead()) );
 }
 

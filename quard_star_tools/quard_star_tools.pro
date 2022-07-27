@@ -1,13 +1,16 @@
-QT       += core gui network
+BUILD_VERSION=0.0.3
+QT += core gui network
+greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4) {
     TARGET_ARCH=$${QT_ARCH}
 } else {
     TARGET_ARCH=$${QMAKE_HOST.arch}
 }
+
 CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += APP_VERSION="\\\"V0.0.2\\\""
+DEFINES += APP_VERSION="\\\"V$${BUILD_VERSION}\\\""
 QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
 INCLUDEPATH += \
@@ -62,7 +65,7 @@ UI_DIR      = $$build_type/ui
 
 # 平台配置
 win32:{
-    VERSION = 0.0.2.0
+    VERSION = $${BUILD_VERSION}.000
     RC_LANG = 0x0004
     RC_ICONS = "icons\icon.ico"
 
@@ -95,6 +98,7 @@ unix:!macx:{
 macx:{
     QMAKE_RPATHDIR=$ORIGIN
     QMAKE_LFLAGS += -no-pie
+    ICON = "icons/icon.icns"
 
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }

@@ -69,7 +69,6 @@ struct QuardStarState {
     DeviceState *i2s;
     DeviceState *nand;
     XlnxZynqMPCANState can;
-    CanBusState *canbus;
     IMX2WdtState   wdt;
     SiFivePwmState pwm;
     DeviceState *adc;
@@ -80,6 +79,7 @@ struct QuardStarState {
     I2CSlave *at24c_dev;
     I2CSlave *wm8750_dev;
 
+    CanBusState *canbus;
     char *mask_rom_path;
 };
 
