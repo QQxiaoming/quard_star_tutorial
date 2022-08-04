@@ -22,7 +22,6 @@
 #include "qapi/error.h"
 #include "hw/boards.h"
 #include "hw/loader.h"
-#include "hw/sysbus.h"
 #include "hw/qdev-properties.h"
 #include "hw/char/serial.h"
 #include "target/riscv/cpu.h"
@@ -681,7 +680,7 @@ static void quard_star_machine_class_init(ObjectClass *oc, void *data)
 }
 
 static const TypeInfo quard_star_machine_typeinfo = {
-    .name       = MACHINE_TYPE_NAME("quard-star"),
+    .name       = TYPE_RISCV_QUARD_STAR_MACHINE,
     .parent     = TYPE_MACHINE,
     .class_init = quard_star_machine_class_init,
     .instance_init = quard_star_machine_instance_init,
