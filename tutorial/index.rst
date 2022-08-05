@@ -93,3 +93,4 @@
    gcc编译选项pg在嵌入式profile中应用<ext2.md>
    qemu常用参数选项说明<ext3.md>
    使用qemu的gdbstub调试<ext4.md>
+   QEMU CAN总线<ext5.md>
