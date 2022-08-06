@@ -30,7 +30,11 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     vcan_name = "";
     tap_name = "";
 
+#if defined(Q_OS_MACOS)
+    this->setWindowFlags(Qt::FramelessWindowHint);
+#else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
+#endif
     QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     QRect size = this->geometry();
     this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
@@ -70,7 +74,7 @@ bool BoardWindow::powerSwitch(bool power)
 {
 #if defined(Q_OS_WIN)
     QString program = envPath + "/qemu_w64/qemu-system-riscv64.exe";
-#elif defined(Q_OS_LINUX)
+#elif (defined(Q_OS_LINUX) || defined(Q_OS_MACOS))
     QString program = envPath + "/qemu/bin/qemu-system-riscv64";
 #else
     QString program = envPath + "qemu-system-riscv64";
@@ -108,7 +112,7 @@ bool BoardWindow::powerSwitch(bool power)
                 "tap,ifname="+tap_name+",script=no,downscript=no,id=net0"; }(),
         "-netdev",    
             "user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1",
-#if defined(Q_OS_LINUX)
+#if (defined(Q_OS_LINUX) || defined(Q_OS_MACOS))
         "-audiodev",  
             "sdl,id=audio0",
 #elif defined(Q_OS_WIN)
@@ -125,7 +129,7 @@ bool BoardWindow::powerSwitch(bool power)
             "wm8750,audiodev=audio0",
         "-fw_cfg",    
             "name=opt/qemu_cmdline,string=qemu_vc=:vn:24x80:",
-#if defined(Q_OS_LINUX)
+#if (defined(Q_OS_LINUX) || defined(Q_OS_MACOS))
         "-fsdev",     
             "local,security_model=mapped-xattr,path="+envPath+",id=fsdev0",
 #endif
@@ -133,7 +137,7 @@ bool BoardWindow::powerSwitch(bool power)
             "virtio-mmio.force-legacy=false",
         "-device",    
             "virtio-blk-device,drive=disk0,id=hd0",
-#if defined(Q_OS_LINUX)
+#if (defined(Q_OS_LINUX) || defined(Q_OS_MACOS))
         "-device",    
             "virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0",
 #endif
