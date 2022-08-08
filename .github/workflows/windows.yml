@@ -61,3 +61,52 @@ jobs:
           name: release_win64
           path: |
             release_win64.zip
+
+  test_windows:
+    runs-on: windows-2022
+    needs: [release_windows]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: release_win64
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+
+      - name: Install prerequisites
+        run: |
+          Choco-Install -PackageName unzip --force
+          unzip release_win64.zip
+
+      - uses: msys2/setup-msys2@v2
+
+      - name: sed script
+        shell: msys2 {0}
+        run: |
+          sed -i 's/-audiodev dsound,id=audio0/-audiodev none,id=audio0/g' run.bat
+
+      - name: Run tests
+        shell: msys2 {0}
+        run: |
+          timeout --foreground -s SIGKILL 3m ./run.bat nographic > >(tee run_qemu.log) || {
+            echo
+            if cat run_qemu.log | grep "init process"
+            then
+              echo "Kernel boot successfully"
+            else
+              echo "Kernel boot failed"
+              ps -W | awk '/qemu-system-riscv64.exe/,NF=1' | xargs kill -f
+              exit 1
+            fi
+            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
+            then
+              ps -W | awk '/qemu-system-riscv64.exe/,NF=1' | xargs kill -f
+              echo "Pass simulation"
+            else
+              ps -W | awk '/qemu-system-riscv64.exe/,NF=1' | xargs kill -f
+              echo "Failed in init process"
+              exit 1
+            fi
+          }

@@ -57,6 +57,7 @@ jobs:
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
           mv ./quard_star_tools/gui_tools ./gui_tools
+          mv ./output/qemu_macos ./output/qemu
           tar -czf release_macos.tar.gz gui_tools/ output/ run.sh run_quard_star_tools.sh
 
       - name: Upload build asserts
@@ -65,3 +66,94 @@ jobs:
           name: release_macos
           path: |
             release_macos.tar.gz
+
+  test_macos:
+    runs-on: macos-12
+    needs: [release_macos]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: release_macos
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+
+      - name: Install prerequisites
+        run: |
+          brew install libffi gettext glib pkg-config autoconf automake pixman ninja coreutils
+          tar -xzvf release_macos.tar.gz
+          sed -i'.original' -e 's/-audiodev sdl,id=audio0/-audiodev none,id=audio0/g' run.sh
+
+      - name: Run tests pflash boot
+        shell: bash -l {0}
+        run: |
+          gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
+            echo
+            if cat run_qemu.log | grep "init process"
+            then
+              echo "Kernel boot successfully"
+            else
+              echo "Kernel boot failed"
+              killall qemu-system-riscv64
+              exit 1
+            fi
+            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
+            then
+              killall qemu-system-riscv64
+              echo "Pass simulation"
+            else
+              killall qemu-system-riscv64
+              echo "Failed in init process"
+              exit 1
+            fi
+          }
+
+      - name: Run tests sd boot
+        shell: bash -l {0}
+        run: |
+          gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
+            echo
+            if cat run_qemu.log | grep "init process"
+            then
+              echo "Kernel boot successfully"
+            else
+              echo "Kernel boot failed"
+              killall qemu-system-riscv64
+              exit 1
+            fi
+            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
+            then
+              killall qemu-system-riscv64
+              echo "Pass simulation"
+            else
+              killall qemu-system-riscv64
+              echo "Failed in init process"
+              exit 1
+            fi
+          }
+
+      - name: Run tests spi boot
+        shell: bash -l {0}
+        run: |
+          gtimeout --foreground -s SIGKILL 5m ./run.sh nographic default spi > >(tee run_qemu.log) || {
+            echo
+            if cat run_qemu.log | grep "init process"
+            then
+              echo "Kernel boot successfully"
+            else
+              echo "Kernel boot failed"
+              killall qemu-system-riscv64
+              exit 1
+            fi
+            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
+            then
+              killall qemu-system-riscv64
+              echo "Pass simulation"
+            else
+              killall qemu-system-riscv64
+              echo "Failed in init process"
+              exit 1
+            fi
+          }

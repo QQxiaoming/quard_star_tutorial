@@ -1,7 +1,7 @@
 /*
  * QEMU RISC-V Quard Star Board system control
  *
- * Copyright (c) 2021 qiao qiming
+ * Copyright (c) 2021-2022 qiao qiming <2014500726@smail.xtu.edu.cn>
  *
  * system control memory mapped device used to exit simulation
  *

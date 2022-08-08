@@ -7,7 +7,7 @@ case "${UNAMEOUT}" in
         PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
         ;;
     Darwin*)    
-        PROCESSORS=4
+        PROCESSORS=$(sysctl -n machdep.cpu.thread_count)
         ;;
     *)
         PROCESSORS=4
@@ -51,7 +51,7 @@ build_qemu_macos()
     echo "---------------------------- 编译qemu_macos ----------------------------"
     cd $SHELL_FOLDER/qemu-7.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu_macos" ]; then  
-    ./configure --prefix=$SHELL_FOLDER/output/qemu_macos --target-list=riscv64-softmmu
+    ./configure --prefix=$SHELL_FOLDER/output/qemu_macos --target-list=riscv64-softmmu --enable-virtfs
     fi  
     make -j$PROCESSORS
     make install

@@ -106,7 +106,11 @@ private:
 public:
 	explicit QTelnet(QObject *parent = 0);
 
-	virtual void connectToHost(const QString &host, quint16 port);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    virtual void connectToHost(const QString &hostName, quint16 port, OpenMode mode = ReadWrite, NetworkLayerProtocol protocol = AnyIPProtocol);
+#else
+    virtual void connectToHost(const QString &host, quint16 port);
+#endif
 	void sendData(const QByteArray &ba);
 	void setCustomCRLF(char lf = 13, char cr = 10);
 	void setCustomCR(char cr = 10, char cr2 = 0);

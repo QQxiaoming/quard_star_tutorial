@@ -97,7 +97,6 @@ unix:!macx:{
 
 macx:{
     QMAKE_RPATHDIR=$ORIGIN
-    QMAKE_LFLAGS += -no-pie
     ICON = "icons/icon.icns"
 
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")

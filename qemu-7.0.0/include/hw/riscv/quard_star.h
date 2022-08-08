@@ -1,7 +1,7 @@
 /*
  * QEMU RISC-V Quard Star Board
  *
- * Copyright (c) 2021 qiao qiming
+ * Copyright (c) 2021-2022 qiao qiming <2014500726@smail.xtu.edu.cn>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,

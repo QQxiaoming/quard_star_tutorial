@@ -1,7 +1,7 @@
 /*
  * QEMU RISC-V Quard Star Board
  *
- * Copyright (c) 2021 qiao qiming
+ * Copyright (c) 2021-2022 qiao qiming <2014500726@smail.xtu.edu.cn>
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms and conditions of the GNU General Public License,
@@ -22,7 +22,6 @@
 #include "qapi/error.h"
 #include "hw/boards.h"
 #include "hw/loader.h"
-#include "hw/sysbus.h"
 #include "hw/qdev-properties.h"
 #include "hw/char/serial.h"
 #include "target/riscv/cpu.h"
@@ -42,7 +41,6 @@
 #include "net/net.h"
 #include "hw/misc/unimp.h"
 
-#define GEM_REVISION        0x10070109
 
 static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_MROM]        = { 0x00000000,   0x20000 },
@@ -556,14 +554,14 @@ static void quard_star_eth_create(MachineState *machine)
         qemu_check_nic_model(&nd_table[0], TYPE_CADENCE_GEM);
         qdev_set_nic_properties(s->eth, &nd_table[0]);
     }
-    object_property_set_int(OBJECT(s->eth), "revision", GEM_REVISION, &error_abort);
+    object_property_set_int(OBJECT(s->eth), "revision", 0x10070109, &error_abort);/* GEM_REVISION = 0x10070109 */
     sysbus_realize_and_unref(SYS_BUS_DEVICE(s->eth), &error_fatal);
     sysbus_mmio_map(SYS_BUS_DEVICE(s->eth), 0, quard_star_memmap[QUARD_STAR_ETH].base);
     sysbus_connect_irq(SYS_BUS_DEVICE(s->eth), 0,
                         qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_ETH_IRQ));
 
     create_unimplemented_device("riscv.quard_star.eth.gem-mgmt",
-        quard_star_memmap[QUARD_STAR_ETH].base+0x2000, 0x1000);
+                                quard_star_memmap[QUARD_STAR_ETH].base+0x2000, 0x1000);
 }
 
 static void quard_star_lcdc_create(MachineState *machine)
@@ -681,7 +679,7 @@ static void quard_star_machine_class_init(ObjectClass *oc, void *data)
 }
 
 static const TypeInfo quard_star_machine_typeinfo = {
-    .name       = MACHINE_TYPE_NAME("quard-star"),
+    .name       = TYPE_RISCV_QUARD_STAR_MACHINE,
     .parent     = TYPE_MACHINE,
     .class_init = quard_star_machine_class_init,
     .instance_init = quard_star_machine_instance_init,
@@ -694,4 +692,3 @@ static void quard_star_machine_init_register_types(void)
 }
 
 type_init(quard_star_machine_init_register_types)
-
