@@ -3,12 +3,32 @@
 set "WIDTH=1280"
 set "HEIGHT=720"
 set "DEFAULT_V=:vn:24x80:"
-set "DEFAULT_VC=vc:%WIDTH%x%HEIGHT%"
+set "DEFAULT_VC=%WIDTH%x%HEIGHT%"
 set "DBOOTCFG=sd"
-set "GRAPHIC_PARAM0=--display gtk,zoom-to-fit=false --serial %DEFAULT_VC% --serial %DEFAULT_VC% --serial %DEFAULT_VC% --monitor %DEFAULT_VC% --parallel none"
-set "GRAPHIC_PARAM1=-nographic --parallel none"
 
-%cd%\output\qemu_w64\qemu-system-riscv64w.exe ^
+if "%3"=="pflash" (
+    set "DBOOTCFG=pflash"
+) else if "%3"=="spi" (
+    set "DBOOTCFG=spi"
+) else if "%3"=="sd" (
+    set "DBOOTCFG=sd"
+)
+
+if "%2"=="default" (
+    set "WIDTH=1280"
+    set "HEIGHT=720"
+    set "DEFAULT_VC=%WIDTH%x%HEIGHT%"
+)
+
+set "GRAPHIC_PARAM=--display gtk,zoom-to-fit=false --serial vc:%DEFAULT_VC% --serial vc:%DEFAULT_VC% --serial vc:%DEFAULT_VC% --monitor vc:%DEFAULT_VC% --parallel none"
+
+if "%1"=="nographic" (
+    set "GRAPHIC_PARAM=-nographic --parallel none"
+) else if "%1"=="graphic" (
+    set "GRAPHIC_PARAM=--display gtk,zoom-to-fit=false --serial vc:%DEFAULT_VC% --serial vc:%DEFAULT_VC% --serial vc:%DEFAULT_VC% --monitor vc:%DEFAULT_VC% --parallel none"
+)
+
+%cd%\output\qemu_w64\qemu-system-riscv64.exe ^
 -M quard-star,mask-rom-path=./output/mask_rom/mask_rom.bin,canbus=canbus0 ^
 -m 1G ^
 -smp 8 ^
@@ -35,4 +55,4 @@ set "GRAPHIC_PARAM1=-nographic --parallel none"
 -device virtio-gpu-device,xres=%WIDTH%,yres=%HEIGHT%,id=video0 ^
 -device virtio-mouse-device,id=input0 ^
 -device virtio-keyboard-device,id=input1 ^
-%GRAPHIC_PARAM0%
+%GRAPHIC_PARAM%
