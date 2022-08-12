@@ -31,7 +31,7 @@ BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
     tap_name = "";
 
 #if defined(Q_OS_MACOS)
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
@@ -74,8 +74,10 @@ bool BoardWindow::powerSwitch(bool power)
 {
 #if defined(Q_OS_WIN)
     QString program = envPath + "/qemu_w64/qemu-system-riscv64.exe";
-#elif (defined(Q_OS_LINUX) || defined(Q_OS_MACOS))
+#elif defined(Q_OS_LINUX)
     QString program = envPath + "/qemu/bin/qemu-system-riscv64";
+#elif defined(Q_OS_MACOS)
+    QString program = envPath + "/qemu_macos/bin/qemu-system-riscv64";
 #else
     QString program = envPath + "qemu-system-riscv64";
 #endif
