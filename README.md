@@ -49,3 +49,7 @@ The following figure shows the current memory distribution, which will be contin
 ## Development Note
 
 [Develop Note](./DEVELOPNOTE.md)
+
+## More
+
+The main branch of the project is currently a stable branch, which is used for supporting tutorial documents. The next-kernel branch is used to learn the latest functions on the experimental kernel. Periodically sync with [linux-next](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next).

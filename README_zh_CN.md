@@ -49,3 +49,7 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 ## 开发记录
 
 [开发日记](./DEVELOPNOTE.md)
+
+## 更多
+
+项目main分支目前为稳定分支，配套教程文档使用，next-kernel分支用来学习实验kernel上的最新功能，定期与[linux-next](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next)同步。
