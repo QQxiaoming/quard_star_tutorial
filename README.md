@@ -22,10 +22,10 @@ This project aims to build an Embedded Linux System. In order to analyze the chi
 
 ## Environment Setup
 
-Ubuntu18.04 needs to use apt to install the package:
+Ubuntu20.04 needs to use apt to install the package:
 
 ```shell
-sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev libsdl2-dev device-tree-compiler bison flex gperf intltool mtd-utils
+sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-dev libcap-ng-dev libattr1-dev libsdl2-dev device-tree-compiler bison flex gperf intltool mtd-utils libpulse-dev libalsa-ocaml-dev libsdl2-dev
 ```
 
 ## Hardware Architecture
@@ -49,3 +49,7 @@ The following figure shows the current memory distribution, which will be contin
 ## Development Note
 
 [Develop Note](./DEVELOPNOTE.md)
+
+## More
+
+The main branch of the project is currently a stable branch, which is used for supporting tutorial documents. The next-kernel branch is used to learn the latest functions on the experimental kernel. Periodically sync with [linux-next](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next).

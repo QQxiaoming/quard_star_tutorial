@@ -2,6 +2,15 @@
 set -e
 
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
+UNAMEOUT="$(uname -s)"
+case "${UNAMEOUT}" in
+Linux*)     
+	QEMU_PATHNAME="qemu" 
+	;;
+Darwin*)    
+	QEMU_PATHNAME="qemu_macos" 
+	;;
+esac
 
 HOST_GDB_PARAM=""
 #HOST_GDB_PARAM="gdb --args" #use this need build qemu with --enable-debug option
@@ -101,7 +110,14 @@ graphic)
 	DEFAULT_V=":vn:$COLS""x""$ROWS:"
 	;;
 nographic)
-	DEFAULT_VN="$(stty size | sed '/ \+/s//x/g')" 
+	case "${UNAMEOUT}" in
+    Linux*)     
+		DEFAULT_VN="$(stty size | sed '/ \+/s//x/g')" 
+        ;;
+    Darwin*)    
+		DEFAULT_VN="$(stty size | sed '/ /s//x/g')" 
+        ;;
+	esac
     GRAPHIC_PARAM="-nographic --parallel none"
 	DEFAULT_V=":vn:$DEFAULT_VN:"
     ;;
@@ -142,7 +158,7 @@ update_test)
 	;;
 esac
 
-$HOST_GDB_PARAM $SHELL_FOLDER/output/qemu/bin/qemu-system-riscv64 \
+$HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin",canbus=canbus0 \
 -m 1G \
 -smp 8 \
