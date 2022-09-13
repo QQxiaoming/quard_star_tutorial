@@ -83,7 +83,7 @@ jobs:
         run: |
           brew install libffi gettext glib pkg-config autoconf automake pixman ninja coreutils
           tar -xzvf release_macos.tar.gz
-          sed -i'.original' -e 's/-audiodev sdl,id=audio0/-audiodev none,id=audio0/g' run.sh
+          sed -i'.original' -e 's/QEMU_AUDIO="coreaudio"/QEMU_AUDIO="none"/g' run.sh
 
       - name: Run tests pflash boot
         shell: bash -l {0}

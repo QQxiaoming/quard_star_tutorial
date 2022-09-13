@@ -114,9 +114,12 @@ bool BoardWindow::powerSwitch(bool power)
                 "tap,ifname="+tap_name+",script=no,downscript=no,id=net0"; }(),
         "-netdev",    
             "user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1",
-#if (defined(Q_OS_LINUX) || defined(Q_OS_MACOS))
+#if defined(Q_OS_LINUX)
         "-audiodev",  
             "sdl,id=audio0",
+#elif defined(Q_OS_MACOS)
+        "-audiodev",  
+            "coreaudio,id=audio0",
 #elif defined(Q_OS_WIN)
         "-audiodev",  
             "dsound,id=audio0",

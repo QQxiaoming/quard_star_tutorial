@@ -25,13 +25,10 @@ void NetSelectBox::showEvent(QShowEvent* event) {
     ui->tapComboBox->addItem("");
     ui->canComboBox->addItem("");
 
-//TODO:windows and mac support
-#if defined(Q_OS_LINUX)
     foreach (QNetworkInterface var, netList) {
         ui->tapComboBox->addItem(var.humanReadableName());
         ui->canComboBox->addItem(var.humanReadableName());
     }
-#endif
 
     ui->tapComboBox->setCurrentText(bw->tap_name);
     ui->canComboBox->setCurrentText(bw->vcan_name);

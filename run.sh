@@ -6,9 +6,13 @@ UNAMEOUT="$(uname -s)"
 case "${UNAMEOUT}" in
 Linux*)     
 	QEMU_PATHNAME="qemu" 
+	QEMU_DISPLAY="gtk,zoom-to-fit=false"
+	QEMU_AUDIO="sdl"
 	;;
 Darwin*)    
 	QEMU_PATHNAME="qemu_macos" 
+	QEMU_DISPLAY="cocoa"
+	QEMU_AUDIO="coreaudio"
 	;;
 esac
 
@@ -104,7 +108,7 @@ HEIGHT="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\2/g')"
 
 case "$1" in
 graphic)
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor vc:$DEFAULT_VC --parallel none"
+	GRAPHIC_PARAM="--display $QEMU_DISPLAY --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor vc:$DEFAULT_VC --parallel none"
 	ROWS="$(echo $WIDTH / 8 |bc)"
 	COLS="$(echo $HEIGHT / 16 |bc)"
 	DEFAULT_V=":vn:$COLS""x""$ROWS:"
@@ -122,17 +126,17 @@ nographic)
 	DEFAULT_V=":vn:$DEFAULT_VN:"
     ;;
 customize1)
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor stdio --parallel none"
+	GRAPHIC_PARAM="--display $QEMU_DISPLAY --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor stdio --parallel none"
 	ROWS="$(echo $WIDTH / 8 |bc)"
 	COLS="$(echo $HEIGHT / 16 |bc)"
 	DEFAULT_V=":vn:$COLS""x""$ROWS:"
 	;;
 customize2)
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor stdio --parallel none"
+	GRAPHIC_PARAM="--display $QEMU_DISPLAY --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor stdio --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 customize3)
-	GRAPHIC_PARAM="--display gtk,zoom-to-fit=false --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor none --parallel none"
+	GRAPHIC_PARAM="--display $QEMU_DISPLAY --serial telnet:127.0.0.1:3441,server,nowait --serial telnet:127.0.0.1:3442,server,nowait --serial telnet:127.0.0.1:3443,server,nowait --monitor none --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
 customize4)
@@ -172,7 +176,7 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -object can-bus,id=canbus0 $HOST_VCAN_PARAM \
 $NETDEV0_PARAM $NETDEV1_PARAM \
--audiodev sdl,id=audio0 \
+-audiodev $QEMU_AUDIO,id=audio0 \
 -net nic,netdev=net0 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
