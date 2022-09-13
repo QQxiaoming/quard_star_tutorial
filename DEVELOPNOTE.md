@@ -901,3 +901,25 @@
 
 - 
     2022.07.12(凌晨): 最近身体状况不是很好，前几天非常严重的失眠。今天想release个新版本，经过前一段时间的开发目前quard star soc中的各类controller ip已经非常完善了，相对v0.0.2版本变化较大，也修复了不少问题，rootfs构建也搭建了ci，现在是个发布版本v0.0.3的好时机，另外今天是我喜欢的女生的生日，祝愿她生日快乐🎂。
+
+- 
+    2022.08.29(下午): 突然发现spidev的设备树写法（如下示例）在linux 5.17之后不再支持，必须要明确指定设备类型匹配compatible才行。
+
+    ```
+    &qspi1 {
+        status = "okay";
+
+        spidev@0{
+            compatible = "spidev";
+            reg = <0>;
+            spi-max-frequency = <4000000>;
+        };
+    };
+    ```
+    
+    那么如何使用之前的用户层spi接口呢？查看[spidev.rst](https://elixir.bootlin.com/linux/v5.17/source/Documentation/spi/spidev.rst)可以看到使用如下命令可以直接注册生成/dev/spidev1.0设备，代替原本设备树的固定写法。
+
+    ```shell
+	echo spidev > /sys/bus/spi/devices/spi1.0/driver_override
+	echo spi1.0 > /sys/bus/spi/drivers/spidev/bind
+    ```
