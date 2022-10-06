@@ -1,9 +1,19 @@
 #!/bin/bash
 set -e
 
+PERMISSION_TOOL=""
 UNAMEOUT="$(uname -s)"
 case "${UNAMEOUT}" in
-    Linux*)     
+    Linux*)    
+        HOST_USER_NAME="$(whoami)" 
+        case "${HOST_USER_NAME}" in
+        root)
+            PERMISSION_TOOL=""
+            ;;
+        *)
+            PERMISSION_TOOL="pkexec"
+            ;;
+        esac
         PROCESSORS=$(< /proc/cpuinfo grep "processor" | wc -l)
         ;;
     Darwin*)    
@@ -217,7 +227,7 @@ build_kernel()
     cd $SHELL_FOLDER/linux-next
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
-    make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- tools/perf -j$PROCESSORS V=1
+    #make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- tools/perf -j$PROCESSORS
     cp $SHELL_FOLDER/linux-next/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel_next/Image
 }
 
@@ -252,7 +262,6 @@ build_rootfs()
     TARGET_ROOTFS_DIR=$MAKE_ROOTFS_DIR/rootfs
     TARGET_BOOTFS_DIR=$MAKE_ROOTFS_DIR/bootfs
     if [ ! -d "$MAKE_ROOTFS_DIR" ]; then
-    mkdir $MAKE_ROOTFS_DIR
     BUILD_ROOTFS_OPT="all"
     fi
     if [ ! -f "$MAKE_ROOTFS_DIR/rootfs.img" ]; then  
@@ -272,7 +281,7 @@ build_rootfs()
         cd $MAKE_ROOTFS_DIR
         if [ ! -f "$MAKE_ROOTFS_DIR/rootfs.img" ]; then  
         dd if=/dev/zero of=rootfs.img bs=1M count=2048
-        pkexec $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $MAKE_ROOTFS_DIR/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
+        $PERMISSION_TOOL $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $MAKE_ROOTFS_DIR/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
         fi
         cp $SHELL_FOLDER/output/linux_kernel_next/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
@@ -309,14 +318,17 @@ build_rootfs()
         cp -r $GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR/usr/bin/* $TARGET_ROOTFS_DIR/usr/bin/
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_ROOTFS_DIR
-        pkexec $SHELL_FOLDER/build_rootfs/build_fs.sh $MAKE_ROOTFS_DIR
+        $PERMISSION_TOOL $SHELL_FOLDER/build_rootfs/build_fs.sh $MAKE_ROOTFS_DIR
         ;;
     bootfs)
+        if [ ! -d "$TARGET_BOOTFS_DIR" ]; then  
+        mkdir $TARGET_ROOTFS_DIR
+        fi
         cp $SHELL_FOLDER/output/linux_kernel_next/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
         $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
-        pkexec $SHELL_FOLDER/build_rootfs/build_fs_only_bootfs.sh $MAKE_ROOTFS_DIR
+        $PERMISSION_TOOL $SHELL_FOLDER/build_rootfs/build_fs_only_bootfs.sh $MAKE_ROOTFS_DIR
         ;;
     *)
         echo "skip build rootfs.img!"
@@ -340,12 +352,17 @@ build_all()
     build_rootfs
 }
 
-case "$BUILD_TARGET" in
---help)
+echo_usage()
+{
     TARGET="qemu|mask_rom|lowlevelboot|opensbi|sbi_dtb|trusted_domain|uboot|uboot_dtb|firmware|kernel|busybox|rootfs|all"
     ROOTFS_OPT="all|bootfs"
     USAGE="usage $0 [$TARGET] [$ROOTFS_OPT]"
 	echo $USAGE
+}
+
+case "$BUILD_TARGET" in
+--help)
+    echo_usage
 	exit 0
 	;;
 qemu)
@@ -394,7 +411,7 @@ all)
     build_all
     ;;
 *)
-	echo $USAGE
+    echo_usage
 	exit 255
 	;;
 esac
