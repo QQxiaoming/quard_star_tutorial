@@ -84,7 +84,14 @@ if [ $# == 1 ] ; then
 else
 	case "$2" in
 	full-screen)
-		DEFAULT_VC="$(xrandr -q 2>/dev/null | awk '/*/{print $1}')"
+		case "${UNAMEOUT}" in
+		Linux*)     
+			DEFAULT_VC="$(xrandr -q 2>/dev/null | awk '/*/{print $1}')"
+			;;
+		Darwin*)    
+			DEFAULT_VC="$(displayplacer list | sed -n '/^Resolution: /p' | awk '/ /{print $2}')"
+			;;
+		esac
 		FULL_SCREEN=-full-screen
 		;;
 	default)
