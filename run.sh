@@ -1,6 +1,11 @@
 #!/bin/bash
-set -e
+###############################################################################
+# This file is part of the quard_star_tutorial project.                       #
+# Copyright (C) 2021 Quard <2014500726@smail.xtu.edu.cn>                      #
+###############################################################################
 
+################################## env param ##################################
+set -e
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
 UNAMEOUT="$(uname -s)"
 case "${UNAMEOUT}" in
@@ -15,32 +20,56 @@ Darwin*)
 	QEMU_AUDIO="coreaudio"
 	;;
 esac
+###############################################################################
 
+################################# user param ##################################
+if [ -z "$HOST_GDB_PARAM" ]; then
 HOST_GDB_PARAM=""
 #HOST_GDB_PARAM="gdb --args" #use this need build qemu with --enable-debug option
+fi
 
+if [ -z "$TARGET_GDB_PARAM" ]; then
 TARGET_GDB_PARAM=""
 #TARGET_GDB_PARAM="-s -S"
+fi
 
+if [ -z "$DEBUG_PARAM" ]; then
 DEBUG_PARAM=""
 #DEBUG_PARAM="-d help -D qemu.log"
+fi
 
+if [ -z "$PLUGINS_PARAM" ]; then
 PLUGINS_PARAM=""
 #PLUGINS_PATH=$SHELL_FOLDER/qemu-7.0.0/build/contrib/plugins/libhotblocks.so
 #PLUGINS_PATH=$SHELL_FOLDER/qemu-7.0.0/build/tests/plugin/libsyscall.so
 #PLUGINS_PARAM="-plugin $PLUGINS_PATH -d plugin"
+fi
 
+if [ -z "$NETDEV0_PARAM" ]; then
 NETDEV0_PARAM="-netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu_net0,dns=192.168.31.56,tftp=$SHELL_FOLDER/output,bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0"
 #NETDEV0_PARAM="-netdev tap,ifname=tap0,script=no,downscript=no,id=net0"
 #NETDEV0_PARAM=""
+fi
 
+if [ -z "$NETDEV1_PARAM" ]; then
 NETDEV1_PARAM="-netdev user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1"
 #NETDEV1_PARAM="-netdev tap,ifname=tap0,script=no,downscript=no,id=net1"
 #NETDEV1_PARAM=""
+fi
 
+if [ -z "$AUDIO_PARAM" ]; then
+AUDIO_PARAM="-audiodev $QEMU_AUDIO,id=audio0"
+#AUDIO_PARAM="-audiodev none,id=audio0"
+fi
+
+if [ -z "$HOST_VCAN_PARAM" ]; then
 HOST_VCAN_PARAM=""
 #HOST_VCAN_PARAM="-object can-host-socketcan,id=socketcan0,if=vcan0,canbus=canbus0"
+fi
 
+###############################################################################
+
+################################## cli param ##################################
 VC=\
 "full-screen | \
 1920x1080 | \
@@ -169,6 +198,9 @@ update_test)
 	;;
 esac
 
+###############################################################################
+
+################################## run qemu ##################################
 $HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin",canbus=canbus0 \
 -m 1G \
@@ -183,7 +215,7 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -object can-bus,id=canbus0 $HOST_VCAN_PARAM \
 $NETDEV0_PARAM $NETDEV1_PARAM \
--audiodev $QEMU_AUDIO,id=audio0 \
+$AUDIO_PARAM \
 -net nic,netdev=net0 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
@@ -198,3 +230,5 @@ $NETDEV0_PARAM $NETDEV1_PARAM \
 -device virtio-mouse-device,id=input0 \
 -device virtio-keyboard-device,id=input1 \
 $GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM $TARGET_GDB_PARAM
+
+###############################################################################
