@@ -87,7 +87,7 @@ jobs:
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
-          gtimeout --foreground -s SIGKILL 3m AUDIO_PARAM="-audiodev none,id=audio0" ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
+          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -111,7 +111,7 @@ jobs:
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
-          gtimeout --foreground -s SIGKILL 3m AUDIO_PARAM="-audiodev none,id=audio0" ./run.sh nographic default sd > >(tee run_qemu.log) || {
+          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
@@ -135,7 +135,7 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
-          gtimeout --foreground -s SIGKILL 5m AUDIO_PARAM="-audiodev none,id=audio0" ./run.sh nographic default spi > >(tee run_qemu.log) || {
+          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 5m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then
