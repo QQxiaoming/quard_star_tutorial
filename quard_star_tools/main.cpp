@@ -27,6 +27,7 @@ private:
     QMap<QString, QCommandLineOption> commandLineMap = {
         {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path","../../../../output")},
         {"skin_color", QCommandLineOption({"c","skin-color"}, "GUI skin color","skin-color","green")},
+        {"language", QCommandLineOption({"l","language"}, "application language","language","auto")},
     };
 
 public:
@@ -105,6 +106,7 @@ int main(int argc, char *argv[])
     AppComLineParser->process(application);
     QString env_path = AppComLineParser->getOpt("env_path");
     QString skin_color = AppComLineParser->getOpt("skin_color");
+    QString app_lang = AppComLineParser->getOpt("language");
 
     QLocale locale;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -112,13 +114,25 @@ int main(int argc, char *argv[])
 #else
     QString qlibpath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #endif
-    switch(locale.language()) {
+    QLocale::Language lang = locale.language();
+    if(app_lang == "zh_CN") lang = QLocale::Chinese;
+    if(app_lang == "ja_JP") lang = QLocale::Japanese;
+    if(app_lang == "en_US") lang = QLocale::English;
+    switch(lang) {
     case QLocale::Chinese:
         if(!qtTranslator.load("qt_zh_CN.qm",qlibpath)) qDebug() << "err qtTranslator.load";
         application.installTranslator(&qtTranslator);
         if(!qtbaseTranslator.load("qtbase_zh_CN.qm",qlibpath)) qDebug() << "err qtTranslator.load";
         application.installTranslator(&qtbaseTranslator);
         if(!appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm")) qDebug() << "err qtTranslator.load";
+        application.installTranslator(&appTranslator);
+        break;
+    case QLocale::Japanese:
+        if(!qtTranslator.load("qt_ja.qm",qlibpath)) qDebug() << "err qtTranslator.load";
+        application.installTranslator(&qtTranslator);
+        if(!qtbaseTranslator.load("qtbase_ja.qm",qlibpath)) qDebug() << "err qtTranslator.load";
+        application.installTranslator(&qtbaseTranslator);
+        if(!appTranslator.load(":/lang/lang/quard_star_tools_ja_JP.qm")) qDebug() << "err qtTranslator.load";
         application.installTranslator(&appTranslator);
         break;
     default:

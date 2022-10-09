@@ -47,6 +47,7 @@ RESOURCES += \
 
 TRANSLATIONS += \
     lang/quard_star_tools_zh_CN.ts \
+    lang/quard_star_tools_ja_JP.ts \
     lang/quard_star_tools_en_US.ts
 
 # 输出配置
