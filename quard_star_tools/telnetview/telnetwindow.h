@@ -15,7 +15,7 @@ class TelnetWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit TelnetWindow(QString addr, int port, QWidget *parent = nullptr);
+    explicit TelnetWindow(const QString &addr, int port, QWidget *parent = nullptr);
     ~TelnetWindow();
     QString severaddr;
     int severport;

@@ -5,7 +5,7 @@
 #include "telnetwindow.h"
 #include "ui_telnetwindow.h"
 
-TelnetWindow::TelnetWindow(QString addr, int port, QWidget *parent) :
+TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     QMainWindow(parent),severaddr(addr),severport(port),
     ui(new Ui::TelnetWindow)
 {
@@ -53,7 +53,7 @@ void TelnetWindow::insertPlainText(QByteArray data)
 void TelnetWindow::addText(const char *msg, int count)
 {
     QByteArray data = QByteArray(msg, count);
-
+    //if(this->isActiveWindow()) qDebug() << data;
     do {
         if(datapool.isEmpty()){
             int offset = data.indexOf('\x1B', 0);
@@ -68,17 +68,21 @@ void TelnetWindow::addText(const char *msg, int count)
         } else {
             QRegExp const escapeSequenceExpression(R"(\x1B\[([\d;]+)m)");
             QRegExp const escapeSequenceExpression1(R"(\x1B\[m)");
+            QRegExp const escapeSequenceExpression2(R"(\x1B\[D)");
+            QRegExp const escapeSequenceExpression3(R"(\x1B\[K)");
             datapool = datapool + data;
             if(datapool.length()>6){
                 if(escapeSequenceExpression.indexIn(datapool) == 0){
-                    //QByteArray cut = datapool.left(escapeSequenceExpression.matchedLength());
-                    //qDebug() << cut;
                     data = datapool.mid(escapeSequenceExpression.matchedLength());
                     datapool.clear();
                 } else if(escapeSequenceExpression1.indexIn(datapool) == 0){
-                    //QByteArray cut = datapool.left(escapeSequenceExpression1.matchedLength());
-                    //qDebug() << cut;
                     data = datapool.mid(escapeSequenceExpression1.matchedLength());
+                    datapool.clear();
+                } else if(escapeSequenceExpression2.indexIn(datapool) == 0){
+                    data = '\b'+datapool.mid(escapeSequenceExpression2.matchedLength());
+                    datapool.clear();
+                } else if(escapeSequenceExpression3.indexIn(datapool) == 0){
+                    data = datapool.mid(escapeSequenceExpression3.matchedLength());
                     datapool.clear();
                 } else {
                     insertPlainText(datapool.left(1));
@@ -125,6 +129,165 @@ void TelnetWindow::keyPressEvent(QKeyEvent *event)
         break;
     case Qt::Key_Slash:
         telnet->sendData(QByteArray(1,'/'));
+        break;
+    case Qt::Key_Minus:
+        telnet->sendData(QByteArray(1,'-'));
+        break;
+    case Qt::Key_QuoteLeft:
+        telnet->sendData(QByteArray(1,'`'));
+        break;
+    case Qt::Key_Equal:
+        telnet->sendData(QByteArray(1,'='));
+        break;
+    case Qt::Key_Comma:
+        telnet->sendData(QByteArray(1,','));
+        break;
+    case Qt::Key_Semicolon:
+        telnet->sendData(QByteArray(1,';'));
+        break;
+    case Qt::Key_Apostrophe:
+        telnet->sendData(QByteArray(1,'\''));
+        break;
+    case Qt::Key_BracketLeft:
+        telnet->sendData(QByteArray(1,'['));
+        break;
+    case Qt::Key_Backslash:
+        telnet->sendData(QByteArray(1,'\\'));
+        break;
+    case Qt::Key_BracketRight:
+        telnet->sendData(QByteArray(1,']'));
+        break;
+    case Qt::Key_Less:
+        telnet->sendData(QByteArray(1,'<'));
+        break;
+    case Qt::Key_Greater:
+        telnet->sendData(QByteArray(1,'>'));
+        break;
+    case Qt::Key_Question:
+        telnet->sendData(QByteArray(1,'?'));
+        break;
+    case Qt::Key_Colon:
+        telnet->sendData(QByteArray(1,':'));
+        break;
+    case Qt::Key_QuoteDbl:
+        telnet->sendData(QByteArray(1,'\"'));
+        break;
+    case Qt::Key_BraceLeft:
+        telnet->sendData(QByteArray(1,'{'));
+        break;
+    case Qt::Key_BraceRight:
+        telnet->sendData(QByteArray(1,'}'));
+        break;
+    case Qt::Key_Bar:
+        telnet->sendData(QByteArray(1,'|'));
+        break;
+    case Qt::Key_AsciiTilde:
+        telnet->sendData(QByteArray(1,'~'));
+        break;
+    case Qt::Key_Exclam:
+        telnet->sendData(QByteArray(1,'!'));
+        break;
+    case Qt::Key_At:
+        telnet->sendData(QByteArray(1,'@'));
+        break;
+    case Qt::Key_NumberSign:
+        telnet->sendData(QByteArray(1,'#'));
+        break;
+    case Qt::Key_Dollar:
+        telnet->sendData(QByteArray(1,'$'));
+        break;
+    case Qt::Key_Percent:
+        telnet->sendData(QByteArray(1,'%'));
+        break;
+    case Qt::Key_AsciiCircum:
+        telnet->sendData(QByteArray(1,'^'));
+        break;
+    case Qt::Key_Ampersand:
+        telnet->sendData(QByteArray(1,'&'));
+        break;
+    case Qt::Key_Asterisk:
+        telnet->sendData(QByteArray(1,'*'));
+        break;
+    case Qt::Key_ParenLeft:
+        telnet->sendData(QByteArray(1,'('));
+        break;
+    case Qt::Key_ParenRight:
+        telnet->sendData(QByteArray(1,')'));
+        break;
+    case Qt::Key_Underscore:
+        telnet->sendData(QByteArray(1,'_'));
+        break;
+    case Qt::Key_Plus:
+        telnet->sendData(QByteArray(1,'+'));
+        break;
+    case Qt::Key_PageDown:
+        telnet->sendData(QByteArray("\e[6~",4));
+        break;
+    case Qt::Key_PageUp:
+        telnet->sendData(QByteArray("\e[5~",4));
+        break;
+    case Qt::Key_End:
+        telnet->sendData(QByteArray("\e[4~",4));
+        break;
+    case Qt::Key_Delete:
+        telnet->sendData(QByteArray("\e[3~",4));
+        break;
+    case Qt::Key_Insert:
+        telnet->sendData(QByteArray("\e[2~",4));
+        break;
+    case Qt::Key_Home:
+        telnet->sendData(QByteArray("\e[1~",4));
+        break;
+    case Qt::Key_F1:
+        telnet->sendData(QByteArray("\e[[A",4));
+        break;
+    case Qt::Key_F2:
+        telnet->sendData(QByteArray("\e[[B",4));
+        break;    
+    case Qt::Key_F3:
+        telnet->sendData(QByteArray("\e[[C",4));
+        break;
+    case Qt::Key_F4:
+        telnet->sendData(QByteArray("\e[[D",4));
+        break;    
+    case Qt::Key_F5:
+        telnet->sendData(QByteArray("\e[[E",4));
+        break;
+    case Qt::Key_F6:  
+        telnet->sendData(QByteArray("\e[17~",5)); 
+        break;
+    case Qt::Key_F7:  
+        telnet->sendData(QByteArray("\e[18~",5)); 
+        break;
+    case Qt::Key_F8:  
+        telnet->sendData(QByteArray("\e[19~",5)); 
+        break;
+    case Qt::Key_F9:  
+        telnet->sendData(QByteArray("\e[20~",5)); 
+        break;
+    case Qt::Key_F10: 
+        telnet->sendData(QByteArray("\e[21~",5)); 
+        break;
+    case Qt::Key_F11: 
+        telnet->sendData(QByteArray("\e[23~",5)); 
+        break;
+    case Qt::Key_F12: 
+        telnet->sendData(QByteArray("\e[24~",5));
+        break;
+    case Qt::Key_Left:
+        telnet->sendData(QByteArray("\e[D",3));
+        break;
+    case Qt::Key_Up :
+        telnet->sendData(QByteArray("\e[A",3));
+        break;
+    case Qt::Key_Right:
+        telnet->sendData(QByteArray("\e[C",3));
+        break;
+    case Qt::Key_Down:
+        telnet->sendData(QByteArray("\e[B",3));
+        break;
+    case Qt::Key_Escape:
+        telnet->sendData(QByteArray(1,'\e'));
         break;
     case 0x30 ... 0x39:
         telnet->sendData(QByteArray(1,static_cast<char>(event->key())));

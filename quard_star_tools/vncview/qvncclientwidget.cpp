@@ -3,20 +3,22 @@
 QVNCClientWidget::QVNCClientWidget(QWidget *parent) : QWidget(parent), isScaled(true)
 {
     setMouseTracking(true);
-    connect(&socket, &QTcpSocket::stateChanged, [&](QAbstractSocket::SocketState state)
-            {
-                switch (state)
+    connect(&socket, &QTcpSocket::stateChanged, &socket,
+                [&](QAbstractSocket::SocketState state)
                 {
-                case QAbstractSocket::UnconnectedState:
-                    disconnect(&socket, SIGNAL(readyRead()), this, SLOT(onServerMessage()));
-                    screen.fill(Qt::black);
-                    update();
-                    emit connected(false);
-                    break;
-                default:
-                    break;
+                    switch (state)
+                    {
+                    case QAbstractSocket::UnconnectedState:
+                        disconnect(&socket, SIGNAL(readyRead()), this, SLOT(onServerMessage()));
+                        screen.fill(Qt::black);
+                        update();
+                        emit connected(false);
+                        break;
+                    default:
+                        break;
+                    }
                 }
-            });
+            );
 }
 
 QVNCClientWidget::~QVNCClientWidget()
@@ -171,7 +173,7 @@ bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port
                     pixelFormat.greenMax = qFromBigEndian(pixelFormat.greenMax);
                     pixelFormat.blueMax = qFromBigEndian(pixelFormat.blueMax);
 
-                    response = socket.read(4); // name-length
+                    socket.read(4); // name-length
                     response = socket.readAll();
                 }
                 else
@@ -303,7 +305,7 @@ void QVNCClientWidget::onServerMessage()
     // ***************************************************************************************
     case RFBProtol::FramebufferUpdate:
 
-        response = socket.read(1); // padding
+        socket.read(1); // padding
         response = socket.read(2); // number of rectangles
 
         numOfRects = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
@@ -324,7 +326,7 @@ void QVNCClientWidget::onServerMessage()
             if (socket.read((char *)&rectHeader, sizeof(rectHeader)) != sizeof(rectHeader))
             {
                 qDebug("read size error");
-                response = socket.readAll();
+                socket.readAll();
                 break;
             }
             rectHeader.xPosition = qFromBigEndian(rectHeader.xPosition);
@@ -375,7 +377,7 @@ void QVNCClientWidget::onServerMessage()
         break;
     default:
         qDebug() << "server to client message type:" << static_cast<quint8>(response.at(0));
-        response = socket.readAll();
+        socket.readAll();
         break;
     }
 
@@ -1193,7 +1195,7 @@ static unsigned char pc2[48] = {
 
 void deskey(unsigned char *key, short edf) /* Thanks to James Gillogly & Phil Karn! */
 {
-    int i, j, l, m, n;
+    int i, j, l, m;
     unsigned char pc1m[56], pcr[56];
     unsigned long kn[32];
 
@@ -1205,6 +1207,7 @@ void deskey(unsigned char *key, short edf) /* Thanks to James Gillogly & Phil Ka
     }
     for (i = 0; i < 16; i++)
     {
+        int n;
         if (edf == DE1)
             m = (15 - i) << 1;
         else
@@ -1241,14 +1244,14 @@ void deskey(unsigned char *key, short edf) /* Thanks to James Gillogly & Phil Ka
 
 static void cookey(unsigned long *raw1)
 {
-    unsigned long *cook, *raw0;
+    unsigned long *cook;
     unsigned long dough[32];
-     int i;
+    int i;
 
     cook = dough;
     for (i = 0; i < 16; i++, raw1++)
     {
-        raw0 = raw1++;
+        unsigned long *raw0 = raw1++;
         *cook = (*raw0 & 0x00fc0000L) << 6;
         *cook |= (*raw0 & 0x00000fc0L) << 10;
         *cook |= (*raw1 & 0x00fc0000L) >> 10;
@@ -1474,7 +1477,7 @@ static unsigned long SP8[64] = {
 
 static void desfunc(unsigned long *block, unsigned long *keys)
 {
-    unsigned long fval, work, right, leftt;
+    unsigned long work, right, leftt;
     int round;
 
     leftt = block[0];
@@ -1499,6 +1502,7 @@ static void desfunc(unsigned long *block, unsigned long *keys)
 
     for (round = 0; round < 8; round++)
     {
+        unsigned long fval;
         work = (right << 28) | (right >> 4);
         work ^= *keys++;
         fval = SP7[work & 0x3fL];

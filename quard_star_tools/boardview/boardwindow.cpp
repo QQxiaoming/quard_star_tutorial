@@ -14,7 +14,7 @@
 extern QString VERSION;
 extern QString GIT_TAG;
 
-BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
+BoardWindow::BoardWindow(const QString &path,const QString &color,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BoardWindow),envPath(path),skinColor(color)
 {

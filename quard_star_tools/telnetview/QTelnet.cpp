@@ -21,7 +21,7 @@ QTelnet::QTelnet(QObject *parent) :
 
 QString QTelnet::peerInfo() const
 {
-	return QString("%1 (%2):%3").arg(peerName()).arg(peerAddress().toString()).arg(peerPort());
+    return peerName()+" ("+peerAddress().toString()+" ):"+peerPort();
 }
 
 bool QTelnet::isConnected() const
@@ -261,11 +261,10 @@ void QTelnet::dontsReply(char action, char reply)
 qint64 QTelnet::doTelnetInProtocol(qint64 buffSize)
 {
 	qint64 iIn, iOut;
-	char b;
 
 	for( iIn = 0, iOut = 0; iIn < buffSize; iIn++ )
 	{
-		b = m_buffIncoming[iIn];
+        char b = m_buffIncoming[iIn];
 
 		switch( m_negotiationState )
 		{
@@ -523,7 +522,7 @@ void QTelnet::onReadyRead()
 		default:
 			processed = doTelnetInProtocol(readed);
 			if( processed > 0 )
-				Q_EMIT(newData(m_buffProcessed, processed));
+                emit newData(m_buffProcessed, processed);
 
 			break;
 		}

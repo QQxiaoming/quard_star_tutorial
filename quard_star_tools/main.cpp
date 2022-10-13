@@ -35,7 +35,7 @@ public:
         parser.process(app);
         processApp = true;
     }
-    QString getOpt(QString optKey) const {
+    QString getOpt(const QString &optKey) const {
         if(processApp) {
             foreach(QString opt,commandLineMap.keys()) {
                 if(opt == optKey){
@@ -50,7 +50,7 @@ public:
         }
         return "";
     }
-    bool isSetOpt(QString optKey) const {
+    bool isSetOpt(const QString &optKey) const {
         if(processApp) {
             foreach(QString opt,commandLineMap.keys()) {
                 if(opt == optKey){

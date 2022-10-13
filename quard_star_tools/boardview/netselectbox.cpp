@@ -17,7 +17,7 @@ NetSelectBox::~NetSelectBox()
 
 void NetSelectBox::showEvent(QShowEvent* event) {
     QNetworkInterface interface;
-    BoardWindow *bw = (BoardWindow *)(this->parent());
+    BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
     QList<QNetworkInterface> netList = interface.allInterfaces();
 
     ui->tapComboBox->clear();
@@ -37,13 +37,13 @@ void NetSelectBox::showEvent(QShowEvent* event) {
 
 void NetSelectBox::on_buttonBox_accepted()
 {
-    BoardWindow *bw = (BoardWindow *)(this->parent());
+    BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
     bw->tap_name = ui->tapComboBox->currentText();
     bw->vcan_name = ui->canComboBox->currentText();
-    this->accepted();
+    emit this->accepted();
 }
 
 void NetSelectBox::on_buttonBox_rejected()
 {
-    this->rejected();
+    emit this->rejected();
 }

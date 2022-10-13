@@ -12,7 +12,7 @@ class VncWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    VncWindow(QString addr, int port, QWidget *parent = nullptr);
+    VncWindow(const QString &addr, int port, QWidget *parent = nullptr);
     ~VncWindow();
     void reConnect(void);
     QString severaddr;
