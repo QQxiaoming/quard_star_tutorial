@@ -87,7 +87,7 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="33"/>
+        <location filename="../telnetview/telnetwindow.ui" line="34"/>
         <source>Refresh</source>
         <translation></translation>
     </message>

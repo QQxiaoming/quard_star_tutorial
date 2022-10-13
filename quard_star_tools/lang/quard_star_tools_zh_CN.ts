@@ -103,7 +103,7 @@
         <translation>Telnet窗口</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="33"/>
+        <location filename="../telnetview/telnetwindow.ui" line="34"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>

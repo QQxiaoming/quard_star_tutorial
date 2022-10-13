@@ -61,13 +61,13 @@ BoardWindow::~BoardWindow()
     qemu_process->kill();
     qemu_process->waitForFinished(-1);
     delete qemu_process;
-    delete ui;
     delete netSelect;
     delete vnc;
     delete telnet[0];
     delete telnet[1];
     delete telnet[2];
     delete telnet[3];
+    delete ui;
 }
 
 bool BoardWindow::powerSwitch(bool power)

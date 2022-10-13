@@ -120,7 +120,7 @@ private:
     quint16 qMakeU16(quint8 l, quint8 h)
     {
         quint16 result;
-        quint8 *result_arr = (quint8 *)&result;
+        quint8 *result_arr = (quint8 *)static_cast<void *>(&result);
         result_arr[0] = h;
         result_arr[1] = l;
         return result;
@@ -129,7 +129,7 @@ private:
     quint32 qMakeU32(quint16 l, quint16 h)
     {
         quint32 result;
-        quint16 *result_arr = (quint16 *)&result;
+        quint16 *result_arr = (quint16 *)static_cast<void *>(&result);
         result_arr[0] = h;
         result_arr[1] = l;
         return result;
@@ -138,7 +138,7 @@ private:
     quint32 qMakeU32(quint8 lowest, quint8 low, quint8 high, quint8 highest)
     {
         quint32 result;
-        quint8 *result_arr = (quint8 *)&result;
+        quint8 *result_arr = (quint8 *)static_cast<void *>(&result);
         result_arr[0] = highest;
         result_arr[1] = high;
         result_arr[2] = low;

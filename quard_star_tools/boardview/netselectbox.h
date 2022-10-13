@@ -19,9 +19,8 @@ protected:
     void showEvent(QShowEvent* event) override;
 
 private slots:
-    void on_buttonBox_accepted();
-
-    void on_buttonBox_rejected();
+    void buttonBox_accepted(void);
+    void buttonBox_rejected(void);
 
 private:
     Ui::NetSelectBox *ui;

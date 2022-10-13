@@ -32,10 +32,14 @@ void NetSelectBox::showEvent(QShowEvent* event) {
 
     ui->tapComboBox->setCurrentText(bw->tap_name);
     ui->canComboBox->setCurrentText(bw->vcan_name);
+
+    QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(buttonBox_accepted()));
+    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(buttonBox_rejected()));
+
     QDialog::showEvent(event);
 }
 
-void NetSelectBox::on_buttonBox_accepted()
+void NetSelectBox::buttonBox_accepted(void)
 {
     BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
     bw->tap_name = ui->tapComboBox->currentText();
@@ -43,7 +47,7 @@ void NetSelectBox::on_buttonBox_accepted()
     emit this->accepted();
 }
 
-void NetSelectBox::on_buttonBox_rejected()
+void NetSelectBox::buttonBox_rejected(void)
 {
     emit this->rejected();
 }
