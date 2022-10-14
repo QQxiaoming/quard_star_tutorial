@@ -166,11 +166,12 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          brew install libffi gettext glib pkg-config autoconf automake pixman ninja
+          brew install libffi gettext glib pkg-config autoconf automake pixman ninja dylibbundler
 
       - name: Build all
         run: |
           ./build.sh qemu_macos
+          dylibbundler -od -b -x ./output/qemu_macos/bin/qemu-system-riscv64 -d ./output/qemu_macos/libs/
           tar -czf qemu_macos.tar.gz output/
 
       - name: Upload build asserts
@@ -287,7 +288,8 @@ jobs:
           mkdir ./gui_tools
           mkdir ./gui_tools/quard_star_tools_macos
           mv ./release/out/quard_star_tools.dmg ./gui_tools/quard_star_tools_macos/quard_star_tools.dmg
-          tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
+          mv ../.github/workflows/res/installer_background.png ./gui_tools/quard_star_tools_macos/installer_background.png
+          tar -czf quard_star_tools.tar.gz gui_tools/ 
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v3.1.0

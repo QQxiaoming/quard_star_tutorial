@@ -9,9 +9,13 @@ on:
 
 jobs:
   release_macos:
-    runs-on: ubuntu-20.04
+    runs-on: macos-12
     if: github.event.workflow_run.conclusion == 'success'
     steps:
+      - name: Install prerequisites
+        run: |
+          brew install create-dmg
+
       - uses: dawidd6/action-download-artifact@v2.23.0
         with:
           workflow: main_ci.yml
@@ -56,8 +60,13 @@ jobs:
           rm -rf ./output/uboot/u-boot.elf
           rm -rf ./output/uboot/u-boot.lst
           rm -rf ./output/uboot/u-boot.map
-          mv ./quard_star_tools/gui_tools ./gui_tools
-          tar -czf release_macos.tar.gz gui_tools/ output/ run.sh run_quard_star_tools.sh
+          mv ./gui_tools/quard_star_tools_macos/installer_background.png ./installer_background.png
+          sudo hdiutil attach ./gui_tools/quard_star_tools_macos/quard_star_tools.dmg
+          cp -R /Volumes/quard_star_tools/quard_star_tools.app ./
+          mv ./output ./quard_star_tools.app/Contents/Frameworks/output
+          mv run.sh ./quard_star_tools.app/Contents/Frameworks/run.sh
+          create-dmg --volname "quard_star_tools" --background "installer_background.png" --window-pos 200 120 --window-size 800 450 --icon-size 100 --icon "quard_star_tools.app" 200 190 --app-drop-link 600 185 "quard_star_tools.dmg" "quard_star_tools.app"
+          tar -czf release_macos.tar.gz quard_star_tools.dmg
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v3.1.0
@@ -83,10 +92,13 @@ jobs:
         run: |
           brew install libffi gettext glib pkg-config autoconf automake pixman ninja coreutils
           tar -xzvf release_macos.tar.gz
+          sudo hdiutil attach quard_star_tools.dmg
+          cp -R /Volumes/quard_star_tools/quard_star_tools.app ./
 
       - name: Run tests pflash boot
         shell: bash -l {0}
         run: |
+          cd ./quard_star_tools.app/Contents/Frameworks
           AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
@@ -111,6 +123,7 @@ jobs:
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
+          cd ./quard_star_tools.app/Contents/Frameworks
           AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
@@ -135,6 +148,7 @@ jobs:
       - name: Run tests spi boot
         shell: bash -l {0}
         run: |
+          cd ./quard_star_tools.app/Contents/Frameworks
           AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 5m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"

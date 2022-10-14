@@ -25,7 +25,11 @@ private:
     QCommandLineParser parser;
     bool processApp = false;
     QMap<QString, QCommandLineOption> commandLineMap = {
-        {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path","../../../../output")},
+    #if defined(Q_OS_MACOS)
+        {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path",QApplication::applicationDirPath()+"/../Frameworks/output")},
+    #else
+        {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path",QApplication::applicationDirPath()+"/../../../../output")},
+    #endif
         {"skin_color", QCommandLineOption({"c","skin-color"}, "GUI skin color","skin-color","green")},
         {"language", QCommandLineOption({"l","language"}, "application language","language","auto")},
     };
