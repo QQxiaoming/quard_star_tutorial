@@ -12,19 +12,19 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - uses: dawidd6/action-download-artifact@v2.21.1
+      - uses: dawidd6/action-download-artifact@v2.23.0
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v2.21.1
+      - uses: dawidd6/action-download-artifact@v2.23.0
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: qemu_w64
 
-      - uses: dawidd6/action-download-artifact@v2.21.1
+      - uses: dawidd6/action-download-artifact@v2.23.0
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
@@ -56,7 +56,7 @@ jobs:
           zip -r release_win64.zip gui_tools/ output/ run.bat run_quard_star_tools.bat
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: release_win64
           path: |
@@ -70,7 +70,7 @@ jobs:
         with:
           name: release_win64
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v2.1.1
         with:
           auto-activate-base: true
           activate-environment: ""
