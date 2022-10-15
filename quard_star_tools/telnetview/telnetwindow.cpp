@@ -70,6 +70,7 @@ void TelnetWindow::addText(const char *msg, int count)
             QRegExp const escapeSequenceExpression1(R"(\x1B\[m)");
             QRegExp const escapeSequenceExpression2(R"(\x1B\[D)");
             QRegExp const escapeSequenceExpression3(R"(\x1B\[K)");
+            QRegExp const escapeSequenceExpression4(R"(\x1B\[J)");
             datapool = datapool + data;
             if(datapool.length()>6){
                 if(escapeSequenceExpression.indexIn(datapool) == 0){
@@ -83,6 +84,9 @@ void TelnetWindow::addText(const char *msg, int count)
                     datapool.clear();
                 } else if(escapeSequenceExpression3.indexIn(datapool) == 0){
                     data = datapool.mid(escapeSequenceExpression3.matchedLength());
+                    datapool.clear();
+                } else if(escapeSequenceExpression4.indexIn(datapool) == 0){
+                    data = datapool.mid(escapeSequenceExpression4.matchedLength());
                     datapool.clear();
                 } else {
                     insertPlainText(datapool.left(1));
