@@ -3,7 +3,7 @@
 #include "vncwindow.h"
 #include "ui_vncwindow.h"
 
-VncWindow::VncWindow(QString addr, int port, QWidget *parent)
+VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     : QMainWindow(parent),severaddr(addr),severport(port)
     , ui(new Ui::VncWindow)
 {

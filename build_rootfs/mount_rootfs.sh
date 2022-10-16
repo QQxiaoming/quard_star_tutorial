@@ -1,32 +1,33 @@
 #!/bin/bash
 
-USAGE="usage $0 [mount | umount] [DIR(./output/rootfs)]"
+USAGE="usage $0 [mount | umount] [LOOPDEV(/dev/loop70)] [DIR(./output/rootfs)]"
 
-if [ $# != 2 ] ; then
+if [ $# != 3 ] ; then
     echo $USAGE
     exit 1
 fi
 
-TARGET_DIR=$2
+LOOPDEV=$2
+TARGET_DIR=$3
 
 mount_fs()
 {
-    losetup -o 0 --sizelimit 2147483648 /dev/loop70 $TARGET_DIR/rootfs.img -P
+    losetup -o 0 --sizelimit 2147483648 $LOOPDEV $TARGET_DIR/rootfs.img -P
     if [ -d "$TARGET_DIR/target" ]; then  
     rm -rf $TARGET_DIR/target
     fi
     mkdir $TARGET_DIR/target
     mkdir $TARGET_DIR/target/bootfs
     mkdir $TARGET_DIR/target/rootfs
-    mount /dev/loop70p1 $TARGET_DIR/target/bootfs 
-    mount /dev/loop70p2 $TARGET_DIR/target/rootfs
+    mount "$LOOPDEV"p1 $TARGET_DIR/target/bootfs 
+    mount "$LOOPDEV"p2 $TARGET_DIR/target/rootfs
 }
 
 umount_fs()
 {
     umount $TARGET_DIR/target/bootfs 
     umount $TARGET_DIR/target/rootfs
-    losetup -d /dev/loop70  
+    losetup -d $LOOPDEV
 }
 
 case "$1" in

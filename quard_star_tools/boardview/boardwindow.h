@@ -21,7 +21,7 @@ class BoardWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit BoardWindow(QString path,QString color = "green",QWidget *parent = nullptr);
+    explicit BoardWindow(const QString &path,const QString &color = "green",QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);
     QString vcan_name;
@@ -86,16 +86,5 @@ private:
         {"audio",673,686,744,810,0,false},
     };
 };
-
-
-
-
-
-
-
-
-
-
-
 
 #endif // BOARDWINDOW_H

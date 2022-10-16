@@ -20,9 +20,9 @@ jobs:
     runs-on: ubuntu-20.04
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v2.1.1
         with:
           auto-activate-base: true
           activate-environment: ""
@@ -40,7 +40,7 @@ jobs:
           conda create -n build_x11_env python=3.8.10 -y
 
       - name: Cache toolchain
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-toolchain
         with:
@@ -476,14 +476,14 @@ jobs:
           mv target_sysroot.tar.gz ../target_sysroot.tar.gz
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: target_sysroot
           path: |
             target_sysroot.tar.gz
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: host_tools
           path: |

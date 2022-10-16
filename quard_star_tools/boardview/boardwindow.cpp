@@ -14,7 +14,7 @@
 extern QString VERSION;
 extern QString GIT_TAG;
 
-BoardWindow::BoardWindow(QString path, QString color,QWidget *parent) :
+BoardWindow::BoardWindow(const QString &path,const QString &color,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BoardWindow),envPath(path),skinColor(color)
 {
@@ -61,13 +61,13 @@ BoardWindow::~BoardWindow()
     qemu_process->kill();
     qemu_process->waitForFinished(-1);
     delete qemu_process;
-    delete ui;
     delete netSelect;
     delete vnc;
     delete telnet[0];
     delete telnet[1];
     delete telnet[2];
     delete telnet[3];
+    delete ui;
 }
 
 bool BoardWindow::powerSwitch(bool power)

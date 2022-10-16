@@ -38,7 +38,7 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 
 下图为目前的软件流程，随着项目推进会持续更新。
 
-![软件流程](./tutorial/img/img4.png)
+![软件流程](./tutorial/img/img4_zh_CN.png)
 
 ## 内存分布
 

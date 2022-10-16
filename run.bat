@@ -1,5 +1,10 @@
 @echo off
+::###############################################################################
+::# This file is part of the quard_star_tutorial project.                       #
+::# Copyright (C) 2021 Quard <2014500726@smail.xtu.edu.cn>                      #
+::###############################################################################
 
+::################################## cli param ##################################
 set "WIDTH=1280"
 set "HEIGHT=720"
 set "DEFAULT_V=:vn:24x80:"
@@ -28,6 +33,9 @@ if "%1"=="nographic" (
     set "GRAPHIC_PARAM=--display gtk,zoom-to-fit=false --serial vc:%DEFAULT_VC% --serial vc:%DEFAULT_VC% --serial vc:%DEFAULT_VC% --monitor vc:%DEFAULT_VC% --parallel none"
 )
 
+::###############################################################################
+
+::################################## run qemu ##################################
 %cd%\output\qemu_w64\qemu-system-riscv64.exe ^
 -M quard-star,mask-rom-path=./output/mask_rom/mask_rom.bin,canbus=canbus0 ^
 -m 1G ^
@@ -56,3 +64,5 @@ if "%1"=="nographic" (
 -device virtio-mouse-device,id=input0 ^
 -device virtio-keyboard-device,id=input1 ^
 %GRAPHIC_PARAM%
+
+::###############################################################################

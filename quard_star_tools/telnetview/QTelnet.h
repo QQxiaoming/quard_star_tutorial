@@ -88,8 +88,8 @@ private:
 	QByteArray m_buffSB;
 	int m_actualSB;
 
-	void emitEndOfRecord()              { Q_EMIT(endOfRecord());      }
-	void emitEchoLocal(bool bEcho)      { Q_EMIT(echoLocal(bEcho));   }
+    void emitEndOfRecord()              { emit endOfRecord();      }
+    void emitEchoLocal(bool bEcho)      { emit echoLocal(bEcho);   }
 
 	void sendTelnetControl(char codigo);
 	void handleSB(void);

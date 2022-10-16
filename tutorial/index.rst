@@ -45,7 +45,7 @@
 ********
 软件流程
 ********
-.. image:: ./img/img4.png
+.. image:: ./img/img4_zh_CN.png
 
 ********
 内存分布
