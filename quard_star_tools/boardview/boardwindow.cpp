@@ -198,6 +198,11 @@ bool BoardWindow::powerSwitch(bool power)
     return true;
 }
 
+void BoardWindow::help()
+{
+    QMessageBox::about(this, tr("Help"), "TODO");
+}
+
 void BoardWindow::about()
 {
     QMessageBox::about(this, tr("About"),
@@ -220,30 +225,130 @@ void BoardWindow::aboutQt()
     QMessageBox::aboutQt(this);
 }
 
+void BoardWindow::addActionGInfo(QMenu *menu,const QString &title)
+{
+    QAction *pGInfo= new QAction(tr("Get Info"), this);
+    QIcon icoInfo(":/boardview/icons/info.svg");
+    pGInfo->setIcon(icoInfo);
+    menu->addAction(pGInfo);
+    connect(pGInfo,&QAction::triggered,this,
+            [&](void)
+            {
+                QMessageBox::about(this, tr("Get Info"), "TODO");
+            }
+        );
+    Q_UNUSED(title);
+}
+
+void BoardWindow::addActionOFileSystem(QMenu *menu,const QString &title)
+{
+    QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
+    QIcon icoOpen(":/boardview/icons/open.svg");
+    pOFileSystem->setIcon(icoOpen);
+    menu->addAction(pOFileSystem);
+    Q_UNUSED(title);
+}
+
+void BoardWindow::addActionSetting(QMenu *menu,const QString &title)
+{
+    QAction *pSetting= new QAction(tr("Setting"), this);
+    QIcon icoSetting(":/boardview/icons/setting.svg");
+    pSetting->setIcon(icoSetting);
+    menu->addAction(pSetting);
+    Q_UNUSED(title);
+}
+
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(this);
+    QString spaceDoMain;
 
-    QAction *pAbout= new QAction(tr("About"), this);
-    QIcon icoAbout(":/boardview/icons/about.png");
-    pAbout->setIcon(icoAbout);
-    menu->addAction(pAbout);
-    connect(pAbout,SIGNAL(triggered()),this,SLOT(about()));
+    for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
+        if( event->pos().x() >= spaceList[i].x1 && event->pos().x() <= spaceList[i].x2 &&
+            event->pos().y() >= spaceList[i].y1 && event->pos().y() <= spaceList[i].y2) {
+            spaceDoMain = spaceList[i].name;
+        }
+    }
 
-    QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
-    QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
-    pAboutQt->setIcon(icoAboutQt);
-    menu->addAction(pAboutQt);
-    connect(pAboutQt,SIGNAL(triggered()),this,SLOT(aboutQt()));
+    if(spaceDoMain == "soc") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionOFileSystem(menu,spaceDoMain);
+    } else if(spaceDoMain == "ddr") {
+        addActionGInfo(menu,spaceDoMain);
+    } else if(spaceDoMain == "nor") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionOFileSystem(menu,spaceDoMain);
+    } else if(spaceDoMain == "nand") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionOFileSystem(menu,spaceDoMain);
+    } else if(spaceDoMain == "sd") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionOFileSystem(menu,spaceDoMain);
+    } else if(spaceDoMain == "usb0") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionOFileSystem(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "usb1") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionOFileSystem(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "vga") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "uart0") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "uart1") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "uart2") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "jtag") {
+        addActionGInfo(menu,spaceDoMain);
+    } else if(spaceDoMain == "eth") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "audio") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "boot") {
+        addActionGInfo(menu,spaceDoMain);
+        addActionSetting(menu,spaceDoMain);
+    } else if(spaceDoMain == "power") {
+        addActionGInfo(menu,spaceDoMain);
+    } else if(spaceDoMain == "switch") {
+        addActionGInfo(menu,spaceDoMain);
+    } else if(spaceDoMain.isEmpty()) {
+        QAction *pHelp= new QAction(tr("Help"), this);
+        QIcon icoHelp(":/boardview/icons/help.png");
+        pHelp->setIcon(icoHelp);
+        menu->addAction(pHelp);
+        connect(pHelp,SIGNAL(triggered()),this,SLOT(help()));
 
-    QAction *pExit = new QAction(tr("Exit"), this);
-    QIcon icoExit(":/boardview/icons/exit.png");
-    pExit->setIcon(icoExit);
-    menu->addAction(pExit);
-    connect(pExit, SIGNAL(triggered()), qApp, SLOT(quit()));
+        QAction *pAbout= new QAction(tr("About"), this);
+        QIcon icoAbout(":/boardview/icons/about.png");
+        pAbout->setIcon(icoAbout);
+        menu->addAction(pAbout);
+        connect(pAbout,SIGNAL(triggered()),this,SLOT(about()));
 
-    menu->move(cursor().pos());
-    menu->show();
+        QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
+        QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
+        pAboutQt->setIcon(icoAboutQt);
+        menu->addAction(pAboutQt);
+        connect(pAboutQt,SIGNAL(triggered()),this,SLOT(aboutQt()));
+
+        QAction *pExit = new QAction(tr("Exit"), this);
+        QIcon icoExit(":/boardview/icons/exit.png");
+        pExit->setIcon(icoExit);
+        menu->addAction(pExit);
+        connect(pExit, SIGNAL(triggered()), qApp, SLOT(quit()));
+    }
+
+    if(!menu->isEmpty()) {
+        menu->move(cursor().pos());
+        menu->show();
+    }
 
     event->accept();
 }

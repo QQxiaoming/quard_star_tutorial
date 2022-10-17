@@ -28,6 +28,7 @@ public:
     QString tap_name;
 
 private slots:
+    void help();
     void about();
     void aboutQt();
 
@@ -43,6 +44,9 @@ private:
     QString getOpenFileName(const QString &caption = QString(),
                             const QString &fileName = QString(),
                             const QString &filter = QString());
+    void addActionGInfo(QMenu *menu,const QString &title);
+    void addActionOFileSystem(QMenu *menu,const QString &title);
+    void addActionSetting(QMenu *menu,const QString &title);
     Ui::BoardWindow *ui;
     bool isMousePressed = false;
     bool powerOn = false;
@@ -67,7 +71,7 @@ private:
         int x1,y1,x2,y2;
         int dir;
         bool draw;
-    }spaceList[16] = {
+    }spaceList[17] = {
         {"vga",315,111,649,262,1,false},
         {"uart2",52,381,107,457,1,false},
         {"uart1",52,290,107,366,1,false},
@@ -84,6 +88,7 @@ private:
         {"switch",247,728,385,802,0,false},
         {"jtag",52,499,131,671,0,false},
         {"audio",673,686,744,810,0,false},
+        {"boot",409,703,650,803,0,false},
     };
 };
 

@@ -1,10 +1,10 @@
 主页
 ----------------------------------
 
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?style=flat-square&logo=linux
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?logo=linux
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml
    :alt: Linux ci
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?style=flat-square&logo=windows
+.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?logo=windows
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml
    :alt: Windows ci
 .. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/macos?style=flat-square&logo=apple
