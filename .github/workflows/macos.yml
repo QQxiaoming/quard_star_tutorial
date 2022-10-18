@@ -149,7 +149,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd ./quard_star_tools.app/Contents/Frameworks
-          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 5m ./run.sh nographic default spi > >(tee run_qemu.log) || {
+          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 6m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then

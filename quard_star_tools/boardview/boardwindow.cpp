@@ -198,46 +198,57 @@ bool BoardWindow::powerSwitch(bool power)
     return true;
 }
 
-void BoardWindow::help()
-{
-    QMessageBox::about(this, tr("Help"), "TODO");
-}
-
-void BoardWindow::about()
-{
-    QMessageBox::about(this, tr("About"),
-        tr(
-            "<p>Version</p>"
-            "<p>&nbsp;%1</p>"
-            "<p>Commit</p>"
-            "<p>&nbsp;%2</p>"
-            "<p>Author</p>"
-            "<p>&nbsp;qiaoqm@aliyun.com</p>"
-            "<p>Website</p>"
-            "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
-            "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
-        ).arg(VERSION,GIT_TAG)
-    );
-}
-
-void BoardWindow::aboutQt()
-{
-    QMessageBox::aboutQt(this);
-}
-
 void BoardWindow::addActionGInfo(QMenu *menu,const QString &title)
 {
     QAction *pGInfo= new QAction(tr("Get Info"), this);
     QIcon icoInfo(":/boardview/icons/info.svg");
     pGInfo->setIcon(icoInfo);
+    pGInfo->setToolTip(title);
     menu->addAction(pGInfo);
     connect(pGInfo,&QAction::triggered,this,
             [&](void)
             {
-                QMessageBox::about(this, tr("Get Info"), "TODO");
+                QAction* pGInfo = qobject_cast<QAction*>(sender());
+                QString title = pGInfo->toolTip();
+                QString info;
+                if(title == "soc") {
+                    info = tr("Quard Star SOC:\n 8 core riscv64 architecture. \nInternal packaging:\n 128K maskrom, 896k sram, 2M pflash. \nSupport:\n UARTx3, I2Cx3, SPIx2, DDR controller, NAND Flash controller, SDMMC, USB3.0, ETH, LCDC, CAN, DMA, GPIO, PWM, TIMER, ADC, WATCHDOG, RTC, SYSCON.");
+                } else if(title == "ddr") {
+                    info = tr("DDR:\n 1G.");
+                } else if(title == "nor") {
+                    info = tr("Nor Flash:\n is25wp256 32M.");
+                } else if(title == "nand") {
+                    info = tr("NAND Flash:\n onenand 256M.");
+                } else if(title == "sd") {
+                    info = tr("SD card:\n SDSC 32M.");
+                } else if(title == "usb0") {
+                    info = tr("USB Flash:\n 32M, Speed 5000 Mb/s.");
+                } else if(title == "usb1") {
+                    info = tr("USB Serial:\n FT232RL, Speed 12 Mb/s.");
+                } else if(title == "vga") {
+                    info = tr("LCDC:\n VGA port.");
+                } else if(title == "uart0") {
+                    info = tr("UART:\n 115200-8-n-1.");
+                } else if(title == "uart1") {
+                    info = tr("UART:\n 115200-8-n-1.");
+                } else if(title == "uart2") {
+                    info = tr("UART:\n 115200-8-n-1.");
+                } else if(title == "jtag") {
+                    info = tr("QEMU monitor:\n monitor terminal.");
+                } else if(title == "eth") {
+                    info = tr("ETH:\n IEEE 802.3 100M full duplex.");
+                } else if(title == "audio") {
+                    info = tr("IIS:\n wm8750.");
+                } else if(title == "boot") {
+                    info = tr("boot:\n 000-pflash 001-spi_nor_flash 010-sd 100-uart0.");
+                } else if(title == "power") {
+                    info = tr("power:\n DC 12V.");
+                } else if(title == "switch") {
+                    info = tr("switch:\n power switch.");
+                }
+                QMessageBox::about(this, tr("Get Info"), info);
             }
         );
-    Q_UNUSED(title);
 }
 
 void BoardWindow::addActionOFileSystem(QMenu *menu,const QString &title)
@@ -245,8 +256,8 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const QString &title)
     QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
     QIcon icoOpen(":/boardview/icons/open.svg");
     pOFileSystem->setIcon(icoOpen);
+    pOFileSystem->setToolTip(title);
     menu->addAction(pOFileSystem);
-    Q_UNUSED(title);
 }
 
 void BoardWindow::addActionSetting(QMenu *menu,const QString &title)
@@ -254,8 +265,8 @@ void BoardWindow::addActionSetting(QMenu *menu,const QString &title)
     QAction *pSetting= new QAction(tr("Setting"), this);
     QIcon icoSetting(":/boardview/icons/setting.svg");
     pSetting->setIcon(icoSetting);
+    pSetting->setToolTip(title);
     menu->addAction(pSetting);
-    Q_UNUSED(title);
 }
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
@@ -324,19 +335,46 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
         QIcon icoHelp(":/boardview/icons/help.png");
         pHelp->setIcon(icoHelp);
         menu->addAction(pHelp);
-        connect(pHelp,SIGNAL(triggered()),this,SLOT(help()));
+        connect(pHelp,&QAction::triggered,this,
+            [&](void)
+            {
+                QMessageBox::about(this, tr("Help"), "TODO");
+            }
+        );
 
         QAction *pAbout= new QAction(tr("About"), this);
         QIcon icoAbout(":/boardview/icons/about.png");
         pAbout->setIcon(icoAbout);
         menu->addAction(pAbout);
-        connect(pAbout,SIGNAL(triggered()),this,SLOT(about()));
+        connect(pAbout,&QAction::triggered,this,
+            [&](void)
+            {
+                QMessageBox::about(this, tr("About"),
+                    tr(
+                        "<p>Version</p>"
+                        "<p>&nbsp;%1</p>"
+                        "<p>Commit</p>"
+                        "<p>&nbsp;%2</p>"
+                        "<p>Author</p>"
+                        "<p>&nbsp;qiaoqm@aliyun.com</p>"
+                        "<p>Website</p>"
+                        "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
+                        "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
+                    ).arg(VERSION,GIT_TAG)
+                );
+            }
+        );
 
         QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
         QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
         pAboutQt->setIcon(icoAboutQt);
         menu->addAction(pAboutQt);
-        connect(pAboutQt,SIGNAL(triggered()),this,SLOT(aboutQt()));
+        connect(pAboutQt,&QAction::triggered,this,
+            [&](void)
+            {
+                QMessageBox::aboutQt(this);
+            }
+        );
 
         QAction *pExit = new QAction(tr("Exit"), this);
         QIcon icoExit(":/boardview/icons/exit.png");
@@ -362,7 +400,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
     pen.setWidth(5);
     pen.setColor(Qt::red);
     pen.setStyle(Qt::DashLine);
-    font.setPointSize(30);
+    font.setPointSize(20);
     painter.setFont(font);
     painter.setPen(pen);
     painter.drawPixmap(0, 0, width(), height(), QPixmap(paths));
@@ -374,9 +412,9 @@ void BoardWindow::paintEvent(QPaintEvent *event)
             painter.drawLine(spaceList[i].x2,spaceList[i].y1,spaceList[i].x2,spaceList[i].y2);
             painter.drawLine(spaceList[i].x1,spaceList[i].y2,spaceList[i].x2,spaceList[i].y2);
             if(spaceList[i].dir == 0)
-                painter.drawText(spaceList[i].x1,spaceList[i].y1-15,spaceList[i].name);
+                painter.drawText(spaceList[i].x1,spaceList[i].y1-15,spaceList[i].drawName);
             else if(spaceList[i].dir == 1)
-                painter.drawText(spaceList[i].x1,spaceList[i].y2+15+30,spaceList[i].name);
+                painter.drawText(spaceList[i].x1,spaceList[i].y2+15+30,spaceList[i].drawName);
         }
     }
     
