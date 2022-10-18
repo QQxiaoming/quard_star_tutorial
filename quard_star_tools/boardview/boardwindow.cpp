@@ -14,12 +14,13 @@
 extern QString VERSION;
 extern QString GIT_TAG;
 
-BoardWindow::BoardWindow(const QString &path,const QString &color,QWidget *parent) :
+BoardWindow::BoardWindow(const QString &path,const QString &color,const bool &isSysDarkTheme,QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BoardWindow),envPath(path),skinColor(color)
 {
     ui->setupUi(this);
 
+    isDarkTheme = isSysDarkTheme;
     maskromImgPath = envPath + "/mask_rom/mask_rom.bin";
     pflashImgPath = envPath + "/fw/pflash.img";
     norflashImgPath = envPath + "/fw/norflash.img";
@@ -201,7 +202,7 @@ bool BoardWindow::powerSwitch(bool power)
 void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 {
     QAction *pGInfo= new QAction(tr("Get Info"), this);
-    QIcon icoInfo(":/boardview/icons/info.svg");
+    QIcon icoInfo(":/boardview/icons/info"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pGInfo->setIcon(icoInfo);
     pGInfo->setToolTip(QString::number(title));
     menu->addAction(pGInfo);
@@ -272,7 +273,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 {
     QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
-    QIcon icoOpen(":/boardview/icons/open.svg");
+    QIcon icoOpen(":/boardview/icons/open"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pOFileSystem->setIcon(icoOpen);
     pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
@@ -281,7 +282,7 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 {
     QAction *pSetting= new QAction(tr("Setting"), this);
-    QIcon icoSetting(":/boardview/icons/setting.svg");
+    QIcon icoSetting(":/boardview/icons/setting"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pSetting->setIcon(icoSetting);
     pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);

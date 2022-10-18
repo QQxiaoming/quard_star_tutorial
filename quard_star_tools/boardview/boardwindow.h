@@ -21,7 +21,7 @@ class BoardWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit BoardWindow(const QString &path,const QString &color = "green",QWidget *parent = nullptr);
+    explicit BoardWindow(const QString &path,const QString &color = "green",const bool &isDarkTheme = false,QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);
     QString vcan_name;
@@ -74,6 +74,7 @@ private:
     void show_vnc(void);
     QString envPath;
     QString skinColor;
+    bool isDarkTheme;
     QString maskromImgPath;
     QString pflashImgPath;
     QString norflashImgPath;

@@ -31,6 +31,7 @@ private:
         {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path",QApplication::applicationDirPath()+"/../../../../output")},
     #endif
         {"skin_color", QCommandLineOption({"c","skin-color"}, "GUI skin color","skin-color","green")},
+        {"dark_theme", QCommandLineOption({"d","dark_theme"}, "GUI dark theme","dark-theme","auto")},
         {"language", QCommandLineOption({"l","language"}, "application language","language","auto")},
     };
 
@@ -110,6 +111,7 @@ int main(int argc, char *argv[])
     AppComLineParser->process(application);
     QString env_path = AppComLineParser->getOpt("env_path");
     QString skin_color = AppComLineParser->getOpt("skin_color");
+    QString dark_theme = AppComLineParser->getOpt("dark_theme");
     QString app_lang = AppComLineParser->getOpt("language");
 
     QLocale locale;
@@ -150,7 +152,13 @@ int main(int argc, char *argv[])
         break;
     }
 
-    BoardWindow window(env_path,skin_color);
+    int text_hsv_value = QPalette().color(QPalette::WindowText).value();
+    int bg_hsv_value = QPalette().color(QPalette::Window).value();
+    bool isDarkTheme = text_hsv_value > bg_hsv_value?true:false;
+    if(dark_theme == "true") isDarkTheme = true;
+    if(dark_theme == "false") isDarkTheme = false;
+
+    BoardWindow window(env_path,skin_color,isDarkTheme);
     window.show();
     return application.exec();
 }
