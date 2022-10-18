@@ -36,12 +36,33 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent *event);
 
 private:
+    enum DeviceName {
+        VGA = 0,
+        UART2,
+        UART1,
+        UART0,
+        POWER,
+        SOC,
+        DDR,
+        ETH,
+        USB0,
+        USB1,
+        NAND,
+        NOR,
+        SD,
+        SWITCH,
+        JTAG,
+        AUDIO,
+        BOOT,
+        
+        UNKNOW = -1,
+    };
     QString getOpenFileName(const QString &caption = QString(),
                             const QString &fileName = QString(),
                             const QString &filter = QString());
-    void addActionGInfo(QMenu *menu,const QString &title);
-    void addActionOFileSystem(QMenu *menu,const QString &title);
-    void addActionSetting(QMenu *menu,const QString &title);
+    void addActionGInfo(QMenu *menu,const DeviceName &title);
+    void addActionOFileSystem(QMenu *menu,const DeviceName &title);
+    void addActionSetting(QMenu *menu,const DeviceName &title);
     Ui::BoardWindow *ui;
     bool isMousePressed = false;
     bool powerOn = false;
@@ -62,29 +83,29 @@ private:
     QString rootfsImgPath;
     struct space
     {
-        QString name;
+        DeviceName name;
         QString drawName;
         int x1,y1,x2,y2;
         int dir;
         bool draw;
     }spaceList[17] = {
-        {"vga",   tr("vga"),   315,111,649,262,1,false},
-        {"uart2", tr("uart2"), 52 ,381,107,457,1,false},
-        {"uart1", tr("uart1"), 52 ,290,107,366,1,false},
-        {"uart0", tr("uart0"), 52 ,198,107,272,1,false},
-        {"power", tr("power"), 127,709,222,837,0,false},
-        {"soc",   tr("soc"),   369,377,470,479,0,false},
-        {"ddr",   tr("ddr"),   542,345,620,508,0,false},
-        {"eth",   tr("eth"),   689,179,838,340,0,false},
-        {"usb0",  tr("usb0"),  685,367,837,504,0,false},
-        {"usb1",  tr("usb1"),  685,539,837,674,0,false},
-        {"nand",  tr("nand"),  197,365,296,425,0,false},
-        {"nor",   tr("nor"),   215,493,263,530,0,false},
-        {"sd",    tr("sd"),    145,114,296,263,1,false},
-        {"switch",tr("switch"),247,728,385,802,0,false},
-        {"jtag",  tr("jtag"),  52 ,499,131,671,0,false},
-        {"audio", tr("audio"), 673,686,744,810,0,false},
-        {"boot",  tr("boot"),  409,703,650,803,0,false},
+        {VGA,   tr("vga"),   315,111,649,262,1,false},
+        {UART2, tr("uart2"), 52 ,381,107,457,1,false},
+        {UART1, tr("uart1"), 52 ,290,107,366,1,false},
+        {UART0, tr("uart0"), 52 ,198,107,272,1,false},
+        {POWER, tr("power"), 127,709,222,837,0,false},
+        {SOC,   tr("soc"),   369,377,470,479,0,false},
+        {DDR,   tr("ddr"),   542,345,620,508,0,false},
+        {ETH,   tr("eth"),   689,179,838,340,0,false},
+        {USB0,  tr("usb0"),  685,367,837,504,0,false},
+        {USB1,  tr("usb1"),  685,539,837,674,0,false},
+        {NAND,  tr("nand"),  197,365,296,425,0,false},
+        {NOR,   tr("nor"),   215,493,263,530,0,false},
+        {SD,    tr("sd"),    145,114,296,263,1,false},
+        {SWITCH,tr("switch"),247,728,385,802,0,false},
+        {JTAG,  tr("jtag"),  52 ,499,131,671,0,false},
+        {AUDIO, tr("audio"), 673,686,744,810,0,false},
+        {BOOT,  tr("boot"),  409,703,650,803,0,false},
     };
 };
 

@@ -198,81 +198,99 @@ bool BoardWindow::powerSwitch(bool power)
     return true;
 }
 
-void BoardWindow::addActionGInfo(QMenu *menu,const QString &title)
+void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 {
     QAction *pGInfo= new QAction(tr("Get Info"), this);
     QIcon icoInfo(":/boardview/icons/info.svg");
     pGInfo->setIcon(icoInfo);
-    pGInfo->setToolTip(title);
+    pGInfo->setToolTip(QString::number(title));
     menu->addAction(pGInfo);
     connect(pGInfo,&QAction::triggered,this,
             [&](void)
             {
                 QAction* pGInfo = qobject_cast<QAction*>(sender());
-                QString title = pGInfo->toolTip();
+                DeviceName title = static_cast<DeviceName>(pGInfo->toolTip().toInt());
                 QString info;
-                if(title == "soc") {
-                    info = tr("Quard Star SOC:\n 8 core riscv64 architecture. \nInternal packaging:\n 128K maskrom, 896k sram, 2M pflash. \nSupport:\n UARTx3, I2Cx3, SPIx2, DDR controller, NAND Flash controller, SDMMC, USB3.0, ETH, LCDC, CAN, DMA, GPIO, PWM, TIMER, ADC, WATCHDOG, RTC, SYSCON.");
-                } else if(title == "ddr") {
-                    info = tr("DDR:\n 1G.");
-                } else if(title == "nor") {
-                    info = tr("Nor Flash:\n is25wp256 32M.");
-                } else if(title == "nand") {
-                    info = tr("NAND Flash:\n onenand 256M.");
-                } else if(title == "sd") {
-                    info = tr("SD card:\n SDSC 32M.");
-                } else if(title == "usb0") {
-                    info = tr("USB Flash:\n 32M, Speed 5000 Mb/s.");
-                } else if(title == "usb1") {
-                    info = tr("USB Serial:\n FT232RL, Speed 12 Mb/s.");
-                } else if(title == "vga") {
-                    info = tr("LCDC:\n VGA port.");
-                } else if(title == "uart0") {
-                    info = tr("UART:\n 115200-8-n-1.");
-                } else if(title == "uart1") {
-                    info = tr("UART:\n 115200-8-n-1.");
-                } else if(title == "uart2") {
-                    info = tr("UART:\n 115200-8-n-1.");
-                } else if(title == "jtag") {
-                    info = tr("QEMU monitor:\n monitor terminal.");
-                } else if(title == "eth") {
-                    info = tr("ETH:\n IEEE 802.3 100M full duplex.");
-                } else if(title == "audio") {
-                    info = tr("IIS:\n wm8750.");
-                } else if(title == "boot") {
-                    info = tr("boot:\n 000-pflash 001-spi_nor_flash 010-sd 100-uart0.");
-                } else if(title == "power") {
-                    info = tr("power:\n DC 12V.");
-                } else if(title == "switch") {
-                    info = tr("switch:\n power switch.");
+                switch (title)
+                {
+                    case SOC:
+                        info = tr("Quard Star SOC:\n 8 core riscv64 architecture. \nInternal packaging:\n 128K maskrom, 896k sram, 2M pflash. \nSupport:\n UARTx3, I2Cx3, SPIx2, DDR controller, NAND Flash controller, SDMMC, USB3.0, ETH, LCDC, CAN, DMA, GPIO, PWM, TIMER, ADC, WATCHDOG, RTC, SYSCON.");
+                        break;
+                    case DDR:
+                        info = tr("DDR:\n 1G.");
+                        break;
+                    case NOR:
+                        info = tr("Nor Flash:\n is25wp256 32M.");
+                        break;
+                    case NAND:
+                        info = tr("NAND Flash:\n onenand 256M.");
+                        break;
+                    case SD:
+                        info = tr("SD card:\n SDSC 32M.");
+                        break;
+                    case USB0:
+                        info = tr("USB Flash:\n 32M, Speed 5000 Mb/s.");
+                        break;
+                    case USB1:
+                        info = tr("USB Serial:\n FT232RL, Speed 12 Mb/s.");
+                        break;
+                    case VGA:
+                        info = tr("LCDC:\n VGA port.");
+                        break;
+                    case UART0:
+                    case UART1:
+                    case UART2:
+                        info = tr("UART:\n 115200-8-n-1.");
+                        break;
+                    case JTAG:
+                        info = tr("QEMU monitor:\n monitor terminal.");
+                        break;
+                    case ETH:
+                        info = tr("ETH:\n IEEE 802.3 100M full duplex.");
+                        break;
+                    case AUDIO:
+                        info = tr("IIS:\n wm8750.");
+                        break;
+                    case BOOT:
+                        info = tr("boot:\n 000-pflash 001-spi_nor_flash 010-sd 100-uart0.");
+                        break;
+                    case POWER:
+                        info = tr("power:\n DC 12V.");
+                        break;
+                    case SWITCH:
+                        info = tr("switch:\n power switch.");
+                        break;
+                    default:
+                        break;
                 }
+
                 QMessageBox::about(this, tr("Get Info"), info);
             }
         );
 }
 
-void BoardWindow::addActionOFileSystem(QMenu *menu,const QString &title)
+void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 {
     QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
     QIcon icoOpen(":/boardview/icons/open.svg");
     pOFileSystem->setIcon(icoOpen);
-    pOFileSystem->setToolTip(title);
+    pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
 }
 
-void BoardWindow::addActionSetting(QMenu *menu,const QString &title)
+void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 {
     QAction *pSetting= new QAction(tr("Setting"), this);
     QIcon icoSetting(":/boardview/icons/setting.svg");
     pSetting->setIcon(icoSetting);
-    pSetting->setToolTip(title);
+    pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);
 }
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(this);
-    QString spaceDoMain;
+    DeviceName spaceDoMain = UNKNOW;
 
     for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
         if( event->pos().x() >= spaceList[i].x1 && event->pos().x() <= spaceList[i].x2 &&
@@ -281,106 +299,93 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
         }
     }
 
-    if(spaceDoMain == "soc") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionOFileSystem(menu,spaceDoMain);
-    } else if(spaceDoMain == "ddr") {
-        addActionGInfo(menu,spaceDoMain);
-    } else if(spaceDoMain == "nor") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionOFileSystem(menu,spaceDoMain);
-    } else if(spaceDoMain == "nand") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionOFileSystem(menu,spaceDoMain);
-    } else if(spaceDoMain == "sd") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionOFileSystem(menu,spaceDoMain);
-    } else if(spaceDoMain == "usb0") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionOFileSystem(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "usb1") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionOFileSystem(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "vga") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "uart0") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "uart1") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "uart2") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "jtag") {
-        addActionGInfo(menu,spaceDoMain);
-    } else if(spaceDoMain == "eth") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "audio") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "boot") {
-        addActionGInfo(menu,spaceDoMain);
-        addActionSetting(menu,spaceDoMain);
-    } else if(spaceDoMain == "power") {
-        addActionGInfo(menu,spaceDoMain);
-    } else if(spaceDoMain == "switch") {
-        addActionGInfo(menu,spaceDoMain);
-    } else if(spaceDoMain.isEmpty()) {
-        QAction *pHelp= new QAction(tr("Help"), this);
-        QIcon icoHelp(":/boardview/icons/help.png");
-        pHelp->setIcon(icoHelp);
-        menu->addAction(pHelp);
-        connect(pHelp,&QAction::triggered,this,
-            [&](void)
-            {
-                QMessageBox::about(this, tr("Help"), "TODO");
-            }
-        );
+    switch (spaceDoMain)
+    {
+        case SOC:
+        case NOR:
+        case NAND:
+        case SD:
+            addActionGInfo(menu,spaceDoMain);
+            addActionOFileSystem(menu,spaceDoMain);
+            break;
+        case DDR:
+        case JTAG:
+        case POWER:
+        case SWITCH:
+            addActionGInfo(menu,spaceDoMain);
+            break;
+        case USB0:
+        case USB1:
+            addActionGInfo(menu,spaceDoMain);
+            addActionOFileSystem(menu,spaceDoMain);
+            addActionSetting(menu,spaceDoMain);
+            break;
+        case VGA:
+        case UART0:
+        case UART1:
+        case UART2:
+        case ETH:
+        case AUDIO:
+        case BOOT:
+            addActionGInfo(menu,spaceDoMain);
+            addActionSetting(menu,spaceDoMain);
+            break;
+        case UNKNOW: 
+        {
+            QAction *pHelp= new QAction(tr("Help"), this);
+            QIcon icoHelp(":/boardview/icons/help.png");
+            pHelp->setIcon(icoHelp);
+            menu->addAction(pHelp);
+            connect(pHelp,&QAction::triggered,this,
+                [&](void)
+                {
+                    QMessageBox::about(this, tr("Help"), "TODO");
+                }
+            );
 
-        QAction *pAbout= new QAction(tr("About"), this);
-        QIcon icoAbout(":/boardview/icons/about.png");
-        pAbout->setIcon(icoAbout);
-        menu->addAction(pAbout);
-        connect(pAbout,&QAction::triggered,this,
-            [&](void)
-            {
-                QMessageBox::about(this, tr("About"),
-                    tr(
-                        "<p>Version</p>"
-                        "<p>&nbsp;%1</p>"
-                        "<p>Commit</p>"
-                        "<p>&nbsp;%2</p>"
-                        "<p>Author</p>"
-                        "<p>&nbsp;qiaoqm@aliyun.com</p>"
-                        "<p>Website</p>"
-                        "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
-                        "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
-                    ).arg(VERSION,GIT_TAG)
-                );
-            }
-        );
+            QAction *pAbout= new QAction(tr("About"), this);
+            QIcon icoAbout(":/boardview/icons/about.png");
+            pAbout->setIcon(icoAbout);
+            menu->addAction(pAbout);
+            connect(pAbout,&QAction::triggered,this,
+                [&](void)
+                {
+                    QMessageBox::about(this, tr("About"),
+                        tr(
+                            "<p>Version</p>"
+                            "<p>&nbsp;%1</p>"
+                            "<p>Commit</p>"
+                            "<p>&nbsp;%2</p>"
+                            "<p>Author</p>"
+                            "<p>&nbsp;qiaoqm@aliyun.com</p>"
+                            "<p>Website</p>"
+                            "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
+                            "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
+                        ).arg(VERSION,GIT_TAG)
+                    );
+                }
+            );
 
-        QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
-        QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
-        pAboutQt->setIcon(icoAboutQt);
-        menu->addAction(pAboutQt);
-        connect(pAboutQt,&QAction::triggered,this,
-            [&](void)
-            {
-                QMessageBox::aboutQt(this);
-            }
-        );
+            QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
+            QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
+            pAboutQt->setIcon(icoAboutQt);
+            menu->addAction(pAboutQt);
+            connect(pAboutQt,&QAction::triggered,this,
+                [&](void)
+                {
+                    QMessageBox::aboutQt(this);
+                }
+            );
 
-        QAction *pExit = new QAction(tr("Exit"), this);
-        QIcon icoExit(":/boardview/icons/exit.png");
-        pExit->setIcon(icoExit);
-        menu->addAction(pExit);
-        connect(pExit, SIGNAL(triggered()), qApp, SLOT(quit()));
+            QAction *pExit = new QAction(tr("Exit"), this);
+            QIcon icoExit(":/boardview/icons/exit.png");
+            pExit->setIcon(icoExit);
+            menu->addAction(pExit);
+            connect(pExit, SIGNAL(triggered()), qApp, SLOT(quit()));
+            break;
+        }
+        default:
+            break;
     }
 
     if(!menu->isEmpty()) {
@@ -477,35 +482,51 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
         for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
             if( event->pos().x() >= spaceList[i].x1 && event->pos().x() <= spaceList[i].x2 &&
                 event->pos().y() >= spaceList[i].y1 && event->pos().y() <= spaceList[i].y2) {
-                if(spaceList[i].name == "vga") {
-                    vnc->show();
-                } else if(spaceList[i].name == "uart0") {
-                    telnet[0]->show();
-                } else if(spaceList[i].name == "uart1") {
-                    telnet[1]->show();
-                } else if(spaceList[i].name == "uart2") {
-                    telnet[2]->show();
-                } else if(spaceList[i].name == "jtag") {
-                    telnet[3]->show();
-                } else if(spaceList[i].name == "eth") {
-                    netSelect->show();
-                } else if(spaceList[i].name == "sd") {
-                    sdImgPath = getOpenFileName(tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
-                } else if(spaceList[i].name == "nor") {
-                    norflashImgPath = getOpenFileName(tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
-                } else if(spaceList[i].name == "nand") {
-                    nandflashImgPath = getOpenFileName(tr("Select NandFlash IMG"), nandflashImgPath, "IMG files(*.img *.bin)");
-                } else if(spaceList[i].name == "soc") {
-                    pflashImgPath = getOpenFileName(tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
-                } else if(spaceList[i].name == "usb0") {
-                    usbflashImgPath = getOpenFileName(tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
-                } else if(spaceList[i].name == "switch") {
-                    powerOn = !powerOn;
-                    this->repaint();
-                    if(!powerSwitch(powerOn)){
+                switch (spaceList[i].name)
+                {
+                    case VGA:
+                        vnc->show();
+                        break;
+                    case UART0:
+                        telnet[0]->show();
+                        break;
+                    case UART1:
+                        telnet[1]->show();
+                        break;
+                    case UART2:
+                        telnet[2]->show();
+                        break;
+                    case JTAG:
+                        telnet[3]->show();
+                        break;
+                    case ETH:
+                        netSelect->show();
+                        break;
+                    case SD:
+                        sdImgPath = getOpenFileName(tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
+                        break;
+                    case NOR:
+                        norflashImgPath = getOpenFileName(tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
+                        break;
+                    case NAND:
+                        nandflashImgPath = getOpenFileName(tr("Select NandFlash IMG"), nandflashImgPath, "IMG files(*.img *.bin)");
+                        break;
+                    case SOC:
+                        pflashImgPath = getOpenFileName(tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
+                        break;
+                    case USB0:
+                        usbflashImgPath = getOpenFileName(tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
+                        break;
+                    case SWITCH:
                         powerOn = !powerOn;
                         this->repaint();
-                    }
+                        if(!powerSwitch(powerOn)){
+                            powerOn = !powerOn;
+                            this->repaint();
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
