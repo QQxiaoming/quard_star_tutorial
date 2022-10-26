@@ -145,6 +145,7 @@ build_uboot_dtb()
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
     dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
+    $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/uboot/boot.scr
 }
 
 build_firmware()
@@ -324,7 +325,7 @@ build_rootfs()
         fi
         cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
-        $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
+        cp $SHELL_FOLDER/output/uboot/boot.scr $TARGET_BOOTFS_DIR/boot.scr
         $SHELL_FOLDER/build_rootfs/clean_gitkeep.sh $TARGET_BOOTFS_DIR
         $PERMISSION_TOOL $SHELL_FOLDER/build_rootfs/build_fs_only_bootfs.sh $MAKE_ROOTFS_DIR
         ;;

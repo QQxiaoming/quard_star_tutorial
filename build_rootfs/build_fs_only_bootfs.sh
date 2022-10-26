@@ -23,7 +23,7 @@ run_linux()
 
 run_macos()
 {
-    LOOPDEV="$(hdiutil attach -nomount $TARGET_DIR/rootfs.img | awk -F ' ' '{ print $1 }' | awk 'NR==1')"
+    LOOPDEV="$(hdiutil attach -nomount $1/rootfs.img | awk -F ' ' '{ print $1 }' | awk 'NR==1')"
     if [ -d "$1/target" ]; then  
     rm -rf $1/target
     fi
