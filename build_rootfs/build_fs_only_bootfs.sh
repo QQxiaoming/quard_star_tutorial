@@ -44,10 +44,10 @@ run_macos()
 UNAMEOUT="$(uname -s)"
 case "${UNAMEOUT}" in
     Linux*)    
-        run_linux
+        run_linux $1
         ;;
     Darwin*)    
-        run_macos
+        run_macos $1
         ;;
 esac
 
