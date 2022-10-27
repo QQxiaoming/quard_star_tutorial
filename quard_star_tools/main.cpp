@@ -14,24 +14,56 @@ class CommandLineParser
 private:
     CommandLineParser(void){
         static CommandLineParser::GC gc;
-        parser.setApplicationDescription("Quard Star Board GUI Tools, The following parameters can be configured to start the application:");
+        parser.setApplicationDescription(
+            "Quard Star Board GUI Tools, "
+            "The following parameters can be configured to start the application:");
         parser.addHelpOption();
         parser.addVersionOption();
         foreach(QString opt,commandLineMap.keys()) {
-            parser.addOption(commandLineMap.value(opt,QCommandLineOption("defaultValue")));
+            parser.addOption(
+                commandLineMap.value(opt,QCommandLineOption("defaultValue")));
         }
     }
     static CommandLineParser* self;
     QCommandLineParser parser;
     bool processApp = false;
     QMap<QString, QCommandLineOption> commandLineMap = {
+        {"env_path", 
+         QCommandLineOption(
+            {"e","env-path"}, 
+            "quard star qemu env path",
+            "env-path",
     #if defined(Q_OS_MACOS)
-        {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path",QApplication::applicationDirPath()+"/../Frameworks/output")},
+            QApplication::applicationDirPath() + "/../Frameworks/output"
     #else
-        {"env_path", QCommandLineOption({"e","env-path"}, "quard star qemu env path","env-path",QApplication::applicationDirPath()+"/../../../../output")},
+            QApplication::applicationDirPath() + "/../../../../output"
     #endif
-        {"skin_color", QCommandLineOption({"c","skin-color"}, "GUI skin color","skin-color","green")},
-        {"language", QCommandLineOption({"l","language"}, "application language","language","auto")},
+            )
+        },
+        {"skin_color", 
+         QCommandLineOption(
+            {"c","skin-color"}, 
+            "GUI skin color",
+            "skin-color",
+            "green"
+            )
+        },
+        {"dark_theme", 
+         QCommandLineOption(
+            {"d","dark_theme"}, 
+            "GUI dark theme",
+            "dark-theme",
+            "auto"
+            )
+        },
+        {"language", 
+         QCommandLineOption(
+            {"l","language"}, 
+            "application language",
+            "language",
+            "auto"
+            )
+        },
     };
 
 public:
@@ -43,7 +75,8 @@ public:
         if(processApp) {
             foreach(QString opt,commandLineMap.keys()) {
                 if(opt == optKey){
-                    QCommandLineOption dstOpt = commandLineMap.value(opt,QCommandLineOption("defaultValue"));
+                    QCommandLineOption dstOpt = 
+                        commandLineMap.value(opt,QCommandLineOption("defaultValue"));
                     if(parser.isSet(dstOpt)) {
                         return parser.value(dstOpt);
                     } else {
@@ -58,7 +91,8 @@ public:
         if(processApp) {
             foreach(QString opt,commandLineMap.keys()) {
                 if(opt == optKey){
-                    QCommandLineOption dstOpt = commandLineMap.value(opt,QCommandLineOption("defaultValue"));
+                    QCommandLineOption dstOpt = 
+                        commandLineMap.value(opt,QCommandLineOption("defaultValue"));
                     return parser.isSet(dstOpt);
                 }
             }
@@ -110,6 +144,7 @@ int main(int argc, char *argv[])
     AppComLineParser->process(application);
     QString env_path = AppComLineParser->getOpt("env_path");
     QString skin_color = AppComLineParser->getOpt("skin_color");
+    QString dark_theme = AppComLineParser->getOpt("dark_theme");
     QString app_lang = AppComLineParser->getOpt("language");
 
     QLocale locale;
@@ -124,33 +159,39 @@ int main(int argc, char *argv[])
     if(app_lang == "en_US") lang = QLocale::English;
     switch(lang) {
     case QLocale::Chinese:
-        if(!qtTranslator.load("qt_zh_CN.qm",qlibpath)) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&qtTranslator);
-        if(!qtbaseTranslator.load("qtbase_zh_CN.qm",qlibpath)) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&qtbaseTranslator);
-        if(!appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm")) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&appTranslator);
+        if(qtTranslator.load("qt_zh_CN.qm",qlibpath))
+            application.installTranslator(&qtTranslator);
+        if(qtbaseTranslator.load("qtbase_zh_CN.qm",qlibpath))
+            application.installTranslator(&qtbaseTranslator);
+        if(appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm"))
+            application.installTranslator(&appTranslator);
         break;
     case QLocale::Japanese:
-        if(!qtTranslator.load("qt_ja.qm",qlibpath)) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&qtTranslator);
-        if(!qtbaseTranslator.load("qtbase_ja.qm",qlibpath)) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&qtbaseTranslator);
-        if(!appTranslator.load(":/lang/lang/quard_star_tools_ja_JP.qm")) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&appTranslator);
+        if(qtTranslator.load("qt_ja.qm",qlibpath))
+            application.installTranslator(&qtTranslator);
+        if(qtbaseTranslator.load("qtbase_ja.qm",qlibpath))
+            application.installTranslator(&qtbaseTranslator);
+        if(appTranslator.load(":/lang/lang/quard_star_tools_ja_JP.qm"))
+            application.installTranslator(&appTranslator);
         break;
     default:
     case QLocale::English:
-        if(!qtTranslator.load("qt_en.qm",qlibpath)) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&qtTranslator);
-        if(!qtbaseTranslator.load("qtbase_en.qm",qlibpath)) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&qtbaseTranslator);
-        if(!appTranslator.load(":/lang/lang/quard_star_tools_en_US.qm")) qDebug() << "err qtTranslator.load";
-        application.installTranslator(&appTranslator);
+        if(qtTranslator.load("qt_en.qm",qlibpath))
+            application.installTranslator(&qtTranslator);
+        if(qtbaseTranslator.load("qtbase_en.qm",qlibpath))
+            application.installTranslator(&qtbaseTranslator);
+        if(appTranslator.load(":/lang/lang/quard_star_tools_en_US.qm"))
+            application.installTranslator(&appTranslator);
         break;
     }
 
-    BoardWindow window(env_path,skin_color);
+    int text_hsv_value = QPalette().color(QPalette::WindowText).value();
+    int bg_hsv_value = QPalette().color(QPalette::Window).value();
+    bool isDarkTheme = text_hsv_value > bg_hsv_value?true:false;
+    if(dark_theme == "true") isDarkTheme = true;
+    if(dark_theme == "false") isDarkTheme = false;
+
+    BoardWindow window(env_path,skin_color,isDarkTheme);
     window.show();
     return application.exec();
 }

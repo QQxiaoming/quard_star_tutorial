@@ -4,13 +4,19 @@
 ::# Copyright (C) 2021 Quard <2014500726@smail.xtu.edu.cn>                      #
 ::###############################################################################
 
-::################################## cli param ##################################
+::################################# user param ##################################
 set "WIDTH=1280"
 set "HEIGHT=720"
 set "DEFAULT_V=:vn:24x80:"
 set "DEFAULT_VC=%WIDTH%x%HEIGHT%"
 set "DBOOTCFG=sd"
 
+set "AUDIO_PARAM=-audiodev dsound,id=audio0"
+::set "AUDIO_PARAM=-audiodev none,id=audio0"
+
+::###############################################################################
+
+::################################## cli param ##################################
 if "%3"=="pflash" (
     set "DBOOTCFG=pflash"
 ) else if "%3"=="spi" (
@@ -51,7 +57,7 @@ if "%1"=="nographic" (
 -object can-bus,id=canbus0 ^
 -netdev user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu_net0,dns=192.168.31.56,tftp=./output,bootfile=/linux_kernel_next/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0 ^
 -netdev user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1 ^
--audiodev dsound,id=audio0 ^
+%AUDIO_PARAM% ^
 -net nic,netdev=net0 ^
 -device usb-storage,drive=usb0 ^
 -device usb-serial,always-plugged=true,chardev=usb1 ^
