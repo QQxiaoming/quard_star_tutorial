@@ -200,7 +200,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd quard_star_tools
-          git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           sed -i 's/upx-ucl/cp $$DESTDIR\/$$TARGET $$DESTDIR\/quard_star_tools_temp; upx-ucl/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
@@ -241,7 +241,7 @@ jobs:
       - name: Build all
         run: |
           cd quard_star_tools
-          git describe --always --long --dirty --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
           ./tools/sed/sed.exe -i "s/git_tag.inc/git_tag.ci.inc/g" quard_star_tools.pro
           lrelease quard_star_tools.pro
           qmake -makefile
@@ -277,7 +277,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd quard_star_tools
-          git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i'.original' -e 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
           qmake -makefile
