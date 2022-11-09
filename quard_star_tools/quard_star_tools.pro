@@ -1,4 +1,4 @@
-BUILD_VERSION=0.1.0
+BUILD_VERSION=0.1.1
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
