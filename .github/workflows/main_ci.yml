@@ -190,9 +190,9 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.2.0'
+          version: '6.3.1'
           modules: 'qt5compat'
-          aqtversion: ==2.1.0
+          aqtversion: ==3.0.2
 
       - name: Install prerequisites
         shell: bash -l {0}
@@ -240,10 +240,10 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.2.0'
           arch: win64_mingw81
+          version: '6.2.0'
           modules: 'qt5compat'
-          aqtversion: ==2.1.0
+          aqtversion: ==3.0.2
 
       - name: Build all
         run: |
@@ -275,9 +275,9 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.2.0'
+          version: '6.3.1'
           modules: 'qt5compat'
-          aqtversion: ==2.1.0
+          aqtversion: ==3.0.2
 
       - name: Install prerequisites
         run: |
