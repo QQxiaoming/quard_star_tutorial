@@ -1,0 +1,123 @@
+name: NEXT_KERNEL_CI
+
+on:
+  push:
+    branches: [ next-kernel ]
+    paths-ignore:
+      - '.github/workflows/app_ci.yml'
+      - 'target_root_app/**'
+      - 'doc/**'
+      - 'tutorial/**'
+      - 'README.md'
+      - 'README_zh_CN.md'
+      - 'DEVELOPNOTE.md'
+      - 'CHANGELOG.md'
+      - '.readthedocs.yaml'
+
+  pull_request:
+    branches: [ next-kernel ]
+    paths-ignore:
+      - '.github/workflows/app_ci.yml'
+      - 'target_root_app/**'
+      - 'doc/**'
+      - 'tutorial/**'
+      - 'README.md'
+      - 'README_zh_CN.md'
+      - 'DEVELOPNOTE.md'
+      - 'CHANGELOG.md'
+      - '.readthedocs.yaml'
+
+  workflow_dispatch:
+
+jobs:
+  main_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+
+      - name: Install prerequisites
+        shell: bash -l {0}
+        run: |
+          sudo apt update
+          sudo apt install -y wget device-tree-compiler ninja-build git build-essential flex  \
+                pkg-config zlib1g-dev libsdl2-dev libglib2.0-0 libglib2.0-dev libsdl1.2-dev   \
+                libpixman-1-dev libfdt-dev autoconf automake libtool librbd-dev libmpc-dev    \
+                libaio-dev make cmake gcc python3 vim swig python3-dev libedit-dev mtd-utils  \
+                libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz \
+                libgtk-3-dev libcap-ng-dev libattr1-dev bison gperf intltool
+
+      - name: Cache toolchain
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-toolchain
+        with:
+          path: |
+            /opt/gcc-riscv64-unknown-linux-gnu
+            /opt/gcc-riscv64-unknown-elf
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Download and extract prebuilt toolchain
+        shell: bash -l {0}
+        run: |
+          RISCV_GLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-linux-gnu
+          RISCV_NEWLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-elf
+          if [ ! -d "$RISCV_GLIBC_TOOLCHAIN" ]; then
+            # download prebuilt toolchain
+            wget https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+            tar -xzf riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
+            mv riscv $RISCV_GLIBC_TOOLCHAIN
+            rm -f *.tar.gz
+            # strip binaries
+            cd $RISCV_GLIBC_TOOLCHAIN
+            set +e
+            for i in `find libexec bin -type f`
+            do
+              strip -s $i
+            done
+            cd -
+            $RISCV_GLIBC_TOOLCHAIN/bin/riscv64-unknown-linux-gnu-gcc -v
+          fi
+          if [ ! -d "$RISCV_NEWLIBC_TOOLCHAIN" ]; then
+            # download prebuilt toolchain
+            wget https://static.dev.sifive.com/dev-tools/freedom-tools/v2020.12/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+            tar -xzf riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14.tar.gz
+            mv riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14 $RISCV_NEWLIBC_TOOLCHAIN
+            rm -f *.tar.gz
+            # strip binaries
+            cd $RISCV_NEWLIBC_TOOLCHAIN
+            set +e
+            for i in `find libexec bin -type f`
+            do
+              strip -s $i
+            done
+            cd -
+            $RISCV_NEWLIBC_TOOLCHAIN/bin/riscv64-unknown-elf-gcc -v
+          fi
+
+      - name: Build all
+        shell: bash -l {0}
+        run: |
+          # replace pkexec with sudo for ci
+          sed -i 's/pkexec/sudo/g' build.sh
+          ./build.sh uboot
+          ./build.sh uboot_dtb
+          ./build.sh kernel
+          # perupload
+          tar -czf output.tar.gz output/
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: output
+          path: |
+            output.tar.gz
+          retention-days: 1
+ 
