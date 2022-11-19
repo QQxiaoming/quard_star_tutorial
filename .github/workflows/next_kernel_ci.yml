@@ -34,11 +34,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-
-      - uses: conda-incubator/setup-miniconda@v2
         with:
-          auto-activate-base: true
-          activate-environment: ""
+          submodules: true
 
       - name: Install prerequisites
         shell: bash -l {0}
