@@ -33,6 +33,10 @@ NEWLIB_ELF_CROSS_PREFIX=$NEWLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-elf
 BUILD_TARGET=$1
 BUILD_ROOTFS_OPT=$2
 
+if [ ! -d "$SHELL_FOLDER/output" ]; then  
+mkdir $SHELL_FOLDER/output
+fi  
+
 build_qemu()
 {
     echo "------------------------------ 编译qemu ------------------------------"
