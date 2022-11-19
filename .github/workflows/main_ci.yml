@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: conda-incubator/setup-miniconda@v2.1.1
+      - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-activate-base: true
           activate-environment: ""
@@ -133,7 +133,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: satackey/action-docker-layer-caching@v0.0.11
+      - uses: jpribyl/action-docker-layer-caching@v0.1.0
         continue-on-error: true
 
       - name: build_docker_image
@@ -189,6 +189,10 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.3.1'
+          modules: 'qt5compat'
+          aqtversion: ==3.0.2
 
       - name: Install prerequisites
         shell: bash -l {0}
@@ -200,7 +204,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd quard_star_tools
-          git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           sed -i 's/upx-ucl/cp $$DESTDIR\/$$TARGET $$DESTDIR\/quard_star_tools_temp; upx-ucl/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
@@ -237,11 +241,14 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           arch: win64_mingw81
+          version: '6.2.0'
+          modules: 'qt5compat'
+          aqtversion: ==3.0.2
 
       - name: Build all
         run: |
           cd quard_star_tools
-          git describe --always --long --dirty --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
           ./tools/sed/sed.exe -i "s/git_tag.inc/git_tag.ci.inc/g" quard_star_tools.pro
           lrelease quard_star_tools.pro
           qmake -makefile
@@ -267,6 +274,10 @@ jobs:
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.3.1'
+          modules: 'qt5compat'
+          aqtversion: ==3.0.2
 
       - name: Install prerequisites
         run: |
@@ -277,7 +288,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd quard_star_tools
-          git describe --always --long --dirty --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i'.original' -e 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
           qmake -makefile

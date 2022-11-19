@@ -253,7 +253,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
                         info = tr("IIS:\n wm8750.");
                         break;
                     case BOOT:
-                        info = tr("boot:\n 000-pflash 001-spi_nor_flash 010-sd 100-uart0.");
+                        info = tr("boot:\n 000-pflash.\n 001-spi_nor_flash.\n 010-sd.\n 100-uart0.");
                         break;
                     case POWER:
                         info = tr("power:\n DC 12V.");
@@ -340,10 +340,13 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             connect(pHelp,&QAction::triggered,this,
                 [&](void)
                 {
-                    QMessageBox::about(this, tr("Help"), "TODO");
+                    QMessageBox::about(this, tr("Help"), 
+                        tr("1. Move the mouse over the component to explore.") + "\n" +
+                        tr("2. Right-click the component to view the settings.") + "\n" +
+                        tr("3. Double-click the component to enter the interface.")
+                    );
                 }
             );
-
             QAction *pAbout= new QAction(tr("About"), this);
             QIcon icoAbout(":/boardview/icons/about.png");
             pAbout->setIcon(icoAbout);

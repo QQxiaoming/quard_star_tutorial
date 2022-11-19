@@ -12,19 +12,19 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - uses: dawidd6/action-download-artifact@v2.23.0
+      - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v2.23.0
+      - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: qemu_w64
 
-      - uses: dawidd6/action-download-artifact@v2.23.0
+      - uses: dawidd6/action-download-artifact@v2
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
@@ -70,7 +70,7 @@ jobs:
         with:
           name: release_win64
 
-      - uses: conda-incubator/setup-miniconda@v2.1.1
+      - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-activate-base: true
           activate-environment: ""
