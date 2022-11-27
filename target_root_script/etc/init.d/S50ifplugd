@@ -1,0 +1,37 @@
+#! /bin/sh
+#
+# ifplugd  init.d script
+test  -x /usr/sbin/ifplugd || exit 0
+test  -f /etc/ifplugd/ifplugd.conf || exit 0
+
+source /etc/ifplugd/ifplugd.conf
+
+case "$1" in
+  start)
+    echo -n "Starting ifplugd: "
+	for i in $INTERFACES
+	do
+    /usr/sbin/ifplugd -apq -t3 -u8 -d8 -i $i -r /etc/ifplugd/ifplugd.action
+	done
+    echo "OK"
+	;;
+  stop)
+	echo -n "Stopping ifplugd: "
+	for i in $INTERFACES
+	do
+	kill $(cat /var/run/ifplugd.$i.pid)
+	done
+	echo "OK"
+	;;
+  restart|force-reload)
+	$0 stop
+	sleep 2
+	$0 start
+	;;
+  *)
+	echo "Usage: $0 { start | stop | restart | force-reload }" >&2
+	exit 1
+	;;
+esac
+
+exit 0
