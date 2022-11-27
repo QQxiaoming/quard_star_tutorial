@@ -27,6 +27,7 @@
 			mmu-type = "riscv,sv48";
 
 			core0_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -42,6 +43,7 @@
 			mmu-type = "riscv,sv48";
 
 			core1_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -57,6 +59,7 @@
 			mmu-type = "riscv,sv48";
 
 			core2_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -72,6 +75,7 @@
 			mmu-type = "riscv,sv48";
 
 			core3_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -87,6 +91,7 @@
 			mmu-type = "riscv,sv48";
 
 			core4_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -102,6 +107,7 @@
 			mmu-type = "riscv,sv48";
 
 			core5_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -117,6 +123,7 @@
 			mmu-type = "riscv,sv48";
 
 			core6_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -132,6 +139,7 @@
 			mmu-type = "riscv,sv48";
 
 			core7_ic:interrupt-controller {
+				#address-cells = <0x0>;
 				#interrupt-cells = <0x1>;
 				interrupt-controller;
 				compatible = "riscv,cpu-intc";
@@ -399,6 +407,7 @@
 			#gpio-cells = <2>;
 			interrupt-controller;
 			#interrupt-cells = <2>;
+			#address-cells = <0x0>;
 			status = "disabled";
 		};
 
@@ -439,7 +448,7 @@
 			rx-fifo-depth = <0x40>;
 		};
 
-		wdt: watchdog@20bc000 {
+		wdt: watchdog@10014000 {
 			compatible = "fsl,imx21-wdt";
 			reg = <0x0 0x10014000 0x0 0x1000>;
 			interrupt-parent = <&plic>;
