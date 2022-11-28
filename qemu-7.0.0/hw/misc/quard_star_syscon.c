@@ -96,7 +96,7 @@ static void quard_star_syscon_write(void *opaque, hwaddr addr,
 
 static Property quard_star_syscon_properties[] = {
     DEFINE_PROP_STRING("boot-cfg", QuardStarSysconState, boot_cfg),
-    DEFINE_PROP_BOOL("update-cfg", QuardStarSysconState, update_cfg, true),
+    DEFINE_PROP_BOOL("update-cfg", QuardStarSysconState, update_cfg, false),
     DEFINE_PROP_END_OF_LIST(),
 };
 

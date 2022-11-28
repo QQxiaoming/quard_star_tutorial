@@ -91,6 +91,8 @@ bool BoardWindow::powerSwitch(bool power)
             "8",
         "-global",    
             "quard-star-syscon.boot-cfg=sd",
+        "-global",    
+            "quard-star-syscon.update-cfg=false",
         "-drive",     
             "if=pflash,bus=0,unit=0,format=raw,file="+pflashImgPath+",id=mtd0",
         "-drive",     

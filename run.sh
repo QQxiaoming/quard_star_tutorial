@@ -67,6 +67,12 @@ HOST_VCAN_PARAM=""
 #HOST_VCAN_PARAM="-object can-host-socketcan,id=socketcan0,if=vcan0,canbus=canbus0"
 fi
 
+if [ -z "$UPDATECFG" ]; then
+UPDATECFG="false"
+#UPDATECFG="true"
+fi
+
+
 ###############################################################################
 
 ################################## cli param ##################################
@@ -109,7 +115,7 @@ fi
 
 if [ $# == 1 ] ; then
 	DEFAULT_VC="1280x720"
-	DBOOTCFG="sd"
+	BOOTCFG="sd"
 else
 	case "$2" in
 	full-screen)
@@ -131,10 +137,10 @@ else
 		;;
 	esac
 	if [ $# == 2 ] ; then
-		DBOOTCFG="sd"
+		BOOTCFG="sd"
 	else
 		if [ $# == 3 ] ; then
-			DBOOTCFG=$3
+			BOOTCFG=$3
 		fi
 	fi
 fi
@@ -205,7 +211,8 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin",canbus=canbus0 \
 -m 1G \
 -smp 8 \
--global quard-star-syscon.boot-cfg="$DBOOTCFG" \
+-global quard-star-syscon.boot-cfg="$BOOTCFG" \
+-global quard-star-syscon.update-cfg="$UPDATECFG" \
 -drive if=pflash,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/pflash.img,id=mtd0 \
 -drive if=mtd,bus=0,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/norflash.img,id=mtd1 \
 -drive if=mtd,bus=1,unit=0,format=raw,file=$SHELL_FOLDER/output/fw/nandflash.img,id=mtd2 \
