@@ -12,4 +12,6 @@ zlib=1.2.11
 
 ## 功能开发
 
-目前对接maskrom写入lowlevelboot.bin完成，后续待完善。
+Update Tools对接maskrom已可以将大小256KB以内的二进制bin文件，写入0x20000地址并跳转执行。
+
+目前lowlevelboot.bin可以在此地址运行，因此暂时充当update.bin，后续更多功能待完善。
