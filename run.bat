@@ -47,7 +47,7 @@ if "%1"=="nographic" (
 -m 1G ^
 -smp 8 ^
 -global quard-star-syscon.boot-cfg=%BOOTCFG% ^
--global quard-star-syscon.update-cfg="false" \
+-global quard-star-syscon.update-cfg="false" ^
 -drive if=pflash,bus=0,unit=0,format=raw,file=./output/fw/pflash.img,id=mtd0 ^
 -drive if=mtd,bus=0,unit=0,format=raw,file=./output/fw/norflash.img,id=mtd1 ^
 -drive if=mtd,bus=1,unit=0,format=raw,file=./output/fw/nandflash.img,id=mtd2 ^
