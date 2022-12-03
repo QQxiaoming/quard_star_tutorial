@@ -11,7 +11,7 @@ case "$1" in
     echo -n "Starting ifplugd: "
 	for i in $INTERFACES
 	do
-    /usr/sbin/ifplugd -apq -t3 -u8 -d8 -i $i -r /etc/ifplugd/ifplugd.action
+    /usr/sbin/ifplugd -pq -t1 -u1 -d1 -i $i -r /etc/ifplugd/ifplugd.action
 	done
     echo "OK"
 	;;

@@ -20,6 +20,7 @@ public:
     QString severaddr;
     int severport;
     void reConnect(void);
+    QTelnet *telnet;
 
 private slots:
     void addText(const char *msg, int count);
@@ -31,7 +32,6 @@ protected:
 private:
     void insertPlainText(QByteArray data);
     Ui::TelnetWindow *ui;
-    QTelnet *telnet;
     QByteArray datapool;
 };
 

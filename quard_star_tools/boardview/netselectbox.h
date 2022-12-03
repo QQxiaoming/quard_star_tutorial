@@ -21,6 +21,9 @@ protected:
 private slots:
     void buttonBox_accepted(void);
     void buttonBox_rejected(void);
+    void groupBox_clicked(void);
+    void UserRadioButton_clicked(void);
+    void TapRadioButton_clicked(void);
 
 private:
     Ui::NetSelectBox *ui;

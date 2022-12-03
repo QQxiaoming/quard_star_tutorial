@@ -26,6 +26,8 @@ public:
     bool powerSwitch(bool power);
     QString vcan_name;
     QString tap_name;
+    QProcess *qemu_process;
+    TelnetWindow *telnet[4];
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -67,9 +69,7 @@ private:
     bool isMousePressed = false;
     bool powerOn = false;
     QPoint mStartPos;
-    QProcess *qemu_process;
     VncWindow *vnc;
-    TelnetWindow *telnet[4];
     NetSelectBox *netSelect;
     void show_vnc(void);
     QString envPath;
