@@ -19,12 +19,12 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     ui->teOutput->setPalette(p);
     ui->teOutput->setTextInteractionFlags(Qt::NoTextInteraction);
     ui->teOutput->setFocusPolicy(Qt::NoFocus);
-    ui->refresh_pushbuttion->setFocusPolicy(Qt::NoFocus);
+    ui->refreshPushbuttion->setFocusPolicy(Qt::NoFocus);
 
     telnet = new QTelnet(this);
    	
     connect(telnet, SIGNAL(newData(const char*,int)), this, SLOT(addText(const char*,int)) );
-    connect(ui->refresh_pushbuttion, SIGNAL(clicked()), this, SLOT(refresh_clicked()));
+    connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
 }
 
 TelnetWindow::~TelnetWindow()
@@ -108,7 +108,12 @@ void TelnetWindow::reConnect(void)
     telnet->connectToHost(severaddr,severport);
 }
 
-void TelnetWindow::refresh_clicked()
+void TelnetWindow::sendData(const QByteArray &ba)
+{
+    telnet->sendData(ba);
+}
+
+void TelnetWindow::refreshClicked()
 {
     reConnect();
 }

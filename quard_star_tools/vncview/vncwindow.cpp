@@ -9,7 +9,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 {
     ui->setupUi(this);
 
-    QObject::connect(ui->refresh_pushbuttion, SIGNAL(clicked()), this, SLOT(refresh_clicked()));
+    QObject::connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
 }
 
 VncWindow::~VncWindow()
@@ -27,7 +27,7 @@ void VncWindow::reConnect(void)
     }
 }
 
-void VncWindow::refresh_clicked()
+void VncWindow::refreshClicked()
 {
     reConnect();
 }

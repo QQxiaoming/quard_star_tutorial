@@ -49,11 +49,11 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,const bool &is
     setMask(QBitmap(pix.mask()));
 
     qemu_process = new QProcess(this);
-    telnet[0] = new TelnetWindow("127.0.0.1",3441,this);
-    telnet[1] = new TelnetWindow("127.0.0.1",3442,this);
-    telnet[2] = new TelnetWindow("127.0.0.1",3443,this);
-    telnet[3] = new TelnetWindow("127.0.0.1",3430,this);
-    vnc = new VncWindow("127.0.0.1",5901,this);
+    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
+    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
+    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,this);
+    jtagWindow = new TelnetWindow("127.0.0.1",3430,this);
+    lcdWindow = new VncWindow("127.0.0.1",5901,this);
     netSelect = new NetSelectBox(this);
 }
 
@@ -63,11 +63,11 @@ BoardWindow::~BoardWindow()
     qemu_process->waitForFinished(-1);
     delete qemu_process;
     delete netSelect;
-    delete vnc;
-    delete telnet[0];
-    delete telnet[1];
-    delete telnet[2];
-    delete telnet[3];
+    delete lcdWindow;
+    delete uartWindow[0];
+    delete uartWindow[1];
+    delete uartWindow[2];
+    delete jtagWindow;
     delete ui;
 }
 
@@ -188,17 +188,36 @@ bool BoardWindow::powerSwitch(bool power)
                 return false;
             }
         }
-        telnet[0]->reConnect();
-        telnet[1]->reConnect();
-        telnet[2]->reConnect();
-        telnet[3]->reConnect();
-        vnc->reConnect();
+        uartWindow[0]->reConnect();
+        uartWindow[1]->reConnect();
+        uartWindow[2]->reConnect();
+        jtagWindow->reConnect();
+        lcdWindow->reConnect();
     } else {
         qemu_process->kill();
         qemu_process->waitForFinished(-1);
     }
 
     return true;
+}
+
+int BoardWindow::sendQemuCmd(const QString &cmd)
+{
+    if(qemu_process->state() == QProcess::Running) {
+        jtagWindow->sendData(cmd.toUtf8());
+        return 0;
+    }
+    return -1;
+}
+
+QString& BoardWindow::getVCanName(void)
+{
+    return vcan_name;
+}
+
+QString& BoardWindow::getTapName(void)
+{
+    return tap_name;
 }
 
 void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
@@ -491,19 +510,19 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 switch (spaceList[i].name)
                 {
                     case VGA:
-                        vnc->show();
+                        lcdWindow->show();
                         break;
                     case UART0:
-                        telnet[0]->show();
+                        uartWindow[0]->show();
                         break;
                     case UART1:
-                        telnet[1]->show();
+                        uartWindow[1]->show();
                         break;
                     case UART2:
-                        telnet[2]->show();
+                        uartWindow[2]->show();
                         break;
                     case JTAG:
-                        telnet[3]->show();
+                        jtagWindow->show();
                         break;
                     case ETH:
                         netSelect->show();

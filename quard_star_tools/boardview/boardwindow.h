@@ -24,10 +24,9 @@ public:
     explicit BoardWindow(const QString &path,const QString &color = "green",const bool &isDarkTheme = false,QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);
-    QString vcan_name;
-    QString tap_name;
-    QProcess *qemu_process;
-    TelnetWindow *telnet[4];
+    QString& getVCanName(void);
+    QString& getTapName(void);
+    int sendQemuCmd(const QString &cmd);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -69,12 +68,17 @@ private:
     bool isMousePressed = false;
     bool powerOn = false;
     QPoint mStartPos;
-    VncWindow *vnc;
+    QProcess *qemu_process;
+    TelnetWindow *uartWindow[3];
+    TelnetWindow *jtagWindow;
+    VncWindow *lcdWindow;
     NetSelectBox *netSelect;
     void show_vnc(void);
     QString envPath;
     QString skinColor;
     bool isDarkTheme;
+    QString vcan_name;
+    QString tap_name;
     QString maskromImgPath;
     QString pflashImgPath;
     QString norflashImgPath;

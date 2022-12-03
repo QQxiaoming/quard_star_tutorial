@@ -8,6 +8,12 @@ NetSelectBox::NetSelectBox(QWidget *parent) :
     ui(new Ui::NetSelectBox)
 {
     ui->setupUi(this);
+
+    QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(buttonBox_accepted()));
+    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(buttonBox_rejected()));
+    QObject::connect(ui->groupBox, SIGNAL(clicked()), this, SLOT(groupBox_clicked()));
+    QObject::connect(ui->UserRadioButton, SIGNAL(clicked()), this, SLOT(UserRadioButton_clicked()));
+    QObject::connect(ui->TapRadioButton, SIGNAL(clicked()), this, SLOT(TapRadioButton_clicked()));
 }
 
 NetSelectBox::~NetSelectBox()
@@ -30,22 +36,21 @@ void NetSelectBox::showEvent(QShowEvent* event) {
         ui->canComboBox->addItem(var.humanReadableName());
     }
 
-    ui->tapComboBox->setCurrentText(bw->tap_name.isEmpty()?"N/A":bw->tap_name);
-    ui->canComboBox->setCurrentText(bw->vcan_name.isEmpty()?"N/A":bw->vcan_name);
+    ui->tapComboBox->setCurrentText(bw->getTapName().isEmpty()?"N/A":bw->getTapName());
+    ui->canComboBox->setCurrentText(bw->getVCanName().isEmpty()?"N/A":bw->getVCanName());
 
-    if(bw->tap_name.isEmpty() || bw->tap_name == "N/A"){
+    if(bw->getTapName().isEmpty()){
         ui->UserRadioButton->setChecked(true);
         ui->tapComboBox->setEnabled(false);
     } else {
         ui->TapRadioButton->setChecked(true);
         ui->tapComboBox->setEnabled(true);
     }
-
-    QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(buttonBox_accepted()));
-    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(buttonBox_rejected()));
-    QObject::connect(ui->groupBox, SIGNAL(clicked()), this, SLOT(groupBox_clicked()));
-    QObject::connect(ui->UserRadioButton, SIGNAL(clicked()), this, SLOT(UserRadioButton_clicked()));
-    QObject::connect(ui->TapRadioButton, SIGNAL(clicked()), this, SLOT(TapRadioButton_clicked()));
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    ui->canComboBox->setEnabled(false);
+#elif defined(Q_OS_LINUX)
+    ui->canComboBox->setEnabled(true);
+#endif
 
     QDialog::showEvent(event);
 }
@@ -53,14 +58,12 @@ void NetSelectBox::showEvent(QShowEvent* event) {
 void NetSelectBox::buttonBox_accepted(void)
 {
     BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
-    bw->tap_name = ui->tapComboBox->currentText();
-    bw->vcan_name = ui->canComboBox->currentText();
-    if(bw->qemu_process->state() == QProcess::Running) {
-        if(ui->groupBox->isChecked()){
-            bw->telnet[3]->telnet->sendData(QByteArray("set_link net0 on\n",18));
-        } else {
-            bw->telnet[3]->telnet->sendData(QByteArray("set_link net0 off\n",19));
-        }
+    bw->getTapName() = ui->tapComboBox->currentText() == "N/A"?"":ui->tapComboBox->currentText();
+    bw->getVCanName() = ui->canComboBox->currentText() == "N/A"?"":ui->canComboBox->currentText();
+    if(ui->groupBox->isChecked()) {
+        bw->sendQemuCmd("set_link net0 on\n");
+    } else {
+        bw->sendQemuCmd("set_link net0 off\n");
     }
     emit this->accepted();
 }
@@ -87,6 +90,7 @@ void NetSelectBox::groupBox_clicked(void)
 void NetSelectBox::UserRadioButton_clicked(void)
 {
     if(ui->UserRadioButton->isChecked()){
+        ui->tapComboBox->setCurrentText("N/A");
         ui->tapComboBox->setEnabled(false);
     }
 }
