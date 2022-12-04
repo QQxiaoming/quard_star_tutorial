@@ -14,41 +14,47 @@
 extern QString VERSION;
 extern QString GIT_TAG;
 
-BoardWindow::BoardWindow(const QString &path,const QString &color,const bool &isSysDarkTheme,QWidget *parent) :
+BoardWindow::BoardWindow(const QString &path,const QString &color,
+                            const bool &isSysDarkTheme,QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::BoardWindow),envPath(path),skinColor(color)
+    ui(new Ui::BoardWindow),
+    envPath(path),
+    skinColor(color),
+    isDarkTheme(isSysDarkTheme),
+    maskRomImgPath(envPath + "/mask_rom/mask_rom.bin"),
+    pFlashImgPath(envPath + "/fw/pflash.img"),
+    norFlashImgPath(envPath + "/fw/norflash.img"),
+    nandFlashImgPath(envPath + "/fw/nandflash.img"),
+    sdImgPath(envPath + "/fw/sd.img"),
+    usbFlashImgPath(envPath + "/fw/usb.img"),
+    rootFSImgPath(envPath + "/rootfs/rootfs.img"),
+    tapName(""),
+    vCanName(""),
+    bootCfg("sd"),
+    updateCfg(false)
 {
     ui->setupUi(this);
 
-    isDarkTheme = isSysDarkTheme;
-    maskRomImgPath = envPath + "/mask_rom/mask_rom.bin";
-    pFlashImgPath = envPath + "/fw/pflash.img";
-    norFlashImgPath = envPath + "/fw/norflash.img";
-    nandFlashImgPath = envPath + "/fw/nandflash.img";
-    sdImgPath = envPath + "/fw/sd.img";
-    usbFlashImgPath = envPath + "/fw/usb.img";
-    rootFSImgPath = envPath + "/rootfs/rootfs.img";
-    vCanName = "";
-    tapName = "";
-    bootCfg = "sd";
-    updateCfg = false;
-
 #if defined(Q_OS_MACOS)
-    this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::CustomizeWindowHint | 
+                            Qt::WindowTitleHint | Qt::FramelessWindowHint);
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-    QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
-    QRect size = this->geometry();
-    this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
-
     QPixmap pix;
     QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
     if(!skinFile.isFile())
         skinColor = "green";
-    pix.load(":/boardview/icons/board_"+skinColor+".png",0,Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+    pix.load(":/boardview/icons/board_"+skinColor+".png",0,
+                Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
+
+    QRect screen = QGuiApplication::screenAt(
+                this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
+    QRect size = this->geometry();
+    this->move((screen.width() - size.width()) / 2,
+                         (screen.height() - size.height()) / 2);
 
     qemuProcess = new QProcess(this);
     uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
@@ -239,7 +245,9 @@ bool& BoardWindow::getUpdateCfg(void)
 void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 {
     QAction *pGInfo= new QAction(tr("Get Info"), this);
-    QIcon icoInfo(":/boardview/icons/info"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoInfo(":/boardview/icons/info" + 
+                    [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}() +
+                    ".svg");
     pGInfo->setIcon(icoInfo);
     pGInfo->setToolTip(QString::number(title));
     menu->addAction(pGInfo);
@@ -310,7 +318,8 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 {
     QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
-    QIcon icoOpen(":/boardview/icons/open"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoOpen(":/boardview/icons/open" + 
+            [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pOFileSystem->setIcon(icoOpen);
     pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
@@ -319,7 +328,8 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 {
     QAction *pSetting= new QAction(tr("Setting"), this);
-    QIcon icoSetting(":/boardview/icons/setting"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoSetting(":/boardview/icons/setting" + 
+            [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pSetting->setIcon(icoSetting);
     pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);

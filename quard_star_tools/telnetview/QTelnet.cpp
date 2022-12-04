@@ -15,7 +15,8 @@ char QTelnet::_arrCR[2]           = { 13, 0 };
 QTelnet::QTelnet(QObject *parent) :
 	QTcpSocket(parent), m_actualSB(0)
 {
-    connect( this, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(socketError(QAbstractSocket::SocketError)) );
+    connect( this, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), 
+					this, SLOT(socketError(QAbstractSocket::SocketError)) );
 	connect( this, SIGNAL(readyRead()),		this, SLOT(onReadyRead()) );
 }
 
@@ -35,7 +36,8 @@ bool QTelnet::testBinaryMode() const
 }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-void QTelnet::connectToHost(const QString &host, quint16 port, OpenMode mode, NetworkLayerProtocol protocol)
+void QTelnet::connectToHost(const QString &host, quint16 port,
+					 OpenMode mode, NetworkLayerProtocol protocol)
 #else
 void QTelnet::connectToHost(const QString &host, quint16 port)
 #endif
@@ -56,7 +58,7 @@ void QTelnet::connectToHost(const QString &host, quint16 port)
 void QTelnet::sendData(const QByteArray &ba)
 {
 	if( isConnected() )
-		transpose( ba.constData(), ba.count() );
+        transpose( ba.constData(), ba.length() );
 }
 
 void QTelnet::socketError(QAbstractSocket::SocketError err)
@@ -148,7 +150,8 @@ void QTelnet::handleSB()
 	switch( m_actualSB )
 	{
 	case TELOPT_TTYPE:
-		if( (m_buffSB.count() > 0) && ((unsigned char)m_buffSB[0] == (unsigned char)TELQUAL_SEND) )
+        if( (m_buffSB.length() > 0) &&
+			((unsigned char)m_buffSB[0] == (unsigned char)TELQUAL_SEND) )
 		{
 			QTcpSocket::write(IACSB, 2);
 			write(TELOPT_TTYPE);
@@ -207,7 +210,8 @@ void QTelnet::transpose(const char *buf, int iLen)
 
 void QTelnet::willsReply(char action, char reply)
 {
-	if( (reply != m_sentDX[(unsigned char)action]) || (WILL != m_receivedWX[(unsigned char)action]) )
+	if( (reply != m_sentDX[(unsigned char)action]) || 
+			(WILL != m_receivedWX[(unsigned char)action]) )
 	{
 		write(IAC);
 		write(reply);
@@ -220,7 +224,8 @@ void QTelnet::willsReply(char action, char reply)
 
 void QTelnet::wontsReply(char action, char reply)
 {
-	if( (reply != m_sentDX[(unsigned char)action]) || (WONT != m_receivedWX[(unsigned char)action]) )
+	if( (reply != m_sentDX[(unsigned char)action]) || 
+			(WONT != m_receivedWX[(unsigned char)action]) )
 	{
 		write(IAC);
 		write(reply);
@@ -233,7 +238,8 @@ void QTelnet::wontsReply(char action, char reply)
 
 void QTelnet::doesReply(char action, char reply)
 {
-	if( (reply != m_sentWX[(unsigned char)action]) || (DO != m_receivedDX[(unsigned char)action]) )
+	if( (reply != m_sentWX[(unsigned char)action]) || 
+			(DO != m_receivedDX[(unsigned char)action]) )
 	{
 		write(IAC);
 		write(reply);
@@ -246,7 +252,8 @@ void QTelnet::doesReply(char action, char reply)
 
 void QTelnet::dontsReply(char action, char reply)
 {
-	if( (reply != m_sentWX[(unsigned char)action]) || (DONT != m_receivedDX[(unsigned char)action]) )
+	if( (reply != m_sentWX[(unsigned char)action]) || 
+			(DONT != m_receivedDX[(unsigned char)action]) )
 	{
 		write(IAC);
 		write(reply);

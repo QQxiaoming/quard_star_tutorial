@@ -21,7 +21,8 @@ NetSelectBox::~NetSelectBox()
     delete ui;
 }
 
-void NetSelectBox::showEvent(QShowEvent* event) {
+void NetSelectBox::showEvent(QShowEvent* event) 
+{
     QNetworkInterface interface;
     BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
     QList<QNetworkInterface> netList = interface.allInterfaces();

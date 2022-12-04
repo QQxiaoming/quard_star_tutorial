@@ -22,7 +22,8 @@ class BoardWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit BoardWindow(const QString &path,const QString &color = "green",const bool &isDarkTheme = false,QWidget *parent = nullptr);
+    explicit BoardWindow(const QString &path,const QString &color = "green",
+                    const bool &isDarkTheme = false,QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);
     QString& getVCanName(void);
@@ -81,10 +82,6 @@ private:
     QString envPath;
     QString skinColor;
     bool isDarkTheme;
-    QString vCanName;
-    QString tapName;
-    QString bootCfg;
-    bool updateCfg;
     QString maskRomImgPath;
     QString pFlashImgPath;
     QString norFlashImgPath;
@@ -92,6 +89,10 @@ private:
     QString sdImgPath;
     QString usbFlashImgPath;
     QString rootFSImgPath;
+    QString tapName;
+    QString vCanName;
+    QString bootCfg;
+    bool updateCfg;
     struct space
     {
         DeviceName name;
