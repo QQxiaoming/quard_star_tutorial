@@ -6,7 +6,7 @@
 #include "ui_telnetwindow.h"
 
 TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
-    QMainWindow(parent),severaddr(addr),severport(port),
+    QMainWindow(parent),severAddr(addr),severPort(port),
     ui(new Ui::TelnetWindow)
 {
     ui->setupUi(this);
@@ -55,11 +55,11 @@ void TelnetWindow::addText(const char *msg, int count)
     QByteArray data = QByteArray(msg, count);
     //if(this->isActiveWindow()) qDebug() << data;
     do {
-        if(datapool.isEmpty()){
+        if(dataPool.isEmpty()){
             int offset = data.indexOf('\x1B', 0);
             if(offset >= 0) {
                 insertPlainText(data.left(offset));
-                datapool = datapool + data.mid(offset);
+                dataPool = dataPool + data.mid(offset);
                 data.clear();
             } else {
                 insertPlainText(data);
@@ -71,27 +71,27 @@ void TelnetWindow::addText(const char *msg, int count)
             QRegExp const escapeSequenceExpression2(R"(\x1B\[D)");
             QRegExp const escapeSequenceExpression3(R"(\x1B\[K)");
             QRegExp const escapeSequenceExpression4(R"(\x1B\[J)");
-            datapool = datapool + data;
-            if(datapool.length()>6){
-                if(escapeSequenceExpression.indexIn(datapool) == 0){
-                    data = datapool.mid(escapeSequenceExpression.matchedLength());
-                    datapool.clear();
-                } else if(escapeSequenceExpression1.indexIn(datapool) == 0){
-                    data = datapool.mid(escapeSequenceExpression1.matchedLength());
-                    datapool.clear();
-                } else if(escapeSequenceExpression2.indexIn(datapool) == 0){
-                    data = '\b'+datapool.mid(escapeSequenceExpression2.matchedLength());
-                    datapool.clear();
-                } else if(escapeSequenceExpression3.indexIn(datapool) == 0){
-                    data = datapool.mid(escapeSequenceExpression3.matchedLength());
-                    datapool.clear();
-                } else if(escapeSequenceExpression4.indexIn(datapool) == 0){
-                    data = datapool.mid(escapeSequenceExpression4.matchedLength());
-                    datapool.clear();
+            dataPool = dataPool + data;
+            if(dataPool.length()>6){
+                if(escapeSequenceExpression.indexIn(dataPool) == 0){
+                    data = dataPool.mid(escapeSequenceExpression.matchedLength());
+                    dataPool.clear();
+                } else if(escapeSequenceExpression1.indexIn(dataPool) == 0){
+                    data = dataPool.mid(escapeSequenceExpression1.matchedLength());
+                    dataPool.clear();
+                } else if(escapeSequenceExpression2.indexIn(dataPool) == 0){
+                    data = '\b'+dataPool.mid(escapeSequenceExpression2.matchedLength());
+                    dataPool.clear();
+                } else if(escapeSequenceExpression3.indexIn(dataPool) == 0){
+                    data = dataPool.mid(escapeSequenceExpression3.matchedLength());
+                    dataPool.clear();
+                } else if(escapeSequenceExpression4.indexIn(dataPool) == 0){
+                    data = dataPool.mid(escapeSequenceExpression4.matchedLength());
+                    dataPool.clear();
                 } else {
-                    insertPlainText(datapool.left(1));
-                    data = datapool.mid(2);
-                    datapool.clear();
+                    insertPlainText(dataPool.left(1));
+                    data = dataPool.mid(2);
+                    dataPool.clear();
                 }
             } else {
                 break;
@@ -105,7 +105,7 @@ void TelnetWindow::reConnect(void)
     if( telnet->isConnected() ){
         telnet->disconnectFromHost();
     }
-    telnet->connectToHost(severaddr,severport);
+    telnet->connectToHost(severAddr,severPort);
 }
 
 void TelnetWindow::sendData(const QByteArray &ba)

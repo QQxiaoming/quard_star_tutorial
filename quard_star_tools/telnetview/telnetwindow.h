@@ -30,9 +30,9 @@ protected:
 private:
     void insertPlainText(QByteArray data);
     QTelnet *telnet;
-    QByteArray datapool;
-    QString severaddr;
-    int severport;
+    QByteArray dataPool;
+    QString severAddr;
+    int severPort;
     Ui::TelnetWindow *ui;
 };
 

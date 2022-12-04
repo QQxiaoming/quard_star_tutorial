@@ -20,8 +20,8 @@ private slots:
     void refreshClicked();
 
 private:
-    QString severaddr;
-    int severport;
+    QString severAddr;
+    int severPort;
     Ui::VncWindow *ui;
 };
 #endif // VNCWINDOW_H

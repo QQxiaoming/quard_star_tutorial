@@ -11,6 +11,7 @@
 #include "vncwindow.h"
 #include "telnetwindow.h"
 #include "netselectbox.h"
+#include "bootselectbox.h"
 
 namespace Ui {
 class BoardWindow;
@@ -26,6 +27,8 @@ public:
     bool powerSwitch(bool power);
     QString& getVCanName(void);
     QString& getTapName(void);
+    QString& getBootCfg(void);
+    bool& getUpdateCfg(void);
     int sendQemuCmd(const QString &cmd);
 
 protected:
@@ -68,24 +71,27 @@ private:
     bool isMousePressed = false;
     bool powerOn = false;
     QPoint mStartPos;
-    QProcess *qemu_process;
+    QProcess *qemuProcess;
     TelnetWindow *uartWindow[3];
     TelnetWindow *jtagWindow;
     VncWindow *lcdWindow;
     NetSelectBox *netSelect;
-    void show_vnc(void);
+    BootSelectBox *bootSelect;
+    void showVnc(void);
     QString envPath;
     QString skinColor;
     bool isDarkTheme;
-    QString vcan_name;
-    QString tap_name;
-    QString maskromImgPath;
-    QString pflashImgPath;
-    QString norflashImgPath;
-    QString nandflashImgPath;
+    QString vCanName;
+    QString tapName;
+    QString bootCfg;
+    bool updateCfg;
+    QString maskRomImgPath;
+    QString pFlashImgPath;
+    QString norFlashImgPath;
+    QString nandFlashImgPath;
     QString sdImgPath;
-    QString usbflashImgPath;
-    QString rootfsImgPath;
+    QString usbFlashImgPath;
+    QString rootFSImgPath;
     struct space
     {
         DeviceName name;
