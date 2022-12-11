@@ -59,7 +59,7 @@ private:
         JTAG,
         AUDIO,
         BOOT,
-        
+
         UNKNOW = -1,
     };
     QString getOpenFileName(const QString &caption = QString(),
@@ -93,31 +93,35 @@ private:
     QString vCanName;
     QString bootCfg;
     bool updateCfg;
+    enum drawDir {
+        UP = 0,
+        DOWN = 1,
+    };
     struct space
     {
         DeviceName name;
         QString drawName;
         int x1,y1,x2,y2;
-        int dir;
+        drawDir dir;
         bool draw;
     }spaceList[17] = {
-        {VGA,   tr("vga"),   315,111,649,262,1,false},
-        {UART2, tr("uart2"), 52 ,381,107,457,1,false},
-        {UART1, tr("uart1"), 52 ,290,107,366,1,false},
-        {UART0, tr("uart0"), 52 ,198,107,272,1,false},
-        {POWER, tr("power"), 127,709,222,837,0,false},
-        {SOC,   tr("soc"),   369,377,470,479,0,false},
-        {DDR,   tr("ddr"),   542,345,620,508,0,false},
-        {ETH,   tr("eth"),   689,179,838,340,0,false},
-        {USB0,  tr("usb0"),  685,367,837,504,0,false},
-        {USB1,  tr("usb1"),  685,539,837,674,0,false},
-        {NAND,  tr("nand"),  197,365,296,425,0,false},
-        {NOR,   tr("nor"),   215,493,263,530,0,false},
-        {SD,    tr("sd"),    145,114,296,263,1,false},
-        {SWITCH,tr("switch"),247,728,385,802,0,false},
-        {JTAG,  tr("jtag"),  52 ,499,131,671,0,false},
-        {AUDIO, tr("audio"), 673,686,744,810,0,false},
-        {BOOT,  tr("boot"),  409,703,650,803,0,false},
+        {VGA,   tr("vga"),   315,111,649,262,DOWN,false},
+        {UART2, tr("uart2"), 52 ,381,107,457,DOWN,false},
+        {UART1, tr("uart1"), 52 ,290,107,366,DOWN,false},
+        {UART0, tr("uart0"), 52 ,198,107,272,DOWN,false},
+        {POWER, tr("power"), 127,709,222,837,UP,  false},
+        {SOC,   tr("soc"),   369,377,470,479,UP,  false},
+        {DDR,   tr("ddr"),   542,345,620,508,UP,  false},
+        {ETH,   tr("eth"),   689,179,838,340,UP,  false},
+        {USB0,  tr("usb0"),  685,367,837,504,UP,  false},
+        {USB1,  tr("usb1"),  685,539,837,674,UP,  false},
+        {NAND,  tr("nand"),  197,365,296,425,UP,  false},
+        {NOR,   tr("nor"),   215,493,263,530,UP,  false},
+        {SD,    tr("sd"),    145,114,296,263,DOWN,false},
+        {SWITCH,tr("switch"),247,728,385,802,UP,  false},
+        {JTAG,  tr("jtag"),  52 ,499,131,671,UP,  false},
+        {AUDIO, tr("audio"), 673,686,744,810,UP,  false},
+        {BOOT,  tr("boot"),  409,703,650,803,UP,  false},
     };
 };
 

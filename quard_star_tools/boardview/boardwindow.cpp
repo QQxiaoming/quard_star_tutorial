@@ -7,6 +7,7 @@
 #include <QBitmap>
 #include <QFileDialog>
 #include <QPoint>
+#include <QToolTip>
 
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
@@ -58,10 +59,15 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 
     qemuProcess = new QProcess(this);
     uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
+    uartWindow[0]->setWindowTitle("uart0");
     uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
+    uartWindow[1]->setWindowTitle("uart1");
     uartWindow[2] = new TelnetWindow("127.0.0.1",3443,this);
+    uartWindow[2]->setWindowTitle("uart2");
     jtagWindow = new TelnetWindow("127.0.0.1",3430,this);
+    jtagWindow->setWindowTitle("jtag(monitor)");
     lcdWindow = new VncWindow("127.0.0.1",5901,this);
+    lcdWindow->setWindowTitle("lcd");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
 }
@@ -451,31 +457,23 @@ void BoardWindow::paintEvent(QPaintEvent *event)
 {
     QString paths = ":/boardview/icons/board_"+skinColor+".png";
     QPainter painter(this);
-    QFont font;
-    QPen pen;
-    pen.setWidth(5);
-    pen.setColor(Qt::red);
-    pen.setStyle(Qt::DashLine);
-    font.setPointSize(20);
-    painter.setFont(font);
-    painter.setPen(pen);
     painter.drawPixmap(0, 0, width(), height(), QPixmap(paths));
 
     for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
         if(spaceList[i].draw) {
-            painter.drawLine(spaceList[i].x1,spaceList[i].y1,spaceList[i].x1,spaceList[i].y2);
-            painter.drawLine(spaceList[i].x1,spaceList[i].y1,spaceList[i].x2,spaceList[i].y1);
-            painter.drawLine(spaceList[i].x2,spaceList[i].y1,spaceList[i].x2,spaceList[i].y2);
-            painter.drawLine(spaceList[i].x1,spaceList[i].y2,spaceList[i].x2,spaceList[i].y2);
-            if(spaceList[i].dir == 0)
-                painter.drawText(spaceList[i].x1,spaceList[i].y1-15,spaceList[i].drawName);
-            else if(spaceList[i].dir == 1)
-                painter.drawText(spaceList[i].x1,spaceList[i].y2+15+30,spaceList[i].drawName);
+            painter.fillRect(spaceList[i].x1,spaceList[i].y1,
+                spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
+            if(spaceList[i].dir == UP)
+                QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y1-45),spaceList[i].drawName);
+            else if(spaceList[i].dir == DOWN)
+                QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2-20),spaceList[i].drawName);
         }
     }
-    
+
     if(powerOn){
+        QPen pen;
         pen.setWidth(10);
+        pen.setColor(Qt::red);
         painter.setPen(pen);
         painter.drawLine(263,612,283,612);
     }
