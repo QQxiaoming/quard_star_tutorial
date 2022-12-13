@@ -28,6 +28,8 @@ int video_show_board_info(void)
 	ret = video_bmp_display(dev, (ulong)logo, 0, 0, false);
 	if (ret)
 		return ret;
+
+	return 0;
 }
 #endif
 
