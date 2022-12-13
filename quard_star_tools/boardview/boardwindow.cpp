@@ -287,7 +287,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
                         info = tr("USB Serial:\n FT232RL, Speed 12 Mb/s.");
                         break;
                     case VGA:
-                        info = tr("LCDC:\n VGA port.");
+                        info = tr("LCDC:\n VGA port 640x480.");
                         break;
                     case UART0:
                     case UART1:
@@ -339,6 +339,27 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
     pSetting->setIcon(icoSetting);
     pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);
+    connect(pSetting,&QAction::triggered,this,
+            [&](void)
+            {
+                QAction* pSetting = qobject_cast<QAction*>(sender());
+                DeviceName title = static_cast<DeviceName>(pSetting->toolTip().toInt());
+                QString info;
+                switch (title)
+                {
+                    case ETH:
+                        netSelect->show();
+                        break;
+                    case BOOT:
+                        bootSelect->show();
+                        break;
+                    default:
+                        QMessageBox::about(this, "TODO", "TODO");
+                        break;
+                }
+            }
+        );
+
 }
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
@@ -463,10 +484,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
         if(spaceList[i].draw) {
             painter.fillRect(spaceList[i].x1,spaceList[i].y1,
                 spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
-            if(spaceList[i].dir == UP)
-                QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y1-45),spaceList[i].drawName);
-            else if(spaceList[i].dir == DOWN)
-                QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2-20),spaceList[i].drawName);
+            QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2),spaceList[i].drawName);
         }
     }
 
@@ -547,12 +565,6 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                         break;
                     case JTAG:
                         jtagWindow->show();
-                        break;
-                    case ETH:
-                        netSelect->show();
-                        break;
-                    case BOOT:
-                        bootSelect->show();
                         break;
                     case SD:
                         sdImgPath = getOpenFileName(tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
