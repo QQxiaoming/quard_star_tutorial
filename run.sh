@@ -40,8 +40,8 @@ fi
 
 if [ -z "$PLUGINS_PARAM" ]; then
 PLUGINS_PARAM=""
-#PLUGINS_PATH=$SHELL_FOLDER/qemu-7.0.0/build/contrib/plugins/libhotblocks.so
-#PLUGINS_PATH=$SHELL_FOLDER/qemu-7.0.0/build/tests/plugin/libsyscall.so
+#PLUGINS_PATH=$SHELL_FOLDER/qemu-7.2.0/build/contrib/plugins/libhotblocks.so
+#PLUGINS_PATH=$SHELL_FOLDER/qemu-7.2.0/build/tests/plugin/libsyscall.so
 #PLUGINS_PARAM="-plugin $PLUGINS_PATH -d plugin"
 fi
 
