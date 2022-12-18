@@ -95,61 +95,11 @@ jobs:
           sudo hdiutil attach quard_star_tools.dmg
           cp -R /Volumes/quard_star_tools/quard_star_tools.app ./
 
-      - name: Run tests pflash boot
-        shell: bash -l {0}
-        run: |
-          cd ./quard_star_tools.app/Contents/Frameworks
-          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default pfalsh > >(tee run_qemu.log) || {
-            echo
-            if cat run_qemu.log | grep "init process"
-            then
-              echo "Kernel boot successfully"
-            else
-              echo "Kernel boot failed"
-              killall qemu-system-riscv64
-              exit 1
-            fi
-            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
-            then
-              killall qemu-system-riscv64
-              echo "Pass simulation"
-            else
-              killall qemu-system-riscv64
-              echo "Failed in init process"
-              exit 1
-            fi
-          }
-
       - name: Run tests sd boot
         shell: bash -l {0}
         run: |
           cd ./quard_star_tools.app/Contents/Frameworks
           AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 3m ./run.sh nographic default sd > >(tee run_qemu.log) || {
-            echo
-            if cat run_qemu.log | grep "init process"
-            then
-              echo "Kernel boot successfully"
-            else
-              echo "Kernel boot failed"
-              killall qemu-system-riscv64
-              exit 1
-            fi
-            if cat run_qemu.log | grep "Welcome debugging on Qemu Quard Star board!"
-            then
-              killall qemu-system-riscv64
-              echo "Pass simulation"
-            else
-              killall qemu-system-riscv64
-              echo "Failed in init process"
-              exit 1
-            fi
-          }
-
-      - name: Run tests spi boot
-        shell: bash -l {0}
-        run: |
-          cd ./quard_star_tools.app/Contents/Frameworks
-          AUDIO_PARAM="-audiodev none,id=audio0" gtimeout --foreground -s SIGKILL 6m ./run.sh nographic default spi > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then

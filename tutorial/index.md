@@ -1,8 +1,8 @@
 # 主页
 
-[![Linux ci](https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?logo=linux)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml)
-[![Windows ci](https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?logo=windows)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
-[![Macos ci](https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/macos?logo=apple)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml)
+[![Linux ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml)
+[![Windows ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
+[![Macos ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml)
 [![Documentation Status](https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest)](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest)
 [![CodeFactor](https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial/badge)](https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/QQxiaoming/quard_star_tutorial.svg)](https://github.com/QQxiaoming/quard_star_tutorial/releases)

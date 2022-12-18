@@ -1,13 +1,13 @@
 主页
 ----------------------------------
 
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?logo=linux
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml
    :alt: Linux ci
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?logo=windows
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml
    :alt: Windows ci
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/macos?style=flat-square&logo=apple
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml
    :alt: Macos ci
 .. image:: https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest
