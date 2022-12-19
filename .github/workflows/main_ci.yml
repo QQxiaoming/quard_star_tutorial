@@ -49,7 +49,7 @@ jobs:
                 libpixman-1-dev libfdt-dev autoconf automake libtool librbd-dev libmpc-dev    \
                 libaio-dev make cmake gcc python3 vim swig python3-dev libedit-dev mtd-utils  \
                 libncurses5-dev liblzma-dev lua5.3 liblua5.3-dev libxml2-dev doxygen graphviz \
-                libgtk-3-dev libcap-ng-dev libattr1-dev bison gperf intltool
+                libgtk-3-dev libcap-ng-dev libattr1-dev bison gperf intltool libslirp-dev
 
       - name: Cache toolchain
         uses: actions/cache@v3
@@ -133,13 +133,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: jpribyl/action-docker-layer-caching@v0.1.0
+      - uses: jpribyl/action-docker-layer-caching@v0.1.1
         continue-on-error: true
 
       - name: build_docker_image
         shell: bash -l {0}
         run: |
-          cd qemu-7.0.0
+          cd qemu-7.2.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora-win64-cross.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
 
       - uses: addnab/docker-run-action@v3
@@ -148,6 +148,17 @@ jobs:
           options: -w /home/runner/work/quard_star_tutorial/quard_star_tutorial -v /home/runner:/home/runner
           shell: bash -l {0}
           run: |
+            dnf update -y
+            dnf install -y zstd wget
+            wget https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-libslirp-4.7.0-1-any.pkg.tar.zst
+            tar -I zstd -xvf mingw-w64-x86_64-libslirp-4.7.0-1-any.pkg.tar.zst
+            cp ./mingw64/bin/libslirp-0.dll /usr/x86_64-w64-mingw32/sys-root/mingw/bin/libslirp-0.dll
+            mkdir /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp
+            cp ./mingw64/include/slirp/libslirp-version.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp-version.h
+            cp ./mingw64/include/slirp/libslirp.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp.h
+            cp ./mingw64/lib/libslirp.a /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libslirp.a
+            cp ./mingw64/lib/libslirp.dll.a /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libslirp.dll.a
+            cp ./.github/workflows/res/slirp.pc /usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/slirp.pc
             ./build.sh qemu_w64
 
       - name: Upload build asserts
@@ -166,7 +177,7 @@ jobs:
 
       - name: Install prerequisites
         run: |
-          brew install libffi gettext glib pkg-config autoconf automake pixman ninja dylibbundler
+          brew install libslirp libffi gettext glib pkg-config autoconf automake pixman ninja dylibbundler
 
       - name: Build all
         run: |
@@ -190,7 +201,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.3.1'
+          version: '6.4.1'
           modules: 'qt5compat'
           aqtversion: ==3.0.2
 
@@ -275,7 +286,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.3.1'
+          version: '6.4.1'
           modules: 'qt5compat'
           aqtversion: ==3.0.2
 

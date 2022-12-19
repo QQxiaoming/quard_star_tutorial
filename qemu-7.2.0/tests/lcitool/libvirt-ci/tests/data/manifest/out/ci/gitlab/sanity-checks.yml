@@ -1,0 +1,66 @@
+check-dco:
+  stage: sanity_checks
+  needs: []
+  image: registry.gitlab.com/libvirt/libvirt-ci/check-dco:master
+  interruptible: true
+  script:
+    - /check-dco "$RUN_UPSTREAM_NAMESPACE"
+  rules:
+    # upstream+forks: Run pipelines on MR
+    - if: '$CI_PIPELINE_SOURCE =~ "merge_request_event"'
+      when: on_success
+
+    # forks: pushes to branches with pipeline requested
+    - if: '$CI_PROJECT_NAMESPACE != $RUN_UPSTREAM_NAMESPACE && $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH && $RUN_PIPELINE'
+      when: on_success
+
+    # upstream+forks: that's all folks
+    - when: never
+  variables:
+    GIT_DEPTH: 1000
+
+
+.code_format:
+  stage: sanity_checks
+  image: registry.gitlab.com/libvirt/libvirt-ci/$NAME:master
+  interruptible: true
+  needs: []
+  script:
+    - /$NAME
+  rules:
+    # upstream+forks: Run pipelines on MR, web, api & scheduled
+    - if: '$CI_PIPELINE_SOURCE =~ /(web|api|schedule|merge_request_event)/'
+      when: on_success
+
+    # forks: pushes to branches with pipeline requested
+    - if: '$CI_PROJECT_NAMESPACE != $RUN_UPSTREAM_NAMESPACE && $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH && $RUN_PIPELINE'
+      when: on_success
+
+    # upstream+forks: that's all folks
+    - when: never
+  artifacts:
+    paths:
+      - $NAME.$EXT
+    expire_in: 1 week
+    when: on_failure
+
+
+cargo-fmt:
+  extends: .code_format
+  variables:
+    NAME: cargo-fmt
+    EXT: txt
+
+
+go-fmt:
+  extends: .code_format
+  variables:
+    NAME: go-fmt
+    EXT: patch
+
+
+clang-format:
+  extends: .code_format
+  variables:
+    NAME: clang-format
+    EXT: patch

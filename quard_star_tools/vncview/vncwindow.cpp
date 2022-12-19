@@ -4,12 +4,12 @@
 #include "ui_vncwindow.h"
 
 VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
-    : QMainWindow(parent),severaddr(addr),severport(port)
+    : QMainWindow(parent),severAddr(addr),severPort(port)
     , ui(new Ui::VncWindow)
 {
     ui->setupUi(this);
 
-    QObject::connect(ui->refresh_pushbuttion, SIGNAL(clicked()), this, SLOT(refresh_clicked()));
+    QObject::connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
 }
 
 VncWindow::~VncWindow()
@@ -27,7 +27,7 @@ void VncWindow::reConnect(void)
     }
 }
 
-void VncWindow::refresh_clicked()
+void VncWindow::refreshClicked()
 {
     reConnect();
 }

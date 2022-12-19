@@ -1,13 +1,13 @@
 主页
 ----------------------------------
 
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/linux?logo=linux
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml
    :alt: Linux ci
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/windows?logo=windows
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml
    :alt: Windows ci
-.. image:: https://img.shields.io/github/workflow/status/qqxiaoming/quard_star_tutorial/macos?style=flat-square&logo=apple
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml
    :alt: Macos ci
 .. image:: https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest
@@ -94,3 +94,4 @@
    qemu常用参数选项说明<ext3.md>
    使用qemu的gdbstub调试<ext4.md>
    QEMU CAN总线<ext5.md>
+   嵌入式Linux上ifpulgd的使用配置与qemu模拟验证<ext6.md>

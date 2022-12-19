@@ -90,7 +90,7 @@ jobs:
       - name: Run tests
         shell: msys2 {0}
         run: |
-          timeout --foreground -s SIGKILL 3m ./run.bat nographic > >(tee run_qemu.log) || {
+          timeout --foreground -s SIGKILL 4m ./run.bat nographic > >(tee run_qemu.log) || {
             echo
             if cat run_qemu.log | grep "init process"
             then

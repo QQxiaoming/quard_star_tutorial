@@ -19,8 +19,11 @@ protected:
     void showEvent(QShowEvent* event) override;
 
 private slots:
-    void buttonBox_accepted(void);
-    void buttonBox_rejected(void);
+    void buttonBoxAccepted(void);
+    void buttonBoxRejected(void);
+    void netStateGroupBoxClicked(void);
+    void userRadioButtonClicked(void);
+    void tapRadioButtonClicked(void);
 
 private:
     Ui::NetSelectBox *ui;

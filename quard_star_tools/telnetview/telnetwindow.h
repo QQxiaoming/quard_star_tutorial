@@ -17,22 +17,23 @@ class TelnetWindow : public QMainWindow
 public:
     explicit TelnetWindow(const QString &addr, int port, QWidget *parent = nullptr);
     ~TelnetWindow();
-    QString severaddr;
-    int severport;
     void reConnect(void);
+    void sendData(const QByteArray &ba);
 
 private slots:
     void addText(const char *msg, int count);
-    void refresh_clicked();
+    void refreshClicked();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
     
 private:
     void insertPlainText(QByteArray data);
-    Ui::TelnetWindow *ui;
     QTelnet *telnet;
-    QByteArray datapool;
+    QByteArray dataPool;
+    QString severAddr;
+    int severPort;
+    Ui::TelnetWindow *ui;
 };
 
 #endif // TELNETWINDOW_H

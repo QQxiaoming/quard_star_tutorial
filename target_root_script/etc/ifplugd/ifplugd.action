@@ -1,0 +1,16 @@
+#! /bin/sh
+
+case "$2" in
+  up)
+	/sbin/ifup $1
+	;;
+  down)
+	/sbin/ifdown $1
+	;;
+  *)
+	echo "Usage: /etc/ifplugd/ifplugd.action [interface] { up | down }" >&2
+	exit 1
+	;;
+esac
+
+exit 0

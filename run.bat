@@ -9,7 +9,7 @@ set "WIDTH=1280"
 set "HEIGHT=720"
 set "DEFAULT_V=:vn:24x80:"
 set "DEFAULT_VC=%WIDTH%x%HEIGHT%"
-set "DBOOTCFG=sd"
+set "BOOTCFG=sd"
 
 set "AUDIO_PARAM=-audiodev dsound,id=audio0"
 ::set "AUDIO_PARAM=-audiodev none,id=audio0"
@@ -18,11 +18,11 @@ set "AUDIO_PARAM=-audiodev dsound,id=audio0"
 
 ::################################## cli param ##################################
 if "%3"=="pflash" (
-    set "DBOOTCFG=pflash"
+    set "BOOTCFG=pflash"
 ) else if "%3"=="spi" (
-    set "DBOOTCFG=spi"
+    set "BOOTCFG=spi"
 ) else if "%3"=="sd" (
-    set "DBOOTCFG=sd"
+    set "BOOTCFG=sd"
 )
 
 if "%2"=="default" (
@@ -46,7 +46,8 @@ if "%1"=="nographic" (
 -M quard-star,mask-rom-path=./output/mask_rom/mask_rom.bin,canbus=canbus0 ^
 -m 1G ^
 -smp 8 ^
--global quard-star-syscon.boot-cfg=%DBOOTCFG% ^
+-global quard-star-syscon.boot-cfg=%BOOTCFG% ^
+-global quard-star-syscon.update-cfg="false" ^
 -drive if=pflash,bus=0,unit=0,format=raw,file=./output/fw/pflash.img,id=mtd0 ^
 -drive if=mtd,bus=0,unit=0,format=raw,file=./output/fw/norflash.img,id=mtd1 ^
 -drive if=mtd,bus=1,unit=0,format=raw,file=./output/fw/nandflash.img,id=mtd2 ^

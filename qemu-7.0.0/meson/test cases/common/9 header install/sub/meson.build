@@ -1,2 +1,0 @@
-subheader = files('fileheader.h')
-

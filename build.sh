@@ -40,7 +40,7 @@ fi
 build_qemu()
 {
     echo "------------------------------ 编译qemu ------------------------------"
-    cd $SHELL_FOLDER/qemu-7.0.0
+    cd $SHELL_FOLDER/qemu-7.2.0
     if [ ! -d "$SHELL_FOLDER/output/qemu" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu --target-list=riscv64-softmmu --enable-gtk  --enable-virtfs --disable-gio --enable-plugins --audio-drv-list=pa,alsa,sdl,oss
     fi  
@@ -51,7 +51,7 @@ build_qemu()
 build_qemu_w64()
 {
     echo "---------------------------- 编译qemu_w64 ----------------------------"
-    cd $SHELL_FOLDER/qemu-7.0.0
+    cd $SHELL_FOLDER/qemu-7.2.0
     if [ ! -d "$SHELL_FOLDER/output/qemu_w64" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu_w64 --cross-prefix=x86_64-w64-mingw32- --target-list=riscv64-softmmu --enable-gtk --disable-gio
     fi  
@@ -63,7 +63,7 @@ build_qemu_w64()
 build_qemu_macos()
 {
     echo "---------------------------- 编译qemu_macos ----------------------------"
-    cd $SHELL_FOLDER/qemu-7.0.0
+    cd $SHELL_FOLDER/qemu-7.2.0
     if [ ! -d "$SHELL_FOLDER/output/qemu_macos" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu_macos --target-list=riscv64-softmmu --enable-virtfs
     fi  

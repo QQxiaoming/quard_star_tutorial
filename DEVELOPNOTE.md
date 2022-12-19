@@ -911,3 +911,64 @@
 
 - 
     2022.10.06(凌晨): 在macbook air上编译运行ok，发现使用gcc12.2版本编译的6.0.0的kernel存在问题，后面有空再查查，目前使用gcc11版本没问题。
+
+
+- 
+    2022.10.07(早上): 之前发现的gcc12编译的6.0.0的kernel存在问题已经定位到，由于gcc12支持了ZICBOM最新扩展但KVM这边没有判断中不开启CONFIG_RISCV_DMA_NONCOHERENT宏的情况造成编译出错，这里修改arch/riscv/kvm/vcpu.c这个函数即可解决。
+
+    ```shell
+    static int kvm_riscv_vcpu_get_reg_config(struct kvm_vcpu *vcpu,
+                        const struct kvm_one_reg *reg)
+    {
+        unsigned long __user *uaddr =
+                (unsigned long __user *)(unsigned long)reg->addr;
+        unsigned long reg_num = reg->id & ~(KVM_REG_ARCH_MASK |
+                            KVM_REG_SIZE_MASK |
+                            KVM_REG_RISCV_CONFIG);
+        unsigned long reg_val;
+
+        if (KVM_REG_SIZE(reg->id) != sizeof(unsigned long))
+            return -EINVAL;
+
+        switch (reg_num) {
+        case KVM_REG_RISCV_CONFIG_REG(isa):
+            reg_val = vcpu->arch.isa[0] & KVM_RISCV_BASE_ISA_MASK;
+            break;
+        case KVM_REG_RISCV_CONFIG_REG(zicbom_block_size):
+            if (!riscv_isa_extension_available(vcpu->arch.isa, ZICBOM))
+                return -EINVAL;
+    #ifndef CONFIG_RISCV_DMA_NONCOHERENT
+            return -EINVAL;
+    #else
+            reg_val = riscv_cbom_block_size;
+            break;
+    #endif
+        default:
+            return -EINVAL;
+        }
+
+        if (copy_to_user(uaddr, &reg_val, KVM_REG_SIZE(reg->id)))
+            return -EFAULT;
+
+        return 0;
+    }
+    ```
+
+- 
+    2022.10.18(晚上): 最近几天gui前端tools工具添加了更多功能，查询接口信息和help帮助，多语言添加日语版本。
+
+- 
+    2022.10.26(晚上): 优化一些脚本，更好的支持在mac开发，因为我现在在mac上写代码的频率越来越多，后须这个项目的开发我都会在mac上进行，不过，这个项目作为跨平台项目，依旧是支持三平台使用，同时最好的开发体验依旧是在Linux环境是不会改变的。
+
+- 
+    2022.11.26(晚上): 合并了最新的next kenrel后突然又无法运行了，问题出现在kenrel初始化配置页表内存初始化时，又花了些时间定位，最终发现内核中对初始化内存做了修改，不再判断reserved memory导致之前我在opensbi分配给trusted domain时的内存地址被kernel访问了，因此触发了异常，因此修改这个问题就先简单的修改kernel的dts文件，去掉分配给trusted domain的内存。
+
+    ```dts
+    memory@80000000 {
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x0 0x3f800000>;
+	};
+    ```
+
+- 
+    2022.12.04(凌晨): 最近添加了ifpulgd监测网络接口链接，同时为了在qemu上更好的模拟，gui前端tools工具继续添加更多功能以支持便携使用。

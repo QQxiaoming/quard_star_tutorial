@@ -30,10 +30,11 @@ int main(void)
 	debug_log("Quard Star MaskRom %s\n",MASKROM_VERSION);
 	if(syscon_get_update()) {
 		debug_log("UPDATE...\n");
+	retry_update:
 		if(uart_update_request()) {
 			/* 通过串口将fw写入sram 0x20000，跳转0x20000 boot */
 			boot_addr = 0x20000;
-			if(uart_update_xmodem_recv(0x20000,256*1024)) {
+			if(uart_update_xmodem_recv(boot_addr,256*1024)) {
 				/* 数据正确则jump */
 				debug_log("UART_BOOT\n");
 				syscon_set_user_update(SYSCON_UART_UPDATE);
@@ -41,7 +42,15 @@ int main(void)
 				jump(boot_addr);
 			}
 		}
-		debug_log("Timeout, we will boot...\n");
+		/* 在qemu模拟芯片，那么我们在这里阻塞等待而不是超时boot
+		 * 在真实芯片，我们在这里超时boot
+		 */
+		#define IS_IN_QEMU 1
+		if(IS_IN_QEMU) {
+			goto retry_update;
+		} else {
+			debug_log("Timeout, we will boot...\n");
+		}
 	}
 	switch (syscon_get_boot_source())
 	{

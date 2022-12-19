@@ -15,13 +15,13 @@ public:
     VncWindow(const QString &addr, int port, QWidget *parent = nullptr);
     ~VncWindow();
     void reConnect(void);
-    QString severaddr;
-    int severport;
 
 private slots:
-    void refresh_clicked();
+    void refreshClicked();
 
 private:
+    QString severAddr;
+    int severPort;
     Ui::VncWindow *ui;
 };
 #endif // VNCWINDOW_H

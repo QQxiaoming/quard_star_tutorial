@@ -7,6 +7,7 @@
 #include <QBitmap>
 #include <QFileDialog>
 #include <QPoint>
+#include <QToolTip>
 
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
@@ -14,60 +15,75 @@
 extern QString VERSION;
 extern QString GIT_TAG;
 
-BoardWindow::BoardWindow(const QString &path,const QString &color,const bool &isSysDarkTheme,QWidget *parent) :
+BoardWindow::BoardWindow(const QString &path,const QString &color,
+                            const bool &isSysDarkTheme,QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::BoardWindow),envPath(path),skinColor(color)
+    ui(new Ui::BoardWindow),
+    envPath(path),
+    skinColor(color),
+    isDarkTheme(isSysDarkTheme),
+    maskRomImgPath(envPath + "/mask_rom/mask_rom.bin"),
+    pFlashImgPath(envPath + "/fw/pflash.img"),
+    norFlashImgPath(envPath + "/fw/norflash.img"),
+    nandFlashImgPath(envPath + "/fw/nandflash.img"),
+    sdImgPath(envPath + "/fw/sd.img"),
+    usbFlashImgPath(envPath + "/fw/usb.img"),
+    rootFSImgPath(envPath + "/rootfs/rootfs.img"),
+    tapName(""),
+    vCanName(""),
+    bootCfg("sd"),
+    updateCfg(false)
 {
     ui->setupUi(this);
 
-    isDarkTheme = isSysDarkTheme;
-    maskromImgPath = envPath + "/mask_rom/mask_rom.bin";
-    pflashImgPath = envPath + "/fw/pflash.img";
-    norflashImgPath = envPath + "/fw/norflash.img";
-    nandflashImgPath = envPath + "/fw/nandflash.img";
-    sdImgPath = envPath + "/fw/sd.img";
-    usbflashImgPath = envPath + "/fw/usb.img";
-    rootfsImgPath = envPath + "/rootfs/rootfs.img";
-    vcan_name = "";
-    tap_name = "";
-
 #if defined(Q_OS_MACOS)
-    this->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::CustomizeWindowHint | 
+                            Qt::WindowTitleHint | Qt::FramelessWindowHint);
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-    QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
-    QRect size = this->geometry();
-    this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
-
     QPixmap pix;
     QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
     if(!skinFile.isFile())
         skinColor = "green";
-    pix.load(":/boardview/icons/board_"+skinColor+".png",0,Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+    pix.load(":/boardview/icons/board_"+skinColor+".png",0,
+                Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 
-    qemu_process = new QProcess(this);
-    telnet[0] = new TelnetWindow("127.0.0.1",3441,this);
-    telnet[1] = new TelnetWindow("127.0.0.1",3442,this);
-    telnet[2] = new TelnetWindow("127.0.0.1",3443,this);
-    telnet[3] = new TelnetWindow("127.0.0.1",3430,this);
-    vnc = new VncWindow("127.0.0.1",5901,this);
+    QRect screen = QGuiApplication::screenAt(
+                this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
+    QRect size = this->geometry();
+    this->move((screen.width() - size.width()) / 2,
+                         (screen.height() - size.height()) / 2);
+
+    qemuProcess = new QProcess(this);
+    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
+    uartWindow[0]->setWindowTitle("uart0");
+    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
+    uartWindow[1]->setWindowTitle("uart1");
+    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,this);
+    uartWindow[2]->setWindowTitle("uart2");
+    jtagWindow = new TelnetWindow("127.0.0.1",3430,this);
+    jtagWindow->setWindowTitle("jtag(monitor)");
+    lcdWindow = new VncWindow("127.0.0.1",5901,this);
+    lcdWindow->setWindowTitle("lcd");
     netSelect = new NetSelectBox(this);
+    bootSelect = new BootSelectBox(this);
 }
 
 BoardWindow::~BoardWindow()
 {
-    qemu_process->kill();
-    qemu_process->waitForFinished(-1);
-    delete qemu_process;
+    qemuProcess->kill();
+    qemuProcess->waitForFinished(-1);
+    delete qemuProcess;
     delete netSelect;
-    delete vnc;
-    delete telnet[0];
-    delete telnet[1];
-    delete telnet[2];
-    delete telnet[3];
+    delete bootSelect;
+    delete lcdWindow;
+    delete uartWindow[0];
+    delete uartWindow[1];
+    delete uartWindow[2];
+    delete jtagWindow;
     delete ui;
 }
 
@@ -84,35 +100,39 @@ bool BoardWindow::powerSwitch(bool power)
 #endif
     QStringList arguments = {
         "-M",         
-            "quard-star,mask-rom-path="+maskromImgPath+",canbus=canbus0",
+            "quard-star,mask-rom-path="+maskRomImgPath+",canbus=canbus0",
         "-m",         
             "1G",
         "-smp",       
             "8",
         "-global",    
-            "quard-star-syscon.boot-cfg=sd",
+            "quard-star-syscon.boot-cfg="+bootCfg,
+        "-global",    
+            [&]() -> QString {if(updateCfg) return 
+            "quard-star-syscon.update-cfg=true"; else return 
+            "quard-star-syscon.update-cfg=false";}(),
         "-drive",     
-            "if=pflash,bus=0,unit=0,format=raw,file="+pflashImgPath+",id=mtd0",
+            "if=pflash,bus=0,unit=0,format=raw,file="+pFlashImgPath+",id=mtd0",
         "-drive",     
-            "if=mtd,bus=0,unit=0,format=raw,file="+norflashImgPath+",id=mtd1",
+            "if=mtd,bus=0,unit=0,format=raw,file="+norFlashImgPath+",id=mtd1",
         "-drive",     
-            "if=mtd,bus=1,unit=0,format=raw,file="+nandflashImgPath+",id=mtd2",
+            "if=mtd,bus=1,unit=0,format=raw,file="+nandFlashImgPath+",id=mtd2",
         "-drive",     
-            "if=none,format=raw,file="+usbflashImgPath+",id=usb0",
+            "if=none,format=raw,file="+usbFlashImgPath+",id=usb0",
         "-drive",     
             "if=sd,format=raw,file="+sdImgPath+",id=sd0",
         "-drive",     
-            "if=none,format=raw,file="+rootfsImgPath+",id=disk0",
+            "if=none,format=raw,file="+rootFSImgPath+",id=disk0",
         "-chardev",   
             "socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1",
         "-object",    
             "can-bus,id=canbus0",
-        [&]() -> QString { if(vcan_name.isEmpty()) return ""; else return "-object"; }(),
-            [&]() -> QString { if(vcan_name.isEmpty()) return ""; else return "can-host-socketcan,id=socketcan0,if="+vcan_name+",canbus=canbus0"; }(),
+        [&]() -> QString { if(vCanName.isEmpty()) return ""; else return "-object"; }(),
+            [&]() -> QString { if(vCanName.isEmpty()) return ""; else return "can-host-socketcan,id=socketcan0,if="+vCanName+",canbus=canbus0"; }(),
         "-netdev",
-            [&]() -> QString { if(tap_name.isEmpty()) return  
+            [&]() -> QString { if(tapName.isEmpty()) return  
                 "user,net=192.168.31.0/24,host=192.168.31.2,hostname=qemu_net0,dns=192.168.31.56,tftp="+envPath+",bootfile=/linux_kernel/Image,dhcpstart=192.168.31.100,hostfwd=tcp::3522-:22,hostfwd=tcp::3580-:80,id=net0"; else return
-                "tap,ifname="+tap_name+",script=no,downscript=no,id=net0"; }(),
+                "tap,ifname="+tapName+",script=no,downscript=no,id=net0"; }(),
         "-netdev",    
             "user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_net1,dns=192.168.32.56,dhcpstart=192.168.32.100,id=net1",
 #if defined(Q_OS_LINUX)
@@ -171,38 +191,69 @@ bool BoardWindow::powerSwitch(bool power)
 
     arguments.removeAll(QString(""));
     if(power) {
-        qemu_process->kill();
-        qemu_process->waitForFinished(-1);
-        qemu_process->start(program, arguments);
+        qemuProcess->kill();
+        qemuProcess->waitForFinished(-1);
+        qemuProcess->start(program, arguments);
         for (int i=0;i<200;i++) {
             QThread::msleep(10);
             qApp->processEvents();
         }
 
-        if(qemu_process->state() == QProcess::NotRunning) {
-            int exitcode = qemu_process->exitCode();
+        if(qemuProcess->state() == QProcess::NotRunning) {
+            int exitcode = qemuProcess->exitCode();
             if(exitcode != 0) {
                 QMessageBox::critical(this, tr("Error"), tr("power up error!"));
                 return false;
             }
         }
-        telnet[0]->reConnect();
-        telnet[1]->reConnect();
-        telnet[2]->reConnect();
-        telnet[3]->reConnect();
-        vnc->reConnect();
+        uartWindow[0]->reConnect();
+        uartWindow[1]->reConnect();
+        uartWindow[2]->reConnect();
+        jtagWindow->reConnect();
+        lcdWindow->reConnect();
     } else {
-        qemu_process->kill();
-        qemu_process->waitForFinished(-1);
+        qemuProcess->kill();
+        qemuProcess->waitForFinished(-1);
     }
 
     return true;
 }
 
+int BoardWindow::sendQemuCmd(const QString &cmd)
+{
+    if(qemuProcess->state() == QProcess::Running) {
+        jtagWindow->sendData(cmd.toUtf8());
+        return 0;
+    }
+    return -1;
+}
+
+QString& BoardWindow::getVCanName(void)
+{
+    return vCanName;
+}
+
+QString& BoardWindow::getTapName(void)
+{
+    return tapName;
+}
+
+QString& BoardWindow::getBootCfg(void)
+{
+    return bootCfg;
+}
+
+bool& BoardWindow::getUpdateCfg(void)
+{
+    return updateCfg;
+}
+
 void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 {
     QAction *pGInfo= new QAction(tr("Get Info"), this);
-    QIcon icoInfo(":/boardview/icons/info"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoInfo(":/boardview/icons/info" + 
+                    [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}() +
+                    ".svg");
     pGInfo->setIcon(icoInfo);
     pGInfo->setToolTip(QString::number(title));
     menu->addAction(pGInfo);
@@ -236,7 +287,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
                         info = tr("USB Serial:\n FT232RL, Speed 12 Mb/s.");
                         break;
                     case VGA:
-                        info = tr("LCDC:\n VGA port.");
+                        info = tr("LCDC:\n VGA port 640x480.");
                         break;
                     case UART0:
                     case UART1:
@@ -273,7 +324,8 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 {
     QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
-    QIcon icoOpen(":/boardview/icons/open"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoOpen(":/boardview/icons/open" + 
+            [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pOFileSystem->setIcon(icoOpen);
     pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
@@ -282,10 +334,32 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 {
     QAction *pSetting= new QAction(tr("Setting"), this);
-    QIcon icoSetting(":/boardview/icons/setting"+[&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoSetting(":/boardview/icons/setting" + 
+            [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
     pSetting->setIcon(icoSetting);
     pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);
+    connect(pSetting,&QAction::triggered,this,
+            [&](void)
+            {
+                QAction* pSetting = qobject_cast<QAction*>(sender());
+                DeviceName title = static_cast<DeviceName>(pSetting->toolTip().toInt());
+                QString info;
+                switch (title)
+                {
+                    case ETH:
+                        netSelect->show();
+                        break;
+                    case BOOT:
+                        bootSelect->show();
+                        break;
+                    default:
+                        QMessageBox::about(this, "TODO", "TODO");
+                        break;
+                }
+            }
+        );
+
 }
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
@@ -404,31 +478,20 @@ void BoardWindow::paintEvent(QPaintEvent *event)
 {
     QString paths = ":/boardview/icons/board_"+skinColor+".png";
     QPainter painter(this);
-    QFont font;
-    QPen pen;
-    pen.setWidth(5);
-    pen.setColor(Qt::red);
-    pen.setStyle(Qt::DashLine);
-    font.setPointSize(20);
-    painter.setFont(font);
-    painter.setPen(pen);
     painter.drawPixmap(0, 0, width(), height(), QPixmap(paths));
 
     for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
         if(spaceList[i].draw) {
-            painter.drawLine(spaceList[i].x1,spaceList[i].y1,spaceList[i].x1,spaceList[i].y2);
-            painter.drawLine(spaceList[i].x1,spaceList[i].y1,spaceList[i].x2,spaceList[i].y1);
-            painter.drawLine(spaceList[i].x2,spaceList[i].y1,spaceList[i].x2,spaceList[i].y2);
-            painter.drawLine(spaceList[i].x1,spaceList[i].y2,spaceList[i].x2,spaceList[i].y2);
-            if(spaceList[i].dir == 0)
-                painter.drawText(spaceList[i].x1,spaceList[i].y1-15,spaceList[i].drawName);
-            else if(spaceList[i].dir == 1)
-                painter.drawText(spaceList[i].x1,spaceList[i].y2+15+30,spaceList[i].drawName);
+            painter.fillRect(spaceList[i].x1,spaceList[i].y1,
+                spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
+            QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2),spaceList[i].drawName);
         }
     }
-    
+
     if(powerOn){
+        QPen pen;
         pen.setWidth(10);
+        pen.setColor(Qt::red);
         painter.setPen(pen);
         painter.drawLine(263,612,283,612);
     }
@@ -489,37 +552,34 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 switch (spaceList[i].name)
                 {
                     case VGA:
-                        vnc->show();
+                        lcdWindow->show();
                         break;
                     case UART0:
-                        telnet[0]->show();
+                        uartWindow[0]->show();
                         break;
                     case UART1:
-                        telnet[1]->show();
+                        uartWindow[1]->show();
                         break;
                     case UART2:
-                        telnet[2]->show();
+                        uartWindow[2]->show();
                         break;
                     case JTAG:
-                        telnet[3]->show();
-                        break;
-                    case ETH:
-                        netSelect->show();
+                        jtagWindow->show();
                         break;
                     case SD:
                         sdImgPath = getOpenFileName(tr("Select SD IMG"), sdImgPath, "IMG files(*.img *.bin)");
                         break;
                     case NOR:
-                        norflashImgPath = getOpenFileName(tr("Select NorFlash IMG"), norflashImgPath, "IMG files(*.img *.bin)");
+                        norFlashImgPath = getOpenFileName(tr("Select NorFlash IMG"), norFlashImgPath, "IMG files(*.img *.bin)");
                         break;
                     case NAND:
-                        nandflashImgPath = getOpenFileName(tr("Select NandFlash IMG"), nandflashImgPath, "IMG files(*.img *.bin)");
+                        nandFlashImgPath = getOpenFileName(tr("Select NandFlash IMG"), nandFlashImgPath, "IMG files(*.img *.bin)");
                         break;
                     case SOC:
-                        pflashImgPath = getOpenFileName(tr("Select PFlash IMG"), pflashImgPath, "IMG files(*.img *.bin)");
+                        pFlashImgPath = getOpenFileName(tr("Select PFlash IMG"), pFlashImgPath, "IMG files(*.img *.bin)");
                         break;
                     case USB0:
-                        usbflashImgPath = getOpenFileName(tr("Select USBFlash IMG"), usbflashImgPath, "IMG files(*.img *.bin)");
+                        usbFlashImgPath = getOpenFileName(tr("Select USBFlash IMG"), usbFlashImgPath, "IMG files(*.img *.bin)");
                         break;
                     case SWITCH:
                         powerOn = !powerOn;

@@ -1,0 +1,244 @@
+# To preserve CI quota, pipelines won't run on push except for
+# the upstream repo default branch. To force a run when pushing
+# to a feature branch use
+#
+#  git push -o ci.variable=LIBVIRT_CI=1 ...
+
+stages:
+  - containers
+  - sanity_checks
+
+.job_rules_merge_request: &job_rules_merge_request
+  if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  when: on_success
+
+.job_rules_push_upstream_default_branch: &job_rules_push_upstream_default_branch
+  if: '$CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "libvirt" && $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+  when: on_success
+
+.job_rules_opt_in: &job_rules_opt_in
+  if: '$LIBVIRT_CI == "1"'
+  when: on_success
+
+.job_rules_container_changes: &job_rules_container_changes
+  changes:
+    - .gitlab-ci.yml
+    - containers/$NAME/*
+
+.job_rules_test_container_changes: &job_rules_test_container_changes
+  changes:
+    - .gitlab-ci.yml
+    - tests/data/formatters/out/${NAME}-all-projects.Dockerfile
+
+# If pushing to the default branch, then publish the container
+# for future reuse, otherwise just discard it after testing build
+.build_container_template:
+  image: docker:stable
+  stage: containers
+  interruptible: false
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+    - docker login registry.gitlab.com -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD}
+  script:
+    - docker build --tag ${CI_REGISTRY_IMAGE}/${NAME}:${CI_COMMIT_REF_SLUG} containers/${NAME}
+    - if test "${CI_PIPELINE_SOURCE}" = "push" &&
+         test "${CI_COMMIT_REF_NAME}" = "${CI_DEFAULT_BRANCH}";
+      then
+          docker push ${CI_REGISTRY_IMAGE}/${NAME}:${CI_COMMIT_REF_SLUG};
+      fi
+  after_script:
+    - docker logout
+  rules:
+    - <<: *job_rules_merge_request
+      <<: *job_rules_container_changes
+    - <<: *job_rules_push_upstream_default_branch
+      <<: *job_rules_container_changes
+    - <<: *job_rules_opt_in
+      <<: *job_rules_container_changes
+    - when: never
+
+.test_template:
+  interruptible: true
+  rules:
+    - <<: *job_rules_merge_request
+    - <<: *job_rules_opt_in
+    - when: never
+
+.check_container_template:
+  extends: .test_template
+  image: docker:stable
+  stage: sanity_checks
+  interruptible: true
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+    - docker login registry.gitlab.com -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD}
+  script:
+    - docker build -f tests/data/formatters/out/${NAME}-all-projects.Dockerfile tests/data/formatters/out/
+  after_script:
+    - docker logout
+  rules:
+    - if: '$LIBVIRT_CI_SKIP_TARGET && $NAME =~ $LIBVIRT_CI_SKIP_TARGET'
+      when: never
+    - <<: *job_rules_merge_request
+      <<: *job_rules_test_container_changes
+    - <<: *job_rules_opt_in
+      <<: *job_rules_test_container_changes
+    - when: never
+
+check-dco-container:
+  extends: .build_container_template
+  variables:
+    NAME: check-dco
+
+go-fmt-container:
+  extends: .build_container_template
+  variables:
+    NAME: go-fmt
+
+cargo-fmt-container:
+  extends: .build_container_template
+  variables:
+    NAME: cargo-fmt
+
+clang-format-container:
+  extends: .build_container_template
+  variables:
+    NAME: clang-format
+
+cirrus-run-container:
+  extends: .build_container_template
+  variables:
+    NAME: cirrus-run
+
+docker-dind-container:
+  extends: .build_container_template
+  variables:
+    NAME: docker-dind
+
+check-dco:
+  extends: .test_template
+  stage: sanity_checks
+  image: python:3.8-alpine
+  needs: []
+  before_script:
+    - apk update
+    - apk add git
+  script:
+    - ./containers/check-dco/check-dco.py
+
+flake8:
+  extends: .test_template
+  stage: sanity_checks
+  image: python:3.8-alpine
+  needs: []
+  before_script:
+    - apk update
+  script:
+    - pip3 install flake8
+    - flake8 --format=pylint
+
+unittests:
+  extends: .test_template
+  stage: sanity_checks
+  image: python:3.8-alpine
+  needs: []
+  before_script:
+    - apk update
+    - apk add git
+  script:
+    - pip3 install setuptools pytest pyyaml
+    - python3 -m pytest --verbose
+
+x86_64-check-almalinux-8:
+  extends: .check_container_template
+  variables:
+    NAME: almalinux-8
+
+x86_64-check-almalinux-9:
+  extends: .check_container_template
+  variables:
+    NAME: almalinux-9
+
+x86_64-check-alpine-315:
+  extends: .check_container_template
+  variables:
+    NAME: alpine-315
+
+x86_64-check-alpine-316:
+  extends: .check_container_template
+  variables:
+    NAME: alpine-316
+
+x86_64-check-alpine-edge:
+  extends: .check_container_template
+  allow_failure: true
+  variables:
+    NAME: alpine-edge
+
+x86_64-check-centos-stream-8:
+  extends: .check_container_template
+  variables:
+    NAME: centos-stream-8
+
+x86_64-check-centos-stream-9:
+  extends: .check_container_template
+  allow_failure: true
+  variables:
+    NAME: centos-stream-9
+
+x86_64-check-debian-10:
+  extends: .check_container_template
+  variables:
+    NAME: debian-10
+
+x86_64-check-debian-sid:
+  extends: .check_container_template
+  allow_failure: true
+  variables:
+    NAME: debian-sid
+
+x86_64-check-fedora-35:
+  extends: .check_container_template
+  variables:
+    NAME: fedora-35
+
+x86_64-check-fedora-36:
+  extends: .check_container_template
+  variables:
+    NAME: fedora-36
+
+x86_64-check-fedora-rawhide:
+  extends: .check_container_template
+  allow_failure: true
+  variables:
+    NAME: fedora-rawhide
+
+x86_64-check-opensuse-leap-153:
+  extends: .check_container_template
+  variables:
+    NAME: opensuse-leap-153
+
+x86_64-check-opensuse-tumbleweed:
+  extends: .check_container_template
+  allow_failure: true
+  variables:
+    NAME: opensuse-tumbleweed
+
+x86_64-check-ubuntu-1804:
+  extends: .check_container_template
+  variables:
+    NAME: ubuntu-1804
+
+x86_64-check-ubuntu-2004:
+  extends: .check_container_template
+  variables:
+    NAME: ubuntu-2004
+
+x86_64-check-ubuntu-2204:
+  extends: .check_container_template
+  variables:
+    NAME: ubuntu-2204
