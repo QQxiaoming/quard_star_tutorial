@@ -355,7 +355,7 @@ static void quard_star_spi_create(MachineState *machine)
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[1]), 0,
                     qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_SPI1_IRQ));
                     
-    DeviceState *flash_dev = qdev_new("is25wp256");
+    DeviceState *flash_dev = qdev_new("mx25l25635e");
     DriveInfo *dinfo = drive_get(IF_MTD,0,0);
     if (dinfo) {
         qdev_prop_set_drive_err(flash_dev, "drive",
