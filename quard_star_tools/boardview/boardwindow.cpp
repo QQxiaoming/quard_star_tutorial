@@ -344,7 +344,6 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
             {
                 QAction* pSetting = qobject_cast<QAction*>(sender());
                 DeviceName title = static_cast<DeviceName>(pSetting->toolTip().toInt());
-                QString info;
                 switch (title)
                 {
                     case ETH:
@@ -480,7 +479,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
     QPainter painter(this);
     painter.drawPixmap(0, 0, width(), height(), QPixmap(paths));
 
-    for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
+    for(size_t i=1;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
         if(spaceList[i].draw) {
             painter.fillRect(spaceList[i].x1,spaceList[i].y1,
                 spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
@@ -551,6 +550,13 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                 event->pos().y() >= spaceList[i].y1 && event->pos().y() <= spaceList[i].y2) {
                 switch (spaceList[i].name)
                 {
+                    case LOGO:
+                        static const QString colorList[5] = {"black","blue","green","red","white"};
+                        static int indexColor = 0;
+                        skinColor = colorList[indexColor++];
+                        if(indexColor >= 5) indexColor = 0;
+                        this->repaint();
+                        break;
                     case VGA:
                         lcdWindow->show();
                         break;
