@@ -42,7 +42,8 @@ protected:
 
 private:
     enum DeviceName {
-        VGA = 0,
+        LOGO = 0,
+        VGA,
         UART2,
         UART1,
         UART0,
@@ -98,7 +99,8 @@ private:
         QString drawName;
         int x1,y1,x2,y2;
         bool draw;
-    }spaceList[17] = {
+    }spaceList[18] = {
+        {LOGO,  "",          419,558,601,588,false},
         {VGA,   tr("vga"),   315,111,649,262,false},
         {UART2, tr("uart2"), 52 ,381,107,457,false},
         {UART1, tr("uart1"), 52 ,290,107,366,false},
