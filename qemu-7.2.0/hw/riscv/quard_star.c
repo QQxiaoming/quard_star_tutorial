@@ -158,7 +158,7 @@ static void quard_star_cpu_create(MachineState *machine)
     object_property_set_int(OBJECT(&s->c_cpus), "resetvec", 
                             quard_star_memmap[QUARD_STAR_MROM].base, 
                             &error_abort);
-    sysbus_realize(SYS_BUS_DEVICE(&s->c_cpus), &error_abort);
+    sysbus_realize(SYS_BUS_DEVICE(&s->c_cpus), &error_fatal);
     qdev_realize(DEVICE(&s->c_cluster), NULL, &error_abort);
 
     object_initialize_child(OBJECT(machine), "r-cluster", 
@@ -175,7 +175,7 @@ static void quard_star_cpu_create(MachineState *machine)
     object_property_set_int(OBJECT(&s->r_cpus), "resetvec", 
                             quard_star_memmap[QUARD_STAR_MROM].base, 
                             &error_abort);
-    sysbus_realize(SYS_BUS_DEVICE(&s->r_cpus), &error_abort);
+    sysbus_realize(SYS_BUS_DEVICE(&s->r_cpus), &error_fatal);
     qdev_realize(DEVICE(&s->r_cluster), NULL, &error_abort);
 }
 
