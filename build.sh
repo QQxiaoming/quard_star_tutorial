@@ -149,6 +149,8 @@ build_uboot_dtb()
     cd $SHELL_FOLDER/dts
     cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
     dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
+    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot_kgdb.dts > quard_star_uboot_kgdb.dtb.dts.tmp
+    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot_kgdb.dtb quard_star_uboot_kgdb.dtb.dts.tmp
     $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/uboot/boot.scr
 }
 
@@ -227,11 +229,11 @@ build_kernel()
     if [ ! -d "$SHELL_FOLDER/output/linux_kernel" ]; then  
     mkdir $SHELL_FOLDER/output/linux_kernel
     fi  
-    cd $SHELL_FOLDER/linux-5.10.108
+    cd $SHELL_FOLDER/linux-6.1.11
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- quard_star_defconfig
     make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
     #make ARCH=riscv CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- tools/perf -j$PROCESSORS
-    cp $SHELL_FOLDER/linux-5.10.108/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
+    cp $SHELL_FOLDER/linux-6.1.11/arch/riscv/boot/Image $SHELL_FOLDER/output/linux_kernel/Image
 }
 
 build_busybox()

@@ -7,7 +7,7 @@
 	model = "riscv-quard-star,qemu";
 
 	chosen {
-		bootargs = "root=/dev/vda2 rw console=ttyS0 earlycon=sbi fbcon=map:1023 fbcon=logo-pos:center";
+		bootargs = "root=/dev/vda2 rw console=ttyS0 earlycon=sbi fbcon=map:1023 fbcon=logo-pos:center nokaslr kgdboc=ttyS1,115200 kgdbwait";
 		stdout-path = "/soc/uart0@10000000";
 	};
 
@@ -150,15 +150,6 @@
 &qspi1 {
 	status = "okay";
 	
-	/* 
-	 * Not work after kernel 5.17, in user space can be used 
-	 *
-	 * echo spidev > /sys/bus/spi/devices/spi1.0/driver_override
-	 * echo spi1.0 > /sys/bus/spi/drivers/spidev/bind
-	 *
-	 * then we can got /dev/spidev1.0
-	 * read more: https://elixir.bootlin.com/linux/v5.17/source/Documentation/spi/spidev.rst
-	 */
 	spidev@0{
         compatible = "spidev";
         reg = <0>;

@@ -1390,7 +1390,7 @@ static int i2c_imx_init_recovery_info(struct imx_i2c_struct *i2c_imx,
 
 	i2c_imx->pinctrl = devm_pinctrl_get(&pdev->dev);
 	if (!i2c_imx->pinctrl || IS_ERR(i2c_imx->pinctrl)) {
-		dev_info(&pdev->dev, "can't get pinctrl, bus recovery not supported\n");
+		dev_dbg(&pdev->dev, "can't get pinctrl, bus recovery not supported\n");
 		return PTR_ERR(i2c_imx->pinctrl);
 	}
 

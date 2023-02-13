@@ -192,7 +192,7 @@ config CAN_TI_HECC
 
 config CAN_XILINXCAN
 	tristate "Xilinx CAN"
-	depends on ARCH_ZYNQ || ARM64 || MICROBLAZE || COMPILE_TEST
+	depends on ARCH_ZYNQ || ARM64 || RISCV || MICROBLAZE || COMPILE_TEST
 	depends on COMMON_CLK && HAS_IOMEM
 	help
 	  Xilinx CAN driver. This driver supports both soft AXI CAN IP and

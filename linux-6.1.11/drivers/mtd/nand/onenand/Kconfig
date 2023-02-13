@@ -41,6 +41,14 @@ config MTD_ONENAND_SAMSUNG
 	  OneNAND method) SoCs.
 	  Choose Y here only if you build for such Samsung SoC.
 
+config MTD_ONENAND_QUARD_STAR
+	tristate "OneNAND on Quard Star SOC controller support"
+	depends on OF || COMPILE_TEST
+	help
+	  Support for a OneNAND flash device connected to an Quard Star 
+	  (using generic OneNAND method) SoCs.
+	  Choose Y here only if you build for such Quard Star SoC.
+
 config MTD_ONENAND_OTP
 	bool "OneNAND OTP Support"
 	help

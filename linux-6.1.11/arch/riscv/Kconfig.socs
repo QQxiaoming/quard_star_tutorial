@@ -41,6 +41,24 @@ config SOC_VIRT
 	help
 	  This enables support for QEMU Virt Machine.
 
+config SOC_QUARD_STAR
+	bool "QEMU Quard-Star Machine"
+	select CLINT_TIMER if RISCV_M_MODE
+	select ARM_AMBA
+	select POWER_RESET
+	select POWER_RESET_SYSCON
+	select POWER_RESET_SYSCON_POWEROFF
+	select GOLDFISH
+	select RTC_DRV_GOLDFISH if RTC_CLASS
+	select SIFIVE_PLIC
+	select PM_GENERIC_DOMAINS if PM
+	select PM_GENERIC_DOMAINS_OF if PM && OF
+	select RISCV_SBI_CPUIDLE if CPU_IDLE && RISCV_SBI
+	select SERIAL_SIFIVE if TTY
+	select SERIAL_SIFIVE_CONSOLE if TTY
+	help
+	  This enables support for QEMU Quard-Star Machine.
+
 config SOC_CANAAN
 	bool "Canaan Kendryte K210 SoC"
 	depends on !MMU
