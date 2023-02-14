@@ -929,8 +929,8 @@ build_dtc()
     cd $SHELL_FOLDER
     tar -xzvf dtc-1.6.1.tar.gz
     cd $SHELL_FOLDER/dtc-1.6.1
-	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_PYTHON=1 libfdt -j$PROCESSORS
-    make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_PYTHON=1 install-lib install-includes
+	make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_YAML=1 NO_PYTHON=1 libfdt -j$PROCESSORS
+    make CC=${CROSS_PREFIX}-gcc PREFIX=$SHELL_FOLDER/output NO_YAML=1 NO_PYTHON=1 install-lib install-includes
     rm  $SHELL_FOLDER/output/lib/libfdt.a
     rm -rf $SHELL_FOLDER/dtc-1.6.1
 }
