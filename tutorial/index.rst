@@ -10,22 +10,22 @@
 .. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml
    :alt: Macos ci
-.. image:: https://readthedocs.org/projects/quard-star-tutorial/badge/?version=latest
+.. image:: https://img.shields.io/readthedocs/quard-star-tutorial.svg?logo=readthedocs
    :target: https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest
    :alt: Documentation Status
-.. image:: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial/badge
+.. image:: https://img.shields.io/codefactor/grade/github/qqxiaoming/quard_star_tutorial.svg?logo=codefactor
    :target: https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial
    :alt: CodeFactor
-.. image:: https://img.shields.io/github/tag/QQxiaoming/quard_star_tutorial.svg
+.. image:: https://img.shields.io/github/tag/QQxiaoming/quard_star_tutorial.svg?logo=git
    :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
    :alt: GitHub tag (latest SemVer)
-.. image:: https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg
+.. image:: https://img.shields.io/github/downloads/QQxiaoming/quard_star_tutorial/total.svg?logo=pinboard
    :target: https://github.com/QQxiaoming/quard_star_tutorial/releases
    :alt: GitHub All Releases
-.. image:: https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg
+.. image:: https://img.shields.io/github/stars/QQxiaoming/quard_star_tutorial.svg?logo=github
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub stars
-.. image:: https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg
+.. image:: https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg?logo=github
    :target: https://github.com/QQxiaoming/quard_star_tutorial
    :alt: GitHub forks
 .. image:: https://gitee.com/QQxiaoming/quard_star_tutorial/badge/star.svg?theme=dark
