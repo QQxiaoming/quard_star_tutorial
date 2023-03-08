@@ -160,6 +160,7 @@ jobs:
             cp ./mingw64/lib/libslirp.dll.a /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libslirp.dll.a
             cp ./.github/workflows/res/slirp.pc /usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/slirp.pc
             ./build.sh qemu_w64
+            cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll ./output/qemu_w64/
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v3.1.0

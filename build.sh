@@ -57,7 +57,6 @@ build_qemu_w64()
     fi  
     make -j$PROCESSORS
     make install
-    cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu_w64/
 }
 
 build_qemu_macos()
