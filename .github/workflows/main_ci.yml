@@ -133,9 +133,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: jpribyl/action-docker-layer-caching@v0.1.1
-        continue-on-error: true
-
       - name: build_docker_image
         shell: bash -l {0}
         run: |
