@@ -100,10 +100,10 @@ build_opensbi()
     if [ ! -d "$SHELL_FOLDER/output/opensbi" ]; then  
     mkdir $SHELL_FOLDER/output/opensbi
     fi  
-    cd $SHELL_FOLDER/opensbi-1.0
+    cd $SHELL_FOLDER/opensbi-1.2
     make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- PLATFORM=quard_star
-    cp -r $SHELL_FOLDER/opensbi-1.0/build/platform/quard_star/firmware/fw_jump.bin $SHELL_FOLDER/output/opensbi/fw_jump.bin
-    cp -r $SHELL_FOLDER/opensbi-1.0/build/platform/quard_star/firmware/fw_jump.elf $SHELL_FOLDER/output/opensbi/fw_jump.elf
+    cp -r $SHELL_FOLDER/opensbi-1.2/build/platform/quard_star/firmware/fw_jump.bin $SHELL_FOLDER/output/opensbi/fw_jump.bin
+    cp -r $SHELL_FOLDER/opensbi-1.2/build/platform/quard_star/firmware/fw_jump.elf $SHELL_FOLDER/output/opensbi/fw_jump.elf
     $GLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/opensbi/fw_jump.elf > $SHELL_FOLDER/output/opensbi/fw_jump.lst
 }
 
