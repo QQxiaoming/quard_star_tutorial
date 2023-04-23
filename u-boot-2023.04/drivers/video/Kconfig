@@ -687,6 +687,12 @@ config VIDEO_ZYNQMP_DPSUB
 	  is used as placeholder for driver. The main reason is to record
 	  compatible string and calling power domain driver.
 
+config VIDEO_PL111
+	bool "Enable video support for PL111"
+	depends on DM_VIDEO
+	help
+	  Enable support for the Syncoam PL111 display driver.
+
 source "drivers/video/nexell/Kconfig"
 
 config CONSOLE_SCROLL_LINES
