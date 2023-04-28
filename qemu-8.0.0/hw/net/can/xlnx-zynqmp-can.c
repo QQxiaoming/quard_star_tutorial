@@ -250,6 +250,16 @@ REG32(AFIR4, 0x80)
     FIELD(AFIR4, AIIDL, 1, 18)
     FIELD(AFIR4, AIRTR, 0, 1)
 
+#define XCAN_IDR_IDE_MASK		0x00080000U
+#define XCAN_IDR_ID1_MASK		0xFFE00000U
+#define XCAN_IDR_ID2_MASK		0x0007FFFEU
+#define XCAN_IDR_RTR_MASK		0x00000001U
+#define XCAN_IDR_SRR_MASK		0x00100000U
+#define XCAN_IDR_ID1_SHIFT		21
+#define XCAN_IDR_ID2_SHIFT		1
+#define CAN_SFF_ID_BITS		    11
+#define CAN_EFF_ID_BITS		    29
+
 static void can_update_irq(XlnxZynqMPCANState *s)
 {
     uint32_t irq;
@@ -385,20 +395,65 @@ static void can_exit_sleep_mode(XlnxZynqMPCANState *s)
     update_status_register_mode_bits(s);
 }
 
+static uint32_t id_xcan2can(uint32_t id)
+{
+    uint32_t ret_id = 0; 
+    /* Change Xilinx CAN ID format to socketCAN ID format */
+	if (id & XCAN_IDR_IDE_MASK) {
+		/* The received frame is an Extended format frame */
+		ret_id = (id & XCAN_IDR_ID1_MASK) >> 3;
+		ret_id |= (id & XCAN_IDR_ID2_MASK) >>
+				XCAN_IDR_ID2_SHIFT;
+		ret_id |= QEMU_CAN_EFF_FLAG;
+		if (id & XCAN_IDR_RTR_MASK)
+			ret_id |= QEMU_CAN_RTR_FLAG;
+	} else {
+		/* The received frame is a standard format frame */
+		ret_id = (id & XCAN_IDR_ID1_MASK) >>
+				XCAN_IDR_ID1_SHIFT;
+		if (id & XCAN_IDR_SRR_MASK)
+			ret_id |= QEMU_CAN_RTR_FLAG;
+	}
+    return ret_id;
+}
+
+static uint32_t id_can2xcan(uint32_t id)
+{
+    uint32_t ret_id = 0;
+    if (id & QEMU_CAN_EFF_FLAG) {
+        /* Extended CAN ID format */
+        ret_id = ((id & QEMU_CAN_EFF_MASK) << XCAN_IDR_ID2_SHIFT) &
+            XCAN_IDR_ID2_MASK;
+        ret_id |= (((id & QEMU_CAN_EFF_MASK) >>
+            (CAN_EFF_ID_BITS - CAN_SFF_ID_BITS)) <<
+            XCAN_IDR_ID1_SHIFT) & XCAN_IDR_ID1_MASK;
+        ret_id |= XCAN_IDR_IDE_MASK | XCAN_IDR_SRR_MASK;
+        if (id & QEMU_CAN_RTR_FLAG)
+            ret_id |= XCAN_IDR_RTR_MASK;
+    } else {
+        /* Standard CAN ID format */
+        ret_id = ((id & QEMU_CAN_SFF_MASK) << XCAN_IDR_ID1_SHIFT) &
+            XCAN_IDR_ID1_MASK;
+        if (id & QEMU_CAN_RTR_FLAG)
+            ret_id |= XCAN_IDR_SRR_MASK;
+    }
+    return ret_id;
+}
+
 static void generate_frame(qemu_can_frame *frame, uint32_t *data)
 {
-    frame->can_id = data[0];
+    frame->can_id = id_xcan2can(data[0]);
     frame->can_dlc = FIELD_EX32(data[1], TXFIFO_DLC, DLC);
 
-    frame->data[0] = FIELD_EX32(data[2], TXFIFO_DATA1, DB3);
-    frame->data[1] = FIELD_EX32(data[2], TXFIFO_DATA1, DB2);
-    frame->data[2] = FIELD_EX32(data[2], TXFIFO_DATA1, DB1);
-    frame->data[3] = FIELD_EX32(data[2], TXFIFO_DATA1, DB0);
+    frame->data[0] = FIELD_EX32(data[2], TXFIFO_DATA1, DB0);
+    frame->data[1] = FIELD_EX32(data[2], TXFIFO_DATA1, DB1);
+    frame->data[2] = FIELD_EX32(data[2], TXFIFO_DATA1, DB2);
+    frame->data[3] = FIELD_EX32(data[2], TXFIFO_DATA1, DB3);
 
-    frame->data[4] = FIELD_EX32(data[3], TXFIFO_DATA2, DB7);
-    frame->data[5] = FIELD_EX32(data[3], TXFIFO_DATA2, DB6);
-    frame->data[6] = FIELD_EX32(data[3], TXFIFO_DATA2, DB5);
-    frame->data[7] = FIELD_EX32(data[3], TXFIFO_DATA2, DB4);
+    frame->data[4] = FIELD_EX32(data[3], TXFIFO_DATA2, DB4);
+    frame->data[5] = FIELD_EX32(data[3], TXFIFO_DATA2, DB5);
+    frame->data[6] = FIELD_EX32(data[3], TXFIFO_DATA2, DB6);
+    frame->data[7] = FIELD_EX32(data[3], TXFIFO_DATA2, DB7);
 }
 
 static bool tx_ready_check(XlnxZynqMPCANState *s)
@@ -686,7 +741,7 @@ static void update_rx_fifo(XlnxZynqMPCANState *s, const qemu_can_frame *frame)
         } else {
             timestamp = CAN_TIMER_MAX - ptimer_get_count(s->can_timer);
 
-            fifo32_push(&s->rx_fifo, frame->can_id);
+            fifo32_push(&s->rx_fifo, id_can2xcan(frame->can_id));
 
             fifo32_push(&s->rx_fifo, deposit32(0, R_RXFIFO_DLC_DLC_SHIFT,
                                                R_RXFIFO_DLC_DLC_LENGTH,
@@ -696,30 +751,30 @@ static void update_rx_fifo(XlnxZynqMPCANState *s, const qemu_can_frame *frame)
                                                timestamp));
 
             /* First 32 bit of the data. */
-            fifo32_push(&s->rx_fifo, deposit32(0, R_RXFIFO_DATA1_DB3_SHIFT,
-                                               R_RXFIFO_DATA1_DB3_LENGTH,
+            fifo32_push(&s->rx_fifo, deposit32(0, R_RXFIFO_DATA1_DB0_SHIFT,
+                                               R_RXFIFO_DATA1_DB0_LENGTH,
                                                frame->data[0]) |
-                                     deposit32(0, R_RXFIFO_DATA1_DB2_SHIFT,
-                                               R_RXFIFO_DATA1_DB2_LENGTH,
-                                               frame->data[1]) |
                                      deposit32(0, R_RXFIFO_DATA1_DB1_SHIFT,
                                                R_RXFIFO_DATA1_DB1_LENGTH,
+                                               frame->data[1]) |
+                                     deposit32(0, R_RXFIFO_DATA1_DB2_SHIFT,
+                                               R_RXFIFO_DATA1_DB2_LENGTH,
                                                frame->data[2]) |
-                                     deposit32(0, R_RXFIFO_DATA1_DB0_SHIFT,
-                                               R_RXFIFO_DATA1_DB0_LENGTH,
+                                     deposit32(0, R_RXFIFO_DATA1_DB3_SHIFT,
+                                               R_RXFIFO_DATA1_DB3_LENGTH,
                                                frame->data[3]));
             /* Last 32 bit of the data. */
-            fifo32_push(&s->rx_fifo, deposit32(0, R_RXFIFO_DATA2_DB7_SHIFT,
-                                               R_RXFIFO_DATA2_DB7_LENGTH,
+            fifo32_push(&s->rx_fifo, deposit32(0, R_RXFIFO_DATA2_DB4_SHIFT,
+                                               R_RXFIFO_DATA2_DB4_LENGTH,
                                                frame->data[4]) |
-                                     deposit32(0, R_RXFIFO_DATA2_DB6_SHIFT,
-                                               R_RXFIFO_DATA2_DB6_LENGTH,
-                                               frame->data[5]) |
                                      deposit32(0, R_RXFIFO_DATA2_DB5_SHIFT,
                                                R_RXFIFO_DATA2_DB5_LENGTH,
+                                               frame->data[5]) |
+                                     deposit32(0, R_RXFIFO_DATA2_DB6_SHIFT,
+                                               R_RXFIFO_DATA2_DB6_LENGTH,
                                                frame->data[6]) |
-                                     deposit32(0, R_RXFIFO_DATA2_DB4_SHIFT,
-                                               R_RXFIFO_DATA2_DB4_LENGTH,
+                                     deposit32(0, R_RXFIFO_DATA2_DB7_SHIFT,
+                                               R_RXFIFO_DATA2_DB7_LENGTH,
                                                frame->data[7]));
 
             ARRAY_FIELD_DP32(s->regs, INTERRUPT_STATUS_REGISTER, RXOK, 1);

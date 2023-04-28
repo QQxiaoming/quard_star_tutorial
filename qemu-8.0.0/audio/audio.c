@@ -1734,11 +1734,6 @@ static AudioState *audio_init(Audiodev *dev, const char *name)
         legacy_config = false;
         drvname = AudiodevDriver_str(dev->driver);
     } else if (!QTAILQ_EMPTY(&audio_states)) {
-        if (!legacy_config) {
-            dolog("Device %s: audiodev default parameter is deprecated, please "
-                  "specify audiodev=%s\n", name,
-                  QTAILQ_FIRST(&audio_states)->dev->id);
-        }
         return QTAILQ_FIRST(&audio_states);
     } else {
         /* legacy implicit initialization */
