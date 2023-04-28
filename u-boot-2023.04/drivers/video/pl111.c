@@ -117,7 +117,7 @@ static void pl111_enable(struct pl111_priv *priv)
 static void pl111_set_mode(struct pl111_priv *priv,
 				struct display_timing *timings, ulong fb_addr)
 {
-	size_t regs_addr = (size_t)priv->regs;
+	void __iomem *regs_addr = priv->regs;
 	u32 ppl, hsw, hfp, hbp;
 	u32 lpp, vsw, vfp, vbp;
 	u32 format;
@@ -151,7 +151,6 @@ static int pl111_probe(struct udevice *dev)
 	struct pl111_priv *priv = dev_get_priv(dev);
 	struct display_timing timings;
 	struct clk pclk;
-	struct reset_ctl rst;
 	int ret;
 
 	priv->regs = (void *)dev_read_addr(dev);

@@ -12,7 +12,7 @@ config SYS_CPU
 config SYS_CONFIG_NAME
 	default "qemu-quard-star"
 
-config SYS_TEXT_BASE
+config TEXT_BASE
 	default 0xB0200000
 
 config BOARD_SPECIFIC_OPTIONS # dummy
@@ -20,6 +20,7 @@ config BOARD_SPECIFIC_OPTIONS # dummy
 	select GENERIC_RISCV
 	select CMD_QFW
 	select QFW_MMIO
+	select SYS_WHITE_ON_BLACK
 	imply AHCI
 	imply SMP
 	imply BOARD_LATE_INIT

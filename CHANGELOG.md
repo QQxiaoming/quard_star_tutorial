@@ -5,6 +5,7 @@
 - qemu更新到7.2.0
 - kernel更新到新的LTS版本6.1.11
 - opensbi更新到1.2
+- uboot更新到2023.04
 - GUI tools开始使用qt6构建（意味着开始支持apple silicon平台的mac系统，放弃windows7及以下的旧版windows系统支持）
 - GUI tools工具增加网络物理接口设置连接与断开模拟
 - GUI tools工具增加boot选项配置
