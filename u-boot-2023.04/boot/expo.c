@@ -122,7 +122,7 @@ int expo_render(struct expo *exp)
 	u32 colour;
 	int ret;
 
-	colour = video_index_to_colour(vid_priv, VID_WHITE);
+	colour = video_index_to_colour(vid_priv, vid_priv->bg_col_idx);
 	ret = video_fill(dev, colour);
 	if (ret)
 		return log_msg_ret("fill", ret);
