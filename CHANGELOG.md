@@ -2,7 +2,7 @@
 
 ## [Unrelease]
 
-- qemu更新到7.2.0
+- qemu更新到8.0.0
 - kernel更新到新的LTS版本6.1.11
 - opensbi更新到1.2
 - uboot更新到2023.04
