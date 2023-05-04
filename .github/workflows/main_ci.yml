@@ -133,13 +133,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: jpribyl/action-docker-layer-caching@v0.1.1
-        continue-on-error: true
-
       - name: build_docker_image
         shell: bash -l {0}
         run: |
-          cd qemu-7.2.0
+          cd qemu-8.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora-win64-cross.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
 
       - uses: addnab/docker-run-action@v3
@@ -160,6 +157,7 @@ jobs:
             cp ./mingw64/lib/libslirp.dll.a /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libslirp.dll.a
             cp ./.github/workflows/res/slirp.pc /usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/slirp.pc
             ./build.sh qemu_w64
+            cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll ./output/qemu_w64/
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v3.1.0

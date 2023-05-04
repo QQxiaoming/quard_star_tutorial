@@ -40,7 +40,7 @@ fi
 build_qemu()
 {
     echo "------------------------------ 编译qemu ------------------------------"
-    cd $SHELL_FOLDER/qemu-7.2.0
+    cd $SHELL_FOLDER/qemu-8.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu --target-list=riscv64-softmmu --enable-gtk  --enable-virtfs --disable-gio --enable-plugins --audio-drv-list=pa,alsa,sdl,oss
     fi  
@@ -51,19 +51,18 @@ build_qemu()
 build_qemu_w64()
 {
     echo "---------------------------- 编译qemu_w64 ----------------------------"
-    cd $SHELL_FOLDER/qemu-7.2.0
+    cd $SHELL_FOLDER/qemu-8.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu_w64" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu_w64 --cross-prefix=x86_64-w64-mingw32- --target-list=riscv64-softmmu --enable-gtk --disable-gio
     fi  
     make -j$PROCESSORS
     make install
-    cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll $SHELL_FOLDER/output/qemu_w64/
 }
 
 build_qemu_macos()
 {
     echo "---------------------------- 编译qemu_macos ----------------------------"
-    cd $SHELL_FOLDER/qemu-7.2.0
+    cd $SHELL_FOLDER/qemu-8.0.0
     if [ ! -d "$SHELL_FOLDER/output/qemu_macos" ]; then  
     ./configure --prefix=$SHELL_FOLDER/output/qemu_macos --target-list=riscv64-softmmu --enable-virtfs
     fi  
@@ -101,10 +100,10 @@ build_opensbi()
     if [ ! -d "$SHELL_FOLDER/output/opensbi" ]; then  
     mkdir $SHELL_FOLDER/output/opensbi
     fi  
-    cd $SHELL_FOLDER/opensbi-1.0
+    cd $SHELL_FOLDER/opensbi-1.2
     make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- PLATFORM=quard_star
-    cp -r $SHELL_FOLDER/opensbi-1.0/build/platform/quard_star/firmware/fw_jump.bin $SHELL_FOLDER/output/opensbi/fw_jump.bin
-    cp -r $SHELL_FOLDER/opensbi-1.0/build/platform/quard_star/firmware/fw_jump.elf $SHELL_FOLDER/output/opensbi/fw_jump.elf
+    cp -r $SHELL_FOLDER/opensbi-1.2/build/platform/quard_star/firmware/fw_jump.bin $SHELL_FOLDER/output/opensbi/fw_jump.bin
+    cp -r $SHELL_FOLDER/opensbi-1.2/build/platform/quard_star/firmware/fw_jump.elf $SHELL_FOLDER/output/opensbi/fw_jump.elf
     $GLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/opensbi/fw_jump.elf > $SHELL_FOLDER/output/opensbi/fw_jump.lst
 }
 
@@ -128,30 +127,37 @@ build_trusted_domain()
     cp ./build/trusted_fw.* $SHELL_FOLDER/output/trusted_domain/
 }
 
+build_uboot_dtb()
+{
+    echo "--------------------------- 生成uboot.dtb ----------------------------"
+    if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then  
+    mkdir $SHELL_FOLDER/output/uboot
+    fi  
+    cd $SHELL_FOLDER/dts
+    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
+    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
+    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot_kgdb.dts > quard_star_uboot_kgdb.dtb.dts.tmp
+    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot_kgdb.dtb quard_star_uboot_kgdb.dtb.dts.tmp
+    if [ -f "$SHELL_FOLDER/u-boot-2023.04/tools/mkimage" ]; then  
+    $SHELL_FOLDER/u-boot-2023.04/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/uboot/boot.scr
+    fi  
+}
+
 build_uboot()
 {
     echo "----------------------------- 编译uboot ------------------------------"
     if [ ! -d "$SHELL_FOLDER/output/uboot" ]; then  
     mkdir $SHELL_FOLDER/output/uboot
     fi  
-    cd $SHELL_FOLDER/u-boot-2021.07
+    cd $SHELL_FOLDER/u-boot-2023.04
     make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- qemu-quard-star_defconfig
-    make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS
-    cp $SHELL_FOLDER/u-boot-2021.07/u-boot $SHELL_FOLDER/output/uboot/u-boot.elf
-    cp $SHELL_FOLDER/u-boot-2021.07/u-boot.map $SHELL_FOLDER/output/uboot/u-boot.map
-    cp $SHELL_FOLDER/u-boot-2021.07/u-boot.bin $SHELL_FOLDER/output/uboot/u-boot.bin
+    make CROSS_COMPILE=$GLIB_ELF_CROSS_PREFIX- -j$PROCESSORS DEVICE_TREE=../../../../output/uboot/quard_star_uboot
+    cp $SHELL_FOLDER/u-boot-2023.04/u-boot $SHELL_FOLDER/output/uboot/u-boot.elf
+    cp $SHELL_FOLDER/u-boot-2023.04/u-boot.map $SHELL_FOLDER/output/uboot/u-boot.map
+    cp $SHELL_FOLDER/u-boot-2023.04/u-boot.bin $SHELL_FOLDER/output/uboot/u-boot.bin
     $GLIB_ELF_CROSS_PREFIX-objdump --source --demangle --disassemble --reloc --wide $SHELL_FOLDER/output/uboot/u-boot.elf > $SHELL_FOLDER/output/uboot/u-boot.lst
-}
-
-build_uboot_dtb()
-{
-    echo "--------------------------- 生成uboot.dtb ----------------------------"
     cd $SHELL_FOLDER/dts
-    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot.dts > quard_star_uboot.dtb.dts.tmp
-    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb quard_star_uboot.dtb.dts.tmp
-    cpp -nostdinc -I include -undef -x assembler-with-cpp quard_star_uboot_kgdb.dts > quard_star_uboot_kgdb.dtb.dts.tmp
-    dtc -I dts -O dtb -o $SHELL_FOLDER/output/uboot/quard_star_uboot_kgdb.dtb quard_star_uboot_kgdb.dtb.dts.tmp
-    $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/uboot/boot.scr
+    $SHELL_FOLDER/u-boot-2023.04/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $SHELL_FOLDER/output/uboot/boot.scr
 }
 
 build_firmware()
@@ -290,7 +296,7 @@ build_rootfs()
         fi
         cp $SHELL_FOLDER/output/linux_kernel_next/Image $TARGET_BOOTFS_DIR/Image
         cp $SHELL_FOLDER/output/uboot/quard_star_uboot.dtb $TARGET_BOOTFS_DIR/quard_star.dtb
-        $SHELL_FOLDER/u-boot-2021.07/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
+        $SHELL_FOLDER/u-boot-2023.04/tools/mkimage -A riscv -O linux -T script -C none -a 0 -e 0 -n "Distro Boot Script" -d $SHELL_FOLDER/dts/quard_star_uboot.cmd $TARGET_BOOTFS_DIR/boot.scr
         cp -r $SHELL_FOLDER/output/busybox/* $TARGET_ROOTFS_DIR/
         cp -r $SHELL_FOLDER/target_root_script/* $TARGET_ROOTFS_DIR/
         if [ ! -d "$TARGET_ROOTFS_DIR/proc" ]; then  
@@ -349,8 +355,8 @@ build_all()
     build_opensbi
     build_sbi_dtb
     build_trusted_domain
-    build_uboot
     build_uboot_dtb
+    build_uboot
     build_firmware
     build_kernel
     build_busybox

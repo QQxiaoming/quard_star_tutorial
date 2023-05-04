@@ -53,7 +53,6 @@ TRANSLATIONS += \
     lang/quard_star_tools_ja_JP.ts \
     lang/quard_star_tools_en_US.ts
 
-# 输出配置
 build_type =
 CONFIG(debug, debug|release) {
     build_type = debug
@@ -67,7 +66,6 @@ MOC_DIR     = $$build_type/moc
 RCC_DIR     = $$build_type/rcc
 UI_DIR      = $$build_type/ui
 
-# 平台配置
 win32:{
     VERSION = $${BUILD_VERSION}.000
     RC_LANG = 0x0004

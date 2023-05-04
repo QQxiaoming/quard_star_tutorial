@@ -2,12 +2,21 @@
 
 ## [Unrelease]
 
-## [0.1.0] - 2021-11-05
+- qemu更新到8.0.0
+- kernel更新到新的LTS版本6.1.11
+- opensbi更新到1.2
+- uboot更新到2023.04
+- GUI tools开始使用qt6构建（意味着开始支持apple silicon平台的mac系统，放弃windows7及以下的旧版windows系统支持）
+- GUI tools工具增加网络物理接口设置连接与断开模拟
+- GUI tools工具增加boot选项配置
+- GUI tools工具修复版本号显示错误
+
+## [0.1.0] - 2022-11-05
 
 - 优化大量脚本提高可读性和易用性
 - 完善GUI tools工具，基础功能完善
 
-## [0.0.3] - 2021-07-12
+## [0.0.3] - 2022-07-12
 
 - rootfs更新为2G空间
 - 添加onenand flash emulator（uboot、kernel驱动支持）
@@ -17,7 +26,7 @@
 - 添加lcdc emulator （uboot、kernel驱动支持）
 - 添加watchdog emulator （kernel驱动支持）
 
-## [0.0.2] - 2021-04-25
+## [0.0.2] - 2022-04-25
 
 - busybox更新到1.33.2
 - kernel更新到5.10.108
