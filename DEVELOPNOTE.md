@@ -973,5 +973,45 @@
 - 
     2022.12.04(凌晨): 最近添加了ifpulgd监测网络接口链接，同时为了在qemu上更好的模拟，gui前端tools工具继续添加更多功能以支持便携使用。
 
--
+- 
     2023.04.27(晚上): u-boot更新到2023.04版本，完善了更多boot选项。qemu版本更新到8.0.0，没有遇到任何不兼容变动。
+
+- 
+    2023.05.03(下午): linux-next和最新的上游合并了下，结果发现启动时出现如下现象：
+
+    ```
+    [    0.000000] Zone ranges:
+    [    0.000000]   DMA32    empty
+    [    0.000000]   Normal   [mem 0x0000000080200000-0x00000000bf7fffff]
+    ```
+    
+    刚开始还以为又有什么不兼容更新呢，结果最后定位到 linux-next/mm/mm_init.c:1791这里descending为true了Zone顺序被交换了，代码如下：
+
+    ```c
+    descending = arch_has_descending_max_zone_pfns();
+
+	for (i = 0; i < MAX_NR_ZONES; i++) {
+		if (descending)
+			zone = MAX_NR_ZONES - i - 1;
+		else
+			zone = i;
+
+		if (zone == ZONE_MOVABLE)
+			continue;
+
+		end_pfn = max(max_zone_pfn[zone], start_pfn);
+		arch_zone_lowest_possible_pfn[zone] = start_pfn;
+		arch_zone_highest_possible_pfn[zone] = end_pfn;
+
+		start_pfn = end_pfn;
+	}
+    ```
+
+    那问题就简单了，自然是arch_has_descending_max_zone_pfns这个函数写错了，应该是内核开发者的疏忽了，这里改成这样就可以了。
+
+    ```c
+    static bool arch_has_descending_max_zone_pfns(void)
+    {
+        return IS_ENABLED(CONFIG_ARC) && !IS_ENABLED(CONFIG_ARC_HAS_PAE40);
+    }
+    ```
