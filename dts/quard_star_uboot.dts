@@ -13,7 +13,21 @@
 
 	memory@80000000 {
 		device_type = "memory";
-		reg = <0x0 0x80000000 0x0 0x3f800000>;
+		reg = <0x0 0x80000000 0x0 0x40000000>;
+	};
+
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		linux,cma@b0000000 {
+			compatible = "shared-dma-pool";
+			size = <0x0 0xf800000>;
+			reg = <0x0 0xb0000000 0x0 0xf800000>;
+			alignment = <0x0 0x1000>;
+			linux,cma-default;
+		};
 	};
 
 	sound {
