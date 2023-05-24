@@ -9,6 +9,8 @@
 [![GitHub forks](https://img.shields.io/github/forks/QQxiaoming/quard_star_tutorial.svg?logo=github)](https://github.com/QQxiaoming/quard_star_tutorial)
 [![Gitee stars](https://gitee.com/QQxiaoming/quard_star_tutorial/badge/star.svg?theme=dark)](https://gitee.com/QQxiaoming/quard_star_tutorial)
 [![Gitee forks](https://gitee.com/QQxiaoming/quard_star_tutorial/badge/fork.svg?theme=dark)](https://gitee.com/QQxiaoming/quard_star_tutorial)
+[![discord](https://img.shields.io/discord/1110876864999854121?color=blue&logo=discord)](https://discord.gg/vZG2rvuw7J)
+
 
 # Building Embedded Linux System based on QEMU
 
