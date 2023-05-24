@@ -294,7 +294,7 @@ can: can@1000c000 {
   };
 ```
 
-进入系统can初始化成功，然后我们通过终端配置can设备
+进入系统can初始化成功，然后我们通过终端配置can设备（busybox的ip命令不支持can网络相关设置，需要使用iproute2来交叉编译完整版的ip，在我的项目的target_root_app/build.sh里交叉编译该软件包的脚本，target_root_app/iproute2-5.9.0.tar.gz也在项目内有提供）。
 
 ```shell
 /sbin/ip link set can0 type can bitrate 1000000 sample-point 0.750
