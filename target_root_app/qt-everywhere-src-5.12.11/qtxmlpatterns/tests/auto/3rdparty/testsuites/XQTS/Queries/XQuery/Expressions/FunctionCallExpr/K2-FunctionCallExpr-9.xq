@@ -1,7 +1,0 @@
-(:*******************************************************:)
-(: Test: K2-FunctionCallExpr-9                           :)
-(: Written by: Frans Englich                             :)
-(: Date: 2007-11-22T11:31:21+01:00                       :)
-(: Purpose: Function key() is not available in XQuery.   :)
-(:*******************************************************:)
-key("id")

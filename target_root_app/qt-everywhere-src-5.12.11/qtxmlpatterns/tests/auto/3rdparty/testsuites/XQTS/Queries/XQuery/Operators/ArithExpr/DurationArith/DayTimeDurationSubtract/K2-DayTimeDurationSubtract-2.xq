@@ -1,8 +1,0 @@
-(:*******************************************************:)
-(: Test: K2-DayTimeDurationSubtract-2                    :)
-(: Written by: Frans Englich                             :)
-(: Date: 2007-11-22T11:31:21+01:00                       :)
-(: Purpose: Ensure that a value from current-dateTime() can be extracted. :)
-(:*******************************************************:)
-(current-dateTime() - xs:dayTimeDuration("PT3H"))
-                      lt current-dateTime()

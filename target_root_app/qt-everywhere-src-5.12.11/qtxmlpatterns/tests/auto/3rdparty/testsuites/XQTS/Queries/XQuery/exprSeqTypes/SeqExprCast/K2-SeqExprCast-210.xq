@@ -1,7 +1,0 @@
-(:*******************************************************:)
-(: Test: K2-SeqExprCast-210                              :)
-(: Written by: Frans Englich                             :)
-(: Date: 2007-11-22T11:31:21+01:00                       :)
-(: Purpose: '%' is not a disallowed character and therefore it's not encoded before being considered for RFC 2396 validness. :)
-(:*******************************************************:)
-xs:anyURI("http://www.example.com/file%GF.html")

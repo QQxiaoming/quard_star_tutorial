@@ -1,6 +1,0 @@
-SYNCQT.HEADER_FILES = 
-SYNCQT.GENERATED_HEADER_FILES = qtclipboardsupportversion.h QtClipboardSupportVersion QtClipboardSupport 
-SYNCQT.PRIVATE_HEADER_FILES = qmacmime_p.h 
-SYNCQT.QPA_HEADER_FILES = 
-SYNCQT.CLEAN_HEADER_FILES = 
-SYNCQT.INJECTIONS = 

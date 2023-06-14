@@ -1,7 +1,0 @@
-(:*******************************************************:)
-(: Test: K2-SeqExprCast-208                              :)
-(: Written by: Frans Englich                             :)
-(: Date: 2007-11-22T11:31:21+01:00                       :)
-(: Purpose: Use a large chunk of whitespace in an xs:anyURI. :)
-(:*******************************************************:)
-concat("b", xs:anyURI("         "), "b")

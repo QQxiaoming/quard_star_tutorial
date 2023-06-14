@@ -1,7 +1,0 @@
-(:*******************************************************:)
-(: Test: K2-SeqExprCast-143                              :)
-(: Written by: Frans Englich                             :)
-(: Date: 2007-11-22T11:31:21+01:00                       :)
-(: Purpose: Pass preceding zeros to unsignedShort.       :)
-(:*******************************************************:)
-xs:unsignedShort("000000001")

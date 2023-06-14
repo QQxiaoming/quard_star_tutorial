@@ -1,7 +1,0 @@
-(:*******************************************************:)
-(: Test: K-NormalizeUnicodeFunc-13                       :)
-(: Written by: Frans Englich                             :)
-(: Date: 2007-11-22T11:31:22+01:00                       :)
-(: Purpose: Static typing implementations may raise XPTY0004. See http://www.w3.org/Bugs/Public/show_bug.cgi?id=4551 for details. :)
-(:*******************************************************:)
-normalize-unicode(("a string", error()), "NFC")
