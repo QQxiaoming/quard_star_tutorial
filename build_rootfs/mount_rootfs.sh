@@ -16,7 +16,7 @@ mount_fs()
     case "${UNAMEOUT}" in
         Linux*)    
             LOOPDEV="$(losetup -f)"
-            losetup -o 0 --sizelimit 2147483648 $LOOPDEV $TARGET_DIR/rootfs.img -P
+            losetup -o 0 --sizelimit 4294967296 $LOOPDEV $TARGET_DIR/rootfs.img -P
             ;;
         Darwin*)    
             LOOPDEV="$(hdiutil attach -nomount $TARGET_DIR/rootfs.img | awk -F ' ' '{ print $1 }' | awk 'NR==1')"

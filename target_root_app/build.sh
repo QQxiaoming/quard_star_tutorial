@@ -34,6 +34,8 @@ build_ncurses()
         --host=riscv64-linux-gnu \
         --prefix=/ \
         --with-shared \
+        --with-ticlib \
+        --with-termlib \
         --without-normal \
         --without-debug \
         --disable-stripping \
@@ -43,6 +45,25 @@ build_ncurses()
     make install DESTDIR=$SHELL_FOLDER/output
     rm -rf $SHELL_FOLDER/output/lib/libncurses++.a
     rm -rf $SHELL_FOLDER/ncurses-6.2
+}
+
+build_zstd()
+{
+    # 编译zstd
+    echo "------------------------------ 编译zstd ------------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf zstd-1.5.5.tar.gz
+    cd $SHELL_FOLDER/zstd-1.5.5
+    cmake -S build/cmake -B build -G Ninja \
+        -DCMAKE_OSX_ARCHITECTURES="RISCV" \
+        -DCMAKE_INSTALL_PREFIX=$SHELL_FOLDER/output \
+        -DCMAKE_C_COMPILER=$CROSS_PREFIX-gcc \
+        -DCMAKE_CXX_COMPILER=$CROSS_PREFIX-g++ \
+        -DCMAKE_ASM_COMPILER=$CROSS_PREFIX-as \
+        .
+    cmake --build ./build --target install
+    rm -rf $SHELL_FOLDER/output/lib/libzstd.a
+    rm -rf $SHELL_FOLDER/zstd-1.5.5
 }
 
 build_bash()
@@ -159,7 +180,11 @@ build_qt()
 {
     # 编译qt
     echo "------------------------------- 编译qt -------------------------------"
-    cd $SHELL_FOLDER/qt-everywhere-src-5.12.11
+    cd $SHELL_FOLDER
+    cat qt-everywhere-opensource-src-5.15.10.tar.xz.part.* | tar -xvJf -
+
+    cd $SHELL_FOLDER/qt-everywhere-src-5.15.10
+    patch -p1 < ../qt-everywhere-src-5.15.10.patch
     TEMP_PATH=$PATH
 	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
 	./configure \
@@ -177,7 +202,7 @@ build_qt()
         -nomake tests \
         -nomake examples \
         -xplatform linux-riscv64-gnu-g++ \
-        -prefix /opt/Qt-5.12.11 \
+        -prefix /opt/Qt-5.15.10 \
         -extprefix $SHELL_FOLDER/host_output
 	make -j$PROCESSORS
 	make install
@@ -185,17 +210,19 @@ build_qt()
     if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
         mkdir $SHELL_FOLDER/output/opt
     fi
-    if [ ! -d "$SHELL_FOLDER/output/opt/Qt-5.12.11" ]; then
-        mkdir $SHELL_FOLDER/output/opt/Qt-5.12.11
+    if [ ! -d "$SHELL_FOLDER/output/opt/Qt-5.15.10" ]; then
+        mkdir $SHELL_FOLDER/output/opt/Qt-5.15.10
     fi
-    cp -r $SHELL_FOLDER/host_output/lib $SHELL_FOLDER/output/opt/Qt-5.12.11/lib
-    cp -r $SHELL_FOLDER/host_output/plugins $SHELL_FOLDER/output/opt/Qt-5.12.11/plugins
-    cp -r $SHELL_FOLDER/host_output/translations $SHELL_FOLDER/output/opt/Qt-5.12.11/translations
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/cmake
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/pkgconfig
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/*.prl
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/*.a
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.12.11/lib/*.la
+    cp -r $SHELL_FOLDER/host_output/lib $SHELL_FOLDER/output/opt/Qt-5.15.10/lib
+    cp -r $SHELL_FOLDER/host_output/plugins $SHELL_FOLDER/output/opt/Qt-5.15.10/plugins
+    cp -r $SHELL_FOLDER/host_output/translations $SHELL_FOLDER/output/opt/Qt-5.15.10/translations
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/cmake
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/pkgconfig
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/metatypes
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.prl
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.a
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.la
+    rm -rf $SHELL_FOLDER/qt-everywhere-src-5.15.10
 }
 
 build_libmnl()
@@ -1112,7 +1139,6 @@ build_util_linux()
         --disable-static \
         --disable-libuuid \
         --without-libz \
-        --without-tinfo \
         --without-python \
         --disable-makeinstall-chown \
         CCFLAGS=-I$SHELL_FOLDER/output/include \
@@ -1239,7 +1265,6 @@ build_mtd_utils()
         --prefix=$SHELL_FOLDER/output \
         --with-jffs \
         --with-ubifs \
-        --without-zstd \
         --enable-install-tests \
         CFLAGS="-I$SHELL_FOLDER/output/include -I$SHELL_FOLDER/output/include/uuid" \
         LIBS="-L$SHELL_FOLDER/output/lib" \
@@ -1405,7 +1430,7 @@ build_dropwatch()
         --without-bfd \
         PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
         READLINE_CFLAGS="-I$SHELL_FOLDER/output/include" \
-        READLINE_LIBS="-L$SHELL_FOLDER/output/lib -lreadline -lncurses" \
+        READLINE_LIBS="-L$SHELL_FOLDER/output/lib -lreadline -lncurses -ltinfo" \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
 	make -j$PROCESSORS
@@ -1499,7 +1524,7 @@ build_elfutils()
         --disable-debuginfod \
         --disable-libdebuginfod \
         CFLAGS=-I$SHELL_FOLDER/output/include \
-        LDFLAGS="-L$SHELL_FOLDER/output/lib -lz" \
+        LDFLAGS="-L$SHELL_FOLDER/output/lib -lz -lzstd" \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
     make -j$PROCESSORS
@@ -1542,7 +1567,7 @@ build_irqbalance()
         --without-irqbalance-ui \
         --without-libcap-ng \
         NCURSESW_CFLAGS=-I$SHELL_FOLDER/output/include \
-        NCURSESW_LIBS="-L$SHELL_FOLDER/output/lib -lncurses" \
+        NCURSESW_LIBS="-L$SHELL_FOLDER/output/lib -lncurses -ltinfo" \
         GLIB2_CFLAGS="-I$SHELL_FOLDER/output/lib/glib-2.0/include -I$SHELL_FOLDER/output/include/glib-2.0" \
         GLIB2_LIBS="-L$SHELL_FOLDER/output/lib -lglib-2.0 -lpcre" \
         PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
@@ -1581,12 +1606,204 @@ build_lighttpd()
     rm -rf $SHELL_FOLDER/lighttpd-1.4.65
 }
 
+build_libiconv() {
+    echo "--------------------------- 编译libiconv ---------------------------"
+    tar -xzvf libiconv-1.15.tar.gz
+    cd $SHELL_FOLDER/libiconv-1.15
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --enable-shared \
+        CFLAGS=-I$SHELL_FOLDER/output/include \
+        LDFLAGS="-L$SHELL_FOLDER/output/lib" \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libiconv-1.15
+}
+
+build_llvm() {
+    echo "----------------------------- 编译llvm -----------------------------"
+    cd $SHELL_FOLDER
+    cat llvm-project-16.0.5.src.tar.xz.part.* | tar -xvJf -
+
+    # cross tools
+    cd $SHELL_FOLDER/llvm-project-16.0.5.src
+    cmake -S llvm -B build_host -G Ninja \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=$SHELL_FOLDER/host_output/opt/host/llvm \
+        -DLLVM_TARGETS_TO_BUILD="RISCV" \
+        -DLLVM_DEFAULT_TARGET_TRIPLE=riscv64-unknown-linux-gnu \
+        .
+    cmake --build ./build_host --target install
+
+    # native tools
+    cd $SHELL_FOLDER/llvm-project-16.0.5.src
+    cmake -S llvm -B build_target -G Ninja \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=$SHELL_FOLDER/host_output/opt/target/llvm \
+        -DLLVM_TARGETS_TO_BUILD="RISCV" \
+        -DLLVM_DEFAULT_TARGET_TRIPLE=riscv64-unknown-linux-gnu \
+        -DCMAKE_SYSROOT=$CROSS_COMPILE_DIR/sysroot \
+        -DLLVM_USE_HOST_TOOLS=true \
+        -DLLVM_BUILD_TOOLS=false \
+        -DCMAKE_SYSTEM_NAME="Linux" \
+        -DCMAKE_C_COMPILER=$CROSS_PREFIX-gcc \
+        -DCMAKE_CXX_COMPILER=$CROSS_PREFIX-g++ \
+        -DCMAKE_ASM_COMPILER=$CROSS_PREFIX-as \
+        .
+    cmake --build ./build_target --target install
+
+    rm -rf $SHELL_FOLDER/host_output/opt/host/llvm/lib
+    cp -r $SHELL_FOLDER/host_output/opt/target/llvm/lib $SHELL_FOLDER/host_output/opt/host/llvm/lib
+    rm -rf $SHELL_FOLDER/host_output/opt/target
+    rm -rf $SHELL_FOLDER/llvm-project-16.0.5.src
+}
+
+build_libdrm() {
+    echo "----------------------------- 编译libdrm -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf drm-libdrm-2.4.115.tar.gz
+    cd $SHELL_FOLDER/drm-libdrm-2.4.115
+    PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        meson _build \
+        --cross-file $SHELL_FOLDER/meson.ini \
+        -Dtests=false \
+        -Dvalgrind=disabled \
+        -Dintel=disabled \
+        -Damdgpu=disabled \
+        -Dradeon=disabled \
+        -Dnouveau=disabled \
+        -Dvmwgfx=disabled \
+        -Domap=disabled \
+        -Dexynos=disabled \
+        -Dfreedreno=disabled \
+        -Dtegra=disabled \
+        -Dvc4=disabled \
+        -Detnaviv=disabled \
+        -Dprefix=$SHELL_FOLDER/output
+    ninja -C _build
+    ninja -C _build install
+    rm -rf $SHELL_FOLDER/drm-libdrm-2.4.115
+}
+
+#sudo apt install glslang-tools
+build_mesa() {
+    echo "----------------------------- 编译mesa -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf mesa-23.1.2.tar.xz
+    cd $SHELL_FOLDER/mesa-23.1.2
+    cp $SHELL_FOLDER/meson.ini ./meson.ini
+    echo "llvm-config='$SHELL_FOLDER/host_output/opt/host/llvm/bin/llvm-config'" >> ./meson.ini
+    echo "[built-in options]" >> ./meson.ini
+    echo "cpp_link_args = ['-L$SHELL_FOLDER/output/lib']" >> ./meson.ini
+    PKG_CONFIG_LIBDIR=$SHELL_FOLDER/output/lib/pkgconfig \
+        meson _build \
+        --cross-file ./meson.ini \
+        -Dplatforms=[] \
+        -Dcpp_rtti=false \
+        -Dvulkan-drivers=swrast,virtio-experimental \
+        -Dgallium-drivers=swrast,virgl \
+        -Dvulkan-layers=device-select \
+        -Ddri3=enabled \
+        -Dshared-llvm=disabled \
+        -Dglx=disabled \
+        -Dgbm=enabled \
+        -Dgallium-vdpau=disabled \
+        -Dvalgrind=disabled \
+        -Degl-native-platform=drm \
+        -Degl=enabled \
+        -Dgles1=enabled \
+        -Dgles2=enabled \
+        -Dprefix=$SHELL_FOLDER/output
+    ninja -C _build
+    ninja -C _build install
+    rm -rf $SHELL_FOLDER/mesa-23.1.2
+}
+
+build_libepoxy()
+{
+    # 编译libepoxy
+    echo "----------------------------- 编译libepoxy -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xvJf libepoxy-1.5.5.tar.xz
+    cd $SHELL_FOLDER/libepoxy-1.5.5
+    cp $SHELL_FOLDER/meson.ini ./meson.ini
+    echo "[built-in options]" >> ./meson.ini
+    echo "c_args = ['-I$SHELL_FOLDER/output/include']" >> ./meson.ini
+    echo "c_link_args = ['-L$SHELL_FOLDER/output/lib']" >> ./meson.ini
+    PKG_CONFIG_LIBDIR=$SHELL_FOLDER/output/lib/pkgconfig \
+        meson _build \
+        --cross-file ./meson.ini \
+        -Dx11=false \
+        -Dprefix=$SHELL_FOLDER/output
+    ninja -C _build
+    ninja -C _build install
+    rm -rf $SHELL_FOLDER/libepoxy-1.5.5
+}
+
+build_vulkanloader()
+{
+    # 编译vulkanloader
+    cd $SHELL_FOLDER
+    tar -xzvf Vulkan-Headers-sdk-1.3.250.0.tar.gz
+    cd $SHELL_FOLDER/Vulkan-Headers-sdk-1.3.250.0
+    cmake -S . -B build -G Ninja \
+        -DCMAKE_INSTALL_PREFIX=$SHELL_FOLDER/output \
+        -DCMAKE_C_COMPILER=$CROSS_PREFIX-gcc \
+        .
+    cmake --build ./build --target install
+    rm -rf $SHELL_FOLDER/Vulkan-Headers-sdk-1.3.250.0
+
+    cd $SHELL_FOLDER
+    tar -xzvf Vulkan-Loader-sdk-1.3.250.0.tar.gz
+    cd $SHELL_FOLDER/Vulkan-Loader-sdk-1.3.250.0
+    PKG_CONFIG_LIBDIR=$SHELL_FOLDER/output/lib/pkgconfig \
+        cmake -S . -B build -G Ninja \
+        -DCMAKE_INSTALL_PREFIX=$SHELL_FOLDER/output \
+        -DBUILD_WSI_XCB_SUPPORT=OFF \
+        -DBUILD_WSI_XLIB_SUPPORT=OFF \
+        -DBUILD_WSI_WAYLAND_SUPPORT=OFF \
+        -DBUILD_WSI_DIRECTFB_SUPPORT=OFF \
+        -DCMAKE_C_COMPILER=$CROSS_PREFIX-gcc \
+        -DCMAKE_CXX_COMPILER=$CROSS_PREFIX-g++ \
+        -DCMAKE_ASM_COMPILER=$CROSS_PREFIX-as \
+        .
+    cmake --build ./build --target install
+    rm -rf $SHELL_FOLDER/Vulkan-Loader-sdk-1.3.250.0
+}
+
+build_virglrenderer()
+{
+    # 编译virglrenderer
+    echo "-------------------------- 编译virglrenderer --------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf virglrenderer-0.10.4.tar.gz
+    cd $SHELL_FOLDER/virglrenderer-0.10.4
+    PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        meson _build \
+        --cross-file $SHELL_FOLDER/meson.ini \
+        -Dvenus-experimental=true \
+        -Dminigbm_allocation=false \
+        -Dplatforms=egl \
+        -Dprefix=$SHELL_FOLDER/output
+    ninja -C _build
+    ninja -C _build install
+    rm -rf $SHELL_FOLDER/virglrenderer-0.10.4
+}
+
 case "$1" in
 make)
     build_make
     ;;
 ncurses)
     build_ncurses
+    ;;
+zstd)
+    build_zstd
     ;;
 bash)
     build_bash
@@ -1768,9 +1985,31 @@ irqbalance)
 lighttpd)
     build_lighttpd
     ;;
+libiconv)
+    build_libiconv
+    ;;
+llvm)
+    build_llvm
+    ;;
+libdrm)
+    build_libdrm
+    ;;
+mesa)
+    build_mesa
+    ;;
+libepoxy)
+    build_libepoxy
+    ;;
+vulkanloader)
+    build_vulkanloader
+    ;;
+virglrenderer)
+    build_virglrenderer
+    ;;
 all)
     build_make
     build_ncurses
+    build_zstd
     build_bash
     build_sudo
     build_screenfetch
@@ -1829,6 +2068,13 @@ all)
     build_glib2
     build_irqbalance
     build_lighttpd
+    build_libiconv
+    build_llvm
+    build_libdrm
+    build_mesa
+    build_libepoxy
+    build_vulkanloader
+    build_virglrenderer
 	build_qt
     ;;
 *)

@@ -3,7 +3,7 @@
 run_linux()
 {
     LOOPDEV="$(losetup -f)"
-    losetup -o 0 --sizelimit 2147483648 $LOOPDEV $1/rootfs.img -P
+    losetup -o 0 --sizelimit 4294967296 $LOOPDEV $1/rootfs.img -P
     if [ -d "$1/target" ]; then  
     rm -rf $1/target
     fi

@@ -291,7 +291,7 @@ build_rootfs()
         fi
         cd $MAKE_ROOTFS_DIR
         if [ ! -f "$MAKE_ROOTFS_DIR/rootfs.img" ]; then  
-        dd if=/dev/zero of=rootfs.img bs=1M count=2048
+        dd if=/dev/zero of=rootfs.img bs=1M count=4096
         $PERMISSION_TOOL $SHELL_FOLDER/build_rootfs/generate_rootfs.sh $MAKE_ROOTFS_DIR/rootfs.img $SHELL_FOLDER/build_rootfs/sfdisk
         fi
         cp $SHELL_FOLDER/output/linux_kernel/Image $TARGET_BOOTFS_DIR/Image
