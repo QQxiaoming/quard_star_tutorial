@@ -11,7 +11,7 @@ UNAMEOUT="$(uname -s)"
 case "${UNAMEOUT}" in
 Linux*)     
 	QEMU_PATHNAME="qemu" 
-	QEMU_DISPLAY="gtk,zoom-to-fit=false"
+	QEMU_DISPLAY="gtk,zoom-to-fit=false,show-tabs=on,show-cursor=off"
 	QEMU_AUDIO="sdl"
 	;;
 Darwin*)    

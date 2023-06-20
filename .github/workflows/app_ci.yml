@@ -30,6 +30,7 @@ jobs:
       - name: Install prerequisites
         shell: bash -l {0}
         run: |
+          rm -rf ./.git
           wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
           sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           sudo apt update
@@ -250,6 +251,7 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh openjdk_zero
+          rm -rf host_output/opt/jdk-10
 
       - name: Build lzo
         shell: bash -l {0}
@@ -519,7 +521,6 @@ jobs:
         shell: bash -l {0}
         run: |
           cd target_root_app
-          rm -rf host_output/opt/jdk-10
           mv host_output host_tools
           mv output target_sysroot
           tar -czf host_tools.tar.gz host_tools/
