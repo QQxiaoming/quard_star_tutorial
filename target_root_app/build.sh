@@ -1918,6 +1918,7 @@ build_qt_with_opengl()
         -qpa eglfs,linuxfb \
         -opengl es2 \
         -eglfs \
+        -kms \
         -vulkan \
         -skip webengine \
         -nomake tools \
@@ -1927,7 +1928,10 @@ build_qt_with_opengl()
         -prefix /opt/Qt-5.15.10 \
         -extprefix $SHELL_FOLDER/host_output \
         ICU_PREFIX=$SHELL_FOLDER/output_static_lib \
-        ICU_LIBS="-licui18n -licuuc -licudata"
+        ICU_LIBS="-licui18n -licuuc -licudata" \
+        DRM_PREFIX=$SHELL_FOLDER/output \
+        DRM_INCDIR=$SHELL_FOLDER/output/include/libdrm \
+        DRM_LIBS="-ldrm"
 	make -j$PROCESSORS
 	make install
 	export PATH=$TEMP_PATH
