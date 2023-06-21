@@ -176,6 +176,51 @@ build_cu()
     make prefix=$SHELL_FOLDER/output LIBEVENTDIR=$SHELL_FOLDER/output CC=$CROSS_PREFIX-gcc install
 }
 
+build_icu()
+{
+    # 编译icu
+    echo "----------------------------- 编译icu -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf icu4c-73_2-src.tgz
+    cd $SHELL_FOLDER/icu
+    mkdir -p build
+    cd build
+    ../source/runConfigureICU Linux
+    make -j$PROCESSORS
+    cd ../source
+    
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=/ \
+        --with-cross-build=$SHELL_FOLDER/icu/build \
+        --disable-shared \
+        --enable-static \
+        --disable-tests \
+        --disable-samples \
+        CFLAGS=-fPIC \
+        CXXFLAGS="-std=c++11 -fPIC" \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output_static_lib
+
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=/ \
+        --with-cross-build=$SHELL_FOLDER/icu/build \
+        --enable-shared \
+        --disable-static \
+        --disable-tests \
+        --disable-samples \
+        CXXFLAGS="-std=c++11 -fPIC" \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install DESTDIR=$SHELL_FOLDER/output
+
+    rm -rf $SHELL_FOLDER/icu
+}
+
 build_qt()
 {
     # 编译qt
@@ -195,6 +240,7 @@ build_qt()
         -strip \
         -ltcg \
         -silent \
+        -icu \
         -qpa linuxfb \
         -no-opengl \
         -skip webengine \
@@ -203,7 +249,9 @@ build_qt()
         -nomake examples \
         -xplatform linux-riscv64-gnu-g++ \
         -prefix /opt/Qt-5.15.10 \
-        -extprefix $SHELL_FOLDER/host_output
+        -extprefix $SHELL_FOLDER/host_output \
+        ICU_PREFIX=$SHELL_FOLDER/output_static_lib \
+        ICU_LIBS="-licui18n -licuuc -licudata"
 	make -j$PROCESSORS
 	make install
 	export PATH=$TEMP_PATH
@@ -1825,6 +1873,9 @@ screen)
     ;;
 cu)
     build_cu
+    ;;
+icu)
+    build_icu
     ;;
 qt)
     build_qt

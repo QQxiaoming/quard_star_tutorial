@@ -155,6 +155,12 @@ jobs:
           cd target_root_app
           ./build.sh cu
 
+      - name: Build icu
+        shell: bash -l {0}
+        run: |
+          cd target_root_app
+          ./build.sh icu
+  
       - name: Build libmnl
         shell: bash -l {0}
         run: |
