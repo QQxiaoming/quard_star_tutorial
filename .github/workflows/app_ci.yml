@@ -511,27 +511,32 @@ jobs:
           cd target_root_app
           ./build.sh virglrenderer
 
-      - name: Build qt
+      #- name: Build qt
+      #  shell: bash -l {0}
+      #  run: |
+      #    cd target_root_app
+      #    ./build.sh qt
+
+      #- name: Build qt example
+      #  shell: bash -l {0}
+      #  run: |
+      #    cd target_user_app/qt_example
+      #    ./build.sh
+
+      #- name: Packet host_tools
+      #  shell: bash -l {0}
+      #  run: |
+      #    cd target_root_app
+      #    mv host_output host_tools
+      #    tar -czf host_tools.tar.gz host_tools/
+      #    mv host_tools.tar.gz ../host_tools.tar.gz
+
+      - name: Packet target_sysroot
         shell: bash -l {0}
         run: |
           cd target_root_app
-          ./build.sh qt
-
-      - name: Build qt example
-        shell: bash -l {0}
-        run: |
-          cd target_user_app/qt_example
-          ./build.sh
-
-      - name: Packet all
-        shell: bash -l {0}
-        run: |
-          cd target_root_app
-          mv host_output host_tools
           mv output target_sysroot
-          tar -czf host_tools.tar.gz host_tools/
           tar -czf target_sysroot.tar.gz target_sysroot/
-          mv host_tools.tar.gz ../host_tools.tar.gz
           mv target_sysroot.tar.gz ../target_sysroot.tar.gz
 
       - name: Upload build asserts
@@ -541,9 +546,10 @@ jobs:
           path: |
             target_sysroot.tar.gz
 
-      - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
-        with:
-          name: host_tools
-          path: |
-            host_tools.tar.gz
+      #- name: Upload build asserts
+      #  uses: actions/upload-artifact@v3.1.0
+      #  with:
+      #    name: host_tools
+      #    path: |
+      #      host_tools.tar.gz
+

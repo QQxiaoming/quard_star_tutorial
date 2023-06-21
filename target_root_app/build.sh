@@ -188,7 +188,7 @@ build_icu()
     ../source/runConfigureICU Linux
     make -j$PROCESSORS
     cd ../source
-    
+
     ./configure \
         --host=riscv64-linux-gnu \
         --prefix=/ \
@@ -221,57 +221,7 @@ build_icu()
     rm -rf $SHELL_FOLDER/icu
 }
 
-build_qt()
-{
-    # 编译qt
-    echo "------------------------------- 编译qt -------------------------------"
-    cd $SHELL_FOLDER
-    cat qt-everywhere-opensource-src-5.15.10.tar.xz.part.* | tar -xvJf -
 
-    cd $SHELL_FOLDER/qt-everywhere-src-5.15.10
-    patch -p1 < ../qt-everywhere-src-5.15.10.patch
-    TEMP_PATH=$PATH
-	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
-	./configure \
-        -opensource \
-        -confirm-license \
-        -release \
-        -optimize-size \
-        -strip \
-        -ltcg \
-        -silent \
-        -icu \
-        -qpa linuxfb \
-        -no-opengl \
-        -skip webengine \
-        -nomake tools \
-        -nomake tests \
-        -nomake examples \
-        -xplatform linux-riscv64-gnu-g++ \
-        -prefix /opt/Qt-5.15.10 \
-        -extprefix $SHELL_FOLDER/host_output \
-        ICU_PREFIX=$SHELL_FOLDER/output_static_lib \
-        ICU_LIBS="-licui18n -licuuc -licudata"
-	make -j$PROCESSORS
-	make install
-	export PATH=$TEMP_PATH
-    if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
-        mkdir $SHELL_FOLDER/output/opt
-    fi
-    if [ ! -d "$SHELL_FOLDER/output/opt/Qt-5.15.10" ]; then
-        mkdir $SHELL_FOLDER/output/opt/Qt-5.15.10
-    fi
-    cp -r $SHELL_FOLDER/host_output/lib $SHELL_FOLDER/output/opt/Qt-5.15.10/lib
-    cp -r $SHELL_FOLDER/host_output/plugins $SHELL_FOLDER/output/opt/Qt-5.15.10/plugins
-    cp -r $SHELL_FOLDER/host_output/translations $SHELL_FOLDER/output/opt/Qt-5.15.10/translations
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/cmake
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/pkgconfig
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/metatypes
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.prl
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.a
-    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.la
-    rm -rf $SHELL_FOLDER/qt-everywhere-src-5.15.10
-}
 
 build_libmnl()
 {
@@ -1843,6 +1793,163 @@ build_virglrenderer()
     rm -rf $SHELL_FOLDER/virglrenderer-0.10.4
 }
 
+build_qt_without_opengl()
+{
+    # 编译qt
+    echo "------------------------------- 编译qt -------------------------------"
+    cd $SHELL_FOLDER
+    cat qt-everywhere-opensource-src-5.15.10.tar.xz.part.* | tar -xvJf -
+    cd $SHELL_FOLDER/qt-everywhere-src-5.15.10
+    if [ -d "./qtbase/mkspecs/linux-riscv64-gnu-g++" ]; then
+        rm -rf ./qtbase/mkspecs/linux-riscv64-gnu-g++
+    fi
+    # 构造qmake.conf
+    mkdir ./qtbase/mkspecs/linux-riscv64-gnu-g++
+    echo "#include \"../linux-g++/qplatformdefs.h\""         >  ./qtbase/mkspecs/linux-riscv64-gnu-g++/qplatformdefs.h
+    echo "MAKEFILE_GENERATOR = UNIX"                         >  ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "CONFIG += incremental"                             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_INCREMENTAL_STYLE = sublib"                  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "include(../common/linux.conf)"                     >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "include(../common/gcc-base-unix.conf)"             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "include(../common/g++-unix.conf)"                  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_CC = riscv64-unknown-linux-gnu-gcc"          >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_CXX = riscv64-unknown-linux-gnu-g++"         >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LINK = riscv64-unknown-linux-gnu-g++"        >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LINK_SHLIB = riscv64-unknown-linux-gnu-g++"  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBS = -latomic"                             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_AR = riscv64-unknown-linux-gnu-ar cqs"       >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_OBJCOPY = riscv64-unknown-linux-gnu-objcopy" >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_NM = riscv64-unknown-linux-gnu-nm -P"        >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_STRIP = riscv64-unknown-linux-gnu-strip"     >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "load(qt_config)"                                   >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    TEMP_PATH=$PATH
+	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
+	./configure \
+        -opensource \
+        -confirm-license \
+        -release \
+        -optimize-size \
+        -strip \
+        -ltcg \
+        -silent \
+        -icu \
+        -qpa linuxfb \
+        -no-opengl \
+        -skip webengine \
+        -nomake tools \
+        -nomake tests \
+        -nomake examples \
+        -xplatform linux-riscv64-gnu-g++ \
+        -prefix /opt/Qt-5.15.10 \
+        -extprefix $SHELL_FOLDER/host_output \
+        ICU_PREFIX=$SHELL_FOLDER/output_static_lib \
+        ICU_LIBS="-licui18n -licuuc -licudata"
+	make -j$PROCESSORS
+	make install
+	export PATH=$TEMP_PATH
+    if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
+        mkdir $SHELL_FOLDER/output/opt
+    fi
+    if [ -d "$SHELL_FOLDER/output/opt/Qt-5.15.10" ]; then
+        rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10
+    fi
+    mkdir $SHELL_FOLDER/output/opt/Qt-5.15.10
+    cp -r $SHELL_FOLDER/host_output/lib $SHELL_FOLDER/output/opt/Qt-5.15.10/lib
+    cp -r $SHELL_FOLDER/host_output/plugins $SHELL_FOLDER/output/opt/Qt-5.15.10/plugins
+    cp -r $SHELL_FOLDER/host_output/translations $SHELL_FOLDER/output/opt/Qt-5.15.10/translations
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/cmake
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/pkgconfig
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/metatypes
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.prl
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.a
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.la
+    rm -rf $SHELL_FOLDER/qt-everywhere-src-5.15.10
+}
+
+build_qt_with_opengl()
+{
+    # 编译qt
+    echo "------------------------------- 编译qt -------------------------------"
+    cd $SHELL_FOLDER
+    cat qt-everywhere-opensource-src-5.15.10.tar.xz.part.* | tar -xvJf -
+    cd $SHELL_FOLDER/qt-everywhere-src-5.15.10
+    if [ -d "./qtbase/mkspecs/linux-riscv64-gnu-g++" ]; then
+        rm -rf ./qtbase/mkspecs/linux-riscv64-gnu-g++
+    fi
+    # 构造qmake.conf
+    mkdir ./qtbase/mkspecs/linux-riscv64-gnu-g++
+    echo "#include \"../linux-g++/qplatformdefs.h\""         >  ./qtbase/mkspecs/linux-riscv64-gnu-g++/qplatformdefs.h
+    echo "MAKEFILE_GENERATOR = UNIX"                         >  ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "CONFIG += incremental"                             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_INCREMENTAL_STYLE = sublib"                  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "include(../common/linux.conf)"                     >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "include(../common/gcc-base-unix.conf)"             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "include(../common/g++-unix.conf)"                  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_INCDIR_OPENGL_ES2 = $SHELL_FOLDER/output/include"  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBDIR_OPENGL_ES2 = $SHELL_FOLDER/output/lib"      >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBS_OPENGL_ES2 = -lGLESv2 -lglapi"                >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_INCDIR_EGL = $SHELL_FOLDER/output/include"         >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBDIR_EGL = $SHELL_FOLDER/output/lib"             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBS_EGL = -lEGL -lgbm -lglapi -lexpat -ldrm"      >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_INCDIR_VULKAN = $SHELL_FOLDER/output/include"      >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBDIR_VULKAN = $SHELL_FOLDER/output/lib"          >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBS_VULKAN = -lvulkan"                            >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_CC = riscv64-unknown-linux-gnu-gcc"          >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_CXX = riscv64-unknown-linux-gnu-g++"         >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LINK = riscv64-unknown-linux-gnu-g++"        >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LINK_SHLIB = riscv64-unknown-linux-gnu-g++"  >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_LIBS = -latomic"                             >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_AR = riscv64-unknown-linux-gnu-ar cqs"       >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_OBJCOPY = riscv64-unknown-linux-gnu-objcopy" >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_NM = riscv64-unknown-linux-gnu-nm -P"        >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "QMAKE_STRIP = riscv64-unknown-linux-gnu-strip"     >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    echo "load(qt_config)"                                   >> ./qtbase/mkspecs/linux-riscv64-gnu-g++/qmake.conf
+    TEMP_PATH=$PATH
+	export PATH=$PATH:$CROSS_COMPILE_DIR/bin
+	./configure \
+        -opensource \
+        -confirm-license \
+        -release \
+        -optimize-size \
+        -strip \
+        -ltcg \
+        -silent \
+        -icu \
+        -qpa eglfs,linuxfb \
+        -opengl es2 \
+        -eglfs \
+        -vulkan \
+        -skip webengine \
+        -nomake tools \
+        -nomake tests \
+        -nomake examples \
+        -xplatform linux-riscv64-gnu-g++ \
+        -prefix /opt/Qt-5.15.10 \
+        -extprefix $SHELL_FOLDER/host_output \
+        ICU_PREFIX=$SHELL_FOLDER/output_static_lib \
+        ICU_LIBS="-licui18n -licuuc -licudata"
+	make -j$PROCESSORS
+	make install
+	export PATH=$TEMP_PATH
+    if [ ! -d "$SHELL_FOLDER/output/opt" ]; then
+        mkdir $SHELL_FOLDER/output/opt
+    fi
+    if [ -d "$SHELL_FOLDER/output/opt/Qt-5.15.10" ]; then
+        rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10
+    fi
+    mkdir $SHELL_FOLDER/output/opt/Qt-5.15.10
+    cp -r $SHELL_FOLDER/host_output/lib $SHELL_FOLDER/output/opt/Qt-5.15.10/lib
+    cp -r $SHELL_FOLDER/host_output/plugins $SHELL_FOLDER/output/opt/Qt-5.15.10/plugins
+    cp -r $SHELL_FOLDER/host_output/translations $SHELL_FOLDER/output/opt/Qt-5.15.10/translations
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/cmake
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/pkgconfig
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/metatypes
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.prl
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.a
+    rm -rf $SHELL_FOLDER/output/opt/Qt-5.15.10/lib/*.la
+    rm -rf $SHELL_FOLDER/qt-everywhere-src-5.15.10
+}
+
 case "$1" in
 make)
     build_make
@@ -1876,9 +1983,6 @@ cu)
     ;;
 icu)
     build_icu
-    ;;
-qt)
-    build_qt
     ;;
 libmnl)
     build_libmnl
@@ -2057,6 +2161,12 @@ vulkanloader)
 virglrenderer)
     build_virglrenderer
     ;;
+qt)
+    build_qt_without_opengl
+    ;;
+qt_opengl)
+    build_qt_with_opengl
+    ;;
 all)
     build_make
     build_ncurses
@@ -2126,7 +2236,7 @@ all)
     build_libepoxy
     build_vulkanloader
     build_virglrenderer
-	build_qt
+	build_qt_without_opengl
     ;;
 *)
     echo "Please enter the built package name or use \"all\" !"
