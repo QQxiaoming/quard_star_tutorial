@@ -1,0 +1,30 @@
+diff --color -Naru ./src/visualinfo.c ./src/visualinfo.c
+--- ./src/visualinfo.c	2017-07-31 19:25:39.000000000 +0800
++++ ./src/visualinfo.c	2023-06-26 13:26:05.343735056 +0800
+@@ -174,11 +174,26 @@
+   /* ---------------------------------------------------------------------- */
+   /* output header information */
+   /* OpenGL extensions */
++#if defined(GLEW_EGL)
++  typedef const GLubyte* (GLAPIENTRY * PFNGLGETSTRINGPROC) (GLenum name);
++  PFNGLGETSTRINGPROC getString = (PFNGLGETSTRINGPROC) eglGetProcAddress("glGetString");
++  if (!getString)
++  {
++    fprintf(stderr, "Error: eglGetProcAddress failed to fetch glGetString\n");
++    return 1;
++  }
++  fprintf(file, "OpenGL vendor string: %s\n", getString(GL_VENDOR));
++  fprintf(file, "OpenGL renderer string: %s\n", getString(GL_RENDERER));
++  fprintf(file, "OpenGL version string: %s\n", getString(GL_VERSION));
++  fprintf(file, "OpenGL extensions (GL_): \n");
++  PrintExtensions((const char*)getString(GL_EXTENSIONS));
++#else
+   fprintf(file, "OpenGL vendor string: %s\n", glGetString(GL_VENDOR));
+   fprintf(file, "OpenGL renderer string: %s\n", glGetString(GL_RENDERER));
+   fprintf(file, "OpenGL version string: %s\n", glGetString(GL_VERSION));
+   fprintf(file, "OpenGL extensions (GL_): \n");
+   PrintExtensions((const char*)glGetString(GL_EXTENSIONS));
++#endif
+ 
+ #ifndef GLEW_NO_GLU
+   /* GLU extensions */

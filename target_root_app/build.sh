@@ -718,6 +718,57 @@ build_libx11()
     make install
     rm -rf $SHELL_FOLDER/libX11/libXrandr-1.3.2
 
+    echo "---------------------------- 编译libxshmfence ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xvJf libxshmfence-1.3.2.tar.xz
+    cd $SHELL_FOLDER/libX11/libxshmfence-1.3.2
+    autoreconf -f -i 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --enable-malloc0returnsnull \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libX11/libxshmfence-1.3.2
+
+    echo "---------------------------- 编译glproto ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf glproto-1.4.17.tar.gz
+    cd $SHELL_FOLDER/libX11/glproto-1.4.17
+    autoreconf -f -i 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --enable-malloc0returnsnull \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libX11/glproto-1.4.17
+
+    echo "---------------------------- 编译dri2proto ----------------------------"
+    cd $SHELL_FOLDER/libX11
+    tar -xzvf dri2proto-2.8.tar.gz
+    cd $SHELL_FOLDER/libX11/dri2proto-2.8
+    autoreconf -f -i 
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --enable-malloc0returnsnull \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig:$SHELL_FOLDER/output/share/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+	make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/libX11/dri2proto-2.8
+
     unset ACLOCAL_PATH
 }
 
@@ -1701,14 +1752,15 @@ build_mesa() {
     PKG_CONFIG_LIBDIR=$SHELL_FOLDER/output/lib/pkgconfig \
         meson _build \
         --cross-file ./meson.ini \
-        -Dplatforms=[] \
+        -Dplatforms=x11 \
         -Dcpp_rtti=false \
         -Dvulkan-drivers=swrast,virtio-experimental \
-        -Dgallium-drivers=swrast,virgl \
+        -Dgallium-drivers=swrast,virgl,zink \
         -Dvulkan-layers=device-select \
         -Ddri3=enabled \
         -Dshared-llvm=disabled \
-        -Dglx=disabled \
+        -Dglx=dri \
+        -Dglx-direct=false \
         -Dgbm=enabled \
         -Dgallium-vdpau=disabled \
         -Dvalgrind=disabled \
@@ -1720,6 +1772,23 @@ build_mesa() {
     ninja -C _build
     ninja -C _build install
     rm -rf $SHELL_FOLDER/mesa-23.1.2
+
+    cd $SHELL_FOLDER
+    tar -xvJf glu-9.0.2.tar.xz
+    cd $SHELL_FOLDER/glu-9.0.2
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --prefix=$SHELL_FOLDER/output \
+        --disable-static \
+        --enable-shared \
+        CFLAGS=-I$SHELL_FOLDER/output/include \
+        LDFLAGS="-L$SHELL_FOLDER/output/lib" \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    rm -rf $SHELL_FOLDER/glu-9.0.2
 }
 
 build_libepoxy()
@@ -1791,6 +1860,56 @@ build_virglrenderer()
     ninja -C _build
     ninja -C _build install
     rm -rf $SHELL_FOLDER/virglrenderer-0.10.4
+}
+
+build_glew() {
+    echo "----------------------------- 编译glew -----------------------------"
+    cd $SHELL_FOLDER
+    tar -xzvf glew-2.1.0.tgz
+    cd $SHELL_FOLDER/glew-2.1.0
+    patch -p1 < $SHELL_FOLDER/glew-2.1.0.patch
+    PKG_CONFIG_LIBDIR=$SHELL_FOLDER/output/lib/pkgconfig \
+    cmake -S build/cmake -B build \
+        -DCMAKE_OSX_ARCHITECTURES="RISCV" \
+        -DCMAKE_INSTALL_PREFIX=/ \
+        -DOPENGL_gl_LIBRARY=$SHELL_FOLDER/output/lib/libEGL.so \
+        -DX11_X11_LIB=$SHELL_FOLDER/output/lib/libX11.so \
+        -DCMAKE_C_FLAGS="-DGLEW_EGL -DGLEW_NO_GLU -I$SHELL_FOLDER/output/include" \
+        -DCMAKE_EXE_LINKER_FLAGS="-L$SHELL_FOLDER/output/lib -Wl,--start-group -lX11 -lglapi -lxcb -lXau -lX11-xcb -lxcb-glx -lgbm -lexpat -lxcb-dri2 -lxcb-randr -lxcb-xfixes -ldrm -lxcb-dri3 -lxcb-present -lxcb-sync -lxshmfence -Wl,--end-group" \
+        -DCMAKE_C_COMPILER=$CROSS_PREFIX-gcc \
+        -DCMAKE_CXX_COMPILER=$CROSS_PREFIX-g++ \
+        .
+    cd build
+	make -j$PROCESSORS 
+    make install DESTDIR=$SHELL_FOLDER/output1
+    cp -r $SHELL_FOLDER/output1/usr/* $SHELL_FOLDER/output/
+    rm $SHELL_FOLDER/output/lib/libGLEW.a
+    rm -rf $SHELL_FOLDER/output1
+    sed -i 's/\/usr\/lib/${prefix}\/lib/g' $SHELL_FOLDER/output/lib/pkgconfig/glew.pc
+    sed -i 's|prefix=\/|prefix='"$SHELL_FOLDER"'\/output|g' $SHELL_FOLDER/output/lib/pkgconfig/glew.pc
+    rm -rf $SHELL_FOLDER/glew-2.1.0
+}
+
+build_mesa_demos() {
+    cd $SHELL_FOLDER
+    tar -xzvf mesa-demos-8.4.0.tar.gz
+    cd $SHELL_FOLDER/mesa-demos-8.4.0
+    ./configure \
+        --host=riscv64-linux-gnu \
+        --enable-shared \
+        --disable-static \
+        --disable-wayland \
+        --prefix=$SHELL_FOLDER/output1 \
+        CFLAGS=-I$SHELL_FOLDER/output/include \
+        LDFLAGS="-L$SHELL_FOLDER/output/lib -Wl,--start-group -lX11 -lglapi -lxcb -lXau -lX11-xcb -lxcb-glx -lgbm -lexpat -lxcb-dri2 -lxcb-randr -lxcb-xfixes -ldrm -lxcb-dri3 -lxcb-present -lxcb-sync -lxshmfence -Wl,--end-group" \
+        PKG_CONFIG_PATH=$SHELL_FOLDER/output/lib/pkgconfig \
+        CXX=$CROSS_PREFIX-g++ \
+        CC=$CROSS_PREFIX-gcc 
+    make -j$PROCESSORS
+    make install
+    ninja -C _build
+    ninja -C _build install
+    rm -rf $SHELL_FOLDER/mesa-demos-8.4.0
 }
 
 build_qt_without_opengl()
@@ -2165,6 +2284,12 @@ vulkanloader)
 virglrenderer)
     build_virglrenderer
     ;;
+glew)
+    build_glew
+    ;;
+mesa_demos)
+    build_mesa_demos
+    ;;
 qt)
     build_qt_without_opengl
     ;;
@@ -2240,6 +2365,8 @@ all)
     build_libepoxy
     build_vulkanloader
     build_virglrenderer
+    build_glew
+    #build_mesa_demos
 	build_qt_without_opengl
     ;;
 *)
