@@ -30,7 +30,7 @@
 | 9       | etbei      | RW    | X    | Enable Transmit Holding Register Empty Interrupt |
 | 10      | elsi       | RW    | X    | Enable Receiver Line Status Interrupt            |
 | 11      | edssi      | RW    | X    | Enable MODEM Status Interrupt                    |
-| [15:11] | Reserved   |       |      |                                                  |
+| [15:12] | Reserved   |       |      |                                                  |
 | 16      | ip         | RO    | X    | interrupt pending                                |
 | 16      | fe         | WO    | X    | FIFO Enable                                      |
 | [19:17] | iid        | RO    | X    | interrupt ID[2:0]                                |

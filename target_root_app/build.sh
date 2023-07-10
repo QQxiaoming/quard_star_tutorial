@@ -1772,7 +1772,10 @@ build_mesa() {
     ninja -C _build
     ninja -C _build install
     rm -rf $SHELL_FOLDER/mesa-23.1.2
+}
 
+build_glu() {
+    echo "----------------------------- 编译glu -----------------------------"
     cd $SHELL_FOLDER
     tar -xvJf glu-9.0.2.tar.xz
     cd $SHELL_FOLDER/glu-9.0.2
@@ -2275,6 +2278,9 @@ libdrm)
 mesa)
     build_mesa
     ;;
+glu)
+    build_glu
+    ;;
 libepoxy)
     build_libepoxy
     ;;
@@ -2362,6 +2368,7 @@ all)
     build_llvm
     build_libdrm
     build_mesa
+    build_glu
     build_libepoxy
     build_vulkanloader
     build_virglrenderer
