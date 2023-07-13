@@ -9,24 +9,30 @@
         <translation>メインウィンドウ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="350"/>
-        <location filename="../boardview/boardwindow.cpp" line="357"/>
-        <location filename="../boardview/boardwindow.cpp" line="373"/>
+        <location filename="../boardview/boardwindow.cpp" line="425"/>
+        <location filename="../boardview/boardwindow.cpp" line="432"/>
+        <location filename="../boardview/boardwindow.cpp" line="448"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="185"/>
+        <location filename="../boardview/boardwindow.cpp" line="207"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="185"/>
+        <location filename="../boardview/boardwindow.cpp" line="207"/>
         <source>power up error!</source>
         <translation>パワーアップエラー！</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="256"/>
+        <location filename="../boardview/boardwindow.cpp" line="292"/>
+        <source>LCDC:
+ VGA port 640x480.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/boardwindow.cpp" line="309"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -35,39 +41,39 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="336"/>
-        <location filename="../boardview/boardwindow.cpp" line="343"/>
+        <location filename="../boardview/boardwindow.cpp" line="411"/>
+        <location filename="../boardview/boardwindow.cpp" line="418"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="344"/>
+        <location filename="../boardview/boardwindow.cpp" line="419"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.探索するコンポーネントの上にマウスを移動します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="345"/>
+        <location filename="../boardview/boardwindow.cpp" line="420"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.コンポーネントを右クリックして設定を表示します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="346"/>
+        <location filename="../boardview/boardwindow.cpp" line="421"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="358"/>
+        <location filename="../boardview/boardwindow.cpp" line="433"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;バージョン&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;コミット&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;開発者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;ウェブサイト&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="204"/>
-        <location filename="../boardview/boardwindow.cpp" line="268"/>
+        <location filename="../boardview/boardwindow.cpp" line="255"/>
+        <location filename="../boardview/boardwindow.cpp" line="321"/>
         <source>Get Info</source>
         <translation>詳細</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="218"/>
+        <location filename="../boardview/boardwindow.cpp" line="271"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -77,93 +83,87 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="221"/>
+        <location filename="../boardview/boardwindow.cpp" line="274"/>
         <source>DDR:
  1G.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="224"/>
+        <location filename="../boardview/boardwindow.cpp" line="277"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="227"/>
+        <location filename="../boardview/boardwindow.cpp" line="280"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="230"/>
+        <location filename="../boardview/boardwindow.cpp" line="283"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="233"/>
+        <location filename="../boardview/boardwindow.cpp" line="286"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="236"/>
+        <location filename="../boardview/boardwindow.cpp" line="289"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="239"/>
-        <source>LCDC:
- VGA port.</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../boardview/boardwindow.cpp" line="244"/>
+        <location filename="../boardview/boardwindow.cpp" line="297"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="247"/>
+        <location filename="../boardview/boardwindow.cpp" line="300"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation>QEMU monitor:
  monitor終端.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="250"/>
+        <location filename="../boardview/boardwindow.cpp" line="303"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="253"/>
+        <location filename="../boardview/boardwindow.cpp" line="306"/>
         <source>IIS:
  wm8750.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="259"/>
+        <location filename="../boardview/boardwindow.cpp" line="312"/>
         <source>power:
  DC 12V.</source>
         <translation>電源:
  DC 12V.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="262"/>
+        <location filename="../boardview/boardwindow.cpp" line="315"/>
         <source>switch:
  power switch.</source>
         <translation>スイッチ:
  電源スイッチ.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="275"/>
+        <location filename="../boardview/boardwindow.cpp" line="328"/>
         <source>Open FileSystem</source>
         <translation>ファイルシステムを開く</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="284"/>
+        <location filename="../boardview/boardwindow.cpp" line="338"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
@@ -176,119 +176,216 @@ Support:
 3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="384"/>
+        <location filename="../boardview/boardwindow.cpp" line="459"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="510"/>
+        <location filename="../boardview/boardwindow.cpp" line="578"/>
         <source>Select SD IMG</source>
         <translation>SDディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="513"/>
+        <location filename="../boardview/boardwindow.cpp" line="581"/>
         <source>Select NorFlash IMG</source>
         <translation>NorFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="516"/>
+        <location filename="../boardview/boardwindow.cpp" line="584"/>
         <source>Select NandFlash IMG</source>
         <translation>NandFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="519"/>
+        <location filename="../boardview/boardwindow.cpp" line="587"/>
         <source>Select PFlash IMG</source>
         <translation>PFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="522"/>
+        <location filename="../boardview/boardwindow.cpp" line="590"/>
         <source>Select USBFlash IMG</source>
         <translation>USBFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="93"/>
+        <location filename="../boardview/boardwindow.h" line="104"/>
         <source>vga</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="94"/>
+        <location filename="../boardview/boardwindow.h" line="105"/>
         <source>uart2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="95"/>
+        <location filename="../boardview/boardwindow.h" line="106"/>
         <source>uart1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="96"/>
+        <location filename="../boardview/boardwindow.h" line="107"/>
         <source>uart0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="97"/>
+        <location filename="../boardview/boardwindow.h" line="108"/>
         <source>power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="98"/>
+        <location filename="../boardview/boardwindow.h" line="109"/>
         <source>soc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="99"/>
+        <location filename="../boardview/boardwindow.h" line="110"/>
         <source>ddr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="100"/>
+        <location filename="../boardview/boardwindow.h" line="111"/>
         <source>eth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="101"/>
+        <location filename="../boardview/boardwindow.h" line="112"/>
         <source>usb0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="102"/>
+        <location filename="../boardview/boardwindow.h" line="113"/>
         <source>usb1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="103"/>
+        <location filename="../boardview/boardwindow.h" line="114"/>
         <source>nand</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="104"/>
+        <location filename="../boardview/boardwindow.h" line="115"/>
         <source>nor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="105"/>
+        <location filename="../boardview/boardwindow.h" line="116"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="106"/>
+        <location filename="../boardview/boardwindow.h" line="117"/>
         <source>switch</source>
         <translation>スイッチ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="107"/>
+        <location filename="../boardview/boardwindow.h" line="118"/>
         <source>jtag</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="108"/>
+        <location filename="../boardview/boardwindow.h" line="119"/>
         <source>audio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="109"/>
+        <location filename="../boardview/boardwindow.h" line="120"/>
         <source>boot</source>
         <translation>ブートオプション</translation>
+    </message>
+</context>
+<context>
+    <name>BootSelectBox</name>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="14"/>
+        <source>Config Boot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="20"/>
+        <source>Boot Cfg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="26"/>
+        <source>pflash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="33"/>
+        <source>nor flash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="40"/>
+        <source>sd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="50"/>
+        <source>Update Cfg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/bootselectbox.ui" line="56"/>
+        <source>update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Konsole::Session</name>
+    <message>
+        <location filename="../lib/qtermwidget/Session.cpp" line="462"/>
+        <source>Bell in session &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Session.cpp" line="614"/>
+        <source>Session &apos;%1&apos; exited with status %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Session.cpp" line="616"/>
+        <source>Session &apos;%1&apos; crashed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Session.cpp" line="621"/>
+        <source>Session &apos;%1&apos; exited unexpectedly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Konsole::TerminalDisplay</name>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="1286"/>
+        <source>Size: XXX x XXX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="1298"/>
+        <source>Size: %1 x %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2783"/>
+        <source>Paste multiline text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2784"/>
+        <source>Are you sure you want to paste this text?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="3282"/>
+        <source>&lt;qt&gt;Output has been &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;suspended&lt;/a&gt; by pressing Ctrl+S.  Press &lt;b&gt;Ctrl+Q&lt;/b&gt; to resume.&lt;/qt&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Konsole::Vt102Emulation</name>
+    <message>
+        <location filename="../lib/qtermwidget/Vt102Emulation.cpp" line="1126"/>
+        <source>No keyboard translator available.  The information needed to convert key presses into characters to send to the terminal is missing.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -299,14 +396,128 @@ Support:
         <translation>ネット設定</translation>
     </message>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="24"/>
+        <location filename="../boardview/netselectbox.ui" line="20"/>
+        <source>NET Link State</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/netselectbox.ui" line="32"/>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../boardview/netselectbox.ui" line="39"/>
+        <location filename="../boardview/netselectbox.ui" line="57"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="34"/>
+        <location filename="../boardview/netselectbox.ui" line="77"/>
         <source>Can</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>QMessageBox</name>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2790"/>
+        <source>Show Details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="277"/>
+        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="292"/>
+        <source>Un-named Color Scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="473"/>
+        <source>Accessible Color Scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="515"/>
+        <source>Open Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="516"/>
+        <source>Copy Link Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="520"/>
+        <source>Send Email To...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="521"/>
+        <source>Copy Email Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QTermWidget</name>
+    <message>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="471"/>
+        <source>Color Scheme Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="472"/>
+        <source>Cannot load color scheme: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchBar</name>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="14"/>
+        <source>SearchBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="20"/>
+        <source>X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="32"/>
+        <source>Find:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="42"/>
+        <source>&lt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="54"/>
+        <source>&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="66"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="44"/>
+        <source>Match case</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="50"/>
+        <source>Regular expression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="54"/>
+        <source>Highlight all matches</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -317,7 +528,7 @@ Support:
         <translation>Telnet ウィンドウ</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="34"/>
+        <location filename="../telnetview/telnetwindow.ui" line="24"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>

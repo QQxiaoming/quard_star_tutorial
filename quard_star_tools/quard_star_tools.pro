@@ -13,6 +13,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += APP_VERSION="\\\"V$${BUILD_VERSION}\\\""
 QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
+include(./lib/qtermwidget/qtermwidget.pro)
+
 INCLUDEPATH += \
         -I . \
         -I ./boardview \

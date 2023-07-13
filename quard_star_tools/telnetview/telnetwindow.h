@@ -2,9 +2,9 @@
 #define TELNETWINDOW_H
 
 #include <QMainWindow>
-#include <QPlainTextEdit>
 
 #include "QTelnet.h"
+#include "qtermwidget.h"
 
 namespace Ui {
 class TelnetWindow;
@@ -21,16 +21,13 @@ public:
     void sendData(const QByteArray &ba);
 
 private slots:
-    void addText(const char *msg, int count);
     void refreshClicked();
+    void sendData(const char *data, int len);
+    void recvData(const char *buff, int len);
 
-protected:
-    void keyPressEvent(QKeyEvent *event);
-    
 private:
-    void insertPlainText(QByteArray data);
     QTelnet *telnet;
-    QByteArray dataPool;
+    QTermWidget *termWidget;
     QString severAddr;
     int severPort;
     Ui::TelnetWindow *ui;

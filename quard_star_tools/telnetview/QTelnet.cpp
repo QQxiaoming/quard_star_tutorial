@@ -61,6 +61,11 @@ void QTelnet::sendData(const QByteArray &ba)
         transpose( ba.constData(), ba.length() );
 }
 
+void QTelnet::sendData(const char *data, int len)
+{
+    sendData(QByteArray(data,len));
+}
+
 void QTelnet::socketError(QAbstractSocket::SocketError err)
 {
 	Q_UNUSED(err);

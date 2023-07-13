@@ -112,6 +112,7 @@ public:
     virtual void connectToHost(const QString &host, quint16 port);
 #endif
 	void sendData(const QByteArray &ba);
+    void sendData(const char *data, int len);
 	void setCustomCRLF(char lf = 13, char cr = 10);
 	void setCustomCR(char cr = 10, char cr2 = 0);
 
