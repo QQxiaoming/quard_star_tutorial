@@ -3,12 +3,10 @@ win32:{
 }
 
 unix:!macx:{
-    DEFINES += HAVE_UPDWTMPX
     PLATFORM_DIR=$$PWD/platform/linux
 }
 
 macx:{
-    DEFINES += HAVE_UTMPX
     PLATFORM_DIR=$$PWD/platform/macos
 }
 

@@ -101,9 +101,7 @@ extern "C" {
 }
 #else
 # include <utmp.h>
-# ifdef HAVE_UTMPX
-#  include <utmpx.h>
-# endif
+# include <utmpx.h>
 # if !defined(_PATH_UTMPX) && defined(_UTMPX_FILE)
 #  define _PATH_UTMPX _UTMPX_FILE
 # endif
@@ -507,20 +505,12 @@ void KPty::login(const char * user, const char * remotehost)
     addToUtmp(d->ttyName.constData(), remotehost, d->masterFd);
     Q_UNUSED(user);
 #else
-# ifdef HAVE_UTMPX
     struct utmpx l_struct;
-# else
-    struct utmp l_struct;
-# endif
     memset(&l_struct, 0, sizeof(l_struct));
     // note: strncpy without terminators _is_ correct here. man 4 utmp
 
     if (user) {
-# ifdef HAVE_UTMPX
         strncpy(l_struct.ut_user, user, sizeof(l_struct.ut_user));
-# else
-        strncpy(l_struct.ut_name, user, sizeof(l_struct.ut_name));
-# endif
     }
 
     if (remotehost) {
@@ -544,11 +534,7 @@ void KPty::login(const char * user, const char * remotehost)
 #  endif
 # endif
 
-# ifdef HAVE_UTMPX
     gettimeofday(&l_struct.ut_tv, 0);
-# else
-    l_struct.ut_time = time(nullptr);
-# endif
 
 # ifdef HAVE_LOGIN
 #  ifdef HAVE_LOGINX
@@ -566,7 +552,6 @@ void KPty::login(const char * user, const char * remotehost)
     l_struct.ut_session = getsid(0);
 #   endif
 #  endif
-#  ifdef HAVE_UTMPX
     utmpxname(_PATH_UTMPX);
     setutxent();
     pututxline(&l_struct);
@@ -574,13 +559,6 @@ void KPty::login(const char * user, const char * remotehost)
 #   ifdef HAVE_UPDWTMPX
     updwtmpx(_PATH_WTMPX, &l_struct);
 #   endif
-#  else
-    utmpname(_PATH_UTMP);
-    setutent();
-    pututline(&l_struct);
-    endutent();
-    updwtmp(_PATH_WTMP, &l_struct);
-#  endif
 # endif
 #endif
 }
@@ -613,29 +591,15 @@ void KPty::logout()
     ::logout(str_ptr);
 #  endif
 # else
-#  ifdef HAVE_UTMPX
     struct utmpx l_struct, *ut;
-#  else
-    struct utmp l_struct, *ut;
-#  endif
     memset(&l_struct, 0, sizeof(l_struct));
 
     strncpy(l_struct.ut_line, str_ptr, sizeof(l_struct.ut_line));
 
-#  ifdef HAVE_UTMPX
     utmpxname(_PATH_UTMPX);
     setutxent();
     if ((ut = getutxline(&l_struct))) {
-#  else
-    utmpname(_PATH_UTMP);
-    setutent();
-    if ((ut = getutline(&l_struct))) {
-#  endif
-#  ifdef HAVE_UTMPX
         memset(ut->ut_user, 0, sizeof(*ut->ut_user));
-#  else
-        memset(ut->ut_name, 0, sizeof(*ut->ut_name));
-#  endif
         memset(ut->ut_host, 0, sizeof(*ut->ut_host));
 #  ifdef HAVE_STRUCT_UTMP_UT_SYSLEN
         ut->ut_syslen = 0;
@@ -643,17 +607,10 @@ void KPty::logout()
 #  ifdef HAVE_STRUCT_UTMP_UT_TYPE
         ut->ut_type = DEAD_PROCESS;
 #  endif
-#  ifdef HAVE_UTMPX
         gettimeofday(&ut->ut_tv, 0);
         pututxline(ut);
     }
     endutxent();
-#  else
-    ut->ut_time = time(nullptr);
-    pututline(ut);
-}
-endutent();
-#  endif
 # endif
 #endif
 }
