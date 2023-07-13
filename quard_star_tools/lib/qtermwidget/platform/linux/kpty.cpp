@@ -248,16 +248,7 @@ bool KPty::open()
     }
 
 #elif defined(HAVE_PTSNAME) || defined(TIOCGPTN)
-
-#ifdef HAVE_POSIX_OPENPT
     d->masterFd = ::posix_openpt(O_RDWR|O_NOCTTY);
-#elif defined(HAVE_GETPT)
-    d->masterFd = ::getpt();
-#elif defined(PTM_DEVICE)
-    d->masterFd = ::open(PTM_DEVICE, O_RDWR|O_NOCTTY);
-#else
-# error No method to open a PTY master detected.
-#endif
     if (d->masterFd >= 0) {
 #ifdef HAVE_PTSNAME
         char *ptsn = ptsname(d->masterFd);
@@ -468,7 +459,8 @@ void KPty::close()
         if (!geteuid()) {
             struct stat st;
             if (!stat(d->ttyName.data(), &st)) {
-                chown(d->ttyName.data(), 0, st.st_gid == getgid() ? 0 : -1);
+                int f = chown(d->ttyName.data(), 0, st.st_gid == getgid() ? 0 : -1);
+                Q_UNUSED(f);
                 chmod(d->ttyName.data(), S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH);
             }
         } else {

@@ -43,9 +43,7 @@
 #ifdef HAVE_SYS_FILIO_H
 # include <sys/filio.h>
 #endif
-#ifdef HAVE_SYS_TIME_H
 # include <sys/time.h>
-#endif
 
 #if defined(Q_OS_FREEBSD) || defined(Q_OS_MAC)
   // "the other end's output queue size" - kinda braindead, huh?

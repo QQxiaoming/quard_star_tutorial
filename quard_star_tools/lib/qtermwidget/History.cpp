@@ -26,8 +26,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstdio>
-#include <sys/types.h>
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#else
 #include <sys/mman.h>
+#include <sys/types.h>
+#endif
 #include <unistd.h>
 #include <cerrno>
 
@@ -113,6 +117,17 @@ void HistoryFile::map()
 {
     Q_ASSERT( fileMap == nullptr );
 
+#if defined(Q_OS_WIN)
+    fileMap = (char*) VirtualAlloc(NULL, length, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+
+    //if mmap'ing fails, fall back to the read-lseek combination
+    if ( fileMap == NULL )
+    {
+            readWriteBalance = 0;
+            fileMap = nullptr;
+            //qDebug() << __FILE__ << __LINE__ << ": mmap'ing history failed.  errno = " << errno;
+    }
+#else
     fileMap = (char*)mmap( nullptr , length , PROT_READ , MAP_PRIVATE , ion , 0 );
 
     //if mmap'ing fails, fall back to the read-lseek combination
@@ -122,12 +137,17 @@ void HistoryFile::map()
             fileMap = nullptr;
             //qDebug() << __FILE__ << __LINE__ << ": mmap'ing history failed.  errno = " << errno;
     }
+#endif
 }
 
 void HistoryFile::unmap()
 {
+#if defined(Q_OS_WIN)
+    VirtualFree((VOID *) fileMap, 0, MEM_RELEASE );
+#else
     int result = munmap( fileMap , length );
     Q_ASSERT( result == 0 ); Q_UNUSED( result );
+#endif
 
     fileMap = nullptr;
 }

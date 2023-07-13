@@ -27,8 +27,12 @@
 #include "BlockArray.h"
 
 // System
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#else
 #include <sys/mman.h>
 #include <sys/param.h>
+#endif
 #include <unistd.h>
 #include <cstdio>
 
@@ -48,7 +52,13 @@ BlockArray::BlockArray()
 {
     // lastmap_index = index = current = size_t(-1);
     if (blocksize == 0) {
+#if defined(Q_OS_WIN)
+        SYSTEM_INFO system_info;
+        GetSystemInfo(&system_info);
+        blocksize = ((sizeof(Block) / system_info.dwPageSize) + 1) * system_info.dwPageSize;
+#else
         blocksize = ((sizeof(Block) / getpagesize()) + 1) * getpagesize();
+#endif
     }
 
 }
@@ -151,7 +161,11 @@ const Block * BlockArray::at(size_t i)
     Q_ASSERT(j < size);
     unmap();
 
+#if defined(Q_OS_WIN)
+    Block * block = (Block *)VirtualAlloc(NULL, size, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+#else
     Block * block = (Block *)mmap(nullptr, blocksize, PROT_READ, MAP_PRIVATE, ion, j * blocksize);
+#endif
 
     if (block == (Block *)-1) {
         perror("mmap");
@@ -167,7 +181,12 @@ const Block * BlockArray::at(size_t i)
 void BlockArray::unmap()
 {
     if (lastmap) {
+#if defined(Q_OS_WIN)
+        int res = 0;
+        VirtualFree((VOID *) lastmap, 0, MEM_RELEASE );
+#else
         int res = munmap((char *)lastmap, blocksize);
+#endif
         if (res < 0) {
             perror("munmap");
         }
@@ -230,7 +249,8 @@ bool BlockArray::setHistorySize(size_t newsize)
         return false;
     } else {
         decreaseBuffer(newsize);
-        ftruncate(ion, length*blocksize);
+        int f = ftruncate(ion, length*blocksize);
+        Q_UNUSED(f);
         size = newsize;
 
         return true;

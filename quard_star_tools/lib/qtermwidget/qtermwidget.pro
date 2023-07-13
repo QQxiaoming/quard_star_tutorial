@@ -1,8 +1,19 @@
-DEFINES += HAVE_POSIX_OPENPT
-DEFINES += HAVE_SYS_TIME_H
-DEFINES += HAVE_UPDWTMPX
+win32:{
+    PLATFORM_DIR=$$PWD/platform/windows
+}
+
+unix:!macx:{
+    DEFINES += HAVE_UPDWTMPX
+    PLATFORM_DIR=$$PWD/platform/linux
+}
+
+macx:{
+    DEFINES += HAVE_UTMPX
+    PLATFORM_DIR=$$PWD/platform/macos
+}
 
 INCLUDEPATH += \
+        -I $$PLATFORM_DIR \
         -I $$PWD 
 
 SOURCES += \
@@ -15,20 +26,20 @@ SOURCES += \
     $$PWD/KeyboardTranslator.cpp \
     $$PWD/konsole_wcwidth.cpp \
     $$PWD/kprocess.cpp \
-    $$PWD/kpty.cpp \
-    $$PWD/kptydevice.cpp \
-    $$PWD/kptyprocess.cpp \
     $$PWD/qtermwidget.cpp \
     $$PWD/Screen.cpp \
     $$PWD/ScreenWindow.cpp \
     $$PWD/SearchBar.cpp \
     $$PWD/Session.cpp \
-    $$PWD/Pty.cpp \
     $$PWD/ShellCommand.cpp \
     $$PWD/TerminalCharacterDecoder.cpp \
     $$PWD/TerminalDisplay.cpp \
     $$PWD/tools.cpp \
-    $$PWD/Vt102Emulation.cpp
+    $$PWD/Vt102Emulation.cpp \
+    $$PLATFORM_DIR/kpty.cpp \
+    $$PLATFORM_DIR/kptydevice.cpp \
+    $$PLATFORM_DIR/kptyprocess.cpp \
+    $$PLATFORM_DIR/Pty.cpp
 
 HEADERS += \
     $$PWD/BlockArray.h \
@@ -45,12 +56,12 @@ HEADERS += \
     $$PWD/KeyboardTranslator.h \
     $$PWD/konsole_wcwidth.h \
     $$PWD/kprocess.h \
-    $$PWD/kptydevice.h \
-    $$PWD/kpty.h \
-    $$PWD/kpty_p.h \
-    $$PWD/kptyprocess.h \
+    $$PLATFORM_DIR/kptydevice.h \
+    $$PLATFORM_DIR/kpty.h \
+    $$PLATFORM_DIR/kpty_p.h \
+    $$PLATFORM_DIR/Pty.h \
+    $$PLATFORM_DIR/kptyprocess.h \
     $$PWD/LineFont.h \
-    $$PWD/Pty.h \
     $$PWD/qtermwidget.h \
     $$PWD/qtermwidget_export.h \
     $$PWD/qtermwidget_version.h \

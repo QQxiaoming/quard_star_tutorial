@@ -79,5 +79,6 @@ void TelnetWindow::sendData(const char *data, int len)
 
 void TelnetWindow::recvData(const char *buff, int len)
 {
-    write(this->termWidget->getPtySlaveFd(), buff, len);
+    size_t w = write(this->termWidget->getPtySlaveFd(), buff, static_cast<size_t>(len));
+    Q_UNUSED(w);
 }

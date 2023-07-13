@@ -15,6 +15,20 @@
 #include <cwchar>
 #endif
 
+#if defined(Q_OS_WIN)
+#include <wchar.h>
+
+int wcwidth(wchar_t wc) {
+  if (wc == 0) {
+    return 0;
+  } else if (iswprint(wc)) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
+#endif
+
 #include "konsole_wcwidth.h"
 
 int konsole_wcwidth(wchar_t ucs)

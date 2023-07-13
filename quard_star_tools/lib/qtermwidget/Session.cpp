@@ -547,6 +547,9 @@ void Session::refresh()
 
 bool Session::sendSignal(int signal)
 {
+#if defined(Q_OS_WIN)
+    return false;
+#else 
     int result = ::kill(static_cast<pid_t>(_shellProcess->processId()),signal);
 
      if ( result == 0 )
@@ -556,16 +559,24 @@ bool Session::sendSignal(int signal)
      }
      else
          return false;
+#endif 
 }
 
 void Session::close()
 {
     _autoClose = true;
     _wantedClose = true;
+#if defined(Q_OS_WIN)
+    if (!_shellProcess->isRunning()) {
+        // Forced close.
+        QTimer::singleShot(1, this, SIGNAL(finished()));
+    }
+#else
     if (!_shellProcess->isRunning() || !sendSignal(SIGHUP)) {
         // Forced close.
         QTimer::singleShot(1, this, SIGNAL(finished()));
     }
+#endif
 }
 
 void Session::sendText(const QString & text) const
