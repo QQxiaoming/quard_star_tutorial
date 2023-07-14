@@ -146,6 +146,22 @@ void KPtyProcess::setupChildProcess()
         dup2(d->pty->slaveFd(), 2);
 
     KProcess::setupChildProcess();
+
+    // reset all signal handlers
+    // this ensures that terminal applications respond to
+    // signals generated via key sequences such as Ctrl+C
+    // (which sends SIGINT)
+    struct sigaction action;
+    sigset_t sigset;
+    sigemptyset(&action.sa_mask);
+    sigemptyset(&sigset);
+    action.sa_handler = SIG_DFL;
+    action.sa_flags = 0;
+    for (int signal=1;signal < NSIG; signal++) {
+        sigaction(signal,&action,nullptr);
+        sigaddset(&sigset, signal);
+    }
+    sigprocmask(SIG_UNBLOCK, &sigset, nullptr);
 }
 #endif
 

@@ -124,6 +124,41 @@ bool KPty::setEcho(bool echo)
     return false;
 }
 
+bool KPty::getEcho(void) const
+{
+    return false;
+}
+
+bool KPty::setFlowControlEnabled(bool enable)
+{
+    return false;
+}
+
+bool KPty::getFlowControlEnabled(void) const
+{
+    return false;
+}
+
+bool KPty::setUtf8Mode(bool enable)
+{
+    return false;
+}
+
+bool KPty::getUtf8Mode(void) const
+{
+    return false;
+}
+
+bool KPty::setErase(char c)
+{
+    return false;
+}
+
+char KPty::getErase(void) const
+{
+    return '\0';
+}
+
 const char * KPty::ttyName() const
 {
     return nullptr;
@@ -135,6 +170,11 @@ int KPty::masterFd() const
 }
 
 int KPty::slaveFd() const
+{
+    return 0;
+}
+
+int KPty::foregroundProcessGroup() const
 {
     return 0;
 }

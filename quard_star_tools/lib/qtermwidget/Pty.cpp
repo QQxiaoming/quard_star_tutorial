@@ -64,20 +64,29 @@ void Pty::setFlowControlEnabled(bool enable)
 
   if (pty()->masterFd() >= 0)
   {
-
+    if(!pty()->setFlowControlEnabled(enable))
+      qWarning() << "Unable to set terminal attributes.";
   }
 }
 bool Pty::flowControlEnabled() const
 {
+    if (pty()->masterFd() >= 0)
+    {
+        return pty()->getFlowControlEnabled();
+    }
     qWarning() << "Unable to get flow control status, terminal not connected.";
     return false;
 }
 
 void Pty::setUtf8Mode(bool enable)
 {
-#ifdef IUTF8 // XXX not a reasonable place to check it.
   _utf8 = enable;
-#endif
+
+  if (pty()->masterFd() >= 0)
+  {
+    if(!pty()->setUtf8Mode(enable))
+      qWarning() << "Unable to set terminal attributes.";
+  }
 }
 
 void Pty::setErase(char erase)
@@ -86,11 +95,17 @@ void Pty::setErase(char erase)
 
   if (pty()->masterFd() >= 0)
   {
+    if(!pty()->setErase(erase))
+      qWarning() << "Unable to set terminal attributes.";
   }
 }
 
 char Pty::erase() const
 {
+    if (pty()->masterFd() >= 0)
+    {
+        return pty()->getErase();
+    }
 
     return _eraseChar;
 }
@@ -152,6 +167,12 @@ int Pty::start(const QString& program,
 
   setUseUtmp(addToUtmp);
 
+  pty()->setFlowControlEnabled(_xonXoff);
+  pty()->setUtf8Mode(_utf8);
+
+  if (_eraseChar != 0)
+      pty()->setErase(_eraseChar);
+
   pty()->setWinSize(_windowLines, _windowColumns);
 
   KProcess::start();
@@ -164,7 +185,11 @@ int Pty::start(const QString& program,
 
 void Pty::setEmptyPTYProperties()
 {
+  pty()->setFlowControlEnabled(_xonXoff);
+  pty()->setUtf8Mode(_utf8);
 
+  if (_eraseChar != 0)
+      pty()->setErase(_eraseChar);
 }
 
 void Pty::setWriteable(bool writeable)
@@ -234,7 +259,13 @@ void Pty::lockPty(bool lock)
 
 int Pty::foregroundProcessGroup() const
 {
-
-    return 0;
+  return pty()->foregroundProcessGroup();
 }
 
+// TODO: we need to handle this
+#if QT_VERSION < 0x060000
+void Pty::setupChildProcess()
+{
+    KPtyProcess::setupChildProcess();
+}
+#endif

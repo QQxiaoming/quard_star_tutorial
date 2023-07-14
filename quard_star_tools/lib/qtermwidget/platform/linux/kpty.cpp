@@ -394,7 +394,106 @@ bool KPty::setEcho(bool echo)
     } else {
         ttmode.c_lflag |= ECHO;
     }
-    return tcSetAttr(&ttmode);
+    if (!tcSetAttr(&ttmode)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+bool KPty::getEcho(void) const
+{
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return false;
+    }
+    return (ttmode.c_iflag & ECHO) == ECHO;
+}
+
+bool KPty::setFlowControlEnabled(bool enable)
+{
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return false;
+    }
+    if (!enable) {
+        ttmode.c_iflag &= ~(IXOFF | IXON);
+    } else {
+        ttmode.c_iflag |= (IXOFF | IXON);
+    }
+    if (!tcSetAttr(&ttmode)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+bool KPty::getFlowControlEnabled(void) const
+{
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return false;
+    }
+    return (ttmode.c_iflag & (IXOFF | IXON)) == (IXOFF | IXON);
+}
+
+bool KPty::setUtf8Mode(bool enable)
+{
+#ifdef IUTF8
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return false;
+    }
+    if (!enable) {
+        ttmode.c_iflag &= ~IUTF8;
+    } else {
+        ttmode.c_iflag |= IUTF8;
+    }
+    if (!tcSetAttr(&ttmode)) {
+        return false;
+    } else {
+        return true;
+    }
+#else
+    Q_UNUSED(enable);
+    return false;
+#endif
+}
+
+bool KPty::getUtf8Mode(void) const
+{
+#ifdef IUTF8
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return false;
+    }
+    return (ttmode.c_iflag & IUTF8) == IUTF8;
+#else
+    return false;
+#endif
+}
+
+bool KPty::setErase(char c)
+{
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return false;
+    }
+    ttmode.c_cc[VERASE] = c;
+    if (!tcSetAttr(&ttmode)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+char KPty::getErase(void) const
+{
+    struct ::termios ttmode;
+    if (!tcGetAttr(&ttmode)) {
+        return '\0';
+    }
+    return ttmode.c_cc[VERASE];
 }
 
 const char * KPty::ttyName() const
@@ -416,4 +515,16 @@ int KPty::slaveFd() const
     Q_D(const KPty);
 
     return d->slaveFd;
+}
+
+int KPty::foregroundProcessGroup() const
+{
+    int pid = tcgetpgrp(masterFd());
+
+    if ( pid != -1 )
+    {
+        return pid;
+    }
+
+    return 0;
 }

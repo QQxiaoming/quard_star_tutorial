@@ -156,6 +156,16 @@ public:
      * @return @c true on success, false otherwise
      */
     bool setEcho(bool echo);
+    bool getEcho(void) const;
+
+    bool setFlowControlEnabled(bool enable);
+    bool getFlowControlEnabled(void) const;
+
+    bool setUtf8Mode(bool enable);
+    bool getUtf8Mode(void) const;
+
+    bool setErase(char c);
+    char getErase(void) const;
 
     /**
      * @return the name of the slave pty device.
@@ -177,6 +187,8 @@ public:
      * This function should be called only while the pty slave is open.
      */
     int slaveFd() const;
+
+    int foregroundProcessGroup() const;
 
 protected:
     /**

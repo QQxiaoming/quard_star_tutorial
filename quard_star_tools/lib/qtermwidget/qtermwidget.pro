@@ -24,6 +24,7 @@ SOURCES += \
     $$PWD/KeyboardTranslator.cpp \
     $$PWD/konsole_wcwidth.cpp \
     $$PWD/kprocess.cpp \
+    $$PWD/Pty.cpp \
     $$PWD/qtermwidget.cpp \
     $$PWD/Screen.cpp \
     $$PWD/ScreenWindow.cpp \
@@ -36,8 +37,7 @@ SOURCES += \
     $$PWD/Vt102Emulation.cpp \
     $$PLATFORM_DIR/kpty.cpp \
     $$PLATFORM_DIR/kptydevice.cpp \
-    $$PLATFORM_DIR/kptyprocess.cpp \
-    $$PLATFORM_DIR/Pty.cpp
+    $$PLATFORM_DIR/kptyprocess.cpp
 
 HEADERS += \
     $$PWD/BlockArray.h \
@@ -54,11 +54,7 @@ HEADERS += \
     $$PWD/KeyboardTranslator.h \
     $$PWD/konsole_wcwidth.h \
     $$PWD/kprocess.h \
-    $$PLATFORM_DIR/kptydevice.h \
-    $$PLATFORM_DIR/kpty.h \
-    $$PLATFORM_DIR/kpty_p.h \
-    $$PLATFORM_DIR/Pty.h \
-    $$PLATFORM_DIR/kptyprocess.h \
+    $$PWD/Pty.h \
     $$PWD/LineFont.h \
     $$PWD/qtermwidget.h \
     $$PWD/qtermwidget_export.h \
@@ -71,7 +67,11 @@ HEADERS += \
     $$PWD/TerminalCharacterDecoder.h \
     $$PWD/TerminalDisplay.h \
     $$PWD/tools.h \
-    $$PWD/Vt102Emulation.h
+    $$PWD/Vt102Emulation.h \
+    $$PLATFORM_DIR/kptydevice.h \
+    $$PLATFORM_DIR/kpty.h \
+    $$PLATFORM_DIR/kpty_p.h \
+    $$PLATFORM_DIR/kptyprocess.h
 
 FORMS += \
     $$PWD/SearchBar.ui
