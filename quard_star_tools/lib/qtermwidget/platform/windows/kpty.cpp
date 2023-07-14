@@ -26,60 +26,7 @@
 
 #include <QtDebug>
 
-
-#if defined(__FreeBSD__) || defined(__DragonFly__)
-#define HAVE_LOGIN
-#define HAVE_LIBUTIL_H
-#endif
-
-#if defined(__OpenBSD__)
-#define HAVE_LOGIN
-#define HAVE_UTIL_H
-#endif
-
-#if defined(__NetBSD__)
-#define HAVE_LOGIN
-#define HAVE_UTIL_H
-#define HAVE_OPENPTY
-#endif
-
-#if defined(__APPLE__)
-#define HAVE_OPENPTY
-#define HAVE_UTIL_H
-#endif
-
-#ifdef __sgi
-#define __svr4__
-#endif
-
-#ifdef __osf__
-#define _OSF_SOURCE
-#include <float.h>
-#endif
-
-#ifdef _AIX
-#define _ALL_SOURCE
-#endif
-
-// __USE_XOPEN isn't defined by default in ICC
-// (needed for ptsname(), grantpt() and unlockpt())
-#ifdef __INTEL_COMPILER
-#  ifndef __USE_XOPEN
-#    define __USE_XOPEN
-#  endif
-#endif
-
-#if defined(Q_OS_WIN)
 #include <windows.h>
-#else
-#include <sys/types.h>
-#include <sys/ioctl.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <sys/stat.h>
-#include <sys/param.h>
-#include <grp.h>
-#endif
 
 #include <cerrno>
 #include <fcntl.h>

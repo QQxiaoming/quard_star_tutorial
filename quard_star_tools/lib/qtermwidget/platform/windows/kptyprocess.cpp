@@ -78,7 +78,7 @@ KPtyProcess::~KPtyProcess()
     if (state() != QProcess::NotRunning)
     {
         qWarning() << Q_FUNC_INFO << "the terminal process is still running, trying to stop it by SIGHUP";
-        //::kill(static_cast<pid_t>(processId()), SIGHUP);
+        hangUp();
         waitForFinished(300);
         if (state() != QProcess::NotRunning)
             qCritical() << Q_FUNC_INFO << "process didn't stop upon SIGHUP and will be SIGKILL-ed";
@@ -118,6 +118,11 @@ KPtyDevice *KPtyProcess::pty() const
     Q_D(const KPtyProcess);
 
     return d->pty;
+}
+
+int KPtyProcess::hangUp()
+{
+    return 0;
 }
 
 #if QT_VERSION < 0x060000

@@ -133,6 +133,9 @@ public:
      */
     bool isUseUtmp() const;
 
+    /** Sends the HangUp signal to the terminal process. */
+    int hangUp();
+    
     /**
      * Get the PTY device of this process.
      *

@@ -289,8 +289,8 @@ public:
     /** Specifies whether a utmp entry should be created for the pty used by this session. */
     void setAddToUtmp(bool);
 
-    /** Sends the specified @p signal to the terminal process. */
-    bool sendSignal(int signal);
+    /** Sends the HangUp signal to the terminal process. */
+    bool sendHangUp(void);
 
     /**
      * Specifies whether to close the session automatically when the terminal
