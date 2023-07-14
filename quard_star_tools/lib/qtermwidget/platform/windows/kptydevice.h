@@ -73,21 +73,6 @@ public:
     bool open(OpenMode mode = ReadWrite | Unbuffered) override;
 
     /**
-     * Open using an existing pty master. The ownership of the fd
-     * remains with the caller, i.e., close() will not close the fd.
-     *
-     * This is useful if you wish to attach a secondary "controller" to an
-     * existing pty device such as a terminal widget.
-     * Note that you will need to use setSuspended() on both devices to
-     * control which one gets the incoming data from the pty.
-     *
-     * @param fd an open pty master file descriptor.
-     * @param mode the device mode to open the pty with.
-     * @return true if a pty pair was successfully opened
-     */
-    bool open(int fd, OpenMode mode = ReadWrite | Unbuffered);
-
-    /**
      * Close the pty master/slave pair.
      */
     void close() override;

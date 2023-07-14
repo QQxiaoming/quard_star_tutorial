@@ -169,8 +169,7 @@ public:
 
     void _k_onStateChanged(QProcess::ProcessState newState)
     {
-        if (newState == QProcess::NotRunning && addUtmp)
-            pty->logout();
+
     }
 
     KPtyDevice *pty;

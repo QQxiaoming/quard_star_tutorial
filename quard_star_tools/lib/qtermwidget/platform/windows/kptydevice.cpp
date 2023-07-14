@@ -38,6 +38,7 @@
 #include <cerrno>
 #include <csignal>
 
+#include <winsock2.h>
 
 //////////////////
 // private data //
@@ -55,12 +56,22 @@ bool KPtyDevicePrivate::_k_canWrite()
 
 bool KPtyDevicePrivate::doWait(int msecs, bool reading)
 {
-    return false;
+    return true;
 }
 
 void KPtyDevicePrivate::finishOpen(QIODevice::OpenMode mode)
 {
+    Q_Q(KPtyDevice);
 
+    q->QIODevice::open(mode);
+    unsigned long flag = 1; // 1 to enable non-blocking socket
+    ioctlsocket(q->masterFd(), FIONBIO, &flag);
+    readBuffer.clear();
+    readNotifier = new QSocketNotifier(q->masterFd(), QSocketNotifier::Read, q);
+    writeNotifier = new QSocketNotifier(q->masterFd(), QSocketNotifier::Write, q);
+    QObject::connect(readNotifier, SIGNAL(activated(int)), q, SLOT(_k_canRead()));
+    QObject::connect(writeNotifier, SIGNAL(activated(int)), q, SLOT(_k_canWrite()));
+    readNotifier->setEnabled(true);
 }
 
 /////////////////////////////
@@ -86,20 +97,6 @@ bool KPtyDevice::open(OpenMode mode)
         return true;
 
     if (!KPty::open()) {
-        setErrorString(QLatin1String("Error opening PTY"));
-        return false;
-    }
-
-    d->finishOpen(mode);
-
-    return true;
-}
-
-bool KPtyDevice::open(int fd, OpenMode mode)
-{
-    Q_D(KPtyDevice);
-
-    if (!KPty::open(fd)) {
         setErrorString(QLatin1String("Error opening PTY"));
         return false;
     }

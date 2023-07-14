@@ -33,9 +33,12 @@
 #include "kptydevice.h"
 
 #include <cstdlib>
+#include <cstdio>
 #include <unistd.h>
 #include <csignal>
 #include <QDebug>
+
+#include <io.h>
 
 KPtyProcess::KPtyProcess(QObject *parent) :
     KProcess(new KPtyProcessPrivate, parent)
@@ -46,18 +49,27 @@ KPtyProcess::KPtyProcess(QObject *parent) :
     d->pty->open();
     connect(this, SIGNAL(stateChanged(QProcess::ProcessState)),
             SLOT(_k_onStateChanged(QProcess::ProcessState)));
+            
+#if QT_VERSION >= 0x060000
+    setCreateProcessArgumentsModifier([this] (QProcess::CreateProcessArguments *args) {
+        Q_D(KPtyProcess);
 
+        if (d->ptyChannels & StdinChannel)
+            _dup2(d->pty->slaveFd(), 0);
+        if (d->ptyChannels & StdoutChannel)
+            _dup2(d->pty->slaveFd(), 1);
+
+        if (d->ptyChannels & StderrChannel)
+            _dup2(d->pty->slaveFd(), 2);
+    });
+#endif
 }
 
 KPtyProcess::KPtyProcess(int ptyMasterFd, QObject *parent) :
     KProcess(new KPtyProcessPrivate, parent)
 {
-    Q_D(KPtyProcess);
-
-    d->pty = new KPtyDevice(this);
-    d->pty->open(ptyMasterFd);
-    connect(this, SIGNAL(stateChanged(QProcess::ProcessState)),
-            SLOT(_k_onStateChanged(QProcess::ProcessState)));
+    qWarning() << "Windows platform canot support this function";
+    abort();
 }
 
 KPtyProcess::~KPtyProcess()
@@ -68,18 +80,17 @@ KPtyProcess::~KPtyProcess()
     {
         if (d->addUtmp)
         {
-            d->pty->logout();
             disconnect(SIGNAL(stateChanged(QProcess::ProcessState)),
                     this, SLOT(_k_onStateChanged(QProcess::ProcessState)));
         }
     }
     delete d->pty;
-    waitForFinished(300); // give it some time to finish
+    waitForFinished(1000); // give it some time to finish
     if (state() != QProcess::NotRunning)
     {
         qWarning() << Q_FUNC_INFO << "the terminal process is still running, trying to stop it by SIGHUP";
         hangUp();
-        waitForFinished(300);
+        waitForFinished(1000);
         if (state() != QProcess::NotRunning)
             qCritical() << Q_FUNC_INFO << "process didn't stop upon SIGHUP and will be SIGKILL-ed";
     }
@@ -122,6 +133,7 @@ KPtyDevice *KPtyProcess::pty() const
 
 int KPtyProcess::hangUp()
 {
+    kill();
     return 0;
 }
 
@@ -130,20 +142,14 @@ void KPtyProcess::setupChildProcess()
 {
     Q_D(KPtyProcess);
 
-    d->pty->setCTty();
-
-#if 0
-    if (d->addUtmp)
-        d->pty->login(KUser(KUser::UseRealUserID).loginName().toLocal8Bit().data(), qgetenv("DISPLAY"));
-#endif
     if (d->ptyChannels & StdinChannel)
-        dup2(d->pty->slaveFd(), 0);
+        _dup2(d->pty->slaveFd(), 0);
 
     if (d->ptyChannels & StdoutChannel)
-        dup2(d->pty->slaveFd(), 1);
+        _dup2(d->pty->slaveFd(), 1);
 
     if (d->ptyChannels & StderrChannel)
-        dup2(d->pty->slaveFd(), 2);
+        _dup2(d->pty->slaveFd(), 2);
 
     KProcess::setupChildProcess();
 

@@ -37,9 +37,10 @@ public:
 
     bool chownpty(bool grant);
 
-    int masterFd;
-    int slaveFd;
-    bool ownMaster:1;
+    HANDLE m_ptyHandler;
+    HANDLE m_hPipeIn;
+    HANDLE m_hPipeOut;
+    WindowsContext m_winContext;
 
     QByteArray ttyName;
 
