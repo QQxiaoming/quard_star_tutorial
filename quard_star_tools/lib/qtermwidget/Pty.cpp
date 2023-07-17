@@ -246,6 +246,14 @@ void Pty::dataReceived()
     emit receivedData(data.constData(),data.count());
 }
 
+int Pty::dataReceived(const char* data, int length)
+{
+    QByteArray ba = QByteArray::fromRawData(data,length);
+    ba.replace("\n", "\r\n"); 
+    emit receivedData(ba.constData(),ba.count());
+    return length;
+}
+
 void Pty::lockPty(bool lock)
 {
     Q_UNUSED(lock);

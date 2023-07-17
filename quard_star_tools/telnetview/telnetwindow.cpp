@@ -22,6 +22,9 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
 #else
     font.setFamily(QStringLiteral("Monospace"));
 #endif
+#if defined(Q_OS_WIN)
+    font.setFixedPitch(true);
+#endif
     font.setPointSize(16);
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::ScrollBarRight);

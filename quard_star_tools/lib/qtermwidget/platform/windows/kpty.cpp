@@ -81,37 +81,36 @@ bool KPty::open()
 {
     Q_D(KPty);
 
-    static int _index = 0;
-    server = new QLocalServer();
-    serverName = "myserver" + QString::number(_index++);
-    QLocalServer::removeServer(serverName);
-    if (!server->listen(serverName)) {
-        qDebug() << "Failed to start server" << serverName;
-    }
-    QLocalSocket::connect(server, &QLocalServer::newConnection, [=]() {
-        QLocalSocket* socket = server->nextPendingConnection();
-        QLocalSocket::connect(socket, &QLocalSocket::readyRead, [=]() {
-            QByteArray data = socket->readAll();
-            socket->write(data);
-            //socket->flush();
-        });
-    });
-
-    socket = new QLocalSocket();
-    socket->setServerName(serverName);
-    socket->connectToServer();
+    //static int _index = 0;
+    //server = new QLocalServer();
+    //serverName = "myserver" + QString::number(_index++);
+    //QLocalServer::removeServer(serverName);
+    //if (!server->listen(serverName)) {
+    //    qDebug() << "Failed to start server" << serverName;
+    //}
+    //QLocalSocket::connect(server, &QLocalServer::newConnection, [=]() {
+    //    QLocalSocket* socket = server->nextPendingConnection();
+    //    QLocalSocket::connect(socket, &QLocalSocket::readyRead, [=]() {
+    //        QByteArray data = socket->readAll();
+    //        socket->write(data);
+    //        //socket->flush();
+    //    });
+    //});
+    //socket = new QLocalSocket();
+    //socket->setServerName(serverName);
+    //socket->connectToServer();
 
     return true;
 }
 
 void KPty::close()
 {
-    Q_D(KPty);
-    socket->close();
-    server->close();
-    QLocalServer::removeServer(serverName);
-    delete server;
-    delete socket;
+    //Q_D(KPty);
+    //socket->close();
+    //server->close();
+    //QLocalServer::removeServer(serverName);
+    //delete server;
+    //delete socket;
 }
 
 bool KPty::setWinSize(int lines, int columns)

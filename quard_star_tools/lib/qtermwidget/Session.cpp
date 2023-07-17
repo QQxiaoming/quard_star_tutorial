@@ -945,7 +945,7 @@ int Session::getPtySlaveFd() const
 int Session::writeSlaveFd(const char *buff, int len) const
 {
 #if defined(Q_OS_WIN)
-    return _shellProcess->pty()->writeSlaveFd(buff,len);
+    return _shellProcess->dataReceived(buff,len);
 #else 
     return write(ptySlaveFd, buff, static_cast<size_t>(len));
 #endif
