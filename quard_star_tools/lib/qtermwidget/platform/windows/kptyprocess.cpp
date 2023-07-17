@@ -38,7 +38,6 @@
 #include <csignal>
 #include <QDebug>
 
-#include <io.h>
 
 KPtyProcess::KPtyProcess(QObject *parent) :
     KProcess(new KPtyProcessPrivate, parent)
@@ -49,20 +48,7 @@ KPtyProcess::KPtyProcess(QObject *parent) :
     d->pty->open();
     connect(this, SIGNAL(stateChanged(QProcess::ProcessState)),
             SLOT(_k_onStateChanged(QProcess::ProcessState)));
-            
-#if QT_VERSION >= 0x060000
-    setCreateProcessArgumentsModifier([this] (QProcess::CreateProcessArguments *args) {
-        Q_D(KPtyProcess);
 
-        if (d->ptyChannels & StdinChannel)
-            _dup2(d->pty->slaveFd(), 0);
-        if (d->ptyChannels & StdoutChannel)
-            _dup2(d->pty->slaveFd(), 1);
-
-        if (d->ptyChannels & StderrChannel)
-            _dup2(d->pty->slaveFd(), 2);
-    });
-#endif
 }
 
 KPtyProcess::KPtyProcess(int ptyMasterFd, QObject *parent) :

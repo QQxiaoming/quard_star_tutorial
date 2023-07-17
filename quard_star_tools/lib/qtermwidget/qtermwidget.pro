@@ -1,6 +1,5 @@
 win32:{
     PLATFORM_DIR=$$PWD/platform/windows
-    LIBS += -lws2_32
 }
 
 unix:!macx:{

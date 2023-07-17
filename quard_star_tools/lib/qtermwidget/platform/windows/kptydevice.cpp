@@ -38,15 +38,44 @@
 #include <cerrno>
 #include <csignal>
 
-#include <winsock2.h>
 
 //////////////////
 // private data //
 //////////////////
+#define NO_INTR(ret,func) do { ret = func; } while (ret < 0 && errno == EINTR)
 
 bool KPtyDevicePrivate::_k_canRead()
 {
-    return true;
+    Q_Q(KPtyDevice);
+    qint64 readBytes = 0;
+
+    int available = q->socket->bytesAvailable();
+    if (available > 0) {
+        char *ptr = readBuffer.reserve(available);
+        // Useless block braces except in Solaris
+        {
+          NO_INTR(readBytes, q->socket->read(ptr, available));
+        }
+        if (readBytes < 0) {
+            readBuffer.unreserve(available);
+            q->setErrorString(QLatin1String("Error reading from PTY"));
+            return false;
+        }
+        readBuffer.unreserve(available - readBytes); // *should* be a no-op
+    }
+
+    if (!readBytes) {
+        readNotifier->setEnabled(false);
+        emit q->readEof();
+        return false;
+    } else {
+        if (!emittedReadyRead) {
+            emittedReadyRead = true;
+            emit q->readyRead();
+            emittedReadyRead = false;
+        }
+        return true;
+    }
 }
 
 bool KPtyDevicePrivate::_k_canWrite()
@@ -65,10 +94,9 @@ void KPtyDevicePrivate::finishOpen(QIODevice::OpenMode mode)
 
     q->QIODevice::open(mode);
     unsigned long flag = 1; // 1 to enable non-blocking socket
-    ioctlsocket(q->masterFd(), FIONBIO, &flag);
     readBuffer.clear();
-    readNotifier = new QSocketNotifier(q->masterFd(), QSocketNotifier::Read, q);
-    writeNotifier = new QSocketNotifier(q->masterFd(), QSocketNotifier::Write, q);
+    readNotifier = new QSocketNotifier(q->socket->socketDescriptor(), QSocketNotifier::Read, q);
+    writeNotifier = new QSocketNotifier(q->socket->socketDescriptor(), QSocketNotifier::Write, q);
     QObject::connect(readNotifier, SIGNAL(activated(int)), q, SLOT(_k_canRead()));
     QObject::connect(writeNotifier, SIGNAL(activated(int)), q, SLOT(_k_canWrite()));
     readNotifier->setEnabled(true);
@@ -92,9 +120,6 @@ KPtyDevice::~KPtyDevice()
 bool KPtyDevice::open(OpenMode mode)
 {
     Q_D(KPtyDevice);
-
-    if (masterFd() >= 0)
-        return true;
 
     if (!KPty::open()) {
         setErrorString(QLatin1String("Error opening PTY"));

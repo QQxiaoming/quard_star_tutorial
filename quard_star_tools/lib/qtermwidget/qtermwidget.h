@@ -212,6 +212,7 @@ public:
      * a remote terminal.
      */
     int getPtySlaveFd() const;
+    int writeSlaveFd(const char *buff, int len) const;
 
     /**
      * Sets the shape of the keyboard cursor.  This is the cursor drawn

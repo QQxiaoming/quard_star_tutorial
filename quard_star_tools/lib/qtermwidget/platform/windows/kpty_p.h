@@ -37,11 +37,6 @@ public:
 
     bool chownpty(bool grant);
 
-    HANDLE m_ptyHandler;
-    HANDLE m_hPipeIn;
-    HANDLE m_hPipeOut;
-    WindowsContext m_winContext;
-
     QByteArray ttyName;
 
     KPty *q_ptr;

@@ -374,6 +374,7 @@ public:
      * a remote terminal.
      */
     int getPtySlaveFd() const;
+    int writeSlaveFd(const char *buff, int len) const;
 
 public slots:
 
