@@ -31,14 +31,10 @@
 #include "Emulation.h"
 #include "History.h"
 
-class KProcess;
-
 namespace Konsole {
 
 class Emulation;
-class Pty;
 class TerminalDisplay;
-//class ZModemDialog;
 
 /**
  * Represents a terminal session consisting of a pseudo-teletype and a terminal emulation.
@@ -56,7 +52,6 @@ class Session : public QObject {
 
 public:
     Q_PROPERTY(QString name READ nameTitle)
-    Q_PROPERTY(int processId READ processId)
     Q_PROPERTY(QString keyBindings READ keyBindings WRITE setKeyBindings)
     Q_PROPERTY(QSize size READ size WRITE setSize)
 
@@ -73,12 +68,6 @@ public:
      */
     Session(QObject* parent = nullptr);
     ~Session() override;
-
-    /**
-     * Returns true if the session is currently running.  This will be true
-     * after run() has been called successfully.
-     */
-    bool isRunning() const;
 
     /**
      * Sets the profile associated with this session.
@@ -286,9 +275,6 @@ public:
     /** Flag if the title/icon was changed by user/shell. */
     bool isTitleChanged() const;
 
-    /** Specifies whether a utmp entry should be created for the pty used by this session. */
-    void setAddToUtmp(bool);
-
     /** Sends the HangUp signal to the terminal process. */
     bool sendHangUp(void);
 
@@ -315,12 +301,6 @@ public:
     void sendText(const QString & text) const;
 
     void sendKeyEvent(QKeyEvent* e) const;
-
-    /**
-     * Returns the process id of the terminal process.
-     * This is the id used by the system API to refer to the process.
-     */
-    int processId() const;
 
     /** Returns the terminal session's window size in lines and columns. */
     QSize size();
@@ -366,7 +346,7 @@ public:
      * This can be used for display and control
      * a remote terminal.
      */
-    int recvData(const char *buff, int len) const;
+    int recvData(const char *buff, int len);
 
 public slots:
 
@@ -482,10 +462,6 @@ signals:
     void activity();
 
 private slots:
-    void done(int);
-
-//  void fireZModemDetected();
-
     void onReceiveBlock( const char * buffer, int len );
     void monitorTimerDone();
 
@@ -509,7 +485,6 @@ private:
 
     int            _uniqueIdentifier;
 
-    Pty     *_shellProcess;
     Emulation  *  _emulation;
 
     QList<TerminalDisplay *> _views;
@@ -534,7 +509,6 @@ private:
     QString        _iconName;
     QString        _iconText; // as set by: echo -en '\033]1;IconText\007
     bool           _isTitleChanged; ///< flag if the title/icon was changed by user
-    bool           _addToUtmp;
     bool           _flowControl;
     bool           _fullScripting;
 

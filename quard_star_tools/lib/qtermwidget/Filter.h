@@ -363,7 +363,7 @@ public:
 };
 
 /** A filter chain which processes character images from terminal displays */
-class QTERMWIDGET_NO_EXPORT TerminalImageFilterChain : public FilterChain
+class TerminalImageFilterChain : public FilterChain
 {
 public:
     TerminalImageFilterChain();

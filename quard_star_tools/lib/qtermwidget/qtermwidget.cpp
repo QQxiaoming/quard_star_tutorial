@@ -224,19 +224,11 @@ bool QTermWidget::terminalSizeHint()
 
 void QTermWidget::startShellProgram()
 {
-    if ( m_impl->m_session->isRunning() ) {
-        return;
-    }
-
     m_impl->m_session->run();
 }
 
 void QTermWidget::startTerminalTeletype()
 {
-    if ( m_impl->m_session->isRunning() ) {
-        return;
-    }
-
     m_impl->m_session->runEmptyPTY();
     // redirect data from TTY to external recipient
     connect( m_impl->m_session->emulation(), SIGNAL(sendData(const char *,int)),

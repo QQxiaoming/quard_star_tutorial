@@ -11,8 +11,6 @@ SOURCES += \
     $$PWD/HistorySearch.cpp \
     $$PWD/KeyboardTranslator.cpp \
     $$PWD/konsole_wcwidth.cpp \
-    $$PWD/kprocess.cpp \
-    $$PWD/Pty.cpp \
     $$PWD/qtermwidget.cpp \
     $$PWD/Screen.cpp \
     $$PWD/ScreenWindow.cpp \
@@ -38,8 +36,6 @@ HEADERS += \
     $$PWD/HistorySearch.h \
     $$PWD/KeyboardTranslator.h \
     $$PWD/konsole_wcwidth.h \
-    $$PWD/kprocess.h \
-    $$PWD/Pty.h \
     $$PWD/LineFont.h \
     $$PWD/qtermwidget.h \
     $$PWD/qtermwidget_export.h \

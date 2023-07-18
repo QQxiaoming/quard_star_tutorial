@@ -458,7 +458,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             QIcon icoExit(":/boardview/icons/exit.png");
             pExit->setIcon(icoExit);
             menu->addAction(pExit);
-            connect(pExit, SIGNAL(triggered()), qApp, SLOT(quit()));
+            connect(pExit, SIGNAL(triggered()), this, SLOT(app_quit()));
             break;
         }
         default:
@@ -612,4 +612,13 @@ QString BoardWindow::getOpenFileName(const QString &caption, const QString &file
     } else {
         return path;
     }
+}
+
+void BoardWindow::app_quit(void)
+{
+    if(qemuProcess->state() == QProcess::Running) {
+        qemuProcess->kill();
+        qemuProcess->waitForFinished(-1);
+    }
+    qApp->quit();
 }
