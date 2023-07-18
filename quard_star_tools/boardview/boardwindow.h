@@ -13,6 +13,9 @@
 #include "netselectbox.h"
 #include "bootselectbox.h"
 
+extern QString VERSION;
+extern QString GIT_TAG;
+
 namespace Ui {
 class BoardWindow;
 }
@@ -96,6 +99,7 @@ private:
     QString vCanName;
     QString bootCfg;
     bool updateCfg;
+    double scaled_value = 1.0;
     struct space
     {
         DeviceName name;

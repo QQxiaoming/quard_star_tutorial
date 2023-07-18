@@ -1,6 +1,10 @@
 #include <QScrollBar>
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QDate>
 #include <QDebug>
 #include <unistd.h>
+#include "boardwindow.h"
 #include "telnetwindow.h"
 #include "ui_telnetwindow.h"
 
@@ -48,6 +52,8 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     termWidget->startTerminalTeletype();
 
     connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
+
+    orig_font = this->termWidget->getTerminalFont();
 }
 
 TelnetWindow::~TelnetWindow()
@@ -83,4 +89,99 @@ void TelnetWindow::sendData(const char *data, int len)
 void TelnetWindow::recvData(const char *buff, int len)
 {
     this->termWidget->recvData(buff, len);
+}
+
+void TelnetWindow::on_actionFind_triggered()
+{
+    this->termWidget->toggleShowSearchBar();
+}
+
+
+void TelnetWindow::on_actionCopy_triggered()
+{
+    this->termWidget->copyClipboard();
+}
+
+
+void TelnetWindow::on_actionPaste_triggered()
+{
+    this->termWidget->pasteClipboard();
+}
+
+
+void TelnetWindow::on_actionHelp_triggered()
+{
+    QMessageBox::about(this, tr("Help"), tr("TODO"));
+}
+
+
+void TelnetWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, tr("About"),
+                       tr(
+                           "<p>Version</p>"
+                           "<p>&nbsp;%1</p>"
+                           "<p>Commit</p>"
+                           "<p>&nbsp;%2</p>"
+                           "<p>Author</p>"
+                           "<p>&nbsp;qiaoqm@aliyun.com</p>"
+                           "<p>Website</p>"
+                           "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
+                           "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
+                           ).arg(VERSION,GIT_TAG)
+                       );
+}
+
+
+void TelnetWindow::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this);
+}
+
+
+void TelnetWindow::on_actionReset_triggered()
+{
+    this->termWidget->clear();
+}
+
+
+void TelnetWindow::on_actionSave_log_triggered()
+{
+    QString savefile_name = QFileDialog::getSaveFileName(this, tr("Save log..."),
+        QDate::currentDate().toString("yyyy-MM-dd-") + QTime::currentTime().toString("hh:mm:ss") + ".log", tr("Log files (*.log)"));
+    if (!savefile_name.isEmpty()) {
+        QFile file(savefile_name);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QMessageBox::warning(this, tr("Save log"), tr("Cannot write file %1:\n%2.").arg(savefile_name).arg(file.errorString()));
+            return;
+        }
+        this->termWidget->saveHistory(&file);
+        file.close();
+    }
+}
+
+
+void TelnetWindow::on_actionZoom_In_triggered()
+{
+    this->termWidget->zoomIn();
+}
+
+
+void TelnetWindow::on_actionZoom_Out_triggered()
+{
+    this->termWidget->zoomOut();
+}
+
+
+void TelnetWindow::on_actionReset_Zoom_triggered()
+{
+    this->termWidget->setTerminalFont(orig_font);
+}
+
+void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    if( event->button() == Qt::MiddleButton) {
+        this->termWidget->pasteSelection();
+    }
+    event->accept();
 }

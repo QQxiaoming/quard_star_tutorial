@@ -12,9 +12,6 @@
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
 
-extern QString VERSION;
-extern QString GIT_TAG;
-
 BoardWindow::BoardWindow(const QString &path,const QString &color,
                             const bool &isSysDarkTheme,QWidget *parent) :
     QMainWindow(parent),
@@ -42,21 +39,31 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
+    QRect screen = QGuiApplication::screenAt(
+                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
+
     QPixmap pix;
     QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
     if(!skinFile.isFile())
         skinColor = "green";
     pix.load(":/boardview/icons/board_"+skinColor+".png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+    if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
+        int target_size = qMin(screen.width(),screen.height());
+        scaled_value = ((double)pix.size().width())/((double)target_size);
+        pix = pix.scaled(QSize(target_size,target_size));
+        for(size_t i=0;i<sizeof(spaceList)/sizeof(struct space);i++) {
+            spaceList[i].x1 = spaceList[i].x1/scaled_value;
+            spaceList[i].x2 = spaceList[i].x2/scaled_value;
+            spaceList[i].y1 = spaceList[i].y1/scaled_value;
+            spaceList[i].y2 = spaceList[i].y2/scaled_value;
+        }
+    }
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
-
-    QRect screen = QGuiApplication::screenAt(
-                this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     QRect size = this->geometry();
-    this->move((screen.width() - size.width()) / 2,
-                         (screen.height() - size.height()) / 2);
-
+    this->move(qMax(0,(screen.width() - size.width())) / 2,
+               qMax(0,(screen.height() - size.height())) / 2);
     qemuProcess = new QProcess(this);
     uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
     uartWindow[0]->setWindowTitle("uart0");
@@ -492,7 +499,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
         pen.setWidth(10);
         pen.setColor(Qt::red);
         painter.setPen(pen);
-        painter.drawLine(263,612,283,612);
+        painter.drawLine(263/scaled_value,612/scaled_value,283/scaled_value,612/scaled_value);
     }
     event->accept();
 }
