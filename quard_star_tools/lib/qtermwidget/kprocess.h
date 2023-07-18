@@ -292,6 +292,10 @@ public:
      */
     int startDetached();
 
+    bool isRunning() const;
+    
+    int hangUp();
+
     /**
      * @overload
      *

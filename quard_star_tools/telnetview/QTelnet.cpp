@@ -306,6 +306,7 @@ qint64 QTelnet::doTelnetInProtocol(qint64 buffSize)
 				break;
 			case '\r':
 			case '\n':
+				m_buffProcessed[iOut++] = '\r';
 				m_buffProcessed[iOut++] = '\n';
 				m_negotiationState = STATE_DATA;
 				break;

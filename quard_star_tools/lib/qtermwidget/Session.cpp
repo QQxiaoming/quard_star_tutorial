@@ -83,7 +83,6 @@ Session::Session(QObject* parent) :
 
     //create teletype for I/O with shell process
     _shellProcess = new Pty();
-    ptySlaveFd = _shellProcess->pty()->slaveFd();
 
     //create emulation backend
     _emulation = new Vt102Emulation();
@@ -111,9 +110,6 @@ Session::Session(QObject* parent) :
 
     connect( _shellProcess,SIGNAL(receivedData(const char *,int)),this,
              SLOT(onReceiveBlock(const char *,int)) );
-    connect( _emulation,SIGNAL(sendData(const char *,int)),_shellProcess,
-             SLOT(sendData(const char *,int)) );
-    connect( _emulation,SIGNAL(lockPtyRequest(bool)),_shellProcess,SLOT(lockPty(bool)) );
     connect( _emulation,SIGNAL(useUtf8Request(bool)),_shellProcess,SLOT(setUtf8Mode(bool)) );
 
     connect( _shellProcess,SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(done(int)) );
@@ -309,15 +305,13 @@ void Session::run()
     int result = _shellProcess->start(exec,
                                       arguments,
                                       _environment << backgroundColorHint,
-                                      windowId(),
-                                      _addToUtmp);
+                                      windowId());
 
     if (result < 0) {
         qDebug() << "CRASHED! result: " << result;
         return;
     }
 
-    _shellProcess->setWriteable(false);  // We are reachable via kwrited.
     emit started();
 }
 
@@ -325,13 +319,6 @@ void Session::runEmptyPTY()
 {
     _shellProcess->setFlowControlEnabled(_flowControl);
     _shellProcess->setErase(_emulation->eraseChar());
-    _shellProcess->setWriteable(false);
-
-    // disconnet send data from emulator to internal terminal process
-    disconnect( _emulation,SIGNAL(sendData(const char *,int)),
-                _shellProcess, SLOT(sendData(const char *,int)) );
-
-    _shellProcess->setEmptyPTYProperties();
     emit started();
 }
 
@@ -930,25 +917,14 @@ void Session::setSize(const QSize & size)
 
     emit resizeRequest(size);
 }
-int Session::foregroundProcessId() const
-{
-    return _shellProcess->foregroundProcessGroup();
-}
+
 int Session::processId() const
 {
     return static_cast<int>(_shellProcess->processId());
 }
-int Session::getPtySlaveFd() const
+int Session::recvData(const char *buff, int len) const
 {
-    return ptySlaveFd;
-}
-int Session::writeSlaveFd(const char *buff, int len) const
-{
-#if defined(Q_OS_WIN)
     return _shellProcess->dataReceived(buff,len);
-#else 
-    return write(ptySlaveFd, buff, static_cast<size_t>(len));
-#endif
 }
 
 SessionGroup::SessionGroup()

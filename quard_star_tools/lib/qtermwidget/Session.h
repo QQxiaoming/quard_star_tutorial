@@ -322,13 +322,6 @@ public:
      */
     int processId() const;
 
-    /**
-     * Returns the process id of the terminal's foreground process.
-     * This is initially the same as processId() but can change
-     * as the user starts other programs inside the terminal.
-     */
-    int foregroundProcessId() const;
-
     /** Returns the terminal session's window size in lines and columns. */
     QSize size();
     /**
@@ -373,8 +366,7 @@ public:
      * This can be used for display and control
      * a remote terminal.
      */
-    int getPtySlaveFd() const;
-    int writeSlaveFd(const char *buff, int len) const;
+    int recvData(const char *buff, int len) const;
 
 public slots:
 

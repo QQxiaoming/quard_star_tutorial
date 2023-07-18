@@ -38,7 +38,7 @@
 #include <QSize>
 
 // KDE
-#include "kptyprocess.h"
+#include "kprocess.h"
 
 namespace Konsole {
 
@@ -55,7 +55,7 @@ namespace Konsole {
  * To start the terminal process, call the start() method
  * with the program name and appropriate arguments.
  */
-class Pty: public KPtyProcess
+class Pty: public KProcess
 {
 Q_OBJECT
 
@@ -74,7 +74,7 @@ Q_OBJECT
 
     /**
      * Construct a process using an open pty master.
-     * See KPtyProcess::KPtyProcess()
+     * See KProcess::KProcess()
      */
     explicit Pty(int ptyMasterFd, QObject* parent = nullptr);
 
@@ -103,14 +103,8 @@ Q_OBJECT
     int start( const QString& program,
                const QStringList& arguments,
                const QStringList& environment,
-               ulong winid,
-               bool addToUtmp
+               ulong winid
              );
-
-    /**
-     * set properties for "EmptyPTY"
-     */
-    void setEmptyPTYProperties();
 
     /** TODO: Document me */
     void setWriteable(bool writeable);
@@ -148,8 +142,6 @@ Q_OBJECT
      * If there is a problem reading the foreground process group,
      * 0 will be returned.
      */
-    int foregroundProcessGroup() const;
-
   public slots:
 
     /**
@@ -158,24 +150,12 @@ Q_OBJECT
     void setUtf8Mode(bool on);
 
     /**
-     * Suspend or resume processing of data from the standard
-     * output of the terminal process.
-     *
-     * See K3Process::suspend() and K3Process::resume()
-     *
-     * @param lock If true, processing of output is suspended,
-     * otherwise processing is resumed.
-     */
-    void lockPty(bool lock);
-
-    /**
      * Sends data to the process currently controlling the
      * teletype ( whose id is returned by foregroundProcessGroup() )
      *
      * @param buffer Pointer to the data to send.
      * @param length Length of @p buffer.
      */
-    void sendData(const char* buffer, int length);
     int dataReceived(const char* data, int length);
 
   signals:
@@ -188,13 +168,6 @@ Q_OBJECT
      * @param length Length of @p buffer
      */
     void receivedData(const char* buffer, int length);
-#if QT_VERSION < 0x060000
-  protected:
-      void setupChildProcess() override;
-#endif
-  private slots:
-    // called when data is received from the terminal process
-    void dataReceived();
 
   private:
       void init();

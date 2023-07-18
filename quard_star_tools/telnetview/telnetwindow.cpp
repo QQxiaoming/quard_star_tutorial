@@ -82,5 +82,5 @@ void TelnetWindow::sendData(const char *data, int len)
 
 void TelnetWindow::recvData(const char *buff, int len)
 {
-    this->termWidget->writeSlaveFd(buff, len);
+    this->termWidget->recvData(buff, len);
 }

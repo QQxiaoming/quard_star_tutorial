@@ -400,3 +400,16 @@ int KProcess::startDetached(const QStringList &argv)
     QString prog = args.takeFirst();
     return startDetached(prog, args);
 }
+
+bool KProcess::isRunning() const
+{
+    bool rval;
+    (processId() > 0) ? rval= true : rval= false;
+    return rval;
+}
+
+int KProcess::hangUp()
+{
+    kill();
+    return 0;
+}

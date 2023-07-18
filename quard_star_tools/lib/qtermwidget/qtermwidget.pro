@@ -1,15 +1,3 @@
-win32:{
-    PLATFORM_DIR=$$PWD/platform/windows
-}
-
-unix:!macx:{
-    PLATFORM_DIR=$$PWD/platform/linux
-}
-
-macx:{
-    PLATFORM_DIR=$$PWD/platform/macos
-}
-
 INCLUDEPATH += \
         -I $$PLATFORM_DIR \
         -I $$PWD 
@@ -34,10 +22,7 @@ SOURCES += \
     $$PWD/TerminalCharacterDecoder.cpp \
     $$PWD/TerminalDisplay.cpp \
     $$PWD/tools.cpp \
-    $$PWD/Vt102Emulation.cpp \
-    $$PLATFORM_DIR/kpty.cpp \
-    $$PLATFORM_DIR/kptydevice.cpp \
-    $$PLATFORM_DIR/kptyprocess.cpp
+    $$PWD/Vt102Emulation.cpp
 
 HEADERS += \
     $$PWD/BlockArray.h \
@@ -67,11 +52,7 @@ HEADERS += \
     $$PWD/TerminalCharacterDecoder.h \
     $$PWD/TerminalDisplay.h \
     $$PWD/tools.h \
-    $$PWD/Vt102Emulation.h \
-    $$PLATFORM_DIR/kptydevice.h \
-    $$PLATFORM_DIR/kpty.h \
-    $$PLATFORM_DIR/kpty_p.h \
-    $$PLATFORM_DIR/kptyprocess.h
+    $$PWD/Vt102Emulation.h
 
 FORMS += \
     $$PWD/SearchBar.ui
