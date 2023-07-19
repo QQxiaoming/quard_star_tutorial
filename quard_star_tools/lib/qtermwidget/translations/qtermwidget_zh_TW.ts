@@ -341,27 +341,27 @@ Support:
 <context>
     <name>Konsole::TerminalDisplay</name>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="1286"/>
+        <location filename="../TerminalDisplay.cpp" line="1291"/>
         <source>Size: XXX x XXX</source>
         <translation>大小：XXX x XXX</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="1298"/>
+        <location filename="../TerminalDisplay.cpp" line="1303"/>
         <source>Size: %1 x %2</source>
         <translation>大小：%1 x %2</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2783"/>
+        <location filename="../TerminalDisplay.cpp" line="2838"/>
         <source>Paste multiline text</source>
         <translation>粘貼多行文本</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2784"/>
+        <location filename="../TerminalDisplay.cpp" line="2839"/>
         <source>Are you sure you want to paste this text?</source>
         <translation>你確定要粘貼這段文本嗎？</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="3282"/>
+        <location filename="../TerminalDisplay.cpp" line="3309"/>
         <source>&lt;qt&gt;Output has been &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;suspended&lt;/a&gt; by pressing Ctrl+S.  Press &lt;b&gt;Ctrl+Q&lt;/b&gt; to resume.&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;輸出已被Ctrl+S&lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;暫停&lt;/a&gt;。按&lt;b&gt;Ctrl+Q&lt;/b&gt;復原。&lt;/qt&gt;</translation>
     </message>
@@ -406,7 +406,7 @@ Support:
 <context>
     <name>QMessageBox</name>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2790"/>
+        <location filename="../TerminalDisplay.cpp" line="2845"/>
         <source>Show Details...</source>
         <translation>展示細節 ...</translation>
     </message>

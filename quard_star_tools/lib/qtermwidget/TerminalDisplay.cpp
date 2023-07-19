@@ -200,7 +200,7 @@ void TerminalDisplay::setColorTable(const ColorEntry table[])
    QT's iso mapping leaves 0x00..0x7f without any changes. But the graphicals
    come in here as proper unicode characters.
 
-   We treat non-iso10646 fonts as VT100 extended and do the requiered mapping
+   We treat non-iso10646 fonts as VT100 extended and do the required mapping
    from unicode to 0x00..0x1f. The remaining translation is then left to the
    QCodec.
 */
@@ -256,7 +256,7 @@ void TerminalDisplay::fontChange(const QFont&)
   propagateSize();
 
   // We will run paint event testing procedure.
-  // Although this operation will destory the orignal content,
+  // Although this operation will destroy the original content,
   // the content will be drawn again after the test.
   _drawTextTestFlag = true;
   update();
@@ -341,7 +341,7 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
 ,_resizing(false)
 ,_terminalSizeHint(false)
 ,_terminalSizeStartup(true)
-,_bidiEnabled(false)
+,_bidiEnabled(true)
 ,_mouseMarks(false)
 ,_disabledBracketedPasteMode(false)
 ,_actSel(0)
@@ -1159,7 +1159,9 @@ void TerminalDisplay::updateImage()
     if (!_resizing) // not while _resizing, we're expecting a paintEvent
     for (x = 0; x < columnsToUpdate; ++x)
     {
-      _hasBlinker |= (newLine[x].rendition & RE_BLINK);
+      if ((newLine[x].rendition & RE_BLINK) != 0) {
+        _hasBlinker = true;
+      }
 
       // Start drawing if this character or the next one differs.
       // We also take the next one into account to handle the situation
@@ -1217,8 +1219,11 @@ void TerminalDisplay::updateImage()
     //although both top and bottom halves contain the same characters, only
     //the top one is actually
     //drawn.
-    if (_lineProperties.count() > y)
-        updateLine |= (_lineProperties[y] & LINE_DOUBLEHEIGHT);
+    if (_lineProperties.count() > y) {
+        if ((_lineProperties[y] & LINE_DOUBLEHEIGHT) != 0) {
+            updateLine = true;
+        }
+    }
 
     // if the characters on the line are different in the old and the new _image
     // then this line must be repainted.
@@ -2779,22 +2784,7 @@ void TerminalDisplay::emitSelection(bool useXselection,bool appendReturn)
     }
 
     if (_confirmMultilinePaste && text.contains(QLatin1Char('\r'))) {
-        QMessageBox confirmation(this);
-        confirmation.setWindowTitle(tr("Paste multiline text"));
-        confirmation.setText(tr("Are you sure you want to paste this text?"));
-        confirmation.setDetailedText(text);
-        confirmation.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-        // Click "Show details..." to show those by default
-        const auto buttons = confirmation.buttons();
-        for( QAbstractButton * btn : buttons ) {
-            if (confirmation.buttonRole(btn) == QMessageBox::ActionRole && btn->text() == QMessageBox::tr("Show Details...")) {
-                Q_EMIT btn->clicked();
-                break;
-            }
-        }
-        confirmation.setDefaultButton(QMessageBox::Yes);
-        confirmation.exec();
-        if (confirmation.standardButton(confirmation.clickedButton()) != QMessageBox::Yes) {
+        if (!multilineConfirmation(text)) {
             return;
         }
     }
@@ -2840,6 +2830,29 @@ void TerminalDisplay::bracketText(QString& text) const
         text.prepend(QLatin1String("\033[200~"));
         text.append(QLatin1String("\033[201~"));
     }
+}
+
+bool TerminalDisplay::multilineConfirmation(const QString& text)
+{
+    QMessageBox confirmation(this);
+    confirmation.setWindowTitle(tr("Paste multiline text"));
+    confirmation.setText(tr("Are you sure you want to paste this text?"));
+    confirmation.setDetailedText(text);
+    confirmation.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    // Click "Show details..." to show those by default
+    const auto buttons = confirmation.buttons();
+    for( QAbstractButton * btn : buttons ) {
+        if (confirmation.buttonRole(btn) == QMessageBox::ActionRole && btn->text() == QMessageBox::tr("Show Details...")) {
+            Q_EMIT btn->clicked();
+            break;
+        }
+    }
+    confirmation.setDefaultButton(QMessageBox::Yes);
+    confirmation.exec();
+    if (confirmation.standardButton(confirmation.clickedButton()) != QMessageBox::Yes) {
+        return false;
+    }
+    return true;
 }
 
 void TerminalDisplay::setSelection(const QString& t)
@@ -2956,7 +2969,7 @@ QVariant TerminalDisplay::inputMethodQuery( Qt::InputMethodQuery query ) const
                 QTextStream stream(&lineText);
                 PlainTextDecoder decoder;
                 decoder.begin(&stream);
-                decoder.decodeLine(&_image[loc(0,cursorPos.y())],_usedColumns,_lineProperties[cursorPos.y()]);
+                decoder.decodeLine(&_image[loc(0,cursorPos.y())],_usedColumns,0);
                 decoder.end();
                 return lineText;
             }
@@ -3227,7 +3240,7 @@ void TerminalDisplay::dropEvent(QDropEvent* event)
   QString dropText;
   if (!urls.isEmpty())
   {
-      // TODO/FIXME: escape or quote pasted things if neccessary...
+      // TODO/FIXME: escape or quote pasted things if necessary...
       qDebug() << "TerminalDisplay: handling urls. It can be broken. Report any errors, please";
     for ( int i = 0 ; i < urls.count() ; i++ )
     {
@@ -3253,9 +3266,23 @@ void TerminalDisplay::dropEvent(QDropEvent* event)
   else
   {
     dropText = event->mimeData()->text();
+
+    dropText.replace(QLatin1String("\r\n"), QLatin1String("\n"));
+    dropText.replace(QLatin1Char('\n'), QLatin1Char('\r'));
+    if (_trimPastedTrailingNewlines)
+    {
+      dropText.replace(QRegularExpression(QStringLiteral("\\r+$")), QString());
+    }
+    if (_confirmMultilinePaste && dropText.contains(QLatin1Char('\r')))
+    {
+      if (!multilineConfirmation(dropText))
+      {
+        return;
+      }
+    }
   }
 
-    emit sendStringToEmu(dropText.toLocal8Bit().constData());
+  emit sendStringToEmu(dropText.toLocal8Bit().constData());
 }
 
 void TerminalDisplay::doDrag()

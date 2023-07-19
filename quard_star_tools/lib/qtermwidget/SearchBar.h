@@ -41,6 +41,7 @@ public:
 
 public slots:
     void noMatchFound();
+    void hide();
 
 signals:
     void searchCriteriaChanged();

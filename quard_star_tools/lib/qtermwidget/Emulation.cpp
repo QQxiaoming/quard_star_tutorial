@@ -43,8 +43,6 @@
 #include <QThread>
 
 #include <QTime>
-//TODO REMOVE THIS
-#include <QDebug>
 
 // KDE
 //#include <kdebug.h>
@@ -79,7 +77,7 @@ Emulation::Emulation() :
   connect(this , SIGNAL(programBracketedPasteModeChanged(bool)) ,
            SLOT(bracketedPasteModeChanged(bool)));
 
-  connect(this, &Emulation::cursorChanged, [this] (KeyboardCursorShape cursorShape, bool blinkingCursorEnabled) {
+  connect(this, &Emulation::cursorChanged, this, [this] (KeyboardCursorShape cursorShape, bool blinkingCursorEnabled) {
     emit titleChanged( 50, QString(QLatin1String("CursorShape=%1;BlinkingCursorEnabled=%2"))
                                .arg(static_cast<int>(cursorShape)).arg(blinkingCursorEnabled) );
   });
@@ -206,9 +204,7 @@ void Emulation::receiveChar(wchar_t c)
 // process application unicode input to terminal
 // this is a trivial scanner
 {
-    qDebug() << "Emulation::receiveChar: character " << c;
   c &= 0xff;
-  qDebug() << "Emulation::receiveChar (after &=): character " << c;
   switch (c)
   {
     case '\b'      : _currentScreen->backspace();                 break;

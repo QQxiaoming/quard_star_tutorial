@@ -341,27 +341,27 @@ Support:
 <context>
     <name>Konsole::TerminalDisplay</name>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="1286"/>
+        <location filename="../TerminalDisplay.cpp" line="1291"/>
         <source>Size: XXX x XXX</source>
         <translation>Størrelse: XXX x XXX</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="1298"/>
+        <location filename="../TerminalDisplay.cpp" line="1303"/>
         <source>Size: %1 x %2</source>
         <translation>Størrelse: %1 x %2</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2783"/>
+        <location filename="../TerminalDisplay.cpp" line="2838"/>
         <source>Paste multiline text</source>
         <translation>Lim inn flerlinjerstekst</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2784"/>
+        <location filename="../TerminalDisplay.cpp" line="2839"/>
         <source>Are you sure you want to paste this text?</source>
         <translation>Er du sikker på at du vil lime inn denne teksten?</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="3282"/>
+        <location filename="../TerminalDisplay.cpp" line="3309"/>
         <source>&lt;qt&gt;Output has been &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;suspended&lt;/a&gt; by pressing Ctrl+S.  Press &lt;b&gt;Ctrl+Q&lt;/b&gt; to resume.&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Utgangssignalet ble &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;stoppet&lt;/a&gt; da Ctrl+S ble trykket.  Trykk &lt;b&gt;Ctrl+Q&lt;/b&gt; for å fortsette.&lt;/qt&gt;</translation>
     </message>
@@ -406,7 +406,7 @@ Support:
 <context>
     <name>QMessageBox</name>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2790"/>
+        <location filename="../TerminalDisplay.cpp" line="2845"/>
         <source>Show Details...</source>
         <translation>Vis detaljer …</translation>
     </message>

@@ -331,7 +331,7 @@ private slots:
     void matchFound(int startColumn, int startLine, int endColumn, int endLine);
     void noMatchFound();
     /**
-     * Emulation::cursorChanged() signal propogates to here and QTermWidget
+     * Emulation::cursorChanged() signal propagates to here and QTermWidget
      * sends the specified cursor states to the terminal display
      */
     void cursorChanged(Konsole::Emulation::KeyboardCursorShape cursorShape, bool blinkingCursorEnabled);
