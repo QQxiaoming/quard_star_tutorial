@@ -10,8 +10,8 @@
     </message>
     <message>
         <location filename="../boardview/boardwindow.cpp" line="430"/>
-        <location filename="../boardview/boardwindow.cpp" line="437"/>
-        <location filename="../boardview/boardwindow.cpp" line="453"/>
+        <location filename="../boardview/boardwindow.cpp" line="441"/>
+        <location filename="../boardview/boardwindow.cpp" line="623"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
@@ -45,7 +45,7 @@
         <location filename="../boardview/boardwindow.cpp" line="297"/>
         <source>LCDC:
  VGA port 640x480.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../boardview/boardwindow.cpp" line="314"/>
@@ -78,7 +78,7 @@
         <translation>3.双击元件进入界面.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="438"/>
+        <location filename="../boardview/boardwindow.cpp" line="624"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
@@ -192,117 +192,117 @@ Support:
 3.双击元件进入界面.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="464"/>
+        <location filename="../boardview/boardwindow.cpp" line="452"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="583"/>
+        <location filename="../boardview/boardwindow.cpp" line="571"/>
         <source>Select SD IMG</source>
         <translation>选择SD卡映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="586"/>
+        <location filename="../boardview/boardwindow.cpp" line="574"/>
         <source>Select NorFlash IMG</source>
         <translation>选择NOR Flash映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="589"/>
+        <location filename="../boardview/boardwindow.cpp" line="577"/>
         <source>Select NandFlash IMG</source>
         <translation>选择NandFlash映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="592"/>
+        <location filename="../boardview/boardwindow.cpp" line="580"/>
         <source>Select PFlash IMG</source>
         <translation>选择PFlash映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="595"/>
+        <location filename="../boardview/boardwindow.cpp" line="583"/>
         <source>Select USBFlash IMG</source>
         <translation>选择U盘映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="111"/>
+        <location filename="../boardview/boardwindow.h" line="112"/>
         <source>vga</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="112"/>
+        <location filename="../boardview/boardwindow.h" line="113"/>
         <source>uart2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="113"/>
+        <location filename="../boardview/boardwindow.h" line="114"/>
         <source>uart1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="114"/>
+        <location filename="../boardview/boardwindow.h" line="115"/>
         <source>uart0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="115"/>
+        <location filename="../boardview/boardwindow.h" line="116"/>
         <source>power</source>
         <translation>电源</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="116"/>
+        <location filename="../boardview/boardwindow.h" line="117"/>
         <source>soc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="117"/>
+        <location filename="../boardview/boardwindow.h" line="118"/>
         <source>ddr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="118"/>
+        <location filename="../boardview/boardwindow.h" line="119"/>
         <source>eth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="119"/>
+        <location filename="../boardview/boardwindow.h" line="120"/>
         <source>usb0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="120"/>
+        <location filename="../boardview/boardwindow.h" line="121"/>
         <source>usb1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="121"/>
+        <location filename="../boardview/boardwindow.h" line="122"/>
         <source>nand</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="122"/>
+        <location filename="../boardview/boardwindow.h" line="123"/>
         <source>nor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="123"/>
+        <location filename="../boardview/boardwindow.h" line="124"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="124"/>
+        <location filename="../boardview/boardwindow.h" line="125"/>
         <source>switch</source>
         <translation>开关</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="125"/>
+        <location filename="../boardview/boardwindow.h" line="126"/>
         <source>jtag</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="126"/>
+        <location filename="../boardview/boardwindow.h" line="127"/>
         <source>audio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="127"/>
+        <location filename="../boardview/boardwindow.h" line="128"/>
         <source>boot</source>
         <translation>启动选项</translation>
     </message>
@@ -312,37 +312,37 @@ Support:
     <message>
         <location filename="../boardview/bootselectbox.ui" line="14"/>
         <source>Config Boot</source>
-        <translation type="unfinished"></translation>
+        <translation>设置启动选项</translation>
     </message>
     <message>
         <location filename="../boardview/bootselectbox.ui" line="20"/>
         <source>Boot Cfg</source>
-        <translation type="unfinished"></translation>
+        <translation>启动选项</translation>
     </message>
     <message>
         <location filename="../boardview/bootselectbox.ui" line="26"/>
         <source>pflash</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../boardview/bootselectbox.ui" line="33"/>
         <source>nor flash</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../boardview/bootselectbox.ui" line="40"/>
         <source>sd</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../boardview/bootselectbox.ui" line="50"/>
         <source>Update Cfg</source>
-        <translation type="unfinished"></translation>
+        <translation>升级选项</translation>
     </message>
     <message>
         <location filename="../boardview/bootselectbox.ui" line="56"/>
         <source>update</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -399,12 +399,12 @@ Support:
     <message>
         <location filename="../boardview/netselectbox.ui" line="20"/>
         <source>NET Link State</source>
-        <translation type="unfinished"></translation>
+        <translation>网络连接状态</translation>
     </message>
     <message>
         <location filename="../boardview/netselectbox.ui" line="32"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../boardview/netselectbox.ui" line="39"/>
@@ -536,97 +536,111 @@ Support:
     <message>
         <location filename="../telnetview/telnetwindow.ui" line="41"/>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.ui" line="54"/>
-        <location filename="../telnetview/telnetwindow.ui" line="92"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="114"/>
+        <location filename="../telnetview/telnetwindow.ui" line="110"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="185"/>
         <source>Help</source>
-        <translation type="unfinished">帮助</translation>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.ui" line="64"/>
         <source>View</source>
-        <translation type="unfinished"></translation>
+        <translation>视图</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="73"/>
+        <source>Options</source>
+        <translation>选项</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.ui" line="77"/>
-        <source>Find</source>
-        <translation type="unfinished"></translation>
+        <source>Colors</source>
+        <translation>配色</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.ui" line="82"/>
+        <source>KeyBindings</source>
+        <translation>按键绑定</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="95"/>
+        <source>Find</source>
+        <translation>查找</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="100"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="87"/>
+        <location filename="../telnetview/telnetwindow.ui" line="105"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="97"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="120"/>
+        <location filename="../telnetview/telnetwindow.ui" line="115"/>
         <source>About</source>
-        <translation type="unfinished">关于</translation>
+        <translation>关于</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="102"/>
+        <location filename="../telnetview/telnetwindow.ui" line="120"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>关于Qt</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="107"/>
+        <location filename="../telnetview/telnetwindow.ui" line="125"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>重置</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="112"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="155"/>
+        <location filename="../telnetview/telnetwindow.ui" line="130"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="152"/>
         <source>Save log</source>
-        <translation type="unfinished"></translation>
+        <translation>保存日志</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="117"/>
+        <location filename="../telnetview/telnetwindow.ui" line="135"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>放大</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="122"/>
+        <location filename="../telnetview/telnetwindow.ui" line="140"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="127"/>
+        <location filename="../telnetview/telnetwindow.ui" line="145"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>重置缩放</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="114"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="185"/>
         <source>TODO</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="121"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
+        <translation type="obsolete">&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="150"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="147"/>
         <source>Save log...</source>
-        <translation type="unfinished"></translation>
+        <translation>保存日志...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="151"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="148"/>
         <source>Log files (*.log)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="155"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="152"/>
         <source>Cannot write file %1:
 %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>无法写入文件%1:
+%2.</translation>
     </message>
 </context>
 <context>
@@ -646,28 +660,26 @@ Support:
         <location filename="../vncview/vncwindow.ui" line="63"/>
         <location filename="../vncview/vncwindow.cpp" line="38"/>
         <source>Help</source>
-        <translation type="unfinished">帮助</translation>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="../vncview/vncwindow.ui" line="68"/>
-        <location filename="../vncview/vncwindow.cpp" line="44"/>
         <source>About</source>
-        <translation type="unfinished">关于</translation>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="../vncview/vncwindow.ui" line="73"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>关于Qt</translation>
     </message>
     <message>
         <location filename="../vncview/vncwindow.cpp" line="38"/>
         <source>TODO</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="45"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
+        <translation type="obsolete">&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
 </context>
 </TS>
