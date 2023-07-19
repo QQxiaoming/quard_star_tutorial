@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QDate>
+#include <QString>
 #include <QDebug>
 #include <unistd.h>
 #include "boardwindow.h"
@@ -32,17 +33,47 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     font.setPointSize(16);
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::ScrollBarRight);
-    termWidget->setColorScheme("WhiteOnBlack");
-//#if defined(Q_OS_WIN)
-//    termWidget->setKeyBindings("default");
-//#elif defined(Q_OS_LINUX)
-//    termWidget->setKeyBindings("linux");
-//#elif defined(Q_OS_MACOS)
-//    termWidget->setKeyBindings("macbook");
-//#else
-//    termWidget->setKeyBindings("default");
-//#endif
-    termWidget->setKeyBindings("linux");
+    QStringList availableColorSchemes = termWidget->availableColorSchemes();
+    availableColorSchemes.sort();
+    foreach(QString colorScheme, availableColorSchemes) {
+        QAction *action = ui->menuColors->addAction(colorScheme, this, 
+                [=](){
+                    termWidget->setColorScheme(colorScheme);
+                    foreach(QAction *action, ui->menuColors->actions()) {
+                        if(action->text() == colorScheme)
+                            action->setChecked(true);
+                        else {
+                            action->setChecked(false);
+                        }
+                    }
+                });
+        action->setCheckable(true);
+        if(colorScheme == "WhiteOnBlack") {
+            termWidget->setColorScheme("WhiteOnBlack");
+            action->setChecked(true);
+        }
+    }
+
+    QStringList availableKeyBindings = termWidget->availableKeyBindings();
+    availableKeyBindings.sort();
+    foreach(QString keyBinding, availableKeyBindings) {
+        QAction *action = ui->menuKeyBindings->addAction(keyBinding, this, 
+                [=](){
+                    termWidget->setKeyBindings(keyBinding);
+                    foreach(QAction *action, ui->menuKeyBindings->actions()) {
+                        if(action->text() == keyBinding)
+                            action->setChecked(true);
+                        else {
+                            action->setChecked(false);
+                        }
+                    }
+                });
+        action->setCheckable(true);
+        if(keyBinding == "linux") {
+            termWidget->setKeyBindings("linux");
+            action->setChecked(true);
+        }
+    }
 
     // Write what we input to remote terminal via socket
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
@@ -96,54 +127,20 @@ void TelnetWindow::on_actionFind_triggered()
     this->termWidget->toggleShowSearchBar();
 }
 
-
 void TelnetWindow::on_actionCopy_triggered()
 {
     this->termWidget->copyClipboard();
 }
-
 
 void TelnetWindow::on_actionPaste_triggered()
 {
     this->termWidget->pasteClipboard();
 }
 
-
-void TelnetWindow::on_actionHelp_triggered()
-{
-    QMessageBox::about(this, tr("Help"), tr("TODO"));
-}
-
-
-void TelnetWindow::on_actionAbout_triggered()
-{
-    QMessageBox::about(this, tr("About"),
-                       tr(
-                           "<p>Version</p>"
-                           "<p>&nbsp;%1</p>"
-                           "<p>Commit</p>"
-                           "<p>&nbsp;%2</p>"
-                           "<p>Author</p>"
-                           "<p>&nbsp;qiaoqm@aliyun.com</p>"
-                           "<p>Website</p>"
-                           "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
-                           "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
-                           ).arg(VERSION,GIT_TAG)
-                       );
-}
-
-
-void TelnetWindow::on_actionAbout_Qt_triggered()
-{
-    QMessageBox::aboutQt(this);
-}
-
-
 void TelnetWindow::on_actionReset_triggered()
 {
     this->termWidget->clear();
 }
-
 
 void TelnetWindow::on_actionSave_log_triggered()
 {
@@ -160,18 +157,15 @@ void TelnetWindow::on_actionSave_log_triggered()
     }
 }
 
-
 void TelnetWindow::on_actionZoom_In_triggered()
 {
     this->termWidget->zoomIn();
 }
 
-
 void TelnetWindow::on_actionZoom_Out_triggered()
 {
     this->termWidget->zoomOut();
 }
-
 
 void TelnetWindow::on_actionReset_Zoom_triggered()
 {
@@ -184,4 +178,19 @@ void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
         this->termWidget->pasteSelection();
     }
     event->accept();
+}
+
+void TelnetWindow::on_actionHelp_triggered()
+{
+    QMessageBox::about(this, tr("Help"), tr("TODO"));
+}
+
+void TelnetWindow::on_actionAbout_triggered()
+{
+    BoardWindow::appAbout(this);
+}
+
+void TelnetWindow::on_actionAbout_Qt_triggered()
+{
+    QMessageBox::aboutQt(this);
 }

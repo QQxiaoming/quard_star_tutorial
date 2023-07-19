@@ -28,14 +28,16 @@ private slots:
     void on_actionFind_triggered();
     void on_actionCopy_triggered();
     void on_actionPaste_triggered();
-    void on_actionHelp_triggered();
-    void on_actionAbout_triggered();
-    void on_actionAbout_Qt_triggered();
     void on_actionReset_triggered();
     void on_actionSave_log_triggered();
+
     void on_actionZoom_In_triggered();
     void on_actionZoom_Out_triggered();
     void on_actionReset_Zoom_triggered();
+
+    void on_actionHelp_triggered();
+    void on_actionAbout_triggered();
+    void on_actionAbout_Qt_triggered();
 
 protected:
     void mouseReleaseEvent(QMouseEvent *event);

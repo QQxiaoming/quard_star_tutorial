@@ -66,15 +66,15 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
                qMax(0,(screen.height() - size.height())) / 2);
     qemuProcess = new QProcess(this);
     uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
-    uartWindow[0]->setWindowTitle("uart0");
+    uartWindow[0]->setWindowTitle("UART0");
     uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
-    uartWindow[1]->setWindowTitle("uart1");
+    uartWindow[1]->setWindowTitle("UART1");
     uartWindow[2] = new TelnetWindow("127.0.0.1",3443,this);
-    uartWindow[2]->setWindowTitle("uart2");
+    uartWindow[2]->setWindowTitle("UART2");
     jtagWindow = new TelnetWindow("127.0.0.1",3430,this);
-    jtagWindow->setWindowTitle("jtag(monitor)");
+    jtagWindow->setWindowTitle("JTAG(Monitor)");
     lcdWindow = new VncWindow("127.0.0.1",5901,this);
-    lcdWindow->setWindowTitle("lcd");
+    lcdWindow->setWindowTitle("LCD");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
 }
@@ -434,19 +434,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             connect(pAbout,&QAction::triggered,this,
                 [&](void)
                 {
-                    QMessageBox::about(this, tr("About"),
-                        tr(
-                            "<p>Version</p>"
-                            "<p>&nbsp;%1</p>"
-                            "<p>Commit</p>"
-                            "<p>&nbsp;%2</p>"
-                            "<p>Author</p>"
-                            "<p>&nbsp;qiaoqm@aliyun.com</p>"
-                            "<p>Website</p>"
-                            "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
-                            "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
-                        ).arg(VERSION,GIT_TAG)
-                    );
+                    BoardWindow::appAbout(this);
                 }
             );
 
@@ -496,7 +484,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
 
     if(powerOn){
         QPen pen;
-        pen.setWidth(10);
+        pen.setWidth(10/scaled_value);
         pen.setColor(Qt::red);
         painter.setPen(pen);
         painter.drawLine(263/scaled_value,612/scaled_value,283/scaled_value,612/scaled_value);
@@ -628,4 +616,21 @@ void BoardWindow::app_quit(void)
         qemuProcess->waitForFinished(-1);
     }
     qApp->quit();
+}
+
+void BoardWindow::appAbout(QWidget *parent)
+{
+    QMessageBox::about(parent, tr("About"),
+                       tr(
+                           "<p>Version</p>"
+                           "<p>&nbsp;%1</p>"
+                           "<p>Commit</p>"
+                           "<p>&nbsp;%2</p>"
+                           "<p>Author</p>"
+                           "<p>&nbsp;qiaoqm@aliyun.com</p>"
+                           "<p>Website</p>"
+                           "<p>&nbsp;<a href='https://github.com/QQxiaoming/quard_star_tutorial'>https://github.com/QQxiaoming</p>"
+                           "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
+                           ).arg(VERSION,GIT_TAG)
+                       );
 }

@@ -63,7 +63,8 @@ void QTelnet::sendData(const QByteArray &ba)
 
 void QTelnet::sendData(const char *data, int len)
 {
-    sendData(QByteArray(data,len));
+	if( isConnected() )
+        transpose( data, len );
 }
 
 void QTelnet::socketError(QAbstractSocket::SocketError err)
@@ -203,7 +204,7 @@ void QTelnet::transpose(const char *buf, int iLen)
 			if( testBinaryMode() )
 				write(buf[i]);
 			else
-				writeCustomCR();
+				writeCustomCRLF();
 			break;
 		default:
 			// all other characters are just copied

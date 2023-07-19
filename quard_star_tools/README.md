@@ -4,9 +4,10 @@ Quard Star Tools是Quard Star Tutorial项目的一个子项目。其基于Qt编�
 
 ## 项目依赖
 
-本项目中引用了部分其他项目的开源代码，并做了些适配修改：
+本项目中引用了部分其他项目的开源代码，全部遵守原项目相关许可协议，并做了些适配修改：
 
 - qvncclientwidget.cpp fork自https://github.com/anzyelay/qvncclient.git
 
 - QTelnet.cpp fork自https://github.com/silderan/QTelnet.git
 
+- ./lib/qtermwidget fork自https://github.com/lxqt/qtermwidget （去除了pty部分的实现，因为原项目不支持windows平台，本项目不需要pty部分因此去除后可跨平台使用。）

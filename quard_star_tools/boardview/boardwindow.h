@@ -34,6 +34,7 @@ public:
     QString& getBootCfg(void);
     bool& getUpdateCfg(void);
     int sendQemuCmd(const QString &cmd);
+    static void appAbout(QWidget *parent = nullptr);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
