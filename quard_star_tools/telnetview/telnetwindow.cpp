@@ -214,7 +214,7 @@ void TelnetWindow::on_actionSave_log_triggered()
         }
     } else {
         QString savefile_name = QFileDialog::getSaveFileName(this, tr("Save log..."),
-            QDir::homePath() + QDate::currentDate().toString("/yyyy-MM-dd-") + QTime::currentTime().toString("hh:mm:ss") + ".log", tr("log files (*.log)"));
+            QDir::homePath() + QDate::currentDate().toString("/yyyy-MM-dd-") + QTime::currentTime().toString("hh-mm-ss") + ".log", tr("log files (*.log)"));
         if (!savefile_name.isEmpty()) {
             log_file = new QFile(savefile_name);
             if (!log_file->open(QIODevice::WriteOnly|QIODevice::Text)) {
@@ -243,7 +243,7 @@ void TelnetWindow::on_actionSave_Rawlog_triggered()
         }
     } else {
         QString savefile_name = QFileDialog::getSaveFileName(this, tr("Save Raw log..."),
-            QDir::homePath() + QDate::currentDate().toString("/yyyy-MM-dd-") + QTime::currentTime().toString("hh:mm:ss") + ".bin", tr("binary files (*.bin)"));
+            QDir::homePath() + QDate::currentDate().toString("/yyyy-MM-dd-") + QTime::currentTime().toString("hh-mm-ss") + ".bin", tr("binary files (*.bin)"));
         if (!savefile_name.isEmpty()) {
             raw_log_file = new QFile(savefile_name);
             if (!raw_log_file->open(QIODevice::WriteOnly)) {
