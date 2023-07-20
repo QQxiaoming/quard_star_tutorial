@@ -2,6 +2,8 @@
 #define TELNETWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QMutex>
 
 #include "QTelnet.h"
 #include "qtermwidget.h"
@@ -30,10 +32,19 @@ private slots:
     void on_actionPaste_triggered();
     void on_actionReset_triggered();
     void on_actionSave_log_triggered();
+    void on_actionSave_Rawlog_triggered();
 
     void on_actionZoom_In_triggered();
     void on_actionZoom_Out_triggered();
     void on_actionReset_Zoom_triggered();
+
+    void on_actionSendASCII_triggered();
+    void on_actionReceiveASCII_triggered();
+    void on_actionSendBinary_triggered();
+    void on_actionSendXmodem_triggered();
+    void on_actionReceiveXmodem_triggered();
+    void on_actionSendYmodem_triggered();
+    void on_actionReceiveYmodem_triggered();
 
     void on_actionHelp_triggered();
     void on_actionAbout_triggered();
@@ -48,6 +59,10 @@ private:
     QString severAddr;
     int severPort;
     QFont orig_font;
+    QFile *raw_log_file = nullptr;
+    QMutex raw_log_file_mutex;
+    QFile *log_file = nullptr;
+    QMutex log_file_mutex;
     Ui::TelnetWindow *ui;
 };
 

@@ -35,7 +35,10 @@ void VncWindow::refreshClicked()
 
 void VncWindow::on_actionHelp_triggered()
 {
-    QMessageBox::about(this, tr("Help"), tr("TODO"));
+    QMessageBox::about(this, tr("Help"), 
+        tr("1. The central window is the LCD emulation output window.") + "\n" +
+        tr("2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.")
+    );
 }
 
 void VncWindow::on_actionAbout_triggered()

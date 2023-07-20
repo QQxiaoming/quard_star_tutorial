@@ -524,86 +524,136 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="54"/>
-        <location filename="../../../telnetview/telnetwindow.ui" line="110"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="185"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="53"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="133"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="190"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="64"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="63"/>
         <source>View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="73"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="72"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="77"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="76"/>
         <source>Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="82"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="81"/>
         <source>KeyBindings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="95"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="89"/>
+        <source>Transfer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="104"/>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="118"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="100"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="123"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="105"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="128"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="115"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="138"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="120"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="143"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="125"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="148"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="130"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="153"/>
         <location filename="../../../telnetview/telnetwindow.cpp" line="152"/>
         <source>Save log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="135"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="158"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="140"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="163"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="145"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="168"/>
         <source>Reset Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="185"/>
-        <source>TODO</source>
+        <location filename="../../../telnetview/telnetwindow.ui" line="173"/>
+        <source>Send ASCII...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="178"/>
+        <source>Receive ASCII...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="183"/>
+        <source>Send Binary...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="188"/>
+        <source>Send Xmodem...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="193"/>
+        <source>Receive Xmodem...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="198"/>
+        <source>Send Ymodem...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="203"/>
+        <source>Receive Ymodem...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="208"/>
+        <source>Select All</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.ui" line="213"/>
+        <source>Save Rawlog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -620,6 +670,17 @@ Support:
         <location filename="../../../telnetview/telnetwindow.cpp" line="152"/>
         <source>Cannot write file %1:
 %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="162"/>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="162"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="190"/>
+        <source>This feature is not ready yet, so stay tuned!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -654,7 +715,7 @@ Support:
     </message>
     <message>
         <location filename="../../../vncview/vncwindow.cpp" line="38"/>
-        <source>TODO</source>
+        <source>This feature is not ready yet, so stay tuned!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

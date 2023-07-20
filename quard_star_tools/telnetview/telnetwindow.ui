@@ -44,10 +44,9 @@
     <addaction name="separator"/>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
+    <addaction name="actionSelent_All"/>
     <addaction name="separator"/>
     <addaction name="actionReset"/>
-    <addaction name="separator"/>
-    <addaction name="actionSave_log"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -85,8 +84,32 @@
     <addaction name="menuColors"/>
     <addaction name="menuKeyBindings"/>
    </widget>
+   <widget class="QMenu" name="menuTransfer">
+    <property name="title">
+     <string>Transfer</string>
+    </property>
+    <addaction name="actionSendASCII"/>
+    <addaction name="actionReceiveASCII"/>
+    <addaction name="separator"/>
+    <addaction name="actionSendBinary"/>
+    <addaction name="separator"/>
+    <addaction name="actionSendXmodem"/>
+    <addaction name="actionReceiveXmodem"/>
+    <addaction name="separator"/>
+    <addaction name="actionSendYmodem"/>
+    <addaction name="actionReceiveYmodem"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionSave_log"/>
+    <addaction name="actionSave_Rawlog"/>
+   </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
+   <addaction name="menuTransfer"/>
    <addaction name="menuOption"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -143,6 +166,51 @@
   <action name="actionReset_Zoom">
    <property name="text">
     <string>Reset Zoom</string>
+   </property>
+  </action>
+  <action name="actionSendASCII">
+   <property name="text">
+    <string>Send ASCII...</string>
+   </property>
+  </action>
+  <action name="actionReceiveASCII">
+   <property name="text">
+    <string>Receive ASCII...</string>
+   </property>
+  </action>
+  <action name="actionSendBinary">
+   <property name="text">
+    <string>Send Binary...</string>
+   </property>
+  </action>
+  <action name="actionSendXmodem">
+   <property name="text">
+    <string>Send Xmodem...</string>
+   </property>
+  </action>
+  <action name="actionReceiveXmodem">
+   <property name="text">
+    <string>Receive Xmodem...</string>
+   </property>
+  </action>
+  <action name="actionSendYmodem">
+   <property name="text">
+    <string>Send Ymodem...</string>
+   </property>
+  </action>
+  <action name="actionReceiveYmodem">
+   <property name="text">
+    <string>Receive Ymodem...</string>
+   </property>
+  </action>
+  <action name="actionSelent_All">
+   <property name="text">
+    <string>Select All</string>
+   </property>
+  </action>
+  <action name="actionSave_Rawlog">
+   <property name="text">
+    <string>Save Rawlog</string>
    </property>
   </action>
  </widget>

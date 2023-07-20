@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QDate>
 #include <QString>
+#include <QMutex>
 #include <QDebug>
 #include <unistd.h>
 #include "boardwindow.h"
@@ -75,6 +76,11 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
         }
     }
 
+    ui->actionSave_log->setCheckable(true);
+    ui->actionSave_log->setChecked(false);
+    ui->actionSave_Rawlog->setCheckable(true);
+    ui->actionSave_Rawlog->setChecked(false);
+
     // Write what we input to remote terminal via socket
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
     // Read anything from remote terminal via socket and show it on widget.
@@ -119,6 +125,19 @@ void TelnetWindow::sendData(const char *data, int len)
 
 void TelnetWindow::recvData(const char *buff, int len)
 {
+    if(ui->actionSave_Rawlog->isChecked()) {
+        if(raw_log_file_mutex.tryLock()) {
+            if(raw_log_file != nullptr) {
+                raw_log_file->write(buff, len);
+            }
+            raw_log_file_mutex.unlock();
+        }
+    }
+    if(ui->actionSave_log->isChecked()) {
+        if(log_file_mutex.tryLock()) {
+            log_file_mutex.unlock();
+        }
+    }
     this->termWidget->recvData(buff, len);
 }
 
@@ -157,6 +176,35 @@ void TelnetWindow::on_actionSave_log_triggered()
     }
 }
 
+void TelnetWindow::on_actionSave_Rawlog_triggered()
+{
+    raw_log_file_mutex.lock();
+    if(!ui->actionSave_Rawlog->isChecked()) {
+        ui->actionSave_Rawlog->setChecked(false);
+        if(raw_log_file != nullptr) {
+            raw_log_file->close();
+            delete raw_log_file;
+            raw_log_file = nullptr;
+        }
+    } else {
+        QString savefile_name = QFileDialog::getSaveFileName(this, tr("Save log..."),
+            QDate::currentDate().toString("yyyy-MM-dd-") + QTime::currentTime().toString("hh:mm:ss") + ".bin", tr("binary files (*.bin)"));
+        if (!savefile_name.isEmpty()) {
+            raw_log_file = new QFile(savefile_name);
+            if (!raw_log_file->open(QIODevice::WriteOnly)) {
+                QMessageBox::warning(this, tr("Save log"), tr("Cannot write file %1:\n%2.").arg(savefile_name).arg(raw_log_file->errorString()));
+                delete raw_log_file;
+                raw_log_file = nullptr;
+            } else {
+                ui->actionSave_Rawlog->setChecked(true);
+            }
+        } else {
+            ui->actionSave_Rawlog->setChecked(false);
+        }
+    }
+    raw_log_file_mutex.unlock();
+}
+
 void TelnetWindow::on_actionZoom_In_triggered()
 {
     this->termWidget->zoomIn();
@@ -180,9 +228,55 @@ void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
     event->accept();
 }
 
+void TelnetWindow::on_actionSendASCII_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
+void TelnetWindow::on_actionReceiveASCII_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
+void TelnetWindow::on_actionSendBinary_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
+void TelnetWindow::on_actionSendXmodem_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
+void TelnetWindow::on_actionReceiveXmodem_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
+void TelnetWindow::on_actionSendYmodem_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
+void TelnetWindow::on_actionReceiveYmodem_triggered()
+{
+    //TODO:
+    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+}
+
 void TelnetWindow::on_actionHelp_triggered()
 {
-    QMessageBox::about(this, tr("Help"), tr("TODO"));
+    QMessageBox::about(this, tr("Help"), 
+        tr("1. The central window is the terminal operation window.") + "\n" +
+        tr("2. The menu bar provides portable tools and terminal configuration.") + "\n" +
+        tr("3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.")
+    );
 }
 
 void TelnetWindow::on_actionAbout_triggered()

@@ -523,87 +523,137 @@ Support:
         <translation>編集</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="54"/>
-        <location filename="../telnetview/telnetwindow.ui" line="110"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="185"/>
+        <location filename="../telnetview/telnetwindow.ui" line="53"/>
+        <location filename="../telnetview/telnetwindow.ui" line="133"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="190"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="64"/>
+        <location filename="../telnetview/telnetwindow.ui" line="63"/>
         <source>View</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="73"/>
+        <location filename="../telnetview/telnetwindow.ui" line="72"/>
         <source>Options</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="77"/>
+        <location filename="../telnetview/telnetwindow.ui" line="76"/>
         <source>Colors</source>
         <translation>カラースキーム</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="82"/>
+        <location filename="../telnetview/telnetwindow.ui" line="81"/>
         <source>KeyBindings</source>
         <translation>キーバインド</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="95"/>
+        <location filename="../telnetview/telnetwindow.ui" line="89"/>
+        <source>Transfer</source>
+        <translation>送信</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="104"/>
+        <source>File</source>
+        <translation>ファイル</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="118"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="100"/>
+        <location filename="../telnetview/telnetwindow.ui" line="123"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="105"/>
+        <location filename="../telnetview/telnetwindow.ui" line="128"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="115"/>
+        <location filename="../telnetview/telnetwindow.ui" line="138"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="120"/>
+        <location filename="../telnetview/telnetwindow.ui" line="143"/>
         <source>About Qt</source>
         <translation>Qtについて</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="125"/>
+        <location filename="../telnetview/telnetwindow.ui" line="148"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="130"/>
+        <location filename="../telnetview/telnetwindow.ui" line="153"/>
         <location filename="../telnetview/telnetwindow.cpp" line="152"/>
         <source>Save log</source>
         <translation>ログの保存</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="135"/>
+        <location filename="../telnetview/telnetwindow.ui" line="158"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="140"/>
+        <location filename="../telnetview/telnetwindow.ui" line="163"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="145"/>
+        <location filename="../telnetview/telnetwindow.ui" line="168"/>
         <source>Reset Zoom</source>
         <translation>ズームのリセット</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="185"/>
-        <source>TODO</source>
-        <translation></translation>
+        <location filename="../telnetview/telnetwindow.ui" line="173"/>
+        <source>Send ASCII...</source>
+        <translation>送信ASCII...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="178"/>
+        <source>Receive ASCII...</source>
+        <translation>受信ASCII...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="183"/>
+        <source>Send Binary...</source>
+        <translation>送信Binary...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="188"/>
+        <source>Send Xmodem...</source>
+        <translation>送信Xmodem...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="193"/>
+        <source>Receive Xmodem...</source>
+        <translation>受信Xmodem...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="198"/>
+        <source>Send Ymodem...</source>
+        <translation>送信Ymodem...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="203"/>
+        <source>Receive Ymodem...</source>
+        <translation>受信Ymodem...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="208"/>
+        <source>Select All</source>
+        <translation>すべて選択</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="213"/>
+        <source>Save Rawlog</source>
+        <translation>元のログの保存</translation>
     </message>
     <message>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
@@ -625,6 +675,17 @@ Support:
 %2.</source>
         <translation>ファイル%1に書き込めません:
 %2.</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.cpp" line="162"/>
+        <source>Information</source>
+        <translation>情報</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.cpp" line="162"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="190"/>
+        <source>This feature is not ready yet, so stay tuned!</source>
+        <translation>この機能はまだ完成していませんので、しばらくお待ちください。</translation>
     </message>
 </context>
 <context>
@@ -657,13 +718,13 @@ Support:
         <translation>Qtについて</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="38"/>
-        <source>TODO</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation type="obsolete">&lt;p&gt;バージョン&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;コミット&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;開発者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;ウェブサイト&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="../vncview/vncwindow.cpp" line="38"/>
+        <source>This feature is not ready yet, so stay tuned!</source>
+        <translation>この機能はまだ完成していませんので、しばらくお待ちください。</translation>
     </message>
 </context>
 </TS>
