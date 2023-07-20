@@ -299,6 +299,8 @@ signals:
    */
   void sendData(const char* data,int len);
 
+  void outputReceiveChar(wchar_t cc);
+
   /**
    * Requests that sending of input to the emulation
    * from the terminal process be suspended or resumed.

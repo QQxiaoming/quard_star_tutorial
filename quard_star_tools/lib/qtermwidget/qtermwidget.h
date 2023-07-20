@@ -279,6 +279,8 @@ signals:
      */
     void sendData(const char *,int);
 
+    void outputReceiveChar(wchar_t);
+
     void profileChanged(const QString & profile);
 
     void titleChanged();

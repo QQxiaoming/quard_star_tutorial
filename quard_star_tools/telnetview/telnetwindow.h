@@ -26,6 +26,7 @@ private slots:
     void refreshClicked();
     void sendData(const char *data, int len);
     void recvData(const char *buff, int len);
+    void outputReceiveChar(wchar_t cc);
 
     void on_actionFind_triggered();
     void on_actionCopy_triggered();
@@ -63,6 +64,7 @@ private:
     QMutex raw_log_file_mutex;
     QFile *log_file = nullptr;
     QMutex log_file_mutex;
+    bool m_write_date = true;
     Ui::TelnetWindow *ui;
 };
 
