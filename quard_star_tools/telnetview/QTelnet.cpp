@@ -281,6 +281,7 @@ qint64 QTelnet::doTelnetInProtocol(qint64 buffSize)
 
 		switch( m_negotiationState )
 		{
+		// TODO: Currently we implement only bypass CRLF and CR, do not convert
 		case STATE_DATA:
 			switch( b )
 			{
@@ -288,9 +289,11 @@ qint64 QTelnet::doTelnetInProtocol(qint64 buffSize)
 				m_negotiationState = STATE_IAC;
 				break;
 			case '\r':
+				m_buffProcessed[iOut++] = '\r';
 				m_negotiationState = STATE_DATAR;
 				break;
 			case '\n':
+				m_buffProcessed[iOut++] = '\n';
 				m_negotiationState = STATE_DATAN;
 				break;
 			default:
@@ -306,8 +309,10 @@ qint64 QTelnet::doTelnetInProtocol(qint64 buffSize)
 				m_negotiationState = STATE_IAC;
 				break;
 			case '\r':
-			case '\n':
 				m_buffProcessed[iOut++] = '\r';
+				m_negotiationState = STATE_DATA;
+				break;
+			case '\n':
 				m_buffProcessed[iOut++] = '\n';
 				m_negotiationState = STATE_DATA;
 				break;
