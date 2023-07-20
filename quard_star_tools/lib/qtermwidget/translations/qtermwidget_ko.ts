@@ -341,27 +341,27 @@ Support:
 <context>
     <name>Konsole::TerminalDisplay</name>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="1291"/>
+        <location filename="../TerminalDisplay.cpp" line="1287"/>
         <source>Size: XXX x XXX</source>
         <translation>크기: XXX x XXX</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="1303"/>
+        <location filename="../TerminalDisplay.cpp" line="1299"/>
         <source>Size: %1 x %2</source>
         <translation>크기: %1 x %2</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2838"/>
+        <location filename="../TerminalDisplay.cpp" line="2834"/>
         <source>Paste multiline text</source>
         <translation>여러 줄 텍스트 붙여넣기</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2839"/>
+        <location filename="../TerminalDisplay.cpp" line="2835"/>
         <source>Are you sure you want to paste this text?</source>
         <translation>이 텍스트를 붙여넣으시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="3309"/>
+        <location filename="../TerminalDisplay.cpp" line="3305"/>
         <source>&lt;qt&gt;Output has been &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;suspended&lt;/a&gt; by pressing Ctrl+S.  Press &lt;b&gt;Ctrl+Q&lt;/b&gt; to resume.&lt;/qt&gt;</source>
         <translation>&lt;qt&gt;Ctrl+S를 눌러 출력이 &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;일시 중단&lt;/a&gt;되었습니다. 재개하려면 &lt;b&gt;Ctrl+Q&lt;/b&gt;를 누르십시오.&lt;/qt&gt;</translation>
     </message>
@@ -406,7 +406,7 @@ Support:
 <context>
     <name>QMessageBox</name>
     <message>
-        <location filename="../TerminalDisplay.cpp" line="2845"/>
+        <location filename="../TerminalDisplay.cpp" line="2841"/>
         <source>Show Details...</source>
         <translation>세부정보 표시...</translation>
     </message>
@@ -526,7 +526,7 @@ Support:
     <message>
         <location filename="../../../telnetview/telnetwindow.ui" line="53"/>
         <location filename="../../../telnetview/telnetwindow.ui" line="133"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="190"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="275"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -592,7 +592,8 @@ Support:
     </message>
     <message>
         <location filename="../../../telnetview/telnetwindow.ui" line="153"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="152"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="171"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="195"/>
         <source>Save log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -657,30 +658,63 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="147"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="166"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="190"/>
         <source>Save log...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="148"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="167"/>
         <source>Log files (*.log)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="152"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="171"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="195"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="162"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="191"/>
+        <source>binary files (*.bin)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="234"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="240"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="246"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="252"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="258"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="264"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="270"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="162"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="190"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="234"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="240"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="246"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="252"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="258"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="264"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="270"/>
         <source>This feature is not ready yet, so stay tuned!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="276"/>
+        <source>1. The central window is the terminal operation window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="277"/>
+        <source>2. The menu bar provides portable tools and terminal configuration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="278"/>
+        <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -714,8 +748,13 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../vncview/vncwindow.cpp" line="38"/>
-        <source>This feature is not ready yet, so stay tuned!</source>
+        <location filename="../../../vncview/vncwindow.cpp" line="39"/>
+        <source>1. The central window is the LCD emulation output window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../../vncview/vncwindow.cpp" line="40"/>
+        <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

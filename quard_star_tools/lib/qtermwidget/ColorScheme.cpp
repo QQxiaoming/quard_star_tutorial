@@ -515,19 +515,12 @@ ColorSchemeManager::~ColorSchemeManager()
 }
 void ColorSchemeManager::loadAllColorSchemes()
 {
-    //qDebug() << "loadAllColorSchemes";
-    int failed = 0;
-
     QList<QString> nativeColorSchemes = listColorSchemes();
     QListIterator<QString> nativeIter(nativeColorSchemes);
     while ( nativeIter.hasNext() )
     {
-        if ( !loadColorScheme( nativeIter.next() ) )
-            failed++;
+        loadColorScheme( nativeIter.next() );
     }
-
-    /*if ( failed > 0 )
-        qDebug() << "failed to load " << failed << " color schemes.";*/
 
     _haveLoadedAll = true;
 }
