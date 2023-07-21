@@ -1,5 +1,4 @@
 INCLUDEPATH += \
-        -I $$PLATFORM_DIR \
         -I $$PWD 
 
 SOURCES += \
