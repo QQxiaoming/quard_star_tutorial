@@ -172,24 +172,21 @@ void TelnetWindow::recvData(const char *buff, int len)
     this->termWidget->recvData(buff, len);
 }
 
-void TelnetWindow::on_actionFind_triggered()
-{
-    this->termWidget->toggleShowSearchBar();
-}
 
-void TelnetWindow::on_actionCopy_triggered()
-{
-    this->termWidget->copyClipboard();
-}
 
-void TelnetWindow::on_actionPaste_triggered()
+void TelnetWindow::on_actionSave_screen_triggered()
 {
-    this->termWidget->pasteClipboard();
-}
-
-void TelnetWindow::on_actionReset_triggered()
-{
-    this->termWidget->clear();
+    QString savefile_name = QFileDialog::getSaveFileName(this, tr("Save log..."),
+        QDir::homePath() + QDate::currentDate().toString("/yyyy-MM-dd-") + QTime::currentTime().toString("hh-mm-ss") + ".log", tr("log files (*.log)"));
+    if (!savefile_name.isEmpty()) {
+        QFile file(savefile_name);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QMessageBox::warning(this, tr("Save log"), tr("Cannot write file %1:\n%2.").arg(savefile_name).arg(file.errorString()));
+            return;
+        }
+        this->termWidget->saveHistory(&file);
+        file.close();
+    }
 }
 
 void TelnetWindow::on_actionSave_log_triggered()
@@ -248,6 +245,26 @@ void TelnetWindow::on_actionSave_Rawlog_triggered()
         }
     }
     raw_log_file_mutex.unlock();
+}
+
+void TelnetWindow::on_actionFind_triggered()
+{
+    this->termWidget->toggleShowSearchBar();
+}
+
+void TelnetWindow::on_actionCopy_triggered()
+{
+    this->termWidget->copyClipboard();
+}
+
+void TelnetWindow::on_actionPaste_triggered()
+{
+    this->termWidget->pasteClipboard();
+}
+
+void TelnetWindow::on_actionReset_triggered()
+{
+    this->termWidget->clear();
 }
 
 void TelnetWindow::on_actionZoom_In_triggered()
@@ -333,3 +350,5 @@ void TelnetWindow::on_actionAbout_Qt_triggered()
 {
     QMessageBox::aboutQt(this);
 }
+
+

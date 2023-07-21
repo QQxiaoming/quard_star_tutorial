@@ -28,12 +28,14 @@ private slots:
     void recvData(const char *buff, int len);
     void dupDisplayOutput(const char* data,int len);
 
+    void on_actionSave_screen_triggered();
+    void on_actionSave_log_triggered();
+    void on_actionSave_Rawlog_triggered();
+
     void on_actionFind_triggered();
     void on_actionCopy_triggered();
     void on_actionPaste_triggered();
     void on_actionReset_triggered();
-    void on_actionSave_log_triggered();
-    void on_actionSave_Rawlog_triggered();
 
     void on_actionZoom_In_triggered();
     void on_actionZoom_Out_triggered();

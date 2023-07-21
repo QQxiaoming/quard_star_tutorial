@@ -117,6 +117,8 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionSave_screen"/>
+    <addaction name="separator"/>
     <addaction name="actionSave_log"/>
     <addaction name="actionSave_Rawlog"/>
    </widget>
@@ -128,36 +130,60 @@
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionFind">
+   <property name="icon">
+    <iconset theme="edit-find"/>
+   </property>
    <property name="text">
     <string>Find</string>
    </property>
   </action>
   <action name="actionCopy">
+   <property name="icon">
+    <iconset theme="edit-copy"/>
+   </property>
    <property name="text">
     <string>Copy</string>
    </property>
   </action>
   <action name="actionPaste">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
    <property name="text">
     <string>Paste</string>
    </property>
   </action>
   <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="../res/resource.qrc">
+     <normaloff>:/boardview/icons/help.png</normaloff>:/boardview/icons/help.png</iconset>
+   </property>
    <property name="text">
     <string>Help</string>
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../res/resource.qrc">
+     <normaloff>:/boardview/icons/about.png</normaloff>:/boardview/icons/about.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
   </action>
   <action name="actionAbout_Qt">
+   <property name="icon">
+    <iconset resource="../res/resource.qrc">
+     <normaloff>:/boardview/icons/aboutqt.png</normaloff>:/boardview/icons/aboutqt.png</iconset>
+   </property>
    <property name="text">
     <string>About Qt</string>
    </property>
   </action>
   <action name="actionReset">
+   <property name="icon">
+    <iconset theme="edit-clear"/>
+   </property>
    <property name="text">
     <string>Reset</string>
    </property>
@@ -168,16 +194,25 @@
    </property>
   </action>
   <action name="actionZoom_In">
+   <property name="icon">
+    <iconset theme="zoom-in"/>
+   </property>
    <property name="text">
     <string>Zoom In</string>
    </property>
   </action>
   <action name="actionZoom_Out">
+   <property name="icon">
+    <iconset theme="zoom-out"/>
+   </property>
    <property name="text">
     <string>Zoom Out</string>
    </property>
   </action>
   <action name="actionReset_Zoom">
+   <property name="icon">
+    <iconset theme="zoom-original"/>
+   </property>
    <property name="text">
     <string>Reset Zoom</string>
    </property>
@@ -218,6 +253,9 @@
    </property>
   </action>
   <action name="actionSelent_All">
+   <property name="icon">
+    <iconset theme="edit-select-all"/>
+   </property>
    <property name="text">
     <string>Select All</string>
    </property>
@@ -232,7 +270,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Add time on each line...</string>
+    <string>Add timestamp on each line...</string>
    </property>
   </action>
   <action name="actionFflush_file">
@@ -243,7 +281,17 @@
     <string>Fflush file...</string>
    </property>
   </action>
+  <action name="actionSave_screen">
+   <property name="icon">
+    <iconset theme="document-save-as"/>
+   </property>
+   <property name="text">
+    <string>Save screen</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res/resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

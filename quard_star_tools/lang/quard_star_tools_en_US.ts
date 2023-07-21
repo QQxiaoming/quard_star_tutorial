@@ -357,7 +357,7 @@ Support:
 <context>
     <name>Konsole::Vt102Emulation</name>
     <message>
-        <location filename="../lib/qtermwidget/Vt102Emulation.cpp" line="1126"/>
+        <location filename="../lib/qtermwidget/Vt102Emulation.cpp" line="1128"/>
         <source>No keyboard translator available.  The information needed to convert key presses into characters to send to the terminal is missing.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -436,12 +436,12 @@ Support:
 <context>
     <name>QTermWidget</name>
     <message>
-        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="424"/>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="426"/>
         <source>Color Scheme Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="425"/>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="427"/>
         <source>Cannot load color scheme: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -513,8 +513,8 @@ Support:
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.ui" line="53"/>
-        <location filename="../telnetview/telnetwindow.ui" line="133"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="275"/>
+        <location filename="../telnetview/telnetwindow.ui" line="149"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="337"/>
         <source>Help</source>
         <translation></translation>
     </message>
@@ -539,171 +539,208 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="89"/>
+        <location filename="../telnetview/telnetwindow.ui" line="86"/>
+        <source>Misc</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="90"/>
+        <source>Log</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="103"/>
         <source>Transfer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="104"/>
+        <location filename="../telnetview/telnetwindow.ui" line="118"/>
         <source>File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="118"/>
+        <location filename="../telnetview/telnetwindow.ui" line="134"/>
         <source>Find</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="123"/>
+        <location filename="../telnetview/telnetwindow.ui" line="139"/>
         <source>Copy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="128"/>
+        <location filename="../telnetview/telnetwindow.ui" line="144"/>
         <source>Paste</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="138"/>
+        <location filename="../telnetview/telnetwindow.ui" line="154"/>
         <source>About</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="143"/>
+        <location filename="../telnetview/telnetwindow.ui" line="159"/>
         <source>About Qt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="148"/>
+        <location filename="../telnetview/telnetwindow.ui" line="164"/>
         <source>Reset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="153"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="171"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="195"/>
+        <location filename="../telnetview/telnetwindow.ui" line="169"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="184"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="208"/>
         <source>Save log</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="158"/>
+        <location filename="../telnetview/telnetwindow.ui" line="174"/>
         <source>Zoom In</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="163"/>
+        <location filename="../telnetview/telnetwindow.ui" line="179"/>
         <source>Zoom Out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="168"/>
+        <location filename="../telnetview/telnetwindow.ui" line="184"/>
         <source>Reset Zoom</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="173"/>
+        <location filename="../telnetview/telnetwindow.ui" line="189"/>
         <source>Send ASCII...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="178"/>
+        <location filename="../telnetview/telnetwindow.ui" line="194"/>
         <source>Receive ASCII...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="183"/>
+        <location filename="../telnetview/telnetwindow.ui" line="199"/>
         <source>Send Binary...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="188"/>
+        <location filename="../telnetview/telnetwindow.ui" line="204"/>
         <source>Send Xmodem...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="193"/>
+        <location filename="../telnetview/telnetwindow.ui" line="209"/>
         <source>Receive Xmodem...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="198"/>
+        <location filename="../telnetview/telnetwindow.ui" line="214"/>
         <source>Send Ymodem...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="203"/>
+        <location filename="../telnetview/telnetwindow.ui" line="219"/>
         <source>Receive Ymodem...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="208"/>
+        <location filename="../telnetview/telnetwindow.ui" line="224"/>
         <source>Select All</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="213"/>
+        <location filename="../telnetview/telnetwindow.ui" line="229"/>
         <source>Save Rawlog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="166"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="190"/>
+        <location filename="../telnetview/telnetwindow.ui" line="237"/>
+        <source>Add timestamp on each line...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="245"/>
+        <source>Fflush file...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.ui" line="250"/>
+        <source>Save screen</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.cpp" line="179"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="203"/>
         <source>Save log...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="167"/>
-        <source>Log files (*.log)</source>
+        <location filename="../telnetview/telnetwindow.cpp" line="180"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="204"/>
+        <source>log files (*.log)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="171"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="195"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="184"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="208"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="237"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="191"/>
-        <source>binary files (*.bin)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../telnetview/telnetwindow.cpp" line="232"/>
+        <source>Save Raw log...</source>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="234"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="240"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="246"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="252"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="258"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="264"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="270"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="233"/>
+        <source>binary files (*.bin)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.cpp" line="237"/>
+        <source>Save Raw log</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/telnetwindow.cpp" line="296"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="302"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="308"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="314"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="320"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="326"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="332"/>
         <source>Information</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="234"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="240"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="246"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="252"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="258"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="264"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="270"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="296"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="302"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="308"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="314"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="320"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="326"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="332"/>
         <source>This feature is not ready yet, so stay tuned!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="276"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="338"/>
         <source>1. The central window is the terminal operation window.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="277"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="339"/>
         <source>2. The menu bar provides portable tools and terminal configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="278"/>
+        <location filename="../telnetview/telnetwindow.cpp" line="340"/>
         <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -738,12 +775,12 @@ Support:
     <message>
         <location filename="../vncview/vncwindow.cpp" line="39"/>
         <source>1. The central window is the LCD emulation output window.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../vncview/vncwindow.cpp" line="40"/>
         <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>
