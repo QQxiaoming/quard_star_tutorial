@@ -34,6 +34,7 @@ public:
     /* xmodem timeout/retry parameters */
     const int XMODEM_TIMEOUT_DELAY=	1000;
     const int XMODEM_RETRY_LIMIT = 16;
+    const int XMODEM_BLOCK = 1;
 
     /* error return codes */
     enum {
@@ -101,18 +102,14 @@ public:
 class QXmodemFile: public QXmodem {
     Q_OBJECT
 public:
-    QXmodemFile(QFile *file) {
-        m_file = file;
+    QXmodemFile(QString filename) {
+        m_file = new QFile(filename);
     }
-    QXmodemFile(QString *filename) {
-        m_filename = filename;
-        m_file = new QFile(*m_filename);
+    QXmodemFile(const char *filename) {
+        m_file = new QFile(QString(filename));
     }
-
     ~QXmodemFile(){
-        if(m_filename) {
-            delete m_file;
-        }
+        delete m_file;
     }
     
 signals:
@@ -155,7 +152,6 @@ private:
     }
 
 private:
-    QString *m_filename = nullptr;
     QFile *m_file = nullptr;
     QMutex m_mutex;
     QByteArray cache;

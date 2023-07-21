@@ -211,20 +211,24 @@ long xmodemTransmit(int (*read)(unsigned char* buffer, int size))
 		if( (xmodemInTime(&c, XMODEM_TIMEOUT_DELAY)) >= 0) {
 			switch(c) {
 				case 'C': {
-                    crcflag = 0;
-					break;
-				}
-				case NAK: {
                     crcflag = 1;
-					break;
-				}
+                    goto start;
+                }
+				case NAK: {
+                    crcflag = 0;
+                    goto start;
+                }
 				case CAN: {
                     /* TODO: */
-					break;
+                    goto no_start;
 				}
 				default:
-					break;
+                    goto no_start;
 			}
+        start:
+            break;
+        no_start:
+            continue;
 		} else {
 			/* 
 			 * timed out, try again

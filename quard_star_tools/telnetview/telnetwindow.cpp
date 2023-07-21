@@ -308,23 +308,10 @@ void TelnetWindow::on_actionSendBinary_triggered()
     QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
 }
 
-//#include "qxmodem.h"
 void TelnetWindow::on_actionSendXmodem_triggered()
 {
     //TODO:
     QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
-    //QString *fr = new QString("/home/qqm/Music/test.txt");
-    //QString *fw = new QString("/home/qqm/Music/test1.txt");
-    //QXmodemFile *send = new QXmodemFile(fr);
-    //QXmodemFile *recv = new QXmodemFile(fw);
-    //connect(send,SIGNAL(send(QByteArray)),recv,SLOT(receive(QByteArray)));
-    //connect(recv,SIGNAL(send(QByteArray)),send,SLOT(receive(QByteArray)));
-    //send->startSend();
-    //recv->startRecv();
-    //send->wait();
-    //recv->wait();
-    //delete send;
-    //delete recv;
 }
 
 void TelnetWindow::on_actionReceiveXmodem_triggered()

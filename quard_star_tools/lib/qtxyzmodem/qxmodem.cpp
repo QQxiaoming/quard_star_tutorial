@@ -3,9 +3,7 @@
 #include <cstring>
 #include <cstdint>
 
-//#define XMODEM_BUFFER_SIZE		128
 #define XMODEM_BUFFER_SIZE		1024
-
 
 uint16_t QXmodem::crc_xmodem_update(uint16_t crc, uint8_t data)
 {
@@ -325,9 +323,13 @@ retry:
 	while( (timeout--) && ((ret = xmodemIn(c)) <= 0) ) 
 		timerPause(1);
 
-	if(ret == 0) {
-		timeout = 0xffff;
-		goto retry;
+	if(ret <= 0) {
+		if(XMODEM_BLOCK) {
+			timeout = 0xffff;
+			goto retry;
+		} else {
+			return -1;
+		}
 	}
 
 	return ret;
