@@ -289,7 +289,7 @@ void Vt102Emulation::initTokenizer()
 void Vt102Emulation::receiveChar(wchar_t cc)
 {
   if ((cc == L'\r')||(cc == L'\n'))
-    emit outputReceiveChar(cc);
+    dupDisplayCharacter(cc);
   if (cc == DEL)
     return; //VT100: ignore.
 
@@ -464,7 +464,7 @@ void Vt102Emulation::processToken(int token, wchar_t p, int q)
   switch (token)
   {
 
-    case TY_CHR(         ) : _currentScreen->displayCharacter     (p         );emit outputReceiveChar(p); break; //UTF16
+    case TY_CHR(         ) : _currentScreen->displayCharacter     (p         );dupDisplayCharacter(p); break; //UTF16
 
     //             127 DEL    : ignored on input
 
@@ -495,9 +495,9 @@ void Vt102Emulation::processToken(int token, wchar_t p, int q)
     case TY_CTL('U'      ) : /* NAK: ignored                      */ break;
     case TY_CTL('V'      ) : /* SYN: ignored                      */ break;
     case TY_CTL('W'      ) : /* ETB: ignored                      */ break;
-    case TY_CTL('X'      ) : _currentScreen->displayCharacter     (    0x2592);emit outputReceiveChar(0x2592); break; //VT100
+    case TY_CTL('X'      ) : _currentScreen->displayCharacter     (    0x2592);dupDisplayCharacter(0x2592); break; //VT100
     case TY_CTL('Y'      ) : /* EM : ignored                      */ break;
-    case TY_CTL('Z'      ) : _currentScreen->displayCharacter     (    0x2592);emit outputReceiveChar(0x2592); break; //VT100
+    case TY_CTL('Z'      ) : _currentScreen->displayCharacter     (    0x2592);dupDisplayCharacter(0x2592); break; //VT100
     case TY_CTL('['      ) : /* ESC: cannot be seen here.         */ break;
     case TY_CTL('\\'     ) : /* FS : ignored                      */ break;
     case TY_CTL(']'      ) : /* GS : ignored                      */ break;

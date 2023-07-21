@@ -279,7 +279,7 @@ signals:
      */
     void sendData(const char *,int);
 
-    void outputReceiveChar(wchar_t);
+    void dupDisplayOutput(const char* data,int len);
 
     void profileChanged(const QString & profile);
 

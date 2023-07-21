@@ -81,8 +81,22 @@
       <string>KeyBindings</string>
      </property>
     </widget>
+    <widget class="QMenu" name="menuMisc">
+     <property name="title">
+      <string>Misc</string>
+     </property>
+     <widget class="QMenu" name="menuLog">
+      <property name="title">
+       <string>Log</string>
+      </property>
+      <addaction name="actionadd_time_on_each_line"/>
+      <addaction name="actionFflush_file"/>
+     </widget>
+     <addaction name="menuLog"/>
+    </widget>
     <addaction name="menuColors"/>
     <addaction name="menuKeyBindings"/>
+    <addaction name="menuMisc"/>
    </widget>
    <widget class="QMenu" name="menuTransfer">
     <property name="title">
@@ -211,6 +225,22 @@
   <action name="actionSave_Rawlog">
    <property name="text">
     <string>Save Rawlog</string>
+   </property>
+  </action>
+  <action name="actionadd_time_on_each_line">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Add time on each line...</string>
+   </property>
+  </action>
+  <action name="actionFflush_file">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fflush file...</string>
    </property>
   </action>
  </widget>

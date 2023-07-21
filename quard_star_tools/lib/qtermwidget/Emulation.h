@@ -288,6 +288,8 @@ public slots:
    */
   void receiveData(const char* buffer,int len);
 
+  void dupDisplayCharacter(wchar_t cc);
+
 signals:
 
   /**
@@ -299,7 +301,7 @@ signals:
    */
   void sendData(const char* data,int len);
 
-  void outputReceiveChar(wchar_t cc);
+  void dupDisplayOutput(const char* data,int len);
 
   /**
    * Requests that sending of input to the emulation
@@ -518,7 +520,7 @@ private:
   bool _bracketedPasteMode;
   QTimer _bulkTimer1;
   QTimer _bulkTimer2;
-
+  QByteArray dupCache;
 };
 
 }

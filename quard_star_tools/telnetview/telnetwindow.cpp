@@ -9,7 +9,6 @@
 #include "boardwindow.h"
 #include "telnetwindow.h"
 #include "ui_telnetwindow.h"
-#include "TerminalCharacterDecoder.h"
 
 TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     QMainWindow(parent),severAddr(addr),severPort(port),
@@ -84,7 +83,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
 
     connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
-    connect(termWidget, SIGNAL(outputReceiveChar(wchar_t)),this,SLOT(outputReceiveChar(wchar_t)));
+    connect(termWidget, SIGNAL(dupDisplayOutput(const char*,int)),this,SLOT(dupDisplayOutput(const char*,int)));
     termWidget->startTerminalTeletype();
 
     connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
@@ -138,31 +137,19 @@ void TelnetWindow::sendData(const char *data, int len)
     this->telnet->sendData(data, len);
 }
 
-void TelnetWindow::outputReceiveChar(wchar_t cc)
+void TelnetWindow::dupDisplayOutput(const char* data,int len)
 {
     if(ui->actionSave_log->isChecked()) {
         if(log_file_mutex.tryLock()) {
-            static QByteArray ba;
-            if(cc == L'\n') {
-                ba.append(L'\n');
-                Konsole::PlainTextDecoder decoder;
-                QString lineText;
-                QTextStream stream(&lineText);
-                decoder.begin(&stream);
-                Konsole::Character *data = new Konsole::Character[ba.size()];
-                for(int j=0;j<ba.size();j++) {
-                    data[j] = Konsole::Character(ba.at(j));
+            if(log_file != nullptr) {
+                if(ui->actionadd_time_on_each_line->isChecked()) {
+                    QString lineText = QTime::currentTime().toString("hh:mm:ss - ");
+                    log_file->write(lineText.toUtf8());
                 }
-                decoder.decodeLine(data,ba.size(),0);
-                decoder.end();
-                delete[] data;
-                if(m_write_date) {
-                    lineText = QTime::currentTime().toString("hh:mm:ss - ") + lineText;
+                log_file->write(data, len);
+                if(ui->actionFflush_file->isChecked()) {
+                    log_file->flush();
                 }
-                log_file->write(lineText.toUtf8());
-                ba.clear();
-            } else {
-                ba.append(cc);
             }
             log_file_mutex.unlock();
         }
@@ -175,6 +162,9 @@ void TelnetWindow::recvData(const char *buff, int len)
         if(raw_log_file_mutex.tryLock()) {
             if(raw_log_file != nullptr) {
                 raw_log_file->write(buff, len);
+                    if(ui->actionFflush_file->isChecked()) {
+                    raw_log_file->flush();
+                }
             }
             raw_log_file_mutex.unlock();
         }
