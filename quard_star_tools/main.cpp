@@ -3,6 +3,7 @@
 #include <QCommandLineParser>
 #include <QTranslator>
 #include <QLibraryInfo>
+#include <QStyleFactory>
 
 QString VERSION = APP_VERSION;
 QString GIT_TAG =
@@ -192,6 +193,7 @@ int main(int argc, char *argv[])
     if(dark_theme == "false") isDarkTheme = false;
 
     BoardWindow window(env_path,skin_color,isDarkTheme);
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
     window.show();
     return application.exec();
 }

@@ -29,6 +29,7 @@ SOURCES += \
     boardview/bootselectbox.cpp \
     telnetview/QTelnet.cpp \
     telnetview/telnetwindow.cpp \
+    telnetview/asciibox.cpp \
     vncview/qvncclientwidget.cpp \
     vncview/vncwindow.cpp
 
@@ -38,6 +39,7 @@ HEADERS += \
     boardview/bootselectbox.h \
     telnetview/QTelnet.h \
     telnetview/telnetwindow.h \
+    telnetview/asciibox.h \
     vncview/qvncclientwidget.h \
     vncview/vncwindow.h
 
@@ -46,6 +48,7 @@ FORMS += \
     boardview/netselectbox.ui \
     boardview/bootselectbox.ui \
     telnetview/telnetwindow.ui \
+    telnetview/asciibox.ui \
     vncview/vncwindow.ui
 
 RESOURCES += \

@@ -17,6 +17,8 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     ui->setupUi(this);
     telnet = new QTelnet(this);
     termWidget = new QTermWidget(0,nullptr);
+    sendASCIIBox = new ASCIIBox(ASCIIBox::SEND,this);
+    recvASCIIBox = new ASCIIBox(ASCIIBox::RECV,this);
 
     ui->teOutput->addWidget(termWidget);
 
@@ -81,11 +83,15 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     ui->actionSave_Rawlog->setCheckable(true);
     ui->actionSave_Rawlog->setChecked(false);
 
+    ui->actionReceiveASCII->setCheckable(true);
+    ui->actionReceiveASCII->setChecked(false);
+
     connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
     connect(termWidget, SIGNAL(dupDisplayOutput(const char*,int)),this,SLOT(dupDisplayOutput(const char*,int)));
     termWidget->startTerminalTeletype();
 
+    connect(sendASCIIBox, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
     connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
 
     orig_font = this->termWidget->getTerminalFont();
@@ -111,6 +117,7 @@ TelnetWindow::~TelnetWindow()
     raw_log_file_mutex.unlock();
     delete telnet;
     delete termWidget;
+    delete sendASCIIBox;
     delete ui;
 }
 
@@ -292,20 +299,43 @@ void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void TelnetWindow::on_actionSendASCII_triggered()
 {
-    //TODO:
-    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+    sendASCIIBox->show();
 }
 
 void TelnetWindow::on_actionReceiveASCII_triggered()
 {
-    //TODO:
-    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+    if(ui->actionReceiveASCII->isChecked()) {
+        ui->actionReceiveASCII->setChecked(true);
+        connect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
+        recvASCIIBox->show();
+    } else {
+        ui->actionReceiveASCII->setChecked(false);
+        disconnect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
+        recvASCIIBox->hide();
+    }
 }
 
 void TelnetWindow::on_actionSendBinary_triggered()
 {
-    //TODO:
-    QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+    QString name = QFileDialog::getOpenFileName(this, tr("Open Binary..."),
+            QDir::homePath(), tr("binary files (*.bin)"));
+    if (!name.isEmpty()) {
+        QFileInfo fileinfo(name);
+        if(fileinfo.exists()) {
+            QFile file(name);
+            file.open(QIODevice::ReadOnly);
+            do {
+                QByteArray readba = file.read(4096);
+                if(readba.isEmpty()) {
+                    break;
+                }
+                sendData(readba);
+            } while(true);
+            file.close();
+        } else {
+            QMessageBox::warning(this, tr("Open binary file"), tr("Cannot open file %1.").arg(name));
+        }
+    }
 }
 
 void TelnetWindow::on_actionSendXmodem_triggered()

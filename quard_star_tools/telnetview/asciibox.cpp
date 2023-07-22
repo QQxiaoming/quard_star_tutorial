@@ -1,0 +1,61 @@
+#include <QMessageBox>
+#include "asciibox.h"
+#include "ui_asciibox.h"
+
+ASCIIBox::ASCIIBox(int type, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ASCIIBox),
+    m_type(type)
+{
+    ui->setupUi(this);
+
+    if(type == SEND) {
+        setWindowTitle("Send ASCII Text...");
+        ui->textEdit->setReadOnly(false);
+    } else if(type == RECV){
+        setWindowTitle("Recv ASCII Text...");
+        ui->textEdit->setReadOnly(true);
+        ui->buttonBox->setEnabled(false);
+    }
+
+    QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(buttonBoxAccepted()));
+    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(buttonBoxRejected()));
+}
+
+ASCIIBox::~ASCIIBox()
+{
+    delete ui;
+}
+
+void ASCIIBox::buttonBoxAccepted(void)
+{
+    if(m_type == SEND) {
+        QString input = ui->textEdit->toPlainText();
+        QByteArray array = QByteArray::fromHex(input.toLatin1());
+        if(!array.isEmpty()) {
+            QMessageBox::information(this, tr("Information"), tr("Will send Hex:\n")+"0x"+array.toHex(' ').replace(" "," 0x"));
+            emit sendData(array.constData(),array.size());
+            ui->textEdit->setPlainText(array.toHex(' '));
+        }
+    }
+    emit this->accepted();
+}
+
+void ASCIIBox::buttonBoxRejected(void)
+{
+    emit this->rejected();
+}
+
+void ASCIIBox::recvData(const char *data,int size)
+{
+    if(size > 0) {
+        QByteArray ba(data,size);
+        ui->textEdit->append(ba.toHex(' ').replace(" "," 0x"));
+    }
+}
+
+void ASCIIBox::on_pushButton_clicked()
+{
+    ui->textEdit->clear();
+}
+

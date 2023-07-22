@@ -7,6 +7,7 @@
 
 #include "QTelnet.h"
 #include "qtermwidget.h"
+#include "asciibox.h"
 
 namespace Ui {
 class TelnetWindow;
@@ -59,6 +60,8 @@ protected:
 private:
     QTelnet *telnet;
     QTermWidget *termWidget;
+    ASCIIBox *sendASCIIBox;
+    ASCIIBox *recvASCIIBox;
     QString severAddr;
     int severPort;
     QFont orig_font;

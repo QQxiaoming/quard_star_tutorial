@@ -337,5 +337,5 @@ retry:
 
 void QXmodem::xmodemInFlush(void)
 {
-	return;
+	flushfile();
 }

@@ -10,7 +10,8 @@
 class QXmodem: public QThread {
     Q_OBJECT
 public:
-    explicit QXmodem():QThread()
+    explicit QXmodem(QObject *parent = nullptr):
+        QThread(parent)
     {
     };
     ~QXmodem(){};
@@ -73,6 +74,7 @@ private:
 
     virtual int writefile(const char* buffer, int size) = 0;
     virtual int readfile(char* buffer, int size) = 0;
+    virtual int flushfile(void) = 0;
 
     virtual int sendStream(const char* buffer, int size) = 0;
     virtual int receiveStream(const char* buffer, int size) = 0;
@@ -102,10 +104,14 @@ public:
 class QXmodemFile: public QXmodem {
     Q_OBJECT
 public:
-    QXmodemFile(QString filename) {
+    QXmodemFile(QString filename,QObject *parent = nullptr) :
+        QXmodem(parent)
+    {
         m_file = new QFile(filename);
     }
-    QXmodemFile(const char *filename) {
+    QXmodemFile(const char *filename,QObject *parent = nullptr) :
+        QXmodem(parent)
+    {
         m_file = new QFile(QString(filename));
     }
     ~QXmodemFile(){
@@ -137,6 +143,10 @@ private:
     int readfile(char* buffer, int size) {
         int r = m_file->read(buffer,size);
         return r;
+    }
+    int flushfile(void)
+    {
+        return m_file->flush();
     }
     int sendStream(const char* buffer, int size) {
         emit send(QByteArray(buffer,size));
