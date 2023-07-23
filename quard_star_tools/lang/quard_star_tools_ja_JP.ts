@@ -6,23 +6,24 @@
     <message>
         <location filename="../telnetview/asciibox.ui" line="14"/>
         <source>ASCII Text...</source>
-        <translation type="unfinished"></translation>
+        <translation>ASCII テキスト...</translation>
     </message>
     <message>
         <location filename="../telnetview/asciibox.ui" line="23"/>
         <source>clear</source>
-        <translation type="unfinished"></translation>
+        <translation>クリア</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.cpp" line="52"/>
+        <location filename="../telnetview/asciibox.cpp" line="56"/>
         <source>Information</source>
-        <translation type="unfinished">情報</translation>
+        <translation>情報</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.cpp" line="52"/>
+        <location filename="../telnetview/asciibox.cpp" line="56"/>
         <source>Will send Hex:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>16 進数を送信します:
+</translation>
     </message>
 </context>
 <context>
@@ -753,17 +754,17 @@ Support:
     <message>
         <location filename="../telnetview/telnetwindow.cpp" line="330"/>
         <source>Open Binary...</source>
-        <translation type="unfinished"></translation>
+        <translation>バイナリを開く...</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.cpp" line="346"/>
         <source>Open binary file</source>
-        <translation type="unfinished"></translation>
+        <translation>バイナリファイルを開く</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.cpp" line="346"/>
         <source>Cannot open file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>ファイル %1 を開けません。</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.cpp" line="354"/>

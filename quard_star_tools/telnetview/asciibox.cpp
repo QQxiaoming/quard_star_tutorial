@@ -22,6 +22,10 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
     #endif
         font.setPointSize(12);
         ui->textEdit->setFont(font);
+        QPalette p = ui->textEdit->palette();
+        p.setColor(QPalette::Text, Qt::white);
+        p.setColor(QPalette::Base, Qt::black);
+        ui->textEdit->setPalette(p);
 
     if(type == SEND) {
         setWindowTitle("Send ASCII Text...");
@@ -74,7 +78,7 @@ void ASCIIBox::recvData(const char *data,int size)
 void ASCIIBox::hideEvent(QHideEvent *event)
 {
     emit hideOrClose();
-    event->accept();
+    Q_UNUSED(event);
 }
 
 void ASCIIBox::on_pushButton_clicked()

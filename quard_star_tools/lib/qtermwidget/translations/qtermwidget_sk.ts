@@ -14,12 +14,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/asciibox.cpp" line="52"/>
+        <location filename="../../../telnetview/asciibox.cpp" line="56"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/asciibox.cpp" line="52"/>
+        <location filename="../../../telnetview/asciibox.cpp" line="56"/>
         <source>Will send Hex:
 </source>
         <translation type="unfinished"></translation>

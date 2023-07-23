@@ -345,11 +345,11 @@ private:
     void search(bool forwards, bool next);
     void setZoom(int step);
     void init(int startnow);
-    QLocale::Language m_force_translator;
     TermWidgetImpl * m_impl;
     SearchBar* m_searchBar;
     QVBoxLayout *m_layout;
     QTranslator *m_translator;
+    QLocale::Language m_force_translator;
 };
 
 

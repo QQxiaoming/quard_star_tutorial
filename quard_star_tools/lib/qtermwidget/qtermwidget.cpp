@@ -117,13 +117,13 @@ TerminalDisplay *TermWidgetImpl::createTerminalDisplay(Session *session, QWidget
 
 
 QTermWidget::QTermWidget(int startnow, QLocale::Language force_translator, QWidget *parent)
-    : m_force_translator(force_translator), QWidget(parent)
+    : QWidget(parent), m_force_translator(force_translator)
 {
     init(startnow);
 }
 
 QTermWidget::QTermWidget(QLocale::Language force_translator, QWidget *parent)
-    : m_force_translator(force_translator), QWidget(parent)
+    : QWidget(parent), m_force_translator(force_translator)
 {
     init(1);
 }
