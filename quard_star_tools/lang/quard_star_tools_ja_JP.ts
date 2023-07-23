@@ -6,12 +6,22 @@
     <message>
         <location filename="../telnetview/asciibox.ui" line="14"/>
         <source>ASCII Text...</source>
-        <translation>ASCII テキスト...</translation>
+        <translation>ASCIIテキスト...</translation>
     </message>
     <message>
         <location filename="../telnetview/asciibox.ui" line="23"/>
         <source>clear</source>
         <translation>クリア</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/asciibox.cpp" line="31"/>
+        <source>Send ASCII Text...</source>
+        <translation>ASCIIテキスト送信...</translation>
+    </message>
+    <message>
+        <location filename="../telnetview/asciibox.cpp" line="34"/>
+        <source>Recv ASCII Text...</source>
+        <translation>ASCIIテキスト受信...</translation>
     </message>
     <message>
         <location filename="../telnetview/asciibox.cpp" line="56"/>

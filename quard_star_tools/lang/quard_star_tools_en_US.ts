@@ -14,6 +14,16 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../telnetview/asciibox.cpp" line="31"/>
+        <source>Send ASCII Text...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../telnetview/asciibox.cpp" line="34"/>
+        <source>Recv ASCII Text...</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../telnetview/asciibox.cpp" line="56"/>
         <source>Information</source>
         <translation></translation>

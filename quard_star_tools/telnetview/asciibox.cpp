@@ -28,10 +28,10 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
         ui->textEdit->setPalette(p);
 
     if(type == SEND) {
-        setWindowTitle("Send ASCII Text...");
+        setWindowTitle(tr("Send ASCII Text..."));
         ui->textEdit->setReadOnly(false);
     } else if(type == RECV){
-        setWindowTitle("Recv ASCII Text...");
+        setWindowTitle(tr("Recv ASCII Text..."));
         ui->textEdit->setReadOnly(true);
         ui->buttonBox->setEnabled(false);
         ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
