@@ -21,6 +21,7 @@
 #define _Q_TERM_WIDGET
 
 #include <QTranslator>
+#include <QLocale>
 #include <QWidget>
 #include "Emulation.h"
 #include "Filter.h"
@@ -52,9 +53,11 @@ public:
 
     //Creation of widget
     QTermWidget(int startnow, // 1 = start shell programm immediatelly
+                QLocale::Language force_translator = QLocale::AnyLanguage,
                 QWidget * parent = nullptr);
     // A dummy constructor for Qt Designer. startnow is 1 by default
-    QTermWidget(QWidget *parent = nullptr);
+    QTermWidget(QLocale::Language force_translator = QLocale::AnyLanguage,
+                QWidget *parent = nullptr);
 
     ~QTermWidget() override;
 
@@ -342,6 +345,7 @@ private:
     void search(bool forwards, bool next);
     void setZoom(int step);
     void init(int startnow);
+    QLocale::Language m_force_translator;
     TermWidgetImpl * m_impl;
     SearchBar* m_searchBar;
     QVBoxLayout *m_layout;

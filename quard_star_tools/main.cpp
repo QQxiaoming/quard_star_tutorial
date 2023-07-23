@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
     if(dark_theme == "true") isDarkTheme = true;
     if(dark_theme == "false") isDarkTheme = false;
 
-    BoardWindow window(env_path,skin_color,isDarkTheme);
+    BoardWindow window(env_path,skin_color,isDarkTheme,lang);
     QApplication::setStyle(QStyleFactory::create("Fusion"));
     window.show();
     return application.exec();

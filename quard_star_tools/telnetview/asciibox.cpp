@@ -9,6 +9,20 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QFont font = QApplication::font();
+    #ifdef Q_OS_MACOS
+        font.setFamily(QStringLiteral("Monaco"));
+    #elif defined(Q_WS_QWS)
+        font.setFamily(QStringLiteral("fixed"));
+    #else
+        font.setFamily(QStringLiteral("Monospace"));
+    #endif
+    #if defined(Q_OS_WIN)
+        font.setFixedPitch(true);
+    #endif
+        font.setPointSize(12);
+        ui->textEdit->setFont(font);
+
     if(type == SEND) {
         setWindowTitle("Send ASCII Text...");
         ui->textEdit->setReadOnly(false);
@@ -16,6 +30,8 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
         setWindowTitle("Recv ASCII Text...");
         ui->textEdit->setReadOnly(true);
         ui->buttonBox->setEnabled(false);
+        ui->textEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        ui->textEdit->setLineWrapMode(QTextEdit::WidgetWidth);
     }
 
     QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(buttonBoxAccepted()));
@@ -50,8 +66,15 @@ void ASCIIBox::recvData(const char *data,int size)
 {
     if(size > 0) {
         QByteArray ba(data,size);
-        ui->textEdit->append(ba.toHex(' ').replace(" "," 0x"));
+        ui->textEdit->insertPlainText("0x" + ba.toHex(' ').replace(" "," 0x") + " ");
+        ui->textEdit->ensureCursorVisible();
     }
+}
+
+void ASCIIBox::hideEvent(QHideEvent *event)
+{
+    emit hideOrClose();
+    event->accept();
 }
 
 void ASCIIBox::on_pushButton_clicked()

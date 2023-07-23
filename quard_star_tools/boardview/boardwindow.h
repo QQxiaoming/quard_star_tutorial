@@ -26,7 +26,9 @@ class BoardWindow : public QMainWindow
 
 public:
     explicit BoardWindow(const QString &path,const QString &color = "green",
-                    const bool &isDarkTheme = false,QWidget *parent = nullptr);
+                    const bool &isDarkTheme = false,
+                    QLocale::Language force_translator = QLocale::AnyLanguage,
+                    QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);
     QString& getVCanName(void);

@@ -2,6 +2,7 @@
 #define ASCIIBOX_H
 
 #include <QDialog>
+#include <QHideEvent>
 
 namespace Ui {
 class ASCIIBox;
@@ -22,6 +23,10 @@ public:
 
 signals:
     void sendData(const char *,int);
+    void hideOrClose();
+
+protected:
+    void hideEvent(QHideEvent *event);
 
 public slots:
     void recvData(const char *data,int size);

@@ -10,13 +10,13 @@
 #include "telnetwindow.h"
 #include "ui_telnetwindow.h"
 
-TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
+TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language force_translator, QWidget *parent) :
     QMainWindow(parent),severAddr(addr),severPort(port),
     ui(new Ui::TelnetWindow)
 {
     ui->setupUi(this);
     telnet = new QTelnet(this);
-    termWidget = new QTermWidget(0,nullptr);
+    termWidget = new QTermWidget(0,force_translator,nullptr);
     sendASCIIBox = new ASCIIBox(ASCIIBox::SEND,this);
     recvASCIIBox = new ASCIIBox(ASCIIBox::RECV,this);
 
@@ -92,6 +92,8 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     termWidget->startTerminalTeletype();
 
     connect(sendASCIIBox, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
+    connect(recvASCIIBox, SIGNAL(hideOrClose()),this,SLOT(recvASCIIstop()));
+
     connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
 
     orig_font = this->termWidget->getTerminalFont();
@@ -291,7 +293,7 @@ void TelnetWindow::on_actionReset_Zoom_triggered()
 
 void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
 {
-    if( event->button() == Qt::MiddleButton) {
+    if( event->button() == Qt::MiddleButton || event->button() == Qt::RightButton) {
         this->termWidget->pasteSelection();
     }
     event->accept();
@@ -312,6 +314,14 @@ void TelnetWindow::on_actionReceiveASCII_triggered()
         ui->actionReceiveASCII->setChecked(false);
         disconnect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
         recvASCIIBox->hide();
+    }
+}
+
+void TelnetWindow::recvASCIIstop()
+{
+    if(ui->actionReceiveASCII->isChecked()) {
+        ui->actionReceiveASCII->setChecked(false);
+        disconnect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
     }
 }
 

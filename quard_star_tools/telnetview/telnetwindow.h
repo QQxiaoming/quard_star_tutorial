@@ -18,7 +18,9 @@ class TelnetWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit TelnetWindow(const QString &addr, int port, QWidget *parent = nullptr);
+    explicit TelnetWindow(const QString &addr, int port,
+                          QLocale::Language force_translator = QLocale::AnyLanguage,
+                          QWidget *parent = nullptr);
     ~TelnetWindow();
     void reConnect(void);
     void sendData(const QByteArray &ba);
@@ -44,6 +46,7 @@ private slots:
 
     void on_actionSendASCII_triggered();
     void on_actionReceiveASCII_triggered();
+    void recvASCIIstop();
     void on_actionSendBinary_triggered();
     void on_actionSendXmodem_triggered();
     void on_actionReceiveXmodem_triggered();

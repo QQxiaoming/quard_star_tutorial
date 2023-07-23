@@ -47,11 +47,6 @@
 
 using namespace Konsole;
 
-void *createTermWidget(int startnow, void *parent)
-{
-    return (void*) new QTermWidget(startnow, (QWidget*)parent);
-}
-
 class TermWidgetImpl {
 
 public:
@@ -121,14 +116,14 @@ TerminalDisplay *TermWidgetImpl::createTerminalDisplay(Session *session, QWidget
 }
 
 
-QTermWidget::QTermWidget(int startnow, QWidget *parent)
-    : QWidget(parent)
+QTermWidget::QTermWidget(int startnow, QLocale::Language force_translator, QWidget *parent)
+    : m_force_translator(force_translator), QWidget(parent)
 {
     init(startnow);
 }
 
-QTermWidget::QTermWidget(QWidget *parent)
-    : QWidget(parent)
+QTermWidget::QTermWidget(QLocale::Language force_translator, QWidget *parent)
+    : m_force_translator(force_translator), QWidget(parent)
 {
     init(1);
 }
@@ -252,10 +247,13 @@ void QTermWidget::init(int startnow)
     dirs.append(QFile::decodeName(":/lib/qtermwidget/translations"));
 
     m_translator = new QTranslator(this);
+    if(m_force_translator == QLocale::AnyLanguage) {
+        m_force_translator = QLocale::system().language();
+    }
 
     for (const QString& dir : qAsConst(dirs)) {
         //qDebug() << "Trying to load translation file from dir" << dir;
-        if (m_translator->load(QLocale::system(), QLatin1String("qtermwidget"), QLatin1String(QLatin1String("_")), dir)) {
+        if (m_translator->load(QLocale(m_force_translator), QLatin1String("qtermwidget"), QLatin1String(QLatin1String("_")), dir)) {
             qApp->installTranslator(m_translator);
             //qDebug() << "Translations found in" << dir;
             break;
