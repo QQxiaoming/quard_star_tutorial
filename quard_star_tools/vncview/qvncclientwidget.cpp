@@ -3,6 +3,7 @@
 QVNCClientWidget::QVNCClientWidget(QWidget *parent) : QWidget(parent), isScaled(true)
 {
     setMouseTracking(true);
+    setCursor(Qt::BlankCursor);
     connect(&socket, &QTcpSocket::stateChanged, &socket,
                 [&](QAbstractSocket::SocketState state)
                 {

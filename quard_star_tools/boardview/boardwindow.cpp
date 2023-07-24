@@ -179,8 +179,8 @@ bool BoardWindow::powerSwitch(bool power)
 #endif
         "-device",    
             "virtio-net-device,netdev=net1",
-        "-device",    
-            "virtio-gpu-device,xres=1280,yres=720,id=video0",
+        //"-device",    
+        //    "virtio-gpu-device,xres=1280,yres=720,id=video0",
         "-device",    
             "virtio-mouse-device,id=input0",
         "-device",    
