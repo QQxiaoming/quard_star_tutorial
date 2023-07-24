@@ -10,6 +10,13 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 {
     ui->setupUi(this);
 
+    //QPixmap pix;
+    //pix.load(":/boardview/icons/ttf.png",0,
+    //            Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+    //pix = pix.scaled(QSize(640,480));
+    //resize(pix.size());
+    //setMask(QBitmap(pix.mask()));
+    
     QObject::connect(ui->refreshPushbuttion, SIGNAL(clicked()), this, SLOT(refreshClicked()));
 }
 
