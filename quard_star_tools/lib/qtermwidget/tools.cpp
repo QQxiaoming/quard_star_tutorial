@@ -57,9 +57,7 @@ const QStringList get_color_schemes_dirs()
             rval << custom_dir;
     }
 #ifdef QT_DEBUG
-    if(!rval.isEmpty()) {
-        qDebug() << "Using color-schemes: " << rval;
-    } else {
+    if(rval.isEmpty()) {
         qDebug() << "Cannot find color-schemes in any location!";
     }
 #endif

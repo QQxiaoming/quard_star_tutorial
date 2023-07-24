@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QPoint>
 #include <QToolTip>
+#include "qfonticon.h"
 
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
@@ -260,9 +261,7 @@ bool& BoardWindow::getUpdateCfg(void)
 void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 {
     QAction *pGInfo= new QAction(tr("Get Info"), this);
-    QIcon icoInfo(":/boardview/icons/info" + 
-                    [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}() +
-                    ".svg");
+    QIcon icoInfo(QFontIcon::icon(QChar(0xf05a)));
     pGInfo->setIcon(icoInfo);
     pGInfo->setToolTip(QString::number(title));
     menu->addAction(pGInfo);
@@ -333,8 +332,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 {
     QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
-    QIcon icoOpen(":/boardview/icons/open" + 
-            [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoOpen(QFontIcon::icon(QChar(0xf07c)));
     pOFileSystem->setIcon(icoOpen);
     pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
@@ -343,8 +341,7 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 {
     QAction *pSetting= new QAction(tr("Setting"), this);
-    QIcon icoSetting(":/boardview/icons/setting" + 
-            [&](void) -> QString{if(isDarkTheme) return "";else return "_black";}()+".svg");
+    QIcon icoSetting(QFontIcon::icon(QChar(0xf013)));
     pSetting->setIcon(icoSetting);
     pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);

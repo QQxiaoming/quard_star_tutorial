@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "boardwindow.h"
 #include "telnetwindow.h"
+#include "qfonticon.h"
 #include "ui_telnetwindow.h"
 
 TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language force_translator, QWidget *parent) :
@@ -85,6 +86,15 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
 
     ui->actionReceiveASCII->setCheckable(true);
     ui->actionReceiveASCII->setChecked(false);
+
+    ui->actionFind->setIcon(QFontIcon::icon(QChar(0xf002)));
+    ui->actionCopy->setIcon(QFontIcon::icon(QChar(0xf0c5)));
+    ui->actionPaste->setIcon(QFontIcon::icon(QChar(0xf0ea)));
+    ui->actionReset->setIcon(QFontIcon::icon(QChar(0xf01e)));
+    ui->actionZoom_In->setIcon(QFontIcon::icon(QChar(0xf065)));
+    ui->actionZoom_Out->setIcon(QFontIcon::icon(QChar(0xf066)));
+    ui->actionReset_Zoom->setIcon(QFontIcon::icon(QChar(0xf057)));
+    ui->actionSave_screen->setIcon(QFontIcon::icon(QChar(0xf0c7)));
 
     connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));

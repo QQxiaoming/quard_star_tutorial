@@ -43,23 +43,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="214"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="215"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="214"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="215"/>
         <source>power up error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="262"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="328"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="263"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="327"/>
         <source>Get Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="278"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="277"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -69,73 +69,73 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="281"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="280"/>
         <source>DDR:
  1G.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="284"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="283"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="287"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="286"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="290"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="289"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="293"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="292"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="296"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="295"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="299"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="298"/>
         <source>LCDC:
  VGA port 640x480.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="304"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="303"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="307"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="306"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="310"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="309"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="313"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="312"/>
         <source>IIS:
  wm8750.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="316"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="315"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -144,87 +144,87 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="319"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="318"/>
         <source>power:
  DC 12V.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="322"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="321"/>
         <source>switch:
  power switch.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="335"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="334"/>
         <source>Open FileSystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="345"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="343"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="418"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="425"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="415"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="422"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="426"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="423"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="427"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="424"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="428"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="425"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="432"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="443"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="625"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="429"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="440"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="622"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="626"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="623"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="454"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="451"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="573"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="570"/>
         <source>Select SD IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="576"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="573"/>
         <source>Select NorFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="579"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="576"/>
         <source>Select NandFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="582"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="579"/>
         <source>Select PFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="585"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="582"/>
         <source>Select USBFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
@@ -559,8 +559,8 @@ Support:
     </message>
     <message>
         <location filename="../../../telnetview/telnetwindow.ui" line="53"/>
-        <location filename="../../../telnetview/telnetwindow.ui" line="162"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="377"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="153"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="387"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -605,196 +605,196 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="137"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="134"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="145"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="139"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="153"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="144"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="171"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="162"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="180"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="171"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="188"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="176"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="193"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="193"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="217"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="181"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="203"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="227"/>
         <source>Save log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="201"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="186"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="209"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="191"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="217"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="196"/>
         <source>Reset Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="222"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="201"/>
         <source>Send ASCII...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="227"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="206"/>
         <source>Receive ASCII...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="232"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="211"/>
         <source>Send Binary...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="237"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="216"/>
         <source>Send Xmodem...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="242"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="221"/>
         <source>Receive Xmodem...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="247"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="226"/>
         <source>Send Ymodem...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="252"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="231"/>
         <source>Receive Ymodem...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="260"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="236"/>
         <source>Select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="265"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="241"/>
         <source>Save Rawlog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="273"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="249"/>
         <source>Add timestamp on each line...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="281"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="257"/>
         <source>Fflush file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.ui" line="289"/>
+        <location filename="../../../telnetview/telnetwindow.ui" line="262"/>
         <source>Save screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="188"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="212"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="198"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="222"/>
         <source>Save log...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="189"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="213"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="199"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="223"/>
         <source>log files (*.log)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="193"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="217"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="246"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="203"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="227"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="256"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="241"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="251"/>
         <source>Save Raw log...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="242"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="331"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="252"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="341"/>
         <source>binary files (*.bin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="246"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="256"/>
         <source>Save Raw log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="330"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="340"/>
         <source>Open Binary...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="346"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="356"/>
         <source>Open binary file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="346"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="356"/>
         <source>Cannot open file %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="354"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="360"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="366"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="372"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="364"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="370"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="376"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="382"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="354"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="360"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="366"/>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="372"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="364"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="370"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="376"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="382"/>
         <source>This feature is not ready yet, so stay tuned!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="378"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="388"/>
         <source>1. The central window is the terminal operation window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="379"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="389"/>
         <source>2. The menu bar provides portable tools and terminal configuration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../telnetview/telnetwindow.cpp" line="380"/>
+        <location filename="../../../telnetview/telnetwindow.cpp" line="390"/>
         <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,9 +1,11 @@
-#include "boardwindow.h"
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QStyleFactory>
+
+#include "boardwindow.h"
+#include "qfonticon.h"
 
 QString VERSION = APP_VERSION;
 QString GIT_TAG =
@@ -191,6 +193,9 @@ int main(int argc, char *argv[])
     bool isDarkTheme = text_hsv_value > bg_hsv_value?true:false;
     if(dark_theme == "true") isDarkTheme = true;
     if(dark_theme == "false") isDarkTheme = false;
+
+    QFontIcon::addFont(":/boardview/icons/fontawesome-webfont.ttf");
+    QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
 
     BoardWindow window(env_path,skin_color,isDarkTheme,lang);
     QApplication::setStyle(QStyleFactory::create("Fusion"));

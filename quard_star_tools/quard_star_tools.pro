@@ -1,5 +1,6 @@
 BUILD_VERSION=0.2.0
 QT += core gui network
+QT += xml svg
 greaterThan(QT_MAJOR_VERSION, 5): QT += core5compat
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 greaterThan(QT_MAJOR_VERSION, 4) {
@@ -13,6 +14,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += APP_VERSION="\\\"V$${BUILD_VERSION}\\\""
 QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
+include(./lib/QFontIcon/QFontIcon.pri)
 include(./lib/qtxyzmodem/qtxyzmodem.pro)
 include(./lib/qtermwidget/qtermwidget.pro)
 
