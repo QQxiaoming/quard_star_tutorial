@@ -6,96 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
-    <height>546</height>
+    <width>660</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>VncWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QVNCClientWidget" name="vncView" native="true">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="QPushButton" name="refreshPushbuttion">
-      <property name="text">
-       <string>Refresh</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <layout class="QVBoxLayout" name="verticalLayout"/>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>664</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionHelp"/>
-    <addaction name="separator"/>
-    <addaction name="actionAbout"/>
-    <addaction name="actionAbout_Qt"/>
-   </widget>
-   <addaction name="menuHelp"/>
-  </widget>
-  <action name="actionHelp">
-   <property name="icon">
-    <iconset resource="../res/resource.qrc">
-     <normaloff>:/boardview/icons/help.png</normaloff>:/boardview/icons/help.png</iconset>
-   </property>
-   <property name="text">
-    <string>Help</string>
-   </property>
-  </action>
-  <action name="actionAbout">
-   <property name="icon">
-    <iconset resource="../res/resource.qrc">
-     <normaloff>:/boardview/icons/about.png</normaloff>:/boardview/icons/about.png</iconset>
-   </property>
-   <property name="text">
-    <string>About</string>
-   </property>
-  </action>
-  <action name="actionAbout_Qt">
-   <property name="icon">
-    <iconset resource="../res/resource.qrc">
-     <normaloff>:/boardview/icons/aboutqt.png</normaloff>:/boardview/icons/aboutqt.png</iconset>
-   </property>
-   <property name="text">
-    <string>About Qt</string>
-   </property>
-  </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QVNCClientWidget</class>
-   <extends>QWidget</extends>
-   <header>qvncclientwidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
- <resources>
-  <include location="../res/resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
