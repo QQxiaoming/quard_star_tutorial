@@ -23,9 +23,9 @@ NetSelectBox::~NetSelectBox()
 
 void NetSelectBox::showEvent(QShowEvent* event) 
 {
-    QNetworkInterface interface;
+    QNetworkInterface net;
     BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
-    QList<QNetworkInterface> netList = interface.allInterfaces();
+    QList<QNetworkInterface> netList = net.allInterfaces();
 
     ui->tapComboBox->clear();
     ui->canComboBox->clear();
