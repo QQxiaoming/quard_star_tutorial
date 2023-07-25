@@ -48,7 +48,7 @@ public:
     void setLetter(const QChar& letter);
     // You can set a base color. I don't advice. Keep system color
     void setBaseColor(const QColor& baseColor);
-    virtual QIconEngine* clone() const;
+    virtual QIconEngine* clone() const override;
 
 private:
     QString mFontFamily;

@@ -3365,7 +3365,7 @@ void AutoScrollHandler::timerEvent(QTimerEvent* event)
     if (event->timerId() != _timerId)
         return;
 
-    QMouseEvent mouseEvent(    QEvent::MouseMove,
+    QMouseEvent mouseEvent(    QEvent::MouseMove,QCursor::pos(),
                               widget()->mapFromGlobal(QCursor::pos()),
                               Qt::NoButton,
                               Qt::LeftButton,
