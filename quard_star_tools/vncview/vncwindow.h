@@ -2,6 +2,10 @@
 #define VNCWINDOW_H
 
 #include <QMainWindow>
+#include <QPoint>
+#include <QVBoxLayout>
+
+#include <qvncclientwidget.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class VncWindow; }
@@ -16,16 +20,21 @@ public:
     ~VncWindow();
     void reConnect(void);
 
-private slots:
-    void refreshClicked();
-
-    void on_actionHelp_triggered();
-    void on_actionAbout_triggered();
-    void on_actionAbout_Qt_triggered();
-
+protected:
+    void contextMenuEvent(QContextMenuEvent *event);
+    void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    
 private:
+    bool isMousePressed = false;
     QString severAddr;
+    QPoint mStartPos;
     int severPort;
+    QVNCClientWidget *vncView;
+    QVBoxLayout *verticalLayout;
+    double scaled_value = 1.0;
     Ui::VncWindow *ui;
 };
 #endif // VNCWINDOW_H
