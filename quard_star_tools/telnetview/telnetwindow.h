@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFile>
 #include <QMutex>
+#include <QMenu>
 
 #include "QTelnet.h"
 #include "qtermwidget.h"
@@ -26,11 +27,12 @@ public:
     void sendData(const QByteArray &ba);
 
 private slots:
-    void refreshClicked();
     void sendData(const char *data, int len);
     void recvData(const char *buff, int len);
     void dupDisplayOutput(const char* data,int len);
+    void recvASCIIstop();
 
+private:
     void on_actionSave_screen_triggered();
     void on_actionSave_log_triggered();
     void on_actionSave_Rawlog_triggered();
@@ -46,21 +48,23 @@ private slots:
 
     void on_actionSendASCII_triggered();
     void on_actionReceiveASCII_triggered();
-    void recvASCIIstop();
     void on_actionSendBinary_triggered();
     void on_actionSendXmodem_triggered();
     void on_actionReceiveXmodem_triggered();
     void on_actionSendYmodem_triggered();
     void on_actionReceiveYmodem_triggered();
 
-    void on_actionHelp_triggered();
-    void on_actionAbout_triggered();
-    void on_actionAbout_Qt_triggered();
-
 protected:
+    void contextMenuEvent(QContextMenuEvent *event);
+    void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
+    bool isMousePressed = false;
+    QPoint mStartPos;
+    double scaled_value = 1.0;
     QTelnet *telnet;
     QTermWidget *termWidget;
     ASCIIBox *sendASCIIBox;
@@ -72,6 +76,12 @@ private:
     QMutex raw_log_file_mutex;
     QFile *log_file = nullptr;
     QMutex log_file_mutex;
+    QMenu *menu;
+    QAction *actionSave_log;
+    QAction *actionSave_Rawlog;
+    QAction *actionReceiveASCII;
+    QAction *actionadd_time_on_each_line;
+    QAction *actionFflush_file;
     Ui::TelnetWindow *ui;
 };
 
