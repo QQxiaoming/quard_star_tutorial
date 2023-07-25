@@ -442,6 +442,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
 
     orig_font = this->termWidget->getTerminalFont();
 
+    setFixedSize(this->size());
     Q_UNUSED(parent);
 }
 

@@ -80,6 +80,8 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     lcdWindow->setWindowTitle("LCD");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
+
+    setFixedSize(this->size());
 }
 
 BoardWindow::~BoardWindow()

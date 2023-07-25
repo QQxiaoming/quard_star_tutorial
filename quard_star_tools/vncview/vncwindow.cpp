@@ -42,6 +42,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
 
+    setFixedSize(this->size());
     Q_UNUSED(parent);
 }
 

@@ -283,7 +283,23 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
     painter.begin(this);
     if (isScaled)
     {
+    #if defined(Q_OS_MACOS)
+        painter.drawImage(paintTargetX, paintTargetY, 
+            [&]()->QImage{
+                QImage src = screen.scaled(width(), height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                QImage dst(src.size(), QImage::Format_RGB888);
+                for (int x = 0; x < src.width(); x++) {
+                    for (int y = 0; y < src.height(); y++) {
+                        QColor pixel = src.pixel(x, y);
+                        pixel.setAlpha(255);
+                        dst.setPixelColor(x, y, pixel);
+                    }
+                }
+                return dst;
+            }());
+    #else
         painter.drawImage(paintTargetX, paintTargetY, screen.scaled(width(), height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+    #endif
     }
     else
         painter.drawImage(paintTargetX, paintTargetY, screen);
