@@ -4,8 +4,9 @@
 #include <QLibraryInfo>
 #include <QStyleFactory>
 
-#include "boardwindow.h"
 #include "qfonticon.h"
+
+#include "boardwindow.h"
 
 QString VERSION = APP_VERSION;
 QString GIT_TAG =
@@ -196,9 +197,10 @@ int main(int argc, char *argv[])
 
     QFontIcon::addFont(":/boardview/icons/fontawesome-webfont.ttf");
     QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     BoardWindow window(env_path,skin_color,isDarkTheme,lang);
-    QApplication::setStyle(QStyleFactory::create("Fusion"));
     window.show();
+
     return application.exec();
 }

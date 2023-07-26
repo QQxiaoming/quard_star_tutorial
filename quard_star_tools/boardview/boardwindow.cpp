@@ -8,6 +8,7 @@
 #include <QFileDialog>
 #include <QPoint>
 #include <QToolTip>
+
 #include "qfonticon.h"
 
 #include "ui_boardwindow.h"
@@ -80,6 +81,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     lcdWindow->setWindowTitle("LCD");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
+    fsView = new FSViewWindow(nullptr);
 
     setFixedSize(this->size());
 }
@@ -89,6 +91,7 @@ BoardWindow::~BoardWindow()
     qemuProcess->kill();
     qemuProcess->waitForFinished(-1);
     delete qemuProcess;
+    delete fsView;
     delete netSelect;
     delete bootSelect;
     delete lcdWindow;
@@ -338,6 +341,31 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
     pOFileSystem->setIcon(icoOpen);
     pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
+    connect(pOFileSystem,&QAction::triggered,this,
+        [&](void)
+        {
+            QAction* pGInfo = qobject_cast<QAction*>(sender());
+            DeviceName title = static_cast<DeviceName>(pGInfo->toolTip().toInt());
+            QString info;
+            switch (title)
+            {
+                case SOC:
+                {
+                    fsView->setExt4FSImgView(rootFSImgPath,101711872,4193255424);
+                    fsView->show();
+                    break;
+                }
+                case NOR:
+                case NAND:
+                case SD:
+                case USB0:
+                case USB1:
+                    break;
+                default:
+                    break;
+            }
+        }
+    );
 }
 
 void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)

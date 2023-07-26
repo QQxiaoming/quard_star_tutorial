@@ -44,30 +44,30 @@
         <translation>メインウィンドウ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="429"/>
-        <location filename="../boardview/boardwindow.cpp" line="440"/>
-        <location filename="../boardview/boardwindow.cpp" line="622"/>
+        <location filename="../boardview/boardwindow.cpp" line="431"/>
+        <location filename="../boardview/boardwindow.cpp" line="442"/>
+        <location filename="../boardview/boardwindow.cpp" line="624"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="215"/>
+        <location filename="../boardview/boardwindow.cpp" line="217"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="215"/>
+        <location filename="../boardview/boardwindow.cpp" line="217"/>
         <source>power up error!</source>
         <translation>パワーアップエラー！</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="298"/>
+        <location filename="../boardview/boardwindow.cpp" line="300"/>
         <source>LCDC:
  VGA port 640x480.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="315"/>
+        <location filename="../boardview/boardwindow.cpp" line="317"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -76,39 +76,39 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="415"/>
-        <location filename="../boardview/boardwindow.cpp" line="422"/>
+        <location filename="../boardview/boardwindow.cpp" line="417"/>
+        <location filename="../boardview/boardwindow.cpp" line="424"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="423"/>
+        <location filename="../boardview/boardwindow.cpp" line="425"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.探索するコンポーネントの上にマウスを移動します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="424"/>
+        <location filename="../boardview/boardwindow.cpp" line="426"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.コンポーネントを右クリックして設定を表示します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="425"/>
+        <location filename="../boardview/boardwindow.cpp" line="427"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="623"/>
+        <location filename="../boardview/boardwindow.cpp" line="625"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;バージョン&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;コミット&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;開発者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;ウェブサイト&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="263"/>
-        <location filename="../boardview/boardwindow.cpp" line="327"/>
+        <location filename="../boardview/boardwindow.cpp" line="265"/>
+        <location filename="../boardview/boardwindow.cpp" line="329"/>
         <source>Get Info</source>
         <translation>詳細</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="277"/>
+        <location filename="../boardview/boardwindow.cpp" line="279"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -118,87 +118,87 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="280"/>
+        <location filename="../boardview/boardwindow.cpp" line="282"/>
         <source>DDR:
  1G.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="283"/>
+        <location filename="../boardview/boardwindow.cpp" line="285"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="286"/>
+        <location filename="../boardview/boardwindow.cpp" line="288"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="289"/>
+        <location filename="../boardview/boardwindow.cpp" line="291"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="292"/>
+        <location filename="../boardview/boardwindow.cpp" line="294"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="295"/>
+        <location filename="../boardview/boardwindow.cpp" line="297"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="303"/>
+        <location filename="../boardview/boardwindow.cpp" line="305"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="306"/>
+        <location filename="../boardview/boardwindow.cpp" line="308"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation>QEMU monitor:
  monitor終端.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="309"/>
+        <location filename="../boardview/boardwindow.cpp" line="311"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="312"/>
+        <location filename="../boardview/boardwindow.cpp" line="314"/>
         <source>IIS:
  wm8750.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="318"/>
+        <location filename="../boardview/boardwindow.cpp" line="320"/>
         <source>power:
  DC 12V.</source>
         <translation>電源:
  DC 12V.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="321"/>
+        <location filename="../boardview/boardwindow.cpp" line="323"/>
         <source>switch:
  power switch.</source>
         <translation>スイッチ:
  電源スイッチ.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="334"/>
+        <location filename="../boardview/boardwindow.cpp" line="336"/>
         <source>Open FileSystem</source>
         <translation>ファイルシステムを開く</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="343"/>
+        <location filename="../boardview/boardwindow.cpp" line="345"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
@@ -211,32 +211,32 @@ Support:
 3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="451"/>
+        <location filename="../boardview/boardwindow.cpp" line="453"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="570"/>
+        <location filename="../boardview/boardwindow.cpp" line="572"/>
         <source>Select SD IMG</source>
         <translation>SDディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="573"/>
+        <location filename="../boardview/boardwindow.cpp" line="575"/>
         <source>Select NorFlash IMG</source>
         <translation>NorFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="576"/>
+        <location filename="../boardview/boardwindow.cpp" line="578"/>
         <source>Select NandFlash IMG</source>
         <translation>NandFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="579"/>
+        <location filename="../boardview/boardwindow.cpp" line="581"/>
         <source>Select PFlash IMG</source>
         <translation>PFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="582"/>
+        <location filename="../boardview/boardwindow.cpp" line="584"/>
         <source>Select USBFlash IMG</source>
         <translation>USBFlashディスクイメージを選択</translation>
     </message>
@@ -819,23 +819,23 @@ Support:
         <translation>Vnc ウィンドウ</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="77"/>
+        <location filename="../vncview/vncwindow.cpp" line="78"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="87"/>
-        <location filename="../vncview/vncwindow.cpp" line="93"/>
+        <location filename="../vncview/vncwindow.cpp" line="88"/>
+        <location filename="../vncview/vncwindow.cpp" line="94"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="100"/>
+        <location filename="../vncview/vncwindow.cpp" line="101"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="110"/>
+        <location filename="../vncview/vncwindow.cpp" line="111"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
@@ -852,12 +852,12 @@ Support:
         <translation type="vanished">この機能はまだ完成していませんので、しばらくお待ちください。</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="94"/>
+        <location filename="../vncview/vncwindow.cpp" line="95"/>
         <source>1. The central window is the LCD emulation output window.</source>
         <translation>1. 中央のウィンドウは LCD エミュレーション出力ウィンドウです。</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="95"/>
+        <location filename="../vncview/vncwindow.cpp" line="96"/>
         <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>2. 下部の更新ボタンは、更新と再接続に使用されます。これは、シミュレーションの再開時に接続するために使用されます。</translation>
     </message>

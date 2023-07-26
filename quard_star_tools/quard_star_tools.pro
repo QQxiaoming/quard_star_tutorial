@@ -15,6 +15,7 @@ DEFINES += APP_VERSION="\\\"V$${BUILD_VERSION}\\\""
 QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
 include(./lib/QFontIcon/QFontIcon.pri)
+include(./lib/ext4/ext4.pri)
 include(./lib/qtxyzmodem/qtxyzmodem.pro)
 include(./lib/qtermwidget/qtermwidget.pro)
 
@@ -29,6 +30,7 @@ SOURCES += \
     boardview/boardwindow.cpp \
     boardview/netselectbox.cpp \
     boardview/bootselectbox.cpp \
+    boardview/treemodel.cpp \
     telnetview/QTelnet.cpp \
     telnetview/telnetwindow.cpp \
     telnetview/asciibox.cpp \
@@ -39,6 +41,7 @@ HEADERS += \
     boardview/boardwindow.h \
     boardview/netselectbox.h \
     boardview/bootselectbox.h \
+    boardview/treemodel.h \
     telnetview/QTelnet.h \
     telnetview/telnetwindow.h \
     telnetview/asciibox.h \

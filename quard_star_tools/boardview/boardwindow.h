@@ -7,6 +7,10 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include <QProcess>
+#include <QTreeView>
+
+#include "treemodel.h"
+#include "ext4_module.h"
 
 #include "vncwindow.h"
 #include "telnetwindow.h"
@@ -19,6 +23,95 @@ extern QString GIT_TAG;
 namespace Ui {
 class BoardWindow;
 }
+
+class FSViewWindow : public QTreeView
+{
+    Q_OBJECT
+public:
+    explicit FSViewWindow(QWidget *parent = nullptr) :
+        QTreeView(parent) {
+        mode = new TreeModel(this);
+        setModel(mode);
+        rootIndex = new QModelIndex();
+    }
+
+    ~FSViewWindow() {
+        delete rootIndex;
+        delete mode;
+    }
+
+    void setExt4FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
+        resetView();
+        QFile fs_img(rootFSImgPath);
+        fs_img.open(QIODevice::ReadOnly);
+        ext4_init(fs_img.map(offset,size),size);
+        listExt4FSAll("/",*rootIndex);
+        ext4_close();
+        fs_img.close();
+    }
+
+    void resetView(void) {
+        mode->removeTree(*rootIndex);
+    }
+
+protected:
+    void closeEvent(QCloseEvent *event) {
+        this->hide();
+        event->ignore();
+    }
+
+private:
+    void listExt4FSAll(QString path, QModelIndex index = QModelIndex()) {
+        uint64_t msize = ext4_list_contents(path.toStdString().c_str(), NULL);
+        uint8_t *mdata = new uint8_t[msize];
+        ext4_list_contents(path.toStdString().c_str(), mdata);
+        uint8_t * p = mdata;
+        while(p != (mdata + msize)) {
+            enum fs_entity_type {
+                UNKNOWN = 0,
+                REG_FILE,
+                DIR,
+                CHARDEV,
+                BLOCKDEV,
+                FIFO,
+                SOCKET,
+                SYMLINK,
+                LAST
+            };
+            struct __attribute__((packed)) ext4_ino_min_map {
+                uint64_t ino;
+                uint8_t type;
+                uint8_t size;
+                char name[1];
+            };
+            struct ext4_ino_min_map * mm = (struct ext4_ino_min_map *) p;
+            QString filename(QByteArray(mm->name,mm->size));
+            switch(mm->type) {
+                case DIR :
+                {
+                    QModelIndex modelIndex = mode->addTree(filename, index);
+                    if(path != "/")
+                        listExt4FSAll(path + "/" + filename, modelIndex);
+                    else
+                        listExt4FSAll("/" + filename, modelIndex);
+                    break;
+                }
+                case REG_FILE :
+                default :
+                {
+                    mode->addTree(filename, index);
+                    break;
+                }
+            }
+            
+            p += sizeof(uint64_t) + 2 + mm->size;
+        }
+        delete [] mdata;
+    }
+private:
+    TreeModel *mode;
+    QModelIndex *rootIndex;
+};
 
 class BoardWindow : public QMainWindow
 {
@@ -88,6 +181,7 @@ private:
     VncWindow *lcdWindow;
     NetSelectBox *netSelect;
     BootSelectBox *bootSelect;
+    FSViewWindow *fsView;
     QString envPath;
     QString skinColor;
     bool isDarkTheme;
