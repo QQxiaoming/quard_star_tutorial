@@ -41,6 +41,18 @@
 #include "ext4_map.h"
 #include "ext4_data.h"
 
+#if defined(Q_OS_WIN)
+char *strsep(char **stringp, const char *delim) {
+    char *rv = *stringp;
+    if (rv) {
+        *stringp += strcspn(*stringp, delim);
+        if (**stringp)
+            *(*stringp)++ = '\0';
+        else
+            *stringp = 0; }
+    return rv;
+}
+#endif
 
 struct FS {
     struct SuperBlock * super_block;
