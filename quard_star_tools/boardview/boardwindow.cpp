@@ -38,7 +38,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     ui->setupUi(this);
 
 #if defined(Q_OS_MACOS)
-    this->setWindowFlags(Qt::CustomizeWindowHint | 
+    this->setWindowFlags(Qt::CustomizeWindowHint |
                             Qt::WindowTitleHint | Qt::FramelessWindowHint);
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
@@ -360,6 +360,8 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
                 {
                     // p2: start=198656, size=8189952, type=83
                     fsView->setExt4FSImgView(rootFSImgPath,101711872,4193255424);
+                    // p2: start=198656, size=3995648, type=83
+                    //fsView->setExt4FSImgView(rootFSImgPath,101711872,2045771776);
                     fsView->show();
                     break;
                 }

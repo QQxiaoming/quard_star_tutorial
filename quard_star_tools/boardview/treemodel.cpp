@@ -268,8 +268,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 		TreeItem *newItem = static_cast<TreeItem *>(index.internalPointer()) ;
 		newItem->copy(p) ;
 	}
-	qDebug() << "dropMimeData end" ;
-	return true ;
+	return true;
 }
 // drag and drop 処理 ここまで ----------------------------------
 

@@ -141,7 +141,6 @@ private:
                 fn = fno.fname;
                 if (fno.fattrib & AM_DIR) { 
                     QString filename(QByteArray(fn,strlen(fn)));
-                    qDebug() << filename;
                     QModelIndex modelIndex = mode->addTree(filename, FSView_DIR, index);
                     if(path != "/")
                         listFatFSAll(path + "/" + filename, modelIndex);
@@ -154,8 +153,6 @@ private:
                 }
             }
             f_closedir(&dir);
-        } else {
-            //printf("Failed to open directory: %s\n", path); // print an error message
         }
     }
 
