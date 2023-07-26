@@ -41,7 +41,7 @@
 #include "ext4_map.h"
 #include "ext4_data.h"
 
-#if defined(Q_OS_WIN)
+#if defined(_WIN32)
 char *strsep(char **stringp, const char *delim) {
     char *rv = *stringp;
     if (rv) {

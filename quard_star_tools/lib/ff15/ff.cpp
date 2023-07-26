@@ -545,7 +545,7 @@ static WCHAR LfnBuf[FF_MAX_LFN + 1];		/* LFN working buffer */
 #define FREE_NAMBUF()	ff_memfree(lfn)
 #else
 #define DEF_NAMBUF		WCHAR *lfn;	/* Pointer to LFN working buffer */
-#define INIT_NAMBUF(fs)	{ lfn = ff_memalloc((FF_MAX_LFN+1)*2); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; }
+#define INIT_NAMBUF(fs)	{ lfn = (WCHAR *)ff_memalloc((FF_MAX_LFN+1)*2); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; }
 #define FREE_NAMBUF()	ff_memfree(lfn)
 #endif
 #define LEAVE_MKFS(res)	{ if (!work) ff_memfree(buf); return res; }
@@ -732,13 +732,13 @@ static int dbc_2nd (BYTE c)
 
 #if FF_USE_LFN
 
-/* Get a Unicode code point from the TCHAR string in defined API encodeing */
+/* Get a Unicode code point from the FF_TCHAR string in defined API encodeing */
 static DWORD tchar2uni (	/* Returns a character in UTF-16 encoding (>=0x10000 on surrogate pair, 0xFFFFFFFF on decode error) */
-	const TCHAR** str		/* Pointer to pointer to TCHAR string in configured encoding */
+	const FF_TCHAR** str		/* Pointer to pointer to FF_TCHAR string in configured encoding */
 )
 {
 	DWORD uc;
-	const TCHAR *p = *str;
+	const FF_TCHAR *p = *str;
 
 #if FF_LFN_UNICODE == 1		/* UTF-16 input */
 	WCHAR wc;
@@ -775,7 +775,7 @@ static DWORD tchar2uni (	/* Returns a character in UTF-16 encoding (>=0x10000 on
 	}
 
 #elif FF_LFN_UNICODE == 3	/* UTF-32 input */
-	uc = (TCHAR)*p++;	/* Get a unit */
+	uc = (FF_TCHAR)*p++;	/* Get a unit */
 	if (uc >= 0x110000 || IsSurrogate(uc)) return 0xFFFFFFFF;	/* Wrong code? */
 	if (uc >= 0x010000) uc = 0xD800DC00 | ((uc - 0x10000) << 6 & 0x3FF0000) | (uc & 0x3FF);	/* Make a surrogate pair if needed */
 
@@ -804,7 +804,7 @@ static DWORD tchar2uni (	/* Returns a character in UTF-16 encoding (>=0x10000 on
 /* Store a Unicode char in defined API encoding */
 static UINT put_utf (	/* Returns number of encoding units written (0:buffer overflow or wrong encoding) */
 	DWORD chr,	/* UTF-16 encoded character (Surrogate pair if >=0x10000) */
-	TCHAR* buf,	/* Output buffer */
+	FF_TCHAR* buf,	/* Output buffer */
 	UINT szb	/* Size of the buffer */
 )
 {
@@ -828,20 +828,20 @@ static UINT put_utf (	/* Returns number of encoding units written (0:buffer over
 
 	if (chr < 0x80) {	/* Single byte code? */
 		if (szb < 1) return 0;	/* Buffer overflow? */
-		*buf = (TCHAR)chr;
+		*buf = (FF_TCHAR)chr;
 		return 1;
 	}
 	if (chr < 0x800) {	/* 2-byte sequence? */
 		if (szb < 2) return 0;	/* Buffer overflow? */
-		*buf++ = (TCHAR)(0xC0 | (chr >> 6 & 0x1F));
-		*buf++ = (TCHAR)(0x80 | (chr >> 0 & 0x3F));
+		*buf++ = (FF_TCHAR)(0xC0 | (chr >> 6 & 0x1F));
+		*buf++ = (FF_TCHAR)(0x80 | (chr >> 0 & 0x3F));
 		return 2;
 	}
 	if (chr < 0x10000) {	/* 3-byte sequence? */
 		if (szb < 3 || IsSurrogate(chr)) return 0;	/* Buffer overflow or wrong code? */
-		*buf++ = (TCHAR)(0xE0 | (chr >> 12 & 0x0F));
-		*buf++ = (TCHAR)(0x80 | (chr >> 6 & 0x3F));
-		*buf++ = (TCHAR)(0x80 | (chr >> 0 & 0x3F));
+		*buf++ = (FF_TCHAR)(0xE0 | (chr >> 12 & 0x0F));
+		*buf++ = (FF_TCHAR)(0x80 | (chr >> 6 & 0x3F));
+		*buf++ = (FF_TCHAR)(0x80 | (chr >> 0 & 0x3F));
 		return 3;
 	}
 	/* 4-byte sequence */
@@ -850,10 +850,10 @@ static UINT put_utf (	/* Returns number of encoding units written (0:buffer over
 	chr = (chr & 0xFFFF) - 0xDC00;					/* Get low 10 bits */
 	if (hc >= 0x100000 || chr >= 0x400) return 0;	/* Wrong surrogate? */
 	chr = (hc | chr) + 0x10000;
-	*buf++ = (TCHAR)(0xF0 | (chr >> 18 & 0x07));
-	*buf++ = (TCHAR)(0x80 | (chr >> 12 & 0x3F));
-	*buf++ = (TCHAR)(0x80 | (chr >> 6 & 0x3F));
-	*buf++ = (TCHAR)(0x80 | (chr >> 0 & 0x3F));
+	*buf++ = (FF_TCHAR)(0xF0 | (chr >> 18 & 0x07));
+	*buf++ = (FF_TCHAR)(0x80 | (chr >> 12 & 0x3F));
+	*buf++ = (FF_TCHAR)(0x80 | (chr >> 6 & 0x3F));
+	*buf++ = (FF_TCHAR)(0x80 | (chr >> 0 & 0x3F));
 	return 4;
 
 #elif FF_LFN_UNICODE == 3	/* UTF-32 output */
@@ -866,7 +866,7 @@ static UINT put_utf (	/* Returns number of encoding units written (0:buffer over
 		if (hc >= 0x100000 || chr >= 0x400) return 0;	/* Wrong surrogate? */
 		chr = (hc | chr) + 0x10000;
 	}
-	*buf++ = (TCHAR)chr;
+	*buf++ = (FF_TCHAR)chr;
 	return 1;
 
 #else						/* ANSI/OEM output */
@@ -876,11 +876,11 @@ static UINT put_utf (	/* Returns number of encoding units written (0:buffer over
 	if (wc >= 0x100) {	/* Is this a DBC? */
 		if (szb < 2) return 0;
 		*buf++ = (char)(wc >> 8);	/* Store DBC 1st byte */
-		*buf++ = (TCHAR)wc;			/* Store DBC 2nd byte */
+		*buf++ = (FF_TCHAR)wc;			/* Store DBC 2nd byte */
 		return 2;
 	}
 	if (wc == 0 || szb < 1) return 0;	/* Invalid char or buffer overflow? */
-	*buf++ = (TCHAR)wc;					/* Store the character */
+	*buf++ = (FF_TCHAR)wc;					/* Store the character */
 	return 1;
 #endif
 }
@@ -1670,8 +1670,8 @@ static FRESULT dir_clear (	/* Returns FR_OK or FR_DISK_ERR */
 	fs->winsect = sect;				/* Set window to top of the cluster */
 	memset(fs->win, 0, sizeof fs->win);	/* Clear window buffer */
 #if FF_USE_LFN == 3		/* Quick table clear by using multi-secter write */
-	/* Allocate a temporary buffer */
-	for (szb = ((DWORD)fs->csize * SS(fs) >= MAX_MALLOC) ? MAX_MALLOC : fs->csize * SS(fs), ibuf = 0; szb > SS(fs) && (ibuf = ff_memalloc(szb)) == 0; szb /= 2) ;
+    /* Allocate a temporary buffer */
+    for (szb = ((DWORD)fs->csize * SS(fs) >= MAX_MALLOC) ? MAX_MALLOC : fs->csize * SS(fs), ibuf = 0; szb > SS(fs) && (ibuf = (BYTE *)ff_memalloc(szb)) == 0; szb /= 2) ;
 	if (szb > SS(fs)) {		/* Buffer allocated? */
 		memset(ibuf, 0, szb);
 		szb /= SS(fs);		/* Bytes -> Sectors */
@@ -2626,7 +2626,7 @@ static void get_fileinfo (
 	FATFS *fs = dp->obj.fs;
 	UINT nw;
 #else
-	TCHAR c;
+	FF_TCHAR c;
 #endif
 
 
@@ -2709,7 +2709,7 @@ static void get_fileinfo (
 		}
 		di += nw;
 #else					/* ANSI/OEM output */
-		fno->altname[di++] = (TCHAR)wc;	/* Store it without any conversion */
+		fno->altname[di++] = (FF_TCHAR)wc;	/* Store it without any conversion */
 #endif
 	}
 	fno->altname[di] = 0;	/* Terminate the SFN  (null string means SFN is invalid) */
@@ -2722,7 +2722,7 @@ static void get_fileinfo (
 				wc = (WCHAR)fno->altname[si];
 				if (wc == '.') lcf = NS_EXT;
 				if (IsUpper(wc) && (dp->dir[DIR_NTres] & lcf)) wc += 0x20;
-				fno->fname[di] = (TCHAR)wc;
+				fno->fname[di] = (FF_TCHAR)wc;
 			}
 		}
 		fno->fname[di] = 0;	/* Terminate the LFN */
@@ -2732,7 +2732,7 @@ static void get_fileinfo (
 #else	/* Non-LFN configuration */
 	si = di = 0;
 	while (si < 11) {		/* Copy name body and extension */
-		c = (TCHAR)dp->dir[si++];
+		c = (FF_TCHAR)dp->dir[si++];
 		if (c == ' ') continue;		/* Skip padding spaces */
 		if (c == RDDEM) c = DDEM;	/* Restore replaced DDEM character */
 		if (si == 9) fno->fname[di++] = '.';/* Insert a . if extension is exist */
@@ -2760,7 +2760,7 @@ static void get_fileinfo (
 
 
 static DWORD get_achar (	/* Get a character and advance ptr */
-	const TCHAR** ptr		/* Pointer to pointer to the ANSI/OEM or Unicode string */
+	const FF_TCHAR** ptr		/* Pointer to pointer to the ANSI/OEM or Unicode string */
 )
 {
 	DWORD chr;
@@ -2791,14 +2791,14 @@ static DWORD get_achar (	/* Get a character and advance ptr */
 
 
 static int pattern_match (	/* 0:mismatched, 1:matched */
-	const TCHAR* pat,	/* Matching pattern */
-	const TCHAR* nam,	/* String to be tested */
+	const FF_TCHAR* pat,	/* Matching pattern */
+	const FF_TCHAR* nam,	/* String to be tested */
 	UINT skip,			/* Number of pre-skip chars (number of ?s, b8:infinite (* specified)) */
 	UINT recur			/* Recursion count */
 )
 {
-	const TCHAR *pptr;
-	const TCHAR *nptr;
+	const FF_TCHAR *pptr;
+	const FF_TCHAR *nptr;
 	DWORD pchr, nchr;
 	UINT sk;
 
@@ -2846,14 +2846,14 @@ static int pattern_match (	/* 0:mismatched, 1:matched */
 
 static FRESULT create_name (	/* FR_OK: successful, FR_INVALID_NAME: could not create */
 	DIR* dp,					/* Pointer to the directory object */
-	const TCHAR** path			/* Pointer to pointer to the segment in the path string */
+	const FF_TCHAR** path			/* Pointer to pointer to the segment in the path string */
 )
 {
 #if FF_USE_LFN		/* LFN configuration */
 	BYTE b, cf;
 	WCHAR wc;
 	WCHAR *lfn;
-	const TCHAR* p;
+	const FF_TCHAR* p;
 	DWORD uc;
 	UINT i, ni, si, di;
 
@@ -3050,7 +3050,7 @@ static FRESULT create_name (	/* FR_OK: successful, FR_INVALID_NAME: could not cr
 
 static FRESULT follow_path (	/* FR_OK(0): successful, !=0: error code */
 	DIR* dp,					/* Directory object to return last directory and found object */
-	const TCHAR* path			/* Full-path string to find a file or directory */
+	const FF_TCHAR* path			/* Full-path string to find a file or directory */
 )
 {
 	FRESULT res;
@@ -3136,12 +3136,12 @@ static FRESULT follow_path (	/* FR_OK(0): successful, !=0: error code */
 /*-----------------------------------------------------------------------*/
 
 static int get_ldnumber (	/* Returns logical drive number (-1:invalid drive number or null pointer) */
-	const TCHAR** path		/* Pointer to pointer to the path name */
+	const FF_TCHAR** path		/* Pointer to pointer to the path name */
 )
 {
-	const TCHAR *tp;
-	const TCHAR *tt;
-	TCHAR tc;
+	const FF_TCHAR *tp;
+	const FF_TCHAR *tt;
+	FF_TCHAR tc;
 	int i;
 	int vol = -1;
 #if FF_STR_VOLUME_ID		/* Find string volume ID */
@@ -3169,7 +3169,7 @@ static int get_ldnumber (	/* Returns logical drive number (-1:invalid drive numb
 					c = *sp++; tc = *tp++;
 					if (IsLower(c)) c -= 0x20;
 					if (IsLower(tc)) tc -= 0x20;
-				} while (c && (TCHAR)c == tc);
+				} while (c && (FF_TCHAR)c == tc);
 			} while ((c || tp != tt) && ++i < FF_VOLUMES);	/* Repeat for each id until pattern match */
 		}
 #endif
@@ -3189,7 +3189,7 @@ static int get_ldnumber (	/* Returns logical drive number (-1:invalid drive numb
 				c = *sp++; tc = *(++tt);
 				if (IsLower(c)) c -= 0x20;
 				if (IsLower(tc)) tc -= 0x20;
-			} while (c && (TCHAR)c == tc);
+			} while (c && (FF_TCHAR)c == tc);
 		} while ((c || (tc != '/' && !IsTerminator(tc))) && ++i < FF_VOLUMES);	/* Repeat for each ID until pattern match */
 		if (i < FF_VOLUMES) {	/* If a volume ID is found, get the drive number and strip it */
 			vol = i;		/* Drive number */
@@ -3383,7 +3383,7 @@ static UINT find_volume (	/* Returns BS status found in the hosting drive */
 /*-----------------------------------------------------------------------*/
 
 static FRESULT mount_volume (	/* FR_OK(0): successful, !=0: an error occurred */
-	const TCHAR** path,			/* Pointer to pointer to the path name (drive number) */
+	const FF_TCHAR** path,			/* Pointer to pointer to the path name (drive number) */
 	FATFS** rfs,				/* Pointer to pointer to the found filesystem object */
 	BYTE mode					/* Desiered access mode to check write protection */
 )
@@ -3656,14 +3656,14 @@ static FRESULT validate (	/* Returns FR_OK or FR_INVALID_OBJECT */
 
 FRESULT f_mount (
 	FATFS* fs,			/* Pointer to the filesystem object to be registered (NULL:unmount)*/
-	const TCHAR* path,	/* Logical drive number to be mounted/unmounted */
+	const FF_TCHAR* path,	/* Logical drive number to be mounted/unmounted */
 	BYTE opt			/* Mount option: 0=Do not mount (delayed mount), 1=Mount immediately */
 )
 {
 	FATFS *cfs;
 	int vol;
 	FRESULT res;
-	const TCHAR *rp = path;
+	const FF_TCHAR *rp = path;
 
 
 	/* Get volume ID (logical drive number) */
@@ -3716,7 +3716,7 @@ FRESULT f_mount (
 
 FRESULT f_open (
 	FIL* fp,			/* Pointer to the blank file object */
-	const TCHAR* path,	/* Pointer to the file name */
+	const FF_TCHAR* path,	/* Pointer to the file name */
 	BYTE mode			/* Access mode and open mode flags */
 )
 {
@@ -4250,7 +4250,7 @@ FRESULT f_close (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_chdrive (
-	const TCHAR* path		/* Drive number to set */
+	const FF_TCHAR* path		/* Drive number to set */
 )
 {
 	int vol;
@@ -4267,7 +4267,7 @@ FRESULT f_chdrive (
 
 
 FRESULT f_chdir (
-	const TCHAR* path	/* Pointer to the directory path */
+	const FF_TCHAR* path	/* Pointer to the directory path */
 )
 {
 #if FF_STR_VOLUME_ID == 2
@@ -4329,8 +4329,8 @@ FRESULT f_chdir (
 
 #if FF_FS_RPATH >= 2
 FRESULT f_getcwd (
-	TCHAR* buff,	/* Pointer to the directory path */
-	UINT len		/* Size of buff in unit of TCHAR */
+	FF_TCHAR* buff,	/* Pointer to the directory path */
+	UINT len		/* Size of buff in unit of FF_TCHAR */
 )
 {
 	FRESULT res;
@@ -4338,7 +4338,7 @@ FRESULT f_getcwd (
 	FATFS *fs;
 	UINT i, n;
 	DWORD ccl;
-	TCHAR *tp = buff;
+	FF_TCHAR *tp = buff;
 #if FF_VOLUMES >= 2
 	UINT vl;
 #if FF_STR_VOLUME_ID
@@ -4351,7 +4351,7 @@ FRESULT f_getcwd (
 
 	/* Get logical drive */
 	buff[0] = 0;	/* Set null string to get current volume */
-	res = mount_volume((const TCHAR**)&buff, &fs, 0);	/* Get current volume */
+	res = mount_volume((const FF_TCHAR**)&buff, &fs, 0);	/* Get current volume */
 	if (res == FR_OK) {
 		dj.obj.fs = fs;
 		INIT_NAMBUF(fs);
@@ -4392,15 +4392,15 @@ FRESULT f_getcwd (
 #if FF_STR_VOLUME_ID >= 1	/* String volume ID */
 			for (n = 0, vp = (const char*)VolumeStr[CurrVol]; vp[n]; n++) ;
 			if (i >= n + 2) {
-				if (FF_STR_VOLUME_ID == 2) *tp++ = (TCHAR)'/';
-				for (vl = 0; vl < n; *tp++ = (TCHAR)vp[vl], vl++) ;
-				if (FF_STR_VOLUME_ID == 1) *tp++ = (TCHAR)':';
+				if (FF_STR_VOLUME_ID == 2) *tp++ = (FF_TCHAR)'/';
+				for (vl = 0; vl < n; *tp++ = (FF_TCHAR)vp[vl], vl++) ;
+				if (FF_STR_VOLUME_ID == 1) *tp++ = (FF_TCHAR)':';
 				vl++;
 			}
 #else						/* Numeric volume ID */
 			if (i >= 3) {
-				*tp++ = (TCHAR)'0' + CurrVol;
-				*tp++ = (TCHAR)':';
+				*tp++ = (FF_TCHAR)'0' + CurrVol;
+				*tp++ = (FF_TCHAR)':';
 				vl = 2;
 			}
 #endif
@@ -4596,7 +4596,7 @@ FRESULT f_lseek (
 
 FRESULT f_opendir (
 	DIR* dp,			/* Pointer to directory object to create */
-	const TCHAR* path	/* Pointer to the directory path */
+	const FF_TCHAR* path	/* Pointer to the directory path */
 )
 {
 	FRESULT res;
@@ -4754,8 +4754,8 @@ FRESULT f_findnext (
 FRESULT f_findfirst (
 	DIR* dp,				/* Pointer to the blank directory object */
 	FILINFO* fno,			/* Pointer to the file information structure */
-	const TCHAR* path,		/* Pointer to the directory to open */
-	const TCHAR* pattern	/* Pointer to the matching pattern */
+	const FF_TCHAR* path,		/* Pointer to the directory to open */
+	const FF_TCHAR* pattern	/* Pointer to the matching pattern */
 )
 {
 	FRESULT res;
@@ -4779,7 +4779,7 @@ FRESULT f_findfirst (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_stat (
-	const TCHAR* path,	/* Pointer to the file path */
+	const FF_TCHAR* path,	/* Pointer to the file path */
 	FILINFO* fno		/* Pointer to file information to return */
 )
 {
@@ -4814,7 +4814,7 @@ FRESULT f_stat (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_getfree (
-	const TCHAR* path,	/* Logical drive number */
+	const FF_TCHAR* path,	/* Logical drive number */
 	DWORD* nclst,		/* Pointer to a variable to return number of free clusters */
 	FATFS** fatfs		/* Pointer to return pointer to corresponding filesystem object */
 )
@@ -4960,7 +4960,7 @@ FRESULT f_truncate (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_unlink (
-	const TCHAR* path		/* Pointer to the file or directory path */
+	const FF_TCHAR* path		/* Pointer to the file or directory path */
 )
 {
 	FRESULT res;
@@ -5054,7 +5054,7 @@ FRESULT f_unlink (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_mkdir (
-	const TCHAR* path		/* Pointer to the directory path */
+	const FF_TCHAR* path		/* Pointer to the directory path */
 )
 {
 	FRESULT res;
@@ -5138,8 +5138,8 @@ FRESULT f_mkdir (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_rename (
-	const TCHAR* path_old,	/* Pointer to the object name to be renamed */
-	const TCHAR* path_new	/* Pointer to the new name */
+	const FF_TCHAR* path_old,	/* Pointer to the object name to be renamed */
+	const FF_TCHAR* path_new	/* Pointer to the new name */
 )
 {
 	FRESULT res;
@@ -5248,7 +5248,7 @@ FRESULT f_rename (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_chmod (
-	const TCHAR* path,	/* Pointer to the file path */
+	const FF_TCHAR* path,	/* Pointer to the file path */
 	BYTE attr,			/* Attribute bits */
 	BYTE mask			/* Attribute mask to change */
 )
@@ -5295,7 +5295,7 @@ FRESULT f_chmod (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_utime (
-	const TCHAR* path,	/* Pointer to the file/directory name */
+	const FF_TCHAR* path,	/* Pointer to the file/directory name */
 	const FILINFO* fno	/* Pointer to the timestamp to be set */
 )
 {
@@ -5342,8 +5342,8 @@ FRESULT f_utime (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_getlabel (
-	const TCHAR* path,	/* Logical drive number */
-	TCHAR* label,		/* Buffer to store the volume label */
+	const FF_TCHAR* path,	/* Logical drive number */
+	FF_TCHAR* label,		/* Buffer to store the volume label */
 	DWORD* vsn			/* Variable to store the volume serial number */
 )
 {
@@ -5396,7 +5396,7 @@ FRESULT f_getlabel (
 						}
 						di += put_utf(wc, &label[di], 4);	/* Store it in Unicode */
 #else									/* ANSI/OEM output */
-						label[di++] = (TCHAR)wc;
+						label[di++] = (FF_TCHAR)wc;
 #endif
 					}
 					do {				/* Truncate trailing spaces */
@@ -5443,7 +5443,7 @@ FRESULT f_getlabel (
 /*-----------------------------------------------------------------------*/
 
 FRESULT f_setlabel (
-	const TCHAR* label	/* Volume label to set with heading logical drive number */
+	const FF_TCHAR* label	/* Volume label to set with heading logical drive number */
 )
 {
 	FRESULT res;
@@ -5880,7 +5880,7 @@ static FRESULT create_partition (
 
 
 FRESULT f_mkfs (
-	const TCHAR* path,		/* Logical drive number */
+	const FF_TCHAR* path,		/* Logical drive number */
 	const MKFS_PARM* opt,	/* Format options */
 	void* work,				/* Pointer to working buffer (null: use len bytes of heap memory) */
 	UINT len				/* Size of working buffer [byte] */
@@ -6423,14 +6423,14 @@ FRESULT f_fdisk (
 /* Get a String from the File                                            */
 /*-----------------------------------------------------------------------*/
 
-TCHAR* f_gets (
-	TCHAR* buff,	/* Pointer to the buffer to store read string */
+FF_TCHAR* f_gets (
+	FF_TCHAR* buff,	/* Pointer to the buffer to store read string */
 	int len,		/* Size of string buffer (items) */
 	FIL* fp			/* Pointer to the file object */
 )
 {
 	int nc = 0;
-	TCHAR *p = buff;
+	FF_TCHAR *p = buff;
 	BYTE s[4];
 	UINT rc;
 	DWORD dc;
@@ -6501,30 +6501,30 @@ TCHAR* f_gets (
 		if (FF_USE_STRFUNC == 2 && dc == '\r') continue;	/* Strip \r off if needed */
 #if FF_LFN_UNICODE == 1	|| FF_LFN_UNICODE == 3	/* Output it in UTF-16/32 encoding */
 		if (FF_LFN_UNICODE == 1 && dc >= 0x10000) {	/* Out of BMP at UTF-16? */
-			*p++ = (TCHAR)(0xD800 | ((dc >> 10) - 0x40)); nc++;	/* Make and output high surrogate */
+			*p++ = (FF_TCHAR)(0xD800 | ((dc >> 10) - 0x40)); nc++;	/* Make and output high surrogate */
 			dc = 0xDC00 | (dc & 0x3FF);		/* Make low surrogate */
 		}
-		*p++ = (TCHAR)dc; nc++;
+		*p++ = (FF_TCHAR)dc; nc++;
 		if (dc == '\n') break;	/* End of line? */
 #elif FF_LFN_UNICODE == 2		/* Output it in UTF-8 encoding */
 		if (dc < 0x80) {	/* Single byte? */
-			*p++ = (TCHAR)dc;
+			*p++ = (FF_TCHAR)dc;
 			nc++;
 			if (dc == '\n') break;	/* End of line? */
 		} else if (dc < 0x800) {	/* 2-byte sequence? */
-			*p++ = (TCHAR)(0xC0 | (dc >> 6 & 0x1F));
-			*p++ = (TCHAR)(0x80 | (dc >> 0 & 0x3F));
+			*p++ = (FF_TCHAR)(0xC0 | (dc >> 6 & 0x1F));
+			*p++ = (FF_TCHAR)(0x80 | (dc >> 0 & 0x3F));
 			nc += 2;
 		} else if (dc < 0x10000) {	/* 3-byte sequence? */
-			*p++ = (TCHAR)(0xE0 | (dc >> 12 & 0x0F));
-			*p++ = (TCHAR)(0x80 | (dc >> 6 & 0x3F));
-			*p++ = (TCHAR)(0x80 | (dc >> 0 & 0x3F));
+			*p++ = (FF_TCHAR)(0xE0 | (dc >> 12 & 0x0F));
+			*p++ = (FF_TCHAR)(0x80 | (dc >> 6 & 0x3F));
+			*p++ = (FF_TCHAR)(0x80 | (dc >> 0 & 0x3F));
 			nc += 3;
 		} else {					/* 4-byte sequence */
-			*p++ = (TCHAR)(0xF0 | (dc >> 18 & 0x07));
-			*p++ = (TCHAR)(0x80 | (dc >> 12 & 0x3F));
-			*p++ = (TCHAR)(0x80 | (dc >> 6 & 0x3F));
-			*p++ = (TCHAR)(0x80 | (dc >> 0 & 0x3F));
+			*p++ = (FF_TCHAR)(0xF0 | (dc >> 18 & 0x07));
+			*p++ = (FF_TCHAR)(0x80 | (dc >> 12 & 0x3F));
+			*p++ = (FF_TCHAR)(0x80 | (dc >> 6 & 0x3F));
+			*p++ = (FF_TCHAR)(0x80 | (dc >> 0 & 0x3F));
 			nc += 4;
 		}
 #endif
@@ -6537,7 +6537,7 @@ TCHAR* f_gets (
 		if (rc != 1) break;		/* EOF? */
 		dc = s[0];
 		if (FF_USE_STRFUNC == 2 && dc == '\r') continue;
-		*p++ = (TCHAR)dc; nc++;
+		*p++ = (FF_TCHAR)dc; nc++;
 		if (dc == '\n') break;
 	}
 #endif
@@ -6575,7 +6575,7 @@ typedef struct {
 
 /* Buffered file write with code conversion */
 
-static void putc_bfd (putbuff* pb, TCHAR c)
+static void putc_bfd (putbuff* pb, FF_TCHAR c)
 {
 	UINT n;
 	int i, nc;
@@ -6583,7 +6583,7 @@ static void putc_bfd (putbuff* pb, TCHAR c)
 	WCHAR hs, wc;
 #if FF_LFN_UNICODE == 2
 	DWORD dc;
-	const TCHAR* tp;
+	const FF_TCHAR* tp;
 #endif
 #endif
 
@@ -6625,7 +6625,7 @@ static void putc_bfd (putbuff* pb, TCHAR c)
 			return;
 		}
 	}
-	tp = (const TCHAR*)pb->bs;
+	tp = (const FF_TCHAR*)pb->bs;
 	dc = tchar2uni(&tp);			/* UTF-8 ==> UTF-16 */
 	if (dc == 0xFFFFFFFF) return;	/* Wrong code? */
 	hs = (WCHAR)(dc >> 16);
@@ -6728,7 +6728,7 @@ static void putc_init (putbuff* pb, FIL* fp)
 
 
 int f_putc (
-	TCHAR c,	/* A character to be output */
+	FF_TCHAR c,	/* A character to be output */
 	FIL* fp		/* Pointer to the file object */
 )
 {
@@ -6748,7 +6748,7 @@ int f_putc (
 /*-----------------------------------------------------------------------*/
 
 int f_puts (
-	const TCHAR* str,	/* Pointer to the string to be output */
+	const FF_TCHAR* str,	/* Pointer to the string to be output */
 	FIL* fp				/* Pointer to the file object */
 )
 {
@@ -6817,7 +6817,7 @@ static void ftoa (
 	char* buf,	/* Buffer to output the floating point string */
 	double val,	/* Value to output */
 	int prec,	/* Number of fractional digits */
-	TCHAR fmt	/* Notation */
+	FF_TCHAR fmt	/* Notation */
 )
 {
 	int d;
@@ -6892,7 +6892,7 @@ static void ftoa (
 
 int f_printf (
 	FIL* fp,			/* Pointer to the file object */
-	const TCHAR* fmt,	/* Pointer to the format string */
+	const FF_TCHAR* fmt,	/* Pointer to the format string */
 	...					/* Optional arguments... */
 )
 {
@@ -6905,9 +6905,9 @@ int f_printf (
 #else
 	DWORD v;
 #endif
-	TCHAR *tp;
-	TCHAR tc, pad;
-	TCHAR nul = 0;
+	FF_TCHAR *tp;
+	FF_TCHAR tc, pad;
+	FF_TCHAR nul = 0;
 	char d, str[SZ_NUM_BUF];
 
 
@@ -6976,11 +6976,11 @@ int f_printf (
 			r = 16; break;
 
 		case 'c':					/* Character */
-			putc_bfd(&pb, (TCHAR)va_arg(arp, int));
+			putc_bfd(&pb, (FF_TCHAR)va_arg(arp, int));
 			continue;
 
 		case 's':					/* String */
-			tp = va_arg(arp, TCHAR*);	/* Get a pointer argument */
+			tp = va_arg(arp, FF_TCHAR*);	/* Get a pointer argument */
 			if (!tp) tp = &nul;		/* Null ptr generates a null string */
 			for (j = 0; tp[j]; j++) ;	/* j = tcslen(tp) */
 			if (prec >= 0 && j > (UINT)prec) j = prec;	/* Limited length of string body */
@@ -7036,7 +7036,7 @@ int f_printf (
 			putc_bfd(&pb, pad);
 		}
 		do {				/* Body */
-			putc_bfd(&pb, (TCHAR)str[--i]);
+			putc_bfd(&pb, (FF_TCHAR)str[--i]);
 		} while (i);
 		while (j++ < w) {	/* Right pads */
 			putc_bfd(&pb, ' ');
