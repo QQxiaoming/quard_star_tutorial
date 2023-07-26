@@ -351,12 +351,19 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
             {
                 case SOC:
                 {
+                    // p1: start=2048, size=196608, type=c
+                    fsView->setFatFSImgView(rootFSImgPath,1048576,100663296);
+                    fsView->show();
+                    break;
+                }
+                case NAND:
+                {
+                    // p2: start=198656, size=8189952, type=83
                     fsView->setExt4FSImgView(rootFSImgPath,101711872,4193255424);
                     fsView->show();
                     break;
                 }
                 case NOR:
-                case NAND:
                 case SD:
                 case USB0:
                 case USB1:

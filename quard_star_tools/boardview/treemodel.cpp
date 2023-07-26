@@ -1,13 +1,15 @@
 #include <QDebug>
 #include <QIODevice>
+#include <QTreeView>
 #include "treemodel.h"
+#include "qfonticon.h"
 
 class TreeItem
 {
 public:
 	TreeItem() {}
-	TreeItem(QString str, TreeItem *parent) :
-		m_str(str), m_pParent(parent)
+	TreeItem(QString str, int type, TreeItem *parent) :
+		m_str(str),m_type(type),m_pParent(parent)
 	{
 	}
 	~TreeItem()
@@ -25,7 +27,9 @@ public:
 	}
 
 	QString data() { return m_str ; }
+	int type() { return m_type ; }
 	void setData(QString str) { m_str = str ; }
+	void setType(int type) { m_type = type ; }
 	int childCount() { return m_children.size() ; }
 	QList<TreeItem *> &children() { return m_children ; }
 	TreeItem *parent() { return m_pParent ; }
@@ -46,21 +50,22 @@ public:
 	{
 		m_str = p->m_str ;
 		for ( int i = 0 ; i < p->m_children.size() ; i ++ ) {
-			insertChild(i, new TreeItem(p->m_children[i]->m_str, this)) ;
+            insertChild(i, new TreeItem(p->m_children[i]->m_str,p->m_children[i]->m_type, this)) ;
 			this->m_children[i]->copy(p->m_children[i]) ;
 		}
 	}
 
 private:
 	QString				m_str ;
+	int				    m_type ;
 	TreeItem			*m_pParent ;
 	QList<TreeItem *>	m_children ;
 } ;
 
-TreeModel::TreeModel(QObject *parent) :
-	QAbstractItemModel(parent)
+TreeModel::TreeModel(QTreeView *parent) :
+	QAbstractItemModel(parent),m_parent(parent)
 {
-	m_pRootItem = new TreeItem("/", NULL) ;
+	m_pRootItem = new TreeItem("/", 0, NULL) ;
 }
 
 TreeModel::~TreeModel()
@@ -70,11 +75,46 @@ TreeModel::~TreeModel()
 
 QVariant TreeModel::data(const QModelIndex &index, int role) const
 {
-	if ( role != Qt::DisplayRole && role != Qt::EditRole ) { return QVariant() ; }
+	if ( role != Qt::DisplayRole && role != Qt::EditRole  && role != Qt::DecorationRole) { return QVariant() ; }
 	if ( !index.isValid() ) { return QVariant() ; }
 
-	TreeItem *p = static_cast<TreeItem *>(index.internalPointer()) ;
-	return p->data() ;
+    TreeItem *p = static_cast<TreeItem *>(index.internalPointer()) ;
+    
+    if (role == Qt::DecorationRole) {
+		enum fs_entity_type {
+			UNKNOWN = 0,
+			REG_FILE,
+			DIR,
+			CHARDEV,
+			BLOCKDEV,
+			FIFO,
+			SOCKET,
+			SYMLINK,
+			LAST
+		};
+		switch (p->type()) {
+			case UNKNOWN:
+				return QVariant();
+			case REG_FILE:
+				return QIcon(QFontIcon::icon(QChar(0xf016)));
+			case DIR:
+				if(m_parent->isExpanded(index))
+					return QIcon(QFontIcon::icon(QChar(0xf07c)));
+				else
+					return QIcon(QFontIcon::icon(QChar(0xf07b)));
+			case CHARDEV:
+				return QIcon(QFontIcon::icon(QChar(0xf085)));
+				return QIcon(QFontIcon::icon(QChar(0xf085)));
+			case FIFO:
+			case SOCKET:
+			case SYMLINK:
+				return QIcon(QFontIcon::icon(QChar(0xf0c1)));
+			default:
+				return QIcon(QFontIcon::icon(QChar(0xf071)));
+		}
+	}
+
+	return p->data();
 }
 
 int TreeModel::rowCount(const QModelIndex &parent) const
@@ -102,7 +142,7 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 		 | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled ;		// drag and drop処理入れる時は追加
 }
 
-bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int type, int role)
 {
 	if ( role != Qt::DisplayRole && role != Qt::EditRole ) {
 		return false ;
@@ -114,6 +154,7 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
 	}
 
 	p->setData(value.toString()) ;
+	p->setType(type) ;
 	emit dataChanged(index, index);
 	return true ;
 }
@@ -126,7 +167,7 @@ bool TreeModel::insertRows(int row, int count, const QModelIndex &parent)
 		p = static_cast<TreeItem *>(parent.internalPointer()) ;
 	}
 
-	p->insertChild(row, new TreeItem(QString(), p)) ;
+    p->insertChild(row, new TreeItem(QString(), 0, p)) ;
 	endInsertRows();
 	return true ;
 }
@@ -223,7 +264,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 		p = reinterpret_cast<TreeItem *>(val) ;
 
 		QString text = p->data() ;
-		QModelIndex index = addTree(text, parent) ;
+        QModelIndex index = addTree(text, 0, parent) ;
 		TreeItem *newItem = static_cast<TreeItem *>(index.internalPointer()) ;
 		newItem->copy(p) ;
 	}
@@ -232,7 +273,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 }
 // drag and drop 処理 ここまで ----------------------------------
 
-QModelIndex TreeModel::addTree(QString str, const QModelIndex &parent)
+QModelIndex TreeModel::addTree(QString str, int type, const QModelIndex &parent)
 {
 	TreeItem *p = m_pRootItem ;
 	if ( parent.isValid() ) {
@@ -242,8 +283,8 @@ QModelIndex TreeModel::addTree(QString str, const QModelIndex &parent)
 
 	insertRows(row, 1, parent) ;	// row 追加
 
-	QModelIndex index = this->index(row, 0, parent) ;
-	setData(index, str, Qt::DisplayRole) ;
+    QModelIndex index = this->index(row, 0, parent) ;
+	setData(index, str, type, Qt::DisplayRole) ;
 	return index ;
 }
 

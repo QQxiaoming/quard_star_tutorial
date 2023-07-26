@@ -16,6 +16,7 @@ QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
 include(./lib/QFontIcon/QFontIcon.pri)
 include(./lib/ext4/ext4.pri)
+include(./lib/ff15/ff15.pri)
 include(./lib/qtxyzmodem/qtxyzmodem.pro)
 include(./lib/qtermwidget/qtermwidget.pro)
 

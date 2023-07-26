@@ -11,6 +11,7 @@
 
 #include "treemodel.h"
 #include "ext4_module.h"
+#include "ff.h"
 
 #include "vncwindow.h"
 #include "telnetwindow.h"
@@ -32,7 +33,10 @@ public:
         QTreeView(parent) {
         mode = new TreeModel(this);
         setModel(mode);
+        setEditTriggers(QAbstractItemView::NoEditTriggers);
         rootIndex = new QModelIndex();
+        setWindowTitle(tr("FSView"));
+        resize(QSize(800,600));
     }
 
     ~FSViewWindow() {
@@ -42,11 +46,25 @@ public:
 
     void setExt4FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
         resetView();
+        setWindowTitle(rootFSImgPath);
         QFile fs_img(rootFSImgPath);
         fs_img.open(QIODevice::ReadOnly);
         ext4_init(fs_img.map(offset,size),size);
         listExt4FSAll("/",*rootIndex);
         ext4_close();
+        fs_img.close();
+    }
+
+    void setFatFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
+        resetView();
+        setWindowTitle(rootFSImgPath);
+        QFile fs_img(rootFSImgPath);
+        fs_img.open(QIODevice::ReadOnly);
+        ff_init(fs_img.map(offset,size),size);
+        FATFS FatFs;
+        f_mount(&FatFs,"",0);
+        listFatFSAll("/",*rootIndex);
+        f_mount(NULL,"",0);
         fs_img.close();
     }
 
@@ -61,23 +79,23 @@ protected:
     }
 
 private:
+    enum fs_entity_type {
+        FSView_UNKNOWN = 0,
+        FSView_REG_FILE,
+        FSView_DIR,
+        FSView_CHARDEV,
+        FSView_BLOCKDEV,
+        FSView_FIFO,
+        FSView_SOCKET,
+        FSView_SYMLINK,
+        FSView_LAST
+    };
     void listExt4FSAll(QString path, QModelIndex index = QModelIndex()) {
         uint64_t msize = ext4_list_contents(path.toStdString().c_str(), NULL);
         uint8_t *mdata = new uint8_t[msize];
         ext4_list_contents(path.toStdString().c_str(), mdata);
         uint8_t * p = mdata;
         while(p != (mdata + msize)) {
-            enum fs_entity_type {
-                UNKNOWN = 0,
-                REG_FILE,
-                DIR,
-                CHARDEV,
-                BLOCKDEV,
-                FIFO,
-                SOCKET,
-                SYMLINK,
-                LAST
-            };
             struct __attribute__((packed)) ext4_ino_min_map {
                 uint64_t ino;
                 uint8_t type;
@@ -87,19 +105,19 @@ private:
             struct ext4_ino_min_map * mm = (struct ext4_ino_min_map *) p;
             QString filename(QByteArray(mm->name,mm->size));
             switch(mm->type) {
-                case DIR :
+                case FSView_DIR :
                 {
-                    QModelIndex modelIndex = mode->addTree(filename, index);
+                    QModelIndex modelIndex = mode->addTree(filename, mm->type, index);
                     if(path != "/")
                         listExt4FSAll(path + "/" + filename, modelIndex);
                     else
                         listExt4FSAll("/" + filename, modelIndex);
                     break;
                 }
-                case REG_FILE :
+                case FSView_REG_FILE :
                 default :
                 {
-                    mode->addTree(filename, index);
+                    mode->addTree(filename, mm->type, index);
                     break;
                 }
             }
@@ -108,6 +126,39 @@ private:
         }
         delete [] mdata;
     }
+    
+    void listFatFSAll(QString path, QModelIndex index = QModelIndex()) {
+        FRESULT res; 
+        DIR dir;
+        FILINFO fno;
+        char *fn;
+
+        res = f_opendir(&dir, path.toStdString().c_str());
+        if (res == FR_OK) {
+            while (1) {
+                res = f_readdir(&dir, &fno);
+                if (res != FR_OK || fno.fname[0] == 0) break;
+                fn = fno.fname;
+                if (fno.fattrib & AM_DIR) { 
+                    QString filename(QByteArray(fn,strlen(fn)));
+                    qDebug() << filename;
+                    QModelIndex modelIndex = mode->addTree(filename, FSView_DIR, index);
+                    if(path != "/")
+                        listFatFSAll(path + "/" + filename, modelIndex);
+                    else
+                        listFatFSAll("/" + filename, modelIndex);
+                    break;
+                } else {
+                    QString filename(QByteArray(fn,strlen(fn)));
+                    mode->addTree(filename, FSView_REG_FILE, index);
+                }
+            }
+            f_closedir(&dir);
+        } else {
+            //printf("Failed to open directory: %s\n", path); // print an error message
+        }
+    }
+
 private:
     TreeModel *mode;
     QModelIndex *rootIndex;
