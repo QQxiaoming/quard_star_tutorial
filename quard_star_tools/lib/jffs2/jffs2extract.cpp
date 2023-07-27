@@ -45,7 +45,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
-#include <zlib.h>
 
 #include "jffs2extract.h"
 #include "common.h"
@@ -84,7 +83,7 @@ void freedir(struct dir *);
 void putblock(char *b, size_t bsize, size_t * rsize,
 		struct jffs2_raw_inode *n)
 {
-	uLongf dlen = je32_to_cpu(n->dsize);
+    ulong dlen = je32_to_cpu(n->dsize);
 
 	if (je32_to_cpu(n->isize) > bsize || (je32_to_cpu(n->offset) + dlen) > bsize)
 		errmsg_die("File does not fit into buffer!");
@@ -93,11 +92,12 @@ void putblock(char *b, size_t bsize, size_t * rsize,
 		bzero(b + *rsize, je32_to_cpu(n->isize) - *rsize);
 
 	switch (n->compr) {
-		case JFFS2_COMPR_ZLIB:
-			uncompress((Bytef *) b + je32_to_cpu(n->offset), &dlen,
-					(Bytef *) ((char *) n) + sizeof(struct jffs2_raw_inode),
-					(uLongf) je32_to_cpu(n->csize));
-			break;
+		//TODO: QQM remove zlib dependency, I think maybe we can use https://github.com/MartinChan3/QZlib
+		//case JFFS2_COMPR_ZLIB:
+		//	uncompress((Bytef *) b + je32_to_cpu(n->offset), &dlen,
+		//			(Bytef *) ((char *) n) + sizeof(struct jffs2_raw_inode),
+		//			(uLongf) je32_to_cpu(n->csize));
+		//	break;
 
 		case JFFS2_COMPR_NONE:
 			memcpy(b + je32_to_cpu(n->offset),

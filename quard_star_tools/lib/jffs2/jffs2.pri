@@ -1,4 +1,4 @@
-LIBS += -lz
+
 
 HEADERS += \
     $$PWD/byteswap-osx.h \
