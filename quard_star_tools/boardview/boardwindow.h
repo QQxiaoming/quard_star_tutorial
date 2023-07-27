@@ -12,6 +12,7 @@
 #include "treemodel.h"
 #include "ext4_module.h"
 #include "ff.h"
+#include "jffs2extract.h"
 
 #include "vncwindow.h"
 #include "telnetwindow.h"
@@ -153,6 +154,18 @@ public:
         fs_img.close();
     }
 
+    void setJffs2FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
+        resetView();
+        setWindowTitle(rootFSImgPath);
+        QFile fs_img(rootFSImgPath);
+        fs_img.open(QIODevice::ReadOnly);
+        uint8_t *addr = fs_img.map(offset,size);
+        jffs2_init(addr,size);
+        listJffs2FSAll("/",rootIndex);
+        fs_img.unmap(addr);
+        fs_img.close();
+    }
+
     void resetView(void) {
         mode->removeTree(rootIndex);
         rootIndex = mode->addTree("/", 0, QModelIndex());
@@ -212,6 +225,7 @@ private:
             p += sizeof(uint64_t) + 2 + mm->size;
         }
         delete [] mdata;
+        qApp->processEvents();
     }
     
     void listFatFSAll(QString path, QModelIndex index) {
@@ -241,6 +255,73 @@ private:
             }
             f_closedir(&dir);
         }
+        qApp->processEvents();
+    }
+
+    void listJffs2FSAll(QString path, QModelIndex index) {
+        const static uint32_t dt2fsv[16] = {
+            FSView_UNKNOWN,FSView_FIFO,FSView_CHARDEV,FSView_UNKNOWN,
+            FSView_DIR,FSView_UNKNOWN,FSView_BLOCKDEV,FSView_UNKNOWN,
+            FSView_REG_FILE,FSView_UNKNOWN,FSView_SYMLINK,FSView_UNKNOWN,
+            FSView_SOCKET,FSView_UNKNOWN,FSView_UNKNOWN,FSView_UNKNOWN
+        };
+        struct jffs2_raw_dirent *dd;
+        struct dir *d = NULL;
+
+        uint32_t ino;
+        dd = resolvepath(1, path.toStdString().c_str(), &ino);
+
+        if (ino == 0 || (dd == NULL && ino == 0))
+            qDebug("No such file or directory");
+        else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
+            d = collectdir( ino, d);
+            struct jffs2_raw_inode *ri, *tmpi;
+            while (d != NULL) {
+                switch (dt2fsv[d->type]) {
+                    case FSView_REG_FILE:
+                    case FSView_FIFO:
+                    case FSView_CHARDEV:
+                    case FSView_BLOCKDEV:
+                    case FSView_SYMLINK:
+                    case FSView_SOCKET:
+                    default:
+                    {
+                        QString filename(QByteArray(d->name,d->nsize));
+                        mode->addTree(filename, dt2fsv[d->type], index);
+                        break;
+                    }
+                    case FSView_DIR:
+                        break;
+                }
+                ri = find_raw_inode( d->ino, 0);
+                if (!ri) {
+                    qDebug("bug: raw_inode missing!");
+                    d = d->next;
+                    continue;
+                }
+                /* Search for newer versions of the inode */
+                uint32_t len = 0;
+                tmpi = ri;
+                while (tmpi) {
+                    len = je32_to_cpu(tmpi->dsize) + je32_to_cpu(tmpi->offset);
+                    tmpi = find_raw_inode(d->ino, je32_to_cpu(tmpi->version));
+                    Q_UNUSED(len);
+                }
+                
+                if (dt2fsv[d->type] == FSView_DIR) {
+                    QString filename(QByteArray(d->name,d->nsize));
+                    QModelIndex modelIndex = mode->addTree(filename, dt2fsv[d->type], index);
+                    if(path != "/")
+                        listJffs2FSAll(path + "/" + filename, modelIndex);
+                    else
+                        listJffs2FSAll("/" + filename, modelIndex);
+                }
+
+                d = d->next;
+            }
+            freedir(d);
+        }
+        qApp->processEvents();
     }
 
 private:
