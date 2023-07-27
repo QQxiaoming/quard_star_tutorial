@@ -34,13 +34,13 @@ public:
         mode = new TreeModel(this);
         setModel(mode);
         setEditTriggers(QAbstractItemView::NoEditTriggers);
-        rootIndex = new QModelIndex();
+        resetView();
         setWindowTitle(tr("FSView"));
         resize(QSize(800,600));
     }
 
     ~FSViewWindow() {
-        delete rootIndex;
+        resetView();
         delete mode;
     }
 
@@ -50,7 +50,7 @@ public:
         QFile fs_img(rootFSImgPath);
         fs_img.open(QIODevice::ReadOnly);
         ext4_init(fs_img.map(offset,size),size);
-        listExt4FSAll("/",*rootIndex);
+        listExt4FSAll("/",rootIndex);
         ext4_close();
         fs_img.close();
     }
@@ -63,13 +63,15 @@ public:
         ff_init(fs_img.map(offset,size),size);
         FATFS FatFs;
         f_mount(&FatFs,"",0);
-        listFatFSAll("/",*rootIndex);
+        listFatFSAll("/",rootIndex);
         f_mount(NULL,"",0);
         fs_img.close();
     }
 
     void resetView(void) {
-        mode->removeTree(*rootIndex);
+        mode->removeTree(rootIndex);
+        rootIndex = mode->addTree("/", 0, QModelIndex());
+        expand(rootIndex);
     }
 
 protected:
@@ -90,7 +92,7 @@ private:
         FSView_SYMLINK,
         FSView_LAST
     };
-    void listExt4FSAll(QString path, QModelIndex index = QModelIndex()) {
+    void listExt4FSAll(QString path, QModelIndex index) {
         uint64_t msize = ext4_list_contents(path.toStdString().c_str(), NULL);
         uint8_t *mdata = new uint8_t[msize];
         ext4_list_contents(path.toStdString().c_str(), mdata);
@@ -127,7 +129,7 @@ private:
         delete [] mdata;
     }
     
-    void listFatFSAll(QString path, QModelIndex index = QModelIndex()) {
+    void listFatFSAll(QString path, QModelIndex index) {
         FRESULT res; 
         DIR dir;
         FILINFO fno;
@@ -158,7 +160,7 @@ private:
 
 private:
     TreeModel *mode;
-    QModelIndex *rootIndex;
+    QModelIndex rootIndex;
 };
 
 class BoardWindow : public QMainWindow

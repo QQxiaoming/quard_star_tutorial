@@ -49,7 +49,6 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 VncWindow::~VncWindow()
 {
     delete vncView;
-    delete verticalLayout;
     delete ui;
 }
 

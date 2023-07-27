@@ -2170,7 +2170,8 @@ QemuConsole *graphic_console_init(DeviceState *dev, uint32_t head,
                                   void *opaque)
 {
     static const char noinit[] =
-        "Guest has not initialized the display (yet).";
+        //"Guest has not initialized the display (yet).";
+        " "; // QQM remove this display message        
     int width = 640;
     int height = 480;
     QemuConsole *s;

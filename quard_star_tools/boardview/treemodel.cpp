@@ -65,7 +65,7 @@ private:
 TreeModel::TreeModel(QTreeView *parent) :
 	QAbstractItemModel(parent),m_parent(parent)
 {
-	m_pRootItem = new TreeItem("/", 0, NULL) ;
+	m_pRootItem = new TreeItem(" ", 0, NULL) ;
 }
 
 TreeModel::~TreeModel()
