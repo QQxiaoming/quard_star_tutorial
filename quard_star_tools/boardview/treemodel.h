@@ -19,7 +19,7 @@ public:
 	int rowCount(const QModelIndex &parent) const ;
 	int columnCount(const QModelIndex &parent) const ;
 	Qt::ItemFlags flags(const QModelIndex &index) const ;
-	bool setData(const QModelIndex &index, const QVariant &value, int type, int role) ;
+    bool setData(const QModelIndex &index, const QVariant &value, int role) ;
 	bool insertRows(int row, int count, const QModelIndex &parent) ;
 	bool removeRows(int row, int count, const QModelIndex &parent) ;
 	QModelIndex index(int row, int column, const QModelIndex &parent) const ;
@@ -33,7 +33,7 @@ public:
 	bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) ;
 	// -----------------
 
-    QModelIndex addTree(QString str, int type, const QModelIndex &parent) ;
+    QModelIndex addTree(QString str, int type, uint64_t size, const QModelIndex &parent) ;
     void removeTree(QModelIndex &parent) ;
 
 	void dumpTreeItems() ;

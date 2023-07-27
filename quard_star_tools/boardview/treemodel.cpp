@@ -9,7 +9,7 @@ class TreeItem
 public:
 	TreeItem() {}
 	TreeItem(QString str, int type, TreeItem *parent) :
-		m_str(str),m_type(type),m_pParent(parent)
+        m_str(str),m_type(type),m_size(0),m_pParent(parent)
 	{
 	}
 	~TreeItem()
@@ -28,8 +28,10 @@ public:
 
 	QString data() { return m_str ; }
 	int type() { return m_type ; }
+    uint64_t size() { return m_size ; }
 	void setData(QString str) { m_str = str ; }
 	void setType(int type) { m_type = type ; }
+	void setSize(uint64_t size) { m_size = size ; }
 	int childCount() { return m_children.size() ; }
 	QList<TreeItem *> &children() { return m_children ; }
 	TreeItem *parent() { return m_pParent ; }
@@ -56,8 +58,9 @@ public:
 	}
 
 private:
-	QString				m_str ;
-	int				    m_type ;
+    QString				m_str;
+    int				    m_type;
+	uint64_t            m_size;
 	TreeItem			*m_pParent ;
 	QList<TreeItem *>	m_children ;
 } ;
@@ -75,46 +78,100 @@ TreeModel::~TreeModel()
 
 QVariant TreeModel::data(const QModelIndex &index, int role) const
 {
-	if ( role != Qt::DisplayRole && role != Qt::EditRole  && role != Qt::DecorationRole) { return QVariant() ; }
+    if ( role != Qt::DisplayRole && role != Qt::EditRole  && role != Qt::DecorationRole && role != (Qt::UserRole + 1)) { return QVariant() ; }
 	if ( !index.isValid() ) { return QVariant() ; }
 
     TreeItem *p = static_cast<TreeItem *>(index.internalPointer()) ;
     
-    if (role == Qt::DecorationRole) {
-		enum fs_entity_type {
-			UNKNOWN = 0,
-			REG_FILE,
-			DIR,
-			CHARDEV,
-			BLOCKDEV,
-			FIFO,
-			SOCKET,
-			SYMLINK,
-			LAST
-		};
-		switch (p->type()) {
-			case UNKNOWN:
+	enum fs_entity_type {
+		UNKNOWN = 0,
+		REG_FILE,
+		DIR,
+		CHARDEV,
+		BLOCKDEV,
+		FIFO,
+		SOCKET,
+		SYMLINK,
+		LAST
+	};
+	switch (p->type()) {
+		case UNKNOWN:
+			if(index.column() == 0 && role == Qt::DecorationRole) {
 				return QVariant();
-			case REG_FILE:
+			} else if(index.column() == 0 && role == Qt::DisplayRole) {
+				return p->data();
+			} else if (index.column() == 1 && role == Qt::DisplayRole) {
+				return tr("Kind");
+			} else if (index.column() == 2 && role == Qt::DisplayRole) {
+				return tr("Size");
+			} /*else if (index.column() == 3 && role == Qt::DisplayRole) {
+				return tr("Date");
+			}*/
+			break;
+		case REG_FILE:
+			if(index.column() == 0 && role == Qt::DecorationRole) {
 				return QIcon(QFontIcon::icon(QChar(0xf016)));
-			case DIR:
+			} else if(index.column() == 0 && role == Qt::DisplayRole) {
+				return p->data();
+			} else if (index.column() == 1 && role == Qt::DisplayRole) {
+				return tr("File");
+			} else if (index.column() == 2 && role == Qt::DisplayRole) {
+				if( p->size() <= 1024) {
+					return QString("%1 B").arg(p->size());
+				} else if ( p->size() <= 1024 * 1024 ) {
+					return QString::number(p->size() / 1024.0, 'f', 2) + QString(" KB");
+				} else if ( p->size() <= 1024 * 1024 * 1024 ) {
+					return QString::number(p->size() / (1024.0 * 1024.0), 'f', 2) + QString(" MB");
+				} else {
+					return QString::number(p->size() / (1024.0 * 1024.0 * 1024.0), 'f', 2) + QString(" GB");
+				}
+			}
+			break;
+		case DIR:
+			if(index.column() == 0 && role == Qt::DecorationRole) {
 				if(m_parent->isExpanded(index))
 					return QIcon(QFontIcon::icon(QChar(0xf07c)));
 				else
 					return QIcon(QFontIcon::icon(QChar(0xf07b)));
-			case CHARDEV:
+			} else if(index.column() == 0 && role == Qt::DisplayRole) {
+				return p->data();
+			} else if (index.column() == 1 && role == Qt::DisplayRole) {
+				return tr("Directory");
+			}
+			break;
+		case CHARDEV:
+		case BLOCKDEV:
+			if(index.column() == 0 && role == Qt::DecorationRole) {
 				return QIcon(QFontIcon::icon(QChar(0xf085)));
-				return QIcon(QFontIcon::icon(QChar(0xf085)));
-			case FIFO:
-			case SOCKET:
-			case SYMLINK:
+			} else if(index.column() == 0 && role == Qt::DisplayRole) {
+				return p->data();
+			} else if (index.column() == 1 && role == Qt::DisplayRole) {
+				return tr("Device");
+			}
+			break;
+		case FIFO:
+		case SOCKET:
+		case SYMLINK:
+			if(index.column() == 0 && role == Qt::DecorationRole) {
 				return QIcon(QFontIcon::icon(QChar(0xf0c1)));
-			default:
+			} else if(index.column() == 0 && role == Qt::DisplayRole) {
+				return p->data();
+			} else if (index.column() == 1 && role == Qt::DisplayRole) {
+				return tr("Link");
+			}
+			break;
+		default:
+			if(index.column() == 0 && role == Qt::DecorationRole) {
 				return QIcon(QFontIcon::icon(QChar(0xf071)));
-		}
+			} else if(index.column() == 0 && role == Qt::DisplayRole) {
+				return p->data();
+			} else if (index.column() == 1 && role == Qt::DisplayRole) {
+				return tr("Unknown");
+			}
+			break;
 	}
 
-	return p->data();
+	return QVariant();
 }
 
 int TreeModel::rowCount(const QModelIndex &parent) const
@@ -130,7 +187,7 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 int TreeModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-	return 1 ;	// カラムは常に1つ
+	return 4 ;	// カラムは常に1つ
 }
 
 Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
@@ -142,9 +199,9 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 		 | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled ;		// drag and drop処理入れる時は追加
 }
 
-bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int type, int role)
+bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-	if ( role != Qt::DisplayRole && role != Qt::EditRole ) {
+    if ( role != Qt::DisplayRole && role != Qt::EditRole ) {
 		return false ;
 	}
 
@@ -153,8 +210,9 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int typ
 		p = static_cast<TreeItem *>(index.internalPointer()) ;
 	}
 
-	p->setData(value.toString()) ;
-	p->setType(type) ;
+    p->setData(value.toList()[0].toString()) ;
+    p->setType(value.toList()[1].toInt()) ;
+    p->setSize(value.toList()[2].toULongLong()) ;
 	emit dataChanged(index, index);
 	return true ;
 }
@@ -264,7 +322,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 		p = reinterpret_cast<TreeItem *>(val) ;
 
 		QString text = p->data() ;
-        QModelIndex index = addTree(text, 0, parent) ;
+        QModelIndex index = addTree(text, 0, 0, parent) ;
 		TreeItem *newItem = static_cast<TreeItem *>(index.internalPointer()) ;
 		newItem->copy(p) ;
 	}
@@ -272,7 +330,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 }
 // drag and drop 処理 ここまで ----------------------------------
 
-QModelIndex TreeModel::addTree(QString str, int type, const QModelIndex &parent)
+QModelIndex TreeModel::addTree(QString str, int type, uint64_t size, const QModelIndex &parent)
 {
 	TreeItem *p = m_pRootItem ;
 	if ( parent.isValid() ) {
@@ -283,7 +341,8 @@ QModelIndex TreeModel::addTree(QString str, int type, const QModelIndex &parent)
 	insertRows(row, 1, parent) ;	// row 追加
 
     QModelIndex index = this->index(row, 0, parent) ;
-	setData(index, str, type, Qt::DisplayRole) ;
+    QList<QVariant> list = {str, type, size,};
+    setData(index, list, Qt::DisplayRole) ;
 	return index ;
 }
 
