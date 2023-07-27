@@ -49,6 +49,20 @@
 #include "jffs2extract.h"
 #include "common.h"
 
+#if defined(__WINDOWS__)
+#define DT_UNKNOWN	0
+#define DT_FIFO		1
+#define DT_CHR		2
+#define DT_DIR		4
+#define DT_BLK		6
+#define DT_REG		8
+#define DT_LNK		10
+#define DT_SOCK		12
+#define DT_WHT		14
+#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)
+#define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)
+#endif
+
 static uint8_t * ram_disk_data = nullptr;
 static uint64_t ram_disk_size = 0;
 
@@ -83,7 +97,7 @@ void freedir(struct dir *);
 void putblock(char *b, size_t bsize, size_t * rsize,
 		struct jffs2_raw_inode *n)
 {
-    ulong dlen = je32_to_cpu(n->dsize);
+    unsigned long dlen = je32_to_cpu(n->dsize);
 
 	if (je32_to_cpu(n->isize) > bsize || (je32_to_cpu(n->offset) + dlen) > bsize)
 		errmsg_die("File does not fit into buffer!");
@@ -195,6 +209,21 @@ struct dir *putdir(struct dir *dd, struct jffs2_raw_dirent *n)
 	}
 }
 
+#if defined(__WINDOWS__)
+#define S_IFSOCK 0140000
+#define S_IFLNK	 0120000
+#define S_ISUID  0004000
+#define S_ISGID  0002000
+#define S_ISVTX  0001000
+
+#define S_ISLNK(m)	(((m) & S_IFMT) == S_IFLNK)
+#define S_ISREG(m)	(((m) & S_IFMT) == S_IFREG)
+#define S_ISDIR(m)	(((m) & S_IFMT) == S_IFDIR)
+#define S_ISCHR(m)	(((m) & S_IFMT) == S_IFCHR)
+#define S_ISBLK(m)	(((m) & S_IFMT) == S_IFBLK)
+#define S_ISFIFO(m)	(((m) & S_IFMT) == S_IFIFO)
+#define S_ISSOCK(m)	(((m) & S_IFMT) == S_IFSOCK)
+#endif
 
 #define TYPEINDEX(mode) (((mode) >> 12) & 0x0f)
 #define TYPECHAR(mode)  ("0pcCd?bB-?l?s???" [TYPEINDEX(mode)])
@@ -526,7 +555,7 @@ struct jffs2_raw_dirent *resolvepath0(uint32_t ino,
 
 			continue;
 		}
-root_start:
+
 		dir = resolvename(ino, path, (uint8_t) strlen(path));
 
 		if (DIRENT_INO(dir) == 0 ||

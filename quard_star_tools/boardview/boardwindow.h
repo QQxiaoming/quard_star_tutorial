@@ -9,10 +9,10 @@
 #include <QProcess>
 #include <QTreeView>
 
-#include "treemodel.h"
+#include "jffs2extract.h"
 #include "ext4_module.h"
 #include "ff.h"
-#include "jffs2extract.h"
+#include "treemodel.h"
 
 #include "vncwindow.h"
 #include "telnetwindow.h"

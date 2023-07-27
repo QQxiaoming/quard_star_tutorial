@@ -8,7 +8,9 @@ HEADERS += \
     $$PWD/lzoconf.h \
     $$PWD/lzodefs.h \
     $$PWD/minilzo.h \
-    $$PWD/xalloc.h
+    $$PWD/xalloc.h \
+    $$PWD/byteswap.h \
+    $$PWD/endian.h
 
 SOURCES += \
     $$PWD/jffs2extract.cpp \
