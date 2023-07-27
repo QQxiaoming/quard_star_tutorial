@@ -341,7 +341,7 @@ QModelIndex TreeModel::addTree(QString str, int type, uint64_t size, const QMode
 	insertRows(row, 1, parent) ;	// row 追加
 
     QModelIndex index = this->index(row, 0, parent) ;
-    QList<QVariant> list = {str, type, size,};
+    QList<QVariant> list = {str, type, static_cast<quint64>(size)};
     setData(index, list, Qt::DisplayRole) ;
 	return index ;
 }
