@@ -346,31 +346,61 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
         {
             QAction* pGInfo = qobject_cast<QAction*>(sender());
             DeviceName title = static_cast<DeviceName>(pGInfo->toolTip().toInt());
-            QString info;
+            uint64_t fatfs_offset = 0;
+            uint64_t fatfs_size = 0;
+            uint64_t ext4_offset = 0;
+            uint64_t ext4_size = 0;
+            FSViewWindow::mbr_t mbr = FSViewWindow::get_mbr(rootFSImgPath);
+            if(mbr.boot_signature == FSViewWindow::MBR_BOOT_SIGNATURE) {
+                for(int i = 0; i < 4; ++i){
+                    if(mbr.partition_table[i].type == FSViewWindow::LIBPARTMBR_TYPE_EMPTY){
+                        continue;
+                    }
+                    switch(mbr.partition_table[i].type) {
+                        case FSViewWindow::LIBPARTMBR_TYPE_LINUX_NATIVE:
+                            ext4_offset = mbr.partition_table[i].starting_lba * 512;
+                            ext4_size = mbr.partition_table[i].number_of_sectors * 512;
+                            break;
+                        case FSViewWindow::LIBPARTMBR_TYPE_FAT32_LBA:
+                            fatfs_offset = mbr.partition_table[i].starting_lba * 512;
+                            fatfs_size = mbr.partition_table[i].number_of_sectors * 512;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
             switch (title)
             {
                 case SOC:
                 {
                     // p1: start=2048, size=196608, type=c
-                    fsView->setFatFSImgView(rootFSImgPath,1048576,100663296);
-                    fsView->show();
+                    if(fatfs_size > 0 && fatfs_offset > 0) {
+                        fsView->setFatFSImgView(rootFSImgPath,fatfs_offset,fatfs_size);
+                        fsView->show();
+                    } else {
+                        QMessageBox::about(this, tr("Open FileSystem"), tr("No FileSystem, maybe is a binary image file."));
+                    }
                     break;
                 }
                 case NAND:
                 {
                     // p2: start=198656, size=8189952, type=83
-                    fsView->setExt4FSImgView(rootFSImgPath,101711872,4193255424);
-                    // p2: start=198656, size=3995648, type=83
-                    //fsView->setExt4FSImgView(rootFSImgPath,101711872,2045771776);
-                    fsView->show();
+                    if(ext4_size > 0 && ext4_offset > 0) {
+                        fsView->setExt4FSImgView(rootFSImgPath,ext4_offset,ext4_size);
+                        fsView->show();
+                    } else {
+                        QMessageBox::about(this, tr("Open FileSystem"), tr("No FileSystem, maybe is a binary image file."));
+                    }
                     break;
                 }
                 case NOR:
                 case SD:
                 case USB0:
                 case USB1:
-                    break;
                 default:
+                    QMessageBox::about(this, tr("Open FileSystem"), tr("No FileSystem, maybe is a binary image file."));
                     break;
             }
         }
