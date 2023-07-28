@@ -257,7 +257,6 @@ private:
                         listFatFSAll(path + "/" + filename, modelIndex);
                     else
                         listFatFSAll("/" + filename, modelIndex);
-                    break;
                 } else {
                     QString filename(QByteArray(fn,strlen(fn)));
                     uint64_t size = fno.fsize;

@@ -360,7 +360,7 @@ struct dir *collectdir(uint32_t ino, struct dir *d)
 
 		if (n < e && je16_to_cpu(n->u.magic) == JFFS2_MAGIC_BITMASK) {
 			if (je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_DIRENT &&
-				je32_to_cpu(n->d.pino) == ino && (v = je32_to_cpu(n->d.version)) > vcur) {
+				je32_to_cpu(n->d.pino) == ino && (v = je32_to_cpu(n->d.version)) >= vcur) {
 				/* XXX crc check */
 
 				if (vmaxt < v)
@@ -370,7 +370,7 @@ struct dir *collectdir(uint32_t ino, struct dir *d)
 					mp = n;
 				}
 
-				if (v == (vcur + 1)) {
+				if (v == (vcur)) {
 					d = putdir(d, &(n->d));
 
 					lr = n;
@@ -388,7 +388,7 @@ struct dir *collectdir(uint32_t ino, struct dir *d)
 			vmin = vmint;
 			vmint = ~((uint32_t) 0);
 
-			if (vcur < vmax && vcur < vmin) {
+			if (vcur <= vmax && vcur <= vmin) {
 				d = putdir(d, &(mp->d));
 
 				lr = n =
@@ -398,7 +398,7 @@ struct dir *collectdir(uint32_t ino, struct dir *d)
 				vcur = vmin;
 			}
 		}
-	} while (vcur < vmax);
+    } while (vcur <= vmax);
 
 	return d;
 }
@@ -447,13 +447,13 @@ struct jffs2_raw_dirent *resolvedirent(
 		if (n < e && je16_to_cpu(n->u.magic) == JFFS2_MAGIC_BITMASK) {
 			if (je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_DIRENT &&
 					(!ino || je32_to_cpu(n->d.ino) == ino) &&
-					(v = je32_to_cpu(n->d.version)) > vmax &&
+					(v = je32_to_cpu(n->d.version)) >= vmax &&
 					(!pino || (je32_to_cpu(n->d.pino) == pino &&
 							   nsize == n->d.nsize &&
 							   !memcmp(name, n->d.name, nsize)))) {
 				/* XXX crc check */
 
-				if (vmax < v) {
+				if (vmax <= v) {
 					vmax = v;
 					dd = &(n->d);
 				}
