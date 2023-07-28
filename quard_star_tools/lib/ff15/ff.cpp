@@ -5939,7 +5939,7 @@ FRESULT f_mkfs (
 	if (sz_buf == 0) return FR_NOT_ENOUGH_CORE;
 	buf = (BYTE*)work;		/* Working buffer */
 #if FF_USE_LFN == 3
-	if (!buf) buf = ff_memalloc(sz_buf * ss);	/* Use heap memory for working buffer */
+    if (!buf) buf = (BYTE *)ff_memalloc(sz_buf * ss);	/* Use heap memory for working buffer */
 #endif
 	if (!buf) return FR_NOT_ENOUGH_CORE;
 
@@ -6400,7 +6400,7 @@ FRESULT f_fdisk (
 	if (stat & STA_PROTECT) return FR_WRITE_PROTECTED;
 
 #if FF_USE_LFN == 3
-	if (!buf) buf = ff_memalloc(FF_MAX_SS);	/* Use heap memory for working buffer */
+    if (!buf) buf = (BYTE *)ff_memalloc(FF_MAX_SS);	/* Use heap memory for working buffer */
 #endif
 	if (!buf) return FR_NOT_ENOUGH_CORE;
 
