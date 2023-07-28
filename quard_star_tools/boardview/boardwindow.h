@@ -8,6 +8,10 @@
 #include <QPoint>
 #include <QProcess>
 #include <QTreeView>
+#include <QMessageBox>
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
 
 #include "jffs2extract.h"
 #include "ext4_module.h"
@@ -173,7 +177,7 @@ public:
 
     void resetView(void) {
         mode->removeTree(rootIndex);
-        rootIndex = mode->addTree("/", 0, 0, QModelIndex());
+        rootIndex = mode->addTree("/", 0, 0, 0, QModelIndex());
         expand(rootIndex);
     }
 
@@ -201,18 +205,12 @@ private:
         ext4_list_contents(path.toStdString().c_str(), mdata);
         uint8_t * p = mdata;
         while(p != (mdata + msize)) {
-            struct __attribute__((packed)) ext4_ino_min_map {
-                uint64_t ino;
-                uint8_t type;
-                uint8_t size;
-                char name[1];
-            };
-            struct ext4_ino_min_map * mm = (struct ext4_ino_min_map *) p;
+            struct ext4_ino_usr_map * mm = (struct ext4_ino_usr_map *) p;
             QString filename(QByteArray(mm->name,mm->size));
             switch(mm->type) {
                 case FSView_DIR :
                 {
-                    QModelIndex modelIndex = mode->addTree(filename, mm->type, 0, index);
+                    QModelIndex modelIndex = mode->addTree(filename, mm->type, 0, mm->ctime, index);
                     if(path != "/")
                         listExt4FSAll(path + "/" + filename, modelIndex);
                     else
@@ -226,13 +224,13 @@ private:
                     uint8_t *rdata = new uint8_t[rsize];
                     ext4_get_contents(mm->ino, rdata);
                     uint64_t size = *(uint64_t *)(rdata+8);
-                    mode->addTree(filename, mm->type, size, index);
+                    mode->addTree(filename, mm->type, size, mm->ctime, index);
                     free(rdata);
                     break;
                 }
             }
             
-            p += sizeof(uint64_t) + 2 + mm->size;
+            p += sizeof(struct ext4_ino_usr_map) + mm->size;
         }
         delete [] mdata;
         qApp->processEvents();
@@ -250,9 +248,17 @@ private:
                 res = f_readdir(&dir, &fno);
                 if (res != FR_OK || fno.fname[0] == 0) break;
                 fn = fno.fname;
+                int year = ((fno.fdate & 0b1111111000000000) >> 9) + 1980;
+                int month = (fno.fdate & 0b0000000111100000) >> 5;
+                int day =  fno.fdate & 0b0000000000011111;
+                int hour = (fno.ftime & 0b111110000000000) >> 11;
+                int minute = (fno.ftime & 0b0000011111100000) >> 5;
+                int second = (fno.ftime & 0b0000000000011111) * 2;
+                QDateTime dt(QDate(year, month, day), QTime(hour, minute, second));
+
                 if (fno.fattrib & AM_DIR) { 
                     QString filename(QByteArray(fn,strlen(fn)));
-                    QModelIndex modelIndex = mode->addTree(filename, FSView_DIR, 0, index);
+                    QModelIndex modelIndex = mode->addTree(filename, FSView_DIR, fno.fsize, dt.toSecsSinceEpoch(), index);
                     if(path != "/")
                         listFatFSAll(path + "/" + filename, modelIndex);
                     else
@@ -260,7 +266,7 @@ private:
                 } else {
                     QString filename(QByteArray(fn,strlen(fn)));
                     uint64_t size = fno.fsize;
-                    mode->addTree(filename, FSView_REG_FILE, size, index);
+                    mode->addTree(filename, FSView_REG_FILE, size, dt.toSecsSinceEpoch(), index);
                 }
             }
             f_closedir(&dir);
@@ -300,7 +306,8 @@ private:
                     len = je32_to_cpu(tmpi->dsize) + je32_to_cpu(tmpi->offset);
                     tmpi = find_raw_inode(d->ino, je32_to_cpu(tmpi->version));
                 }
-                
+
+                uint32_t timestamp = je32_to_cpu(ri->ctime);
                 switch (dt2fsv[d->type]) {
                     case FSView_REG_FILE:
                     case FSView_FIFO:
@@ -311,7 +318,7 @@ private:
                     default:
                     {
                         QString filename(QByteArray(d->name,d->nsize));
-                        mode->addTree(filename, dt2fsv[d->type], len, index);
+                        mode->addTree(filename, dt2fsv[d->type], len, timestamp, index);
                         break;
                     }
                     case FSView_DIR:
@@ -320,7 +327,7 @@ private:
 
                 if (dt2fsv[d->type] == FSView_DIR) {
                     QString filename(QByteArray(d->name,d->nsize));
-                    QModelIndex modelIndex = mode->addTree(filename, dt2fsv[d->type], 0, index);
+                    QModelIndex modelIndex = mode->addTree(filename, dt2fsv[d->type], 0, timestamp, index);
                     if(path != "/")
                         listJffs2FSAll(path + "/" + filename, modelIndex);
                     else

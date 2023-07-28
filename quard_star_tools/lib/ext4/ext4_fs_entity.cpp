@@ -43,13 +43,14 @@ static void fs_entity_dealloc(pobject o) {
     }
 }
 
-struct fs_entity * create_entity(uint64_t ino, const char * name, enum fs_entity_type type, struct fs_entity * parent) {
+struct fs_entity * create_entity(uint64_t ino, const char * name, uint32_t ctime, enum fs_entity_type type, struct fs_entity * parent) {
     struct fs_entity * me = (struct fs_entity *) ObjCreate(sizeof(struct fs_entity));
     if(me) {
         me->_o.dealloc = fs_entity_dealloc;
         me->ino = ino;
         me->name = string_create(name);
         me->type = type;
+        me->ctime = ctime;
         me->parent = parent;
         me->children = list_create();
         me->data_refs = list_create();

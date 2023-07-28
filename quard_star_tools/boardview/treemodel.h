@@ -33,7 +33,7 @@ public:
 	bool dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) ;
 	// -----------------
 
-    QModelIndex addTree(QString str, int type, uint64_t size, const QModelIndex &parent) ;
+    QModelIndex addTree(QString str, int type, uint64_t size, uint32_t timestamp, const QModelIndex &parent) ;
     void removeTree(QModelIndex &parent) ;
 
 	void dumpTreeItems() ;

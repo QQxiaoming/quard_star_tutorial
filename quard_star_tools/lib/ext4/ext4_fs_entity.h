@@ -51,6 +51,7 @@ struct fs_entity {
     uint64_t ino;
     pstring  name; // the name of the object
     enum fs_entity_type type; // the type of the object
+    uint32_t ctime; // the creation time of the object
     plist children; // strong pointers to the children
     pstring links_to; // if it is a symbolic link
     plist data_refs; // strong pointers to all data chunks for that object
@@ -65,7 +66,7 @@ struct fs_entity {
 //             type - the type of the object, as it is in the disk image.
 //             parent- the object's parent (a directory usually).
 // Return value: the fs_entity object, representing the disk image object or NULL if error.
-struct fs_entity * create_entity(uint64_t ino, const char * name, enum fs_entity_type type, struct fs_entity * parent);
+struct fs_entity * create_entity(uint64_t ino, const char * name, uint32_t ctime, enum fs_entity_type type, struct fs_entity * parent);
 
 // Gets the string representation of the type of the object.
 // Parameters: o - the fs_entity object itself

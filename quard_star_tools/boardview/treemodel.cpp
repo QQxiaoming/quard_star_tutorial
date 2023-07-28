@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QIODevice>
 #include <QTreeView>
+#include <QDateTime>
 #include "treemodel.h"
 #include "qfonticon.h"
 
@@ -9,7 +10,7 @@ class TreeItem
 public:
 	TreeItem() {}
 	TreeItem(QString str, int type, TreeItem *parent) :
-        m_str(str),m_type(type),m_size(0),m_pParent(parent)
+        m_str(str),m_type(type),m_size(0),m_timestamp(0),m_pParent(parent)
 	{
 	}
 	~TreeItem()
@@ -29,9 +30,11 @@ public:
 	QString data() { return m_str ; }
 	int type() { return m_type ; }
     uint64_t size() { return m_size ; }
+    uint32_t timestamp() { return m_timestamp ; }
 	void setData(QString str) { m_str = str ; }
 	void setType(int type) { m_type = type ; }
 	void setSize(uint64_t size) { m_size = size ; }
+	void setTimestamp(uint32_t timestamp) { m_timestamp = timestamp ; }
 	int childCount() { return m_children.size() ; }
 	QList<TreeItem *> &children() { return m_children ; }
 	TreeItem *parent() { return m_pParent ; }
@@ -61,6 +64,7 @@ private:
     QString				m_str;
     int				    m_type;
 	uint64_t            m_size;
+	uint32_t 		 	m_timestamp;
 	TreeItem			*m_pParent ;
 	QList<TreeItem *>	m_children ;
 } ;
@@ -104,9 +108,9 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 				return tr("Kind");
 			} else if (index.column() == 2 && role == Qt::DisplayRole) {
 				return tr("Size");
-			} /*else if (index.column() == 3 && role == Qt::DisplayRole) {
+			} else if (index.column() == 3 && role == Qt::DisplayRole) {
 				return tr("Date");
-			}*/
+			}
 			break;
 		case REG_FILE:
 			if(index.column() == 0 && role == Qt::DecorationRole) {
@@ -125,6 +129,8 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 				} else {
 					return QString::number(p->size() / (1024.0 * 1024.0 * 1024.0), 'f', 2) + QString(" GB");
 				}
+            } else if (index.column() == 3 && role == Qt::DisplayRole) {
+                return QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss");
 			}
 			break;
 		case DIR:
@@ -137,6 +143,10 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 				return p->data();
 			} else if (index.column() == 1 && role == Qt::DisplayRole) {
 				return tr("Directory");
+			} else if (index.column() == 2 && role == Qt::DisplayRole) {
+				return QString::number(p->childCount());
+			} else if (index.column() == 3 && role == Qt::DisplayRole) {
+                return QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss");
 			}
 			break;
 		case CHARDEV:
@@ -213,6 +223,7 @@ bool TreeModel::setData(const QModelIndex &index, const QVariant &value, int rol
     p->setData(value.toList()[0].toString()) ;
     p->setType(value.toList()[1].toInt()) ;
     p->setSize(value.toList()[2].toULongLong()) ;
+	p->setTimestamp(value.toList()[3].toUInt()) ;
 	emit dataChanged(index, index);
 	return true ;
 }
@@ -322,7 +333,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 		p = reinterpret_cast<TreeItem *>(val) ;
 
 		QString text = p->data() ;
-        QModelIndex index = addTree(text, 0, 0, parent) ;
+        QModelIndex index = addTree(text, 0, 0, 0, parent) ;
 		TreeItem *newItem = static_cast<TreeItem *>(index.internalPointer()) ;
 		newItem->copy(p) ;
 	}
@@ -330,7 +341,7 @@ bool TreeModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int r
 }
 // drag and drop 処理 ここまで ----------------------------------
 
-QModelIndex TreeModel::addTree(QString str, int type, uint64_t size, const QModelIndex &parent)
+QModelIndex TreeModel::addTree(QString str, int type, uint64_t size, uint32_t timestamp, const QModelIndex &parent)
 {
 	TreeItem *p = m_pRootItem ;
 	if ( parent.isValid() ) {
@@ -341,7 +352,7 @@ QModelIndex TreeModel::addTree(QString str, int type, uint64_t size, const QMode
 	insertRows(row, 1, parent) ;	// row 追加
 
     QModelIndex index = this->index(row, 0, parent) ;
-    QList<QVariant> list = {str, type, static_cast<quint64>(size)};
+    QList<QVariant> list = {str, type, static_cast<quint64>(size), timestamp };
     setData(index, list, Qt::DisplayRole) ;
 	return index ;
 }

@@ -48,6 +48,7 @@ struct inode * inode_create(const uint8_t * data, uint64_t offset, uint64_t ino)
         self->ino = ino;
         self->flags = nd->i_flags;
         self->mode = nd->i_mode;
+        self->ctime = nd->i_ctime;
         self->block_start = offset + offsetof(struct ext4_inode, i_block);
         self->size = ((uint64_t) nd->i_size_high << 32) | nd->i_size_lo;
     }

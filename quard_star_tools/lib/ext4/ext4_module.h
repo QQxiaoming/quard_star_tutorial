@@ -30,7 +30,15 @@
 #include <stdint.h>
 
 // A simple ext4 module representation.
-
+#pragma pack(1)
+struct ext4_ino_usr_map {
+   uint64_t ino;
+   uint32_t ctime;
+   uint8_t type;
+   uint8_t size;
+   char name[1];
+};
+#pragma pack()
 
 // Initializes the ext4 module
 // Parameters: data - a pointer to the ext4 image data

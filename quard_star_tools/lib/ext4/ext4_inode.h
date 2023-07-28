@@ -36,6 +36,7 @@ struct inode {
     struct object o_;
     uint64_t ino;
     uint16_t mode;
+    uint32_t ctime;
     uint32_t flags;
     uint64_t size;
     uint64_t block_start;

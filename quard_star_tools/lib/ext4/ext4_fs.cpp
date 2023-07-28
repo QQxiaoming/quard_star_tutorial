@@ -40,6 +40,7 @@
 #include "ext4_list.h"
 #include "ext4_map.h"
 #include "ext4_data.h"
+#include "ext4_module.h"
 
 #if defined(_WIN32)
 char *strsep(char **stringp, const char *delim) {
@@ -129,7 +130,7 @@ static void entity_processor(const uint8_t * data, uint64_t data_size, struct fs
                     continue;
                 }
                 if(de->inode > 0) {
-                    struct fs_entity * entity = create_entity((uint64_t) de->inode, entity_name, (fs_entity_type)de->file_type, parent_entity);
+                    struct fs_entity * entity = create_entity((uint64_t) de->inode, entity_name, inode->ctime, (fs_entity_type)de->file_type, parent_entity);
                     if(entity) {
                         map_insert(ctx->entities, entity->ino, OBJ(entity));
                         list_append(parent_entity->children, OBJ(entity));
@@ -273,7 +274,7 @@ struct FS * fs_create(const uint8_t * data, uint64_t data_size) {
         struct inode * inode = inode_create(data, root_inode_pos, ino);
         map_insert(ctx.inodes, ino, OBJ(inode));
         RELEASE(inode);
-        struct fs_entity * root = create_entity(ino, "/", DIR, NULL);
+        struct fs_entity * root = create_entity(ino, "/", 0, DIR, NULL);
         map_insert(ctx.entities, ino, (pobject) root);
         ObjRelease((pobject) root);
         
@@ -346,13 +347,15 @@ l_iterate:
                     for(it = list_begin(node->children); it != list_end(node->children); it = list_next(it)) {
                         struct fs_entity * en = (struct fs_entity *) list_access(it);
                         uint8_t s = (uint8_t) string_get_size(en->name);
-                        size += sizeof(uint64_t) + 2 + s;
+                        size += sizeof(struct ext4_ino_usr_map) + s;
                         if(optr) {
-                            *(uint64_t *) optr = en->ino;
-                            optr[sizeof(uint64_t)] = en->type;
-                            optr[sizeof(uint64_t)+1] = s;
-                            memcpy(optr + sizeof(uint64_t) + 2, string_get_string(en->name), s);
-                            optr += sizeof(uint64_t) + 2 + s;
+                            struct ext4_ino_usr_map *dst = (struct ext4_ino_usr_map *)optr;
+                            dst->ino = en->ino;
+                            dst->ctime = en->ctime;
+                            dst->type = en->type;
+                            dst->size = s;
+                            memcpy(dst->name, string_get_string(en->name), s);
+                            optr += sizeof(struct ext4_ino_usr_map) + s;
                         }
                     }
                 }
