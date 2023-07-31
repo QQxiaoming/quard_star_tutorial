@@ -10,7 +10,7 @@ Quard Star Tools是Quard Star Tutorial项目的一个子项目。其基于Qt编�
 - QTelnet.cpp fork自https://github.com/silderan/QTelnet.git
 - qtermwidget fork自https://github.com/lxqt/qtermwidget （去除了pty部分的实现，因为原项目不支持windows平台，本项目不需要pty部分因此去除后可跨平台使用。）
 - QFontIcon fork自https://github.com/dridk/QFontIcon
-- ext4 fork自https://github.com/ggetchev/pyext4
+- lwext4 fork自https://github.com/gkostka/lwext4
 - ff15 fork自http://elm-chan.org/fsw/ff/arc/ff15.zip
 - jffs2 fork自https://github.com/rickardp/jffs2extract
 - treemodel.cpp fork自https://github.com/chocoball/QTreeViewTest

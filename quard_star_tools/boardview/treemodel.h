@@ -15,6 +15,7 @@ public:
     explicit TreeModel(QTreeView *parent = 0);
 	~TreeModel() ;
 
+	void set_root_timestamp(uint32_t timestamp) ;
 	QVariant data(const QModelIndex &index, int role) const ;
 	int rowCount(const QModelIndex &parent) const ;
 	int columnCount(const QModelIndex &parent) const ;
@@ -47,6 +48,7 @@ public slots:
 
 private:
 	TreeItem	*m_pRootItem ;
+	uint32_t     m_roottimestamp;
     QTreeView   *m_parent;
 };
 

@@ -15,7 +15,7 @@ DEFINES += APP_VERSION="\\\"V$${BUILD_VERSION}\\\""
 QMAKE_CXXFLAGS += -Wno-deprecated-copy
 
 include(./lib/QFontIcon/QFontIcon.pri)
-include(./lib/ext4/ext4.pri)
+include(./lib/lwext4/lwext4.pri)
 include(./lib/ff15/ff15.pri)
 include(./lib/jffs2/jffs2.pri)
 include(./lib/qtxyzmodem/qtxyzmodem.pro)

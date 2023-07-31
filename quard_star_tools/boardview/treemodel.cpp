@@ -70,7 +70,7 @@ private:
 } ;
 
 TreeModel::TreeModel(QTreeView *parent) :
-	QAbstractItemModel(parent),m_parent(parent)
+	QAbstractItemModel(parent),m_roottimestamp(0),m_parent(parent)
 {
 	m_pRootItem = new TreeItem(" ", 0, NULL) ;
 }
@@ -78,6 +78,11 @@ TreeModel::TreeModel(QTreeView *parent) :
 TreeModel::~TreeModel()
 {
 	delete m_pRootItem ;
+}
+
+void TreeModel::set_root_timestamp(uint32_t timestamp)
+{
+	m_roottimestamp = timestamp;
 }
 
 QVariant TreeModel::data(const QModelIndex &index, int role) const
@@ -101,15 +106,15 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 	switch (p->type()) {
 		case UNKNOWN:
 			if(index.column() == 0 && role == Qt::DecorationRole) {
-				return QVariant();
+                return QIcon(QFontIcon::icon(QChar(0xf1c0)));
 			} else if(index.column() == 0 && role == Qt::DisplayRole) {
 				return p->data();
 			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("Kind");
+				return tr("Root");
 			} else if (index.column() == 2 && role == Qt::DisplayRole) {
-				return tr("Size");
-			} else if (index.column() == 3 && role == Qt::DisplayRole) {
-				return tr("Date");
+                return p->childCount();
+            } else if (index.column() == 3 && role == Qt::DisplayRole) {
+				return QDateTime::fromSecsSinceEpoch(m_roottimestamp).toString("yyyy-MM-dd hh:mm:ss");
 			}
 			break;
 		case REG_FILE:
@@ -281,8 +286,17 @@ QModelIndex TreeModel::parent(const QModelIndex &child) const
 
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-	if ( orientation == Qt::Horizontal && role == Qt::DisplayRole && section == 0 ) {
-		return m_pRootItem->data() ;
+if ( orientation == Qt::Horizontal && role == Qt::DisplayRole ) {
+        switch(section) {
+			case 0:
+				return tr("Name");
+			case 1:
+				return tr("Kind");
+			case 2:
+				return tr("Size");
+			case 3:
+				return tr("Date");
+		}
 	}
 	return QVariant() ;
 }
