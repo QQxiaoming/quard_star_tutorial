@@ -444,6 +444,7 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
     DeviceName spaceDoMain = UNKNOW;
 
     for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {

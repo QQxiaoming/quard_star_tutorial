@@ -12,6 +12,7 @@
 #include <QDateTime>
 #include <QDate>
 #include <QTime>
+#include <QMenu>
 
 #include "jffs2extract.h"
 #include "blockdev_port.h"
@@ -203,7 +204,22 @@ public:
     }
 
 protected:
-    void closeEvent(QCloseEvent *event) {
+    void contextMenuEvent(QContextMenuEvent *event) override {
+        QModelIndex index = indexAt(event->pos());
+        
+        if (index.isValid()) {
+            QMenu *menu = new QMenu(this);
+            menu->setAttribute(Qt::WA_DeleteOnClose);
+            
+            if(!menu->isEmpty()) {
+                menu->move(cursor().pos());
+                menu->show();
+            }
+        }
+        event->accept();
+    }
+
+    void closeEvent(QCloseEvent *event) override {
         this->hide();
         event->ignore();
     }
@@ -221,7 +237,7 @@ private:
         FSView_LAST
     };
     void listExt4FSAll(QString path, QModelIndex index) {
-        const ext4_direntry *de;
+	    const ext4_direntry *de;
 	    ext4_dir d;
         ext4_dir_open(&d, path.toStdString().c_str());
         de = ext4_dir_entry_next(&d);
@@ -232,11 +248,7 @@ private:
                 de = ext4_dir_entry_next(&d);
                 continue;
             }
-            QString filePath;
-            if(path != "/")
-                filePath = path + "/" + filename;
-            else
-                filePath = "/" + filename;
+            QString filePath = (path!="/")?(path+"/"+filename):("/"+filename);
             ext4_ctime_get(filePath.toStdString().c_str(),&timestamp);
             switch(de->inode_type) {
                 case FSView_REG_FILE:
@@ -258,10 +270,7 @@ private:
                     break;
                 case FSView_DIR:
                     QModelIndex modelIndex = mode->addTree(filename, de->inode_type, 0, timestamp, index);
-                    if(path != "/")
-                        listExt4FSAll(path + "/" + filename, modelIndex);
-                    else
-                        listExt4FSAll("/" + filename, modelIndex);
+                    listExt4FSAll(filePath, modelIndex);
                     break;
             }
 
@@ -281,7 +290,8 @@ private:
         if (res == FR_OK) {
             while (1) {
                 res = f_readdir(&dir, &fno);
-                if (res != FR_OK || fno.fname[0] == 0) break;
+                if (res != FR_OK || fno.fname[0] == 0) 
+                    break;
                 fn = fno.fname;
                 int year = ((fno.fdate & 0b1111111000000000) >> 9) + 1980;
                 int month = (fno.fdate & 0b0000000111100000) >> 5;
@@ -291,17 +301,13 @@ private:
                 int second = (fno.ftime & 0b0000000000011111) * 2;
                 QDateTime dt(QDate(year, month, day), QTime(hour, minute, second));
 
+                QString filename(QByteArray(fn,strlen(fn)));
                 if (fno.fattrib & AM_DIR) { 
-                    QString filename(QByteArray(fn,strlen(fn)));
                     QModelIndex modelIndex = mode->addTree(filename, FSView_DIR, fno.fsize, dt.toSecsSinceEpoch(), index);
-                    if(path != "/")
-                        listFatFSAll(path + "/" + filename, modelIndex);
-                    else
-                        listFatFSAll("/" + filename, modelIndex);
+                    QString filePath = (path!="/")?(path+"/"+filename):("/"+filename);
+                    listFatFSAll(filePath, modelIndex);
                 } else {
-                    QString filename(QByteArray(fn,strlen(fn)));
-                    uint64_t size = fno.fsize;
-                    mode->addTree(filename, FSView_REG_FILE, size, dt.toSecsSinceEpoch(), index);
+                    mode->addTree(filename, FSView_REG_FILE, fno.fsize, dt.toSecsSinceEpoch(), index);
                 }
             }
             f_closedir(&dir);
@@ -323,26 +329,26 @@ private:
         dd = resolvepath(1, path.toStdString().c_str(), &ino);
 
         if (ino == 0 || (dd == NULL && ino == 0))
-            qDebug("No such file or directory");
+            qWarning("No such file or directory");
         else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
             d = collectdir( ino, d);
             struct jffs2_raw_inode *ri, *tmpi;
             while (d != NULL) {
                 ri = find_raw_inode( d->ino, 0);
                 if (!ri) {
-                    qDebug("bug: raw_inode missing!");
+                    qWarning("bug: raw_inode missing!");
                     d = d->next;
                     continue;
                 }
-                /* Search for newer versions of the inode */
+
                 uint32_t len = 0;
                 tmpi = ri;
                 while (tmpi) {
                     len = je32_to_cpu(tmpi->dsize) + je32_to_cpu(tmpi->offset);
                     tmpi = find_raw_inode(d->ino, je32_to_cpu(tmpi->version));
                 }
-
                 uint32_t timestamp = je32_to_cpu(ri->ctime);
+                QString filename(QByteArray(d->name,d->nsize));
                 switch (dt2fsv[d->type]) {
                     case FSView_REG_FILE:
                     case FSView_FIFO:
@@ -352,21 +358,16 @@ private:
                     case FSView_SOCKET:
                     default:
                     {
-                        QString filename(QByteArray(d->name,d->nsize));
                         mode->addTree(filename, dt2fsv[d->type], len, timestamp, index);
                         break;
                     }
                     case FSView_DIR:
+                    {
+                        QString filePath = (path!="/")?(path+"/"+filename):("/"+filename);
+                        QModelIndex modelIndex = mode->addTree(filename, dt2fsv[d->type], 0, timestamp, index);
+                        listJffs2FSAll(filePath, modelIndex);
                         break;
-                }
-
-                if (dt2fsv[d->type] == FSView_DIR) {
-                    QString filename(QByteArray(d->name,d->nsize));
-                    QModelIndex modelIndex = mode->addTree(filename, dt2fsv[d->type], 0, timestamp, index);
-                    if(path != "/")
-                        listJffs2FSAll(path + "/" + filename, modelIndex);
-                    else
-                        listJffs2FSAll("/" + filename, modelIndex);
+                    }
                 }
 
                 d = d->next;

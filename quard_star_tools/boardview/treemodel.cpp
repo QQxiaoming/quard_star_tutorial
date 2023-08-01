@@ -103,87 +103,79 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 		SYMLINK,
 		LAST
 	};
-	switch (p->type()) {
-		case UNKNOWN:
-			if(index.column() == 0 && role == Qt::DecorationRole) {
-                return QIcon(QFontIcon::icon(QChar(0xf1c0)));
-			} else if(index.column() == 0 && role == Qt::DisplayRole) {
-				return p->data();
-			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("Root");
-			} else if (index.column() == 2 && role == Qt::DisplayRole) {
-                return p->childCount();
-            } else if (index.column() == 3 && role == Qt::DisplayRole) {
-				return QDateTime::fromSecsSinceEpoch(m_roottimestamp).toString("yyyy-MM-dd hh:mm:ss");
-			}
-			break;
-		case REG_FILE:
-			if(index.column() == 0 && role == Qt::DecorationRole) {
-				return QIcon(QFontIcon::icon(QChar(0xf016)));
-			} else if(index.column() == 0 && role == Qt::DisplayRole) {
-				return p->data();
-			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("File");
-			} else if (index.column() == 2 && role == Qt::DisplayRole) {
-				if( p->size() <= 1024) {
-					return QString("%1 B").arg(p->size());
-				} else if ( p->size() <= 1024 * 1024 ) {
-					return QString::number(p->size() / 1024.0, 'f', 2) + QString(" KB");
-				} else if ( p->size() <= 1024 * 1024 * 1024 ) {
-					return QString::number(p->size() / (1024.0 * 1024.0), 'f', 2) + QString(" MB");
-				} else {
-					return QString::number(p->size() / (1024.0 * 1024.0 * 1024.0), 'f', 2) + QString(" GB");
-				}
-            } else if (index.column() == 3 && role == Qt::DisplayRole) {
-                return QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss");
-			}
-			break;
-		case DIR:
-			if(index.column() == 0 && role == Qt::DecorationRole) {
-				if(m_parent->isExpanded(index))
-					return QIcon(QFontIcon::icon(QChar(0xf07c)));
-				else
-					return QIcon(QFontIcon::icon(QChar(0xf07b)));
-			} else if(index.column() == 0 && role == Qt::DisplayRole) {
-				return p->data();
-			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("Directory");
-			} else if (index.column() == 2 && role == Qt::DisplayRole) {
-				return QString::number(p->childCount());
-			} else if (index.column() == 3 && role == Qt::DisplayRole) {
-                return QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss");
-			}
-			break;
-		case CHARDEV:
-		case BLOCKDEV:
-			if(index.column() == 0 && role == Qt::DecorationRole) {
-				return QIcon(QFontIcon::icon(QChar(0xf085)));
-			} else if(index.column() == 0 && role == Qt::DisplayRole) {
-				return p->data();
-			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("Device");
-			}
-			break;
-		case FIFO:
-		case SOCKET:
-		case SYMLINK:
-			if(index.column() == 0 && role == Qt::DecorationRole) {
-				return QIcon(QFontIcon::icon(QChar(0xf0c1)));
-			} else if(index.column() == 0 && role == Qt::DisplayRole) {
-				return p->data();
-			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("Link");
-			}
-			break;
-		default:
-			if(index.column() == 0 && role == Qt::DecorationRole) {
-				return QIcon(QFontIcon::icon(QChar(0xf071)));
-			} else if(index.column() == 0 && role == Qt::DisplayRole) {
-				return p->data();
-			} else if (index.column() == 1 && role == Qt::DisplayRole) {
-				return tr("Unknown");
-			}
-			break;
+	struct fs_index {
+        int type;
+        int column;
+		int role;
+		QVariant ret;
+	} ret[] = {
+		{UNKNOWN,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf1c0)))},
+		{UNKNOWN,  0, Qt::DisplayRole, p->data()},
+		{UNKNOWN,  1, Qt::DisplayRole, tr("Root")},
+		{UNKNOWN,  2, Qt::DisplayRole, p->childCount()},
+		{UNKNOWN,  3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(m_roottimestamp).toString("yyyy-MM-dd hh:mm:ss")},
+		
+		{REG_FILE, 0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf016)))},
+		{REG_FILE, 0, Qt::DisplayRole, p->data()},
+		{REG_FILE, 1, Qt::DisplayRole, tr("File")}, 
+		{REG_FILE, 2, Qt::DisplayRole, [&]() -> QVariant {
+											if( p->size() <= 1024) {
+												return QString("%1 B").arg(p->size());
+											} else if ( p->size() <= 1024 * 1024 ) {
+												return QString::number(p->size() / 1024.0, 'f', 2) + QString(" KB");
+											} else if ( p->size() <= 1024 * 1024 * 1024 ) {
+												return QString::number(p->size() / (1024.0 * 1024.0), 'f', 2) + QString(" MB");
+											} else {
+												return QString::number(p->size() / (1024.0 * 1024.0 * 1024.0), 'f', 2) + QString(" GB");
+											}
+										}(),},
+		{REG_FILE, 3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
+		
+		{DIR,      0, Qt::DecorationRole, [&]() -> QVariant {
+												if(m_parent->isExpanded(index)) {
+													return QIcon(QFontIcon::icon(QChar(0xf07c)));
+												} else {
+													return QIcon(QFontIcon::icon(QChar(0xf07b)));
+												}
+											}(),},
+		{DIR,      0, Qt::DisplayRole, p->data()},
+		{DIR,      1, Qt::DisplayRole, tr("Directory")},
+		{DIR,      2, Qt::DisplayRole, p->childCount()},
+		{DIR,      3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
+		
+		{CHARDEV,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf085)))},
+		{CHARDEV,  0, Qt::DisplayRole, p->data()},
+		{CHARDEV,  1, Qt::DisplayRole, tr("Device")},
+
+		{BLOCKDEV, 0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf085)))},
+		{BLOCKDEV, 0, Qt::DisplayRole, p->data()},
+		{BLOCKDEV, 1, Qt::DisplayRole, tr("Device")},
+
+		{FIFO,     0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
+		{FIFO,     0, Qt::DisplayRole, p->data()},
+		{FIFO,     1, Qt::DisplayRole, tr("Link")},
+
+		{SOCKET,   0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
+		{SOCKET,   0, Qt::DisplayRole, p->data()},
+		{SOCKET,   1, Qt::DisplayRole, tr("Link")},
+
+		{SYMLINK,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
+		{SYMLINK,  0, Qt::DisplayRole, p->data()},
+		{SYMLINK,  1, Qt::DisplayRole, tr("Link")},
+	};
+
+    for (size_t i = 0; i < sizeof(ret) / sizeof(ret[0]); i++) {
+		if (p->type() == ret[i].type && index.column() == ret[i].column && role == ret[i].role) {
+			return ret[i].ret;
+		}
+	}
+
+	if(index.column() == 0 && role == Qt::DecorationRole) {
+		return QIcon(QFontIcon::icon(QChar(0xf071)));
+	} else if(index.column() == 0 && role == Qt::DisplayRole) {
+		return p->data();
+	} else if (index.column() == 1 && role == Qt::DisplayRole) {
+		return tr("Unknown");
 	}
 
 	return QVariant();

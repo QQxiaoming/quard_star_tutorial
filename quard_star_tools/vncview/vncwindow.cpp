@@ -41,38 +41,8 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     vncView = new QVNCClientWidget(this);
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
-
-    setFixedSize(this->size());
-    Q_UNUSED(parent);
-}
-
-VncWindow::~VncWindow()
-{
-    delete vncView;
-    delete ui;
-}
-
-void VncWindow::reConnect(void)
-{
-    if(vncView->isConnectedToServer()) {
-        vncView->disconnectFromVncServer();
-    }
-    if(vncView->connectToVncServer("127.0.0.1","",5901)) {
-        vncView->startFrameBufferUpdate();
-    }
-}
-
-void VncWindow::contextMenuEvent(QContextMenuEvent *event)
-{
-    if((event->pos().x() >= vncView->pos().x()) &&
-        (event->pos().x() <= vncView->pos().x()+vncView->width()) &&
-        (event->pos().y() >= vncView->pos().y()) &&
-        (event->pos().y() <= vncView->pos().y()+vncView->height())
-        ) {
-        return;
-    }
-
-    QMenu *menu = new QMenu(this);
+    
+    menu = new QMenu(this);
 
     QAction *pReFresh = new QAction(tr("Refresh"), this);
     pReFresh->setIcon(QFontIcon::icon(QChar(0xf021)));
@@ -116,6 +86,37 @@ void VncWindow::contextMenuEvent(QContextMenuEvent *event)
             this->hide();
         }
     );
+
+    setFixedSize(this->size());
+    Q_UNUSED(parent);
+}
+
+VncWindow::~VncWindow()
+{
+    delete menu;
+    delete vncView;
+    delete ui;
+}
+
+void VncWindow::reConnect(void)
+{
+    if(vncView->isConnectedToServer()) {
+        vncView->disconnectFromVncServer();
+    }
+    if(vncView->connectToVncServer("127.0.0.1","",5901)) {
+        vncView->startFrameBufferUpdate();
+    }
+}
+
+void VncWindow::contextMenuEvent(QContextMenuEvent *event)
+{
+    if((event->pos().x() >= vncView->pos().x()) &&
+        (event->pos().x() <= vncView->pos().x()+vncView->width()) &&
+        (event->pos().y() >= vncView->pos().y()) &&
+        (event->pos().y() <= vncView->pos().y()+vncView->height())
+        ) {
+        return;
+    }
 
     if(!menu->isEmpty()) {
         menu->move(cursor().pos());
