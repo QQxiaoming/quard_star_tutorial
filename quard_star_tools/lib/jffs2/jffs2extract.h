@@ -1,6 +1,7 @@
 #ifndef JFFS2EXTRACT_H
 #define JFFS2EXTRACT_H
 
+#include <stdint.h>
 #include "jffs2-user.h"
 
 struct dir {
@@ -10,6 +11,9 @@ struct dir {
 	uint32_t ino;
 	char name[256];
 };
+
+void putblock(char *b, size_t bsize, size_t * rsize,
+        struct jffs2_raw_inode *n);
 
 struct jffs2_raw_inode *find_raw_inode(uint32_t ino, uint32_t vcur);
 struct jffs2_raw_dirent *resolvedirent(uint32_t, uint32_t,

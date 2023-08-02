@@ -181,6 +181,16 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 	return QVariant();
 }
 
+void TreeModel::info(const QModelIndex &index, int &type, QString &name)
+{
+	if ( !index.isValid() ) { return; }
+
+    TreeItem *p = static_cast<TreeItem *>(index.internalPointer()) ;
+
+	type = p->type();
+	name = p->data();
+}
+
 int TreeModel::rowCount(const QModelIndex &parent) const
 {
 	TreeItem *p = m_pRootItem ;

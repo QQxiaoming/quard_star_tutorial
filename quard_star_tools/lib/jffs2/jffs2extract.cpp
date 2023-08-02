@@ -84,6 +84,38 @@ void freedir(struct dir *);
 
 
 
+static int jffs2_rtime_decompress(unsigned char *data_in,
+				  unsigned char *cpage_out,
+				  uint32_t srclen, uint32_t destlen)
+{
+	short positions[256];
+	int outpos = 0;
+	int pos=0;
+	memset(positions,0,sizeof(positions));
+	while (outpos<destlen) {
+		unsigned char value;
+		int backoffs;
+		int repeat;
+		value = data_in[pos++];
+		cpage_out[outpos++] = value; /* first the verbatim copied byte */
+		repeat = data_in[pos++];
+		backoffs = positions[value];
+		positions[value]=outpos;
+		if (repeat) {
+			if (backoffs + repeat >= outpos) {
+				while(repeat) {
+					cpage_out[outpos++] = cpage_out[backoffs++];
+					repeat--;
+				}
+			} else {
+				memcpy(&cpage_out[outpos],&cpage_out[backoffs],repeat);
+				outpos+=repeat;
+			}
+		}
+	}
+	return 0;
+}
+
 /* writes file node into buffer, to the proper position. */
 /* reading all valid nodes in version order reconstructs the file. */
 
@@ -108,9 +140,9 @@ void putblock(char *b, size_t bsize, size_t * rsize,
 	switch (n->compr) {
 		//TODO: QQM remove zlib dependency, I think maybe we can use https://github.com/MartinChan3/QZlib
 		//case JFFS2_COMPR_ZLIB:
-		//	uncompress((Bytef *) b + je32_to_cpu(n->offset), &dlen,
-		//			(Bytef *) ((char *) n) + sizeof(struct jffs2_raw_inode),
-		//			(uLongf) je32_to_cpu(n->csize));
+        //    uncompress((Bytef *) b + je32_to_cpu(n->offset), &dlen,
+        //    		(Bytef *) ((char *) n) + sizeof(struct jffs2_raw_inode),
+        //    		(uLongf) je32_to_cpu(n->csize));
 		//	break;
 
 		case JFFS2_COMPR_NONE:
@@ -123,9 +155,13 @@ void putblock(char *b, size_t bsize, size_t * rsize,
 			break;
 
 			/* [DYN]RUBIN support required! */
-
+		case JFFS2_COMPR_RTIME:
+			jffs2_rtime_decompress((unsigned char *) ((char *) n) + sizeof(struct jffs2_raw_inode),
+					(unsigned char *) (b + je32_to_cpu(n->offset)),
+                    je32_to_cpu(n->csize), je32_to_cpu(n->dsize));
+			break;
 		default:
-			errmsg_die("Unsupported compression method!");
+			errmsg_die("Unsupported compression method %d!",n->compr);
 	}
 
 	*rsize = je32_to_cpu(n->isize);
@@ -538,7 +574,7 @@ struct jffs2_raw_dirent *resolvepath0(uint32_t ino,
 	while (ino && next != NULL && next[1] != 0 && d) {
 		path = next + 1;
 		next = strchr(path, '/');
-
+		
 		if (next != NULL)
 			*next = 0;
 

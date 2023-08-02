@@ -443,10 +443,15 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 {
-    QMenu *menu = new QMenu(this);
-    menu->setAttribute(Qt::WA_DeleteOnClose);
-    DeviceName spaceDoMain = UNKNOW;
+    //TODO: why this way crash?
+    //QMenu *menu = new QMenu(this); 
+    //menu->setAttribute(Qt::WA_DeleteOnClose); 
+    // Now we renew menu, because use Qt::WA_DeleteOnClose can't work
+    static QMenu *menu = nullptr;
+    if(menu) delete menu;
+    menu = new QMenu(this); 
 
+    DeviceName spaceDoMain = UNKNOW;
     for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
         if( event->pos().x() >= spaceList[i].x1 && event->pos().x() <= spaceList[i].x2 &&
             event->pos().y() >= spaceList[i].y1 && event->pos().y() <= spaceList[i].y2) {
