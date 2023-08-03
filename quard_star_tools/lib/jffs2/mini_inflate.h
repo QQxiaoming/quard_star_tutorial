@@ -9,6 +9,7 @@
 
 typedef __SIZE_TYPE__ size;
 
+#undef NO_ERROR
 #define NO_ERROR 0
 #define COMP_UNKNOWN 1	 /* The specififed bytype is invalid */
 #define CODE_NOT_FOUND 2 /* a huffman code in the stream could not be decoded */

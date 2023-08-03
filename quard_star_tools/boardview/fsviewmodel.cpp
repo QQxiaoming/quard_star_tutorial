@@ -1,12 +1,11 @@
 #include <QWidget>
 #include <QApplication>
 
-#include "fsviewmodel.h"
-
 #include "jffs2extract.h"
 #include "ff_port.h"
 #include "lwext4_port.h"
 #include "treemodel.h"
+#include "fsviewmodel.h"
 
 Ext4FSViewModel::Ext4FSViewModel(TreeModel *mode, QString rootFSImgPath,
         uint64_t offset, uint64_t size, QWidget *parent) :

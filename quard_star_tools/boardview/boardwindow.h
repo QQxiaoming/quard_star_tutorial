@@ -265,6 +265,9 @@ protected:
                         if(type == FSViewModel::FSView_REG_FILE) {
                             QFileInfo input_info(path);
                             path = input_info.absolutePath();
+                        #if defined(Q_OS_WIN)
+                            path.replace("C:/","");
+                        #endif
                         }
                         QString filePath = QFileDialog::getOpenFileName(this, tr("Open File"), QDir::homePath());
                         if (filePath.isEmpty())
