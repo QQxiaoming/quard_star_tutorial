@@ -33,6 +33,7 @@ SOURCES += \
     boardview/netselectbox.cpp \
     boardview/bootselectbox.cpp \
     boardview/treemodel.cpp \
+    boardview/fsviewmodel.cpp \
     telnetview/QTelnet.cpp \
     telnetview/telnetwindow.cpp \
     telnetview/asciibox.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     boardview/netselectbox.h \
     boardview/bootselectbox.h \
     boardview/treemodel.h \
+    boardview/fsviewmodel.h \
     telnetview/QTelnet.h \
     telnetview/telnetwindow.h \
     telnetview/asciibox.h \

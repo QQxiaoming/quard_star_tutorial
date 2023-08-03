@@ -444,12 +444,11 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 {
     //TODO: why this way crash?
-    //QMenu *menu = new QMenu(this); 
-    //menu->setAttribute(Qt::WA_DeleteOnClose); 
+    //QMenu *contextMenu = new QMenu(this); 
+    //contextMenu->setAttribute(Qt::WA_DeleteOnClose); 
     // Now we renew menu, because use Qt::WA_DeleteOnClose can't work
-    static QMenu *menu = nullptr;
-    if(menu) delete menu;
-    menu = new QMenu(this); 
+    if(contextMenu) delete contextMenu;
+    contextMenu = new QMenu(this); 
 
     DeviceName spaceDoMain = UNKNOW;
     for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
@@ -465,20 +464,20 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
         case NOR:
         case NAND:
         case SD:
-            addActionGInfo(menu,spaceDoMain);
-            addActionOFileSystem(menu,spaceDoMain);
+            addActionGInfo(contextMenu,spaceDoMain);
+            addActionOFileSystem(contextMenu,spaceDoMain);
             break;
         case DDR:
         case JTAG:
         case POWER:
         case SWITCH:
-            addActionGInfo(menu,spaceDoMain);
+            addActionGInfo(contextMenu,spaceDoMain);
             break;
         case USB0:
         case USB1:
-            addActionGInfo(menu,spaceDoMain);
-            addActionOFileSystem(menu,spaceDoMain);
-            addActionSetting(menu,spaceDoMain);
+            addActionGInfo(contextMenu,spaceDoMain);
+            addActionOFileSystem(contextMenu,spaceDoMain);
+            addActionSetting(contextMenu,spaceDoMain);
             break;
         case VGA:
         case UART0:
@@ -487,15 +486,15 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
         case ETH:
         case AUDIO:
         case BOOT:
-            addActionGInfo(menu,spaceDoMain);
-            addActionSetting(menu,spaceDoMain);
+            addActionGInfo(contextMenu,spaceDoMain);
+            addActionSetting(contextMenu,spaceDoMain);
             break;
         case UNKNOW: 
         {
             QAction *pHelp= new QAction(tr("Help"), this);
             QIcon icoHelp(":/boardview/icons/help.png");
             pHelp->setIcon(icoHelp);
-            menu->addAction(pHelp);
+            contextMenu->addAction(pHelp);
             connect(pHelp,&QAction::triggered,this,
                 [&](void)
                 {
@@ -509,7 +508,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             QAction *pAbout= new QAction(tr("About"), this);
             QIcon icoAbout(":/boardview/icons/about.png");
             pAbout->setIcon(icoAbout);
-            menu->addAction(pAbout);
+            contextMenu->addAction(pAbout);
             connect(pAbout,&QAction::triggered,this,
                 [&](void)
                 {
@@ -520,7 +519,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
             QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
             pAboutQt->setIcon(icoAboutQt);
-            menu->addAction(pAboutQt);
+            contextMenu->addAction(pAboutQt);
             connect(pAboutQt,&QAction::triggered,this,
                 [&](void)
                 {
@@ -531,7 +530,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             QAction *pExit = new QAction(tr("Exit"), this);
             QIcon icoExit(":/boardview/icons/exit.png");
             pExit->setIcon(icoExit);
-            menu->addAction(pExit);
+            contextMenu->addAction(pExit);
             connect(pExit, SIGNAL(triggered()), this, SLOT(app_quit()));
             break;
         }
@@ -539,9 +538,9 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             break;
     }
 
-    if(!menu->isEmpty()) {
-        menu->move(cursor().pos());
-        menu->show();
+    if(!contextMenu->isEmpty()) {
+        contextMenu->move(cursor().pos());
+        contextMenu->show();
     }
 
     event->accept();
