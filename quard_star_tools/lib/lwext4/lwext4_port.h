@@ -26,8 +26,8 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef BLOCKDEV_H_
-#define BLOCKDEV_H_
+#ifndef LWEXT4_PORT_H_
+#define LWEXT4_PORT_H_
 
 #include <ext4.h>
 #include <ext4_config.h>
@@ -47,4 +47,4 @@ struct ext4_blockdev *ext4_blockdev_get(void);
 }
 #endif
 
-#endif /* BLOCKDEV_H_ */
+#endif /* LWEXT4_PORT_H_ */

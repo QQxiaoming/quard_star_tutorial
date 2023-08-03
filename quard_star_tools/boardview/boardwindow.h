@@ -18,8 +18,8 @@
 #include "qfonticon.h"
 
 #include "jffs2extract.h"
-#include "blockdev_port.h"
-#include "ff.h"
+#include "ff_port.h"
+#include "lwext4_port.h"
 #include "treemodel.h"
 
 #include "vncwindow.h"
@@ -51,6 +51,7 @@ public:
         setColumnWidth(2,80);
         setColumnWidth(3,150);
         resize(QSize(800,600));
+        setWindowModality(Qt::ApplicationModal);
     }
 
     ~FSViewWindow() {
@@ -334,8 +335,9 @@ public:
                     if(filename == input_name) {
                         while(ri) {
                             size_t sz;
-                            uint8_t *buf = new uint8_t[16384];
-                            putblock((char *)buf, 16384, &sz, ri);
+                            size_t len = qMax(je32_to_cpu(ri->isize),(je32_to_cpu(ri->offset) + je32_to_cpu(ri->dsize)));
+                            uint8_t *buf = new uint8_t[len];
+                            putblock((char *)buf, len, &sz, ri);
                             w.write((const char*)buf,sz);
                             delete[] buf;
                             ri = find_raw_inode(d->ino, je32_to_cpu(ri->version));
@@ -582,8 +584,13 @@ protected:
     }
 
     void closeEvent(QCloseEvent *event) override {
-        this->hide();
-        event->ignore();
+        if(!m_idle) {
+            QMessageBox::information(this, tr("Information"), tr("Loading, please wait..."));
+            event->ignore();
+        } else {
+            this->hide();
+            event->ignore();
+        }
     }
 
 private:
@@ -744,7 +751,7 @@ private:
     int m_fsType;
     uint64_t m_offset;
     uint64_t m_size;
-    uint64_t m_idle;
+    bool m_idle;
     QModelIndex rootIndex;
 };
 

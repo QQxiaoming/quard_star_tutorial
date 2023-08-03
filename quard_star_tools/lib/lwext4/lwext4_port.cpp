@@ -31,6 +31,7 @@
 #include <ext4_config.h>
 #include <ext4_blockdev.h>
 #include <ext4_errno.h>
+#include "lwext4_port.h"
 
 static uint8_t * ram_disk_data = NULL;
 static uint64_t ram_disk_size = 0;

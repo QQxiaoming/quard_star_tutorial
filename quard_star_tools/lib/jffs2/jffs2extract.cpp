@@ -47,6 +47,7 @@
 #include <dirent.h>
 
 #include "jffs2extract.h"
+#include "mini_inflate.h"
 #include "common.h"
 
 #if defined(__WINDOWS__)
@@ -82,20 +83,22 @@ void printdir( struct dir *d, const char *path,
      int verbose);
 void freedir(struct dir *);
 
-
+long zlib_decompress(unsigned char *data_in, unsigned char *cpage_out )
+{
+    return (decompress_block(cpage_out, data_in + 2));
+}
 
 static int jffs2_rtime_decompress(unsigned char *data_in,
-				  unsigned char *cpage_out,
-				  uint32_t srclen, uint32_t destlen)
+                  unsigned char *cpage_out, uint32_t destlen)
 {
 	short positions[256];
-	int outpos = 0;
+    uint32_t outpos = 0;
 	int pos=0;
 	memset(positions,0,sizeof(positions));
 	while (outpos<destlen) {
 		unsigned char value;
-		int backoffs;
-		int repeat;
+        uint32_t backoffs;
+        uint32_t repeat;
 		value = data_in[pos++];
 		cpage_out[outpos++] = value; /* first the verbatim copied byte */
 		repeat = data_in[pos++];
@@ -116,6 +119,87 @@ static int jffs2_rtime_decompress(unsigned char *data_in,
 	return 0;
 }
 
+#define RUBIN_REG_SIZE   16
+#define UPPER_BIT_RUBIN    (((long) 1)<<(RUBIN_REG_SIZE-1))
+#define LOWER_BITS_RUBIN   ((((long) 1)<<(RUBIN_REG_SIZE-1))-1)
+
+void rubin_do_decompress(unsigned char *bits, unsigned char *in,
+			 unsigned char *page_out, uint32_t destlen)
+{
+	char *curr = (char *)page_out;
+	char *end = (char *)(page_out + destlen);
+	uint32_t temp;
+	uint32_t result;
+	uint32_t p;
+	uint32_t q;
+	uint32_t rec_q;
+	uint32_t bit;
+	long i0;
+	uint32_t i;
+
+	/* init_pushpull */
+	temp = *(uint32_t *) in;
+	bit = 16;
+
+	/* init_rubin */
+	q = 0;
+	p = (long) (2 * UPPER_BIT_RUBIN);
+
+	/* init_decode */
+	rec_q = (in[0] << 8) | in[1];
+
+	while (curr < end) {
+		/* in byte */
+
+		result = 0;
+		for (i = 0; i < 8; i++) {
+			/* decode */
+
+			while ((q & UPPER_BIT_RUBIN) || ((p + q) <= UPPER_BIT_RUBIN)) {
+				q &= ~UPPER_BIT_RUBIN;
+				q <<= 1;
+				p <<= 1;
+				rec_q &= ~UPPER_BIT_RUBIN;
+				rec_q <<= 1;
+				rec_q |= (temp >> (bit++ ^ 7)) & 1;
+				if (bit > 31) {
+					uint32_t *p = (uint32_t *)in;
+					bit = 0;
+					temp = *(++p);
+					in = (unsigned char *)p;
+				}
+			}
+			i0 =  (bits[i] * p) >> 8;
+
+			if (i0 <= 0) i0 = 1;
+			/* if it fails, it fails, we have our crc
+			if (i0 >= p) i0 = p - 1; */
+
+			result >>= 1;
+			if (rec_q < q + i0) {
+				/* result |= 0x00; */
+				p = i0;
+			} else {
+				result |= 0x80;
+				p -= i0;
+				q += i0;
+			}
+		}
+		*(curr++) = result;
+	}
+}
+
+void dynrubin_decompress(unsigned char *data_in, unsigned char *cpage_out, uint32_t dstlen)
+{
+	unsigned char bits[8];
+	int c;
+
+	for (c=0; c<8; c++)
+		bits[c] = (256 - data_in[c]);
+
+	rubin_do_decompress(bits, data_in+8, cpage_out, dstlen);
+}
+
 /* writes file node into buffer, to the proper position. */
 /* reading all valid nodes in version order reconstructs the file. */
 
@@ -132,18 +216,18 @@ void putblock(char *b, size_t bsize, size_t * rsize,
     unsigned long dlen = je32_to_cpu(n->dsize);
 
 	if (je32_to_cpu(n->isize) > bsize || (je32_to_cpu(n->offset) + dlen) > bsize)
+	{
 		errmsg_die("File does not fit into buffer!");
+	}
 
 	if (*rsize < je32_to_cpu(n->isize))
 		bzero(b + *rsize, je32_to_cpu(n->isize) - *rsize);
 
 	switch (n->compr) {
-		//TODO: QQM remove zlib dependency, I think maybe we can use https://github.com/MartinChan3/QZlib
-		//case JFFS2_COMPR_ZLIB:
-        //    uncompress((Bytef *) b + je32_to_cpu(n->offset), &dlen,
-        //    		(Bytef *) ((char *) n) + sizeof(struct jffs2_raw_inode),
-        //    		(uLongf) je32_to_cpu(n->csize));
-		//	break;
+		case JFFS2_COMPR_ZLIB:
+            zlib_decompress((unsigned char *) ((char *) n) + sizeof(struct jffs2_raw_inode),
+                    (unsigned char *) (b + je32_to_cpu(n->offset)));
+			break;
 
 		case JFFS2_COMPR_NONE:
 			memcpy(b + je32_to_cpu(n->offset),
@@ -154,12 +238,16 @@ void putblock(char *b, size_t bsize, size_t * rsize,
 			bzero(b + je32_to_cpu(n->offset), dlen);
 			break;
 
-			/* [DYN]RUBIN support required! */
 		case JFFS2_COMPR_RTIME:
 			jffs2_rtime_decompress((unsigned char *) ((char *) n) + sizeof(struct jffs2_raw_inode),
-					(unsigned char *) (b + je32_to_cpu(n->offset)),
-                    je32_to_cpu(n->csize), je32_to_cpu(n->dsize));
+                    (unsigned char *) (b + je32_to_cpu(n->offset)),je32_to_cpu(n->dsize));
 			break;
+			
+		case JFFS2_COMPR_DYNRUBIN:
+			dynrubin_decompress((unsigned char *) ((char *) n) + sizeof(struct jffs2_raw_inode),
+                    (unsigned char *) (b + je32_to_cpu(n->offset)), je32_to_cpu(n->dsize));
+			break;
+
 		default:
 			errmsg_die("Unsupported compression method %d!",n->compr);
 	}

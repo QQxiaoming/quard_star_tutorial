@@ -29,7 +29,7 @@ HEADERS += \
     $$PWD/include/ext4_trans.h \
     $$PWD/include/ext4_types.h \
     $$PWD/include/ext4_xattr.h \
-    $$PWD/blockdev_port.c
+    $$PWD/lwext4_port.h
 
 SOURCES += \
     $$PWD/src/ext4_balloc.c \
@@ -53,7 +53,7 @@ SOURCES += \
     $$PWD/src/ext4_super.c \
     $$PWD/src/ext4_trans.c \
     $$PWD/src/ext4_xattr.c \
-    $$PWD/blockdev_port.c
+    $$PWD/lwext4_port.cpp
 
 INCLUDEPATH += $$PWD
 INCLUDEPATH += $$PWD/include

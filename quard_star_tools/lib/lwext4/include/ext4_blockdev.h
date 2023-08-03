@@ -145,11 +145,21 @@ struct ext4_blockdev {
 		.ph_bsize = __bsize,                                           \
 		.ph_bcnt = __bcnt,                                             \
 		.ph_bbuf = __name##_ph_bbuf,                                   \
-	};								       \
-	static struct ext4_blockdev __name = {                                 \
+        .ph_refctr = 0,                                                \
+		.bread_ctr = 0,                                                \
+		.bwrite_ctr = 0,                                               \
+		.p_user = NULL,                                                \
+	};								                                   \
+	static struct ext4_blockdev __name = {                             \
 		.bdif = &__name##_iface,                                       \
 		.part_offset = 0,                                              \
 		.part_size =  (__bcnt) * (__bsize),                            \
+		.bc = NULL,                                                    \
+		.lg_bsize = 0,                                                 \
+		.lg_bcnt = 0,                                                  \
+		.cache_write_back = 0,                                         \
+		.fs = NULL,                                                    \
+		.journal = NULL,                                               \
 	}
 
 /**@brief   Block device initialization.

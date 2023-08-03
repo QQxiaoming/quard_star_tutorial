@@ -264,7 +264,7 @@ static void fill_sb(struct fs_aux_info *aux_info, struct ext4_mkfs_info *info)
 	memcpy(sb->uuid, info->uuid, UUID_SIZE);
 
 	memset(sb->volume_name, 0, sizeof(sb->volume_name));
-	strncpy(sb->volume_name, info->label, sizeof(sb->volume_name));
+    strncpy(sb->volume_name, info->label, sizeof(sb->volume_name)-1);
 	memset(sb->last_mounted, 0, sizeof(sb->last_mounted));
 
 	sb->algorithm_usage_bitmap = to_le32(0);
@@ -319,6 +319,7 @@ static int write_bgroup_block(struct ext4_blockdev *bd,
 			bg_start_block++;
 			blk_off += info->bg_desc_reserve_blocks;
 		}
+        (void)blk_off;
 
 		uint64_t dsc_blk = bg_start_block + blk;
 

@@ -21,7 +21,7 @@
 
 #include <string.h>
 #include "ff.h"			/* Declarations of FatFs API */
-#include "diskio.h"		/* Declarations of device I/O functions */
+#include "ff_port.h"		/* Declarations of device I/O functions */
 
 
 /*--------------------------------------------------------------------------
@@ -541,11 +541,11 @@ static WCHAR LfnBuf[FF_MAX_LFN + 1];		/* LFN working buffer */
 #elif FF_USE_LFN == 3 	/* LFN enabled with dynamic working buffer on the heap */
 #if FF_FS_EXFAT
 #define DEF_NAMBUF		WCHAR *lfn;	/* Pointer to LFN working buffer and directory entry block scratchpad buffer */
-#define INIT_NAMBUF(fs)	{ lfn = (WCHAR *)ff_memalloc((FF_MAX_LFN+1)*2 + MAXDIRB(FF_MAX_LFN)); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; (fs)->dirbuf = (BYTE*)(lfn+FF_MAX_LFN+1); }
+#define INIT_NAMBUF(fs)	{ lfn = ff_memalloc((FF_MAX_LFN+1)*2 + MAXDIRB(FF_MAX_LFN)); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; (fs)->dirbuf = (BYTE*)(lfn+FF_MAX_LFN+1); }
 #define FREE_NAMBUF()	ff_memfree(lfn)
 #else
 #define DEF_NAMBUF		WCHAR *lfn;	/* Pointer to LFN working buffer */
-#define INIT_NAMBUF(fs)	{ lfn = (WCHAR *)ff_memalloc((FF_MAX_LFN+1)*2); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; }
+#define INIT_NAMBUF(fs)	{ lfn = ff_memalloc((FF_MAX_LFN+1)*2); if (!lfn) LEAVE_FF(fs, FR_NOT_ENOUGH_CORE); (fs)->lfnbuf = lfn; }
 #define FREE_NAMBUF()	ff_memfree(lfn)
 #endif
 #define LEAVE_MKFS(res)	{ if (!work) ff_memfree(buf); return res; }
@@ -1670,8 +1670,8 @@ static FRESULT dir_clear (	/* Returns FR_OK or FR_DISK_ERR */
 	fs->winsect = sect;				/* Set window to top of the cluster */
 	memset(fs->win, 0, sizeof fs->win);	/* Clear window buffer */
 #if FF_USE_LFN == 3		/* Quick table clear by using multi-secter write */
-    /* Allocate a temporary buffer */
-    for (szb = ((DWORD)fs->csize * SS(fs) >= MAX_MALLOC) ? MAX_MALLOC : fs->csize * SS(fs), ibuf = 0; szb > SS(fs) && (ibuf = (BYTE *)ff_memalloc(szb)) == 0; szb /= 2) ;
+	/* Allocate a temporary buffer */
+	for (szb = ((DWORD)fs->csize * SS(fs) >= MAX_MALLOC) ? MAX_MALLOC : fs->csize * SS(fs), ibuf = 0; szb > SS(fs) && (ibuf = ff_memalloc(szb)) == 0; szb /= 2) ;
 	if (szb > SS(fs)) {		/* Buffer allocated? */
 		memset(ibuf, 0, szb);
 		szb /= SS(fs);		/* Bytes -> Sectors */
@@ -5939,7 +5939,7 @@ FRESULT f_mkfs (
 	if (sz_buf == 0) return FR_NOT_ENOUGH_CORE;
 	buf = (BYTE*)work;		/* Working buffer */
 #if FF_USE_LFN == 3
-    if (!buf) buf = (BYTE *)ff_memalloc(sz_buf * ss);	/* Use heap memory for working buffer */
+	if (!buf) buf = ff_memalloc(sz_buf * ss);	/* Use heap memory for working buffer */
 #endif
 	if (!buf) return FR_NOT_ENOUGH_CORE;
 
@@ -6400,7 +6400,7 @@ FRESULT f_fdisk (
 	if (stat & STA_PROTECT) return FR_WRITE_PROTECTED;
 
 #if FF_USE_LFN == 3
-    if (!buf) buf = (BYTE *)ff_memalloc(FF_MAX_SS);	/* Use heap memory for working buffer */
+	if (!buf) buf = ff_memalloc(FF_MAX_SS);	/* Use heap memory for working buffer */
 #endif
 	if (!buf) return FR_NOT_ENOUGH_CORE;
 

@@ -1,13 +1,13 @@
 HEADERS += \
-    $$PWD/diskio.h \
-    $$PWD/ffconf.h \
-    $$PWD/ff.h
-
+    $$PWD/source/ffconf.h \
+    $$PWD/source/ff.h \
+    $$PWD/ff_port.h
 
 SOURCES += \
-    $$PWD/diskio.cpp \
-    $$PWD/ff.cpp \
-    $$PWD/ffsystem.cpp \
-    $$PWD/ffunicode.cpp
+    $$PWD/source/ff.c \
+    $$PWD/source/ffsystem.c \
+    $$PWD/source/ffunicode.c \
+    $$PWD/ff_port.cpp
 
+INCLUDEPATH += $$PWD/source
 INCLUDEPATH += $$PWD
