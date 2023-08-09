@@ -265,7 +265,7 @@ bool& BoardWindow::getUpdateCfg(void)
 
 void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 {
-    QAction *pGInfo= new QAction(tr("Get Info"), this);
+    QAction *pGInfo= new QAction(tr("Get Info"), menu);
     QIcon icoInfo(QFontIcon::icon(QChar(0xf05a)));
     pGInfo->setIcon(icoInfo);
     pGInfo->setToolTip(QString::number(title));
@@ -336,7 +336,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
 
 void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 {
-    QAction *pOFileSystem= new QAction(tr("Open FileSystem"), this);
+    QAction *pOFileSystem= new QAction(tr("Open FileSystem"), menu);
     QIcon icoOpen(QFontIcon::icon(QChar(0xf07c)));
     pOFileSystem->setIcon(icoOpen);
     pOFileSystem->setToolTip(QString::number(title));
@@ -414,7 +414,7 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
 
 void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
 {
-    QAction *pSetting= new QAction(tr("Setting"), this);
+    QAction *pSetting= new QAction(tr("Setting"), menu);
     QIcon icoSetting(QFontIcon::icon(QChar(0xf013)));
     pSetting->setIcon(icoSetting);
     pSetting->setToolTip(QString::number(title));
@@ -491,7 +491,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             break;
         case UNKNOW: 
         {
-            QAction *pHelp= new QAction(tr("Help"), this);
+            QAction *pHelp= new QAction(tr("Help"), contextMenu);
             QIcon icoHelp(":/boardview/icons/help.png");
             pHelp->setIcon(icoHelp);
             contextMenu->addAction(pHelp);
@@ -505,7 +505,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
                     );
                 }
             );
-            QAction *pAbout= new QAction(tr("About"), this);
+            QAction *pAbout= new QAction(tr("About"), contextMenu);
             QIcon icoAbout(":/boardview/icons/about.png");
             pAbout->setIcon(icoAbout);
             contextMenu->addAction(pAbout);
@@ -516,7 +516,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
                 }
             );
 
-            QAction *pAboutQt= new QAction(tr("About")+" Qt", this);
+            QAction *pAboutQt= new QAction(tr("About")+" Qt", contextMenu);
             QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
             pAboutQt->setIcon(icoAboutQt);
             contextMenu->addAction(pAboutQt);
@@ -527,7 +527,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
                 }
             );
 
-            QAction *pExit = new QAction(tr("Exit"), this);
+            QAction *pExit = new QAction(tr("Exit"), contextMenu);
             QIcon icoExit(":/boardview/icons/exit.png");
             pExit->setIcon(icoExit);
             contextMenu->addAction(pExit);
