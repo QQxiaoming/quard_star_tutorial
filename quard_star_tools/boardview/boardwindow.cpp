@@ -10,7 +10,7 @@
 #include <QToolTip>
 
 #include "qfonticon.h"
-
+#include "qfsviewer.h"
 #include "ui_boardwindow.h"
 #include "boardwindow.h"
 
@@ -398,7 +398,9 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
                 case NOR:
                 {
                     fsView->show();
-                    fsView->setJffs2FSImgView(norFlashImgPath,0,QFileInfo(norFlashImgPath).size());
+                    //fsView->setJffs2FSImgView(norFlashImgPath,0,QFileInfo(norFlashImgPath).size());
+                    QString a = "/home/qqm/Desktop/a10_socprj/out/rootfs/percipio.rootfs.jffs2";
+                    fsView->setJffs2FSImgView(a,0,QFileInfo(a).size());
                     break;
                 }
                 case SD:

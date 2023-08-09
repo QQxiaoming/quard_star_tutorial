@@ -33,9 +33,9 @@ extern int target_endian;
 #define t16(x) ((target_endian==__BYTE_ORDER)?(x):bswap_16((x)))
 #define t32(x) ((target_endian==__BYTE_ORDER)?(x):bswap_32((x)))
 
-#define cpu_to_je16(x) ((jint16_t)t16(x))
-#define cpu_to_je32(x) ((jint32_t)t32(x))
-#define cpu_to_jemode(x) ((jmode_t)t32(x))
+#define cpu_to_je16(x) ({jint16_t _temp; _temp.v16 = t16(x);_temp;})
+#define cpu_to_je32(x) ({jint32_t _temp; _temp.v32 = t32(x);_temp;})
+#define cpu_to_jemode(x) ({jmode_t _temp; _temp.m = t32(x);_temp;})
 
 #define je16_to_cpu(x) (t16((x).v16))
 #define je32_to_cpu(x) (t32((x).v32))

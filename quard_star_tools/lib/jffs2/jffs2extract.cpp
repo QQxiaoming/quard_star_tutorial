@@ -46,6 +46,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
+#include "crc32.h"
 #include "jffs2extract.h"
 #include "mini_inflate.h"
 #include "common.h"
@@ -512,14 +513,18 @@ struct dir *collectdir(uint32_t ino, struct dir *d)
 			vmin = vmint;
 			vmint = ~((uint32_t) 0);
 
-			if (vcur <= vmax && vcur <= vmin) {
-				d = putdir(d, &(mp->d));
+            if (vcur <= vmax && vcur <= vmin) {
+                if(mp) {
+                    d = putdir(d, &(mp->d));
 
-				lr = n =
-					(union jffs2_node_union *) (((char *) mp) +
-							((je32_to_cpu(mp->u.totlen) + 3) & ~3));
+                    lr = n =
+                        (union jffs2_node_union *) (((char *) mp) +
+                                ((je32_to_cpu(mp->u.totlen) + 3) & ~3));
 
-				vcur = vmin;
+                    vcur = vmin;
+                } else {
+                    vcur = vmin;
+                }
 			}
 		}
     } while (vcur <= vmax);
@@ -527,7 +532,65 @@ struct dir *collectdir(uint32_t ino, struct dir *d)
 	return d;
 }
 
+int deletenode(uint32_t ino)
+{
+	int ret = -1;
+	union jffs2_node_union *e = (union jffs2_node_union *) (ram_disk_data + ram_disk_size);
+    union jffs2_node_union *n = (union jffs2_node_union *) ram_disk_data;
+	do {
+		while (n < e && je16_to_cpu(n->u.magic) != JFFS2_MAGIC_BITMASK)
+			ADD_BYTES(n, 4);
 
+		if (n < e && je16_to_cpu(n->u.magic) == JFFS2_MAGIC_BITMASK) {
+			if(je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_DIRENT) {
+				if(ino == je32_to_cpu(n->d.ino)) {
+                    n->u.magic = cpu_to_je16(0);
+					ret = 0;
+				}
+			} else if (je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_INODE) {
+				if(ino == je32_to_cpu(n->i.ino)) {
+                    n->u.magic = cpu_to_je16(0);
+					ret = 0;
+				}
+			}
+			ADD_BYTES(n, ((je32_to_cpu(n->u.totlen) + 3) & ~3));
+		} else
+			break;
+    } while (1);
+	return ret;
+}
+
+void find_free(uint32_t *ino, uint64_t *offset)
+{
+	union jffs2_node_union *e = (union jffs2_node_union *) (ram_disk_data + ram_disk_size);
+    union jffs2_node_union *n = (union jffs2_node_union *) ram_disk_data;
+	*ino = 0;
+	*offset = 0;
+	do {
+		while (n < e && je16_to_cpu(n->u.magic) != JFFS2_MAGIC_BITMASK)
+			ADD_BYTES(n, 4);
+
+		if (n < e && je16_to_cpu(n->u.magic) == JFFS2_MAGIC_BITMASK) {
+			if(je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_DIRENT) {
+				if(*ino < je32_to_cpu(n->d.ino))
+					*ino = je32_to_cpu(n->d.ino);
+			} else if (je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_INODE) {
+				if(*ino < je32_to_cpu(n->i.ino))
+					*ino = je32_to_cpu(n->i.ino);
+			} else if (je16_to_cpu(n->u.nodetype) == JFFS2_NODETYPE_XREF) {
+				if(*ino < je32_to_cpu(n->r.ino))
+					*ino = je32_to_cpu(n->r.ino);
+			}
+			ADD_BYTES(n, ((je32_to_cpu(n->u.totlen) + 3) & ~3));
+			*offset = ((uint8_t *)n) - ram_disk_data;
+		} else
+			break;
+    } while (1);
+	*ino += 1;
+	*offset += 1;
+	if(*offset > ram_disk_size )
+		*offset = ram_disk_size;
+}
 
 /* resolve dirent based on criteria */
 /*
@@ -726,6 +789,262 @@ struct jffs2_raw_dirent *resolvepath(uint32_t ino,
 		const char *p, uint32_t * inos)
 {
 	return resolvepath0(ino, p, inos, 0);
+}
+
+uint16_t jffs2_compress( unsigned char *data_in, unsigned char **cpage_out,
+		uint32_t *datalen, uint32_t *cdatalen)
+{
+	int ret = JFFS2_COMPR_NONE;
+    unsigned char *output_buf = NULL;
+
+	if (ret == JFFS2_COMPR_NONE) {
+		*cpage_out = data_in;
+		*datalen = *cdatalen;
+	}
+	else {
+		*cpage_out = output_buf;
+	}
+	return ret;
+}
+
+static uint64_t pre_pad_block(uint64_t offset, uint32_t req, uint32_t add_cleanmarkers, uint32_t erase_block_size)
+{
+	const static unsigned char ffbuf[16] =
+	{ 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+		0xff, 0xff, 0xff, 0xff, 0xff
+	};
+    const struct jffs2_unknown_node cleanmarker = {
+        .magic = {0}, .nodetype = {0}, .totlen = {0}, .hdr_crc = {0}};
+    const int cleanmarker_size = sizeof(cleanmarker);
+
+	if(erase_block_size) {
+		if (add_cleanmarkers) {
+			if ((offset % erase_block_size) == 0) {
+				memcpy(ram_disk_data + offset, &cleanmarker,  sizeof(cleanmarker));
+				offset += sizeof(cleanmarker);
+                unsigned int req = cleanmarker_size - sizeof(cleanmarker);
+				while (req) {
+					if (req > sizeof(ffbuf)) {
+						memcpy(ram_disk_data + offset, ffbuf,  sizeof(ffbuf));
+						offset += sizeof(ffbuf);
+						req -= sizeof(ffbuf);
+					} else {
+						memcpy(ram_disk_data + offset, ffbuf, req);
+						offset += req;
+						req = 0;
+					}
+				}
+				if (offset % 4) {
+					memcpy(ram_disk_data + offset, ffbuf, 4 - (offset % 4));
+					offset += 4 - (offset % 4);
+				}
+			}
+		}
+		if ((offset % erase_block_size) + req > erase_block_size) {
+			while (offset % erase_block_size) {
+				memcpy(ram_disk_data + offset, ffbuf,  min(sizeof(ffbuf),
+							erase_block_size - (offset % erase_block_size)));
+				offset += min(sizeof(ffbuf), erase_block_size - (offset % erase_block_size));
+			}
+		}
+		if (add_cleanmarkers) {
+			if ((offset % erase_block_size) == 0) {
+				memcpy(ram_disk_data + offset, &cleanmarker,  sizeof(cleanmarker));
+				offset += sizeof(cleanmarker);
+                uint32_t req = cleanmarker_size - sizeof(cleanmarker);
+				while (req) {
+					if (req > sizeof(ffbuf)) {
+						memcpy(ram_disk_data + offset, ffbuf,  sizeof(ffbuf));
+						offset += sizeof(ffbuf);
+						req -= sizeof(ffbuf);
+					} else {
+						memcpy(ram_disk_data + offset, ffbuf, req);
+						offset += req;
+						req = 0;
+					}
+				}
+				if (offset % 4) {
+					memcpy(ram_disk_data + offset, ffbuf, 4 - (offset % 4));
+					offset += 4 - (offset % 4);
+				}
+			}
+		}
+	}
+	return offset;
+}
+
+static uint64_t post_pad_block(uint64_t offset)
+{
+	const static unsigned char ffbuf[16] =
+	{ 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+		0xff, 0xff, 0xff, 0xff, 0xff
+	};
+	if (offset % 4) {
+		memcpy(ram_disk_data + offset, ffbuf, 4 - (offset % 4));
+		offset += 4 - (offset % 4);
+	}
+	return offset;
+}
+
+static uint64_t write_format_data(const uint8_t *data, uint64_t size, uint64_t offset)
+{
+	memcpy(ram_disk_data + offset, data, size);
+	offset += size;
+	return offset;
+}
+
+void write_dir(const char *name, uint32_t pino, uint32_t ino, uint32_t timestamp,
+				uint64_t offset, int add_cleanmarkers,int erase_block_size )
+{
+	struct jffs2_raw_dirent rd;
+	memset(&rd, 0, sizeof(rd));
+	rd.magic = cpu_to_je16(JFFS2_MAGIC_BITMASK);
+	rd.nodetype = cpu_to_je16(JFFS2_NODETYPE_DIRENT);
+	rd.totlen = cpu_to_je32(sizeof(rd) + strlen(name));
+	rd.hdr_crc = cpu_to_je32(mtd_crc32(0, &rd,
+				sizeof(struct jffs2_unknown_node) - 4));
+    rd.pino = cpu_to_je32(pino);
+    rd.version = cpu_to_je32(1);
+    rd.ino = cpu_to_je32(ino);
+    rd.mctime = cpu_to_je32(timestamp);//st_mtime
+	rd.nsize = strlen(name);
+	rd.type = 4;
+	//rd.unused[0] = 0;
+	//rd.unused[1] = 0;
+	rd.node_crc = cpu_to_je32(mtd_crc32(0, &rd, sizeof(rd) - 8));
+	rd.name_crc = cpu_to_je32(mtd_crc32(0, name, strlen(name)));
+
+	offset = pre_pad_block(offset, sizeof(rd) + rd.nsize,add_cleanmarkers,erase_block_size);
+	offset = write_format_data((uint8_t *)&rd, sizeof(rd), offset);
+    offset = write_format_data((uint8_t *)name, rd.nsize, offset);
+    offset = post_pad_block(offset);
+
+	struct jffs2_raw_inode ri;
+	memset(&ri, 0, sizeof(ri));
+	ri.magic = cpu_to_je16(JFFS2_MAGIC_BITMASK);
+	ri.nodetype = cpu_to_je16(JFFS2_NODETYPE_INODE);
+	ri.totlen = cpu_to_je32(sizeof(ri));
+	ri.hdr_crc = cpu_to_je32(mtd_crc32(0,
+				&ri, sizeof(struct jffs2_unknown_node) - 4));
+	ri.ino = cpu_to_je32(ino);
+	ri.mode = cpu_to_jemode(S_IFDIR);//st_mode
+	ri.uid = cpu_to_je16(0);//st_uid
+	ri.gid = cpu_to_je16(0);//st_gid
+	ri.atime = cpu_to_je32(0);//st_atime
+	ri.ctime = cpu_to_je32(0);//st_ctime
+	ri.mtime = cpu_to_je32(0);//st_mtime
+	ri.isize = cpu_to_je32(0);
+	ri.version = cpu_to_je32(1);
+	ri.csize = cpu_to_je32(0);
+	ri.dsize = cpu_to_je32(0);
+	ri.node_crc = cpu_to_je32(mtd_crc32(0, &ri, sizeof(ri) - 8));
+	ri.data_crc = cpu_to_je32(0);
+
+    offset = pre_pad_block(offset, sizeof(ri),add_cleanmarkers,erase_block_size);
+	offset = write_format_data((uint8_t *)&ri, sizeof(ri), offset);
+	offset = post_pad_block(offset);
+}
+
+void write_file(const char *name, const unsigned char *buff, size_t size, 
+				uint32_t pino, uint32_t ino, uint32_t timestamp,
+				uint64_t offset, int add_cleanmarkers,int erase_block_size )
+{
+	struct jffs2_raw_dirent rd;
+	memset(&rd, 0, sizeof(rd));
+	rd.magic = cpu_to_je16(JFFS2_MAGIC_BITMASK);
+	rd.nodetype = cpu_to_je16(JFFS2_NODETYPE_DIRENT);
+	rd.totlen = cpu_to_je32(sizeof(rd) + strlen(name));
+	rd.hdr_crc = cpu_to_je32(mtd_crc32(0, &rd,
+				sizeof(struct jffs2_unknown_node) - 4));
+    rd.pino = cpu_to_je32(pino);
+    rd.version = cpu_to_je32(1);
+    rd.ino = cpu_to_je32(ino);
+	rd.mctime = cpu_to_je32(0);//st_mtime
+	rd.nsize = strlen(name);
+	rd.type = 8;
+	//rd.unused[0] = 0;
+	//rd.unused[1] = 0;
+	rd.node_crc = cpu_to_je32(mtd_crc32(0, &rd, sizeof(rd) - 8));
+	rd.name_crc = cpu_to_je32(mtd_crc32(0, name, strlen(name)));
+
+	offset = pre_pad_block(offset, sizeof(rd) + rd.nsize,add_cleanmarkers,erase_block_size);
+	offset = write_format_data((uint8_t *)&rd, sizeof(rd), offset);
+	offset = write_format_data((uint8_t *)name, rd.nsize, offset);
+	offset = post_pad_block(offset);
+
+	struct jffs2_raw_inode ri;
+	memset(&ri, 0, sizeof(ri));
+	ri.magic = cpu_to_je16(JFFS2_MAGIC_BITMASK);
+	ri.nodetype = cpu_to_je16(JFFS2_NODETYPE_INODE);
+	ri.ino = cpu_to_je32(ino);
+	ri.mode = cpu_to_jemode(S_IFREG);//st_mode
+	ri.uid = cpu_to_je16(0);//st_uid
+	ri.gid = cpu_to_je16(0);//st_gid
+	ri.atime = cpu_to_je32(timestamp);//st_atime
+	ri.ctime = cpu_to_je32(timestamp);//st_ctime
+	ri.mtime = cpu_to_je32(timestamp);//st_mtime
+	ri.isize = cpu_to_je32(size);
+
+	if(size == 0) {
+		/* Was empty file */
+		ri.version = cpu_to_je32(1);
+		ri.totlen = cpu_to_je32(sizeof(ri));
+		ri.hdr_crc = cpu_to_je32(mtd_crc32(0,
+					&ri, sizeof(struct jffs2_unknown_node) - 4));
+		ri.csize = cpu_to_je32(0);
+		ri.dsize = cpu_to_je32(0);
+		ri.node_crc = cpu_to_je32(mtd_crc32(0, &ri, sizeof(ri) - 8));
+
+		offset = pre_pad_block(offset, sizeof(ri),add_cleanmarkers,erase_block_size);
+		offset = write_format_data((uint8_t *)&ri, sizeof(ri), offset);
+		offset = post_pad_block(offset);
+    } else {
+        unsigned char *tbuf = (unsigned char *)buff;
+		uint32_t ver = 0, woff = 0;
+        unsigned char *cbuf, *wbuf;
+		while (size) {
+			uint32_t dsize, space;
+			uint16_t compression;
+			offset = pre_pad_block(offset, sizeof(ri) + JFFS2_MIN_DATA_LEN,add_cleanmarkers,erase_block_size);
+			dsize = size;
+            space = erase_block_size - (offset % erase_block_size) - sizeof(ri);
+			if (space > dsize)
+				space = dsize;
+			compression = jffs2_compress(tbuf, &cbuf, &dsize, &space);
+			ri.compr = compression & 0xff;
+			ri.usercompr = (compression >> 8) & 0xff;
+
+			if (ri.compr) {
+				wbuf = cbuf;
+			} else {
+				wbuf = tbuf;
+				dsize = space;
+			}
+			ri.totlen = cpu_to_je32(sizeof(ri) + space);
+			ri.hdr_crc = cpu_to_je32(mtd_crc32(0,
+						&ri, sizeof(struct jffs2_unknown_node) - 4));
+            ++ver;
+            ri.version = cpu_to_je32(ver);
+			ri.offset = cpu_to_je32(woff);
+			ri.csize = cpu_to_je32(space);
+			ri.dsize = cpu_to_je32(dsize);
+			ri.node_crc = cpu_to_je32(mtd_crc32(0, &ri, sizeof(ri) - 8));
+			ri.data_crc = cpu_to_je32(mtd_crc32(0, wbuf, space));
+
+			offset = write_format_data((uint8_t *)&ri, sizeof(ri), offset);
+			offset = write_format_data((uint8_t *)wbuf, space, offset);
+			offset = post_pad_block(offset);
+
+			if (tbuf != cbuf) {
+				free(cbuf);
+				cbuf = NULL;
+			}
+
+			tbuf += dsize;
+			size -= dsize;
+			woff += dsize;
+		}
+	}
 }
 
 void jffs2_init(uint8_t * data, uint64_t data_size) {

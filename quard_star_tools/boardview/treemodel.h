@@ -36,11 +36,23 @@ public:
 
     QModelIndex addTree(QString str, int type, uint64_t size, uint32_t timestamp, const QModelIndex &parent) ;
     void removeTree(QModelIndex &parent) ;
-	void info(const QModelIndex &index, int &type, QString &name);
+	void info(const QModelIndex &index, int &type, QString &name, uint64_t &size);
+	QModelIndex findItems(QString str, QModelIndex &index);
 
 	void dumpTreeItems() ;
 
 private:
+	enum fs_entity_type {
+		UNKNOWN = 0,
+		REG_FILE,
+		DIR,
+		CHARDEV,
+		BLOCKDEV,
+		FIFO,
+		SOCKET,
+		SYMLINK,
+		LAST
+	};
 	void _dump(TreeItem *p, int tab) ;
 
 signals:

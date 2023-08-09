@@ -1,6 +1,7 @@
 #include <QWidget>
 #include <QApplication>
 
+
 #include "jffs2extract.h"
 #include "ff_port.h"
 #include "lwext4_port.h"
@@ -82,6 +83,22 @@ int Ext4FSViewModel::fs_read_file(QString output, QFile &input) {
     } while(1);
     delete[] buf;
     ext4_fclose(&f);
+    return 0;
+}
+
+int Ext4FSViewModel::fs_create_dir(QString path) { 
+    ext4_dir_mk(path.toStdString().c_str());
+    return 0;
+}
+
+int Ext4FSViewModel::fs_remove_dir(QString path) {
+    int ret = ext4_dir_rm(path.toStdString().c_str());
+    qDebug() << ret;
+    return 0;
+}
+
+int Ext4FSViewModel::fs_remove_file(QString path) {
+    ext4_fremove(path.toStdString().c_str());
     return 0;
 }
 
@@ -197,6 +214,21 @@ int FatFSFSViewModel::fs_read_file(QString output, QFile &input) {
     return 0;
 }
 
+int FatFSFSViewModel::fs_create_dir(QString path) { 
+    f_mkdir(path.toStdString().c_str());
+    return 0;
+}
+
+int FatFSFSViewModel::fs_remove_dir(QString path) {
+    f_rmdir(path.toStdString().c_str());
+    return 0;
+}
+
+int FatFSFSViewModel::fs_remove_file(QString path) {
+    f_unlink(path.toStdString().c_str());
+    return 0;
+}
+
 void FatFSFSViewModel::listFSAll(QString path, QModelIndex index) {
     FRESULT res; 
     DIR dir;
@@ -266,6 +298,9 @@ int Jffs2FSViewModel::fs_write_file(QString input, QFile &output) {
     QFileInfo input_info(input);
     QString input_path = input_info.absolutePath();
     QString input_name = input_info.fileName();
+#if defined(Q_OS_WIN)
+    input_path.replace("C:/","");
+#endif
     struct jffs2_raw_dirent *dd;
     struct dir *d = NULL;
     uint32_t ino;
@@ -309,10 +344,110 @@ int Jffs2FSViewModel::fs_write_file(QString input, QFile &output) {
 }
 
 int Jffs2FSViewModel::fs_read_file(QString output, QFile &input) {
-    //TODO: implement
-    Q_UNUSED(output);
-    Q_UNUSED(input);
-    return -1;
+    QFileInfo output_info(output);
+    QString output_path = output_info.absolutePath();
+    QString output_name = output_info.fileName();
+#if defined(Q_OS_WIN)
+    output_path.replace("C:/","");
+#endif
+
+    struct jffs2_raw_dirent *dd;
+    uint32_t ino;
+    dd = resolvepath(1, output_path.toStdString().c_str(), &ino);
+    if (ino == 0 || (dd == NULL && ino == 0))
+        qWarning("No such file or directory");
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+        uint32_t free_ino;
+        uint64_t free_offset;
+        find_free(&free_ino, &free_offset);
+        //TODOL: write file 
+        uint8_t *buf = new uint8_t[input.size()];
+        input.read((char*)buf,input.size());
+        QDateTime dt = QDateTime::currentDateTime();
+        write_file(output_name.toStdString().c_str(),buf,input.size(), ino, free_ino, dt.toSecsSinceEpoch(), free_offset, 0, 4);
+        delete[] buf;
+    }
+    return 0;
+}
+
+int Jffs2FSViewModel::fs_create_dir(QString path) { 
+    QFileInfo output_info(path);
+    QString output_path = output_info.absolutePath();
+    QString output_name = output_info.fileName();
+#if defined(Q_OS_WIN)
+    output_path.replace("C:/","");
+#endif
+
+    struct jffs2_raw_dirent *dd;
+    uint32_t ino;
+    dd = resolvepath(1, output_path.toStdString().c_str(), &ino);
+    if (ino == 0 || (dd == NULL && ino == 0))
+        qWarning("No such file or directory");
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+        uint32_t free_ino;
+        uint64_t free_offset;
+        find_free(&free_ino, &free_offset);
+        QDateTime dt = QDateTime::currentDateTime();
+        write_dir(output_name.toStdString().c_str(), ino, free_ino, dt.toSecsSinceEpoch(), free_offset, 0, 4);
+    }
+    return 0;
+}
+
+int Jffs2FSViewModel::fs_remove_dir(QString path) {
+    struct jffs2_raw_dirent *dd;
+    uint32_t ino;
+    int ret = -1;
+    dd = resolvepath(1, path.toStdString().c_str(), &ino);
+    if (ino == 0 || (dd == NULL && ino == 0))
+        qWarning("No such file or directory");
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+        ret = deletenode(ino);
+    }
+    return ret;
+}
+
+int Jffs2FSViewModel::fs_remove_file(QString path) {
+    QFileInfo output_info(path);
+    QString output_path = output_info.absolutePath();
+    QString output_name = output_info.fileName();
+#if defined(Q_OS_WIN)
+    output_path.replace("C:/","");
+#endif
+
+    struct jffs2_raw_dirent *dd;
+    struct dir *d = NULL;
+    uint32_t ino;
+    int ret = -1;
+    dd = resolvepath(1, output_path.toStdString().c_str(), &ino);
+    if (ino == 0 || (dd == NULL && ino == 0))
+        qWarning("No such file or directory");
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+        d = collectdir( ino, d);
+        struct jffs2_raw_inode *ri, *tmpi;
+        while (d != NULL) {
+            ri = find_raw_inode( d->ino, 0);
+            if (!ri) {
+                qWarning("bug: raw_inode missing!");
+                d = d->next;
+                continue;
+            }
+
+            tmpi = ri;
+            while (tmpi) {
+                tmpi = find_raw_inode(d->ino, je32_to_cpu(tmpi->version));
+            }
+            QString filename(QByteArray(d->name,d->nsize));
+            if(d->type == 8) {
+                if(filename == output_name) {
+                    ret = deletenode(d->ino);
+                    break;
+                }
+            }
+            d = d->next;
+        }
+        freedir(d);
+    }
+    return ret;
 }
 
 void Jffs2FSViewModel::listFSAll(QString path, QModelIndex index) {

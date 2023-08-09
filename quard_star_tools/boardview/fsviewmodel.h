@@ -71,7 +71,10 @@ public:
 
     int importFSImg(QString output, QString input) {
         QFile fs_img(rootFSImgPath);
-        fs_img.open(QIODevice::ReadWrite);
+        if(!fs_img.open(QIODevice::ReadWrite)) {
+            qWarning() << "open fs img failed";
+            return -1;
+        }
         uint8_t *addr = fs_img.map(offset,size);
         fs_init(addr,size,false);
         QFile w(input);
@@ -84,14 +87,62 @@ public:
         return ret;
     }
 
+    int createDirFSImg(QString dir_path) {
+        QFile fs_img(rootFSImgPath);
+        if(!fs_img.open(QIODevice::ReadWrite)) {
+            qWarning() << "open fs img failed";
+            return -1;
+        }
+        uint8_t *addr = fs_img.map(offset,size);
+        fs_init(addr,size,false);
+        int ret = fs_create_dir(dir_path);
+        fs_deinit(addr,size,false);
+        fs_img.unmap(addr);
+        fs_img.close();
+        return ret;
+    }
+
+    int removeDirFSImg(QString dir_path) {
+        QFile fs_img(rootFSImgPath);
+        if(!fs_img.open(QIODevice::ReadWrite)) {
+            qWarning() << "open fs img failed";
+            return -1;
+        }
+        uint8_t *addr = fs_img.map(offset,size);
+        fs_init(addr,size,false);
+        int ret = fs_remove_dir(dir_path);
+        fs_deinit(addr,size,false);
+        fs_img.unmap(addr);
+        fs_img.close();
+        return ret;
+    }
+
+    int removeFileFSImg(QString dir_path) {
+        QFile fs_img(rootFSImgPath);
+        if(!fs_img.open(QIODevice::ReadWrite)) {
+            qWarning() << "open fs img failed";
+            return -1;
+        }
+        uint8_t *addr = fs_img.map(offset,size);
+        fs_init(addr,size,false);
+        int ret = fs_remove_file(dir_path);
+        fs_deinit(addr,size,false);
+        fs_img.unmap(addr);
+        fs_img.close();
+        return ret;
+    }
+
 private:
 
-    virtual int check_fs(uint8_t *addr) = 0;
-    virtual int fs_init(uint8_t *addr, uint64_t size, bool read_only) = 0;
-    virtual int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) = 0;
-    virtual int fs_write_file(QString input, QFile &output) = 0;
-    virtual int fs_read_file(QString output, QFile &input) = 0;
-    virtual void listFSAll(QString path, QModelIndex index) = 0;
+    virtual int check_fs(uint8_t *addr) { Q_UNUSED(addr); return -1; }
+    virtual int fs_init(uint8_t *addr, uint64_t size, bool read_only) { Q_UNUSED(addr); Q_UNUSED(size); Q_UNUSED(read_only); return -1; }
+    virtual int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) { Q_UNUSED(addr); Q_UNUSED(size); Q_UNUSED(read_only); return -1; }
+    virtual int fs_write_file(QString input, QFile &output)  { Q_UNUSED(input); Q_UNUSED(output); return -1; }
+    virtual int fs_read_file(QString output, QFile &input) { Q_UNUSED(input); Q_UNUSED(output); return -1; }
+    virtual int fs_create_dir(QString path) { Q_UNUSED(path); return -1; }
+    virtual int fs_remove_dir(QString path) { Q_UNUSED(path); return -1; }
+    virtual int fs_remove_file(QString path) { Q_UNUSED(path); return -1; }
+    virtual void listFSAll(QString path, QModelIndex index) { Q_UNUSED(path); Q_UNUSED(index); return; }
 
 public:
     TreeModel *mode;
@@ -113,6 +164,9 @@ private:
     int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) override;
     int fs_write_file(QString input, QFile &output) override;
     int fs_read_file(QString output, QFile &input) override;
+    int fs_create_dir(QString path) override;
+    int fs_remove_dir(QString path) override;
+    int fs_remove_file(QString path) override;
     void listFSAll(QString path, QModelIndex index) override;
 };
 
@@ -128,6 +182,9 @@ private:
     int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) override;
     int fs_write_file(QString input, QFile &output) override;
     int fs_read_file(QString output, QFile &input) override;
+    int fs_create_dir(QString path) override;
+    int fs_remove_dir(QString path) override;
+    int fs_remove_file(QString path) override;
     void listFSAll(QString path, QModelIndex index) override;
 
 private:
@@ -146,6 +203,9 @@ private:
     int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) override;
     int fs_write_file(QString input, QFile &output) override;
     int fs_read_file(QString output, QFile &input) override;
+    int fs_create_dir(QString path) override;
+    int fs_remove_dir(QString path) override;
+    int fs_remove_file(QString path) override;
     void listFSAll(QString path, QModelIndex index) override;
 };
 

@@ -8,11 +8,13 @@ HEADERS += \
     $$PWD/minilzo.h \
     $$PWD/xalloc.h \
     $$PWD/byteswap.h \
+    $$PWD/crc32.h \
     $$PWD/endian.h
 
 SOURCES += \
     $$PWD/jffs2extract.cpp \
     $$PWD/mini_inflate.cpp \
+    $$PWD/libcrc32.cpp \
     $$PWD/minilzo.cpp
 
 INCLUDEPATH += $$PWD
