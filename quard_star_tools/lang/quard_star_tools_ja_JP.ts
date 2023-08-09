@@ -44,30 +44,30 @@
         <translation>メインウィンドウ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="431"/>
-        <location filename="../boardview/boardwindow.cpp" line="442"/>
-        <location filename="../boardview/boardwindow.cpp" line="624"/>
+        <location filename="../boardview/boardwindow.cpp" line="510"/>
+        <location filename="../boardview/boardwindow.cpp" line="521"/>
+        <location filename="../boardview/boardwindow.cpp" line="703"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="217"/>
+        <location filename="../boardview/boardwindow.cpp" line="220"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="217"/>
+        <location filename="../boardview/boardwindow.cpp" line="220"/>
         <source>power up error!</source>
         <translation>パワーアップエラー！</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="300"/>
+        <location filename="../boardview/boardwindow.cpp" line="303"/>
         <source>LCDC:
  VGA port 640x480.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="317"/>
+        <location filename="../boardview/boardwindow.cpp" line="320"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -76,39 +76,39 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="417"/>
-        <location filename="../boardview/boardwindow.cpp" line="424"/>
+        <location filename="../boardview/boardwindow.cpp" line="496"/>
+        <location filename="../boardview/boardwindow.cpp" line="503"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="425"/>
+        <location filename="../boardview/boardwindow.cpp" line="504"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.探索するコンポーネントの上にマウスを移動します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="426"/>
+        <location filename="../boardview/boardwindow.cpp" line="505"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.コンポーネントを右クリックして設定を表示します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="427"/>
+        <location filename="../boardview/boardwindow.cpp" line="506"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="625"/>
+        <location filename="../boardview/boardwindow.cpp" line="704"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;バージョン&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;コミット&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;開発者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;ウェブサイト&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="265"/>
-        <location filename="../boardview/boardwindow.cpp" line="329"/>
+        <location filename="../boardview/boardwindow.cpp" line="268"/>
+        <location filename="../boardview/boardwindow.cpp" line="332"/>
         <source>Get Info</source>
         <translation>詳細</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="279"/>
+        <location filename="../boardview/boardwindow.cpp" line="282"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -118,87 +118,97 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="282"/>
+        <location filename="../boardview/boardwindow.cpp" line="285"/>
         <source>DDR:
  1G.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="285"/>
+        <location filename="../boardview/boardwindow.cpp" line="288"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="288"/>
+        <location filename="../boardview/boardwindow.cpp" line="291"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="291"/>
+        <location filename="../boardview/boardwindow.cpp" line="294"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="294"/>
+        <location filename="../boardview/boardwindow.cpp" line="297"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="297"/>
+        <location filename="../boardview/boardwindow.cpp" line="300"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="305"/>
+        <location filename="../boardview/boardwindow.cpp" line="308"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="308"/>
+        <location filename="../boardview/boardwindow.cpp" line="311"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation>QEMU monitor:
  monitor終端.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="311"/>
+        <location filename="../boardview/boardwindow.cpp" line="314"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="314"/>
+        <location filename="../boardview/boardwindow.cpp" line="317"/>
         <source>IIS:
  wm8750.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="320"/>
+        <location filename="../boardview/boardwindow.cpp" line="323"/>
         <source>power:
  DC 12V.</source>
         <translation>電源:
  DC 12V.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="323"/>
+        <location filename="../boardview/boardwindow.cpp" line="326"/>
         <source>switch:
  power switch.</source>
         <translation>スイッチ:
  電源スイッチ.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="336"/>
+        <location filename="../boardview/boardwindow.cpp" line="339"/>
+        <location filename="../boardview/boardwindow.cpp" line="383"/>
+        <location filename="../boardview/boardwindow.cpp" line="394"/>
+        <location filename="../boardview/boardwindow.cpp" line="410"/>
         <source>Open FileSystem</source>
         <translation>ファイルシステムを開く</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="345"/>
+        <location filename="../boardview/boardwindow.cpp" line="383"/>
+        <location filename="../boardview/boardwindow.cpp" line="394"/>
+        <location filename="../boardview/boardwindow.cpp" line="410"/>
+        <source>No FileSystem, maybe is a binary image file.</source>
+        <translation>FileSystem がありません。おそらくバイナリ イメージ ファイルです。</translation>
+    </message>
+    <message>
+        <location filename="../boardview/boardwindow.cpp" line="419"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
@@ -211,117 +221,117 @@ Support:
 3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="453"/>
+        <location filename="../boardview/boardwindow.cpp" line="532"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="572"/>
+        <location filename="../boardview/boardwindow.cpp" line="651"/>
         <source>Select SD IMG</source>
         <translation>SDディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="575"/>
+        <location filename="../boardview/boardwindow.cpp" line="654"/>
         <source>Select NorFlash IMG</source>
         <translation>NorFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="578"/>
+        <location filename="../boardview/boardwindow.cpp" line="657"/>
         <source>Select NandFlash IMG</source>
         <translation>NandFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="581"/>
+        <location filename="../boardview/boardwindow.cpp" line="660"/>
         <source>Select PFlash IMG</source>
         <translation>PFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="584"/>
+        <location filename="../boardview/boardwindow.cpp" line="663"/>
         <source>Select USBFlash IMG</source>
         <translation>USBFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="114"/>
+        <location filename="../boardview/boardwindow.h" line="129"/>
         <source>vga</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="115"/>
+        <location filename="../boardview/boardwindow.h" line="130"/>
         <source>uart2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="116"/>
+        <location filename="../boardview/boardwindow.h" line="131"/>
         <source>uart1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="117"/>
+        <location filename="../boardview/boardwindow.h" line="132"/>
         <source>uart0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="118"/>
+        <location filename="../boardview/boardwindow.h" line="133"/>
         <source>power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="119"/>
+        <location filename="../boardview/boardwindow.h" line="134"/>
         <source>soc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="120"/>
+        <location filename="../boardview/boardwindow.h" line="135"/>
         <source>ddr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="121"/>
+        <location filename="../boardview/boardwindow.h" line="136"/>
         <source>eth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="122"/>
+        <location filename="../boardview/boardwindow.h" line="137"/>
         <source>usb0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="123"/>
+        <location filename="../boardview/boardwindow.h" line="138"/>
         <source>usb1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="124"/>
+        <location filename="../boardview/boardwindow.h" line="139"/>
         <source>nand</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="125"/>
+        <location filename="../boardview/boardwindow.h" line="140"/>
         <source>nor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="126"/>
+        <location filename="../boardview/boardwindow.h" line="141"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="127"/>
+        <location filename="../boardview/boardwindow.h" line="142"/>
         <source>switch</source>
         <translation>スイッチ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="128"/>
+        <location filename="../boardview/boardwindow.h" line="143"/>
         <source>jtag</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="129"/>
+        <location filename="../boardview/boardwindow.h" line="144"/>
         <source>audio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="130"/>
+        <location filename="../boardview/boardwindow.h" line="145"/>
         <source>boot</source>
         <translation>ブートオプション</translation>
     </message>
@@ -362,6 +372,136 @@ Support:
         <location filename="../boardview/bootselectbox.ui" line="56"/>
         <source>update</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>FSViewWindow</name>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="23"/>
+        <source>FSView</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="120"/>
+        <source>Export</source>
+        <translation>輸出</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="146"/>
+        <location filename="../boardview/qfsviewer.cpp" line="159"/>
+        <location filename="../boardview/qfsviewer.cpp" line="162"/>
+        <location filename="../boardview/qfsviewer.cpp" line="210"/>
+        <location filename="../boardview/qfsviewer.cpp" line="229"/>
+        <location filename="../boardview/qfsviewer.cpp" line="275"/>
+        <location filename="../boardview/qfsviewer.cpp" line="295"/>
+        <location filename="../boardview/qfsviewer.cpp" line="315"/>
+        <location filename="../boardview/qfsviewer.cpp" line="319"/>
+        <location filename="../boardview/qfsviewer.cpp" line="356"/>
+        <source>Error</source>
+        <translation>エラー</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="146"/>
+        <source>Exporting dirs is not currently supported!</source>
+        <translation>ディレクトリのエクスポートは現在サポートされていません。</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="149"/>
+        <source>Save File</source>
+        <translation>ファイルを保存</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="157"/>
+        <location filename="../boardview/qfsviewer.cpp" line="227"/>
+        <location filename="../boardview/qfsviewer.cpp" line="293"/>
+        <location filename="../boardview/qfsviewer.cpp" line="354"/>
+        <location filename="../boardview/qfsviewer.cpp" line="371"/>
+        <source>Information</source>
+        <translation>情報</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="157"/>
+        <source>Export file success!</source>
+        <translation>ファイルのエクスポートが成功しました。</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="159"/>
+        <location filename="../boardview/qfsviewer.cpp" line="162"/>
+        <source>Can&apos;t export file!</source>
+        <translation>ファイルをエクスポートできません!</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="168"/>
+        <source>Import</source>
+        <translation>輸入</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="205"/>
+        <source>Open File</source>
+        <translation>ファイルを開く</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="210"/>
+        <source>Can&apos;t import file!</source>
+        <translation>ファイルをインポートできません!</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="227"/>
+        <source>Import file success!</source>
+        <translation>ファイルのインポートが成功しました。</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="229"/>
+        <location filename="../boardview/qfsviewer.cpp" line="295"/>
+        <location filename="../boardview/qfsviewer.cpp" line="315"/>
+        <location filename="../boardview/qfsviewer.cpp" line="356"/>
+        <source>Unsupported operation!</source>
+        <translation>サポートされていない操作です!</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="234"/>
+        <source>Create</source>
+        <translation>新しい</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="272"/>
+        <source>Enter Dir Name</source>
+        <translation>ディレクトリ名を入力してください</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="272"/>
+        <source>Name</source>
+        <translation>名前</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="275"/>
+        <source>Can&apos;t create dir!</source>
+        <translation>ディレクトリを作成できません!</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="293"/>
+        <source>Create dir success!</source>
+        <translation>ディレクトリの作成が成功しました!</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="299"/>
+        <source>Delete</source>
+        <translation>消去</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="319"/>
+        <source>Now only support delete empty dir!</source>
+        <translation>空のディレクトリの削除のみをサポートするようになりました。</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="354"/>
+        <source>Delete success!</source>
+        <translation>削除成功！</translation>
+    </message>
+    <message>
+        <location filename="../boardview/qfsviewer.cpp" line="371"/>
+        <source>Loading, please wait...</source>
+        <translation>読み込み中。。。待って下さい...</translation>
     </message>
 </context>
 <context>
@@ -812,6 +952,62 @@ Support:
     </message>
 </context>
 <context>
+    <name>TreeModel</name>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="103"/>
+        <source>Root</source>
+        <translation>ルートディレクトリ</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="109"/>
+        <source>File</source>
+        <translation>ファイル</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="131"/>
+        <source>Directory</source>
+        <translation>ディレクトリ</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="137"/>
+        <location filename="../boardview/treemodel.cpp" line="141"/>
+        <source>Device</source>
+        <translation>デバイス</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="145"/>
+        <location filename="../boardview/treemodel.cpp" line="149"/>
+        <location filename="../boardview/treemodel.cpp" line="153"/>
+        <source>Link</source>
+        <translation>リンク</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="167"/>
+        <source>Unknown</source>
+        <translation>知らない</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="290"/>
+        <source>Name</source>
+        <translation>名前</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="292"/>
+        <source>Kind</source>
+        <translation>タイプ</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="294"/>
+        <source>Size</source>
+        <translation>大小</translation>
+    </message>
+    <message>
+        <location filename="../boardview/treemodel.cpp" line="296"/>
+        <source>Date</source>
+        <translation>日にち</translation>
+    </message>
+</context>
+<context>
     <name>VncWindow</name>
     <message>
         <location filename="../vncview/vncwindow.ui" line="14"/>
@@ -819,23 +1015,23 @@ Support:
         <translation>Vnc ウィンドウ</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="78"/>
+        <location filename="../vncview/vncwindow.cpp" line="47"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="88"/>
-        <location filename="../vncview/vncwindow.cpp" line="94"/>
+        <location filename="../vncview/vncwindow.cpp" line="57"/>
+        <location filename="../vncview/vncwindow.cpp" line="63"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="101"/>
+        <location filename="../vncview/vncwindow.cpp" line="70"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="111"/>
+        <location filename="../vncview/vncwindow.cpp" line="80"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
@@ -852,12 +1048,12 @@ Support:
         <translation type="vanished">この機能はまだ完成していませんので、しばらくお待ちください。</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="95"/>
+        <location filename="../vncview/vncwindow.cpp" line="64"/>
         <source>1. The central window is the LCD emulation output window.</source>
         <translation>1. 中央のウィンドウは LCD エミュレーション出力ウィンドウです。</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="96"/>
+        <location filename="../vncview/vncwindow.cpp" line="65"/>
         <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>2. 下部の更新ボタンは、更新と再接続に使用されます。これは、シミュレーションの再開時に接続するために使用されます。</translation>
     </message>
