@@ -69,7 +69,6 @@ void FSViewWindow::resetView(void) {
 
 void FSViewWindow::expand_recursive(QString path) {
     QStringList list = path.split("/");
-    qDebug() << list;
     QModelIndex pIndexes = rootIndex;
     foreach (QString item, list) {
         if(item == "")  {
