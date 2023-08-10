@@ -4,6 +4,7 @@
 #include <QDateTime>
 #include "treemodel.h"
 #include "qfonticon.h"
+#include "fsviewmodel.h"
 
 class TreeItem
 {
@@ -97,17 +98,17 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
         int column;
 		int role;
 		QVariant ret;
-	} ret[] = {
-		{UNKNOWN,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf1c0)))},
-		{UNKNOWN,  0, Qt::DisplayRole, p->data()},
-		{UNKNOWN,  1, Qt::DisplayRole, tr("Root")},
-		{UNKNOWN,  2, Qt::DisplayRole, p->childCount()},
-		{UNKNOWN,  3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(m_roottimestamp).toString("yyyy-MM-dd hh:mm:ss")},
+    } ret[] = {
+        {FSViewModel::FSView_UNKNOWN,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf1c0)))},
+        {FSViewModel::FSView_UNKNOWN,  0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_UNKNOWN,  1, Qt::DisplayRole, tr("Root")},
+        {FSViewModel::FSView_UNKNOWN,  2, Qt::DisplayRole, p->childCount()},
+        {FSViewModel::FSView_UNKNOWN,  3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(m_roottimestamp).toString("yyyy-MM-dd hh:mm:ss")},
 		
-		{REG_FILE, 0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf016)))},
-		{REG_FILE, 0, Qt::DisplayRole, p->data()},
-		{REG_FILE, 1, Qt::DisplayRole, tr("File")}, 
-		{REG_FILE, 2, Qt::DisplayRole, [&]() -> QVariant {
+        {FSViewModel::FSView_REG_FILE, 0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf016)))},
+        {FSViewModel::FSView_REG_FILE, 0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_REG_FILE, 1, Qt::DisplayRole, tr("File")},
+        {FSViewModel::FSView_REG_FILE, 2, Qt::DisplayRole, [&]() -> QVariant {
 											if( p->size() <= 1024) {
 												return QString("%1 B").arg(p->size());
 											} else if ( p->size() <= 1024 * 1024 ) {
@@ -118,39 +119,39 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
 												return QString::number(p->size() / (1024.0 * 1024.0 * 1024.0), 'f', 2) + QString(" GB");
 											}
 										}(),},
-		{REG_FILE, 3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
+        {FSViewModel::FSView_REG_FILE, 3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
 		
-		{DIR,      0, Qt::DecorationRole, [&]() -> QVariant {
+        {FSViewModel::FSView_DIR,      0, Qt::DecorationRole, [&]() -> QVariant {
 												if(m_parent->isExpanded(index)) {
 													return QIcon(QFontIcon::icon(QChar(0xf07c)));
 												} else {
 													return QIcon(QFontIcon::icon(QChar(0xf07b)));
 												}
 											}(),},
-		{DIR,      0, Qt::DisplayRole, p->data()},
-		{DIR,      1, Qt::DisplayRole, tr("Directory")},
-		{DIR,      2, Qt::DisplayRole, p->childCount()},
-		{DIR,      3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
+        {FSViewModel::FSView_DIR,      0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_DIR,      1, Qt::DisplayRole, tr("Directory")},
+        {FSViewModel::FSView_DIR,      2, Qt::DisplayRole, p->childCount()},
+        {FSViewModel::FSView_DIR,      3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
 		
-		{CHARDEV,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf085)))},
-		{CHARDEV,  0, Qt::DisplayRole, p->data()},
-		{CHARDEV,  1, Qt::DisplayRole, tr("Device")},
+        {FSViewModel::FSView_CHARDEV,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf085)))},
+        {FSViewModel::FSView_CHARDEV,  0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_CHARDEV,  1, Qt::DisplayRole, tr("Device")},
 
-		{BLOCKDEV, 0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf085)))},
-		{BLOCKDEV, 0, Qt::DisplayRole, p->data()},
-		{BLOCKDEV, 1, Qt::DisplayRole, tr("Device")},
+        {FSViewModel::FSView_BLOCKDEV, 0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf085)))},
+        {FSViewModel::FSView_BLOCKDEV, 0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_BLOCKDEV, 1, Qt::DisplayRole, tr("Device")},
 
-		{FIFO,     0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
-		{FIFO,     0, Qt::DisplayRole, p->data()},
-		{FIFO,     1, Qt::DisplayRole, tr("Link")},
+        {FSViewModel::FSView_FIFO,     0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
+        {FSViewModel::FSView_FIFO,     0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_FIFO,     1, Qt::DisplayRole, tr("Link")},
 
-		{SOCKET,   0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
-		{SOCKET,   0, Qt::DisplayRole, p->data()},
-		{SOCKET,   1, Qt::DisplayRole, tr("Link")},
+        {FSViewModel::FSView_SOCKET,   0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
+        {FSViewModel::FSView_SOCKET,   0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_SOCKET,   1, Qt::DisplayRole, tr("Link")},
 
-		{SYMLINK,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
-		{SYMLINK,  0, Qt::DisplayRole, p->data()},
-		{SYMLINK,  1, Qt::DisplayRole, tr("Link")},
+        {FSViewModel::FSView_SYMLINK,  0, Qt::DecorationRole, QIcon(QFontIcon::icon(QChar(0xf0c1)))},
+        {FSViewModel::FSView_SYMLINK,  0, Qt::DisplayRole, p->data()},
+        {FSViewModel::FSView_SYMLINK,  1, Qt::DisplayRole, tr("Link")},
 	};
 
     for (size_t i = 0; i < sizeof(ret) / sizeof(ret[0]); i++) {
@@ -178,9 +179,9 @@ void TreeModel::info(const QModelIndex &index, int &type, QString &name, uint64_
 
 	type = p->type();
 	name = p->data();
-	if(type == REG_FILE) {
+    if(type == FSViewModel::FSView_REG_FILE) {
 		size = p->size();
-	} else if(type == DIR) {
+    } else if(type == FSViewModel::FSView_DIR) {
 		size = p->childCount();
 	} else {
 		size = 0;

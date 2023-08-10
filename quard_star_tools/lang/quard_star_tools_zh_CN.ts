@@ -44,27 +44,11 @@
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="510"/>
-        <location filename="../boardview/boardwindow.cpp" line="521"/>
-        <location filename="../boardview/boardwindow.cpp" line="703"/>
+        <location filename="../boardview/boardwindow.cpp" line="508"/>
+        <location filename="../boardview/boardwindow.cpp" line="519"/>
+        <location filename="../boardview/boardwindow.cpp" line="701"/>
         <source>About</source>
         <translation>关于</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">版本</translation>
-    </message>
-    <message>
-        <source>Commit</source>
-        <translation type="vanished">提交</translation>
-    </message>
-    <message>
-        <source>Author</source>
-        <translation type="vanished">作者</translation>
-    </message>
-    <message>
-        <source>Website</source>
-        <translation type="vanished">网址</translation>
     </message>
     <message>
         <location filename="../boardview/boardwindow.cpp" line="220"/>
@@ -92,28 +76,28 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="496"/>
-        <location filename="../boardview/boardwindow.cpp" line="503"/>
+        <location filename="../boardview/boardwindow.cpp" line="494"/>
+        <location filename="../boardview/boardwindow.cpp" line="501"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="504"/>
+        <location filename="../boardview/boardwindow.cpp" line="502"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.将鼠标移动至元件上进行探索.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="505"/>
+        <location filename="../boardview/boardwindow.cpp" line="503"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.右键元件查看设置.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="506"/>
+        <location filename="../boardview/boardwindow.cpp" line="504"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.双击元件进入界面.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="704"/>
+        <location filename="../boardview/boardwindow.cpp" line="702"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
@@ -212,57 +196,49 @@ Support:
         <location filename="../boardview/boardwindow.cpp" line="339"/>
         <location filename="../boardview/boardwindow.cpp" line="383"/>
         <location filename="../boardview/boardwindow.cpp" line="394"/>
-        <location filename="../boardview/boardwindow.cpp" line="410"/>
+        <location filename="../boardview/boardwindow.cpp" line="408"/>
         <source>Open FileSystem</source>
         <translation>打开文件系统</translation>
     </message>
     <message>
         <location filename="../boardview/boardwindow.cpp" line="383"/>
         <location filename="../boardview/boardwindow.cpp" line="394"/>
-        <location filename="../boardview/boardwindow.cpp" line="410"/>
+        <location filename="../boardview/boardwindow.cpp" line="408"/>
         <source>No FileSystem, maybe is a binary image file.</source>
         <translation>没有文件系统，也许是一个二进制图像文件。</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="419"/>
+        <location filename="../boardview/boardwindow.cpp" line="417"/>
         <source>Setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <source>1. Move the mouse over the component to explore.
-2. Right-click the component to view the settings.
-3. Double-click the component to enter the interface.</source>
-        <translation type="vanished">1.将鼠标移动至元件上进行探索.
-2.右键元件查看设置.
-3.双击元件进入界面.</translation>
-    </message>
-    <message>
-        <location filename="../boardview/boardwindow.cpp" line="532"/>
+        <location filename="../boardview/boardwindow.cpp" line="530"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="651"/>
+        <location filename="../boardview/boardwindow.cpp" line="649"/>
         <source>Select SD IMG</source>
         <translation>选择SD卡映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="654"/>
+        <location filename="../boardview/boardwindow.cpp" line="652"/>
         <source>Select NorFlash IMG</source>
         <translation>选择NOR Flash映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="657"/>
+        <location filename="../boardview/boardwindow.cpp" line="655"/>
         <source>Select NandFlash IMG</source>
         <translation>选择NandFlash映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="660"/>
+        <location filename="../boardview/boardwindow.cpp" line="658"/>
         <source>Select PFlash IMG</source>
         <translation>选择PFlash映像</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="663"/>
+        <location filename="../boardview/boardwindow.cpp" line="661"/>
         <source>Select USBFlash IMG</source>
         <translation>选择U盘映像</translation>
     </message>
@@ -398,124 +374,124 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="120"/>
+        <location filename="../boardview/qfsviewer.cpp" line="119"/>
         <source>Export</source>
         <translation>导出</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="146"/>
-        <location filename="../boardview/qfsviewer.cpp" line="159"/>
-        <location filename="../boardview/qfsviewer.cpp" line="162"/>
-        <location filename="../boardview/qfsviewer.cpp" line="210"/>
-        <location filename="../boardview/qfsviewer.cpp" line="229"/>
-        <location filename="../boardview/qfsviewer.cpp" line="275"/>
-        <location filename="../boardview/qfsviewer.cpp" line="295"/>
-        <location filename="../boardview/qfsviewer.cpp" line="315"/>
-        <location filename="../boardview/qfsviewer.cpp" line="319"/>
-        <location filename="../boardview/qfsviewer.cpp" line="356"/>
+        <location filename="../boardview/qfsviewer.cpp" line="145"/>
+        <location filename="../boardview/qfsviewer.cpp" line="158"/>
+        <location filename="../boardview/qfsviewer.cpp" line="161"/>
+        <location filename="../boardview/qfsviewer.cpp" line="209"/>
+        <location filename="../boardview/qfsviewer.cpp" line="228"/>
+        <location filename="../boardview/qfsviewer.cpp" line="274"/>
+        <location filename="../boardview/qfsviewer.cpp" line="294"/>
+        <location filename="../boardview/qfsviewer.cpp" line="314"/>
+        <location filename="../boardview/qfsviewer.cpp" line="318"/>
+        <location filename="../boardview/qfsviewer.cpp" line="355"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="146"/>
+        <location filename="../boardview/qfsviewer.cpp" line="145"/>
         <source>Exporting dirs is not currently supported!</source>
         <translation>目前不支持导出目录！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="149"/>
+        <location filename="../boardview/qfsviewer.cpp" line="148"/>
         <source>Save File</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="157"/>
-        <location filename="../boardview/qfsviewer.cpp" line="227"/>
-        <location filename="../boardview/qfsviewer.cpp" line="293"/>
-        <location filename="../boardview/qfsviewer.cpp" line="354"/>
-        <location filename="../boardview/qfsviewer.cpp" line="371"/>
+        <location filename="../boardview/qfsviewer.cpp" line="156"/>
+        <location filename="../boardview/qfsviewer.cpp" line="226"/>
+        <location filename="../boardview/qfsviewer.cpp" line="292"/>
+        <location filename="../boardview/qfsviewer.cpp" line="353"/>
+        <location filename="../boardview/qfsviewer.cpp" line="370"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="157"/>
+        <location filename="../boardview/qfsviewer.cpp" line="156"/>
         <source>Export file success!</source>
         <translation>导出文件成功！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="159"/>
-        <location filename="../boardview/qfsviewer.cpp" line="162"/>
+        <location filename="../boardview/qfsviewer.cpp" line="158"/>
+        <location filename="../boardview/qfsviewer.cpp" line="161"/>
         <source>Can&apos;t export file!</source>
         <translation>无法导出文件！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="168"/>
+        <location filename="../boardview/qfsviewer.cpp" line="167"/>
         <source>Import</source>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="205"/>
+        <location filename="../boardview/qfsviewer.cpp" line="204"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="210"/>
+        <location filename="../boardview/qfsviewer.cpp" line="209"/>
         <source>Can&apos;t import file!</source>
         <translation>无法导入文件！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="227"/>
+        <location filename="../boardview/qfsviewer.cpp" line="226"/>
         <source>Import file success!</source>
         <translation>导入文件成功！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="229"/>
-        <location filename="../boardview/qfsviewer.cpp" line="295"/>
-        <location filename="../boardview/qfsviewer.cpp" line="315"/>
-        <location filename="../boardview/qfsviewer.cpp" line="356"/>
+        <location filename="../boardview/qfsviewer.cpp" line="228"/>
+        <location filename="../boardview/qfsviewer.cpp" line="294"/>
+        <location filename="../boardview/qfsviewer.cpp" line="314"/>
+        <location filename="../boardview/qfsviewer.cpp" line="355"/>
         <source>Unsupported operation!</source>
         <translation>不支持操作！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="234"/>
+        <location filename="../boardview/qfsviewer.cpp" line="233"/>
         <source>Create</source>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="272"/>
+        <location filename="../boardview/qfsviewer.cpp" line="271"/>
         <source>Enter Dir Name</source>
         <translation>输入目录名称</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="272"/>
+        <location filename="../boardview/qfsviewer.cpp" line="271"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="275"/>
+        <location filename="../boardview/qfsviewer.cpp" line="274"/>
         <source>Can&apos;t create dir!</source>
         <translation>无法创建目录！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="293"/>
+        <location filename="../boardview/qfsviewer.cpp" line="292"/>
         <source>Create dir success!</source>
         <translation>创建目录成功！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="299"/>
+        <location filename="../boardview/qfsviewer.cpp" line="298"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="319"/>
+        <location filename="../boardview/qfsviewer.cpp" line="318"/>
         <source>Now only support delete empty dir!</source>
         <translation>现在只支持删除空目录！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="354"/>
+        <location filename="../boardview/qfsviewer.cpp" line="353"/>
         <source>Delete success!</source>
         <translation>删除成功！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="371"/>
+        <location filename="../boardview/qfsviewer.cpp" line="370"/>
         <source>Loading, please wait...</source>
         <translation>加载中请稍候...</translation>
     </message>
@@ -781,10 +757,6 @@ Support:
         <translation>关于</translation>
     </message>
     <message>
-        <source>About Qt</source>
-        <translation type="vanished">关于Qt</translation>
-    </message>
-    <message>
         <location filename="../telnetview/telnetwindow.cpp" line="265"/>
         <source>Reset</source>
         <translation>重置</translation>
@@ -847,10 +819,6 @@ Support:
         <translation>接收Ymodem...</translation>
     </message>
     <message>
-        <source>Select All</source>
-        <translation type="vanished">全选</translation>
-    </message>
-    <message>
         <location filename="../telnetview/telnetwindow.cpp" line="190"/>
         <source>Save Rawlog</source>
         <translation>保存原始日志</translation>
@@ -866,17 +834,9 @@ Support:
         <translation>保存终端记录</translation>
     </message>
     <message>
-        <source>Add time on each line...</source>
-        <translation type="vanished">在每行添加时间戳...</translation>
-    </message>
-    <message>
         <location filename="../telnetview/telnetwindow.cpp" line="404"/>
         <source>Fflush file...</source>
         <translation>刷新文件...</translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../telnetview/telnetwindow.cpp" line="141"/>
@@ -970,55 +930,55 @@ Support:
 <context>
     <name>TreeModel</name>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="103"/>
+        <location filename="../boardview/treemodel.cpp" line="104"/>
         <source>Root</source>
         <translation>根目录</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="109"/>
+        <location filename="../boardview/treemodel.cpp" line="110"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="131"/>
+        <location filename="../boardview/treemodel.cpp" line="132"/>
         <source>Directory</source>
         <translation>目录</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="137"/>
-        <location filename="../boardview/treemodel.cpp" line="141"/>
+        <location filename="../boardview/treemodel.cpp" line="138"/>
+        <location filename="../boardview/treemodel.cpp" line="142"/>
         <source>Device</source>
         <translation>设备</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="145"/>
-        <location filename="../boardview/treemodel.cpp" line="149"/>
-        <location filename="../boardview/treemodel.cpp" line="153"/>
+        <location filename="../boardview/treemodel.cpp" line="146"/>
+        <location filename="../boardview/treemodel.cpp" line="150"/>
+        <location filename="../boardview/treemodel.cpp" line="154"/>
         <source>Link</source>
         <translation>链接</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="167"/>
+        <location filename="../boardview/treemodel.cpp" line="168"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="290"/>
+        <location filename="../boardview/treemodel.cpp" line="291"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="292"/>
+        <location filename="../boardview/treemodel.cpp" line="293"/>
         <source>Kind</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="294"/>
+        <location filename="../boardview/treemodel.cpp" line="295"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="296"/>
+        <location filename="../boardview/treemodel.cpp" line="297"/>
         <source>Date</source>
         <translation>日期</translation>
     </message>
@@ -1050,18 +1010,6 @@ Support:
         <location filename="../vncview/vncwindow.cpp" line="80"/>
         <source>Close</source>
         <translation>关闭</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation type="vanished">关于Qt</translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
-        <translation type="obsolete">&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>This feature is not ready yet, so stay tuned!</source>
-        <translation type="vanished">此功能尚未准备就绪，敬请期待！</translation>
     </message>
     <message>
         <location filename="../vncview/vncwindow.cpp" line="64"/>

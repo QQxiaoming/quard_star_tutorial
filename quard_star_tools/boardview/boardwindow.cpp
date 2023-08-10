@@ -217,7 +217,7 @@ bool BoardWindow::powerSwitch(bool power)
         if(qemuProcess->state() == QProcess::NotRunning) {
             int exitcode = qemuProcess->exitCode();
             if(exitcode != 0) {
-                QMessageBox::critical(this, tr("Error"), tr("power up error!"));
+                QMessageBox::critical(this, tr("Error"), tr("power up error!") + "\nexitcode: " +QString::number(exitcode));
                 return false;
             }
         }

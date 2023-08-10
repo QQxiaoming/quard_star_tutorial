@@ -159,82 +159,82 @@ Support:
         <location filename="../../../boardview/boardwindow.cpp" line="339"/>
         <location filename="../../../boardview/boardwindow.cpp" line="383"/>
         <location filename="../../../boardview/boardwindow.cpp" line="394"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="410"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="408"/>
         <source>Open FileSystem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../../boardview/boardwindow.cpp" line="383"/>
         <location filename="../../../boardview/boardwindow.cpp" line="394"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="410"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="408"/>
         <source>No FileSystem, maybe is a binary image file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="419"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="417"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="496"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="503"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="494"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="501"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="504"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="502"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="505"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="503"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="506"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="504"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="510"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="521"/>
-        <location filename="../../../boardview/boardwindow.cpp" line="703"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="508"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="519"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="701"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="704"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="702"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="532"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="530"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="651"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="649"/>
         <source>Select SD IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="654"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="652"/>
         <source>Select NorFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="657"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="655"/>
         <source>Select NandFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="660"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="658"/>
         <source>Select PFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/boardwindow.cpp" line="663"/>
+        <location filename="../../../boardview/boardwindow.cpp" line="661"/>
         <source>Select USBFlash IMG</source>
         <translation type="unfinished"></translation>
     </message>
@@ -370,124 +370,124 @@ Support:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="120"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="119"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="146"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="159"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="162"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="210"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="229"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="275"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="295"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="315"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="319"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="356"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="145"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="158"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="161"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="209"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="228"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="274"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="294"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="314"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="318"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="355"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="146"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="145"/>
         <source>Exporting dirs is not currently supported!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="149"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="148"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="157"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="227"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="293"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="354"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="371"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="156"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="226"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="292"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="353"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="370"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="157"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="156"/>
         <source>Export file success!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="159"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="162"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="158"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="161"/>
         <source>Can&apos;t export file!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="168"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="167"/>
         <source>Import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="205"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="204"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="210"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="209"/>
         <source>Can&apos;t import file!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="227"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="226"/>
         <source>Import file success!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="229"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="295"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="315"/>
-        <location filename="../../../boardview/qfsviewer.cpp" line="356"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="228"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="294"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="314"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="355"/>
         <source>Unsupported operation!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="234"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="233"/>
         <source>Create</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="272"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="271"/>
         <source>Enter Dir Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="272"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="271"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="275"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="274"/>
         <source>Can&apos;t create dir!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="293"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="292"/>
         <source>Create dir success!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="299"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="298"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="319"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="318"/>
         <source>Now only support delete empty dir!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="354"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="353"/>
         <source>Delete success!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/qfsviewer.cpp" line="371"/>
+        <location filename="../../../boardview/qfsviewer.cpp" line="370"/>
         <source>Loading, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -937,55 +937,55 @@ Support:
 <context>
     <name>TreeModel</name>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="103"/>
+        <location filename="../../../boardview/treemodel.cpp" line="104"/>
         <source>Root</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="109"/>
+        <location filename="../../../boardview/treemodel.cpp" line="110"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="131"/>
+        <location filename="../../../boardview/treemodel.cpp" line="132"/>
         <source>Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="137"/>
-        <location filename="../../../boardview/treemodel.cpp" line="141"/>
+        <location filename="../../../boardview/treemodel.cpp" line="138"/>
+        <location filename="../../../boardview/treemodel.cpp" line="142"/>
         <source>Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="145"/>
-        <location filename="../../../boardview/treemodel.cpp" line="149"/>
-        <location filename="../../../boardview/treemodel.cpp" line="153"/>
+        <location filename="../../../boardview/treemodel.cpp" line="146"/>
+        <location filename="../../../boardview/treemodel.cpp" line="150"/>
+        <location filename="../../../boardview/treemodel.cpp" line="154"/>
         <source>Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="167"/>
+        <location filename="../../../boardview/treemodel.cpp" line="168"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="290"/>
+        <location filename="../../../boardview/treemodel.cpp" line="291"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="292"/>
+        <location filename="../../../boardview/treemodel.cpp" line="293"/>
         <source>Kind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="294"/>
+        <location filename="../../../boardview/treemodel.cpp" line="295"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../../boardview/treemodel.cpp" line="296"/>
+        <location filename="../../../boardview/treemodel.cpp" line="297"/>
         <source>Date</source>
         <translation type="unfinished"></translation>
     </message>

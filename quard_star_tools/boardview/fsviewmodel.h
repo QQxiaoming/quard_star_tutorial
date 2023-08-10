@@ -198,6 +198,12 @@ public:
     ~Jffs2FSViewModel() override;
 
 private:
+    const uint32_t dt2fsv[16] = {
+        FSView_UNKNOWN,FSView_FIFO,FSView_CHARDEV,FSView_UNKNOWN,
+        FSView_DIR,FSView_UNKNOWN,FSView_BLOCKDEV,FSView_UNKNOWN,
+        FSView_REG_FILE,FSView_UNKNOWN,FSView_SYMLINK,FSView_UNKNOWN,
+        FSView_SOCKET,FSView_UNKNOWN,FSView_UNKNOWN,FSView_UNKNOWN
+    };
     int check_fs(uint8_t *addr) override;
     int fs_init(uint8_t *addr, uint64_t size, bool read_only) override;
     int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) override;

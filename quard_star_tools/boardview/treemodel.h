@@ -42,17 +42,6 @@ public:
 	void dumpTreeItems() ;
 
 private:
-	enum fs_entity_type {
-		UNKNOWN = 0,
-		REG_FILE,
-		DIR,
-		CHARDEV,
-		BLOCKDEV,
-		FIFO,
-		SOCKET,
-		SYMLINK,
-		LAST
-	};
 	void _dump(TreeItem *p, int tab) ;
 
 signals:

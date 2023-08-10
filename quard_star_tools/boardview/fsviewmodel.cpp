@@ -307,7 +307,7 @@ int Jffs2FSViewModel::fs_write_file(QString input, QFile &output) {
     dd = resolvepath(1, input_path.toStdString().c_str(), &ino);
     if (ino == 0 || (dd == NULL && ino == 0))
         qWarning("No such file or directory");
-    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
         d = collectdir( ino, d);
         struct jffs2_raw_inode *ri, *tmpi;
         while (d != NULL) {
@@ -323,7 +323,7 @@ int Jffs2FSViewModel::fs_write_file(QString input, QFile &output) {
                 tmpi = find_raw_inode(d->ino, je32_to_cpu(tmpi->version));
             }
             QString filename(QByteArray(d->name,d->nsize));
-            if(d->type == 8) {
+            if(dt2fsv[d->type] == FSView_REG_FILE) {
                 if(filename == input_name) {
                     while(ri) {
                         size_t sz;
@@ -356,7 +356,7 @@ int Jffs2FSViewModel::fs_read_file(QString output, QFile &input) {
     dd = resolvepath(1, output_path.toStdString().c_str(), &ino);
     if (ino == 0 || (dd == NULL && ino == 0))
         qWarning("No such file or directory");
-    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
         uint32_t free_ino;
         uint64_t free_offset;
         find_free(&free_ino, &free_offset);
@@ -383,7 +383,7 @@ int Jffs2FSViewModel::fs_create_dir(QString path) {
     dd = resolvepath(1, output_path.toStdString().c_str(), &ino);
     if (ino == 0 || (dd == NULL && ino == 0))
         qWarning("No such file or directory");
-    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
         uint32_t free_ino;
         uint64_t free_offset;
         find_free(&free_ino, &free_offset);
@@ -400,7 +400,7 @@ int Jffs2FSViewModel::fs_remove_dir(QString path) {
     dd = resolvepath(1, path.toStdString().c_str(), &ino);
     if (ino == 0 || (dd == NULL && ino == 0))
         qWarning("No such file or directory");
-    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
         ret = deletenode(ino);
     }
     return ret;
@@ -421,7 +421,7 @@ int Jffs2FSViewModel::fs_remove_file(QString path) {
     dd = resolvepath(1, output_path.toStdString().c_str(), &ino);
     if (ino == 0 || (dd == NULL && ino == 0))
         qWarning("No such file or directory");
-    else if ((dd == NULL && ino != 0) || (dd != NULL && dd->type == 4)) {
+    else if ((dd == NULL && ino != 0) || (dd != NULL && dt2fsv[dd->type] == FSView_DIR)) {
         d = collectdir( ino, d);
         struct jffs2_raw_inode *ri, *tmpi;
         while (d != NULL) {
@@ -437,7 +437,7 @@ int Jffs2FSViewModel::fs_remove_file(QString path) {
                 tmpi = find_raw_inode(d->ino, je32_to_cpu(tmpi->version));
             }
             QString filename(QByteArray(d->name,d->nsize));
-            if(d->type == 8) {
+            if(dt2fsv[d->type] == FSView_REG_FILE) {
                 if(filename == output_name) {
                     ret = deletenode(d->ino);
                     break;
@@ -451,12 +451,6 @@ int Jffs2FSViewModel::fs_remove_file(QString path) {
 }
 
 void Jffs2FSViewModel::listFSAll(QString path, QModelIndex index) {
-    const static uint32_t dt2fsv[16] = {
-        FSView_UNKNOWN,FSView_FIFO,FSView_CHARDEV,FSView_UNKNOWN,
-        FSView_DIR,FSView_UNKNOWN,FSView_BLOCKDEV,FSView_UNKNOWN,
-        FSView_REG_FILE,FSView_UNKNOWN,FSView_SYMLINK,FSView_UNKNOWN,
-        FSView_SOCKET,FSView_UNKNOWN,FSView_UNKNOWN,FSView_UNKNOWN
-    };
     struct jffs2_raw_dirent *dd;
     struct dir *d = NULL;
 
