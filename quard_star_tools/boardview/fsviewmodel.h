@@ -152,7 +152,6 @@ public:
     }
 
 private:
-
     virtual int check_fs(uint8_t *addr) { Q_UNUSED(addr); return -1; }
     virtual int fs_init(uint8_t *addr, uint64_t size, bool read_only) { Q_UNUSED(addr); Q_UNUSED(size); Q_UNUSED(read_only); return -1; }
     virtual int fs_deinit(uint8_t *addr, uint64_t size, bool read_only) { Q_UNUSED(addr); Q_UNUSED(size); Q_UNUSED(read_only); return -1; }

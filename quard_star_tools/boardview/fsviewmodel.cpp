@@ -30,11 +30,9 @@
 Ext4FSViewModel::Ext4FSViewModel(TreeModel *mode, QString rootFSImgPath,
         uint64_t offset, uint64_t size, QWidget *parent) :
     FSViewModel(mode,rootFSImgPath,offset,size,parent) {
-
 }
 
 Ext4FSViewModel::~Ext4FSViewModel() {
-
 }
 
 int Ext4FSViewModel::check_fs(uint8_t *addr) {
@@ -168,11 +166,9 @@ void Ext4FSViewModel::listFSAll(QString path, QModelIndex index) {
 FatFSFSViewModel::FatFSFSViewModel(TreeModel *mode, QString rootFSImgPath,
         uint64_t offset, uint64_t size, QWidget *parent) :
     FSViewModel(mode,rootFSImgPath,offset,size,parent) {
-
 }
 
 FatFSFSViewModel::~FatFSFSViewModel() {
-
 }
 
 int FatFSFSViewModel::check_fs(uint8_t *addr) {
@@ -286,11 +282,9 @@ void FatFSFSViewModel::listFSAll(QString path, QModelIndex index) {
 Jffs2FSViewModel::Jffs2FSViewModel(TreeModel *mode, QString rootFSImgPath,
         uint64_t offset, uint64_t size, QWidget *parent) :
     FSViewModel(mode,rootFSImgPath,offset,size,parent) {
-
 }
 
 Jffs2FSViewModel::~Jffs2FSViewModel() {
-
 }
 
 int Jffs2FSViewModel::check_fs(uint8_t *addr) {
