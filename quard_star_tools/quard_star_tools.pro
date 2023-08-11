@@ -23,44 +23,45 @@ include(./lib/qtermwidget/qtermwidget.pro)
 
 INCLUDEPATH += \
         -I . \
-        -I ./boardview \
-        -I ./telnetview \
-        -I ./vncview
+        -I ./src \
+        -I ./src/boardview \
+        -I ./src/telnetview \
+        -I ./src/vncview
 
 SOURCES += \
-    main.cpp \
-    boardview/boardwindow.cpp \
-    boardview/netselectbox.cpp \
-    boardview/bootselectbox.cpp \
-    boardview/treemodel.cpp \
-    boardview/fsviewmodel.cpp \
-    boardview/qfsviewer.cpp \
-    telnetview/QTelnet.cpp \
-    telnetview/telnetwindow.cpp \
-    telnetview/asciibox.cpp \
-    vncview/qvncclientwidget.cpp \
-    vncview/vncwindow.cpp
+    src/main.cpp \
+    src/boardview/boardwindow.cpp \
+    src/boardview/netselectbox.cpp \
+    src/boardview/bootselectbox.cpp \
+    src/boardview/treemodel.cpp \
+    src/boardview/fsviewmodel.cpp \
+    src/boardview/qfsviewer.cpp \
+    src/telnetview/QTelnet.cpp \
+    src/telnetview/telnetwindow.cpp \
+    src/telnetview/asciibox.cpp \
+    src/vncview/qvncclientwidget.cpp \
+    src/vncview/vncwindow.cpp
 
 HEADERS += \
-    boardview/boardwindow.h \
-    boardview/netselectbox.h \
-    boardview/bootselectbox.h \
-    boardview/treemodel.h \
-    boardview/fsviewmodel.h \
-    boardview/qfsviewer.h \
-    telnetview/QTelnet.h \
-    telnetview/telnetwindow.h \
-    telnetview/asciibox.h \
-    vncview/qvncclientwidget.h \
-    vncview/vncwindow.h
+    src/boardview/boardwindow.h \
+    src/boardview/netselectbox.h \
+    src/boardview/bootselectbox.h \
+    src/boardview/treemodel.h \
+    src/boardview/fsviewmodel.h \
+    src/boardview/qfsviewer.h \
+    src/telnetview/QTelnet.h \
+    src/telnetview/telnetwindow.h \
+    src/telnetview/asciibox.h \
+    src/vncview/qvncclientwidget.h \
+    src/vncview/vncwindow.h
 
 FORMS += \
-    boardview/boardwindow.ui \
-    boardview/netselectbox.ui \
-    boardview/bootselectbox.ui \
-    telnetview/telnetwindow.ui \
-    telnetview/asciibox.ui \
-    vncview/vncwindow.ui
+    src/boardview/boardwindow.ui \
+    src/boardview/netselectbox.ui \
+    src/boardview/bootselectbox.ui \
+    src/telnetview/telnetwindow.ui \
+    src/telnetview/asciibox.ui \
+    src/vncview/vncwindow.ui
 
 RESOURCES += \
     res/resource.qrc

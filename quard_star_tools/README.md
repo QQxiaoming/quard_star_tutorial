@@ -14,3 +14,5 @@ Quard Star Tools是Quard Star Tutorial项目的一个子项目。其基于Qt编�
 - ff15 fork自http://elm-chan.org/fsw/ff/arc/ff15.zip
 - jffs2 fork自https://github.com/rickardp/jffs2extract
 - treemodel.cpp fork自https://github.com/chocoball/QTreeViewTest
+
+本项目中最初查看分析文件系统映像文件的需求编写了qfsviewer.cpp等相关代码，后考虑该功能的通用性需求，将其拆分为单独的项目发布，详见https://github.com/QQxiaoming/QFSViewer.git，未来将该项目作为本项目的上游依赖同步更新。
