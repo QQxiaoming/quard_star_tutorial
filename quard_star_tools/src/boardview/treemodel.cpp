@@ -141,7 +141,7 @@ QVariant TreeModel::data(const QModelIndex &index, int role) const
         {FSViewModel::FSView_REG_FILE, 3, Qt::DisplayRole, QDateTime::fromSecsSinceEpoch(p->timestamp()).toString("yyyy-MM-dd hh:mm:ss")},
 		
         {FSViewModel::FSView_DIR,      0, Qt::DecorationRole, [&]() -> QVariant {
-												if(m_parent->isExpanded(index)) {
+                                                if(m_parent->isExpanded(index) && p->childCount()) {
 													return QIcon(QFontIcon::icon(QChar(0xf07c)));
 												} else {
 													return QIcon(QFontIcon::icon(QChar(0xf07b)));

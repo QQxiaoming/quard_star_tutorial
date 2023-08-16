@@ -105,14 +105,14 @@ public:
     #pragma pack()
 
     static mbr_t get_mbr(QString rootFSImgPath);
-    void setExt4FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size);
-    void setFatFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size);
-    void setJffs2FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size);
+    int setExt4FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size);
+    int setFatFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size);
+    int setJffs2FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size);
 
 private:
     void resetView(void);
     void expand_recursive(QString path);
-    void setFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size,QString type);
+    int setFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size,QString type);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event) override;

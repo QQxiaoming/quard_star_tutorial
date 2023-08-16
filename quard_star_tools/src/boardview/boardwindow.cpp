@@ -397,7 +397,11 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
                     // p1: start=2048, size=196608, type=c
                     if(fatfs_size > 0 && fatfs_offset > 0) {
                         fsView->show();
-                        fsView->setFatFSImgView(rootFSImgPath,fatfs_offset,fatfs_size);
+                        int ret = fsView->setFatFSImgView(rootFSImgPath,fatfs_offset,fatfs_size);
+                        if(ret != 0) {
+                            QMessageBox::warning(this, tr("Error"), tr("Load file system failed!"));
+                            fsView->hide();
+                        }
                     } else {
                         QMessageBox::about(this, tr("Open FileSystem"), tr("No FileSystem, maybe is a binary image file."));
                     }
@@ -408,7 +412,11 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
                     // p2: start=198656, size=8189952, type=83
                     if(ext4_size > 0 && ext4_offset > 0) {
                         fsView->show();
-                        fsView->setExt4FSImgView(rootFSImgPath,ext4_offset,ext4_size);
+                        int ret = fsView->setExt4FSImgView(rootFSImgPath,ext4_offset,ext4_size);
+                        if(ret != 0) {
+                            QMessageBox::warning(this, tr("Error"), tr("Load file system failed!"));
+                            fsView->hide();
+                        }
                     } else {
                         QMessageBox::about(this, tr("Open FileSystem"), tr("No FileSystem, maybe is a binary image file."));
                     }
@@ -417,7 +425,11 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
                 case NOR:
                 {
                     fsView->show();
-                    fsView->setJffs2FSImgView(norFlashImgPath,0,QFileInfo(norFlashImgPath).size());
+                    int ret = fsView->setJffs2FSImgView(norFlashImgPath,0,QFileInfo(norFlashImgPath).size());
+                    if(ret != 0) {
+                        QMessageBox::warning(this, tr("Error"), tr("Load file system failed!"));
+                        fsView->hide();
+                    }
                     break;
                 }
                 case SD:

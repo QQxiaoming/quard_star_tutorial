@@ -4,32 +4,32 @@
 <context>
     <name>ASCIIBox</name>
     <message>
-        <location filename="../telnetview/asciibox.ui" line="14"/>
+        <location filename="../src/telnetview/asciibox.ui" line="14"/>
         <source>ASCII Text...</source>
         <translation>ASCIIテキスト...</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.ui" line="23"/>
+        <location filename="../src/telnetview/asciibox.ui" line="23"/>
         <source>clear</source>
         <translation>クリア</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.cpp" line="31"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="50"/>
         <source>Send ASCII Text...</source>
         <translation>ASCIIテキスト送信...</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.cpp" line="34"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="53"/>
         <source>Recv ASCII Text...</source>
         <translation>ASCIIテキスト受信...</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.cpp" line="56"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="75"/>
         <source>Information</source>
         <translation>情報</translation>
     </message>
     <message>
-        <location filename="../telnetview/asciibox.cpp" line="56"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="75"/>
         <source>Will send Hex:
 </source>
         <translation>16 進数を送信します:
@@ -39,35 +39,38 @@
 <context>
     <name>BoardWindow</name>
     <message>
-        <location filename="../boardview/boardwindow.ui" line="17"/>
+        <location filename="../src/boardview/boardwindow.ui" line="17"/>
         <source>MainWindow</source>
         <translation>メインウィンドウ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="508"/>
-        <location filename="../boardview/boardwindow.cpp" line="519"/>
-        <location filename="../boardview/boardwindow.cpp" line="701"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="539"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="550"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="732"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="220"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="239"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="402"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="417"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="430"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="220"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="239"/>
         <source>power up error!</source>
         <translation>パワーアップエラー！</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="303"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="322"/>
         <source>LCDC:
  VGA port 640x480.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="320"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="339"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -76,39 +79,39 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="494"/>
-        <location filename="../boardview/boardwindow.cpp" line="501"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="525"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="532"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="502"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="533"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.探索するコンポーネントの上にマウスを移動します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="503"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="534"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.コンポーネントを右クリックして設定を表示します.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="504"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="535"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="702"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="733"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;バージョン&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;コミット&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;開発者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;ウェブサイト&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="268"/>
-        <location filename="../boardview/boardwindow.cpp" line="332"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="287"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="351"/>
         <source>Get Info</source>
         <translation>詳細</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="282"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="301"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -118,212 +121,219 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="285"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="304"/>
         <source>DDR:
  1G.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="288"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="307"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="291"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="310"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="294"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="313"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="297"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="316"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="300"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="319"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="308"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="327"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="311"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="330"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation>QEMU monitor:
  monitor終端.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="314"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="333"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="317"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="336"/>
         <source>IIS:
  wm8750.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="323"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="342"/>
         <source>power:
  DC 12V.</source>
         <translation>電源:
  DC 12V.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="326"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="345"/>
         <source>switch:
  power switch.</source>
         <translation>スイッチ:
  電源スイッチ.</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="339"/>
-        <location filename="../boardview/boardwindow.cpp" line="383"/>
-        <location filename="../boardview/boardwindow.cpp" line="394"/>
-        <location filename="../boardview/boardwindow.cpp" line="408"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="358"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="406"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="421"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="439"/>
         <source>Open FileSystem</source>
         <translation>ファイルシステムを開く</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="383"/>
-        <location filename="../boardview/boardwindow.cpp" line="394"/>
-        <location filename="../boardview/boardwindow.cpp" line="408"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="402"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="417"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="430"/>
+        <source>Load file system failed!</source>
+        <translation>ファイルシステムのロードに失敗しました!</translation>
+    </message>
+    <message>
+        <location filename="../src/boardview/boardwindow.cpp" line="406"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="421"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="439"/>
         <source>No FileSystem, maybe is a binary image file.</source>
         <translation>FileSystem がありません。おそらくバイナリ イメージ ファイルです。</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="417"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="448"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="530"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="561"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="649"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="680"/>
         <source>Select SD IMG</source>
         <translation>SDディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="652"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="683"/>
         <source>Select NorFlash IMG</source>
         <translation>NorFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="655"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="686"/>
         <source>Select NandFlash IMG</source>
         <translation>NandFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="658"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="689"/>
         <source>Select PFlash IMG</source>
         <translation>PFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.cpp" line="661"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="692"/>
         <source>Select USBFlash IMG</source>
         <translation>USBFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="129"/>
+        <location filename="../src/boardview/boardwindow.h" line="148"/>
         <source>vga</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="130"/>
+        <location filename="../src/boardview/boardwindow.h" line="149"/>
         <source>uart2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="131"/>
+        <location filename="../src/boardview/boardwindow.h" line="150"/>
         <source>uart1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="132"/>
+        <location filename="../src/boardview/boardwindow.h" line="151"/>
         <source>uart0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="133"/>
+        <location filename="../src/boardview/boardwindow.h" line="152"/>
         <source>power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="134"/>
+        <location filename="../src/boardview/boardwindow.h" line="153"/>
         <source>soc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="135"/>
+        <location filename="../src/boardview/boardwindow.h" line="154"/>
         <source>ddr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="136"/>
+        <location filename="../src/boardview/boardwindow.h" line="155"/>
         <source>eth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="137"/>
+        <location filename="../src/boardview/boardwindow.h" line="156"/>
         <source>usb0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="138"/>
+        <location filename="../src/boardview/boardwindow.h" line="157"/>
         <source>usb1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="139"/>
+        <location filename="../src/boardview/boardwindow.h" line="158"/>
         <source>nand</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="140"/>
+        <location filename="../src/boardview/boardwindow.h" line="159"/>
         <source>nor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="141"/>
+        <location filename="../src/boardview/boardwindow.h" line="160"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="142"/>
+        <location filename="../src/boardview/boardwindow.h" line="161"/>
         <source>switch</source>
         <translation>スイッチ</translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="143"/>
+        <location filename="../src/boardview/boardwindow.h" line="162"/>
         <source>jtag</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="144"/>
+        <location filename="../src/boardview/boardwindow.h" line="163"/>
         <source>audio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/boardwindow.h" line="145"/>
+        <location filename="../src/boardview/boardwindow.h" line="164"/>
         <source>boot</source>
         <translation>ブートオプション</translation>
     </message>
@@ -331,167 +341,180 @@ Support:
 <context>
     <name>BootSelectBox</name>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="14"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="14"/>
         <source>Config Boot</source>
         <translation>ブートオプションの設定</translation>
     </message>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="20"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="20"/>
         <source>Boot Cfg</source>
         <translation>ブートオプション</translation>
     </message>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="26"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="26"/>
         <source>pflash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="33"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="33"/>
         <source>nor flash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="40"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="40"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="50"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="50"/>
         <source>Update Cfg</source>
         <translation>アップグレードオプション</translation>
     </message>
     <message>
-        <location filename="../boardview/bootselectbox.ui" line="56"/>
+        <location filename="../src/boardview/bootselectbox.ui" line="56"/>
         <source>update</source>
         <translation></translation>
     </message>
 </context>
 <context>
+    <name>FSViewModel</name>
+    <message>
+        <location filename="../src/boardview/fsviewmodel.h" line="65"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../src/boardview/fsviewmodel.h" line="65"/>
+        <source>Maybe not a correct filesystem. Do you want to force the execution, this may cause the program to crash.</source>
+        <translation>ファイルシステムが正しくない可能性があります。強制的に実行しますか。プログラムがクラッシュする可能性があります。</translation>
+    </message>
+</context>
+<context>
     <name>FSViewWindow</name>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="23"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="42"/>
         <source>FSView</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="119"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="143"/>
         <source>Export</source>
         <translation>輸出</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="145"/>
-        <location filename="../boardview/qfsviewer.cpp" line="158"/>
-        <location filename="../boardview/qfsviewer.cpp" line="161"/>
-        <location filename="../boardview/qfsviewer.cpp" line="209"/>
-        <location filename="../boardview/qfsviewer.cpp" line="228"/>
-        <location filename="../boardview/qfsviewer.cpp" line="274"/>
-        <location filename="../boardview/qfsviewer.cpp" line="294"/>
-        <location filename="../boardview/qfsviewer.cpp" line="314"/>
-        <location filename="../boardview/qfsviewer.cpp" line="318"/>
-        <location filename="../boardview/qfsviewer.cpp" line="355"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="169"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="182"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="185"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="233"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="252"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="298"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="318"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="338"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="342"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="379"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="145"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="169"/>
         <source>Exporting dirs is not currently supported!</source>
         <translation>ディレクトリのエクスポートは現在サポートされていません。</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="148"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="172"/>
         <source>Save File</source>
         <translation>ファイルを保存</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="156"/>
-        <location filename="../boardview/qfsviewer.cpp" line="226"/>
-        <location filename="../boardview/qfsviewer.cpp" line="292"/>
-        <location filename="../boardview/qfsviewer.cpp" line="353"/>
-        <location filename="../boardview/qfsviewer.cpp" line="370"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="180"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="250"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="316"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="377"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="394"/>
         <source>Information</source>
         <translation>情報</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="156"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="180"/>
         <source>Export file success!</source>
         <translation>ファイルのエクスポートが成功しました。</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="158"/>
-        <location filename="../boardview/qfsviewer.cpp" line="161"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="182"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="185"/>
         <source>Can&apos;t export file!</source>
         <translation>ファイルをエクスポートできません!</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="167"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="191"/>
         <source>Import</source>
         <translation>輸入</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="204"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="228"/>
         <source>Open File</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="209"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="233"/>
         <source>Can&apos;t import file!</source>
         <translation>ファイルをインポートできません!</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="226"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="250"/>
         <source>Import file success!</source>
         <translation>ファイルのインポートが成功しました。</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="228"/>
-        <location filename="../boardview/qfsviewer.cpp" line="294"/>
-        <location filename="../boardview/qfsviewer.cpp" line="314"/>
-        <location filename="../boardview/qfsviewer.cpp" line="355"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="252"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="318"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="338"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="379"/>
         <source>Unsupported operation!</source>
         <translation>サポートされていない操作です!</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="233"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="257"/>
         <source>Create</source>
         <translation>新しい</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="271"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="295"/>
         <source>Enter Dir Name</source>
         <translation>ディレクトリ名を入力してください</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="271"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="295"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="274"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="298"/>
         <source>Can&apos;t create dir!</source>
         <translation>ディレクトリを作成できません!</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="292"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="316"/>
         <source>Create dir success!</source>
         <translation>ディレクトリの作成が成功しました!</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="298"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="322"/>
         <source>Delete</source>
         <translation>消去</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="318"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="342"/>
         <source>Now only support delete empty dir!</source>
         <translation>空のディレクトリの削除のみをサポートするようになりました。</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="353"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="377"/>
         <source>Delete success!</source>
         <translation>削除成功！</translation>
     </message>
     <message>
-        <location filename="../boardview/qfsviewer.cpp" line="370"/>
+        <location filename="../src/boardview/qfsviewer.cpp" line="394"/>
         <source>Loading, please wait...</source>
         <translation>読み込み中。。。待って下さい...</translation>
     </message>
@@ -543,28 +566,28 @@ Support:
 <context>
     <name>NetSelectBox</name>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="14"/>
+        <location filename="../src/boardview/netselectbox.ui" line="14"/>
         <source>Config Net</source>
         <translation>ネットの設定</translation>
     </message>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="20"/>
+        <location filename="../src/boardview/netselectbox.ui" line="20"/>
         <source>NET Link State</source>
         <translation>NETリンク状態</translation>
     </message>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="32"/>
+        <location filename="../src/boardview/netselectbox.ui" line="32"/>
         <source>User</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="39"/>
-        <location filename="../boardview/netselectbox.ui" line="57"/>
+        <location filename="../src/boardview/netselectbox.ui" line="39"/>
+        <location filename="../src/boardview/netselectbox.ui" line="57"/>
         <source>Tap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../boardview/netselectbox.ui" line="77"/>
+        <location filename="../src/boardview/netselectbox.ui" line="77"/>
         <source>Can</source>
         <translation></translation>
     </message>
@@ -675,254 +698,254 @@ Support:
 <context>
     <name>TelnetWindow</name>
     <message>
-        <location filename="../telnetview/telnetwindow.ui" line="14"/>
+        <location filename="../src/telnetview/telnetwindow.ui" line="14"/>
         <source>TelnetWindow</source>
         <translation>Telnet ウィンドウ</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="125"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="144"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="28"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="47"/>
         <source>Edit</source>
         <translation>編集</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="36"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="409"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="415"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="55"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="428"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="434"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="30"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="49"/>
         <source>View</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="34"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="53"/>
         <source>Options</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="81"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="100"/>
         <source>Colors</source>
         <translation>カラースキーム</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="104"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="123"/>
         <source>KeyBindings</source>
         <translation>キーバインド</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="396"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="415"/>
         <source>Misc</source>
         <translation>その他</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="398"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="417"/>
         <source>Log</source>
         <translation>ログ</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="32"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="51"/>
         <source>Transfer</source>
         <translation>送信</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="26"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="45"/>
         <source>File</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="235"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="254"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="245"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="264"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="255"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="274"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="423"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="442"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="265"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="284"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="146"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="155"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="176"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="165"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="174"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="195"/>
         <source>Save log</source>
         <translation>ログの保存</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="275"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="294"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="285"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="304"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="295"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="314"/>
         <source>Reset Zoom</source>
         <translation>ズームのリセット</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="305"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="324"/>
         <source>Send ASCII...</source>
         <translation>送信ASCII...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="314"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="333"/>
         <source>Receive ASCII...</source>
         <translation>受信ASCII...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="333"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="352"/>
         <source>Send Binary...</source>
         <translation>送信Binary...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="360"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="379"/>
         <source>Send Xmodem...</source>
         <translation>送信Xmodem...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="369"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="388"/>
         <source>Receive Xmodem...</source>
         <translation>受信Xmodem...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="378"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="397"/>
         <source>Send Ymodem...</source>
         <translation>送信Ymodem...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="387"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="406"/>
         <source>Receive Ymodem...</source>
         <translation>受信Ymodem...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="190"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="209"/>
         <source>Save Rawlog</source>
         <translation>元のログの保存</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="400"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="419"/>
         <source>Add timestamp on each line...</source>
         <translation>各行にタイムスタンプを追加します...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="135"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="154"/>
         <source>Save screen</source>
         <translation>端末記録の保存</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="404"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="423"/>
         <source>Fflush file...</source>
         <translation>ファイルをフラッシュします...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="141"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="171"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="160"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="190"/>
         <source>Save log...</source>
         <translation>log を保存する...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="142"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="172"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="161"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="191"/>
         <source>log files (*.log)</source>
         <translation>ログファイル (*.log)</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="146"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="176"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="211"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="165"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="195"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="230"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation>ファイル%1に書き込めません:
 %2.</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="206"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="225"/>
         <source>Save Raw log...</source>
         <translation>raw log を保存する...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="207"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="339"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="226"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="358"/>
         <source>binary files (*.bin)</source>
         <translation>バイナリ ファイル (*.bin)</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="211"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="230"/>
         <source>Save Raw log</source>
         <translation>raw log を保存する</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="225"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="244"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="338"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="357"/>
         <source>Open Binary...</source>
         <translation>バイナリを開く...</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="354"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="373"/>
         <source>Open binary file</source>
         <translation>バイナリファイルを開く</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="354"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="373"/>
         <source>Cannot open file %1.</source>
         <translation>ファイル %1 を開けません。</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="365"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="374"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="383"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="392"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="384"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="393"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="402"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="411"/>
         <source>Information</source>
         <translation>情報</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="365"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="374"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="383"/>
-        <location filename="../telnetview/telnetwindow.cpp" line="392"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="384"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="393"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="402"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="411"/>
         <source>This feature is not ready yet, so stay tuned!</source>
         <translation>この機能はまだ完成していませんので、しばらくお待ちください。</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="416"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="435"/>
         <source>1. The central window is the terminal operation window.</source>
         <translation>1. 中央のウィンドウは端末操作ウィンドウです。</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="417"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="436"/>
         <source>2. The menu bar provides portable tools and terminal configuration.</source>
         <translation>2. メニュー バーにはポータブル ツールと端末設定が表示されます。</translation>
     </message>
     <message>
-        <location filename="../telnetview/telnetwindow.cpp" line="418"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="437"/>
         <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>3. 下部の更新ボタンは、更新と再接続に使用されます。これは、シミュレーションの再開時に接続するために使用されます。</translation>
     </message>
@@ -930,55 +953,55 @@ Support:
 <context>
     <name>TreeModel</name>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="104"/>
+        <location filename="../src/boardview/treemodel.cpp" line="123"/>
         <source>Root</source>
         <translation>ルートディレクトリ</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="110"/>
+        <location filename="../src/boardview/treemodel.cpp" line="129"/>
         <source>File</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="132"/>
+        <location filename="../src/boardview/treemodel.cpp" line="151"/>
         <source>Directory</source>
         <translation>ディレクトリ</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="138"/>
-        <location filename="../boardview/treemodel.cpp" line="142"/>
+        <location filename="../src/boardview/treemodel.cpp" line="157"/>
+        <location filename="../src/boardview/treemodel.cpp" line="161"/>
         <source>Device</source>
         <translation>デバイス</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="146"/>
-        <location filename="../boardview/treemodel.cpp" line="150"/>
-        <location filename="../boardview/treemodel.cpp" line="154"/>
+        <location filename="../src/boardview/treemodel.cpp" line="165"/>
+        <location filename="../src/boardview/treemodel.cpp" line="169"/>
+        <location filename="../src/boardview/treemodel.cpp" line="173"/>
         <source>Link</source>
         <translation>リンク</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="168"/>
+        <location filename="../src/boardview/treemodel.cpp" line="187"/>
         <source>Unknown</source>
         <translation>知らない</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="291"/>
+        <location filename="../src/boardview/treemodel.cpp" line="310"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="293"/>
+        <location filename="../src/boardview/treemodel.cpp" line="312"/>
         <source>Kind</source>
         <translation>タイプ</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="295"/>
+        <location filename="../src/boardview/treemodel.cpp" line="314"/>
         <source>Size</source>
         <translation>大小</translation>
     </message>
     <message>
-        <location filename="../boardview/treemodel.cpp" line="297"/>
+        <location filename="../src/boardview/treemodel.cpp" line="316"/>
         <source>Date</source>
         <translation>日にち</translation>
     </message>
@@ -986,38 +1009,38 @@ Support:
 <context>
     <name>VncWindow</name>
     <message>
-        <location filename="../vncview/vncwindow.ui" line="14"/>
+        <location filename="../src/vncview/vncwindow.ui" line="14"/>
         <source>VncWindow</source>
         <translation>Vnc ウィンドウ</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="47"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="66"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="57"/>
-        <location filename="../vncview/vncwindow.cpp" line="63"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="76"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="82"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="70"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="89"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="80"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="99"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="64"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="83"/>
         <source>1. The central window is the LCD emulation output window.</source>
         <translation>1. 中央のウィンドウは LCD エミュレーション出力ウィンドウです。</translation>
     </message>
     <message>
-        <location filename="../vncview/vncwindow.cpp" line="65"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="84"/>
         <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>2. 下部の更新ボタンは、更新と再接続に使用されます。これは、シミュレーションの再開時に接続するために使用されます。</translation>
     </message>

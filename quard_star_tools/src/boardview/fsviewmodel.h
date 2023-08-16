@@ -24,12 +24,14 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QMessageBox>
+#include <QTransform>
 
 #include "ff_port.h"
 #include "treemodel.h"
 
-class FSViewModel
+class FSViewModel: public QObject
 {
+    Q_OBJECT
 public:
     enum fs_entity_type {
         FSView_UNKNOWN = 0,
@@ -60,7 +62,7 @@ public:
         fs_img.open(QIODevice::ReadOnly);
         uint8_t *addr = fs_img.map(offset,size);
         if(check_fs(addr)) {
-            int ret = QMessageBox::warning(m_parent,"Warning","Maybe not a correct filesystem. Do you want to force the execution, this may cause the program to crash.", QMessageBox::Yes, QMessageBox::No);
+            int ret = QMessageBox::warning(m_parent,tr("Warning"),tr("Maybe not a correct filesystem. Do you want to force the execution, this may cause the program to crash."), QMessageBox::Yes, QMessageBox::No);
             if(ret == QMessageBox::No) {
                 return -1;
             }
@@ -172,6 +174,7 @@ public:
 
 class Ext4FSViewModel : public FSViewModel
 {
+    Q_OBJECT
 public:
     Ext4FSViewModel(TreeModel *mode, QString rootFSImgPath,uint64_t offset, uint64_t size, QWidget *parent = nullptr);
     ~Ext4FSViewModel() override;
@@ -190,6 +193,7 @@ private:
 
 class FatFSFSViewModel : public FSViewModel
 {
+    Q_OBJECT
 public:
     FatFSFSViewModel(TreeModel *mode, QString rootFSImgPath,uint64_t offset, uint64_t size, QWidget *parent = nullptr);
     ~FatFSFSViewModel() override;
@@ -211,6 +215,7 @@ private:
 
 class Jffs2FSViewModel : public FSViewModel
 {
+    Q_OBJECT
 public:
     Jffs2FSViewModel(TreeModel *mode, QString rootFSImgPath,uint64_t offset, uint64_t size, QWidget *parent = nullptr);
     ~Jffs2FSViewModel() override;

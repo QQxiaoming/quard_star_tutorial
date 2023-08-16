@@ -45,6 +45,10 @@ FSViewWindow::FSViewWindow(QWidget *parent) :
     setColumnWidth(1,80);
     setColumnWidth(2,80);
     setColumnWidth(3,150);
+    setUniformRowHeights(true);
+    setWordWrap(false);
+    setSortingEnabled(false);
+    setAllColumnsShowFocus(true);
     resize(QSize(800,600));
     QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     QRect size = this->geometry();
@@ -66,16 +70,16 @@ FSViewWindow::mbr_t FSViewWindow::get_mbr(QString rootFSImgPath) {
     return mbr;
 }
 
-void FSViewWindow::setExt4FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
-    setFSImgView(rootFSImgPath,offset,size,"Ext4");
+int FSViewWindow::setExt4FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
+    return setFSImgView(rootFSImgPath,offset,size,"Ext4");
 }
 
-void FSViewWindow::setFatFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
-    setFSImgView(rootFSImgPath,offset,size,"FatFS");
+int FSViewWindow::setFatFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
+    return setFSImgView(rootFSImgPath,offset,size,"FatFS");
 }
 
-void FSViewWindow::setJffs2FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
-    setFSImgView(rootFSImgPath,offset,size,"Jffs2");
+int FSViewWindow::setJffs2FSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size) {
+    return setFSImgView(rootFSImgPath,offset,size,"Jffs2");
 }
 
 void FSViewWindow::resetView(void) {
@@ -104,7 +108,7 @@ void FSViewWindow::expand_recursive(QString path) {
     }
 }
 
-void FSViewWindow::setFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size,QString type) {
+int FSViewWindow::setFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t size,QString type) {
     resetView();
     m_idle = false;
     setWindowTitle(rootFSImgPath);
@@ -116,8 +120,9 @@ void FSViewWindow::setFSImgView(QString rootFSImgPath,uint64_t offset, uint64_t 
     } else if(type == "Jffs2") {
         fsView = new Jffs2FSViewModel(mode,rootFSImgPath,offset,size,this);
     }
-    fsView->setFSImgView(rootIndex);
+    int ret = fsView->setFSImgView(rootIndex);
     m_idle = true;
+    return ret;
 }
 
 void FSViewWindow::contextMenuEvent(QContextMenuEvent *event) {
