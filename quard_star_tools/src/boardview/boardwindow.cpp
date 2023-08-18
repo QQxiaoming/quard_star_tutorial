@@ -55,7 +55,8 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     updateCfg(false)
 {
     ui->setupUi(this);
-
+    this->setAttribute(Qt::WA_StyledBackground, true);
+    this->setStyleSheet("QWidget#boardWindowWidget {background-color: transparent;}");
 #if defined(Q_OS_MACOS)
     this->setWindowFlags(Qt::CustomizeWindowHint |
                             Qt::WindowTitleHint | Qt::FramelessWindowHint);
@@ -522,6 +523,51 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             break;
         case UNKNOW: 
         {
+            QMenu *pTheme = new QMenu(tr("Theme"), contextMenu); 
+            QIcon icoTheme(":/boardview/icons/theme.png");
+            pTheme->setIcon(icoTheme);
+            contextMenu->addMenu(pTheme);
+            QAction *pLight= new QAction(tr("Light"), contextMenu);
+            pLight->setCheckable(true);
+            if(!isDarkTheme) pLight->setChecked(true); 
+            pTheme->addAction(pLight);
+            connect(pLight,&QAction::triggered,this,
+                [&](void)
+                {
+                    QFile ftheme(":/qdarkstyle/light/lightstyle.qss");
+                    if (!ftheme.exists())   {
+                        qDebug() << "Unable to set stylesheet, file not found!";
+                    } else {
+                        ftheme.open(QFile::ReadOnly | QFile::Text);
+                        QTextStream ts(&ftheme);
+                        qApp->setStyleSheet(ts.readAll());
+                    }
+
+                    QFontIcon::instance()->setColor(Qt::black);
+                    isDarkTheme = false;
+                }
+            );
+            QAction *pDark= new QAction(tr("Dark"), contextMenu);
+            pDark->setCheckable(true);
+            if(isDarkTheme) pDark->setChecked(true); 
+            pTheme->addAction(pDark);
+            connect(pDark,&QAction::triggered,this,
+                [&](void)
+                {
+                    QFile ftheme(":/qdarkstyle/dark/darkstyle.qss");
+                    if (!ftheme.exists())   {
+                        qDebug() << "Unable to set stylesheet, file not found!";
+                    } else {
+                        ftheme.open(QFile::ReadOnly | QFile::Text);
+                        QTextStream ts(&ftheme);
+                        qApp->setStyleSheet(ts.readAll());
+                    }
+
+                    QFontIcon::instance()->setColor(Qt::white);
+                    isDarkTheme = true;
+                }
+            );
+
             QAction *pHelp= new QAction(tr("Help"), contextMenu);
             QIcon icoHelp(":/boardview/icons/help.png");
             pHelp->setIcon(icoHelp);
@@ -536,6 +582,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
                     );
                 }
             );
+
             QAction *pAbout= new QAction(tr("About"), contextMenu);
             QIcon icoAbout(":/boardview/icons/about.png");
             pAbout->setIcon(icoAbout);

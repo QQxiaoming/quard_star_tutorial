@@ -220,7 +220,7 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 int TreeModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-	return 4 ;	// カラムは常に1つ
+	return 4 ;	// カラムは常に4つ
 }
 
 Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const

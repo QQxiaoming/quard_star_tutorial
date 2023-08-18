@@ -34,6 +34,9 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->setAttribute(Qt::WA_StyledBackground, true);
+    this->setStyleSheet("QWidget#vncWindowWidget {background-color: transparent;}");
+
 #if defined(Q_OS_MACOS)
     this->setWindowFlags(Qt::CustomizeWindowHint | 
                             Qt::WindowTitleHint | Qt::FramelessWindowHint);
@@ -61,58 +64,12 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
     
-    menu = new QMenu(this);
-
-    QAction *pReFresh = new QAction(tr("Refresh"), this);
-    pReFresh->setIcon(QFontIcon::icon(QChar(0xf021)));
-    menu->addAction(pReFresh);
-    connect(pReFresh,&QAction::triggered,this,
-        [&](void)
-        {
-            reConnect();
-        }
-    );
-
-    QAction *pHelp = new QAction(tr("Help"), this);
-    pHelp->setIcon(QFontIcon::icon(QChar(0xf02d)));
-    menu->addAction(pHelp);
-    connect(pHelp,&QAction::triggered,this,
-        [&](void)
-        {
-            QMessageBox::about(this, tr("Help"), 
-                tr("1. The central window is the LCD emulation output window.") + "\n" +
-                tr("2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.")
-            );
-        }
-    );
-
-    QAction *pAbout = new QAction(tr("About"), this);
-    pAbout->setIcon(QFontIcon::icon(QChar(0xf05a)));
-    menu->addAction(pAbout);
-    connect(pAbout,&QAction::triggered,this,
-        [&](void)
-        {
-            BoardWindow::appAbout(this);
-        }
-    );
-
-    QAction *pClose = new QAction(tr("Close"), this);
-    pClose->setIcon(QFontIcon::icon(QChar(0xf08b)));
-    menu->addAction(pClose);
-    connect(pClose, &QAction::triggered,this,
-        [&](void)
-        {
-            this->hide();
-        }
-    );
-
     setFixedSize(this->size());
     Q_UNUSED(parent);
 }
 
 VncWindow::~VncWindow()
 {
-    delete menu;
     delete vncView;
     delete ui;
 }
@@ -137,9 +94,55 @@ void VncWindow::contextMenuEvent(QContextMenuEvent *event)
         return;
     }
 
-    if(!menu->isEmpty()) {
-        menu->move(cursor().pos());
-        menu->show();
+    if(contextMenu) delete contextMenu;
+    contextMenu = new QMenu(this); 
+
+    QAction *pReFresh = new QAction(tr("Refresh"), contextMenu);
+    pReFresh->setIcon(QFontIcon::icon(QChar(0xf021)));
+    contextMenu->addAction(pReFresh);
+    connect(pReFresh,&QAction::triggered,this,
+        [&](void)
+        {
+            reConnect();
+        }
+    );
+
+    QAction *pHelp = new QAction(tr("Help"), contextMenu);
+    pHelp->setIcon(QFontIcon::icon(QChar(0xf02d)));
+    contextMenu->addAction(pHelp);
+    connect(pHelp,&QAction::triggered,this,
+        [&](void)
+        {
+            QMessageBox::about(this, tr("Help"), 
+                tr("1. The central window is the LCD emulation output window.") + "\n" +
+                tr("2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.")
+            );
+        }
+    );
+
+    QAction *pAbout = new QAction(tr("About"), contextMenu);
+    pAbout->setIcon(QFontIcon::icon(QChar(0xf05a)));
+    contextMenu->addAction(pAbout);
+    connect(pAbout,&QAction::triggered,this,
+        [&](void)
+        {
+            BoardWindow::appAbout(this);
+        }
+    );
+
+    QAction *pClose = new QAction(tr("Close"), contextMenu);
+    pClose->setIcon(QFontIcon::icon(QChar(0xf08b)));
+    contextMenu->addAction(pClose);
+    connect(pClose, &QAction::triggered,this,
+        [&](void)
+        {
+            this->hide();
+        }
+    );
+
+    if(!contextMenu->isEmpty()) {
+        contextMenu->move(cursor().pos());
+        contextMenu->show();
     }
 
     event->accept();

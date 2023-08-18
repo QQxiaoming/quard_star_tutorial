@@ -213,7 +213,21 @@ int main(int argc, char *argv[])
     bool isDarkTheme = text_hsv_value > bg_hsv_value?true:false;
     if(dark_theme == "true") isDarkTheme = true;
     if(dark_theme == "false") isDarkTheme = false;
-
+    QString themeName;
+    if(isDarkTheme) {
+        themeName = ":/qdarkstyle/dark/darkstyle.qss";
+    } else {
+        themeName = ":/qdarkstyle/light/lightstyle.qss";
+    }
+    QFile ftheme(themeName);
+    if (!ftheme.exists())   {
+        qDebug() << "Unable to set stylesheet, file not found!";
+    } else {
+        ftheme.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&ftheme);
+        qApp->setStyleSheet(ts.readAll());
+    }
+    
     QFontIcon::addFont(":/boardview/icons/fontawesome-webfont.ttf");
     QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
     QApplication::setStyle(QStyleFactory::create("Fusion"));

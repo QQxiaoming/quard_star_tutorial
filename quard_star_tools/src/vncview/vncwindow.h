@@ -52,7 +52,7 @@ private:
     QPoint mStartPos;
     int severPort;
     QVNCClientWidget *vncView;
-    QMenu *menu;
+    QMenu *contextMenu = nullptr;
     double scaled_value = 1.0;
     Ui::VncWindow *ui;
 };

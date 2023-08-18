@@ -52,26 +52,7 @@ private slots:
     void recvASCIIstop();
 
 private:
-    void on_actionSave_screen_triggered();
-    void on_actionSave_log_triggered();
-    void on_actionSave_Rawlog_triggered();
-
-    void on_actionFind_triggered();
-    void on_actionCopy_triggered();
-    void on_actionPaste_triggered();
-    void on_actionReset_triggered();
-
-    void on_actionZoom_In_triggered();
-    void on_actionZoom_Out_triggered();
-    void on_actionReset_Zoom_triggered();
-
-    void on_actionSendASCII_triggered();
-    void on_actionReceiveASCII_triggered();
-    void on_actionSendBinary_triggered();
-    void on_actionSendXmodem_triggered();
-    void on_actionReceiveXmodem_triggered();
-    void on_actionSendYmodem_triggered();
-    void on_actionReceiveYmodem_triggered();
+    void createContextMenu(void);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -95,13 +76,20 @@ private:
     QMutex raw_log_file_mutex;
     QFile *log_file = nullptr;
     QMutex log_file_mutex;
-    QMenu *menu;
+    QMenu *contextMenu = nullptr;
     QAction *actionSave_log;
     QAction *actionSave_Rawlog;
     QAction *actionReceiveASCII;
     QAction *actionadd_time_on_each_line;
     QAction *actionFflush_file;
     Ui::TelnetWindow *ui;
+    QString currentColorScheme;
+    QString currentAvailableKeyBindings;
+    bool m_save_log = false;
+    bool m_save_Rawlog = false;
+    bool m_receiveASCII = false;
+    bool m_add_time_on_each_line = false;
+    bool m_fflush_file = false;
 };
 
 #endif // TELNETWINDOW_H

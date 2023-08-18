@@ -67,8 +67,6 @@ QIcon QFontIcon::icon(const QChar &code, const QString &family)
     engine->setLetter(code);
     engine->setBaseColor(instance()->baseColor);
     return QIcon(engine);
-
-
 }
 
 

@@ -35,25 +35,13 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
     ui(new Ui::TelnetWindow)
 {
     ui->setupUi(this);
+    this->setAttribute(Qt::WA_StyledBackground, true);
+    this->setStyleSheet("QWidget#telnetWindowWidget {background-color: transparent;}");
+
     telnet = new QTelnet(this);
-    termWidget = new QTermWidget(0,force_translator,nullptr);
+    termWidget = new QTermWidget(0,force_translator,this);
     sendASCIIBox = new ASCIIBox(ASCIIBox::SEND,this);
     recvASCIIBox = new ASCIIBox(ASCIIBox::RECV,this);
-
-    menu = new QMenu(this);
-
-    QMenu *menuFile = new QMenu(tr("File"),this);
-    menu->addMenu(menuFile);
-    QMenu *menuEdit = new QMenu(tr("Edit"),this);
-    menu->addMenu(menuEdit);
-    QMenu *menuView = new QMenu(tr("View"),this);
-    menu->addMenu(menuView);
-    QMenu *menuTransfer = new QMenu(tr("Transfer"),this);
-    menu->addMenu(menuTransfer);
-    QMenu *menuOption = new QMenu(tr("Options"),this);
-    menu->addMenu(menuOption);
-    QMenu *menuHelp = new QMenu(tr("Help"),this);
-    menu->addMenu(menuHelp);
 
 #if defined(Q_OS_MACOS)
     this->setWindowFlags(Qt::CustomizeWindowHint | 
@@ -95,14 +83,93 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
     font.setPointSize(12);
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::NoScrollBar);
+    
     QStringList availableColorSchemes = termWidget->availableColorSchemes();
     availableColorSchemes.sort();
-    QMenu *menuColors = new QMenu(tr("Colors"),this);
+    currentColorScheme = availableColorSchemes.first();
+    foreach(QString colorScheme, availableColorSchemes) {
+        if(colorScheme == "WhiteOnBlack") {
+            termWidget->setColorScheme("WhiteOnBlack");
+            currentColorScheme = "WhiteOnBlack";
+        }
+    }
+
+    QStringList availableKeyBindings = termWidget->availableKeyBindings();
+    availableKeyBindings.sort();
+    currentAvailableKeyBindings = availableKeyBindings.first();
+    foreach(QString keyBinding, availableKeyBindings) {
+        if(keyBinding == "linux") {
+            termWidget->setKeyBindings("linux");
+            currentAvailableKeyBindings = "linux";
+        }
+    }
+
+    connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
+    connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
+    connect(termWidget, SIGNAL(dupDisplayOutput(const char*,int)),this,SLOT(dupDisplayOutput(const char*,int)));
+    termWidget->startTerminalTeletype();
+
+    connect(sendASCIIBox, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
+    connect(recvASCIIBox, SIGNAL(hideOrClose()),this,SLOT(recvASCIIstop()));
+
+    orig_font = this->termWidget->getTerminalFont();
+
+    setFixedSize(this->size());
+    Q_UNUSED(parent);
+}
+
+TelnetWindow::~TelnetWindow()
+{
+    m_save_log = false;
+    m_save_Rawlog = false;
+    log_file_mutex.lock();
+    if(log_file != nullptr) {
+        log_file->close();
+        delete log_file;
+        log_file = nullptr;
+    }
+    log_file_mutex.unlock();
+    raw_log_file_mutex.lock();
+    if(raw_log_file != nullptr) {
+        raw_log_file->close();
+        delete raw_log_file;
+        raw_log_file = nullptr;
+    }
+    raw_log_file_mutex.unlock();
+    delete telnet;
+    delete termWidget;
+    delete sendASCIIBox;
+    delete contextMenu;
+    delete ui;
+}
+
+void TelnetWindow::createContextMenu(void) 
+{
+    if(contextMenu) delete contextMenu;
+    contextMenu = new QMenu(this);
+
+    QMenu *menuFile = new QMenu(tr("File"),contextMenu);
+    contextMenu->addMenu(menuFile);
+    QMenu *menuEdit = new QMenu(tr("Edit"),contextMenu);
+    contextMenu->addMenu(menuEdit);
+    QMenu *menuView = new QMenu(tr("View"),contextMenu);
+    contextMenu->addMenu(menuView);
+    QMenu *menuTransfer = new QMenu(tr("Transfer"),contextMenu);
+    contextMenu->addMenu(menuTransfer);
+    QMenu *menuOption = new QMenu(tr("Options"),contextMenu);
+    contextMenu->addMenu(menuOption);
+    QMenu *menuHelp = new QMenu(tr("Help"),contextMenu);
+    contextMenu->addMenu(menuHelp);
+
+    QStringList availableColorSchemes = termWidget->availableColorSchemes();
+    availableColorSchemes.sort();
+    QMenu *menuColors = new QMenu(tr("Colors"),menuOption);
     menuOption->addMenu(menuColors);
     foreach(QString colorScheme, availableColorSchemes) {
-        QAction *action = menuColors->addAction(colorScheme, this,
+        QAction *action = menuColors->addAction(colorScheme, menuColors,
                 [=](){
                     termWidget->setColorScheme(colorScheme);
+                    currentColorScheme = colorScheme;
                     foreach(QAction *action, menuColors->actions()) {
                         if(action->text() == colorScheme)
                             action->setChecked(true);
@@ -112,20 +179,20 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
                     }
                 });
         action->setCheckable(true);
-        if(colorScheme == "WhiteOnBlack") {
-            termWidget->setColorScheme("WhiteOnBlack");
+        if(colorScheme == currentColorScheme) {
             action->setChecked(true);
         }
     }
 
     QStringList availableKeyBindings = termWidget->availableKeyBindings();
     availableKeyBindings.sort();
-    QMenu *menuKeyBindings = new QMenu(tr("KeyBindings"),this);
+    QMenu *menuKeyBindings = new QMenu(tr("KeyBindings"),menuOption);
     menuOption->addMenu(menuKeyBindings);
     foreach(QString keyBinding, availableKeyBindings) {
-        QAction *action = menuKeyBindings->addAction(keyBinding, this,
+        QAction *action = menuKeyBindings->addAction(keyBinding, menuOption,
                 [=](){
                     termWidget->setKeyBindings(keyBinding);
+                    currentAvailableKeyBindings = keyBinding;
                     foreach(QAction *action, menuKeyBindings->actions()) {
                         if(action->text() == keyBinding)
                             action->setChecked(true);
@@ -135,13 +202,12 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
                     }
                 });
         action->setCheckable(true);
-        if(keyBinding == "linux") {
-            termWidget->setKeyBindings("linux");
+        if(keyBinding == currentAvailableKeyBindings) {
             action->setChecked(true);
         }
     }
     
-    QAction *pReFresh = new QAction(tr("Refresh"), this);
+    QAction *pReFresh = new QAction(tr("Refresh"), menuFile);
     pReFresh->setIcon(QFontIcon::icon(QChar(0xf021)));
     menuFile->addAction(pReFresh);
     connect(pReFresh,&QAction::triggered,this,
@@ -151,7 +217,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionSave_screen = new QAction(tr("Save screen"), this);
+    QAction *actionSave_screen = new QAction(tr("Save screen"), menuFile);
     menuFile->addAction(actionSave_screen);
     actionSave_screen->setIcon(QFontIcon::icon(QChar(0xf0c7)));
     connect(actionSave_screen,&QAction::triggered,this,
@@ -171,16 +237,17 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    actionSave_log = new QAction(tr("Save log"), this);
+    actionSave_log = new QAction(tr("Save log"), menuFile);
     menuFile->addAction(actionSave_log);
     actionSave_log->setCheckable(true);
-    actionSave_log->setChecked(false);
+    actionSave_log->setChecked(m_save_log);
     connect(actionSave_log,&QAction::triggered,this,
         [&](void)
         {
             log_file_mutex.lock();
             if(!actionSave_log->isChecked()) {
                 actionSave_log->setChecked(false);
+                m_save_log = false;
                 if(log_file != nullptr) {
                     log_file->close();
                     delete log_file;
@@ -197,25 +264,28 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
                         log_file = nullptr;
                     } else {
                         actionSave_log->setChecked(true);
+                        m_save_log = true;
                     }
                 } else {
                     actionSave_log->setChecked(false);
+                    m_save_log = false;
                 }
             }
             log_file_mutex.unlock();
         }
     );
 
-    actionSave_Rawlog = new QAction(tr("Save Rawlog"), this);
+    actionSave_Rawlog = new QAction(tr("Save Rawlog"), menuFile);
     menuFile->addAction(actionSave_Rawlog);
     actionSave_Rawlog->setCheckable(true);
-    actionSave_Rawlog->setChecked(false);
+    actionSave_Rawlog->setChecked(m_save_Rawlog);
     connect(actionSave_Rawlog,&QAction::triggered,this,
         [&](void)
         {
             raw_log_file_mutex.lock();
             if(!actionSave_Rawlog->isChecked()) {
                 actionSave_Rawlog->setChecked(false);
+                m_save_Rawlog = false;
                 if(raw_log_file != nullptr) {
                     raw_log_file->close();
                     delete raw_log_file;
@@ -232,16 +302,18 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
                         raw_log_file = nullptr;
                     } else {
                         actionSave_Rawlog->setChecked(true);
+                        m_save_Rawlog = true;
                     }
                 } else {
                     actionSave_Rawlog->setChecked(false);
+                    m_save_Rawlog = false;
                 }
             }
             raw_log_file_mutex.unlock();
         }
     );
 
-    QAction *pClose = new QAction(tr("Close"), this);
+    QAction *pClose = new QAction(tr("Close"), menuFile);
     pClose->setIcon(QFontIcon::icon(QChar(0xf08b)));
     menuFile->addAction(pClose);
     connect(pClose, &QAction::triggered,this,
@@ -251,7 +323,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionFind = new QAction(tr("Find"), this);
+    QAction *actionFind = new QAction(tr("Find"), menuEdit);
     menuEdit->addAction(actionFind);
     actionFind->setIcon(QFontIcon::icon(QChar(0xf002)));
     connect(actionFind,&QAction::triggered,this,
@@ -261,7 +333,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionCopy = new QAction(tr("Copy"), this);
+    QAction *actionCopy = new QAction(tr("Copy"), menuEdit);
     menuEdit->addAction(actionCopy);
     actionCopy->setIcon(QFontIcon::icon(QChar(0xf0c5)));
     connect(actionCopy,&QAction::triggered,this,
@@ -271,7 +343,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionPaste = new QAction(tr("Paste"), this);
+    QAction *actionPaste = new QAction(tr("Paste"), menuEdit);
     menuEdit->addAction(actionPaste);
     actionPaste->setIcon(QFontIcon::icon(QChar(0xf0ea)));
     connect(actionPaste,&QAction::triggered,this,
@@ -281,7 +353,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionReset = new QAction(tr("Reset"), this);
+    QAction *actionReset = new QAction(tr("Reset"), menuEdit);
     menuEdit->addAction(actionReset);
     actionReset->setIcon(QFontIcon::icon(QChar(0xf01e)));
     connect(actionReset,&QAction::triggered,this,
@@ -291,7 +363,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionZoom_In = new QAction(tr("Zoom In"), this);
+    QAction *actionZoom_In = new QAction(tr("Zoom In"), menuView);
     menuView->addAction(actionZoom_In);
     actionZoom_In->setIcon(QFontIcon::icon(QChar(0xf065)));
     connect(actionZoom_In,&QAction::triggered,this,
@@ -301,7 +373,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionZoom_Out = new QAction(tr("Zoom Out"), this);
+    QAction *actionZoom_Out = new QAction(tr("Zoom Out"), menuView);
     menuView->addAction(actionZoom_Out);
     actionZoom_Out->setIcon(QFontIcon::icon(QChar(0xf066)));
     connect(actionZoom_Out,&QAction::triggered,this,
@@ -311,7 +383,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionReset_Zoom = new QAction(tr("Reset Zoom"), this);
+    QAction *actionReset_Zoom = new QAction(tr("Reset Zoom"), menuView);
     menuView->addAction(actionReset_Zoom);
     actionReset_Zoom->setIcon(QFontIcon::icon(QChar(0xf057)));
     connect(actionReset_Zoom,&QAction::triggered,this,
@@ -321,7 +393,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionSendASCII = new QAction(tr("Send ASCII..."), this);
+    QAction *actionSendASCII = new QAction(tr("Send ASCII..."), menuTransfer);
     menuTransfer->addAction(actionSendASCII);
     connect(actionSendASCII,&QAction::triggered,this,
         [&](void)
@@ -330,26 +402,26 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    actionReceiveASCII = new QAction(tr("Receive ASCII..."), this);
+    actionReceiveASCII = new QAction(tr("Receive ASCII..."), menuTransfer);
     menuTransfer->addAction(actionReceiveASCII);
     actionReceiveASCII->setCheckable(true);
-    actionReceiveASCII->setChecked(false);
+    actionReceiveASCII->setChecked(m_receiveASCII);
     connect(actionReceiveASCII,&QAction::triggered,this,
         [&](void)
         {
             if(actionReceiveASCII->isChecked()) {
-                actionReceiveASCII->setChecked(true);
+                m_receiveASCII = true;
                 connect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
                 recvASCIIBox->show();
             } else {
-                actionReceiveASCII->setChecked(false);
+                m_receiveASCII = false;
                 disconnect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
                 recvASCIIBox->hide();
             }
         }
     );
 
-    QAction *actionSendBinary = new QAction(tr("Send Binary..."), this);
+    QAction *actionSendBinary = new QAction(tr("Send Binary..."), menuTransfer);
     menuTransfer->addAction(actionSendBinary);
     connect(actionSendBinary,&QAction::triggered,this,
         [&](void)
@@ -376,7 +448,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionSendXmodem = new QAction(tr("Send Xmodem..."), this);
+    QAction *actionSendXmodem = new QAction(tr("Send Xmodem..."), menuTransfer);
     menuTransfer->addAction(actionSendXmodem);
     connect(actionSendXmodem,&QAction::triggered,this,
         [&](void)
@@ -385,7 +457,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionReceiveXmodem = new QAction(tr("Receive Xmodem..."), this);
+    QAction *actionReceiveXmodem = new QAction(tr("Receive Xmodem..."), menuTransfer);
     menuTransfer->addAction(actionReceiveXmodem);
     connect(actionReceiveXmodem,&QAction::triggered,this,
         [&](void)
@@ -394,7 +466,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionSendYmodem = new QAction(tr("Send Ymodem..."), this);
+    QAction *actionSendYmodem = new QAction(tr("Send Ymodem..."), menuTransfer);
     menuTransfer->addAction(actionSendYmodem);
     connect(actionSendYmodem,&QAction::triggered,this,
         [&](void)
@@ -403,29 +475,41 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *actionReceiveYmodem = new QAction(tr("Receive Ymodem..."), this);
+    QAction *actionReceiveYmodem = new QAction(tr("Receive Ymodem..."), menuTransfer);
     menuTransfer->addAction(actionReceiveYmodem);
     connect(actionReceiveYmodem,&QAction::triggered,this,
         [&](void)
         {
-                QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
+            QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
         }
     );
 
-    QMenu *menuMisc = new QMenu(tr("Misc"),this);
+    QMenu *menuMisc = new QMenu(tr("Misc"),menuOption);
     menuOption->addMenu(menuMisc);
-    QMenu *menuLog = new QMenu(tr("Log"),this);
+    QMenu *menuLog = new QMenu(tr("Log"),menuMisc);
     menuMisc->addMenu(menuLog);
-    actionadd_time_on_each_line = new QAction(tr("Add timestamp on each line..."), this);
+    actionadd_time_on_each_line = new QAction(tr("Add timestamp on each line..."), menuLog);
     menuLog->addAction(actionadd_time_on_each_line);
     actionadd_time_on_each_line->setCheckable(true);
-    actionadd_time_on_each_line->setChecked(false);
-    actionFflush_file = new QAction(tr("Fflush file..."), this);
+    actionadd_time_on_each_line->setChecked(m_add_time_on_each_line);
+    connect(actionadd_time_on_each_line,&QAction::triggered,this,
+        [&](void)
+        {
+            m_add_time_on_each_line = actionadd_time_on_each_line->isChecked();
+        }
+    );
+    actionFflush_file = new QAction(tr("Fflush file..."), menuLog);
     menuLog->addAction(actionFflush_file);
     actionFflush_file->setCheckable(true);
-    actionFflush_file->setChecked(false);
+    actionFflush_file->setChecked(m_fflush_file);
+    connect(actionFflush_file,&QAction::triggered,this,
+        [&](void)
+        {
+            m_fflush_file = actionFflush_file->isChecked();
+        }
+    );
 
-    QAction *pHelp = new QAction(tr("Help"), this);
+    QAction *pHelp = new QAction(tr("Help"), menuHelp);
     pHelp->setIcon(QFontIcon::icon(QChar(0xf02d)));
     menuHelp->addAction(pHelp);
     connect(pHelp,&QAction::triggered,this,
@@ -439,7 +523,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
         }
     );
 
-    QAction *pAbout = new QAction(tr("About"), this);
+    QAction *pAbout = new QAction(tr("About"), menuHelp);
     pAbout->setIcon(QFontIcon::icon(QChar(0xf05a)));
     menuHelp->addAction(pAbout);
     connect(pAbout,&QAction::triggered,this,
@@ -448,46 +532,6 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
             BoardWindow::appAbout(this);
         }
     );
-
-
-
-    connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
-    connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
-    connect(termWidget, SIGNAL(dupDisplayOutput(const char*,int)),this,SLOT(dupDisplayOutput(const char*,int)));
-    termWidget->startTerminalTeletype();
-
-    connect(sendASCIIBox, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
-    connect(recvASCIIBox, SIGNAL(hideOrClose()),this,SLOT(recvASCIIstop()));
-
-    orig_font = this->termWidget->getTerminalFont();
-
-    setFixedSize(this->size());
-    Q_UNUSED(parent);
-}
-
-TelnetWindow::~TelnetWindow()
-{
-    actionSave_log->setCheckable(false);
-    actionSave_Rawlog->setCheckable(false);
-    log_file_mutex.lock();
-    if(log_file != nullptr) {
-        log_file->close();
-        delete log_file;
-        log_file = nullptr;
-    }
-    log_file_mutex.unlock();
-    raw_log_file_mutex.lock();
-    if(raw_log_file != nullptr) {
-        raw_log_file->close();
-        delete raw_log_file;
-        raw_log_file = nullptr;
-    }
-    raw_log_file_mutex.unlock();
-    delete telnet;
-    delete termWidget;
-    delete sendASCIIBox;
-    delete menu;
-    delete ui;
 }
 
 void TelnetWindow::reConnect(void)
@@ -510,15 +554,15 @@ void TelnetWindow::sendData(const char *data, int len)
 
 void TelnetWindow::dupDisplayOutput(const char* data,int len)
 {
-    if(actionSave_log->isChecked()) {
+    if(m_save_log) {
         if(log_file_mutex.tryLock()) {
             if(log_file != nullptr) {
-                if(actionadd_time_on_each_line->isChecked()) {
+                if(m_add_time_on_each_line) {
                     QString lineText = QTime::currentTime().toString("hh:mm:ss - ");
                     log_file->write(lineText.toUtf8());
                 }
                 log_file->write(data, len);
-                if(actionFflush_file->isChecked()) {
+                if(m_fflush_file) {
                     log_file->flush();
                 }
             }
@@ -529,11 +573,11 @@ void TelnetWindow::dupDisplayOutput(const char* data,int len)
 
 void TelnetWindow::recvData(const char *buff, int len)
 {
-    if(actionSave_Rawlog->isChecked()) {
+    if(m_save_Rawlog) {
         if(raw_log_file_mutex.tryLock()) {
             if(raw_log_file != nullptr) {
                 raw_log_file->write(buff, len);
-                    if(actionFflush_file->isChecked()) {
+                    if(m_fflush_file) {
                     raw_log_file->flush();
                 }
             }
@@ -545,17 +589,19 @@ void TelnetWindow::recvData(const char *buff, int len)
 
 void TelnetWindow::recvASCIIstop()
 {
-    if(actionReceiveASCII->isChecked()) {
-        actionReceiveASCII->setChecked(false);
+    if(m_receiveASCII) {
+        m_receiveASCII = false;
         disconnect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
     }
 }
 
 void TelnetWindow::contextMenuEvent(QContextMenuEvent *event)
 {
-    if(!menu->isEmpty()) {
-        menu->move(cursor().pos());
-        menu->show();
+    createContextMenu(); 
+    
+    if(!contextMenu->isEmpty()) {
+        contextMenu->move(cursor().pos());
+        contextMenu->show();
     }
 
     event->accept();
