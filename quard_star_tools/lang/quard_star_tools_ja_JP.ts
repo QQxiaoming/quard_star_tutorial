@@ -44,33 +44,33 @@
         <translation>メインウィンドウ</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="590"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="601"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="836"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="646"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="657"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="890"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="266"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="429"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="444"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="457"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="261"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="424"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="439"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="452"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="266"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="261"/>
         <source>power up error!</source>
         <translation>パワーアップエラー！</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="349"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="344"/>
         <source>LCDC:
  VGA port 640x480.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="366"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="361"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -79,39 +79,59 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="575"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="582"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="549"/>
+        <source>Language</source>
+        <translation>言語</translation>
+    </message>
+    <message>
+        <location filename="../src/boardview/boardwindow.cpp" line="554"/>
+        <source>Chinese</source>
+        <translation>中文</translation>
+    </message>
+    <message>
+        <location filename="../src/boardview/boardwindow.cpp" line="555"/>
+        <source>English</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/boardview/boardwindow.cpp" line="556"/>
+        <source>Japanese</source>
+        <translation>日本語</translation>
+    </message>
+    <message>
+        <location filename="../src/boardview/boardwindow.cpp" line="631"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="638"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="583"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="639"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.探索するコンポーネントの上にマウスを移動します.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="584"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="640"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.コンポーネントを右クリックして設定を表示します.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="585"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="641"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.コンポーネントをダブルクリックしてインターフェイスに入ります.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="837"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="891"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;バージョン&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;コミット&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;開発者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;ウェブサイト&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="314"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="378"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="309"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="373"/>
         <source>Get Info</source>
         <translation>詳細</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="328"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="323"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -121,252 +141,252 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="331"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="326"/>
         <source>DDR:
  1G.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="334"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="329"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="337"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="332"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="340"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="335"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="343"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="338"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="346"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="341"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="354"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="349"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="357"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="352"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation>QEMU monitor:
  monitor終端.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="360"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="355"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="363"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="358"/>
         <source>IIS:
  wm8750.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="369"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="364"/>
         <source>power:
  DC 12V.</source>
         <translation>電源:
  DC 12V.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="372"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="367"/>
         <source>switch:
  power switch.</source>
         <translation>スイッチ:
  電源スイッチ.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="385"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="433"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="448"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="466"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="380"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="428"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="443"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="461"/>
         <source>Open FileSystem</source>
         <translation>ファイルシステムを開く</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="429"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="444"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="457"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="424"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="439"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="452"/>
         <source>Load file system failed!</source>
         <translation>ファイルシステムのロードに失敗しました!</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="433"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="448"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="466"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="428"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="443"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="461"/>
         <source>No FileSystem, maybe is a binary image file.</source>
         <translation>FileSystem がありません。おそらくバイナリ イメージ ファイルです。</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="475"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="470"/>
         <source>Setting</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="503"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="499"/>
         <source>Theme</source>
         <translation>テーマ</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="508"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="504"/>
         <source>Light</source>
         <translation>明るい</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="510"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="505"/>
         <source>Dark</source>
         <translation>暗い</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="123"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="555"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="564"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="603"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="607"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="616"/>
         <source>Hide</source>
         <translation>隠す</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="121"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="568"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="605"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="620"/>
         <source>Show</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="570"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="625"/>
         <source>Hide to tray!</source>
         <translation>トレイに隠す!</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="612"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="668"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="784"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="838"/>
         <source>Select SD IMG</source>
         <translation>SDディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="787"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="841"/>
         <source>Select NorFlash IMG</source>
         <translation>NorFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="790"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="844"/>
         <source>Select NandFlash IMG</source>
         <translation>NandFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="793"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="847"/>
         <source>Select PFlash IMG</source>
         <translation>PFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="796"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="850"/>
         <source>Select USBFlash IMG</source>
         <translation>USBFlashディスクイメージを選択</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="151"/>
+        <location filename="../src/boardview/boardwindow.h" line="154"/>
         <source>vga</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="152"/>
+        <location filename="../src/boardview/boardwindow.h" line="155"/>
         <source>uart2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="153"/>
+        <location filename="../src/boardview/boardwindow.h" line="156"/>
         <source>uart1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="154"/>
+        <location filename="../src/boardview/boardwindow.h" line="157"/>
         <source>uart0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="155"/>
+        <location filename="../src/boardview/boardwindow.h" line="158"/>
         <source>power</source>
         <translation>電源</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="156"/>
+        <location filename="../src/boardview/boardwindow.h" line="159"/>
         <source>soc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="157"/>
+        <location filename="../src/boardview/boardwindow.h" line="160"/>
         <source>ddr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="158"/>
+        <location filename="../src/boardview/boardwindow.h" line="161"/>
         <source>eth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="159"/>
+        <location filename="../src/boardview/boardwindow.h" line="162"/>
         <source>usb0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="160"/>
+        <location filename="../src/boardview/boardwindow.h" line="163"/>
         <source>usb1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="161"/>
+        <location filename="../src/boardview/boardwindow.h" line="164"/>
         <source>nand</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="162"/>
+        <location filename="../src/boardview/boardwindow.h" line="165"/>
         <source>nor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="163"/>
+        <location filename="../src/boardview/boardwindow.h" line="166"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="164"/>
+        <location filename="../src/boardview/boardwindow.h" line="167"/>
         <source>switch</source>
         <translation>スイッチ</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="165"/>
+        <location filename="../src/boardview/boardwindow.h" line="168"/>
         <source>jtag</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="166"/>
+        <location filename="../src/boardview/boardwindow.h" line="169"/>
         <source>audio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="167"/>
+        <location filename="../src/boardview/boardwindow.h" line="170"/>
         <source>boot</source>
         <translation>ブートオプション</translation>
     </message>

@@ -34,6 +34,7 @@
 #include <QMenu>
 #include <QFileDialog>
 #include <QSystemTrayIcon>
+#include <QLocale>
 
 #include "qfonticon.h"
 
@@ -70,6 +71,7 @@ public:
     bool& getUpdateCfg(void);
     int sendQemuCmd(const QString &cmd);
     static void appAbout(QWidget *parent = nullptr);
+    static void setAppLangeuage(QLocale::Language lang);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);
@@ -111,7 +113,7 @@ private:
     void addActionGInfo(QMenu *menu,const DeviceName &title);
     void addActionOFileSystem(QMenu *menu,const DeviceName &title);
     void addActionSetting(QMenu *menu,const DeviceName &title);
-    void createStdMenuAction(QMenu *menu,QAction **r_pLight = nullptr, QAction **r_pDark = nullptr, QAction **r_pMinimize = nullptr);
+    void createStdMenuAction(QMenu *menu);
     Ui::BoardWindow *ui;
     bool isMousePressed = false;
     bool powerOn = false;
@@ -138,6 +140,7 @@ private:
     QString tapName;
     QString vCanName;
     QString bootCfg;
+    QLocale::Language language;
     bool updateCfg;
     double scaled_value = 1.0;
     struct space

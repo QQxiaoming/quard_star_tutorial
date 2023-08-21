@@ -171,42 +171,11 @@ int main(int argc, char *argv[])
     QString app_lang = AppComLineParser->getOpt("language");
 
     QLocale locale;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QString qlibpath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
-#else
-    QString qlibpath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-#endif
     QLocale::Language lang = locale.language();
     if(app_lang == "zh_CN") lang = QLocale::Chinese;
     if(app_lang == "ja_JP") lang = QLocale::Japanese;
     if(app_lang == "en_US") lang = QLocale::English;
-    switch(lang) {
-    case QLocale::Chinese:
-        if(qtTranslator.load("qt_zh_CN.qm",qlibpath))
-            application.installTranslator(&qtTranslator);
-        if(qtbaseTranslator.load("qtbase_zh_CN.qm",qlibpath))
-            application.installTranslator(&qtbaseTranslator);
-        if(appTranslator.load(":/lang/lang/quard_star_tools_zh_CN.qm"))
-            application.installTranslator(&appTranslator);
-        break;
-    case QLocale::Japanese:
-        if(qtTranslator.load("qt_ja.qm",qlibpath))
-            application.installTranslator(&qtTranslator);
-        if(qtbaseTranslator.load("qtbase_ja.qm",qlibpath))
-            application.installTranslator(&qtbaseTranslator);
-        if(appTranslator.load(":/lang/lang/quard_star_tools_ja_JP.qm"))
-            application.installTranslator(&appTranslator);
-        break;
-    default:
-    case QLocale::English:
-        if(qtTranslator.load("qt_en.qm",qlibpath))
-            application.installTranslator(&qtTranslator);
-        if(qtbaseTranslator.load("qtbase_en.qm",qlibpath))
-            application.installTranslator(&qtbaseTranslator);
-        if(appTranslator.load(":/lang/lang/quard_star_tools_en_US.qm"))
-            application.installTranslator(&appTranslator);
-        break;
-    }
+    BoardWindow::setAppLangeuage(lang);
 
     int text_hsv_value = QPalette().color(QPalette::WindowText).value();
     int bg_hsv_value = QPalette().color(QPalette::Window).value();

@@ -35,7 +35,7 @@
 
 BoardWindow::BoardWindow(const QString &path,const QString &color,
                          const bool &isSysDarkTheme,
-                         QLocale::Language force_translator,
+                         QLocale::Language lang,
                          QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BoardWindow),
@@ -52,6 +52,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     tapName(""),
     vCanName(""),
     bootCfg("sd"),
+    language(lang),
     updateCfg(false)
 {
     ui->setupUi(this);
@@ -89,13 +90,13 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
     qemuProcess = new QProcess(this);
-    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,force_translator,this);
+    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,lang,this);
     uartWindow[0]->setWindowTitle("UART0");
-    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,force_translator,this);
+    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,lang,this);
     uartWindow[1]->setWindowTitle("UART1");
-    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,force_translator,this);
+    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,lang,this);
     uartWindow[2]->setWindowTitle("UART2");
-    jtagWindow = new TelnetWindow("127.0.0.1",3430,force_translator,this);
+    jtagWindow = new TelnetWindow("127.0.0.1",3430,lang,this);
     jtagWindow->setWindowTitle("JTAG(Monitor)");
     lcdWindow = new VncWindow("127.0.0.1",5901,this);
     lcdWindow->setWindowTitle("LCD");
@@ -110,18 +111,12 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         trayIcon->setIcon(QIcon(":/boardview/icons/about.png"));
         trayIcon->setToolTip(QApplication::applicationName());
         QMenu *trayIconMenu = new QMenu(this);
-        QAction *pLight = nullptr, *pDark = nullptr, *pMinimize = nullptr;
-        createStdMenuAction(trayIconMenu,&pLight,&pDark,&pMinimize);
+        createStdMenuAction(trayIconMenu);
         connect(trayIconMenu, &QMenu::aboutToShow, this,
-            [&,pLight,pDark,pMinimize](void)
+            [&,trayIconMenu](void)
             {
-                pLight->setChecked(!isDarkTheme);
-                pDark->setChecked(isDarkTheme);
-                if(this->isHidden()) {
-                    pMinimize->setText(tr("Show"));
-                } else {
-                    pMinimize->setText(tr("Hide"));
-                }
+                trayIconMenu->clear();
+                createStdMenuAction(trayIconMenu);
             }
         );
         trayIcon->setContextMenu(trayIconMenu);
@@ -498,7 +493,8 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
         );
 
 }
-void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **r_pDark, QAction **r_pMinimize)
+                                                            
+void BoardWindow::createStdMenuAction(QMenu *menu)
 {
     QMenu *pTheme = new QMenu(tr("Theme"), menu); 
     QIcon icoTheme(":/boardview/icons/theme.png");
@@ -506,9 +502,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **
     menu->addMenu(pTheme);
 
     QAction *pLight = new QAction(tr("Light"), pTheme);
-    if(r_pLight != nullptr) *r_pLight = pLight;
     QAction *pDark = new QAction(tr("Dark"), pTheme);
-    if(r_pDark != nullptr) *r_pDark = pDark;
 
     pLight->setCheckable(true);
     pLight->setChecked(!isDarkTheme); 
@@ -552,8 +546,66 @@ void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **
         }
     );
 
+    QMenu *pLanguage = new QMenu(tr("Language"), menu);
+    QIcon icoLanguage(":/boardview/icons/language.png");
+    pLanguage->setIcon(icoLanguage);
+    menu->addMenu(pLanguage);
+
+    QAction *pChinese = new QAction(tr("Chinese"), pLanguage);
+    QAction *pEnglish = new QAction(tr("English"), pLanguage);
+    QAction *pJapanese = new QAction(tr("Japanese"), pLanguage);
+
+    pChinese->setCheckable(true);
+    pChinese->setChecked(this->language == QLocale::Chinese);
+    pLanguage->addAction(pChinese);
+    connect(pChinese,&QAction::triggered,this,
+        [&,pChinese,pEnglish,pJapanese](void)
+        {
+            pChinese->setChecked(true);
+            pEnglish->setChecked(false);
+            pJapanese->setChecked(false);
+            this->language = QLocale::Chinese;
+            BoardWindow::setAppLangeuage(QLocale::Chinese);
+            ui->retranslateUi(this);
+        }
+    );
+
+    pEnglish->setCheckable(true);
+    pEnglish->setChecked(this->language == QLocale::English);
+    pLanguage->addAction(pEnglish);
+    connect(pEnglish,&QAction::triggered,this,
+        [&,pChinese,pEnglish,pJapanese](void)
+        {
+            pChinese->setChecked(false);
+            pEnglish->setChecked(true);
+            pJapanese->setChecked(false);
+            this->language = QLocale::English;
+            BoardWindow::setAppLangeuage(QLocale::English);
+            ui->retranslateUi(this);
+        }
+    );
+
+    pJapanese->setCheckable(true);
+    pJapanese->setChecked(this->language == QLocale::Japanese);
+    pLanguage->addAction(pJapanese);
+    connect(pJapanese,&QAction::triggered,this,
+        [&,pChinese,pEnglish,pJapanese](void)
+        {
+            pChinese->setChecked(false);
+            pEnglish->setChecked(false);
+            pJapanese->setChecked(true);
+            this->language = QLocale::Japanese;
+            BoardWindow::setAppLangeuage(QLocale::Japanese);
+            ui->retranslateUi(this);
+        }
+    );
+    
     QAction *pMinimize = new QAction(tr("Hide"), menu);
-    if(r_pMinimize != nullptr) *r_pMinimize = pMinimize;
+    if(this->isHidden()) {
+        pMinimize->setText(tr("Show"));
+    } else {
+        pMinimize->setText(tr("Hide"));
+    }
     QIcon icoMinimize(":/boardview/icons/minimize.png");
     pMinimize->setIcon(icoMinimize);
     menu->addAction(pMinimize);
@@ -567,7 +619,11 @@ void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **
             } else {
                 pMinimize->setText(tr("Show"));
                 this->hide();
-                trayIcon->showMessage(QApplication::applicationName(),tr("Hide to tray!"));
+                static bool first = true;
+                if(first) {
+                    first = false;
+                    trayIcon->showMessage(QApplication::applicationName(),tr("Hide to tray!"));
+                }
             }
         }
     );
@@ -579,7 +635,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **
     connect(pHelp,&QAction::triggered,this,
         [&,menu](void)
         {
-            QMessageBox::about(menu, tr("Help"), 
+            QMessageBox::about(this, tr("Help"), 
                 tr("1. Move the mouse over the component to explore.") + "\n" +
                 tr("2. Right-click the component to view the settings.") + "\n" +
                 tr("3. Double-click the component to enter the interface.")
@@ -594,7 +650,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **
     connect(pAbout,&QAction::triggered,this,
         [&,menu](void)
         {
-            BoardWindow::appAbout(menu);
+            BoardWindow::appAbout(this);
         }
     );
 
@@ -605,7 +661,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **
     connect(pAboutQt,&QAction::triggered,this,
         [&,menu](void)
         {
-            QMessageBox::aboutQt(menu);
+            QMessageBox::aboutQt(this);
         }
     );
 
@@ -665,10 +721,8 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             addActionSetting(contextMenu,spaceDoMain);
             break;
         case UNKNOW: 
-        {
             createStdMenuAction(contextMenu);
             break;
-        }
         default:
             break;
     }
@@ -846,4 +900,64 @@ void BoardWindow::appAbout(QWidget *parent)
                            "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
                            ).arg(VERSION,GIT_TAG)
                        );
+}
+
+void BoardWindow::setAppLangeuage(QLocale::Language lang)
+{
+    static QTranslator *qtTranslator = nullptr;
+    static QTranslator *qtbaseTranslator = nullptr;
+    static QTranslator *appTranslator = nullptr;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    QString qlibpath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#else
+    QString qlibpath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
+    if(qtTranslator == nullptr) {
+        qtTranslator = new QTranslator(qApp);
+    } else {
+        qApp->removeTranslator(qtTranslator);
+        delete qtTranslator;
+        qtTranslator = new QTranslator(qApp);
+    }
+    if(qtbaseTranslator == nullptr) {
+        qtbaseTranslator = new QTranslator(qApp);
+    } else {
+        qApp->removeTranslator(qtbaseTranslator);
+        delete qtbaseTranslator;
+        qtbaseTranslator = new QTranslator(qApp);
+    }
+    if(appTranslator == nullptr) {
+        appTranslator = new QTranslator(qApp);
+    } else {
+        qApp->removeTranslator(appTranslator);
+        delete appTranslator;
+        appTranslator = new QTranslator(qApp);
+    }
+    switch(lang) {
+    case QLocale::Chinese:
+        if(qtTranslator->load("qt_zh_CN.qm",qlibpath))
+            qApp->installTranslator(qtTranslator);
+        if(qtbaseTranslator->load("qtbase_zh_CN.qm",qlibpath))
+            qApp->installTranslator(qtbaseTranslator);
+        if(appTranslator->load(":/lang/lang/quard_star_tools_zh_CN.qm"))
+            qApp->installTranslator(appTranslator);
+        break;
+    case QLocale::Japanese:
+        if(qtTranslator->load("qt_ja.qm",qlibpath))
+            qApp->installTranslator(qtTranslator);
+        if(qtbaseTranslator->load("qtbase_ja.qm",qlibpath))
+            qApp->installTranslator(qtbaseTranslator);
+        if(appTranslator->load(":/lang/lang/quard_star_tools_ja_JP.qm"))
+            qApp->installTranslator(appTranslator);
+        break;
+    default:
+    case QLocale::English:
+        if(qtTranslator->load("qt_en.qm",qlibpath))
+            qApp->installTranslator(qtTranslator);
+        if(qtbaseTranslator->load("qtbase_en.qm",qlibpath))
+            qApp->installTranslator(qtbaseTranslator);
+        if(appTranslator->load(":/lang/lang/quard_star_tools_en_US.qm"))
+            qApp->installTranslator(appTranslator);
+        break;
+    }
 }
