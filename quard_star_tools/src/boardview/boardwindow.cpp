@@ -547,7 +547,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     );
 
     QMenu *pLanguage = new QMenu(tr("Language"), menu);
-    QIcon icoLanguage(":/boardview/icons/language.png");
+    QIcon icoLanguage(":/boardview/icons/lang.png");
     pLanguage->setIcon(icoLanguage);
     menu->addMenu(pLanguage);
 
@@ -567,6 +567,9 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
             this->language = QLocale::Chinese;
             BoardWindow::setAppLangeuage(QLocale::Chinese);
             ui->retranslateUi(this);
+            uartWindow[0]->retranslateUi();
+            uartWindow[1]->retranslateUi();
+            uartWindow[2]->retranslateUi();
         }
     );
 
@@ -582,6 +585,9 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
             this->language = QLocale::English;
             BoardWindow::setAppLangeuage(QLocale::English);
             ui->retranslateUi(this);
+            uartWindow[0]->retranslateUi();
+            uartWindow[1]->retranslateUi();
+            uartWindow[2]->retranslateUi();
         }
     );
 
@@ -597,6 +603,9 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
             this->language = QLocale::Japanese;
             BoardWindow::setAppLangeuage(QLocale::Japanese);
             ui->retranslateUi(this);
+            uartWindow[0]->retranslateUi();
+            uartWindow[1]->retranslateUi();
+            uartWindow[2]->retranslateUi();
         }
     );
     

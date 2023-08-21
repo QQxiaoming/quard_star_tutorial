@@ -43,6 +43,7 @@ public:
     ~TelnetWindow();
     void reConnect(void);
     void sendData(const QByteArray &ba);
+    void retranslateUi(void);
 
 private slots:
     void sendData(const char *data, int len);

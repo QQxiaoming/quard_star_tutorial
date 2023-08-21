@@ -257,6 +257,7 @@ public:
 
     void setConfirmMultilinePaste(bool confirmMultilinePaste);
     void setTrimPastedTrailingNewlines(bool trimPastedTrailingNewlines);
+    void reTranslateUi(void);
     static void setLangeuage(QLocale::Language lang);
 
 signals:

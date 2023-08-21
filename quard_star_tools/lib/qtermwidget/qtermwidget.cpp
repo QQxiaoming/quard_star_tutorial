@@ -250,9 +250,12 @@ void QTermWidget::setLangeuage(QLocale::Language lang)
     for (const QString& dir : qAsConst(dirs)) {
         if (translator->load(QLocale(lang), QLatin1String("qtermwidget"), QLatin1String(QLatin1String("_")), dir)) {
             qApp->installTranslator(translator);
-            break;
+            return;
         }
     }
+
+    if(translator->load(":/lib/qtermwidget/translations/qtermwidget.qm"))
+        qApp->installTranslator(translator);
 }
 
 void QTermWidget::init(int startnow)
@@ -793,4 +796,8 @@ void QTermWidget::setConfirmMultilinePaste(bool confirmMultilinePaste) {
 
 void QTermWidget::setTrimPastedTrailingNewlines(bool trimPastedTrailingNewlines) {
     m_impl->m_terminalDisplay->setTrimPastedTrailingNewlines(trimPastedTrailingNewlines);
+}
+
+void QTermWidget::reTranslateUi(void) {
+    m_searchBar->retranslateUi();
 }

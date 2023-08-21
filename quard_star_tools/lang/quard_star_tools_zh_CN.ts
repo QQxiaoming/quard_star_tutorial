@@ -44,9 +44,9 @@
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="646"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="657"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="890"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="655"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="666"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="899"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
@@ -99,28 +99,28 @@
         <translation>日本語</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="631"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="638"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="640"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="647"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="639"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="648"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.将鼠标移动至元件上进行探索.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="640"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="649"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.右键元件查看设置.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="641"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="650"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.双击元件进入界面.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="891"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="900"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
@@ -258,50 +258,50 @@ Support:
         <translation>暗黑</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="603"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="607"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="612"/>
         <location filename="../src/boardview/boardwindow.cpp" line="616"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="625"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="605"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="620"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="614"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="629"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="625"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="634"/>
         <source>Hide to tray!</source>
         <translation>隐藏到托盘！</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="668"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="677"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="838"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="847"/>
         <source>Select SD IMG</source>
         <translation>选择SD卡映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="841"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="850"/>
         <source>Select NorFlash IMG</source>
         <translation>选择NOR Flash映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="844"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="853"/>
         <source>Select NandFlash IMG</source>
         <translation>选择NandFlash映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="847"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="856"/>
         <source>Select PFlash IMG</source>
         <translation>选择PFlash映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="850"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="859"/>
         <source>Select USBFlash IMG</source>
         <translation>选择U盘映像</translation>
     </message>
@@ -690,12 +690,12 @@ Support:
 <context>
     <name>QTermWidget</name>
     <message>
-        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="424"/>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="432"/>
         <source>Color Scheme Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="425"/>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="433"/>
         <source>Cannot load color scheme: %1</source>
         <translation type="unfinished"></translation>
     </message>

@@ -587,6 +587,12 @@ void TelnetWindow::recvData(const char *buff, int len)
     this->termWidget->recvData(buff, len);
 }
 
+void TelnetWindow::retranslateUi(void)
+{
+    ui->retranslateUi(this);
+    termWidget->reTranslateUi();
+}
+
 void TelnetWindow::recvASCIIstop()
 {
     if(m_receiveASCII) {
