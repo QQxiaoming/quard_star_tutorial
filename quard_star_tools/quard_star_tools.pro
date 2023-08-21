@@ -109,10 +109,10 @@ unix:!macx:{
     QMAKE_RPATHDIR=$ORIGIN
     QMAKE_LFLAGS += -no-pie
 
-    #CONFIG(release, debug|release) {
-    #    AFTER_LINK_CMD_LINE = upx-ucl --best -f $$DESTDIR/$$TARGET
-    #    QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
-    #}
+    CONFIG(release, debug|release) {
+        AFTER_LINK_CMD_LINE = upx-ucl --best -f $$DESTDIR/$$TARGET
+        QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
+    }
 
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }

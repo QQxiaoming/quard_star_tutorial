@@ -33,6 +33,7 @@
 #include <QTime>
 #include <QMenu>
 #include <QFileDialog>
+#include <QSystemTrayIcon>
 
 #include "qfonticon.h"
 
@@ -110,6 +111,7 @@ private:
     void addActionGInfo(QMenu *menu,const DeviceName &title);
     void addActionOFileSystem(QMenu *menu,const DeviceName &title);
     void addActionSetting(QMenu *menu,const DeviceName &title);
+    void createStdMenuAction(QMenu *menu,QAction **r_pLight = nullptr, QAction **r_pDark = nullptr, QAction **r_pMinimize = nullptr);
     Ui::BoardWindow *ui;
     bool isMousePressed = false;
     bool powerOn = false;
@@ -121,6 +123,7 @@ private:
     NetSelectBox *netSelect;
     BootSelectBox *bootSelect;
     FSViewWindow *fsView;
+    QSystemTrayIcon *trayIcon;
     QMenu *contextMenu = nullptr;
     QString envPath;
     QString skinColor;

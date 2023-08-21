@@ -104,6 +104,31 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     fsView = new FSViewWindow(nullptr);
 
     setFixedSize(this->size());
+
+    if (QSystemTrayIcon::isSystemTrayAvailable()) {
+        trayIcon = new QSystemTrayIcon(this);
+        trayIcon->setIcon(QIcon(":/boardview/icons/about.png"));
+        trayIcon->setToolTip(QApplication::applicationName());
+        QMenu *trayIconMenu = new QMenu(this);
+        QAction *pLight = nullptr, *pDark = nullptr, *pMinimize = nullptr;
+        createStdMenuAction(trayIconMenu,&pLight,&pDark,&pMinimize);
+        connect(trayIconMenu, &QMenu::aboutToShow, this,
+            [&,pLight,pDark,pMinimize](void)
+            {
+                pLight->setChecked(!isDarkTheme);
+                pDark->setChecked(isDarkTheme);
+                if(this->isHidden()) {
+                    pMinimize->setText(tr("Show"));
+                } else {
+                    pMinimize->setText(tr("Hide"));
+                }
+            }
+        );
+        trayIcon->setContextMenu(trayIconMenu);
+        trayIcon->show();
+    } else {
+        qDebug() << "Ccouldn't detect any system tray on this system.";
+    }
 }
 
 BoardWindow::~BoardWindow()
@@ -111,6 +136,7 @@ BoardWindow::~BoardWindow()
     qemuProcess->kill();
     qemuProcess->waitForFinished(-1);
     delete qemuProcess;
+    delete trayIcon;
     delete fsView;
     delete netSelect;
     delete bootSelect;
@@ -472,6 +498,123 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
         );
 
 }
+void BoardWindow::createStdMenuAction(QMenu *menu,QAction **r_pLight, QAction **r_pDark, QAction **r_pMinimize)
+{
+    QMenu *pTheme = new QMenu(tr("Theme"), menu); 
+    QIcon icoTheme(":/boardview/icons/theme.png");
+    pTheme->setIcon(icoTheme);
+    menu->addMenu(pTheme);
+
+    QAction *pLight = new QAction(tr("Light"), pTheme);
+    if(r_pLight != nullptr) *r_pLight = pLight;
+    QAction *pDark = new QAction(tr("Dark"), pTheme);
+    if(r_pDark != nullptr) *r_pDark = pDark;
+
+    pLight->setCheckable(true);
+    pLight->setChecked(!isDarkTheme); 
+    pTheme->addAction(pLight);
+    connect(pLight,&QAction::triggered,this,
+        [&,pLight,pDark](void)
+        {
+            isDarkTheme = false;
+            pLight->setChecked(!isDarkTheme);
+            pDark->setChecked(isDarkTheme);
+            QFile ftheme(":/qdarkstyle/light/lightstyle.qss");
+            if (!ftheme.exists())   {
+                qDebug() << "Unable to set stylesheet, file not found!";
+            } else {
+                ftheme.open(QFile::ReadOnly | QFile::Text);
+                QTextStream ts(&ftheme);
+                qApp->setStyleSheet(ts.readAll());
+            }
+            QFontIcon::instance()->setColor(Qt::black);
+        }
+    );
+
+    pDark->setCheckable(true);
+    pDark->setChecked(isDarkTheme); 
+    pTheme->addAction(pDark);
+    connect(pDark,&QAction::triggered,this,
+        [&,pLight,pDark](void)
+        {
+            isDarkTheme = true;
+            pLight->setChecked(!isDarkTheme);
+            pDark->setChecked(isDarkTheme);
+            QFile ftheme(":/qdarkstyle/dark/darkstyle.qss");
+            if (!ftheme.exists())   {
+                qDebug() << "Unable to set stylesheet, file not found!";
+            } else {
+                ftheme.open(QFile::ReadOnly | QFile::Text);
+                QTextStream ts(&ftheme);
+                qApp->setStyleSheet(ts.readAll());
+            }
+            QFontIcon::instance()->setColor(Qt::white);
+        }
+    );
+
+    QAction *pMinimize = new QAction(tr("Hide"), menu);
+    if(r_pMinimize != nullptr) *r_pMinimize = pMinimize;
+    QIcon icoMinimize(":/boardview/icons/minimize.png");
+    pMinimize->setIcon(icoMinimize);
+    menu->addAction(pMinimize);
+    connect(pMinimize,&QAction::triggered,this,
+        [&,pMinimize](void)
+        {
+            if(this->isHidden()) {
+                pMinimize->setText(tr("Hide"));
+                this->show();
+                this->activateWindow();
+            } else {
+                pMinimize->setText(tr("Show"));
+                this->hide();
+                trayIcon->showMessage(QApplication::applicationName(),tr("Hide to tray!"));
+            }
+        }
+    );
+
+    QAction *pHelp = new QAction(tr("Help"), menu);
+    QIcon icoHelp(":/boardview/icons/help.png");
+    pHelp->setIcon(icoHelp);
+    menu->addAction(pHelp);
+    connect(pHelp,&QAction::triggered,this,
+        [&,menu](void)
+        {
+            QMessageBox::about(menu, tr("Help"), 
+                tr("1. Move the mouse over the component to explore.") + "\n" +
+                tr("2. Right-click the component to view the settings.") + "\n" +
+                tr("3. Double-click the component to enter the interface.")
+            );
+        }
+    );
+
+    QAction *pAbout = new QAction(tr("About"), menu);
+    QIcon icoAbout(":/boardview/icons/about.png");
+    pAbout->setIcon(icoAbout);
+    menu->addAction(pAbout);
+    connect(pAbout,&QAction::triggered,this,
+        [&,menu](void)
+        {
+            BoardWindow::appAbout(menu);
+        }
+    );
+
+    QAction *pAboutQt = new QAction(tr("About")+" Qt", menu);
+    QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
+    pAboutQt->setIcon(icoAboutQt);
+    menu->addAction(pAboutQt);
+    connect(pAboutQt,&QAction::triggered,this,
+        [&,menu](void)
+        {
+            QMessageBox::aboutQt(menu);
+        }
+    );
+
+    QAction *pExit = new QAction(tr("Exit"), menu);
+    QIcon icoExit(":/boardview/icons/exit.png");
+    pExit->setIcon(icoExit);
+    menu->addAction(pExit);
+    connect(pExit, SIGNAL(triggered()), this, SLOT(app_quit()));
+}
 
 void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
 {
@@ -523,93 +666,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             break;
         case UNKNOW: 
         {
-            QMenu *pTheme = new QMenu(tr("Theme"), contextMenu); 
-            QIcon icoTheme(":/boardview/icons/theme.png");
-            pTheme->setIcon(icoTheme);
-            contextMenu->addMenu(pTheme);
-            QAction *pLight= new QAction(tr("Light"), contextMenu);
-            pLight->setCheckable(true);
-            if(!isDarkTheme) pLight->setChecked(true); 
-            pTheme->addAction(pLight);
-            connect(pLight,&QAction::triggered,this,
-                [&](void)
-                {
-                    QFile ftheme(":/qdarkstyle/light/lightstyle.qss");
-                    if (!ftheme.exists())   {
-                        qDebug() << "Unable to set stylesheet, file not found!";
-                    } else {
-                        ftheme.open(QFile::ReadOnly | QFile::Text);
-                        QTextStream ts(&ftheme);
-                        qApp->setStyleSheet(ts.readAll());
-                    }
-
-                    QFontIcon::instance()->setColor(Qt::black);
-                    isDarkTheme = false;
-                }
-            );
-            QAction *pDark= new QAction(tr("Dark"), contextMenu);
-            pDark->setCheckable(true);
-            if(isDarkTheme) pDark->setChecked(true); 
-            pTheme->addAction(pDark);
-            connect(pDark,&QAction::triggered,this,
-                [&](void)
-                {
-                    QFile ftheme(":/qdarkstyle/dark/darkstyle.qss");
-                    if (!ftheme.exists())   {
-                        qDebug() << "Unable to set stylesheet, file not found!";
-                    } else {
-                        ftheme.open(QFile::ReadOnly | QFile::Text);
-                        QTextStream ts(&ftheme);
-                        qApp->setStyleSheet(ts.readAll());
-                    }
-
-                    QFontIcon::instance()->setColor(Qt::white);
-                    isDarkTheme = true;
-                }
-            );
-
-            QAction *pHelp= new QAction(tr("Help"), contextMenu);
-            QIcon icoHelp(":/boardview/icons/help.png");
-            pHelp->setIcon(icoHelp);
-            contextMenu->addAction(pHelp);
-            connect(pHelp,&QAction::triggered,this,
-                [&](void)
-                {
-                    QMessageBox::about(this, tr("Help"), 
-                        tr("1. Move the mouse over the component to explore.") + "\n" +
-                        tr("2. Right-click the component to view the settings.") + "\n" +
-                        tr("3. Double-click the component to enter the interface.")
-                    );
-                }
-            );
-
-            QAction *pAbout= new QAction(tr("About"), contextMenu);
-            QIcon icoAbout(":/boardview/icons/about.png");
-            pAbout->setIcon(icoAbout);
-            contextMenu->addAction(pAbout);
-            connect(pAbout,&QAction::triggered,this,
-                [&](void)
-                {
-                    BoardWindow::appAbout(this);
-                }
-            );
-
-            QAction *pAboutQt= new QAction(tr("About")+" Qt", contextMenu);
-            QIcon icoAboutQt(":/boardview/icons/aboutqt.png");
-            pAboutQt->setIcon(icoAboutQt);
-            contextMenu->addAction(pAboutQt);
-            connect(pAboutQt,&QAction::triggered,this,
-                [&](void)
-                {
-                    QMessageBox::aboutQt(this);
-                }
-            );
-
-            QAction *pExit = new QAction(tr("Exit"), contextMenu);
-            QIcon icoExit(":/boardview/icons/exit.png");
-            pExit->setIcon(icoExit);
-            contextMenu->addAction(pExit);
-            connect(pExit, SIGNAL(triggered()), this, SLOT(app_quit()));
+            createStdMenuAction(contextMenu);
             break;
         }
         default:
