@@ -729,7 +729,8 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
             addActionGInfo(contextMenu,spaceDoMain);
             addActionSetting(contextMenu,spaceDoMain);
             break;
-        case UNKNOW: 
+        case LOGO:
+        case UNKNOW:
             createStdMenuAction(contextMenu);
             break;
         default:
