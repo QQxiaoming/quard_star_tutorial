@@ -53,11 +53,9 @@ public:
 
     //Creation of widget
     QTermWidget(int startnow, // 1 = start shell programm immediatelly
-                QLocale::Language force_translator = QLocale::AnyLanguage,
                 QWidget * parent = nullptr);
     // A dummy constructor for Qt Designer. startnow is 1 by default
-    QTermWidget(QLocale::Language force_translator = QLocale::AnyLanguage,
-                QWidget *parent = nullptr);
+    QTermWidget(QWidget *parent = nullptr);
 
     ~QTermWidget() override;
 
@@ -259,6 +257,8 @@ public:
 
     void setConfirmMultilinePaste(bool confirmMultilinePaste);
     void setTrimPastedTrailingNewlines(bool trimPastedTrailingNewlines);
+    static void setLangeuage(QLocale::Language lang);
+
 signals:
     void finished();
     void copyAvailable(bool);
@@ -348,8 +348,6 @@ private:
     TermWidgetImpl * m_impl;
     SearchBar* m_searchBar;
     QVBoxLayout *m_layout;
-    QTranslator *m_translator;
-    QLocale::Language m_force_translator;
 };
 
 

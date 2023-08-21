@@ -30,7 +30,7 @@
 #include "qfonticon.h"
 #include "ui_telnetwindow.h"
 
-TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language force_translator, QWidget *parent) :
+TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     QMainWindow(nullptr),severAddr(addr),severPort(port),
     ui(new Ui::TelnetWindow)
 {
@@ -39,7 +39,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QLocale::Language forc
     this->setStyleSheet("QWidget#telnetWindowWidget {background-color: transparent;}");
 
     telnet = new QTelnet(this);
-    termWidget = new QTermWidget(0,force_translator,this);
+    termWidget = new QTermWidget(0,this);
     sendASCIIBox = new ASCIIBox(ASCIIBox::SEND,this);
     recvASCIIBox = new ASCIIBox(ASCIIBox::RECV,this);
 

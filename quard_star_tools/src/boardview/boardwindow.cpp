@@ -90,13 +90,13 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
     qemuProcess = new QProcess(this);
-    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,lang,this);
+    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
     uartWindow[0]->setWindowTitle("UART0");
-    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,lang,this);
+    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
     uartWindow[1]->setWindowTitle("UART1");
-    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,lang,this);
+    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,this);
     uartWindow[2]->setWindowTitle("UART2");
-    jtagWindow = new TelnetWindow("127.0.0.1",3430,lang,this);
+    jtagWindow = new TelnetWindow("127.0.0.1",3430,this);
     jtagWindow->setWindowTitle("JTAG(Monitor)");
     lcdWindow = new VncWindow("127.0.0.1",5901,this);
     lcdWindow->setWindowTitle("LCD");
@@ -960,4 +960,5 @@ void BoardWindow::setAppLangeuage(QLocale::Language lang)
             qApp->installTranslator(appTranslator);
         break;
     }
+    QTermWidget::setLangeuage(lang);
 }

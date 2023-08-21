@@ -39,7 +39,6 @@ class TelnetWindow : public QMainWindow
 
 public:
     explicit TelnetWindow(const QString &addr, int port,
-                          QLocale::Language force_translator = QLocale::AnyLanguage,
                           QWidget *parent = nullptr);
     ~TelnetWindow();
     void reConnect(void);

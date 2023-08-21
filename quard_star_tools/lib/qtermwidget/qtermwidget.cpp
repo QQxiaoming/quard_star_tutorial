@@ -116,14 +116,14 @@ TerminalDisplay *TermWidgetImpl::createTerminalDisplay(Session *session, QWidget
 }
 
 
-QTermWidget::QTermWidget(int startnow, QLocale::Language force_translator, QWidget *parent)
-    : QWidget(parent), m_force_translator(force_translator)
+QTermWidget::QTermWidget(int startnow, QWidget *parent)
+    : QWidget(parent)
 {
     init(startnow);
 }
 
-QTermWidget::QTermWidget(QLocale::Language force_translator, QWidget *parent)
-    : QWidget(parent), m_force_translator(force_translator)
+QTermWidget::QTermWidget(QWidget *parent)
+    : QWidget(parent)
 {
     init(1);
 }
@@ -232,6 +232,29 @@ void QTermWidget::startTerminalTeletype()
              this, SIGNAL(dupDisplayOutput(const char *,int)) );
 }
 
+void QTermWidget::setLangeuage(QLocale::Language lang)
+{
+    static QTranslator *translator = nullptr;
+
+    if(translator == nullptr) {
+        translator = new QTranslator(qApp);
+    } else {
+        qApp->removeTranslator(translator);
+        delete translator;
+        translator = new QTranslator(qApp);
+    }
+
+    QStringList dirs;
+    dirs.append(QFile::decodeName(":/lib/qtermwidget/translations"));
+
+    for (const QString& dir : qAsConst(dirs)) {
+        if (translator->load(QLocale(lang), QLatin1String("qtermwidget"), QLatin1String(QLatin1String("_")), dir)) {
+            qApp->installTranslator(translator);
+            break;
+        }
+    }
+}
+
 void QTermWidget::init(int startnow)
 {
     m_layout = new QVBoxLayout();
@@ -241,24 +264,6 @@ void QTermWidget::init(int startnow)
     m_layout->setContentsMargins(0,0,0,0);
 #endif
     setLayout(m_layout);
-
-    // translations
-    QStringList dirs;
-    dirs.append(QFile::decodeName(":/lib/qtermwidget/translations"));
-
-    m_translator = new QTranslator(this);
-    if(m_force_translator == QLocale::AnyLanguage) {
-        m_force_translator = QLocale::system().language();
-    }
-
-    for (const QString& dir : qAsConst(dirs)) {
-        //qDebug() << "Trying to load translation file from dir" << dir;
-        if (m_translator->load(QLocale(m_force_translator), QLatin1String("qtermwidget"), QLatin1String(QLatin1String("_")), dir)) {
-            qApp->installTranslator(m_translator);
-            //qDebug() << "Translations found in" << dir;
-            break;
-        }
-    }
 
     m_impl = new TermWidgetImpl(this);
     m_layout->addWidget(m_impl->m_terminalDisplay);
