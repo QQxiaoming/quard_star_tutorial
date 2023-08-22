@@ -177,9 +177,13 @@ int main(int argc, char *argv[])
     if(app_lang == "en_US") lang = QLocale::English;
     BoardWindow::setAppLangeuage(lang);
 
+#if 0 // Now we always use the dark theme, Because the dark theme is more beautiful
     int text_hsv_value = QPalette().color(QPalette::WindowText).value();
     int bg_hsv_value = QPalette().color(QPalette::Window).value();
     bool isDarkTheme = text_hsv_value > bg_hsv_value?true:false;
+#else 
+    bool isDarkTheme = true;
+#endif
     if(dark_theme == "true") isDarkTheme = true;
     if(dark_theme == "false") isDarkTheme = false;
     QString themeName;

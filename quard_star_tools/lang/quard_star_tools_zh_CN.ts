@@ -44,33 +44,33 @@
         <translation>主窗口</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="655"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="666"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="899"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="682"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="693"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="922"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="261"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="424"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="439"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="452"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="292"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="455"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="470"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="483"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="261"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="292"/>
         <source>power up error!</source>
         <translation>上电出错！</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="344"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="375"/>
         <source>LCDC:
  VGA port 640x480.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="361"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="392"/>
         <source>boot:
  000-pflash.
  001-spi_nor_flash.
@@ -79,59 +79,59 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="549"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="580"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="554"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="585"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="555"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="586"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="556"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="587"/>
         <source>Japanese</source>
         <translation>日本語</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="640"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="647"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="671"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="939"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="648"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="940"/>
         <source>1. Move the mouse over the component to explore.</source>
         <translation>1.将鼠标移动至元件上进行探索.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="649"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="941"/>
         <source>2. Right-click the component to view the settings.</source>
         <translation>2.右键元件查看设置.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="650"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="942"/>
         <source>3. Double-click the component to enter the interface.</source>
         <translation>3.双击元件进入界面.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="900"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="923"/>
         <source>&lt;p&gt;Version&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;Commit&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;Author&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;Website&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</source>
         <translation>&lt;p&gt;版本&lt;/p&gt;&lt;p&gt;&amp;nbsp;%1&lt;/p&gt;&lt;p&gt;提交&lt;/p&gt;&lt;p&gt;&amp;nbsp;%2&lt;/p&gt;&lt;p&gt;作者&lt;/p&gt;&lt;p&gt;&amp;nbsp;qiaoqm@aliyun.com&lt;/p&gt;&lt;p&gt;主页&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://github.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://github.com/QQxiaoming&lt;/p&gt;&lt;p&gt;&amp;nbsp;&lt;a href=&apos;https://gitee.com/QQxiaoming/quard_star_tutorial&apos;&gt;https://gitee.com/QQxiaoming&lt;/a&gt;&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="309"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="373"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="340"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="404"/>
         <source>Get Info</source>
         <translation>详细信息</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="323"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="354"/>
         <source>Quard Star SOC:
  8 core riscv64 architecture. 
 Internal packaging:
@@ -141,252 +141,252 @@ Support:
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="326"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="357"/>
         <source>DDR:
  1G.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="329"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="360"/>
         <source>Nor Flash:
  is25wp256 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="332"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="363"/>
         <source>NAND Flash:
  onenand 256M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="335"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="366"/>
         <source>SD card:
  SDSC 32M.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="338"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="369"/>
         <source>USB Flash:
  32M, Speed 5000 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="341"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="372"/>
         <source>USB Serial:
  FT232RL, Speed 12 Mb/s.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="349"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="380"/>
         <source>UART:
  115200-8-n-1.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="352"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="383"/>
         <source>QEMU monitor:
  monitor terminal.</source>
         <translation>QEMU monitor:
  monitor终端.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="355"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="386"/>
         <source>ETH:
  IEEE 802.3 100M full duplex.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="358"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="389"/>
         <source>IIS:
  wm8750.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="364"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="395"/>
         <source>power:
  DC 12V.</source>
         <translation>电源:
  DC 12V.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="367"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="398"/>
         <source>switch:
  power switch.</source>
         <translation>开关:
  电源开关.</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="380"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="428"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="443"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="461"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="411"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="459"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="474"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="492"/>
         <source>Open FileSystem</source>
         <translation>打开文件系统</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="424"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="439"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="452"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="455"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="470"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="483"/>
         <source>Load file system failed!</source>
         <translation>加载文件系统失败！</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="428"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="443"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="461"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="459"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="474"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="492"/>
         <source>No FileSystem, maybe is a binary image file.</source>
         <translation>没有文件系统，也许是一个二进制图像文件。</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="470"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="501"/>
         <source>Setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="499"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="530"/>
         <source>Theme</source>
         <translation>主题</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="504"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="535"/>
         <source>Light</source>
         <translation>明亮</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="505"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="536"/>
         <source>Dark</source>
         <translation>暗黑</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="612"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="616"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="625"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="643"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="647"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="656"/>
         <source>Hide</source>
         <translation>隐藏</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="614"/>
-        <location filename="../src/boardview/boardwindow.cpp" line="629"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="645"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="660"/>
         <source>Show</source>
         <translation>显示</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="634"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="665"/>
         <source>Hide to tray!</source>
         <translation>隐藏到托盘！</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="677"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="704"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="847"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="875"/>
         <source>Select SD IMG</source>
         <translation>选择SD卡映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="850"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="878"/>
         <source>Select NorFlash IMG</source>
         <translation>选择NOR Flash映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="853"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="881"/>
         <source>Select NandFlash IMG</source>
         <translation>选择NandFlash映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="856"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="884"/>
         <source>Select PFlash IMG</source>
         <translation>选择PFlash映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.cpp" line="859"/>
+        <location filename="../src/boardview/boardwindow.cpp" line="887"/>
         <source>Select USBFlash IMG</source>
         <translation>选择U盘映像</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="154"/>
+        <location filename="../src/boardview/boardwindow.h" line="156"/>
         <source>vga</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="155"/>
+        <location filename="../src/boardview/boardwindow.h" line="157"/>
         <source>uart2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="156"/>
+        <location filename="../src/boardview/boardwindow.h" line="158"/>
         <source>uart1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="157"/>
+        <location filename="../src/boardview/boardwindow.h" line="159"/>
         <source>uart0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="158"/>
+        <location filename="../src/boardview/boardwindow.h" line="160"/>
         <source>power</source>
         <translation>电源</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="159"/>
+        <location filename="../src/boardview/boardwindow.h" line="161"/>
         <source>soc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="160"/>
+        <location filename="../src/boardview/boardwindow.h" line="162"/>
         <source>ddr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="161"/>
+        <location filename="../src/boardview/boardwindow.h" line="163"/>
         <source>eth</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="162"/>
+        <location filename="../src/boardview/boardwindow.h" line="164"/>
         <source>usb0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="163"/>
+        <location filename="../src/boardview/boardwindow.h" line="165"/>
         <source>usb1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="164"/>
+        <location filename="../src/boardview/boardwindow.h" line="166"/>
         <source>nand</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="165"/>
+        <location filename="../src/boardview/boardwindow.h" line="167"/>
         <source>nor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="166"/>
+        <location filename="../src/boardview/boardwindow.h" line="168"/>
         <source>sd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="167"/>
+        <location filename="../src/boardview/boardwindow.h" line="169"/>
         <source>switch</source>
         <translation>开关</translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="168"/>
+        <location filename="../src/boardview/boardwindow.h" line="170"/>
         <source>jtag</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="169"/>
+        <location filename="../src/boardview/boardwindow.h" line="171"/>
         <source>audio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/boardview/boardwindow.h" line="170"/>
+        <location filename="../src/boardview/boardwindow.h" line="172"/>
         <source>boot</source>
         <translation>启动选项</translation>
     </message>
@@ -756,249 +756,249 @@ Support:
         <translation>Telnet窗口</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="210"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="216"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="153"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="159"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="161"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="512"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="167"/>
         <location filename="../src/telnetview/telnetwindow.cpp" line="518"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="524"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="155"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="161"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="159"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="165"/>
         <source>Options</source>
         <translation>选项</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="166"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="172"/>
         <source>Colors</source>
         <translation>配色</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="189"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="195"/>
         <source>KeyBindings</source>
         <translation>按键绑定</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="487"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="493"/>
         <source>Misc</source>
         <translation>杂项</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="489"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="495"/>
         <source>Log</source>
         <translation>日志</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="157"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="163"/>
         <source>Transfer</source>
         <translation>传输</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="151"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="157"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="326"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="332"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="336"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="342"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="346"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="352"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="526"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="532"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="356"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="362"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="231"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="240"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="262"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="237"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="246"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="268"/>
         <source>Save log</source>
         <translation>保存日志</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="366"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="372"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="376"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="382"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="386"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="392"/>
         <source>Reset Zoom</source>
         <translation>重置缩放</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="396"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="402"/>
         <source>Send ASCII...</source>
         <translation>发送ASCII...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="405"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="411"/>
         <source>Receive ASCII...</source>
         <translation>接收ASCII...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="424"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="430"/>
         <source>Send Binary...</source>
         <translation>发送Binary...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="451"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="457"/>
         <source>Send Xmodem...</source>
         <translation>发送Xmodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="460"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="466"/>
         <source>Receive Xmodem...</source>
         <translation>接收Xmodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="469"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="475"/>
         <source>Send Ymodem...</source>
         <translation>发送Ymodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="478"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="484"/>
         <source>Receive Ymodem...</source>
         <translation>接收Ymodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="278"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="284"/>
         <source>Save Rawlog</source>
         <translation>保存原始日志</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="491"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="497"/>
         <source>Add timestamp on each line...</source>
         <translation>在每行添加时间戳...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="220"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="226"/>
         <source>Save screen</source>
         <translation>保存终端记录</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="501"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="507"/>
         <source>Fflush file...</source>
         <translation>刷新文件...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="226"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="257"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="232"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="263"/>
         <source>Save log...</source>
         <translation>保存log...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="227"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="258"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="233"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="264"/>
         <source>log files (*.log)</source>
         <translation>日志文件 (*.log)</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="231"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="262"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="300"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="237"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="268"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="306"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation>无法写入文件%1:
 %2.</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="295"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="301"/>
         <source>Save Raw log...</source>
         <translation>保存 Raw log...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="296"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="430"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="302"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="436"/>
         <source>binary files (*.bin)</source>
         <translation>二进制文件 (*.bin)</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="300"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="306"/>
         <source>Save Raw log</source>
         <translation>保存 Raw log</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="316"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="322"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="429"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="435"/>
         <source>Open Binary...</source>
         <translation>打开二进制...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="445"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="451"/>
         <source>Open binary file</source>
         <translation>打开二进制文件</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="445"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="451"/>
         <source>Cannot open file %1.</source>
         <translation>无法打开文件 %1。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="456"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="465"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="474"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="483"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="462"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="471"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="480"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="489"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="456"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="465"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="474"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="483"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="462"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="471"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="480"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="489"/>
         <source>This feature is not ready yet, so stay tuned!</source>
         <translation>此功能尚未准备就绪，敬请期待！</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="519"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="525"/>
         <source>1. The central window is the terminal operation window.</source>
         <translation>1. 中央窗口为终端操作窗口。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="520"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="526"/>
         <source>2. The menu bar provides portable tools and terminal configuration.</source>
         <translation>2. 菜单栏提供便携式工具和终端配置。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="521"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="527"/>
         <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>3. 底部的刷新按钮用于刷新重新连接，用于模拟重新启动时进行连接。</translation>
     </message>
@@ -1067,33 +1067,33 @@ Support:
         <translation>Vnc窗口</translation>
     </message>
     <message>
-        <location filename="../src/vncview/vncwindow.cpp" line="100"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="106"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../src/vncview/vncwindow.cpp" line="110"/>
         <location filename="../src/vncview/vncwindow.cpp" line="116"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="122"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../src/vncview/vncwindow.cpp" line="123"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="129"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../src/vncview/vncwindow.cpp" line="133"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="139"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/vncview/vncwindow.cpp" line="117"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="123"/>
         <source>1. The central window is the LCD emulation output window.</source>
         <translation>1. 中央窗口是LCD仿真输出窗口。</translation>
     </message>
     <message>
-        <location filename="../src/vncview/vncwindow.cpp" line="118"/>
+        <location filename="../src/vncview/vncwindow.cpp" line="124"/>
         <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>2. 底部的刷新按钮用于刷新重新连接，用于模拟重新启动时进行连接。</translation>
     </message>

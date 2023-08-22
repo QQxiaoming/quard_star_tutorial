@@ -71,6 +71,7 @@ public:
     bool& getUpdateCfg(void);
     int sendQemuCmd(const QString &cmd);
     static void appAbout(QWidget *parent = nullptr);
+    static void appHelp(QWidget *parent = nullptr);
     static void setAppLangeuage(QLocale::Language lang);
 
 protected:
@@ -107,6 +108,7 @@ private:
 
         UNKNOW = -1,
     };
+    bool doPowerSwitch(void);
     QString getOpenFileName(const QString &caption = QString(),
                             const QString &fileName = QString(),
                             const QString &filter = QString());

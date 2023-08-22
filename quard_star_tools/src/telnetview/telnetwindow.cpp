@@ -115,6 +115,12 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     orig_font = this->termWidget->getTerminalFont();
 
     setFixedSize(this->size());
+
+    QShortcut *reConnectShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_F5), this);
+    connect(reConnectShortCut, &QShortcut::activated, this, [&](void) { this->reConnect(); });
+    QShortcut *hideShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q), this);
+    connect(hideShortCut, &QShortcut::activated, this, [&](void) { this->hide(); });
+
     Q_UNUSED(parent);
 }
 

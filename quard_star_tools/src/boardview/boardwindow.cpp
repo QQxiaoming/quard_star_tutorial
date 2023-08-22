@@ -27,6 +27,7 @@
 #include <QFileDialog>
 #include <QPoint>
 #include <QToolTip>
+#include <QShortcut>
 
 #include "qfonticon.h"
 #include "qfsviewer.h"
@@ -122,8 +123,25 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         trayIcon->setContextMenu(trayIconMenu);
         trayIcon->show();
     } else {
-        qDebug() << "Ccouldn't detect any system tray on this system.";
+        qDebug() << "Couldn't detect any system tray on this system.";
     }
+
+    QShortcut *uartWindowShowShortCut0 = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_1), this);
+    connect(uartWindowShowShortCut0, &QShortcut::activated, this, [&](void) { uartWindow[0]->show(); });
+    QShortcut *uartWindowShowShortCut1 = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_2), this);
+    connect(uartWindowShowShortCut1, &QShortcut::activated, this, [&](void) { uartWindow[1]->show(); });
+    QShortcut *uartWindowShowShortCut2 = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_3), this);
+    connect(uartWindowShowShortCut2, &QShortcut::activated, this, [&](void) { uartWindow[2]->show(); });
+    QShortcut *jtagWindowShowShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_4), this);
+    connect(jtagWindowShowShortCut, &QShortcut::activated, this, [&](void) { jtagWindow->show(); });
+    QShortcut *lcdWindowShowShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_5), this);
+    connect(lcdWindowShowShortCut, &QShortcut::activated, this, [&](void) { lcdWindow->show(); });
+    QShortcut *runShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_R), this);
+    connect(runShortCut, &QShortcut::activated, this, [&](void) { doPowerSwitch(); });
+    QShortcut *helpShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_H), this);
+    connect(helpShortCut, &QShortcut::activated, this, [&](void) { BoardWindow::appHelp(this); });
+    QShortcut *hideShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q), this);
+    connect(hideShortCut, &QShortcut::activated, this, [&](void) { this->hide(); });
 }
 
 BoardWindow::~BoardWindow()
@@ -141,6 +159,19 @@ BoardWindow::~BoardWindow()
     delete uartWindow[2];
     delete jtagWindow;
     delete ui;
+}
+
+bool BoardWindow::doPowerSwitch(void)
+{
+    powerOn = !powerOn;
+    this->repaint();
+    if(!powerSwitch(powerOn)){
+        powerOn = !powerOn;
+        this->repaint();
+        return false;
+    }
+
+    return true;
 }
 
 bool BoardWindow::powerSwitch(bool power)
@@ -642,13 +673,9 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pHelp->setIcon(icoHelp);
     menu->addAction(pHelp);
     connect(pHelp,&QAction::triggered,this,
-        [&,menu](void)
+        [&](void)
         {
-            QMessageBox::about(this, tr("Help"), 
-                tr("1. Move the mouse over the component to explore.") + "\n" +
-                tr("2. Right-click the component to view the settings.") + "\n" +
-                tr("3. Double-click the component to enter the interface.")
-            );
+            BoardWindow::appHelp(this);
         }
     );
 
@@ -657,7 +684,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pAbout->setIcon(icoAbout);
     menu->addAction(pAbout);
     connect(pAbout,&QAction::triggered,this,
-        [&,menu](void)
+        [&](void)
         {
             BoardWindow::appAbout(this);
         }
@@ -668,7 +695,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pAboutQt->setIcon(icoAboutQt);
     menu->addAction(pAboutQt);
     connect(pAboutQt,&QAction::triggered,this,
-        [&,menu](void)
+        [&](void)
         {
             QMessageBox::aboutQt(this);
         }
@@ -860,12 +887,7 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
                         usbFlashImgPath = getOpenFileName(tr("Select USBFlash IMG"), usbFlashImgPath, "IMG files(*.img *.bin)");
                         break;
                     case SWITCH:
-                        powerOn = !powerOn;
-                        this->repaint();
-                        if(!powerSwitch(powerOn)){
-                            powerOn = !powerOn;
-                            this->repaint();
-                        }
+                        doPowerSwitch();
                         break;
                     default:
                         break;
@@ -910,6 +932,15 @@ void BoardWindow::appAbout(QWidget *parent)
                            "<p>&nbsp;<a href='https://gitee.com/QQxiaoming/quard_star_tutorial'>https://gitee.com/QQxiaoming</a></p>"
                            ).arg(VERSION,GIT_TAG)
                        );
+}
+
+void BoardWindow::appHelp(QWidget *parent)
+{
+    QMessageBox::about(parent, tr("Help"), 
+                tr("1. Move the mouse over the component to explore.") + "\n" +
+                tr("2. Right-click the component to view the settings.") + "\n" +
+                tr("3. Double-click the component to enter the interface.")
+            ); 
 }
 
 void BoardWindow::setAppLangeuage(QLocale::Language lang)

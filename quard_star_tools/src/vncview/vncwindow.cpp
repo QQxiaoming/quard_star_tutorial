@@ -65,6 +65,12 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
     
     setFixedSize(this->size());
+
+    QShortcut *reConnectShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_F5), this);
+    connect(reConnectShortCut, &QShortcut::activated, this, [&](void) { this->reConnect(); });
+    QShortcut *hideShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q), this);
+    connect(hideShortCut, &QShortcut::activated, this, [&](void) { this->hide(); });
+
     Q_UNUSED(parent);
 }
 
