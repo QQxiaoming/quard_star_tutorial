@@ -37,9 +37,11 @@
 BoardWindow::BoardWindow(const QString &path,const QString &color,
                          const bool &isSysDarkTheme,
                          QLocale::Language lang,
+                         QString ip_addr,
                          QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BoardWindow),
+    ipAddr(ip_addr),
     envPath(path),
     skinColor(color),
     isDarkTheme(isSysDarkTheme),
@@ -91,17 +93,38 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
-    qemuProcess = new QProcess(this);
+    if(ipAddr.isEmpty()) {
+        ipAddr = QHostAddress(QHostAddress::LocalHost).toString();
+        portOffset = 0;
+        qemuProcess = new QProcess(this);
+    } else 
 #endif
-    uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
+    {
+        portOffset = 10000;
+        bool ok = false;
+        ipAddr = QInputDialog::getText(this, tr("Input IP Address"),
+                    tr("IP Address:"), QLineEdit::Normal, ipAddr, &ok);
+        if (!ok || ipAddr.isEmpty()) {
+            QMessageBox::critical(this, tr("Error"), tr("IP Address is empty!"));
+        } else {
+            QRegExp re("^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$");
+            if(!re.exactMatch(ipAddr)) {
+                QMessageBox::critical(this, tr("Error"), tr("IP Address is invalid!"));
+                ipAddr = QHostAddress(QHostAddress::LocalHost).toString();
+            }
+        }
+        qDebug() << "IP Address:" << ipAddr;
+    }
+
+    uartWindow[0] = new TelnetWindow(ipAddr,portOffset+3441,this);
     uartWindow[0]->setWindowTitle("UART0");
-    uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
+    uartWindow[1] = new TelnetWindow(ipAddr,portOffset+3442,this);
     uartWindow[1]->setWindowTitle("UART1");
-    uartWindow[2] = new TelnetWindow("127.0.0.1",3443,this);
+    uartWindow[2] = new TelnetWindow(ipAddr,portOffset+3443,this);
     uartWindow[2]->setWindowTitle("UART2");
-    jtagWindow = new TelnetWindow("127.0.0.1",3430,this);
+    jtagWindow = new TelnetWindow(ipAddr,portOffset+3430,this);
     jtagWindow->setWindowTitle("JTAG(Monitor)");
-    lcdWindow = new VncWindow("127.0.0.1",5901,this);
+    lcdWindow = new VncWindow(ipAddr,portOffset+5901,this);
     lcdWindow->setWindowTitle("LCD");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
@@ -155,9 +178,11 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 BoardWindow::~BoardWindow()
 {
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
-    qemuProcess->kill();
-    qemuProcess->waitForFinished(-1);
-    delete qemuProcess;
+    if(qemuProcess) {
+        qemuProcess->kill();
+        qemuProcess->waitForFinished(-1);
+        delete qemuProcess;
+    }
 #endif
 #if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
     delete pressTimer;
@@ -292,19 +317,21 @@ bool BoardWindow::powerSwitch(bool power)
     arguments.removeAll(QString(""));
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     if(power) {
-        qemuProcess->kill();
-        qemuProcess->waitForFinished(-1);
-        qemuProcess->start(program, arguments);
-        for (int i=0;i<200;i++) {
-            QThread::msleep(10);
-            qApp->processEvents();
-        }
+        if(qemuProcess) {
+            qemuProcess->kill();
+            qemuProcess->waitForFinished(-1);
+            qemuProcess->start(program, arguments);
+            for (int i=0;i<200;i++) {
+                QThread::msleep(10);
+                qApp->processEvents();
+            }
 
-        if(qemuProcess->state() == QProcess::NotRunning) {
-            int exitcode = qemuProcess->exitCode();
-            if(exitcode != 0) {
-                QMessageBox::critical(this, tr("Error"), tr("power up error!") + "\nexitcode: " +QString::number(exitcode));
-                return false;
+            if(qemuProcess->state() == QProcess::NotRunning) {
+                int exitcode = qemuProcess->exitCode();
+                if(exitcode != 0) {
+                    QMessageBox::critical(this, tr("Error"), tr("power up error!") + "\nexitcode: " +QString::number(exitcode));
+                    return false;
+                }
             }
         }
         uartWindow[0]->reConnect();
@@ -313,8 +340,10 @@ bool BoardWindow::powerSwitch(bool power)
         jtagWindow->reConnect();
         lcdWindow->reConnect();
     } else {
-        qemuProcess->kill();
-        qemuProcess->waitForFinished(-1);
+        if(qemuProcess) {
+            qemuProcess->kill();
+            qemuProcess->waitForFinished(-1);
+        }
     }
 #else
     uartWindow[0]->reConnect();
@@ -329,11 +358,16 @@ bool BoardWindow::powerSwitch(bool power)
 int BoardWindow::sendQemuCmd(const QString &cmd)
 {
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
-    if(qemuProcess->state() == QProcess::Running) {
+    if(qemuProcess) {
+        if(qemuProcess->state() == QProcess::Running) {
+            jtagWindow->sendData(cmd.toUtf8());
+            return 0;
+        }
+        return -1;
+    } else {
         jtagWindow->sendData(cmd.toUtf8());
         return 0;
     }
-    return -1;
 #else
     jtagWindow->sendData(cmd.toUtf8());
     return 0;
@@ -951,9 +985,11 @@ QString BoardWindow::getOpenFileName(const QString &caption, const QString &file
 void BoardWindow::app_quit(void)
 {
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
-    if(qemuProcess->state() == QProcess::Running) {
-        qemuProcess->kill();
-        qemuProcess->waitForFinished(-1);
+    if(qemuProcess) {
+        if(qemuProcess->state() == QProcess::Running) {
+            qemuProcess->kill();
+            qemuProcess->waitForFinished(-1);
+        }
     }
 #endif
     qApp->quit();

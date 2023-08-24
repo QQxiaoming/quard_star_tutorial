@@ -64,6 +64,7 @@ public:
     explicit BoardWindow(const QString &path,const QString &color = "green",
                     const bool &isDarkTheme = false,
                     QLocale::Language force_translator = QLocale::AnyLanguage,
+                    QString ipAddr = "",
                     QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);
@@ -123,7 +124,7 @@ private:
     bool powerOn = false;
     QPoint mStartPos;
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
-    QProcess *qemuProcess;
+    QProcess *qemuProcess = nullptr;
 #endif
     TelnetWindow *uartWindow[3];
     TelnetWindow *jtagWindow;
@@ -137,6 +138,8 @@ private:
     QTimer* pressTimer;
     QPoint pressPos;
 #endif
+    QString ipAddr;
+    uint16_t portOffset;
     QString envPath;
     QString skinColor;
     bool isDarkTheme;

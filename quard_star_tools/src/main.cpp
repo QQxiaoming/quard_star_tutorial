@@ -22,6 +22,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QStyleFactory>
+#include <QRegExp>
 
 #include "qfonticon.h"
 
@@ -87,6 +88,14 @@ private:
             "auto"
             )
         },
+        {"ip_addr", 
+         QCommandLineOption(
+            {"i","ip-addr"}, 
+            "quard star board ip address",
+            "ip-addr",
+            "localhost"
+            )
+        }
     };
 
 public:
@@ -169,6 +178,7 @@ int main(int argc, char *argv[])
     QString skin_color = AppComLineParser->getOpt("skin_color");
     QString dark_theme = AppComLineParser->getOpt("dark_theme");
     QString app_lang = AppComLineParser->getOpt("language");
+    QString ip_addr = AppComLineParser->getOpt("ip_addr");
 
     QLocale locale;
     QLocale::Language lang = locale.language();
@@ -205,7 +215,13 @@ int main(int argc, char *argv[])
     QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
-    BoardWindow window(env_path,skin_color,isDarkTheme,lang);
+    QRegExp re("^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$");
+    if(ip_addr == "localhost") {
+        ip_addr = "";
+    } else if(!re.exactMatch(ip_addr)) {
+        ip_addr = "";
+    }
+    BoardWindow window(env_path,skin_color,isDarkTheme,lang,ip_addr);
     window.show();
 
     return application.exec();
