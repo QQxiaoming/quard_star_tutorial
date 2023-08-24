@@ -37,7 +37,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     this->setAttribute(Qt::WA_StyledBackground, true);
     this->setStyleSheet("QWidget#vncWindowWidget {background-color: transparent;}");
 
-#if defined(Q_OS_MACOS)
+#if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
     this->setWindowFlags(Qt::CustomizeWindowHint | 
                             Qt::WindowTitleHint | Qt::FramelessWindowHint);
 #else
@@ -66,6 +66,12 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     
     setFixedSize(this->size());
 
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    pressTimer = new QTimer(this);
+    pressTimer->setInterval(500);
+    pressTimer->setSingleShot(true);
+#endif
+
     QShortcut *reConnectShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_F5), this);
     connect(reConnectShortCut, &QShortcut::activated, this, [&](void) { this->reConnect(); });
     QShortcut *hideShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q), this);
@@ -76,6 +82,9 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 
 VncWindow::~VncWindow()
 {
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    delete pressTimer;
+#endif
     delete vncView;
     delete ui;
 }
@@ -167,6 +176,10 @@ void VncWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+        pressTimer->start();
+        pressPos = QCursor::pos();
+#endif
     }
     event->accept();
 }
@@ -184,6 +197,15 @@ void VncWindow::mouseMoveEvent(QMouseEvent *event)
 void VncWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if( event->button() == Qt::LeftButton) {
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+        if(isMousePressed && pressTimer->remainingTime() <= 0) {
+            if(QCursor::pos() == pressPos) {
+                QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());
+                contextMenuEvent(&e);
+            }
+        }
+        pressTimer->stop();
+#endif
         isMousePressed = false;
     }
     event->accept();

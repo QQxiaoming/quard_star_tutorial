@@ -59,7 +59,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     ui->setupUi(this);
     this->setAttribute(Qt::WA_StyledBackground, true);
     this->setStyleSheet("QWidget#boardWindowWidget {background-color: transparent;}");
-#if defined(Q_OS_MACOS)
+#if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
     this->setWindowFlags(Qt::CustomizeWindowHint |
                             Qt::WindowTitleHint | Qt::FramelessWindowHint);
 #else
@@ -90,7 +90,9 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     QRect size = this->geometry();
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     qemuProcess = new QProcess(this);
+#endif
     uartWindow[0] = new TelnetWindow("127.0.0.1",3441,this);
     uartWindow[0]->setWindowTitle("UART0");
     uartWindow[1] = new TelnetWindow("127.0.0.1",3442,this);
@@ -126,6 +128,12 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         qDebug() << "Couldn't detect any system tray on this system.";
     }
 
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    pressTimer = new QTimer(this);
+    pressTimer->setInterval(500);
+    pressTimer->setSingleShot(true);
+#endif
+
     QShortcut *uartWindowShowShortCut0 = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_1), this);
     connect(uartWindowShowShortCut0, &QShortcut::activated, this, [&](void) { uartWindow[0]->show(); });
     QShortcut *uartWindowShowShortCut1 = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_2), this);
@@ -146,9 +154,14 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 
 BoardWindow::~BoardWindow()
 {
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     qemuProcess->kill();
     qemuProcess->waitForFinished(-1);
     delete qemuProcess;
+#endif
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    delete pressTimer;
+#endif
     delete trayIcon;
     delete fsView;
     delete netSelect;
@@ -277,6 +290,7 @@ bool BoardWindow::powerSwitch(bool power)
     };
 
     arguments.removeAll(QString(""));
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     if(power) {
         qemuProcess->kill();
         qemuProcess->waitForFinished(-1);
@@ -302,17 +316,28 @@ bool BoardWindow::powerSwitch(bool power)
         qemuProcess->kill();
         qemuProcess->waitForFinished(-1);
     }
-
+#else
+    uartWindow[0]->reConnect();
+    uartWindow[1]->reConnect();
+    uartWindow[2]->reConnect();
+    jtagWindow->reConnect();
+    lcdWindow->reConnect();
+#endif
     return true;
 }
 
 int BoardWindow::sendQemuCmd(const QString &cmd)
 {
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     if(qemuProcess->state() == QProcess::Running) {
         jtagWindow->sendData(cmd.toUtf8());
         return 0;
     }
     return -1;
+#else
+    jtagWindow->sendData(cmd.toUtf8());
+    return 0;
+#endif
 }
 
 QString& BoardWindow::getVCanName(void)
@@ -782,7 +807,9 @@ void BoardWindow::paintEvent(QPaintEvent *event)
         if(spaceList[i].draw) {
             painter.fillRect(spaceList[i].x1,spaceList[i].y1,
                 spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
+        #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
             QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2),spaceList[i].drawName);
+        #endif
         }
     }
 
@@ -801,6 +828,10 @@ void BoardWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+        pressTimer->start();
+        pressPos = QCursor::pos();
+#endif
     }
     event->accept();
 }
@@ -836,6 +867,15 @@ void BoardWindow::mouseMoveEvent(QMouseEvent *event)
 void BoardWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if( event->button() == Qt::LeftButton) {
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+        if(isMousePressed && pressTimer->remainingTime() <= 0) {
+            if(QCursor::pos() == pressPos) {
+                QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());
+                contextMenuEvent(&e);
+            }
+        }
+        pressTimer->stop();
+#endif
         isMousePressed = false;
     }
     event->accept();
@@ -910,10 +950,12 @@ QString BoardWindow::getOpenFileName(const QString &caption, const QString &file
 
 void BoardWindow::app_quit(void)
 {
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     if(qemuProcess->state() == QProcess::Running) {
         qemuProcess->kill();
         qemuProcess->waitForFinished(-1);
     }
+#endif
     qApp->quit();
 }
 

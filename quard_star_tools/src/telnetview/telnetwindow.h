@@ -82,6 +82,10 @@ private:
     QAction *actionReceiveASCII;
     QAction *actionadd_time_on_each_line;
     QAction *actionFflush_file;
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    QTimer* pressTimer;
+    QPoint pressPos;
+#endif
     Ui::TelnetWindow *ui;
     QString currentColorScheme;
     QString currentAvailableKeyBindings;

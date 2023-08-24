@@ -105,22 +105,32 @@ win32:{
     }
 }
 
-unix:!macx:{
+unix:!macx:!android:!ios {
     QMAKE_RPATHDIR=$ORIGIN
     QMAKE_LFLAGS += -no-pie
 
-    CONFIG(release, debug|release) {
-        AFTER_LINK_CMD_LINE = upx-ucl --best -f $$DESTDIR/$$TARGET
-        QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
-    }
+   # CONFIG(release, debug|release) {
+    #    AFTER_LINK_CMD_LINE = upx-ucl --best -f $$DESTDIR/$$TARGET
+    #    QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
+    #}
 
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 
-macx:{
+macx:!ios{
     QMAKE_RPATHDIR=$ORIGIN
     ICON = "icons/icon.icns"
 
+    git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
+}
+
+android { 
+    git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
+}
+
+ios { 
+    #QMAKE_DEVELOPMENT_TEAM = ABCDEF0123
+    #QMAKE_PROVISIONING_PROFILE = 12345678-abcd-1234-abcd-12345678abcd
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 

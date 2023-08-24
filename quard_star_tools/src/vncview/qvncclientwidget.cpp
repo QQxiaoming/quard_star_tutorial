@@ -283,7 +283,7 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
     painter.begin(this);
     if (isScaled)
     {
-    #if defined(Q_OS_MACOS)
+    #if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
         painter.drawImage(paintTargetX, paintTargetY, 
             [&]()->QImage{
                 QImage src = screen.scaled(width(), height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);

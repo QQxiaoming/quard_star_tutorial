@@ -29,7 +29,7 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
     ui->setupUi(this);
 
     QFont font = QApplication::font();
-    #ifdef Q_OS_MACOS
+    #ifdef Q_OS_MACOS || defined(Q_OS_IOS)
         font.setFamily(QStringLiteral("Monaco"));
     #elif defined(Q_WS_QWS)
         font.setFamily(QStringLiteral("fixed"));

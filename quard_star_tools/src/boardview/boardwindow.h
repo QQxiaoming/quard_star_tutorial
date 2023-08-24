@@ -25,7 +25,6 @@
 #include <QPaintEvent>
 #include <QMouseEvent>
 #include <QPoint>
-#include <QProcess>
 #include <QTreeView>
 #include <QMessageBox>
 #include <QDateTime>
@@ -35,6 +34,9 @@
 #include <QFileDialog>
 #include <QSystemTrayIcon>
 #include <QLocale>
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#include <QProcess>
+#endif
 
 #include "qfonticon.h"
 
@@ -120,7 +122,9 @@ private:
     bool isMousePressed = false;
     bool powerOn = false;
     QPoint mStartPos;
+#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     QProcess *qemuProcess;
+#endif
     TelnetWindow *uartWindow[3];
     TelnetWindow *jtagWindow;
     VncWindow *lcdWindow;
@@ -129,6 +133,10 @@ private:
     FSViewWindow *fsView;
     QSystemTrayIcon *trayIcon;
     QMenu *contextMenu = nullptr;
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    QTimer* pressTimer;
+    QPoint pressPos;
+#endif
     QString envPath;
     QString skinColor;
     bool isDarkTheme;

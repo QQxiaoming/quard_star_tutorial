@@ -17,6 +17,9 @@
 #elif defined(__WINDOWS__)
 #include "endian.h"
 #include "byteswap.h"
+#elif defined(__ANDROID__)
+#include <sys/endian.h>
+#include <byteswap.h>
 #else
 #include <endian.h>
 #include <byteswap.h>
