@@ -321,3 +321,101 @@ jobs:
             ./quard_star_tools/quard_star_tools.tar.gz
           retention-days: 1
 
+  quard_star_tools_android_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install prerequisites
+        shell: bash -l {0}
+        run: |
+          sudo apt update
+          sudo apt install -y make gcc
+
+      - name: Install Qt android
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.2'
+          modules: 'qt5compat'
+          aqtversion: ==3.1.7
+
+      - name: Install Qt android
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.2'
+          modules: 'qt5compat'
+          aqtversion: ==3.1.7
+          target: android
+
+      - name: Install Android NDK
+        shell: bash
+        # Links to NDK are at https://github.com/android/ndk/wiki/Unsupported-Downloads
+        run: |
+          curl -O "https://dl.google.com/android/repository/android-ndk-r21e-linux-x86_64.zip"
+          unzip "android-ndk-r21e-linux-x86_64.zip"
+
+      - name: Build all
+        shell: bash -l {0}
+        env:
+          QT_VERSION: 6.5.2
+        run: |
+          export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r21e
+          export ANDROID_BUILD_DIR=$(pwd)/android-build
+          cd quard_star_tools
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
+          lrelease quard_star_tools.pro
+          ${Qt6_DIR}/bin/qmake -makefile
+          make
+          make apk
+          mv android-build/quard_star_tools.apk ../
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: quard_star_tools_android
+          path: |
+            quard_star_tools.apk
+
+  quard_star_tools_ios_build:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.2'
+          modules: 'qt5compat'
+          aqtversion: ==3.1.7
+
+      - name: Install Qt ios
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.2'
+          modules: 'qt5compat'
+          aqtversion: ==3.1.7
+          target: ios
+
+      - name: Build all
+        shell: bash -l {0}
+        env:
+          QT_VERSION: 6.5.2
+        run: |
+          cd quard_star_tools
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          sed -i'.original' -e 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
+          lrelease quard_star_tools.pro
+          ${Qt6_DIR}/bin/qmake
+          make
+          cp -r ./Release-iphonesimulator/quard_star_tools.app ./         
+          cp ./tools/convert-ipa.sh ./convert-ipa.sh
+          ./convert-ipa.sh 
+          mv ./IPAFolder/quard_star_tools.ipa ../
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: quard_star_tools_ios
+          path: |
+            quard_star_tools.ipa

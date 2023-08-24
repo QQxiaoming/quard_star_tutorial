@@ -52,6 +52,10 @@ private:
     QPoint mStartPos;
     int severPort;
     QVNCClientWidget *vncView;
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    QTimer* pressTimer;
+    QPoint pressPos;
+#endif
     QMenu *contextMenu = nullptr;
     double scaled_value = 1.0;
     Ui::VncWindow *ui;
