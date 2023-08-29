@@ -116,15 +116,15 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         qDebug() << "IP Address:" << ipAddr;
     }
 
-    uartWindow[0] = new TelnetWindow(ipAddr,portOffset+3441,this);
+    uartWindow[0] = new TelnetWindow(ipAddr,portOffset+3441,parent);
     uartWindow[0]->setWindowTitle("UART0");
-    uartWindow[1] = new TelnetWindow(ipAddr,portOffset+3442,this);
+    uartWindow[1] = new TelnetWindow(ipAddr,portOffset+3442,parent);
     uartWindow[1]->setWindowTitle("UART1");
-    uartWindow[2] = new TelnetWindow(ipAddr,portOffset+3443,this);
+    uartWindow[2] = new TelnetWindow(ipAddr,portOffset+3443,parent);
     uartWindow[2]->setWindowTitle("UART2");
-    jtagWindow = new TelnetWindow(ipAddr,portOffset+3430,this);
+    jtagWindow = new TelnetWindow(ipAddr,portOffset+3430,parent);
     jtagWindow->setWindowTitle("JTAG(Monitor)");
-    lcdWindow = new VncWindow(ipAddr,portOffset+5901,this);
+    lcdWindow = new VncWindow(ipAddr,portOffset+5901,parent);
     lcdWindow->setWindowTitle("LCD");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
@@ -859,6 +859,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
 
 void BoardWindow::mousePressEvent(QMouseEvent *event)
 {
+    this->raise();
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
@@ -969,6 +970,12 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
             }
         }
     }
+    event->accept();
+}
+
+void BoardWindow::showEvent(QShowEvent *event)
+{
+    this->raise();
     event->accept();
 }
 

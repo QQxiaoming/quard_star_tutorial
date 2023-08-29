@@ -31,7 +31,7 @@
 #include "ui_telnetwindow.h"
 
 TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
-    QMainWindow(nullptr),severAddr(addr),severPort(port),
+    QMainWindow(parent),severAddr(addr),severPort(port),
     ui(new Ui::TelnetWindow)
 {
     ui->setupUi(this);
@@ -638,6 +638,7 @@ void TelnetWindow::paintEvent(QPaintEvent *event)
 
 void TelnetWindow::mousePressEvent(QMouseEvent *event)
 {
+    this->raise();
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
@@ -679,3 +680,8 @@ void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
     event->accept();
 }
 
+void TelnetWindow::showEvent(QShowEvent *event)
+{
+    this->raise();
+    event->accept();
+}

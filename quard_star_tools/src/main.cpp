@@ -221,8 +221,20 @@ int main(int argc, char *argv[])
     } else if(!re.exactMatch(ip_addr)) {
         ip_addr = "";
     }
+
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+    // Mobile apps require a full-screen background window
+    QWidget window;
+    window.setObjectName("BackWindow");
+    window.setStyleSheet("QWidget#BackWindow {background-color: black;}");
+    window.showFullScreen();
+    BoardWindow boardWindow(env_path,skin_color,isDarkTheme,lang,ip_addr, &window);
+    boardWindow.show();
+#else
+    // Desktop apps require a borderless window
     BoardWindow window(env_path,skin_color,isDarkTheme,lang,ip_addr);
     window.show();
+#endif
 
     return application.exec();
 }

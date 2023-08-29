@@ -128,7 +128,9 @@ android {
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 
-ios { 
+ios {
+    QMAKE_TARGET_BUNDLE_PREFIX = com.quard
+    QMAKE_BUNDLE = $${TARGET}
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 

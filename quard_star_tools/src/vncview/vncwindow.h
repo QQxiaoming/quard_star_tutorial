@@ -45,7 +45,8 @@ protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
-    
+    void showEvent(QShowEvent *event);
+
 private:
     bool isMousePressed = false;
     QString severAddr;

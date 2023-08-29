@@ -84,6 +84,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
+    void showEvent(QShowEvent *event);
 
 private slots:
     void app_quit(void);

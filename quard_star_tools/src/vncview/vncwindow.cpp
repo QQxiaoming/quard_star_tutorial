@@ -29,7 +29,7 @@
 #include "ui_vncwindow.h"
 
 VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
-    : QMainWindow(nullptr),severAddr(addr),severPort(port)
+    : QMainWindow(parent),severAddr(addr),severPort(port)
     , ui(new Ui::VncWindow)
 {
     ui->setupUi(this);
@@ -173,6 +173,7 @@ void VncWindow::paintEvent(QPaintEvent *event)
 
 void VncWindow::mousePressEvent(QMouseEvent *event)
 {
+    this->raise();
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
@@ -210,3 +211,10 @@ void VncWindow::mouseReleaseEvent(QMouseEvent *event)
     }
     event->accept();
 }
+
+void VncWindow::showEvent(QShowEvent *event)
+{
+    this->raise();
+    event->accept();
+}
+
