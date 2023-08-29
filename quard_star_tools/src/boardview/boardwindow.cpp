@@ -67,8 +67,6 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-    QRect screen = QGuiApplication::screenAt(
-                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
 
     QPixmap pix;
     QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
@@ -76,6 +74,9 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         skinColor = "green";
     pix.load(":/boardview/icons/board_"+skinColor+".png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+#if !defined(Q_OS_IOS)
+    QRect screen = QGuiApplication::screenAt(
+                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
         int target_size = qMin(screen.width(),screen.height());
         scaled_value = ((double)pix.size().width())/((double)target_size);
@@ -92,6 +93,10 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     QRect size = this->geometry();
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
+#else
+    resize(pix.size());
+    setMask(QBitmap(pix.mask()));
+#endif
 #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
     if(ipAddr.isEmpty()) {
         ipAddr = QHostAddress(QHostAddress::LocalHost).toString();

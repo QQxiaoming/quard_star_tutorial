@@ -270,6 +270,7 @@ void QTermWidget::init(int startnow)
 
     m_impl = new TermWidgetImpl(this);
     m_layout->addWidget(m_impl->m_terminalDisplay);
+    m_impl->m_terminalDisplay->setObjectName("terminalDisplay");
 
     connect(m_impl->m_session, SIGNAL(bellRequest(QString)), m_impl->m_terminalDisplay, SLOT(bell(QString)));
     connect(m_impl->m_terminalDisplay, SIGNAL(notifyBell(QString)), this, SIGNAL(bell(QString)));

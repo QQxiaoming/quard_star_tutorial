@@ -40,6 +40,8 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
 
     telnet = new QTelnet(this);
     termWidget = new QTermWidget(0,this);
+    termWidget->setStyleSheet("QWidget#terminalDisplay {background-color: black;}");
+
     sendASCIIBox = new ASCIIBox(ASCIIBox::SEND,this);
     recvASCIIBox = new ASCIIBox(ASCIIBox::RECV,this);
 
@@ -49,12 +51,12 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-    QRect screen = QGuiApplication::screenAt(
-                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
-
     QPixmap pix;
     pix.load(":/boardview/icons/terminal.png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+#if !defined(Q_OS_IOS)
+    QRect screen = QGuiApplication::screenAt(
+                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
         int target_size = qMin(screen.width(),screen.height());
         scaled_value = ((double)pix.size().width())/((double)target_size);
@@ -65,12 +67,15 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     QRect size = this->geometry();
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
-    
+#else
+    resize(pix.size());
+    setMask(QBitmap(pix.mask()));
+#endif
     ui->verticalLayout->addWidget(termWidget);
     ui->verticalLayout->setContentsMargins(62/scaled_value, 60/scaled_value, 170/scaled_value,60/scaled_value);
 
     QFont font = QApplication::font();
-#ifdef Q_OS_MACOS || defined(Q_OS_IOS)
+#if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
     font.setFamily(QStringLiteral("Monaco"));
 #elif defined(Q_WS_QWS)
     font.setFamily(QStringLiteral("fixed"));

@@ -43,12 +43,13 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-    QRect screen = QGuiApplication::screenAt(
-                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
 
     QPixmap pix;
     pix.load(":/boardview/icons/ttf.png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
+#if !defined(Q_OS_IOS)
+    QRect screen = QGuiApplication::screenAt(
+                       this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
         int target_size = qMin(screen.width(),screen.height());
         scaled_value = ((double)pix.size().width())/((double)target_size);
@@ -59,7 +60,10 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     QRect size = this->geometry();
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
-    
+#else
+    resize(pix.size());
+    setMask(QBitmap(pix.mask()));
+#endif
     vncView = new QVNCClientWidget(this);
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);

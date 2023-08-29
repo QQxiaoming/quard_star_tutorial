@@ -133,7 +133,7 @@ private:
     NetSelectBox *netSelect;
     BootSelectBox *bootSelect;
     FSViewWindow *fsView;
-    QSystemTrayIcon *trayIcon;
+    QSystemTrayIcon *trayIcon = nullptr;
     QMenu *contextMenu = nullptr;
 #if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
     QTimer* pressTimer;
