@@ -28,6 +28,7 @@
 #include <QPoint>
 #include <QToolTip>
 #include <QShortcut>
+#include <QTransform>
 
 #include "qfonticon.h"
 #include "qfsviewer.h"
@@ -67,7 +68,9 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-
+#if (defined(MOBILE_MODE))
+    grabGesture(Qt::PinchGesture);
+#endif
     QPixmap pix;
     QFileInfo skinFile(":/boardview/icons/board_"+skinColor+".png");
     if(!skinFile.isFile())
@@ -97,7 +100,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 #endif
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
     if(ipAddr.isEmpty()) {
         ipAddr = QHostAddress(QHostAddress::LocalHost).toString();
         portOffset = 0;
@@ -156,7 +159,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         qDebug() << "Couldn't detect any system tray on this system.";
     }
 
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     pressTimer = new QTimer(this);
     pressTimer->setInterval(500);
     pressTimer->setSingleShot(true);
@@ -182,14 +185,14 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 
 BoardWindow::~BoardWindow()
 {
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
     if(qemuProcess) {
         qemuProcess->kill();
         qemuProcess->waitForFinished(-1);
         delete qemuProcess;
     }
 #endif
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     delete pressTimer;
 #endif
     delete trayIcon;
@@ -320,7 +323,7 @@ bool BoardWindow::powerSwitch(bool power)
     };
 
     arguments.removeAll(QString(""));
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
     if(power) {
         if(qemuProcess) {
             qemuProcess->kill();
@@ -356,13 +359,14 @@ bool BoardWindow::powerSwitch(bool power)
     uartWindow[2]->reConnect();
     jtagWindow->reConnect();
     lcdWindow->reConnect();
+    Q_UNUSED(power);
 #endif
     return true;
 }
 
 int BoardWindow::sendQemuCmd(const QString &cmd)
 {
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
     if(qemuProcess) {
         if(qemuProcess->state() == QProcess::Running) {
             jtagWindow->sendData(cmd.toUtf8());
@@ -846,7 +850,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
         if(spaceList[i].draw) {
             painter.fillRect(spaceList[i].x1,spaceList[i].y1,
                 spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
-        #if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+        #if !(defined(MOBILE_MODE))
             QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2),spaceList[i].drawName);
         #endif
         }
@@ -868,7 +872,7 @@ void BoardWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
         pressTimer->start();
         pressPos = QCursor::pos();
 #endif
@@ -907,7 +911,7 @@ void BoardWindow::mouseMoveEvent(QMouseEvent *event)
 void BoardWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if( event->button() == Qt::LeftButton) {
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
                 QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());
@@ -986,6 +990,30 @@ void BoardWindow::showEvent(QShowEvent *event)
     event->accept();
 }
 
+bool BoardWindow::event(QEvent *event)
+{
+    if (event->type() == QEvent::Gesture)
+        return gestureEvent(static_cast<QGestureEvent*>(event));
+    return QMainWindow::event(event);
+}
+
+bool BoardWindow::gestureEvent(QGestureEvent *event)
+{
+    // Get the pinch gesture from the event
+    if (QGesture *gesture = event->gesture(Qt::PinchGesture)) {
+        QPinchGesture *pinch = static_cast<QPinchGesture *>(gesture);
+
+        // Get the zoom factor and center point from the gesture
+        qreal zoomFactor = pinch->scaleFactor();
+        qDebug() << zoomFactor;
+
+        // Accept the gesture
+        event->accept();
+        return true;
+    }
+    return false;
+}
+
 QString BoardWindow::getOpenFileName(const QString &caption, const QString &fileName, const QString &filter)
 {
     QString path = QFileDialog::getOpenFileName(this, caption, fileName, filter);
@@ -998,7 +1026,7 @@ QString BoardWindow::getOpenFileName(const QString &caption, const QString &file
 
 void BoardWindow::app_quit(void)
 {
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
     if(qemuProcess) {
         if(qemuProcess->state() == QProcess::Running) {
             qemuProcess->kill();

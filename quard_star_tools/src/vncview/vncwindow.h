@@ -53,7 +53,7 @@ private:
     QPoint mStartPos;
     int severPort;
     QVNCClientWidget *vncView;
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     QTimer* pressTimer;
     QPoint pressPos;
 #endif

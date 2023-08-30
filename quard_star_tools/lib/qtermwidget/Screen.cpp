@@ -1289,7 +1289,7 @@ int Screen::copyLineToStream(int line ,
         }
 
         // count cannot be any greater than length
-        count = qBound(0,count,length-start);
+        count = qBound(0,count,length>=start?length-start:0);
 
         Q_ASSERT( screenLine < lineProperties.count() );
         currentLineProperties |= lineProperties[screenLine];

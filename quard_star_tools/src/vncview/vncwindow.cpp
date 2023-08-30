@@ -70,7 +70,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     
     setFixedSize(this->size());
 
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     pressTimer = new QTimer(this);
     pressTimer->setInterval(500);
     pressTimer->setSingleShot(true);
@@ -86,7 +86,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 
 VncWindow::~VncWindow()
 {
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     delete pressTimer;
 #endif
     delete vncView;
@@ -181,7 +181,7 @@ void VncWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
         pressTimer->start();
         pressPos = QCursor::pos();
 #endif
@@ -202,7 +202,7 @@ void VncWindow::mouseMoveEvent(QMouseEvent *event)
 void VncWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if( event->button() == Qt::LeftButton) {
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
                 QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());

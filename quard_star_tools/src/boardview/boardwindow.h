@@ -34,7 +34,7 @@
 #include <QFileDialog>
 #include <QSystemTrayIcon>
 #include <QLocale>
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
 #include <QProcess>
 #endif
 
@@ -85,6 +85,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
     void showEvent(QShowEvent *event);
+    bool gestureEvent(QGestureEvent *event);
+    bool event(QEvent *event);
 
 private slots:
     void app_quit(void);
@@ -124,7 +126,7 @@ private:
     bool isMousePressed = false;
     bool powerOn = false;
     QPoint mStartPos;
-#if !(defined(Q_OS_IOS) || defined(Q_OS_ANDROID))
+#if !(defined(MOBILE_MODE))
     QProcess *qemuProcess = nullptr;
 #endif
     TelnetWindow *uartWindow[3];
@@ -135,7 +137,7 @@ private:
     FSViewWindow *fsView;
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *contextMenu = nullptr;
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     QTimer* pressTimer;
     QPoint pressPos;
 #endif

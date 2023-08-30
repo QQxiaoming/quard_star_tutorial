@@ -222,7 +222,7 @@ int main(int argc, char *argv[])
         ip_addr = "";
     }
 
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     // Mobile apps require a full-screen background window
     QWidget window;
     window.setObjectName("BackWindow");

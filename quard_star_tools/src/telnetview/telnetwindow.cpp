@@ -121,7 +121,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
 
     setFixedSize(this->size());
 
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     pressTimer = new QTimer(this);
     pressTimer->setInterval(500);
     pressTimer->setSingleShot(true);
@@ -153,7 +153,7 @@ TelnetWindow::~TelnetWindow()
         raw_log_file = nullptr;
     }
     raw_log_file_mutex.unlock();
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     delete pressTimer;
 #endif
     delete telnet;
@@ -647,7 +647,7 @@ void TelnetWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
         pressTimer->start();
         pressPos = QCursor::pos();
 #endif
@@ -671,7 +671,7 @@ void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
         this->termWidget->pasteSelection();
     }
     if( event->button() == Qt::LeftButton) {
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
                 QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());

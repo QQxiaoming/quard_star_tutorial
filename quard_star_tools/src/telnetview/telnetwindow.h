@@ -83,7 +83,7 @@ private:
     QAction *actionReceiveASCII;
     QAction *actionadd_time_on_each_line;
     QAction *actionFflush_file;
-#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
+#if defined(MOBILE_MODE)
     QTimer* pressTimer;
     QPoint pressPos;
 #endif
