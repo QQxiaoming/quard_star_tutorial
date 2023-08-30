@@ -913,6 +913,8 @@ void BoardWindow::mouseReleaseEvent(QMouseEvent *event)
                 QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());
                 contextMenuEvent(&e);
             }
+        } else {
+            mouseDoubleClickEvent(event);
         }
         pressTimer->stop();
 #endif
