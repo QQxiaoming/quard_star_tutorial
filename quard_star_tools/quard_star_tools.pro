@@ -132,8 +132,6 @@ android {
 ios {
     DEFINES += MOBILE_MODE
     CONFIG += hide_symbols
-    QMAKE_TARGET_BUNDLE_PREFIX = com.quard
-    QMAKE_BUNDLE = $${TARGET}
     QMAKE_INFO_PLIST = platform/ios/Info.plist
     ios_icon.files = $$files($$PWD/platform/ios/AppIcon*.png)
     ios_launch.files = $$files($$PWD/platform/ios/Soccer.png)
