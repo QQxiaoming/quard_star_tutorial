@@ -97,6 +97,18 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
 #else
+    QRect screen = QGuiApplication::primaryScreen()->geometry();
+    if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
+        int target_size = qMin(screen.width(),screen.height());
+        scaled_value = ((double)pix.size().width())/((double)target_size);
+        pix = pix.scaled(QSize(target_size,target_size));
+        for(size_t i=0;i<sizeof(spaceList)/sizeof(struct space);i++) {
+            spaceList[i].x1 = spaceList[i].x1/scaled_value;
+            spaceList[i].x2 = spaceList[i].x2/scaled_value;
+            spaceList[i].y1 = spaceList[i].y1/scaled_value;
+            spaceList[i].y2 = spaceList[i].y2/scaled_value;
+        }
+    }
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 #endif
@@ -1004,7 +1016,7 @@ bool BoardWindow::gestureEvent(QGestureEvent *event)
         QPinchGesture *pinch = static_cast<QPinchGesture *>(gesture);
 
         // Get the zoom factor and center point from the gesture
-        qreal zoomFactor = pinch->scaleFactor();
+        qreal zoomFactor = pinch->totalScaleFactor();
         qDebug() << zoomFactor;
 
         // Accept the gesture

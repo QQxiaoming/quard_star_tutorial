@@ -68,6 +68,12 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
 #else
+    QRect screen = QGuiApplication::primaryScreen()->geometry();
+    if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
+        int target_size = qMin(screen.width(),screen.height());
+        scaled_value = ((double)pix.size().width())/((double)target_size);
+        pix = pix.scaled(QSize(target_size,target_size*pix.size().height()/pix.size().width()));
+    }
     resize(pix.size());
     setMask(QBitmap(pix.mask()));
 #endif
