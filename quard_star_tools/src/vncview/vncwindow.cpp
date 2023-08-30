@@ -104,7 +104,7 @@ void VncWindow::reConnect(void)
     if(vncView->isConnectedToServer()) {
         vncView->disconnectFromVncServer();
     }
-    if(vncView->connectToVncServer("127.0.0.1","",5901)) {
+    if(vncView->connectToVncServer(severAddr,"",severPort)) {
         vncView->startFrameBufferUpdate();
     }
 }
