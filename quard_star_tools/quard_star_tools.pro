@@ -131,8 +131,15 @@ android {
 
 ios {
     DEFINES += MOBILE_MODE
+    CONFIG += hide_symbols
     QMAKE_TARGET_BUNDLE_PREFIX = com.quard
     QMAKE_BUNDLE = $${TARGET}
+    QMAKE_INFO_PLIST = platform/ios/Info.plist
+    ios_icon.files = $$files($$PWD/platform/ios/AppIcon*.png)
+    ios_launch.files = $$files($$PWD/platform/ios/Soccer.png)
+    QMAKE_BUNDLE_DATA += ios_icon
+    QMAKE_BUNDLE_DATA += ios_launch
+    QMAKE_IOS_LAUNCH_SCREEN = $$PWD/platform/ios/Launch.storyboard
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 
