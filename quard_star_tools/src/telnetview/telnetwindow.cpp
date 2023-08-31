@@ -81,17 +81,14 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     ui->verticalLayout->setContentsMargins(62/scaled_value, 60/scaled_value, 170/scaled_value,60/scaled_value);
 
     QFont font = QApplication::font();
-#if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
-    font.setFamily(QStringLiteral("Monaco"));
-#elif defined(Q_WS_QWS)
-    font.setFamily(QStringLiteral("fixed"));
-#else
-    font.setFamily(QStringLiteral("Monospace"));
-#endif
-#if defined(Q_OS_WIN)
+
+    int fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/font/inziu-iosevkaCC-SC-regular.ttf"));
+    QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
+    if (fontFamilies.size() > 0) {
+        font.setFamily(fontFamilies[0]);
+    }
     font.setFixedPitch(true);
-#endif
-    font.setPointSize(12);
+    font.setPointSize(qMax(8,(int)(12/scaled_value)));
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::NoScrollBar);
     

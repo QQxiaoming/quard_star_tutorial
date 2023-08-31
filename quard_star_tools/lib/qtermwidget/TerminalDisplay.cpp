@@ -426,7 +426,7 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
 
   // enable input method support
   setAttribute(Qt::WA_InputMethodEnabled, true);
-  setInputMethodHints(Qt::ImhSensitiveData|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText);
+  setInputMethodHints(Qt::ImhSensitiveData|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhMultiLine);
 
   // this is an important optimization, it tells Qt
   // that TerminalDisplay will handle repainting its entire area.
