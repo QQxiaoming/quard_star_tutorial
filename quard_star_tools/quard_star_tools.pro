@@ -126,6 +126,10 @@ macx:!ios{
 
 android { 
     DEFINES += MOBILE_MODE
+    DISTFILES += \
+        platform/android/AndroidManifest.xml \
+        platform/android/build.gradle \
+        platform/android/res/values/libs.xml
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 
@@ -135,8 +139,10 @@ ios {
     QMAKE_INFO_PLIST = platform/ios/Info.plist
     ios_icon.files = $$files($$PWD/platform/ios/AppIcon*.png)
     ios_launch.files = $$files($$PWD/platform/ios/Soccer.png)
+    ios_settings.files = $$files($$PWD/platform/ios/Settings.bundle)
     QMAKE_BUNDLE_DATA += ios_icon
     QMAKE_BUNDLE_DATA += ios_launch
+    QMAKE_BUNDLE_DATA += ios_settings
     QMAKE_IOS_LAUNCH_SCREEN = $$PWD/platform/ios/Launch.storyboard
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
