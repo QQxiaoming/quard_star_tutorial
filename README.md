@@ -2,7 +2,7 @@
 [![Windows ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
 [![Macos ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml)
 [![Android ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/android.yml?branch=main&logo=android)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/android.yml)
-[![IOS ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/ios.yml?branch=main&logo=apple)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ios.yml)
+[![IOS ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/ios.yml?branch=main&logo=appstore)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ios.yml)
 [![Documentation Status](https://img.shields.io/readthedocs/quard-star-tutorial.svg?logo=readthedocs)](https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest)
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/qqxiaoming/quard_star_tutorial.svg?logo=codefactor)](https://www.codefactor.io/repository/github/qqxiaoming/quard_star_tutorial)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/QQxiaoming/quard_star_tutorial.svg?logo=git)](https://github.com/QQxiaoming/quard_star_tutorial/releases)
