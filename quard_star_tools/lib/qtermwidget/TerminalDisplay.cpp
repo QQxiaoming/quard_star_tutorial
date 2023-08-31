@@ -426,6 +426,7 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
 
   // enable input method support
   setAttribute(Qt::WA_InputMethodEnabled, true);
+  setInputMethodHints(Qt::ImhSensitiveData|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText);
 
   // this is an important optimization, it tells Qt
   // that TerminalDisplay will handle repainting its entire area.
@@ -2972,6 +2973,9 @@ QVariant TerminalDisplay::inputMethodQuery( Qt::InputMethodQuery query ) const
             break;
         case Qt::ImCurrentSelection:
                 return QString();
+            break;
+        case Qt::ImHints:
+                return (int)inputMethodHints();
             break;
         default:
             break;

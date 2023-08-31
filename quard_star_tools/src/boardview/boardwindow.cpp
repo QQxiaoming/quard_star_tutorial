@@ -123,7 +123,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         portOffset = 10000;
         bool ok = false;
         ipAddr = QInputDialog::getText(this, tr("Input IP Address"),
-                    tr("IP Address:"), QLineEdit::Normal, ipAddr, &ok);
+                    tr("IP Address:"), QLineEdit::Normal, ipAddr, &ok, Qt::WindowFlags(), Qt::ImhUrlCharactersOnly|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData);
         if (!ok || ipAddr.isEmpty()) {
             QMessageBox::critical(this, tr("Error"), tr("IP Address is empty!"));
         } else {
