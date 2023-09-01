@@ -14,22 +14,22 @@
         <translation>清除</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/asciibox.cpp" line="50"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="37"/>
         <source>Send ASCII Text...</source>
         <translation>发送ASCII文本...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/asciibox.cpp" line="53"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="40"/>
         <source>Recv ASCII Text...</source>
         <translation>接收ASCII文本...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/asciibox.cpp" line="75"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="67"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/asciibox.cpp" line="75"/>
+        <location filename="../src/telnetview/asciibox.cpp" line="67"/>
         <source>Will send Hex:
 </source>
         <translation>将发送十六进制：
@@ -778,249 +778,249 @@ Support:
         <translation>Telnet窗口</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="236"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="237"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="179"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="180"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="187"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="538"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="544"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="188"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="539"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="545"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="181"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="182"/>
         <source>View</source>
         <translation>视图</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="185"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="186"/>
         <source>Options</source>
         <translation>选项</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="192"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="193"/>
         <source>Colors</source>
         <translation>配色</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="215"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="216"/>
         <source>KeyBindings</source>
         <translation>按键绑定</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="513"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="514"/>
         <source>Misc</source>
         <translation>杂项</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="515"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="516"/>
         <source>Log</source>
         <translation>日志</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="183"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="184"/>
         <source>Transfer</source>
         <translation>传输</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="177"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="178"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="352"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="353"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="362"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="363"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="372"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="373"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="552"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="553"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="382"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="383"/>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="257"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="266"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="288"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="258"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="267"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="289"/>
         <source>Save log</source>
         <translation>保存日志</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="392"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="393"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="402"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="403"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="412"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="413"/>
         <source>Reset Zoom</source>
         <translation>重置缩放</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="422"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="423"/>
         <source>Send ASCII...</source>
         <translation>发送ASCII...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="431"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="432"/>
         <source>Receive ASCII...</source>
         <translation>接收ASCII...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="450"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="451"/>
         <source>Send Binary...</source>
         <translation>发送Binary...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="477"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="478"/>
         <source>Send Xmodem...</source>
         <translation>发送Xmodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="486"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="487"/>
         <source>Receive Xmodem...</source>
         <translation>接收Xmodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="495"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="496"/>
         <source>Send Ymodem...</source>
         <translation>发送Ymodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="504"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="505"/>
         <source>Receive Ymodem...</source>
         <translation>接收Ymodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="304"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="305"/>
         <source>Save Rawlog</source>
         <translation>保存原始日志</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="517"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="518"/>
         <source>Add timestamp on each line...</source>
         <translation>在每行添加时间戳...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="246"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="247"/>
         <source>Save screen</source>
         <translation>保存终端记录</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="527"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="528"/>
         <source>Fflush file...</source>
         <translation>刷新文件...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="252"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="283"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="253"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="284"/>
         <source>Save log...</source>
         <translation>保存log...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="253"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="284"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="254"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="285"/>
         <source>log files (*.log)</source>
         <translation>日志文件 (*.log)</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="257"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="288"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="326"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="258"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="289"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="327"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation>无法写入文件%1:
 %2.</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="321"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="322"/>
         <source>Save Raw log...</source>
         <translation>保存 Raw log...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="322"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="456"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="323"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="457"/>
         <source>binary files (*.bin)</source>
         <translation>二进制文件 (*.bin)</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="326"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="327"/>
         <source>Save Raw log</source>
         <translation>保存 Raw log</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="342"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="343"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="455"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="456"/>
         <source>Open Binary...</source>
         <translation>打开二进制...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="471"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="472"/>
         <source>Open binary file</source>
         <translation>打开二进制文件</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="471"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="472"/>
         <source>Cannot open file %1.</source>
         <translation>无法打开文件 %1。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="482"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="491"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="500"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="509"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="483"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="492"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="501"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="510"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="482"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="491"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="500"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="509"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="483"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="492"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="501"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="510"/>
         <source>This feature is not ready yet, so stay tuned!</source>
         <translation>此功能尚未准备就绪，敬请期待！</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="545"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="546"/>
         <source>1. The central window is the terminal operation window.</source>
         <translation>1. 中央窗口为终端操作窗口。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="546"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="547"/>
         <source>2. The menu bar provides portable tools and terminal configuration.</source>
         <translation>2. 菜单栏提供便携式工具和终端配置。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="547"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="548"/>
         <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>3. 底部的刷新按钮用于刷新重新连接，用于模拟重新启动时进行连接。</translation>
     </message>

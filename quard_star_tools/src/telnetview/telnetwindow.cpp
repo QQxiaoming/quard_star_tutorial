@@ -89,9 +89,13 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     }
     font.setFixedPitch(true);
     font.setPointSize(qMax(8,(int)(12/scaled_value)));
+
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::NoScrollBar);
-    
+
+    sendASCIIBox->setFont(font);
+    recvASCIIBox->setFont(font);
+
     QStringList availableColorSchemes = termWidget->availableColorSchemes();
     availableColorSchemes.sort();
     currentColorScheme = availableColorSchemes.first();

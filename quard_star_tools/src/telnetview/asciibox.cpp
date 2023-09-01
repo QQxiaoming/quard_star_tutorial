@@ -28,23 +28,10 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QFont font = QApplication::font();
-    #ifdef Q_OS_MACOS || defined(Q_OS_IOS)
-        font.setFamily(QStringLiteral("Monaco"));
-    #elif defined(Q_WS_QWS)
-        font.setFamily(QStringLiteral("fixed"));
-    #else
-        font.setFamily(QStringLiteral("Monospace"));
-    #endif
-    #if defined(Q_OS_WIN)
-        font.setFixedPitch(true);
-    #endif
-        font.setPointSize(12);
-        ui->textEdit->setFont(font);
-        QPalette p = ui->textEdit->palette();
-        p.setColor(QPalette::Text, Qt::white);
-        p.setColor(QPalette::Base, Qt::black);
-        ui->textEdit->setPalette(p);
+    QPalette p = ui->textEdit->palette();
+    p.setColor(QPalette::Text, Qt::white);
+    p.setColor(QPalette::Base, Qt::black);
+    ui->textEdit->setPalette(p);
 
     if(type == SEND) {
         setWindowTitle(tr("Send ASCII Text..."));
@@ -64,6 +51,11 @@ ASCIIBox::ASCIIBox(int type, QWidget *parent) :
 ASCIIBox::~ASCIIBox()
 {
     delete ui;
+}
+
+void ASCIIBox::setFont(const QFont &font)
+{
+    ui->textEdit->setFont(font);
 }
 
 void ASCIIBox::buttonBoxAccepted(void)

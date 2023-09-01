@@ -65,6 +65,7 @@ FORMS += \
 
 RESOURCES += \
     res/resource.qrc \
+    res/terminalfont.qrc \
     theme/dark/darkstyle.qrc \
     theme/light/lightstyle.qrc
 

@@ -22,6 +22,7 @@
 
 #include <QDialog>
 #include <QHideEvent>
+#include <QFont>
 
 namespace Ui {
 class ASCIIBox;
@@ -34,6 +35,7 @@ class ASCIIBox : public QDialog
 public:
     explicit ASCIIBox(int type, QWidget *parent = nullptr);
     ~ASCIIBox();
+    void setFont(const QFont &font);
 
     enum {
         SEND = 0,
