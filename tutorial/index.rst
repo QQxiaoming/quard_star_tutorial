@@ -10,6 +10,12 @@
 .. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml
    :alt: Macos ci
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/android.yml?branch=main&logo=android
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/android.yml
+   :alt: Android ci
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/ios.yml?branch=main&logo=appstore
+   :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ios.yml
+   :alt: IOS ci
 .. image:: https://img.shields.io/readthedocs/quard-star-tutorial.svg?logo=readthedocs
    :target: https://quard-star-tutorial.readthedocs.io/zh_CN/latest/?badge=latest
    :alt: Documentation Status

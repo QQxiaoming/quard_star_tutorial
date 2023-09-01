@@ -55,3 +55,5 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 ## 更多
 
 项目main分支目前为稳定分支，配套教程文档使用，next-kernel分支用来学习实验kernel上的最新功能，定期与[linux-next](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next)同步。
+
+项目仓库目前体积比较大，但是故意没有用submodule的方式管理，主要是考虑可能会有初学者或git不熟练的同学。还望大家谅解。
