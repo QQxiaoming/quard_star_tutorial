@@ -720,7 +720,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
         }
     );
     
-#if defined(MOBILE_MODE)
+#if !defined(MOBILE_MODE)
     QAction *pMinimize = new QAction(tr("Hide"), menu);
     if(this->isHidden()) {
         pMinimize->setText(tr("Show"));
