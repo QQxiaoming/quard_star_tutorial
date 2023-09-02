@@ -77,7 +77,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         skinColor = "green";
     pix.load(":/boardview/icons/board_"+skinColor+".png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
-#if !defined(Q_OS_IOS)
+#if !defined(MOBILE_MODE)
     QRect screen = QGuiApplication::screenAt(
                        this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
@@ -720,6 +720,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
         }
     );
     
+#if defined(MOBILE_MODE)
     QAction *pMinimize = new QAction(tr("Hide"), menu);
     if(this->isHidden()) {
         pMinimize->setText(tr("Show"));
@@ -747,6 +748,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
             }
         }
     );
+#endif
 
     QAction *pHelp = new QAction(tr("Help"), menu);
     QIcon icoHelp(":/boardview/icons/help.png");

@@ -47,7 +47,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     QPixmap pix;
     pix.load(":/boardview/icons/ttf.png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
-#if !defined(Q_OS_IOS)
+#if !defined(MOBILE_MODE)
     QRect screen = QGuiApplication::screenAt(
                        this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {

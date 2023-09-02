@@ -54,7 +54,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     QPixmap pix;
     pix.load(":/boardview/icons/terminal.png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
-#if !defined(Q_OS_IOS)
+#if !defined(MOBILE_MODE)
     QRect screen = QGuiApplication::screenAt(
                        this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
@@ -138,6 +138,10 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     connect(reConnectShortCut, &QShortcut::activated, this, [&](void) { this->reConnect(); });
     QShortcut *hideShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Q), this);
     connect(hideShortCut, &QShortcut::activated, this, [&](void) { this->hide(); });
+    QShortcut *zoomOutShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Minus),this);
+    connect(zoomOutShortCut, &QShortcut::activated, this, [&](void) { this->termWidget->zoomOut(); });
+    QShortcut *zoomInShortCut = new QShortcut(QKeySequence(Qt::CTRL|Qt::Key_Equal),this);
+    connect(zoomInShortCut, &QShortcut::activated, this, [&](void) { this->termWidget->zoomIn(); });
 
     Q_UNUSED(parent);
 }

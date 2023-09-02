@@ -129,8 +129,16 @@ android {
     DEFINES += MOBILE_MODE
     DISTFILES += \
         platform/android/AndroidManifest.xml \
-        platform/android/build.gradle \
-        platform/android/res/values/libs.xml
+        platform/android/res/values/libs.xml \
+        platform/android/gradle.properties \
+        platform/android/gradle/wrapper/gradle-wrapper.jar \
+        platform/android/gradle/wrapper/gradle-wrapper.properties \
+        platform/android/gradlew \
+        platform/android/gradlew.bat
+    contains(ANDROID_TARGET_ARCH,arm64-v8a) {
+        ANDROID_PACKAGE_SOURCE_DIR = \
+            $$PWD/platform/android
+    }
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 

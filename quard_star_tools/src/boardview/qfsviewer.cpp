@@ -50,7 +50,7 @@ FSViewWindow::FSViewWindow(QWidget *parent) :
     setSortingEnabled(false);
     setAllColumnsShowFocus(true);
     resize(QSize(800,600));
-#if !defined(Q_OS_IOS)
+#if !defined(MOBILE_MODE)
     QRect screen = QGuiApplication::screenAt(this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
     QRect size = this->geometry();
     this->move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2);
