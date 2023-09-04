@@ -135,10 +135,9 @@ android {
         platform/android/gradle/wrapper/gradle-wrapper.properties \
         platform/android/gradlew \
         platform/android/gradlew.bat
-    contains(ANDROID_TARGET_ARCH,arm64-v8a) {
-        ANDROID_PACKAGE_SOURCE_DIR = \
-            $$PWD/platform/android
-    }
+    ANDROID_PACKAGE_SOURCE_DIR = \
+        $$PWD/platform/android
+
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 
