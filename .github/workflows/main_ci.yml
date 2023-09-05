@@ -33,7 +33,7 @@ jobs:
   main_build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: conda-incubator/setup-miniconda@v2
         with:
@@ -132,7 +132,7 @@ jobs:
   qemu_w64_build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: build_docker_image
         shell: bash -l {0}
@@ -172,7 +172,7 @@ jobs:
   qemu_macos_build:
     runs-on: macos-12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install prerequisites
         run: |
@@ -195,7 +195,7 @@ jobs:
   quard_star_tools_build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
@@ -281,7 +281,7 @@ jobs:
   quard_star_tools_macos_build:
     runs-on: macos-12
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v3

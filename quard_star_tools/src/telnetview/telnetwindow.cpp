@@ -88,7 +88,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
         font.setFamily(fontFamilies[0]);
     }
     font.setFixedPitch(true);
-    font.setPointSize(qMax(8,(int)(12/scaled_value)));
+    font.setPointSize(qMax(7,(int)(12/scaled_value)));
 
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::NoScrollBar);
@@ -685,7 +685,7 @@ void TelnetWindow::mouseReleaseEvent(QMouseEvent *event)
 #if defined(MOBILE_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
-                QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());
+                QContextMenuEvent e(QContextMenuEvent::Mouse, event->pos(), QCursor::pos());
                 contextMenuEvent(&e);
             }
         }

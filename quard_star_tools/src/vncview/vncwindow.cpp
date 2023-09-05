@@ -211,7 +211,7 @@ void VncWindow::mouseReleaseEvent(QMouseEvent *event)
 #if defined(MOBILE_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
-                QContextMenuEvent e(QContextMenuEvent::Mouse,event->pos());
+                QContextMenuEvent e(QContextMenuEvent::Mouse, event->pos(), QCursor::pos());
                 contextMenuEvent(&e);
             }
         }
