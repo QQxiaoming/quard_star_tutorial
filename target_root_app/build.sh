@@ -786,6 +786,7 @@ build_cups()
         --prefix=$SHELL_FOLDER/output \
         --disable-static \
         --disable-libusb \
+        --disable-gssapi \
         --disable-dbus \
         CXX=$CROSS_PREFIX-g++ \
         CC=$CROSS_PREFIX-gcc 
@@ -1697,6 +1698,7 @@ build_llvm() {
         -DLLVM_TARGETS_TO_BUILD="RISCV" \
         -DLLVM_DEFAULT_TARGET_TRIPLE=riscv64-unknown-linux-gnu \
         -DCMAKE_SYSROOT=$CROSS_COMPILE_DIR/sysroot \
+        -DCMAKE_FIND_ROOT_PATH=$CROSS_COMPILE_DIR/sysroot \
         -DLLVM_USE_HOST_TOOLS=true \
         -DLLVM_BUILD_TOOLS=false \
         -DCMAKE_SYSTEM_NAME="Linux" \
