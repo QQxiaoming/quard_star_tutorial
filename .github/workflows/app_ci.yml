@@ -22,10 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-activate-base: true
-          activate-environment: ""
+
 
       - name: Install prerequisites
         shell: bash -l {0}
@@ -480,7 +477,12 @@ jobs:
         run: |
           cd target_root_app
           ./build.sh llvm
-      
+
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+
       - name: Build libdrm
         shell: bash -l {0}
         run: |
