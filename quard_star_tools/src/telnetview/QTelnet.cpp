@@ -35,23 +35,14 @@ bool QTelnet::testBinaryMode() const
 	return m_receivedDX[(unsigned char)TELOPT_BINARY] == DO;
 }
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 void QTelnet::connectToHost(const QString &host, quint16 port,
 					 OpenMode mode, NetworkLayerProtocol protocol)
-#else
-void QTelnet::connectToHost(const QString &host, quint16 port)
-#endif
 {
 	if( !isConnected() )
 	{
 		resetProtocol();
 		abort();
-    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         QTcpSocket::connectToHost(host, port, mode, protocol);
-    #else
-		QTcpSocket::connectToHost(host, port);
-    #endif
-
 	}
 }
 

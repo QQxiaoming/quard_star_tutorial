@@ -445,13 +445,8 @@ void QVNCClientWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if (!isConnectedToServer())
         return;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     int posX = event->position().x();
     int posY = event->position().y();
-#else
-    int posX = event->x();
-    int posY = event->y();
-#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -472,13 +467,8 @@ void QVNCClientWidget::mousePressEvent(QMouseEvent *event)
     setFocus();
     if (!isConnectedToServer())
         return;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     int posX = event->position().x();
     int posY = event->position().y();
-#else
-    int posX = event->x();
-    int posY = event->y();
-#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -498,13 +488,8 @@ void QVNCClientWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     if (!isConnectedToServer())
         return;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     int posX = event->position().x();
     int posY = event->position().y();
-#else
-    int posX = event->x();
-    int posY = event->y();
-#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;
@@ -524,13 +509,8 @@ void QVNCClientWidget::wheelEvent(QWheelEvent *event)
 {
     if (!isConnectedToServer())
         return;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     int posX = event->position().x();
     int posY = event->position().y();
-#else
-    int posX = event->x();
-    int posY = event->y();
-#endif
     quint8 btnMask = translateRfbPointer(event->buttons(), posX, posY);
     if (posX < 0 || posY < 0)
         return;

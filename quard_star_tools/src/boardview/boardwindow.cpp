@@ -1083,11 +1083,7 @@ void BoardWindow::setAppLangeuage(QLocale::Language lang)
     static QTranslator *qtTranslator = nullptr;
     static QTranslator *qtbaseTranslator = nullptr;
     static QTranslator *appTranslator = nullptr;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QString qlibpath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
-#else
-    QString qlibpath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-#endif
     if(qtTranslator == nullptr) {
         qtTranslator = new QTranslator(qApp);
     } else {

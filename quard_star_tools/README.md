@@ -1,6 +1,6 @@
 # Quard Star Tools
 
-Quard Star Tools是Quard Star Tutorial项目的一个子项目。其基于Qt编写的Quard Star Tutorial项目的GUI前端可视化工具，主要目的是直观的展示，以及初学者新手使用。
+Quard Star Tools是Quard Star Tutorial项目的一个子项目。其基于Qt编写的Quard Star Tutorial项目的GUI前端可视化工具，主要目的是直观的展示，以及初学者新手使用。所有依赖已经集成在内部，不需要额外添加。请基于Qt 6.2.0及以上版本编译运行。
 
 ## 项目依赖
 
