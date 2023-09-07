@@ -85,7 +85,7 @@ MOC_DIR     = $$build_type/moc
 RCC_DIR     = $$build_type/rcc
 UI_DIR      = $$build_type/ui
 
-win32:{
+win32:!wasm {
     VERSION = $${BUILD_VERSION}.000
     RC_LANG = 0x0004
     RC_ICONS = "icons\icon.ico"
@@ -104,7 +104,7 @@ win32:{
     }
 }
 
-unix:!macx:!android:!ios {
+unix:!macx:!android:!ios:!wasm {
     QMAKE_RPATHDIR=$ORIGIN
     QMAKE_LFLAGS += -no-pie
 
@@ -116,7 +116,7 @@ unix:!macx:!android:!ios {
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 
-macx:!ios{
+macx:!ios:!wasm {
     QMAKE_RPATHDIR=$ORIGIN
     ICON = "icons/icon.icns"
 
@@ -150,6 +150,11 @@ ios {
     QMAKE_BUNDLE_DATA += ios_launch
     QMAKE_BUNDLE_DATA += ios_settings
     QMAKE_IOS_LAUNCH_SCREEN = $$PWD/platform/ios/Launch.storyboard
+    git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
+}
+
+wasm {
+    DEFINES += MOBILE_MODE
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 }
 

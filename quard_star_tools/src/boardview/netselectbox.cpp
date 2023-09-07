@@ -20,7 +20,9 @@
 #include "netselectbox.h"
 #include "boardwindow.h"
 #include "ui_netselectbox.h"
+#if !defined(Q_OS_WASM)
 #include <QNetworkInterface>
+#endif
 
 NetSelectBox::NetSelectBox(QWidget *parent) :
     QDialog(parent),
@@ -40,8 +42,12 @@ NetSelectBox::~NetSelectBox()
     delete ui;
 }
 
-void NetSelectBox::showEvent(QShowEvent* event) 
+void NetSelectBox::showEvent(QShowEvent* event)
 {
+#if defined(Q_OS_WASM)
+    ui->canComboBox->setEnabled(false);
+    ui->tapComboBox->setEnabled(false);
+#else
     QNetworkInterface net;
     BoardWindow *bw = static_cast<BoardWindow *>(this->parent());
     QList<QNetworkInterface> netList = net.allInterfaces();
@@ -71,7 +77,7 @@ void NetSelectBox::showEvent(QShowEvent* event)
 #elif defined(Q_OS_LINUX)
     ui->canComboBox->setEnabled(true);
 #endif
-
+#endif
     QDialog::showEvent(event);
 }
 

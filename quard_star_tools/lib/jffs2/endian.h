@@ -117,6 +117,10 @@
 #	define __LITTLE_ENDIAN LITTLE_ENDIAN
 #	define __PDP_ENDIAN    PDP_ENDIAN
 
+#elif defined(__EMSCRIPTEN__)
+
+#include <endian.h>
+
 #else
 
 #	error platform not supported
