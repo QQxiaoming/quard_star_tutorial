@@ -52,7 +52,7 @@ public:
     using KeyboardCursorShape = Konsole::Emulation::KeyboardCursorShape;
 
     //Creation of widget
-    QTermWidget(int startnow, // 1 = start shell programm immediatelly
+    QTermWidget(int startnow, // 1 = start shell program immediately
                 QWidget * parent = nullptr);
     // A dummy constructor for Qt Designer. startnow is 1 by default
     QTermWidget(QWidget *parent = nullptr);
@@ -113,6 +113,15 @@ public:
      * availableColorSchemes() or a full path to a color scheme.
      */
     void setColorScheme(const QString & name);
+
+    /**
+     * @brief Retrieves the available color schemes in the OS for the terminal.
+     *
+     * @note This function is needed in addition to the static one for making it availble when accessing QTermWidget as a plugin.
+     *
+     * @return A list of color schemes.
+     */
+    QStringList getAvailableColorSchemes();
     static QStringList availableColorSchemes();
     static void addCustomColorSchemeDir(const QString& custom_dir);
 

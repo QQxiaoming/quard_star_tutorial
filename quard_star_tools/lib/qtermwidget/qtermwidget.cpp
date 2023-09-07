@@ -21,9 +21,7 @@
 #include <QtDebug>
 #include <QDir>
 #include <QMessageBox>
-#if QT_VERSION >= 0x060000
 #include <QRegularExpression>
-#endif
 
 #include "ColorTables.h"
 #include "Session.h"
@@ -165,16 +163,14 @@ void QTermWidget::search(bool forwards, bool next)
     //qDebug() << "current selection starts at: " << startColumn << startLine;
     //qDebug() << "current cursor position: " << m_impl->m_terminalDisplay->screenWindow()->cursorPosition();
 
-#if QT_VERSION < 0x060000
-    QRegExp regExp(m_searchBar->searchText());
-    regExp.setPatternSyntax(m_searchBar->useRegularExpression() ? QRegExp::RegExp : QRegExp::FixedString);
-    regExp.setCaseSensitivity(m_searchBar->matchCase() ? Qt::CaseSensitive : Qt::CaseInsensitive);
-#else
-    QRegularExpression regExp(m_searchBar->searchText(),
-                              m_searchBar->matchCase() ? QRegularExpression::CaseInsensitiveOption|
-                                                         QRegularExpression::UseUnicodePropertiesOption
-                                                       : QRegularExpression::UseUnicodePropertiesOption);
-#endif
+    QRegularExpression regExp;
+    if (m_searchBar->useRegularExpression()) {
+        regExp.setPattern(m_searchBar->searchText());
+    } else {
+        regExp.setPattern(QRegularExpression::escape(m_searchBar->searchText()));
+    }
+    regExp.setPatternOptions(m_searchBar->matchCase() ? QRegularExpression::NoPatternOption : QRegularExpression::CaseInsensitiveOption);
+
     HistorySearch *historySearch =
             new HistorySearch(m_impl->m_session->emulation(), regExp, forwards, startColumn, startLine, this);
     connect(historySearch, SIGNAL(matchFound(int, int, int, int)), this, SLOT(matchFound(int, int, int, int)));
@@ -261,11 +257,7 @@ void QTermWidget::setLangeuage(QLocale::Language lang)
 void QTermWidget::init(int startnow)
 {
     m_layout = new QVBoxLayout();
-#if QT_VERSION < 0x060000
-    m_layout->setMargin(0);
-#else
-    m_layout->setContentsMargins(0,0,0,0);
-#endif
+    m_layout->setContentsMargins(0, 0, 0, 0);
     setLayout(m_layout);
 
     m_impl = new TermWidgetImpl(this);
@@ -437,6 +429,12 @@ void QTermWidget::setColorScheme(const QString& origName)
     ColorEntry table[TABLE_COLORS];
     cs->getColorTable(table);
     m_impl->m_terminalDisplay->setColorTable(table);
+    m_impl->m_session->setDarkBackground(cs->hasDarkBackground());
+}
+
+QStringList QTermWidget::getAvailableColorSchemes()
+{
+   return QTermWidget::availableColorSchemes();
 }
 
 QStringList QTermWidget::availableColorSchemes()

@@ -18,11 +18,7 @@
 */
 #include <QMenu>
 #include <QAction>
-#if QT_VERSION > 0x060000
 #include <QRegularExpression>
-#else
-#include <QRegExp>
-#endif
 #include <QDebug>
 
 #include "SearchBar.h"

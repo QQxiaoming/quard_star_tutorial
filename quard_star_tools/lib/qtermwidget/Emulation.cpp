@@ -33,12 +33,6 @@
 #include <QClipboard>
 #include <QHash>
 #include <QKeyEvent>
-#if QT_VERSION >= 0x060000
-#include <QRegularExpression>
-#include <QtCore5Compat/QTextDecoder>
-#else
-#include <QRegExp>
-#endif
 #include <QTextStream>
 #include <QThread>
 

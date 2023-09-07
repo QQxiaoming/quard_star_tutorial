@@ -32,9 +32,7 @@
 #include <QDir>
 #include <QRegularExpression>
 #include <QRandomGenerator>
-#if QT_VERSION >= 0x060000
 #include <QStringView>
-#endif
 
 // KDE
 //#include <KColorScheme>
@@ -341,11 +339,7 @@ void ColorScheme::readColorEntry(QSettings * s , int index)
     bool ok = false;
     // XXX: Undocumented(?) QSettings behavior: values with commas are parsed
     // as QStringList and others QString
-#if QT_VERSION >= 0x060000
     if (colorValue.typeId() == QMetaType::QStringList)
-#else
-    if (colorValue.type() == QVariant::StringList)
-#endif
     {
         QStringList rgbList = colorValue.toStringList();
         colorStr = rgbList.join(QLatin1Char(','));
@@ -370,15 +364,9 @@ void ColorScheme::readColorEntry(QSettings * s , int index)
         if (hexColorPattern.match(colorStr).hasMatch())
         {
             // Parsing is always ok as already matched by the regexp
-#if QT_VERSION >= 0x060000
             r = QStringView{colorStr}.mid(1, 2).toInt(nullptr, 16);
             g = QStringView{colorStr}.mid(3, 2).toInt(nullptr, 16);
             b = QStringView{colorStr}.mid(5, 2).toInt(nullptr, 16);
-#else
-            r = colorStr.midRef(1, 2).toInt(nullptr, 16);
-            g = colorStr.midRef(3, 2).toInt(nullptr, 16);
-            b = colorStr.midRef(5, 2).toInt(nullptr, 16);
-#endif
             ok = true;
         }
     }
@@ -574,7 +562,6 @@ bool ColorSchemeManager::loadColorScheme(const QString& filePath)
 
     if (scheme->name().isEmpty())
     {
-        //qDebug() << "Color scheme in" << filePath << "does not have a valid name and was not loaded.";
         delete scheme;
         return false;
     }
@@ -585,9 +572,6 @@ bool ColorSchemeManager::loadColorScheme(const QString& filePath)
     }
     else
     {
-        /*qDebug() << "color scheme with name" << schemeName << "has already been" <<
-            "found, ignoring.";*/
-
         delete scheme;
     }
 
@@ -630,7 +614,6 @@ bool ColorSchemeManager::deleteColorScheme(const QString& name)
     }
     else
     {
-        //qDebug() << "Failed to remove color scheme -" << path;
         return false;
     }
 }
@@ -666,8 +649,6 @@ const ColorScheme* ColorSchemeManager::findColorScheme(const QString& name)
         {
             return findColorScheme(name);
         }
-
-        //qDebug() << "Could not find color scheme - " << name;
 
         return nullptr;
     }

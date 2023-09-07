@@ -19,14 +19,10 @@
 #ifndef _SEARCHBAR_H
 #define	_SEARCHBAR_H
 
+#include <QRegularExpression>
+
 #include "ui_SearchBar.h"
 #include "HistorySearch.h"
-
-#if QT_VERSION < 0x060000
-#include <QRegExp>
-#else
-#include <QRegularExpression>
-#endif
 
 class SearchBar : public QWidget {
     Q_OBJECT

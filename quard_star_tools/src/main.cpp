@@ -22,7 +22,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QStyleFactory>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "qfonticon.h"
 
@@ -215,10 +215,10 @@ int main(int argc, char *argv[])
     QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
-    QRegExp re("^((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$");
+    QRegularExpression ipFormat("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$");
     if(ip_addr == "localhost") {
         ip_addr = "";
-    } else if(!re.exactMatch(ip_addr)) {
+    } else if(!ipFormat.match(ip_addr).hasMatch()) {
         ip_addr = "";
     }
 

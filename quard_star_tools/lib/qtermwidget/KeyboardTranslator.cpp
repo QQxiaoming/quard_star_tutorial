@@ -34,10 +34,8 @@
 #include <QKeySequence>
 #include <QDir>
 #include <QtDebug>
-#if QT_VERSION >= 0x060000
-#include <QtCore5Compat/QRegExp>
-#include <QtCore5Compat/QStringRef>
-#endif
+#include <QRegExp>
+
 #include "tools.h"
 
 // KDE
@@ -456,11 +454,7 @@ bool KeyboardTranslatorReader::parseAsKeyCode(const QString& item , int& keyCode
     QKeySequence sequence = QKeySequence::fromString(item);
     if ( !sequence.isEmpty() )
     {
-#if QT_VERSION >= 0x060000
         keyCode = sequence[0].toCombined();
-#else
-        keyCode = sequence[0];
-#endif
         if ( sequence.count() > 1 )
         {
             qDebug() << "Unhandled key codes in sequence: " << item;
@@ -682,7 +676,9 @@ QByteArray KeyboardTranslator::Entry::escapedText(bool expandWildCards,Qt::Keybo
 
         if ( replacement == 'x' )
         {
-            result.replace(i,1,"\\x"+QByteArray(1,ch).toHex());
+            QByteArray escaped("\\x");
+            escaped += QByteArray(1,ch).toHex();
+            result.replace(i, 1, escaped);
         } else if ( replacement != 0 )
         {
             result.remove(i,1);
@@ -700,7 +696,7 @@ QByteArray KeyboardTranslator::Entry::unescape(const QByteArray& input) const
     for ( int i = 0 ; i < result.size()-1 ; i++ )
     {
 
-        auto ch = result[i];
+        char ch = result[i];
         if ( ch == '\\' )
         {
            char replacement[2] = {0,0};

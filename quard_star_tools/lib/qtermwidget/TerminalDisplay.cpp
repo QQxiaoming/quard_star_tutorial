@@ -282,18 +282,10 @@ void TerminalDisplay::setVTFont(const QFont& f)
 {
   QFont font = f;
 
-  // This was originally set for OS X only:
-  //     mac uses floats for font width specification.
-  //     this ensures the same handling for all platforms
-  // but then there was revealed that various Linux distros
-  // have this problem too...
-#if QT_VERSION < 0x060000
-  font.setStyleStrategy(QFont::ForceIntegerMetrics);
-#endif
-
-  if ( !QFontInfo(font).fixedPitch() )
+  // Check if font is not fixed pitch and print a warning
+  if (!QFontInfo(font).fixedPitch())
   {
-      qDebug() << "Using a variable-width font in the terminal.  This may cause performance degradation and display/alignment errors.";
+      //qDebug() << "Using a variable-width font in the terminal.  This may cause performance degradation and display/alignment errors.";
   }
 
   // hint that text should be drawn without anti-aliasing.
@@ -302,7 +294,7 @@ void TerminalDisplay::setVTFont(const QFont& f)
       font.setStyleStrategy( QFont::NoAntialias );
 
   // experimental optimization.  Konsole assumes that the terminal is using a
-  // mono-spaced font, in which case kerning information should have an effect.
+  // mono-spaced font, in which case kerning information should have no effect.
   // Disabling kerning saves some computation when rendering text.
   font.setKerning(false);
 
@@ -1632,7 +1624,7 @@ int TerminalDisplay::textWidth(const int startColumn, const int length, const in
   QFontMetrics fm(font());
   int result = 0;
   for (int column = 0; column < length; column++) {
-    result += fm.horizontalAdvance(_image[loc(startColumn + column, line)].character);
+    result += fm.horizontalAdvance(QChar(static_cast<ushort>(_image[loc(startColumn + column, line)].character)));
   }
   return result;
 }
@@ -2027,13 +2019,7 @@ void TerminalDisplay::mousePressEvent(QMouseEvent* ev)
           spot->activate(QLatin1String("click-action"));
     }
   }
-  else if ( ev->button() ==
-          #if QT_VERSION >= 0x060000
-            Qt::MiddleButton
-          #else
-            Qt::MidButton
-          #endif
-            )
+  else if ( ev->button() == Qt::MiddleButton )
   {
     if ( _mouseMarks || (ev->modifiers() & Qt::ShiftModifier) )
       emitSelection(true,ev->modifiers() & Qt::ControlModifier);
@@ -2124,13 +2110,7 @@ void TerminalDisplay::mouseMoveEvent(QMouseEvent* ev)
     int button = 3;
     if (ev->buttons() & Qt::LeftButton)
         button = 0;
-    if (ev->buttons() &
-        #if QT_VERSION >= 0x060000
-          Qt::MiddleButton
-        #else
-          Qt::MidButton
-        #endif
-        )
+    if (ev->buttons() & Qt::MiddleButton)
         button = 1;
     if (ev->buttons() & Qt::RightButton)
         button = 2;
@@ -2151,13 +2131,8 @@ void TerminalDisplay::mouseMoveEvent(QMouseEvent* ev)
 
 //   int distance = KGlobalSettings::dndEventDelay();
    int distance = QApplication::startDragDistance();
-#if QT_VERSION >= 0x060000
-   if ( ev->position().x() > dragInfo.start.x() + distance || ev->position().x() < dragInfo.start.x() - distance ||
+    if ( ev->position().x() > dragInfo.start.x() + distance || ev->position().x() < dragInfo.start.x() - distance ||
         ev->position().y() > dragInfo.start.y() + distance || ev->position().y() < dragInfo.start.y() - distance)
-#else
-   if ( ev->x() > dragInfo.start.x() + distance || ev->x() < dragInfo.start.x() - distance ||
-        ev->y() > dragInfo.start.y() + distance || ev->y() < dragInfo.start.y() - distance)
-#endif
    {
       // we've left the drag square, we can start a real drag operation now
       emit isBusySelecting(false); // Ok.. we can breath again.
@@ -2177,13 +2152,7 @@ void TerminalDisplay::mouseMoveEvent(QMouseEvent* ev)
   if (_actSel == 0) return;
 
  // don't extend selection while pasting
-  if (ev->buttons() &
-        #if QT_VERSION >= 0x060000
-          Qt::MiddleButton
-        #else
-          Qt::MidButton
-        #endif
-          ) return;
+  if (ev->buttons() & Qt::MiddleButton) return;
 
   extendSelection( ev->pos() );
 }
@@ -2257,9 +2226,9 @@ void TerminalDisplay::extendSelection( const QPoint& position )
     QPoint left = left_not_right ? here : _iPntSelCorr;
     i = loc(left.x(),left.y());
     if (i>=0 && i<=_imageSize) {
-      selClass = charClass(_image[i].character);
+      selClass = charClass(QChar(static_cast<ushort>(_image[i].character)));
       while ( ((left.x()>0) || (left.y()>0 && (_lineProperties[left.y()-1] & LINE_WRAPPED) ))
-                      && charClass(_image[i-1].character) == selClass )
+                      && charClass(QChar(static_cast<ushort>(_image[i-1].character))) == selClass )
       { i--; if (left.x()>0) left.rx()--; else {left.rx()=_usedColumns-1; left.ry()--;} }
     }
 
@@ -2267,9 +2236,9 @@ void TerminalDisplay::extendSelection( const QPoint& position )
     QPoint right = left_not_right ? _iPntSelCorr : here;
     i = loc(right.x(),right.y());
     if (i>=0 && i<=_imageSize) {
-      selClass = charClass(_image[i].character);
+      selClass = charClass(QChar(static_cast<ushort>(_image[i].character)));
       while( ((right.x()<_usedColumns-1) || (right.y()<_usedLines-1 && (_lineProperties[right.y()] & LINE_WRAPPED) ))
-                      && charClass(_image[i+1].character) == selClass )
+                      && charClass(QChar(static_cast<ushort>(_image[i+1].character))) == selClass )
       { i++; if (right.x()<_usedColumns-1) right.rx()++; else {right.rx()=0; right.ry()++; } }
     }
 
@@ -2339,7 +2308,7 @@ void TerminalDisplay::extendSelection( const QPoint& position )
     {
       i = loc(right.x(),right.y());
       if (i>=0 && i<=_imageSize) {
-        selClass = charClass(_image[i-1].character);
+        selClass = charClass(QChar(static_cast<ushort>(_image[i-1].character)));
        /* if (selClass == ' ')
         {
           while ( right.x() < _usedColumns-1 && charClass(_image[i+1].character) == selClass && (right.y()<_usedLines-1) &&
@@ -2435,23 +2404,12 @@ void TerminalDisplay::mouseReleaseEvent(QMouseEvent* ev)
     dragInfo.state = diNone;
   }
 
+
   if ( !_mouseMarks &&
        ((ev->button() == Qt::RightButton && !(ev->modifiers() & Qt::ShiftModifier))
-                        || ev->button() ==
-      #if QT_VERSION >= 0x060000
-        Qt::MiddleButton
-      #else
-        Qt::MidButton
-      #endif
-        ) )
+                        || ev->button() == Qt::MiddleButton) )
   {
-    emit mouseSignal( ev->button() ==
-                #if QT_VERSION >= 0x060000
-                      Qt::MiddleButton
-                    #else
-                      Qt::MidButton
-                #endif
-                      ? 1 : 2,
+    emit mouseSignal( ev->button() == Qt::MiddleButton ? 1 : 2,
                       charColumn + 1,
                       charLine + 1 +_scrollBar->value() -_scrollBar->maximum() ,
                       2);
@@ -2538,12 +2496,12 @@ void TerminalDisplay::mouseDoubleClickEvent(QMouseEvent* ev)
   _wordSelectionMode = true;
 
   // find word boundaries...
-  QChar selClass = charClass(_image[i].character);
+  QChar selClass = charClass(QChar(static_cast<ushort>(_image[i].character)));
   {
      // find the start of the word
      int x = bgnSel.x();
      while ( ((x>0) || (bgnSel.y()>0 && (_lineProperties[bgnSel.y()-1] & LINE_WRAPPED) ))
-                     && charClass(_image[i-1].character) == selClass )
+                     && charClass(QChar(static_cast<ushort>(_image[i-1].character))) == selClass )
      {
        i--;
        if (x>0)
@@ -2561,9 +2519,8 @@ void TerminalDisplay::mouseDoubleClickEvent(QMouseEvent* ev)
      // find the end of the word
      i = loc( endSel.x(), endSel.y() );
      x = endSel.x();
-
      while( ((x<_usedColumns-1) || (endSel.y()<_usedLines-1 && (_lineProperties[endSel.y()] & LINE_WRAPPED) ))
-                     && charClass(_image[i+1].character) == selClass )
+                     && charClass(QChar(static_cast<ushort>(_image[i+1].character))) == selClass )
      {
          i++;
          if (x<_usedColumns-1)
@@ -2672,13 +2629,13 @@ void TerminalDisplay::mouseTripleClickEvent(QMouseEvent* ev)
   if (_tripleClickMode == SelectForwardsFromCursor) {
     // find word boundary start
     int i = loc(_iPntSel.x(),_iPntSel.y());
-    QChar selClass = charClass(_image[i].character);
+    QChar selClass = charClass(QChar(static_cast<ushort>(_image[i].character)));
     int x = _iPntSel.x();
 
     while ( ((x>0) ||
              (_iPntSel.y()>0 && (_lineProperties[_iPntSel.y()-1] & LINE_WRAPPED) )
             )
-            && charClass(_image[i-1].character) == selClass )
+            && charClass(QChar(static_cast<ushort>(_image[i-1].character))) == selClass )
     {
         i--;
         if (x>0)

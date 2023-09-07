@@ -125,7 +125,6 @@ void HistoryFile::map()
     {
             readWriteBalance = 0;
             fileMap = nullptr;
-            //qDebug() << __FILE__ << __LINE__ << ": mmap'ing history failed.  errno = " << errno;
     }
 #else
     fileMap = (char*)mmap( nullptr , length , PROT_READ , MAP_PRIVATE , ion , 0 );
@@ -135,7 +134,6 @@ void HistoryFile::map()
     {
             readWriteBalance = 0;
             fileMap = nullptr;
-            //qDebug() << __FILE__ << __LINE__ << ": mmap'ing history failed.  errno = " << errno;
     }
 #endif
 }
