@@ -1,0 +1,68 @@
+name: webassembly
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/webassembly.yml'
+      - 'quard_star_tools/**'
+
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/webassembly.yml'
+      - 'quard_star_tools/**'
+
+  workflow_dispatch:
+
+jobs:
+  quard_star_tools_webassembly_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install prerequisites
+        shell: bash -l {0}
+        run: |
+          sudo apt update
+          sudo apt install -y make gcc
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.2'
+          modules: 'qt5compat'
+          aqtversion: ==3.1.7
+
+      - name: Install Qt webassembly
+        uses: jurplel/install-qt-action@v3
+        with:
+          arch: wasm_singlethread
+          version: '6.5.2'
+          modules: 'qt5compat'
+          aqtversion: ==3.1.7
+
+      - name: Install emsdk
+        uses: mymindstorm/setup-emsdk@v11
+        with:
+          version: 3.1.25
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Build all
+        shell: bash -l {0}
+        env:
+          QT_VERSION: 6.5.2
+        run: |
+          cd quard_star_tools
+          git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
+          sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
+          lrelease quard_star_tools.pro
+          ${Qt6_DIR}/bin/qmake -makefile
+          make
+
+      - name: Upload build asserts
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: quard_star_tools_webassembly
+          path: |
+            quard_star_tools/release/out

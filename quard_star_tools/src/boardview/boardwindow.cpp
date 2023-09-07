@@ -122,6 +122,9 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 #endif
     {
         portOffset = 10000;
+    #if defined(Q_OS_WASM)
+        ipAddr = "127.0.0.1";
+    #else
         bool ok = false;
         ipAddr = QInputDialog::getText(this, tr("Input IP Address"),
                     tr("IP Address:"), QLineEdit::Normal, ipAddr, &ok, Qt::WindowFlags(), Qt::ImhUrlCharactersOnly|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData);
@@ -134,6 +137,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
                 ipAddr = QHostAddress(QHostAddress::LocalHost).toString();
             }
         }
+    #endif
         qDebug() << "IP Address:" << ipAddr;
     }
 
