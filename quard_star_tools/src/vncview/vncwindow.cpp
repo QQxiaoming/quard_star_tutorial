@@ -47,9 +47,12 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     QPixmap pix;
     pix.load(":/boardview/icons/ttf.png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
-#if !defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
+    QRect screen = QGuiApplication::primaryScreen()->geometry();
+#else
     QRect screen = QGuiApplication::screenAt(
                        this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
+#endif
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
         int target_size = qMin(screen.width(),screen.height());
         scaled_value = ((double)pix.size().width())/((double)target_size);
@@ -60,23 +63,14 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     QRect size = this->geometry();
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
-#else
-    QRect screen = QGuiApplication::primaryScreen()->geometry();
-    if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
-        int target_size = qMin(screen.width(),screen.height());
-        scaled_value = ((double)pix.size().width())/((double)target_size);
-        pix = pix.scaled(QSize(target_size,target_size*pix.size().height()/pix.size().width()));
-    }
-    resize(pix.size());
-    setMask(QBitmap(pix.mask()));
-#endif
+
     vncView = new QVNCClientWidget(this);
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
     
     setFixedSize(this->size());
 
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
     pressTimer = new QTimer(this);
     pressTimer->setInterval(500);
     pressTimer->setSingleShot(true);
@@ -92,7 +86,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
 
 VncWindow::~VncWindow()
 {
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
     delete pressTimer;
 #endif
     delete vncView;
@@ -187,7 +181,7 @@ void VncWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
         pressTimer->start();
         pressPos = QCursor::pos();
 #endif
@@ -208,7 +202,7 @@ void VncWindow::mouseMoveEvent(QMouseEvent *event)
 void VncWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if( event->button() == Qt::LeftButton) {
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
                 QContextMenuEvent e(QContextMenuEvent::Mouse, event->pos(), QCursor::pos());

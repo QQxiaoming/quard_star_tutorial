@@ -159,9 +159,11 @@ static QTranslator appTranslator;
 
 int main(int argc, char *argv[])
 {
+#if defined(DESKTOP_INTERACTION_MODE)
     QApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
     QApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
+#endif
     QApplication application(argc, argv);
 
     QApplication::setApplicationName("Quard Star Board");
@@ -218,7 +220,7 @@ int main(int argc, char *argv[])
         ip_addr = "";
     }
 
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE) 
     // Mobile apps require a full-screen background window
     QWidget window;
     window.setObjectName("BackWindow");
@@ -226,7 +228,7 @@ int main(int argc, char *argv[])
     window.showFullScreen();
     BoardWindow boardWindow(env_path,skin_color,isDarkTheme,lang,ip_addr, &window);
     boardWindow.show();
-#else
+#elif defined(DESKTOP_INTERACTION_MODE)
     // Desktop apps require a borderless window
     BoardWindow window(env_path,skin_color,isDarkTheme,lang,ip_addr);
     window.show();

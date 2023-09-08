@@ -86,6 +86,9 @@ RCC_DIR     = $$build_type/rcc
 UI_DIR      = $$build_type/ui
 
 win32:!wasm {
+    DEFINES += DESKTOP_INTERACTION_MODE
+    DEFINES += BUILT_IN_QEMU_MODE
+    
     VERSION = $${BUILD_VERSION}.000
     RC_LANG = 0x0004
     RC_ICONS = "icons\icon.ico"
@@ -105,6 +108,9 @@ win32:!wasm {
 }
 
 unix:!macx:!android:!ios:!wasm {
+    DEFINES += DESKTOP_INTERACTION_MODE
+    DEFINES += BUILT_IN_QEMU_MODE
+
     QMAKE_RPATHDIR=$ORIGIN
     QMAKE_LFLAGS += -no-pie
 
@@ -117,6 +123,9 @@ unix:!macx:!android:!ios:!wasm {
 }
 
 macx:!ios:!wasm {
+    DEFINES += DESKTOP_INTERACTION_MODE
+    DEFINES += BUILT_IN_QEMU_MODE
+
     QMAKE_RPATHDIR=$ORIGIN
     ICON = "icons/icon.icns"
 
@@ -124,7 +133,9 @@ macx:!ios:!wasm {
 }
 
 android { 
-    DEFINES += MOBILE_MODE
+    DEFINES += MOBILE_INTERACTION_MODE
+    DEFINES += EXTERNAL_QEMU_MODE
+
     DISTFILES += \
         platform/android/AndroidManifest.xml \
         platform/android/res/values/libs.xml \
@@ -140,7 +151,9 @@ android {
 }
 
 ios {
-    DEFINES += MOBILE_MODE
+    DEFINES += MOBILE_INTERACTION_MODE
+    DEFINES += EXTERNAL_QEMU_MODE
+
     CONFIG += hide_symbols
     QMAKE_INFO_PLIST = platform/ios/Info.plist
     ios_icon.files = $$files($$PWD/platform/ios/AppIcon*.png)
@@ -154,8 +167,13 @@ ios {
 }
 
 wasm {
-    DEFINES += MOBILE_MODE
+    DEFINES += DESKTOP_INTERACTION_MODE
+    DEFINES += EXTERNAL_QEMU_MODE
+    
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
+
+    AFTER_LINK_CMD_LINE = cp $$PWD/platform/webassembly/$${TARGET}.html $$DESTDIR/ ; cp $$PWD/icons/icon512.png $$DESTDIR/ ; rm -rf $$DESTDIR/qtlogo.svg
+    QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
 }
 
 git_tag.target = $$PWD/git_tag.inc

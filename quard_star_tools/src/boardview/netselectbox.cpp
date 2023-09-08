@@ -72,7 +72,7 @@ void NetSelectBox::showEvent(QShowEvent* event)
         ui->tapRadioButton->setChecked(true);
         ui->tapComboBox->setEnabled(true);
     }
-#if defined(Q_OS_WIN) || defined(Q_OS_MACOS) || defined(MOBILE_MODE)
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS) || defined(MOBILE_INTERACTION_MODE)
     ui->canComboBox->setEnabled(false);
 #elif defined(Q_OS_LINUX)
     ui->canComboBox->setEnabled(true);

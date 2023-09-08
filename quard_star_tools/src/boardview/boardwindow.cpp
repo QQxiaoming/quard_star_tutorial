@@ -69,7 +69,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 #else
     this->setWindowFlags(Qt::SubWindow | Qt::FramelessWindowHint);
 #endif
-#if (defined(MOBILE_MODE))
+#if (defined(MOBILE_INTERACTION_MODE))
     grabGesture(Qt::PinchGesture);
 #endif
     QPixmap pix;
@@ -78,9 +78,12 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         skinColor = "green";
     pix.load(":/boardview/icons/board_"+skinColor+".png",0,
                 Qt::AvoidDither|Qt::ThresholdDither|Qt::ThresholdAlphaDither);
-#if !defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
+    QRect screen = QGuiApplication::primaryScreen()->geometry();
+#elif defined(DESKTOP_INTERACTION_MODE)
     QRect screen = QGuiApplication::screenAt(
                        this->mapToGlobal(QPoint(this->width()/2,0)))->geometry();
+#endif
     if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
         int target_size = qMin(screen.width(),screen.height());
         scaled_value = ((double)pix.size().width())/((double)target_size);
@@ -97,23 +100,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     QRect size = this->geometry();
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
-#else
-    QRect screen = QGuiApplication::primaryScreen()->geometry();
-    if(pix.size().width() > screen.width() || pix.size().height() > screen.height() ) {
-        int target_size = qMin(screen.width(),screen.height());
-        scaled_value = ((double)pix.size().width())/((double)target_size);
-        pix = pix.scaled(QSize(target_size,target_size));
-        for(size_t i=0;i<sizeof(spaceList)/sizeof(struct space);i++) {
-            spaceList[i].x1 = spaceList[i].x1/scaled_value;
-            spaceList[i].x2 = spaceList[i].x2/scaled_value;
-            spaceList[i].y1 = spaceList[i].y1/scaled_value;
-            spaceList[i].y2 = spaceList[i].y2/scaled_value;
-        }
-    }
-    resize(pix.size());
-    setMask(QBitmap(pix.mask()));
-#endif
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
     if(ipAddr.isEmpty()) {
         ipAddr = QHostAddress(QHostAddress::LocalHost).toString();
         portOffset = 0;
@@ -176,7 +163,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         qDebug() << "Couldn't detect any system tray on this system.";
     }
 
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
     pressTimer = new QTimer(this);
     pressTimer->setInterval(500);
     pressTimer->setSingleShot(true);
@@ -202,14 +189,14 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
 
 BoardWindow::~BoardWindow()
 {
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
     if(qemuProcess) {
         qemuProcess->kill();
         qemuProcess->waitForFinished(-1);
         delete qemuProcess;
     }
 #endif
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
     delete pressTimer;
 #endif
     delete trayIcon;
@@ -340,7 +327,7 @@ bool BoardWindow::powerSwitch(bool power)
     };
 
     arguments.removeAll(QString(""));
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
     if(power) {
         if(qemuProcess) {
             qemuProcess->kill();
@@ -383,7 +370,7 @@ bool BoardWindow::powerSwitch(bool power)
 
 int BoardWindow::sendQemuCmd(const QString &cmd)
 {
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
     if(qemuProcess) {
         if(qemuProcess->state() == QProcess::Running) {
             jtagWindow->sendData(cmd.toUtf8());
@@ -725,7 +712,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
         }
     );
     
-#if !defined(MOBILE_MODE)
+#if !defined(MOBILE_INTERACTION_MODE)
     QAction *pMinimize = new QAction(tr("Hide"), menu);
     if(this->isHidden()) {
         pMinimize->setText(tr("Show"));
@@ -869,7 +856,7 @@ void BoardWindow::paintEvent(QPaintEvent *event)
         if(spaceList[i].draw) {
             painter.fillRect(spaceList[i].x1,spaceList[i].y1,
                 spaceList[i].x2-spaceList[i].x1,spaceList[i].y2-spaceList[i].y1,QBrush(QColor(0,0,255,60)));
-        #if !(defined(MOBILE_MODE))
+        #if !(defined(MOBILE_INTERACTION_MODE))
             QToolTip::showText(this->pos()+QPoint(spaceList[i].x1,spaceList[i].y2),spaceList[i].drawName);
         #endif
         }
@@ -891,7 +878,7 @@ void BoardWindow::mousePressEvent(QMouseEvent *event)
     if( event->button() == Qt::LeftButton) {
         isMousePressed = true;
         mStartPos = event->pos();
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
         pressTimer->start();
         pressPos = QCursor::pos();
 #endif
@@ -930,7 +917,7 @@ void BoardWindow::mouseMoveEvent(QMouseEvent *event)
 void BoardWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if( event->button() == Qt::LeftButton) {
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
         if(isMousePressed && pressTimer->remainingTime() <= 0) {
             if(QCursor::pos() == pressPos) {
                 QContextMenuEvent e(QContextMenuEvent::Mouse, event->pos(), QCursor::pos());
@@ -1045,7 +1032,7 @@ QString BoardWindow::getOpenFileName(const QString &caption, const QString &file
 
 void BoardWindow::app_quit(void)
 {
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
     if(qemuProcess) {
         if(qemuProcess->state() == QProcess::Running) {
             qemuProcess->kill();

@@ -34,7 +34,7 @@
 #include <QFileDialog>
 #include <QSystemTrayIcon>
 #include <QLocale>
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
 #include <QProcess>
 #endif
 
@@ -126,7 +126,7 @@ private:
     bool isMousePressed = false;
     bool powerOn = false;
     QPoint mStartPos;
-#if !(defined(MOBILE_MODE))
+#if defined(BUILT_IN_QEMU_MODE)
     QProcess *qemuProcess = nullptr;
 #endif
     TelnetWindow *uartWindow[3];
@@ -137,7 +137,7 @@ private:
     FSViewWindow *fsView;
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *contextMenu = nullptr;
-#if defined(MOBILE_MODE)
+#if defined(MOBILE_INTERACTION_MODE)
     QTimer* pressTimer;
     QPoint pressPos;
 #endif
