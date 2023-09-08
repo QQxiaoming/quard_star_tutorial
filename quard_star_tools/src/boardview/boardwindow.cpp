@@ -582,19 +582,20 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
                 DeviceName title = static_cast<DeviceName>(pSetting->toolTip().toInt());
                 switch (title)
                 {
+                #if defined(BUILT_IN_QEMU_MODE)
                     case ETH:
                         netSelect->show();
                         break;
                     case BOOT:
                         bootSelect->show();
                         break;
+                #endif
                     default:
-                        QMessageBox::about(this, "TODO", "TODO");
+                        QMessageBox::about(this, tr("Setting"), tr("Setting is not supported!"));
                         break;
                 }
             }
         );
-
 }
                                                             
 void BoardWindow::createStdMenuAction(QMenu *menu)
