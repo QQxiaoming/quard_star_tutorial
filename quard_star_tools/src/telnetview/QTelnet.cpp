@@ -13,21 +13,21 @@ char QTelnet::_arrCRLF[2]         = { 13, 10 };
 char QTelnet::_arrCR[2]           = { 13, 0 };
 
 QTelnet::QTelnet(QObject *parent) :
-	QTcpSocket(parent), m_actualSB(0)
+    QObject(parent), m_actualSB(0)
 {
-    connect( this, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), 
+    connect( &socket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)),
 					this, SLOT(socketError(QAbstractSocket::SocketError)) );
-	connect( this, SIGNAL(readyRead()),		this, SLOT(onReadyRead()) );
+    connect( &socket, SIGNAL(readyRead()),		this, SLOT(onReadyRead()) );
 }
 
 QString QTelnet::peerInfo() const
 {
-    return peerName()+" ("+peerAddress().toString()+" ):"+peerPort();
+    return socket.peerName()+" ("+socket.peerAddress().toString()+" ):"+socket.peerPort();
 }
 
 bool QTelnet::isConnected() const
 {
-	return state() == QAbstractSocket::ConnectedState;
+    return socket.state() == QAbstractSocket::ConnectedState;
 }
 
 bool QTelnet::testBinaryMode() const
@@ -35,15 +35,19 @@ bool QTelnet::testBinaryMode() const
 	return m_receivedDX[(unsigned char)TELOPT_BINARY] == DO;
 }
 
-void QTelnet::connectToHost(const QString &host, quint16 port,
-					 OpenMode mode, NetworkLayerProtocol protocol)
+void QTelnet::connectToHost(const QString &host, quint16 port)
 {
-	if( !isConnected() )
+    if( !isConnected() )
 	{
 		resetProtocol();
-		abort();
-        QTcpSocket::connectToHost(host, port, mode, protocol);
+        socket.abort();
+        socket.connectToHost(host, port, QAbstractSocket::ReadWrite, QAbstractSocket::AnyIPProtocol);
 	}
+}
+
+void QTelnet::disconnectFromHost(void)
+{
+    socket.disconnectFromHost();
 }
 
 void QTelnet::sendData(const QByteArray &ba)
@@ -61,12 +65,12 @@ void QTelnet::sendData(const char *data, int len)
 void QTelnet::socketError(QAbstractSocket::SocketError err)
 {
 	Q_UNUSED(err);
-	disconnectFromHost();
+    socket.disconnectFromHost();
 }
 
 void QTelnet::write(const char c)
 {
-	QTcpSocket::write( (char*)&c, 1 );
+    socket.write( (char*)&c, 1 );
 }
 
 void QTelnet::setCustomCR(char cr, char cr2)
@@ -85,17 +89,17 @@ void QTelnet::setCustomCRLF(char lf, char cr)
 void QTelnet::sendTelnetControl(char codigo)
 {
 	_sendCodeArray[1] = codigo;
-	QTcpSocket::write(_sendCodeArray, 2);
+    socket.write(_sendCodeArray, 2);
 }
 
 void QTelnet::writeCustomCRLF()
 {
-	QTcpSocket::write(_arrCRLF, 2);
+    socket.write(_arrCRLF, 2);
 }
 
 void QTelnet::writeCustomCR()
 {
-	QTcpSocket::write(_arrCR, 2);
+    socket.write(_arrCR, 2);
 }
 
 /// Resetea los datos del protocolo. Debe llamarse cada vez que se inicia una conexión nueva.
@@ -121,7 +125,7 @@ void QTelnet::sendSB(char code, char *arr, int iLen)
 	write(SB);
 	write(code);
 
-	QTcpSocket::write(arr, iLen);
+    socket.write(arr, iLen);
 
 	write(IAC);
 	write(SE);
@@ -150,14 +154,14 @@ void QTelnet::handleSB()
         if( (m_buffSB.length() > 0) &&
 			((unsigned char)m_buffSB[0] == (unsigned char)TELQUAL_SEND) )
 		{
-			QTcpSocket::write(IACSB, 2);
+            socket.write(IACSB, 2);
 			write(TELOPT_TTYPE);
 			write(TELQUAL_IS);
 			/* FIXME: need more logic here if we use
 			* more than one terminal type
 			*/
-			QTcpSocket::write("SiraggaTerminal", 15);
-			QTcpSocket::write(IACSE, 2);
+            socket.write("SiraggaTerminal", 15);
+            socket.write(IACSE, 2);
 		}
 		break;
 	}
@@ -522,12 +526,12 @@ void QTelnet::onReadyRead()
 	qint64 readed;
 	qint64 processed;
 
-	while( (readed = read(m_buffIncoming, IncommingBufferSize)) != 0 )
+    while( (readed = socket.read(m_buffIncoming, IncommingBufferSize)) != 0 )
 	{
 		switch( readed )
 		{
 		case -1:
-			disconnectFromHost();
+            socket.disconnectFromHost();
 			break;
 		default:
 			processed = doTelnetInProtocol(readed);

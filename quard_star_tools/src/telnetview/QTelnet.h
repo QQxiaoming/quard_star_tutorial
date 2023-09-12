@@ -8,7 +8,7 @@
 
 #define IncommingBufferSize	(1500)
 
-class QTelnet : public QTcpSocket
+class QTelnet : public QObject
 {
 Q_OBJECT
 
@@ -64,6 +64,7 @@ protected:
 	};
 
 private:
+    QTcpSocket socket;
 	static const char IACWILL[2];
 	static const char IACWONT[2];
 	static const char IACDO[2];
@@ -106,9 +107,9 @@ private:
 public:
 	explicit QTelnet(QObject *parent = 0);
 
-    virtual void connectToHost(const QString &hostName, quint16 port, 
-		OpenMode mode = ReadWrite, NetworkLayerProtocol protocol = AnyIPProtocol);
-	void sendData(const QByteArray &ba);
+    void connectToHost(const QString &hostName, quint16 port);
+    void disconnectFromHost(void);
+    void sendData(const QByteArray &ba);
     void sendData(const char *data, int len);
 	void setCustomCRLF(char lf = 13, char cr = 10);
 	void setCustomCR(char cr = 10, char cr2 = 0);
