@@ -38,6 +38,7 @@ public:
     VncWindow(const QString &addr, int port, QWidget *parent = nullptr);
     ~VncWindow();
     void reConnect(void);
+    void disConnect(void);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);

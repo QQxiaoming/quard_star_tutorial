@@ -64,7 +64,11 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
 
-    vncView = new QVNCClientWidget(this);
+#if defined(Q_OS_WASM)
+    vncView = new QVNCClientWidget(QVNCClientWidget::WEBSOCKET, this);
+#else
+    vncView = new QVNCClientWidget(QVNCClientWidget::TCP, this);
+#endif
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
     
@@ -100,6 +104,13 @@ void VncWindow::reConnect(void)
     }
     if(vncView->connectToVncServer(severAddr,"",severPort)) {
         vncView->startFrameBufferUpdate();
+    }
+}
+
+void VncWindow::disConnect(void)
+{
+    if(vncView->isConnectedToServer()) {
+        vncView->disconnectFromVncServer();
     }
 }
 

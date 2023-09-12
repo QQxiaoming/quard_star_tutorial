@@ -38,7 +38,11 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
     this->setAttribute(Qt::WA_StyledBackground, true);
     this->setStyleSheet("QWidget#telnetWindowWidget {background-color: transparent;}");
 
-    telnet = new QTelnet(this);
+#if defined(Q_OS_WASM)
+    telnet = new QTelnet(QTelnet::WEBSOCKET, this);
+#else
+    telnet = new QTelnet(QTelnet::TCP, this);
+#endif
     termWidget = new QTermWidget(0,this);
     termWidget->setStyleSheet("QWidget#terminalDisplay {background-color: black;}");
 
@@ -564,6 +568,13 @@ void TelnetWindow::reConnect(void)
         telnet->disconnectFromHost();
     }
     telnet->connectToHost(severAddr,severPort);
+}
+
+void TelnetWindow::disConnect(void)
+{
+    if( telnet->isConnected() ){
+        telnet->disconnectFromHost();
+    }
 }
 
 void TelnetWindow::sendData(const QByteArray &ba)

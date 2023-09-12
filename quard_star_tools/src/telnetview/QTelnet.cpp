@@ -12,8 +12,8 @@ char QTelnet::_sendCodeArray[2]   = { IAC, 0 };
 char QTelnet::_arrCRLF[2]         = { 13, 10 };
 char QTelnet::_arrCR[2]           = { 13, 0 };
 
-QTelnet::QTelnet(QObject *parent) :
-    QObject(parent),  m_socketType(TCP), m_actualSB(0)
+QTelnet::QTelnet(SocketType type, QObject *parent) :
+    QObject(parent),  m_socketType(type), m_actualSB(0)
 {
     connect(&m_tcpSocket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)),
 					this, SLOT(socketError(QAbstractSocket::SocketError)) );
@@ -47,14 +47,13 @@ bool QTelnet::isConnected() const
 
 void QTelnet::connectToHost(const QString &host, quint16 port)
 {
-    if( !isConnected() )
-	{
+    if(!isConnected()) {
 		resetProtocol();
 		if(m_socketType == TCP) {
         	m_tcpSocket.abort();
         	m_tcpSocket.connectToHost(host, port, QAbstractSocket::ReadWrite, QAbstractSocket::AnyIPProtocol);
 		} else if(m_socketType == WEBSOCKET) {
-			m_webSocket.abort();
+            m_webSocket.abort();
 			m_webSocket.open(QUrl("ws://"+host+":"+QString::number(port)));
 		}
 	}
@@ -70,6 +69,8 @@ void QTelnet::disconnectFromHost(void)
 
 void QTelnet::write(const char c)
 {
+	if(!isConnected())
+		return;
 	if(m_socketType == TCP)
     	m_tcpSocket.write( (char*)&c, 1 );
     else if(m_socketType == WEBSOCKET)
@@ -78,6 +79,8 @@ void QTelnet::write(const char c)
 
 qint64 QTelnet::write(const char *data, qint64 len)
 {
+	if(!isConnected())
+		return 0;
     if(m_socketType == TCP) {
         return m_tcpSocket.write( data, len );
     } else if(m_socketType == WEBSOCKET) {
@@ -88,10 +91,11 @@ qint64 QTelnet::write(const char *data, qint64 len)
 
 qint64 QTelnet::read(char *data, qint64 maxlen)
 {
+	if(!isConnected())
+		return 0;
 	if(m_socketType == TCP)
         return m_tcpSocket.read(data, maxlen);
     else if(m_socketType == WEBSOCKET) {
-        //TODO:
         return 0;
     }
 	return 0;
@@ -234,7 +238,7 @@ void QTelnet::transpose(const char *buf, int iLen)
 			// linefeed+carriage return is CR LF
 
 			// En modo binario no se traduce nada.
-			if( testBinaryMode() )
+			if( testBinaryMode() || m_socketType == WEBSOCKET )
 				write(buf[i]);
 			else
 				writeCustomCRLF();
@@ -243,7 +247,7 @@ void QTelnet::transpose(const char *buf, int iLen)
 			// carriage return is CR NUL */
 
 			// En modo binario no se traduce nada.
-			if( testBinaryMode() )
+			if( testBinaryMode() || m_socketType == WEBSOCKET )
 				write(buf[i]);
 			else
 				writeCustomCRLF();
@@ -588,4 +592,9 @@ void QTelnet::onTcpReadyRead()
 			break;
 		}
 	}
+}
+
+void QTelnet::binaryMessageReceived(const QByteArray &message)
+{
+	emit newData(message.constData(), message.length());
 }

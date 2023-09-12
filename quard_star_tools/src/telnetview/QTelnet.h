@@ -20,7 +20,12 @@ public:
 		Resolving,		// Resolving host
 		Connecting,		// Connecting to host.
 		Connected		// Connected to host.
-	};
+    };
+    enum SocketType
+    {
+        TCP,
+        WEBSOCKET
+    };
 
 protected:
 	enum TelnetStateCodes
@@ -67,11 +72,6 @@ protected:
 private:
     QTcpSocket m_tcpSocket;
 	QWebSocket m_webSocket;
-	enum SocketType
-	{
-		TCP,
-		WEBSOCKET
-	};
 	SocketType m_socketType;
 	static const char IACWILL[2];
 	static const char IACWONT[2];
@@ -113,7 +113,7 @@ private:
 	qint64 doTelnetInProtocol(qint64 buffSize);
 
 public:
-	explicit QTelnet(QObject *parent = 0);
+	explicit QTelnet(SocketType type = TCP, QObject *parent = 0);
 
     void connectToHost(const QString &hostName, quint16 port);
     void disconnectFromHost(void);
@@ -144,6 +144,7 @@ signals:
 private slots:
 	void socketError(QAbstractSocket::SocketError err);
     void onTcpReadyRead();
+    void binaryMessageReceived(const QByteArray &message);
 };
 
 #endif // QTELNET_H

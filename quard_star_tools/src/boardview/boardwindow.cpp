@@ -355,18 +355,31 @@ bool BoardWindow::powerSwitch(bool power)
         jtagWindow->reConnect();
         lcdWindow->reConnect();
     } else {
+        uartWindow[0]->disConnect();
+        uartWindow[1]->disConnect();
+        uartWindow[2]->disConnect();
+        jtagWindow->disConnect();
+        lcdWindow->disConnect();
+
         if(qemuProcess) {
             qemuProcess->kill();
             qemuProcess->waitForFinished(-1);
         }
     }
 #else
-    uartWindow[0]->reConnect();
-    uartWindow[1]->reConnect();
-    uartWindow[2]->reConnect();
-    jtagWindow->reConnect();
-    lcdWindow->reConnect();
-    Q_UNUSED(power);
+    if(power) {
+        uartWindow[0]->reConnect();
+        uartWindow[1]->reConnect();
+        uartWindow[2]->reConnect();
+        jtagWindow->reConnect();
+        lcdWindow->reConnect();
+    } else {
+        uartWindow[0]->disConnect();
+        uartWindow[1]->disConnect();
+        uartWindow[2]->disConnect();
+        jtagWindow->disConnect();
+        lcdWindow->disConnect();
+    }
 #endif
     return true;
 }

@@ -4,6 +4,8 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <QtNetwork>
+#include <QTcpSocket>
+#include <QWebSocket>
 
 namespace RFBProtol
 {
@@ -59,29 +61,48 @@ class QVNCClientWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QVNCClientWidget(QWidget *parent = 0);
+    enum SocketType
+    {
+        TCP,
+        WEBSOCKET
+    };
+    explicit QVNCClientWidget(SocketType type = TCP, QWidget *parent = 0);
     ~QVNCClientWidget();
 
     bool connectToVncServer(QString ip, QString password, int port = 5900);
-    inline bool isConnectedToServer() { return (socket.state() == QTcpSocket::ConnectedState); }
-    inline void disconnectFromVncServer() { socket.disconnectFromHost(); }
+    inline bool isConnectedToServer() { 
+        if(m_socketType == TCP) 
+            return (m_tcpSocket.state() == QTcpSocket::ConnectedState);
+        else if(m_socketType == WEBSOCKET) 
+            return (m_webSocket.state() == QAbstractSocket::ConnectedState);
+        return false;
+    }
+    inline void disconnectFromVncServer() { 
+        if(m_socketType == TCP) 
+            m_tcpSocket.disconnectFromHost();
+        else if(m_socketType == WEBSOCKET) {
+            disconnect(this, SIGNAL(webSocketReadyRead()), this, SLOT(onServerMessage()));
+            m_webSocket.close();
+            m_webSoketBuffer.clear();
+        }
+    }
+    QString getServerMsg(void) {
+        if(m_socketType == TCP) 
+            return m_tcpSocket.peerName();
+        else if(m_socketType == WEBSOCKET) 
+            return m_webSocket.peerName();
+        return QString();
+    }
 
     inline void tryRefreshScreen() { sendFrameBufferUpdateRequest(0); }
-
-    void startFrameBufferUpdate()
-    {
+    void startFrameBufferUpdate() {
         connect(this, SIGNAL(frameBufferUpdated()), this, SLOT(sendFrameBufferUpdateRequest()));
         tryRefreshScreen();
     }
-
-    void stopFrameBufferUpdate()
-    {
+    void stopFrameBufferUpdate() {
         disconnect(this, SIGNAL(frameBufferUpdated()), this, SLOT(sendFrameBufferUpdateRequest()));
     }
-    QString getServerMsg(void)
-    {
-        return socket.peerName();
-    }
+
 
 public slots:
     void sendFrameBufferUpdateRequest(int incremental = 1);
@@ -100,14 +121,35 @@ protected:
 
 private slots:
     void onServerMessage();
+    void binaryMessageReceived(const QByteArray &message);
 
 signals:
     void frameBufferUpdated();
     void connected(bool b);
+    void webSocketReadyRead();
 
 private:
+    qint64 write(const char *data, qint64 len);
+    qint64 write(const QByteArray &data) {
+        return write(data.data(), data.size());
+    }
+    qint64 read(char *data, qint64 maxlen);
+    QByteArray read(qint64 maxlen) {
+        QByteArray ba;
+        ba.resize(maxlen);
+        qint64 size = read(ba.data(), maxlen);
+        ba.resize(size);
+        return ba;
+    }
+    QByteArray readAll();
+    bool waitForReadyRead(int msecs = 30000);
+    qint64 bytesAvailable();
+
     QImage screen;
-    QTcpSocket socket;
+    QTcpSocket m_tcpSocket;
+    QWebSocket m_webSocket;
+	SocketType m_socketType;
+    QVector<char> m_webSoketBuffer;
     QByteArray desHash(QByteArray challenge, QString passStr);
 
     int frameBufferWidth;

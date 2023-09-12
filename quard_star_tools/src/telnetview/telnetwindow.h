@@ -42,6 +42,7 @@ public:
                           QWidget *parent = nullptr);
     ~TelnetWindow();
     void reConnect(void);
+    void disConnect(void);
     void sendData(const QByteArray &ba);
     void retranslateUi(void);
 

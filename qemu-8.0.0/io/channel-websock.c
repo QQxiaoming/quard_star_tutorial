@@ -28,7 +28,7 @@
 #include "qemu/module.h"
 
 /* Max amount to allow in rawinput/encoutput buffers */
-#define QIO_CHANNEL_WEBSOCK_MAX_BUFFER 8192
+#define QIO_CHANNEL_WEBSOCK_MAX_BUFFER (1228800*4)
 
 #define QIO_CHANNEL_WEBSOCK_CLIENT_KEY_LEN 24
 #define QIO_CHANNEL_WEBSOCK_GUID "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
