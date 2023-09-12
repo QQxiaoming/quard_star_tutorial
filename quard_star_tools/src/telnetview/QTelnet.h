@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTcpSocket>
+#include <QWebSocket>
 #include <QSize>
 #include <QString>
 
@@ -64,7 +65,14 @@ protected:
 	};
 
 private:
-    QTcpSocket socket;
+    QTcpSocket m_tcpSocket;
+	QWebSocket m_webSocket;
+	enum SocketType
+	{
+		TCP,
+		WEBSOCKET
+	};
+	SocketType m_socketType;
 	static const char IACWILL[2];
 	static const char IACWONT[2];
 	static const char IACDO[2];
@@ -118,6 +126,8 @@ public:
 	void writeCustomCR();
 
 	void write(const char c);
+	qint64 write(const char *data, qint64 len);
+	qint64 read(char *data, qint64 maxlen);
 
 	bool isConnected() const;
 	bool testBinaryMode() const;
@@ -133,7 +143,7 @@ signals:
 
 private slots:
 	void socketError(QAbstractSocket::SocketError err);
-	void onReadyRead();
+    void onTcpReadyRead();
 };
 
 #endif // QTELNET_H
