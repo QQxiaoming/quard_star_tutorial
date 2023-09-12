@@ -35,6 +35,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: clean
+        shell: bash -l {0}
+        run: |
+          rm -rf ./.git
+
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-activate-base: true
@@ -55,21 +60,20 @@ jobs:
       - name: Cache toolchain
         uses: actions/cache@v3
         env:
-          cache-name: cache-toolchain
+          cache-name: toolchain
         with:
           path: |
-            /opt/gcc-riscv64-unknown-linux-gnu
-            /opt/gcc-riscv64-unknown-elf
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
+            $HOME/gcc-riscv64-unknown-linux-gnu
+            $HOME/gcc-riscv64-unknown-elf
+          key: ${{ runner.os }}-cache-${{ env.cache-name }}
           restore-keys: |
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+            ${{ runner.os }}-cache-
 
       - name: Download and extract prebuilt toolchain
         shell: bash -l {0}
         run: |
-          RISCV_GLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-linux-gnu
-          RISCV_NEWLIBC_TOOLCHAIN=/opt/gcc-riscv64-unknown-elf
+          RISCV_GLIBC_TOOLCHAIN=$HOME/gcc-riscv64-unknown-linux-gnu
+          RISCV_NEWLIBC_TOOLCHAIN=$HOME/gcc-riscv64-unknown-elf
           if [ ! -d "$RISCV_GLIBC_TOOLCHAIN" ]; then
             # download prebuilt toolchain
             wget https://github.com/riscv/riscv-gnu-toolchain/releases/download/2021.08.07/riscv64-glibc-ubuntu-20.04-nightly-2021.08.07-nightly.tar.gz
@@ -108,11 +112,12 @@ jobs:
         run: |
           # replace pkexec with sudo for ci
           sed -i 's/pkexec/sudo/g' build.sh
+          export TOOLCHAIN_ROOT_PATH=$HOME
           ./build.sh all
           # perupload
           sudo rm -rf ./output/rootfs/bootfs ./output/rootfs/rootfs ./output/rootfs/target
           tar -czf output.tar.gz output/ update_tools/ run.sh update_tools.sh
-          tar -czf toolchain.tar.gz /opt/gcc-riscv64-unknown-linux-gnu /opt/gcc-riscv64-unknown-elf
+          tar -czf toolchain.tar.gz $HOME/gcc-riscv64-unknown-linux-gnu $HOME/gcc-riscv64-unknown-elf
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v3.1.0
@@ -133,6 +138,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: clean
+        shell: bash -l {0}
+        run: |
+          rm -rf ./.git
 
       - name: build_docker_image
         shell: bash -l {0}
@@ -173,6 +183,11 @@ jobs:
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v4
+
+      - name: clean
+        shell: bash -l {0}
+        run: |
+          rm -rf ./.git
 
       - name: Install prerequisites
         run: |

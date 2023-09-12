@@ -198,6 +198,10 @@ server)
 	GRAPHIC_PARAM="-display vnc=0.0.0.0:10001 --serial telnet:0.0.0.0:13441,server,nowait --serial telnet:0.0.0.0:13442,server,nowait --serial telnet:0.0.0.0:13443,server,nowait --monitor telnet:0.0.0.0:13430,server,nowait --parallel none"
 	DEFAULT_V=":vn:24x80:"
 	;;
+server_websock)
+	GRAPHIC_PARAM="-display vnc=0.0.0.0:1,websocket=0.0.0.0:15901 --serial telnet:0.0.0.0:13441,websocket=on,server,nowait --serial telnet:0.0.0.0:13442,websocket=on,server,nowait --serial telnet:0.0.0.0:13443,websocket=on,server,nowait --monitor telnet:0.0.0.0:13430,websocket=on,server,nowait --parallel none"
+	DEFAULT_V=":vn:24x80:"
+	;;
 --help)
 	echo $USAGE
 	exit 0

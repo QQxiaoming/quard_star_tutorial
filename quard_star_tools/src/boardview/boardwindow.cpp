@@ -108,14 +108,13 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     } else 
 #endif
     {
+        portOffset = 10000;
     #if defined(Q_OS_WASM) 
         // wasm is not in build in qemu mode, but use itself as a web server
         if(ipAddr.isEmpty()) {
             ipAddr = "127.0.0.1";
         }
-        portOffset = 0;
     #else
-        portOffset = 10000;
         bool ok = false;
         ipAddr = QInputDialog::getText(this, tr("Input IP Address"),
                     tr("IP Address:"), QLineEdit::Normal, ipAddr, &ok, Qt::WindowFlags(), Qt::ImhUrlCharactersOnly|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData);

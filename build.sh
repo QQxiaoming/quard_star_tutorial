@@ -24,10 +24,13 @@ case "${UNAMEOUT}" in
         ;;
 esac
 SHELL_FOLDER=$(cd "$(dirname "$0")";pwd)
-GLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-linux-gnu
+if [ -z $TOOLCHAIN_ROOT_PATH ]; then
+TOOLCHAIN_ROOT_PATH=/opt
+fi
+GLIB_ELF_CROSS_COMPILE_DIR=$TOOLCHAIN_ROOT_PATH/gcc-riscv64-unknown-linux-gnu
 GLIB_ELF_CROSS_PREFIX=$GLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-linux-gnu
 GLIB_ELF_CROSS_PREFIX_SYSROOT_DIR=$GLIB_ELF_CROSS_COMPILE_DIR/sysroot
-NEWLIB_ELF_CROSS_COMPILE_DIR=/opt/gcc-riscv64-unknown-elf
+NEWLIB_ELF_CROSS_COMPILE_DIR=$TOOLCHAIN_ROOT_PATH/gcc-riscv64-unknown-elf
 NEWLIB_ELF_CROSS_PREFIX=$NEWLIB_ELF_CROSS_COMPILE_DIR/bin/riscv64-unknown-elf
 
 BUILD_TARGET=$1
