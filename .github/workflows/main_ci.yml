@@ -216,7 +216,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.5.2'
-          modules: 'qt5compat'
+          modules: 'qt5compat qtwebsockets'
           aqtversion: ==3.1.7
 
       - name: Install prerequisites
@@ -267,7 +267,7 @@ jobs:
         with:
           arch: win64_mingw
           version: '6.5.2'
-          modules: 'qt5compat'
+          modules: 'qt5compat qtwebsockets'
           aqtversion: ==3.1.7
 
       - name: Build all
@@ -302,7 +302,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: '6.5.2'
-          modules: 'qt5compat'
+          modules: 'qt5compat qtwebsockets'
           aqtversion: ==3.1.7
 
       - name: Install prerequisites
