@@ -35,7 +35,7 @@ class VncWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    VncWindow(const QString &addr, int port, QWidget *parent = nullptr);
+    VncWindow(const QString &addr, int port, bool useWS, QWidget *parent = nullptr);
     ~VncWindow();
     void reConnect(void);
     void disConnect(void);
@@ -53,6 +53,7 @@ private:
     QString severAddr;
     QPoint mStartPos;
     int severPort;
+    bool useWebSocket;
     QVNCClientWidget *vncView;
 #if defined(MOBILE_INTERACTION_MODE)
     QTimer* pressTimer;

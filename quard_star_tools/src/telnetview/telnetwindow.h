@@ -38,7 +38,7 @@ class TelnetWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit TelnetWindow(const QString &addr, int port,
+    explicit TelnetWindow(const QString &addr, int port, bool useWS,
                           QWidget *parent = nullptr);
     ~TelnetWindow();
     void reConnect(void);
@@ -73,6 +73,7 @@ private:
     ASCIIBox *recvASCIIBox;
     QString severAddr;
     int severPort;
+    bool useWebSocket;
     QFont orig_font;
     QFile *raw_log_file = nullptr;
     QMutex raw_log_file_mutex;

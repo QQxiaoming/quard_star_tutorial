@@ -1,152 +1,25 @@
 #include "qvncclientwidget.h"
 
 QVNCClientWidget::QVNCClientWidget(SocketType type, QWidget *parent) :
-    QWidget(parent), m_socketType(type), isScaled(true)
+    QWidget(parent), isScaled(true)
 {
     setMouseTracking(true);
     setCursor(Qt::BlankCursor);
-    connect(&m_tcpSocket, &QTcpSocket::stateChanged, &m_tcpSocket,
-                [&](QAbstractSocket::SocketState state) {
-                    switch (state) {
-                        case QAbstractSocket::UnconnectedState:
-                            disconnect(&m_tcpSocket, SIGNAL(readyRead()), this, SLOT(onServerMessage()));
-                            screen.fill(Qt::black);
-                            update();
-                            emit connected(false);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            );
-    connect(&m_webSocket, &QWebSocket::stateChanged, &m_webSocket,
-                [&](QAbstractSocket::SocketState state) {
-                    switch (state) {
-                        case QAbstractSocket::UnconnectedState:
-                            disconnect(this, SIGNAL(webSocketReadyRead()), this, SLOT(onServerMessage()));
-                            screen.fill(Qt::black);
-                            update();
-                            disconnectFromVncServer();
-                            emit connected(false);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            );
-    connect(&m_webSocket, SIGNAL(binaryMessageReceived(QByteArray)),
-                    this, SLOT(binaryMessageReceived(QByteArray)) );
+    m_socketThread = new SocketThread(type,this);
+    connect(m_socketThread, &SocketThread::disConnect, this,
+            [&]() {
+                disconnectFromVncServer();
+                screen.fill(Qt::black);
+                update();
+                emit connected(false);
+            }
+        );
 }
 
 QVNCClientWidget::~QVNCClientWidget()
 {
     disconnectFromVncServer();
-}
-
-void QVNCClientWidget::binaryMessageReceived(const QByteArray &message)
-{
-    if (!isConnectedToServer()) {
-        m_webSoketBuffer.clear();
-        return;
-    }
-    for(qint64 i=0;i<message.size();i++) {
-        m_webSoketBuffer.push_back(message[i]);
-    }
-    if (!isConnectedToServer()) {
-        m_webSoketBuffer.clear();
-        return;
-    }
-    emit webSocketReadyRead();
-}
-
-qint64 QVNCClientWidget::write(const char *data, qint64 len)
-{
-	if(!isConnectedToServer())
-		return 0;
-    if(m_socketType == TCP) {
-        return m_tcpSocket.write( data, len );
-    } else if(m_socketType == WEBSOCKET) {
-        return m_webSocket.sendBinaryMessage(QByteArray(data, len));
-    }
-	return 0;
-}
-
-qint64 QVNCClientWidget::read(char *data, qint64 maxlen)
-{
-    if(!isConnectedToServer())
-		return 0;
-	if(m_socketType == TCP)
-        return m_tcpSocket.read(data, maxlen);
-    else if(m_socketType == WEBSOCKET) {
-        if(m_webSoketBuffer.size() > 0) {
-            qint64 len = maxlen;
-            if(len > m_webSoketBuffer.size())
-                len = m_webSoketBuffer.size();
-            for(qint64 i=0;i<len;i++) {
-                data[i] = m_webSoketBuffer.front();
-                m_webSoketBuffer.pop_front();
-            }
-            return len;
-        }
-    }
-	return 0;
-}
-
-QByteArray QVNCClientWidget::readAll()
-{
-    if(!isConnectedToServer())
-        return QByteArray();
-    if(m_socketType == TCP)
-        return m_tcpSocket.readAll();
-    else if(m_socketType == WEBSOCKET) {
-        QByteArray ret;
-        while(m_webSoketBuffer.size() > 0) {
-            ret.push_back(m_webSoketBuffer.front());
-            m_webSoketBuffer.pop_front();
-        }
-        return ret;
-    }
-    return QByteArray();
-}
-
-bool QVNCClientWidget::waitForReadyRead(int msecs)
-{
-    if(!isConnectedToServer())
-        return false;
-    if(m_socketType == TCP)
-        return m_tcpSocket.waitForReadyRead(msecs);
-    else if(m_socketType == WEBSOCKET) {
-        if(msecs < 0) {
-            while(m_webSoketBuffer.size() == 0) {
-                if(!isConnectedToServer())
-                    return false;
-                QThread::msleep(10);
-                qApp->processEvents();
-            }
-            return true;
-        }
-        do {
-            if(m_webSoketBuffer.size() > 0)
-                return true;
-            if(!isConnectedToServer())
-                return false;
-            QThread::msleep(10);
-            qApp->processEvents();
-            msecs -= 10;
-        } while(msecs > 0);
-    }
-    return false;
-}
-
-qint64 QVNCClientWidget::bytesAvailable()
-{
-    if(!isConnectedToServer())
-        return 0;
-    if(m_socketType == TCP)
-        return m_tcpSocket.bytesAvailable();
-    else if(m_socketType == WEBSOCKET)
-        return m_webSoketBuffer.size();
-    return 0;
+    delete m_socketThread;
 }
 
 bool QVNCClientWidget::sendSetPixelFormat()
@@ -166,9 +39,9 @@ bool QVNCClientWidget::sendSetPixelFormat()
     setpixfmt.pixfmt.greenMax = qToBigEndian(pixelFormat.greenMax);
     setpixfmt.pixfmt.blueMax = qToBigEndian(pixelFormat.blueMax);
 
-    if (write((char *)&setpixfmt, sizeof(setpixfmt)) != sizeof(setpixfmt))
+    if (m_socketThread->write((char *)&setpixfmt, sizeof(setpixfmt)) != sizeof(setpixfmt))
     {
-        qDebug("   fail to set pixel format");
+        qDebug("fail to set pixel format");
         return false;
     }
 
@@ -189,7 +62,7 @@ bool QVNCClientWidget::sendSetEncodings(void)
     enc.numOfEncodings = qToBigEndian(static_cast<quint16>(2));
     enc.encoding[0] = qToBigEndian(static_cast<qint32>(RFBProtol::Encodings::Raw));      //raw
     enc.encoding[1] = qToBigEndian(static_cast<qint32>(RFBProtol::Encodings::CursorSizePseudo));  //richcursor
-    if (write((char *)&enc, 12) != 12)
+    if (m_socketThread->write((char *)&enc, 12) != 12)
     {
         qDebug("fail to set encodings");
         return false;
@@ -200,39 +73,34 @@ bool QVNCClientWidget::sendSetEncodings(void)
 
 bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port)
 {
-    if (isConnectedToServer()) {
-        disconnectFromVncServer();
-    }
-	if(m_socketType == TCP) {
-        m_tcpSocket.connectToHost(QHostAddress(ip), static_cast<quint16>(port));
-    } else if(m_socketType == WEBSOCKET) {
-        m_webSocket.open(QUrl("ws://"+ip+":"+QString::number(port)));
-    }
-    bool waitConnect = false;
-    if(m_socketType == TCP) {
-        waitConnect = m_tcpSocket.waitForConnected();
-    } else if(m_socketType == WEBSOCKET) {
-        do {
-            if(m_webSocket.state() == QAbstractSocket::ConnectedState) {
-                waitConnect = true;
-                break;
-            }
-            QThread::msleep(10);
-            qApp->processEvents();
-        } while(true);
-    }
+    m_password = password;
+    m_socketThread->connectToVncServer(ip, port);
+    return linkToVncServer();
+}
+
+bool QVNCClientWidget::isConnectedToServer()
+{
+    return m_socketThread->isConnectedToServer();
+}
+
+void QVNCClientWidget::disconnectFromVncServer()
+{
+    disconnect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
+    m_socketThread->disconnectFromVncServer();
+}
+
+bool QVNCClientWidget::linkToVncServer(void)
+{
+    bool waitConnect = m_socketThread->waitForConnected();
+
     if (waitConnect) {
         QByteArray response;
-        waitForReadyRead(-1);
-        response = readAll();
+        m_socketThread->waitForReadyRead(-1);
+        response = m_socketThread->readAll();
         if (response.isEmpty())
         {
             qDebug() << "server answer is empty!";
-            if (m_socketType == TCP)
-                qDebug() << m_tcpSocket.errorString();
-            else if (m_socketType == WEBSOCKET)
-                qDebug() << m_webSocket.errorString();
-            disconnectFromVncServer();
+            m_socketThread->disconnectFromVncServer();
             return false;
         }
         char serverMinorVersion = response.at(10);
@@ -249,25 +117,26 @@ bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port
             response.append("RFB 003.008\n");
             break;
         }
-        write(response);
+        m_socketThread->write(response);
 
-        waitForReadyRead(-1);
-        response = read(1); // Number of security types
+        m_socketThread->waitForReadyRead(-1);
+        response = m_socketThread->read(1); // Number of security types
 
         if (response.isEmpty())
         {
             qDebug() << "Number of security types empty!";
-            disconnectFromVncServer();
+            m_socketThread->disconnectFromVncServer();
             return false;
         }
 
         if (serverMinorVersion == '3')
         {
-            response = read(4);
+            response = m_socketThread->read(4);
             int securityType = response.at(2);
             if (securityType == 0)
             {
                 qDebug() << "Connection failed";
+                m_socketThread->disconnectFromVncServer();
                 return false;
             }
             else if (securityType == 2)
@@ -280,49 +149,50 @@ bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port
 
         if (response.at(0) != 0)
         {
-            response = read(response.at(0)); // Security types
+            response = m_socketThread->read(response.at(0)); // Security types
 
             if (response.contains('\x01')) // None security mode supported
             {
-                write("\x01");
-                waitForReadyRead(-1);
-                response = readAll();
+                m_socketThread->write("\x01");
+                m_socketThread->waitForReadyRead(-1);
+                response = m_socketThread->readAll();
                 goto clientinit;
             }
             else if (response.contains('\x02')) // VNC Authentication security type supported
             {
             Authentication:
-                write("\x02");
-                waitForReadyRead(-1);
-                response = read(16); // Security Challenge
-                write(desHash(response, password.toLatin1()));
-                waitForReadyRead(-1);
-                response = read(4); // Security handshake result
+                m_socketThread->write("\x02");
+                m_socketThread->waitForReadyRead(-1);
+                response = m_socketThread->read(16); // Security Challenge
+                m_socketThread->write(desHash(response, m_password.toLatin1()));
+                m_socketThread->waitForReadyRead(-1);
+                response = m_socketThread->read(4); // Security handshake result
                 // Connection successful
                 if (response.toInt() == 0)
                 {
                 clientinit:
-                    write("\x01"); // ClientInit message (non-zeo: shared, zero:exclusive)
-                    waitForReadyRead(-1);
-                    response = read(2); // framebuffer-width in pixels
+                    m_socketThread->write("\x01"); // ClientInit message (non-zeo: shared, zero:exclusive)
+                    m_socketThread->waitForReadyRead(-1);
+                    response = m_socketThread->read(2); // framebuffer-width in pixels
                     frameBufferWidth = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
-                    response = read(2); // framebuffer-height in pixels
+                    response = m_socketThread->read(2); // framebuffer-height in pixels
                     frameBufferHeight = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
 
                     // Pixel Format
                     // ***************************
-                    if (read((char *)&pixelFormat, sizeof(pixelFormat)) != sizeof(pixelFormat))
+                    if (m_socketThread->read((char *)&pixelFormat, sizeof(pixelFormat)) != sizeof(pixelFormat))
                         return false;
                     pixelFormat.redMax = qFromBigEndian(pixelFormat.redMax);
                     pixelFormat.greenMax = qFromBigEndian(pixelFormat.greenMax);
                     pixelFormat.blueMax = qFromBigEndian(pixelFormat.blueMax);
 
-                    read(4); // name-length
-                    response = readAll();
+                    m_socketThread->read(4); // name-length
+                    response = m_socketThread->readAll();
                 }
                 else
                 {
                     qDebug() << "Connection failed! Wrong password?!?!?!";
+                    m_socketThread->disconnectFromVncServer();
                     return false;
                 }
             }
@@ -330,26 +200,21 @@ bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port
         else // If number of security types is zero then connection failed!
         {
             qDebug() << "Connection failed";
+            m_socketThread->disconnectFromVncServer();
             return false;
         }
     }
     else
     {
-        qDebug() << "Not connected to " << ip;
-        if (m_socketType == TCP)
-            qDebug() << m_tcpSocket.errorString();
-        else if (m_socketType == WEBSOCKET)
-            qDebug() << m_webSocket.errorString();
+        qDebug() << "Not connected";
+        m_socketThread->disconnectFromVncServer();
         return false;
     }
 
     screen = QImage(frameBufferWidth, frameBufferHeight, QImage::Format_RGB32);
     sendSetEncodings();
     sendSetPixelFormat();
-    if (m_socketType == TCP)
-        connect(&m_tcpSocket, SIGNAL(readyRead()), this, SLOT(onServerMessage()));
-    else if (m_socketType == WEBSOCKET)
-        connect(this, SIGNAL(webSocketReadyRead()), this, SLOT(onServerMessage()));
+    connect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
     emit connected(true);
     return true;
 }
@@ -392,7 +257,7 @@ void QVNCClientWidget::sendFrameBufferUpdateRequest(int incremental)
     frameBufferUpdateRequest[8] = static_cast<char>((frameBufferHeight >> 8) & 0xFF); // height
     frameBufferUpdateRequest[9] = static_cast<char>((frameBufferHeight >> 0) & 0xFF); // height
 
-    write(frameBufferUpdateRequest);
+    m_socketThread->write(frameBufferUpdateRequest);
 }
 
 void QVNCClientWidget::setFullScreen(bool full)
@@ -459,14 +324,11 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
 
 void QVNCClientWidget::onServerMessage()
 {
-    if(m_socketType == TCP) 
-        disconnect(&m_tcpSocket, SIGNAL(readyRead()), this, SLOT(onServerMessage()));
-    else if(m_socketType == WEBSOCKET)
-        disconnect(this, SIGNAL(webSocketReadyRead()), this, SLOT(onServerMessage()));
+    disconnect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
 
     QByteArray response;
     int numOfRects;
-    response = read(1);
+    response = m_socketThread->read(1);
     switch (response.at(0))
     {
     // ***************************************************************************************
@@ -474,15 +336,15 @@ void QVNCClientWidget::onServerMessage()
     // ***************************************************************************************
     case RFBProtol::FramebufferUpdate:
 
-        read(1); // padding
-        response = read(2); // number of rectangles
+        m_socketThread->read(1); // padding
+        response = m_socketThread->read(2); // number of rectangles
 
         numOfRects = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
 
         for (int i = 0; i < numOfRects; i++)
         {
             qApp->processEvents();
-            if (!isConnectedToServer())
+            if (!m_socketThread->isConnectedToServer())
                 return;
             struct rfbRectHeader
             {
@@ -492,10 +354,10 @@ void QVNCClientWidget::onServerMessage()
                 quint16 height;
                 qint32 encodingType;
             } rectHeader;
-            if (read((char *)&rectHeader, sizeof(rectHeader)) != sizeof(rectHeader))
+            if (m_socketThread->read((char *)&rectHeader, sizeof(rectHeader)) != sizeof(rectHeader))
             {
                 qDebug("read size error");
-                readAll();
+                m_socketThread->readAll();
                 break;
             }
             rectHeader.xPosition = qFromBigEndian(rectHeader.xPosition);
@@ -508,14 +370,14 @@ void QVNCClientWidget::onServerMessage()
                 int numOfBytes = rectHeader.width * rectHeader.height * (pixelFormat.bitsPerPixel / 8);
                 if (numOfBytes <= 0)
                     break;
-                while (bytesAvailable() < numOfBytes)
+                while (m_socketThread->bytesAvailable() < numOfBytes)
                 {
                     qApp->processEvents();
-                    if (!isConnectedToServer())
+                    if (!m_socketThread->isConnectedToServer())
                         return;
                 }
                 QImage image(rectHeader.width, rectHeader.height, QImage::Format_RGB32);
-                read((char *)image.bits(), numOfBytes);
+                m_socketThread->read((char *)image.bits(), numOfBytes);
 
                 QPainter painter(&screen);
                 painter.drawImage(rectHeader.xPosition, rectHeader.yPosition, image);
@@ -525,18 +387,18 @@ void QVNCClientWidget::onServerMessage()
             {
                 int numOfBytes = rectHeader.width * rectHeader.height * (pixelFormat.bitsPerPixel / 8);
                 int floor = (rectHeader.width + 7) / 8 * rectHeader.height;
-                while (bytesAvailable() < numOfBytes + floor)
+                while (m_socketThread->bytesAvailable() < numOfBytes + floor)
                 {
                     qApp->processEvents();
-                    if (!isConnectedToServer())
+                    if (!m_socketThread->isConnectedToServer())
                         return;
                 }
-                read(numOfBytes + floor);
+                m_socketThread->read(numOfBytes + floor);
             }
             else
             {
                 qDebug() << "encoding Type:" << rectHeader.encodingType;
-                response = readAll();
+                response = m_socketThread->readAll();
                 break;
             }
         }
@@ -546,19 +408,16 @@ void QVNCClientWidget::onServerMessage()
         break;
     default:
         qDebug() << "server to client message type:" << static_cast<quint8>(response.at(0));
-        readAll();
+        m_socketThread->readAll();
         break;
     }
 
-    if (m_socketType == TCP)
-        connect(&m_tcpSocket, SIGNAL(readyRead()), this, SLOT(onServerMessage()));
-    else if (m_socketType == WEBSOCKET)
-        connect(this, SIGNAL(webSocketReadyRead()), this, SLOT(onServerMessage()));
+    connect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
 }
 
 void QVNCClientWidget::keyPressEvent(QKeyEvent *event)
 {
-    if (!isConnectedToServer())
+    if (!m_socketThread->isConnectedToServer())
         return;
     QByteArray message(8, 0);
     message[0] = RFBProtol::KeyEvent; // keyboard event
@@ -572,13 +431,13 @@ void QVNCClientWidget::keyPressEvent(QKeyEvent *event)
     message[6] = static_cast<char>((key >> 8) & 0xFF);
     message[7] = static_cast<char>((key >> 0) & 0xFF);
 
-    write(message);
+    m_socketThread->write(message);
     event->accept();
 }
 
 void QVNCClientWidget::keyReleaseEvent(QKeyEvent *event)
 {
-    if (!isConnectedToServer())
+    if (!m_socketThread->isConnectedToServer())
         return;
     QByteArray message(8, 0);
     message[0] = RFBProtol::KeyEvent; // keyboard event
@@ -592,13 +451,13 @@ void QVNCClientWidget::keyReleaseEvent(QKeyEvent *event)
     message[6] = static_cast<char>((key >> 8) & 0xFF);
     message[7] = static_cast<char>((key >> 0) & 0xFF);
 
-    write(message);
+    m_socketThread->write(message);
     event->accept();
 }
 
 void QVNCClientWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    if (!isConnectedToServer())
+    if (!m_socketThread->isConnectedToServer())
         return;
     int posX = event->position().x();
     int posY = event->position().y();
@@ -613,14 +472,14 @@ void QVNCClientWidget::mouseMoveEvent(QMouseEvent *event)
     message[3] = static_cast<char>((posX >> 0) & 0xFF);
     message[4] = static_cast<char>((posY >> 8) & 0xFF);
     message[5] = static_cast<char>((posY >> 0) & 0xFF);
-    write(message);
+    m_socketThread->write(message);
     event->accept();
 }
 
 void QVNCClientWidget::mousePressEvent(QMouseEvent *event)
 {
     setFocus();
-    if (!isConnectedToServer())
+    if (!m_socketThread->isConnectedToServer())
         return;
     int posX = event->position().x();
     int posY = event->position().y();
@@ -635,13 +494,13 @@ void QVNCClientWidget::mousePressEvent(QMouseEvent *event)
     message[3] = static_cast<char>((posX >> 0) & 0xFF);
     message[4] = static_cast<char>((posY >> 8) & 0xFF);
     message[5] = static_cast<char>((posY >> 0) & 0xFF);
-    write(message);
+    m_socketThread->write(message);
     event->accept();
 }
 
 void QVNCClientWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (!isConnectedToServer())
+    if (!m_socketThread->isConnectedToServer())
         return;
     int posX = event->position().x();
     int posY = event->position().y();
@@ -656,7 +515,7 @@ void QVNCClientWidget::mouseReleaseEvent(QMouseEvent *event)
     message[3] = static_cast<char>((posX >> 0) & 0xFF);
     message[4] = static_cast<char>((posY >> 8) & 0xFF);
     message[5] = static_cast<char>((posY >> 0) & 0xFF);
-    write(message);
+    m_socketThread->write(message);
     event->accept();
 }
 
@@ -684,10 +543,10 @@ void QVNCClientWidget::wheelEvent(QWheelEvent *event)
     message[3] = static_cast<char>((posX >> 0) & 0xFF);
     message[4] = static_cast<char>((posY >> 8) & 0xFF);
     message[5] = static_cast<char>((posY >> 0) & 0xFF);
-    write(message);
+    m_socketThread->write(message);
     message[1] = static_cast<char>(btnMask & (~bitmask));
     QThread::msleep(10);
-    write(message);
+    m_socketThread->write(message);
     event->accept();
 }
 

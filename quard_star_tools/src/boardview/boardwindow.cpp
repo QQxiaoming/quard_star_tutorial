@@ -29,6 +29,7 @@
 #include <QToolTip>
 #include <QShortcut>
 #include <QTransform>
+#include <QInputDialog>
 #include <QRegularExpression>
 
 #include "qfonticon.h"
@@ -58,6 +59,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     vCanName(""),
     bootCfg("sd"),
     language(lang),
+    forceWebSocket(false),
     updateCfg(false)
 {
     ui->setupUi(this);
@@ -114,6 +116,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         if(ipAddr.isEmpty()) {
             ipAddr = "127.0.0.1";
         }
+        forceWebSocket = true;
     #else
         bool ok = false;
         ipAddr = QInputDialog::getText(this, tr("Input IP Address"),
@@ -131,15 +134,15 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         qDebug() << "IP Address:" << ipAddr;
     }
 
-    uartWindow[0] = new TelnetWindow(ipAddr,portOffset+3441,parent);
+    uartWindow[0] = new TelnetWindow(ipAddr,portOffset+3441,forceWebSocket,parent);
     uartWindow[0]->setWindowTitle("UART0");
-    uartWindow[1] = new TelnetWindow(ipAddr,portOffset+3442,parent);
+    uartWindow[1] = new TelnetWindow(ipAddr,portOffset+3442,forceWebSocket,parent);
     uartWindow[1]->setWindowTitle("UART1");
-    uartWindow[2] = new TelnetWindow(ipAddr,portOffset+3443,parent);
+    uartWindow[2] = new TelnetWindow(ipAddr,portOffset+3443,forceWebSocket,parent);
     uartWindow[2]->setWindowTitle("UART2");
-    jtagWindow = new TelnetWindow(ipAddr,portOffset+3430,parent);
+    jtagWindow = new TelnetWindow(ipAddr,portOffset+3430,forceWebSocket,parent);
     jtagWindow->setWindowTitle("JTAG(Monitor)");
-    lcdWindow = new VncWindow(ipAddr,portOffset+5901,parent);
+    lcdWindow = new VncWindow(ipAddr,portOffset+5901,forceWebSocket,parent);
     lcdWindow->setWindowTitle("LCD");
     netSelect = new NetSelectBox(this);
     bootSelect = new BootSelectBox(this);
@@ -315,21 +318,32 @@ bool BoardWindow::powerSwitch(bool power)
             "virtio-mouse-device,id=input0",
         "-device",    
             "virtio-keyboard-device,id=input1",
-        "-display",   
-            "vnc=127.0.0.1:1",                /*vnc base port is 5900, so this 1 is 5901*/
+        "-display",
+            [&]() -> QString {  if(forceWebSocket) return 
+                "vnc=127.0.0.1:2,websocket=127.0.0.1:5901"; else return 
+                "vnc=127.0.0.1:1"; }(),             /*vnc base port is 5900, so this 1 is 5901*/
         "--serial",   
-            "telnet:127.0.0.1:3441,server,nowait",
+            [&]() -> QString {  if(forceWebSocket) return 
+                "telnet:127.0.0.1:3441,websocket=on,server,nowait"; else return
+                "telnet:127.0.0.1:3441,server,nowait"; }(),
         "--serial",   
-            "telnet:127.0.0.1:3442,server,nowait",
+            [&]() -> QString {  if(forceWebSocket) return 
+                "telnet:127.0.0.1:3442,websocket=on,server,nowait"; else return 
+                "telnet:127.0.0.1:3442,server,nowait"; }(),
         "--serial",   
-            "telnet:127.0.0.1:3443,server,nowait",
+            [&]() -> QString {  if(forceWebSocket) return 
+                "telnet:127.0.0.1:3443,websocket=on,server,nowait"; else return 
+                "telnet:127.0.0.1:3443,server,nowait"; }(),
         "--monitor",  
-            "telnet:127.0.0.1:3430,server,nowait",
+            [&]() -> QString {  if(forceWebSocket) return 
+                "telnet:127.0.0.1:3430,websocket=on,server,nowait"; else return
+                "telnet:127.0.0.1:3430,server,nowait"; }(),
         "--parallel", 
             "none",
     };
 
     arguments.removeAll(QString(""));
+
 #if defined(BUILT_IN_QEMU_MODE)
     if(power) {
         if(qemuProcess) {
@@ -431,8 +445,7 @@ void BoardWindow::addActionGInfo(QMenu *menu,const DeviceName &title)
     pGInfo->setToolTip(QString::number(title));
     menu->addAction(pGInfo);
     connect(pGInfo,&QAction::triggered,this,
-            [&](void)
-            {
+            [&](void) {
                 QAction* pGInfo = qobject_cast<QAction*>(sender());
                 DeviceName title = static_cast<DeviceName>(pGInfo->toolTip().toInt());
                 QString info;
@@ -502,8 +515,7 @@ void BoardWindow::addActionOFileSystem(QMenu *menu,const DeviceName &title)
     pOFileSystem->setToolTip(QString::number(title));
     menu->addAction(pOFileSystem);
     connect(pOFileSystem,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QAction* pGInfo = qobject_cast<QAction*>(sender());
             DeviceName title = static_cast<DeviceName>(pGInfo->toolTip().toInt());
             uint64_t fatfs_offset = 0;
@@ -592,8 +604,7 @@ void BoardWindow::addActionSetting(QMenu *menu,const DeviceName &title)
     pSetting->setToolTip(QString::number(title));
     menu->addAction(pSetting);
     connect(pSetting,&QAction::triggered,this,
-            [&](void)
-            {
+            [&](void) {
                 QAction* pSetting = qobject_cast<QAction*>(sender());
                 DeviceName title = static_cast<DeviceName>(pSetting->toolTip().toInt());
                 switch (title)
@@ -628,8 +639,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pLight->setChecked(!isDarkTheme); 
     pTheme->addAction(pLight);
     connect(pLight,&QAction::triggered,this,
-        [&,pLight,pDark](void)
-        {
+        [&,pLight,pDark](void) {
             isDarkTheme = false;
             pLight->setChecked(!isDarkTheme);
             pDark->setChecked(isDarkTheme);
@@ -649,8 +659,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pDark->setChecked(isDarkTheme); 
     pTheme->addAction(pDark);
     connect(pDark,&QAction::triggered,this,
-        [&,pLight,pDark](void)
-        {
+        [&,pLight,pDark](void) {
             isDarkTheme = true;
             pLight->setChecked(!isDarkTheme);
             pDark->setChecked(isDarkTheme);
@@ -679,8 +688,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pChinese->setChecked(this->language == QLocale::Chinese);
     pLanguage->addAction(pChinese);
     connect(pChinese,&QAction::triggered,this,
-        [&,pChinese,pEnglish,pJapanese](void)
-        {
+        [&,pChinese,pEnglish,pJapanese](void) {
             pChinese->setChecked(true);
             pEnglish->setChecked(false);
             pJapanese->setChecked(false);
@@ -697,8 +705,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pEnglish->setChecked(this->language == QLocale::English);
     pLanguage->addAction(pEnglish);
     connect(pEnglish,&QAction::triggered,this,
-        [&,pChinese,pEnglish,pJapanese](void)
-        {
+        [&,pChinese,pEnglish,pJapanese](void) {
             pChinese->setChecked(false);
             pEnglish->setChecked(true);
             pJapanese->setChecked(false);
@@ -715,8 +722,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pJapanese->setChecked(this->language == QLocale::Japanese);
     pLanguage->addAction(pJapanese);
     connect(pJapanese,&QAction::triggered,this,
-        [&,pChinese,pEnglish,pJapanese](void)
-        {
+        [&,pChinese,pEnglish,pJapanese](void) {
             pChinese->setChecked(false);
             pEnglish->setChecked(false);
             pJapanese->setChecked(true);
@@ -740,8 +746,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pMinimize->setIcon(icoMinimize);
     menu->addAction(pMinimize);
     connect(pMinimize,&QAction::triggered,this,
-        [&,pMinimize](void)
-        {
+        [&,pMinimize](void) {
             if(this->isHidden()) {
                 pMinimize->setText(tr("Hide"));
                 this->show();
@@ -764,8 +769,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pHelp->setIcon(icoHelp);
     menu->addAction(pHelp);
     connect(pHelp,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             BoardWindow::appHelp(this);
         }
     );
@@ -775,8 +779,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pAbout->setIcon(icoAbout);
     menu->addAction(pAbout);
     connect(pAbout,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             BoardWindow::appAbout(this);
         }
     );
@@ -786,8 +789,7 @@ void BoardWindow::createStdMenuAction(QMenu *menu)
     pAboutQt->setIcon(icoAboutQt);
     menu->addAction(pAboutQt);
     connect(pAboutQt,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::aboutQt(this);
         }
     );
@@ -816,8 +818,7 @@ void BoardWindow::contextMenuEvent(QContextMenuEvent *event)
         }
     }
 
-    switch (spaceDoMain)
-    {
+    switch (spaceDoMain) {
         case SOC:
         case NOR:
         case NAND:
@@ -956,8 +957,7 @@ void BoardWindow::mouseDoubleClickEvent(QMouseEvent *event)
         for(size_t i=0;i < (sizeof(spaceList)/sizeof(spaceList[1]));i++) {
             if( event->pos().x() >= spaceList[i].x1 && event->pos().x() <= spaceList[i].x2 &&
                 event->pos().y() >= spaceList[i].y1 && event->pos().y() <= spaceList[i].y2) {
-                switch (spaceList[i].name)
-                {
+                switch (spaceList[i].name) {
                     case LOGO:
                         static const QString colorList[5] = {"black","blue","green","red","white"};
                         static int indexColor = 0;

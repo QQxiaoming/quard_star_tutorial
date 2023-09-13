@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include <QSystemTrayIcon>
 #include <QLocale>
+#include <QGestureEvent>
 #if defined(BUILT_IN_QEMU_MODE)
 #include <QProcess>
 #endif
@@ -157,6 +158,7 @@ private:
     QString vCanName;
     QString bootCfg;
     QLocale::Language language;
+    bool forceWebSocket;
     bool updateCfg;
     double scaled_value = 1.0;
     struct space

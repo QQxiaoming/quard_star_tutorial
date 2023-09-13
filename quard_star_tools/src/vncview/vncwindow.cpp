@@ -23,13 +23,14 @@
 #include <QScreen>
 #include <QThread>
 #include <QMessageBox>
+#include <QShortcut>
 #include "qfonticon.h"
 #include "boardwindow.h"
 #include "vncwindow.h"
 #include "ui_vncwindow.h"
 
-VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
-    : QMainWindow(parent),severAddr(addr),severPort(port)
+VncWindow::VncWindow(const QString &addr, int port, bool useWS, QWidget *parent)
+    : QMainWindow(parent),severAddr(addr),severPort(port),useWebSocket(useWS)
     , ui(new Ui::VncWindow)
 {
     ui->setupUi(this);
@@ -64,11 +65,7 @@ VncWindow::VncWindow(const QString &addr, int port, QWidget *parent)
     this->move(qMax(0,(screen.width() - size.width())) / 2,
                qMax(0,(screen.height() - size.height())) / 2);
 
-#if defined(Q_OS_WASM)
-    vncView = new QVNCClientWidget(QVNCClientWidget::WEBSOCKET, this);
-#else
-    vncView = new QVNCClientWidget(QVNCClientWidget::TCP, this);
-#endif
+    vncView = new QVNCClientWidget(useWebSocket?QVNCClientWidget::WEBSOCKET:QVNCClientWidget::TCP, this);
     ui->verticalLayout->addWidget(vncView);
     ui->verticalLayout->setContentsMargins(20/scaled_value, 80/scaled_value, 20/scaled_value,100/scaled_value);
     
@@ -99,6 +96,11 @@ VncWindow::~VncWindow()
 
 void VncWindow::reConnect(void)
 {
+#if defined(Q_OS_WASM)
+    // TODO: now wasm not support vnc, we are waiting for the Qt for webassembly
+    //       support -device-option QT_EMSCRIPTEN_ASYNCIFY=1	
+    return;
+#endif
     if(vncView->isConnectedToServer()) {
         vncView->disconnectFromVncServer();
     }
@@ -109,6 +111,11 @@ void VncWindow::reConnect(void)
 
 void VncWindow::disConnect(void)
 {
+#if defined(Q_OS_WASM)
+    // TODO: now wasm not support vnc, we are waiting for the Qt for webassembly
+    //       support -device-option QT_EMSCRIPTEN_ASYNCIFY=1	
+    return;
+#endif
     if(vncView->isConnectedToServer()) {
         vncView->disconnectFromVncServer();
     }
@@ -131,8 +138,7 @@ void VncWindow::contextMenuEvent(QContextMenuEvent *event)
     pReFresh->setIcon(QFontIcon::icon(QChar(0xf021)));
     contextMenu->addAction(pReFresh);
     connect(pReFresh,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             reConnect();
         }
     );
@@ -141,8 +147,7 @@ void VncWindow::contextMenuEvent(QContextMenuEvent *event)
     pHelp->setIcon(QFontIcon::icon(QChar(0xf02d)));
     contextMenu->addAction(pHelp);
     connect(pHelp,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::about(this, tr("Help"), 
                 tr("1. The central window is the LCD emulation output window.") + "\n" +
                 tr("2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.")
@@ -154,8 +159,7 @@ void VncWindow::contextMenuEvent(QContextMenuEvent *event)
     pAbout->setIcon(QFontIcon::icon(QChar(0xf05a)));
     contextMenu->addAction(pAbout);
     connect(pAbout,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             BoardWindow::appAbout(this);
         }
     );
@@ -164,8 +168,7 @@ void VncWindow::contextMenuEvent(QContextMenuEvent *event)
     pClose->setIcon(QFontIcon::icon(QChar(0xf08b)));
     contextMenu->addAction(pClose);
     connect(pClose, &QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->hide();
         }
     );

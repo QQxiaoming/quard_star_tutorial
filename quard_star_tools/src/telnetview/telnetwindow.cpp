@@ -23,6 +23,8 @@
 #include <QDate>
 #include <QString>
 #include <QMutex>
+#include <QFontDatabase>
+#include <QShortcut>
 #include <QDebug>
 #include <unistd.h>
 #include "boardwindow.h"
@@ -30,19 +32,15 @@
 #include "qfonticon.h"
 #include "ui_telnetwindow.h"
 
-TelnetWindow::TelnetWindow(const QString &addr, int port, QWidget *parent) :
-    QMainWindow(parent),severAddr(addr),severPort(port),
+TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *parent) :
+    QMainWindow(parent),severAddr(addr),severPort(port),useWebSocket(useWS),
     ui(new Ui::TelnetWindow)
 {
     ui->setupUi(this);
     this->setAttribute(Qt::WA_StyledBackground, true);
     this->setStyleSheet("QWidget#telnetWindowWidget {background-color: transparent;}");
 
-#if defined(Q_OS_WASM)
-    telnet = new QTelnet(QTelnet::WEBSOCKET, this);
-#else
-    telnet = new QTelnet(QTelnet::TCP, this);
-#endif
+    telnet = new QTelnet(useWebSocket?QTelnet::WEBSOCKET:QTelnet::TCP, this);
     termWidget = new QTermWidget(0,this);
     termWidget->setStyleSheet("QWidget#terminalDisplay {background-color: black;}");
 
@@ -239,8 +237,7 @@ void TelnetWindow::createContextMenu(void)
     pReFresh->setIcon(QFontIcon::icon(QChar(0xf021)));
     menuFile->addAction(pReFresh);
     connect(pReFresh,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             reConnect();
         }
     );
@@ -249,8 +246,7 @@ void TelnetWindow::createContextMenu(void)
     menuFile->addAction(actionSave_screen);
     actionSave_screen->setIcon(QFontIcon::icon(QChar(0xf0c7)));
     connect(actionSave_screen,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QString savefile_name = QFileDialog::getSaveFileName(this, tr("Save log..."),
                 QDir::homePath() + QDate::currentDate().toString("/yyyy-MM-dd-") + QTime::currentTime().toString("hh-mm-ss") + ".log", tr("log files (*.log)"));
             if (!savefile_name.isEmpty()) {
@@ -270,8 +266,7 @@ void TelnetWindow::createContextMenu(void)
     actionSave_log->setCheckable(true);
     actionSave_log->setChecked(m_save_log);
     connect(actionSave_log,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             log_file_mutex.lock();
             if(!actionSave_log->isChecked()) {
                 actionSave_log->setChecked(false);
@@ -308,8 +303,7 @@ void TelnetWindow::createContextMenu(void)
     actionSave_Rawlog->setCheckable(true);
     actionSave_Rawlog->setChecked(m_save_Rawlog);
     connect(actionSave_Rawlog,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             raw_log_file_mutex.lock();
             if(!actionSave_Rawlog->isChecked()) {
                 actionSave_Rawlog->setChecked(false);
@@ -345,8 +339,7 @@ void TelnetWindow::createContextMenu(void)
     pClose->setIcon(QFontIcon::icon(QChar(0xf08b)));
     menuFile->addAction(pClose);
     connect(pClose, &QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->hide();
         }
     );
@@ -355,8 +348,7 @@ void TelnetWindow::createContextMenu(void)
     menuEdit->addAction(actionFind);
     actionFind->setIcon(QFontIcon::icon(QChar(0xf002)));
     connect(actionFind,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->toggleShowSearchBar();
         }
     );
@@ -365,8 +357,7 @@ void TelnetWindow::createContextMenu(void)
     menuEdit->addAction(actionCopy);
     actionCopy->setIcon(QFontIcon::icon(QChar(0xf0c5)));
     connect(actionCopy,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->copyClipboard();
         }
     );
@@ -375,8 +366,7 @@ void TelnetWindow::createContextMenu(void)
     menuEdit->addAction(actionPaste);
     actionPaste->setIcon(QFontIcon::icon(QChar(0xf0ea)));
     connect(actionPaste,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->pasteClipboard();
         }
     );
@@ -385,8 +375,7 @@ void TelnetWindow::createContextMenu(void)
     menuEdit->addAction(actionReset);
     actionReset->setIcon(QFontIcon::icon(QChar(0xf01e)));
     connect(actionReset,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->clear();
         }
     );
@@ -395,8 +384,7 @@ void TelnetWindow::createContextMenu(void)
     menuView->addAction(actionZoom_In);
     actionZoom_In->setIcon(QFontIcon::icon(QChar(0xf065)));
     connect(actionZoom_In,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->zoomIn();
         }
     );
@@ -405,8 +393,7 @@ void TelnetWindow::createContextMenu(void)
     menuView->addAction(actionZoom_Out);
     actionZoom_Out->setIcon(QFontIcon::icon(QChar(0xf066)));
     connect(actionZoom_Out,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->zoomOut();
         }
     );
@@ -415,8 +402,7 @@ void TelnetWindow::createContextMenu(void)
     menuView->addAction(actionReset_Zoom);
     actionReset_Zoom->setIcon(QFontIcon::icon(QChar(0xf057)));
     connect(actionReset_Zoom,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             this->termWidget->setTerminalFont(orig_font);
         }
     );
@@ -424,8 +410,7 @@ void TelnetWindow::createContextMenu(void)
     QAction *actionSendASCII = new QAction(tr("Send ASCII..."), menuTransfer);
     menuTransfer->addAction(actionSendASCII);
     connect(actionSendASCII,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             sendASCIIBox->show();
         }
     );
@@ -435,8 +420,7 @@ void TelnetWindow::createContextMenu(void)
     actionReceiveASCII->setCheckable(true);
     actionReceiveASCII->setChecked(m_receiveASCII);
     connect(actionReceiveASCII,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             if(actionReceiveASCII->isChecked()) {
                 m_receiveASCII = true;
                 connect(telnet,SIGNAL(newData(const char*,int)),recvASCIIBox,SLOT(recvData(const char*,int)));
@@ -452,8 +436,7 @@ void TelnetWindow::createContextMenu(void)
     QAction *actionSendBinary = new QAction(tr("Send Binary..."), menuTransfer);
     menuTransfer->addAction(actionSendBinary);
     connect(actionSendBinary,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QString name = QFileDialog::getOpenFileName(this, tr("Open Binary..."),
                     QDir::homePath(), tr("binary files (*.bin)"));
             if (!name.isEmpty()) {
@@ -479,8 +462,7 @@ void TelnetWindow::createContextMenu(void)
     QAction *actionSendXmodem = new QAction(tr("Send Xmodem..."), menuTransfer);
     menuTransfer->addAction(actionSendXmodem);
     connect(actionSendXmodem,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
         }
     );
@@ -488,8 +470,7 @@ void TelnetWindow::createContextMenu(void)
     QAction *actionReceiveXmodem = new QAction(tr("Receive Xmodem..."), menuTransfer);
     menuTransfer->addAction(actionReceiveXmodem);
     connect(actionReceiveXmodem,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
         }
     );
@@ -497,8 +478,7 @@ void TelnetWindow::createContextMenu(void)
     QAction *actionSendYmodem = new QAction(tr("Send Ymodem..."), menuTransfer);
     menuTransfer->addAction(actionSendYmodem);
     connect(actionSendYmodem,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
         }
     );
@@ -506,8 +486,7 @@ void TelnetWindow::createContextMenu(void)
     QAction *actionReceiveYmodem = new QAction(tr("Receive Ymodem..."), menuTransfer);
     menuTransfer->addAction(actionReceiveYmodem);
     connect(actionReceiveYmodem,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::information(this, tr("Information"), tr("This feature is not ready yet, so stay tuned!"));
         }
     );
@@ -521,8 +500,7 @@ void TelnetWindow::createContextMenu(void)
     actionadd_time_on_each_line->setCheckable(true);
     actionadd_time_on_each_line->setChecked(m_add_time_on_each_line);
     connect(actionadd_time_on_each_line,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             m_add_time_on_each_line = actionadd_time_on_each_line->isChecked();
         }
     );
@@ -531,8 +509,7 @@ void TelnetWindow::createContextMenu(void)
     actionFflush_file->setCheckable(true);
     actionFflush_file->setChecked(m_fflush_file);
     connect(actionFflush_file,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             m_fflush_file = actionFflush_file->isChecked();
         }
     );
@@ -541,8 +518,7 @@ void TelnetWindow::createContextMenu(void)
     pHelp->setIcon(QFontIcon::icon(QChar(0xf02d)));
     menuHelp->addAction(pHelp);
     connect(pHelp,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             QMessageBox::about(this, tr("Help"), 
                 tr("1. The central window is the terminal operation window.") + "\n" +
                 tr("2. The menu bar provides portable tools and terminal configuration.") + "\n" +
@@ -555,8 +531,7 @@ void TelnetWindow::createContextMenu(void)
     pAbout->setIcon(QFontIcon::icon(QChar(0xf05a)));
     menuHelp->addAction(pAbout);
     connect(pAbout,&QAction::triggered,this,
-        [&](void)
-        {
+        [&](void) {
             BoardWindow::appAbout(this);
         }
     );

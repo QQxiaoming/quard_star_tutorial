@@ -148,6 +148,8 @@ fi
 WIDTH="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\1/g')"
 HEIGHT="$(echo $DEFAULT_VC | sed 's/\(.*\)x\(.*\)/\2/g')"
 
+USE_VIRTIO_GPU="1"
+
 case "$1" in
 graphic)
 	GRAPHIC_PARAM="--display $QEMU_DISPLAY --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --serial vc:$DEFAULT_VC --monitor vc:$DEFAULT_VC --parallel none"
@@ -197,10 +199,12 @@ update_test)
 server)
 	GRAPHIC_PARAM="-display vnc=0.0.0.0:10001 --serial telnet:0.0.0.0:13441,server,nowait --serial telnet:0.0.0.0:13442,server,nowait --serial telnet:0.0.0.0:13443,server,nowait --monitor telnet:0.0.0.0:13430,server,nowait --parallel none"
 	DEFAULT_V=":vn:24x80:"
+	USE_VIRTIO_GPU="0"
 	;;
 server_websock)
 	GRAPHIC_PARAM="-display vnc=0.0.0.0:1,websocket=0.0.0.0:15901 --serial telnet:0.0.0.0:13441,websocket=on,server,nowait --serial telnet:0.0.0.0:13442,websocket=on,server,nowait --serial telnet:0.0.0.0:13443,websocket=on,server,nowait --monitor telnet:0.0.0.0:13430,websocket=on,server,nowait --parallel none"
 	DEFAULT_V=":vn:24x80:"
+	USE_VIRTIO_GPU="0"
 	;;
 --help)
 	echo $USAGE
@@ -209,6 +213,15 @@ server_websock)
 *)
 	echo $USAGE
 	exit 1	
+	;;
+esac
+
+case "$USE_VIRTIO_GPU" in
+1)
+	VIRTIO_GPU="-device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0"
+	;;
+0)
+	VIRTIO_GPU=""
 	;;
 esac
 
@@ -241,7 +254,7 @@ $AUDIO_PARAM \
 -device virtio-blk-device,drive=disk0,id=hd0 \
 -device virtio-9p-device,fsdev=fsdev0,mount_tag=hostshare,id=fs0 \
 -device virtio-net-device,netdev=net1 \
--device virtio-gpu-device,xres=$WIDTH,yres=$HEIGHT,id=video0 \
+$VIRTIO_GPU \
 -device virtio-mouse-device,id=input0 \
 -device virtio-keyboard-device,id=input1 \
 $GRAPHIC_PARAM $FULL_SCREEN $DEBUG_PARAM $PLUGINS_PARAM $TARGET_GDB_PARAM

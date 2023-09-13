@@ -1,11 +1,17 @@
 #ifndef QVNCCLIENTWIDGET_H
 #define QVNCCLIENTWIDGET_H
 
-#include <QtCore>
-#include <QtWidgets>
-#include <QtNetwork>
+#include <QApplication>
+#include <QWidget>
+#include <QThread>
 #include <QTcpSocket>
 #include <QWebSocket>
+#include <QtEndian>
+#include <QPainter>
+#include <QPaintEvent>
+#include <QKeyEvent>
+#include <QMouseEvent>
+#include <QWheelEvent>
 
 namespace RFBProtol
 {
@@ -57,6 +63,8 @@ namespace RFBProtol
     };
 }
 
+
+class SocketThread;
 class QVNCClientWidget : public QWidget
 {
     Q_OBJECT
@@ -68,31 +76,10 @@ public:
     };
     explicit QVNCClientWidget(SocketType type = TCP, QWidget *parent = 0);
     ~QVNCClientWidget();
-
+    
     bool connectToVncServer(QString ip, QString password, int port = 5900);
-    inline bool isConnectedToServer() { 
-        if(m_socketType == TCP) 
-            return (m_tcpSocket.state() == QTcpSocket::ConnectedState);
-        else if(m_socketType == WEBSOCKET) 
-            return (m_webSocket.state() == QAbstractSocket::ConnectedState);
-        return false;
-    }
-    inline void disconnectFromVncServer() { 
-        if(m_socketType == TCP) 
-            m_tcpSocket.disconnectFromHost();
-        else if(m_socketType == WEBSOCKET) {
-            disconnect(this, SIGNAL(webSocketReadyRead()), this, SLOT(onServerMessage()));
-            m_webSocket.close();
-            m_webSoketBuffer.clear();
-        }
-    }
-    QString getServerMsg(void) {
-        if(m_socketType == TCP) 
-            return m_tcpSocket.peerName();
-        else if(m_socketType == WEBSOCKET) 
-            return m_webSocket.peerName();
-        return QString();
-    }
+    bool isConnectedToServer();
+    void disconnectFromVncServer();
 
     inline void tryRefreshScreen() { sendFrameBufferUpdateRequest(0); }
     void startFrameBufferUpdate() {
@@ -103,11 +90,9 @@ public:
         disconnect(this, SIGNAL(frameBufferUpdated()), this, SLOT(sendFrameBufferUpdateRequest()));
     }
 
-
 public slots:
     void sendFrameBufferUpdateRequest(int incremental = 1);
     void setFullScreen(bool full);
-    //void send
 
 protected:
     void resizeEvent(QResizeEvent *e);
@@ -121,36 +106,17 @@ protected:
 
 private slots:
     void onServerMessage();
-    void binaryMessageReceived(const QByteArray &message);
 
 signals:
     void frameBufferUpdated();
     void connected(bool b);
-    void webSocketReadyRead();
 
 private:
-    qint64 write(const char *data, qint64 len);
-    qint64 write(const QByteArray &data) {
-        return write(data.data(), data.size());
-    }
-    qint64 read(char *data, qint64 maxlen);
-    QByteArray read(qint64 maxlen) {
-        QByteArray ba;
-        ba.resize(maxlen);
-        qint64 size = read(ba.data(), maxlen);
-        ba.resize(size);
-        return ba;
-    }
-    QByteArray readAll();
-    bool waitForReadyRead(int msecs = 30000);
-    qint64 bytesAvailable();
-
+    SocketThread *m_socketThread;
+    QString m_password;
     QImage screen;
-    QTcpSocket m_tcpSocket;
-    QWebSocket m_webSocket;
-	SocketType m_socketType;
-    QVector<char> m_webSoketBuffer;
     QByteArray desHash(QByteArray challenge, QString passStr);
+    bool linkToVncServer(void);
 
     int frameBufferWidth;
     int frameBufferHeight;
@@ -192,6 +158,210 @@ private:
     bool sendSetPixelFormat(void);
     quint32 translateRfbKey(int key, bool modifier);
     quint8 translateRfbPointer(unsigned int mouseStatus, int &posX, int &posY);
+};
+
+class SocketThread : public QThread
+{
+    Q_OBJECT
+public:
+    explicit SocketThread(QVNCClientWidget::SocketType type = QVNCClientWidget::TCP, QObject *parent = 0)
+        : QThread(parent), m_socketType(type) {
+        connect(&m_tcpSocket, &QTcpSocket::stateChanged, this,
+                [&](QAbstractSocket::SocketState state) {
+                    switch (state) {
+                        case QAbstractSocket::UnconnectedState:
+                            emit disConnect();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            );
+        connect(&m_webSocket, &QWebSocket::stateChanged, this,
+                [&](QAbstractSocket::SocketState state) {
+                    switch (state) {
+                        case QAbstractSocket::UnconnectedState:
+                            emit disConnect();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            );
+        connect(&m_tcpSocket, &QTcpSocket::readyRead, this,
+                [&]() {
+                    emit socketReadyRead();
+                });
+        connect(&m_webSocket, &QWebSocket::binaryMessageReceived, this,
+                [&](const QByteArray &message) {
+                    if (!isConnectedToServer()) {
+                        m_webSoketBuffer.clear();
+                        return;
+                    }
+                    for(qint64 i=0;i<message.size();i++) {
+                        m_webSoketBuffer.push_back(message[i]);
+                    }
+                    if (!isConnectedToServer()) {
+                        m_webSoketBuffer.clear();
+                        return;
+                    }
+                    emit socketReadyRead();
+                });
+    }
+
+    bool isConnectedToServer() { 
+        if(m_socketType == QVNCClientWidget::TCP) 
+            return (m_tcpSocket.state() == QTcpSocket::ConnectedState);
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET) 
+            return (m_webSocket.state() == QAbstractSocket::ConnectedState);
+        return false;
+    }
+
+    void connectToVncServer(QString ip, int port)
+    {
+        if (isConnectedToServer()) {
+            disconnectFromVncServer();
+        }
+        if(m_socketType == QVNCClientWidget::TCP) {
+            m_tcpSocket.connectToHost(QHostAddress(ip), static_cast<quint16>(port));
+        } else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            m_webSocket.open(QUrl("ws://"+ip+":"+QString::number(port)));
+        }
+    }
+
+    void disconnectFromVncServer() { 
+        if(m_socketType == QVNCClientWidget::TCP) 
+            m_tcpSocket.disconnectFromHost();
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            m_webSocket.close();
+            m_webSoketBuffer.clear();
+        }
+    }
+
+    QString getServerMsg(void) {
+        if(m_socketType == QVNCClientWidget::TCP) 
+            return m_tcpSocket.peerName();
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET) 
+            return m_webSocket.peerName();
+        return QString();
+    }
+    qint64 write(const char *data, qint64 len)
+    {
+        if(!isConnectedToServer())
+            return 0;
+        if(m_socketType == QVNCClientWidget::TCP) {
+            return m_tcpSocket.write( data, len );
+        } else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            return m_webSocket.sendBinaryMessage(QByteArray(data, len));
+        }
+        return 0;
+    }
+    qint64 write(const QByteArray &data) {
+        return write(data.data(), data.size());
+    }
+    qint64 read(char *data, qint64 maxlen)
+    {
+        if(!isConnectedToServer())
+            return 0;
+        if(m_socketType == QVNCClientWidget::TCP)
+            return m_tcpSocket.read(data, maxlen);
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            if(m_webSoketBuffer.size() > 0) {
+                qint64 len = maxlen;
+                if(len > m_webSoketBuffer.size())
+                    len = m_webSoketBuffer.size();
+                for(qint64 i=0;i<len;i++) {
+                    data[i] = m_webSoketBuffer.front();
+                    m_webSoketBuffer.pop_front();
+                }
+                return len;
+            }
+        }
+        return 0;
+    }
+    QByteArray read(qint64 maxlen) {
+        QByteArray ba;
+        ba.resize(maxlen);
+        qint64 size = read(ba.data(), maxlen);
+        ba.resize(size);
+        return ba;
+    }
+    QByteArray readAll() {
+        if(!isConnectedToServer())
+            return QByteArray();
+        if(m_socketType == QVNCClientWidget::TCP)
+            return m_tcpSocket.readAll();
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            QByteArray ret;
+            while(m_webSoketBuffer.size() > 0) {
+                ret.push_back(m_webSoketBuffer.front());
+                m_webSoketBuffer.pop_front();
+            }
+            return ret;
+        }
+        return QByteArray();
+    }
+    bool waitForReadyRead(int msecs = 30000) {
+        if(!isConnectedToServer())
+            return false;
+        if(m_socketType == QVNCClientWidget::TCP)
+            return m_tcpSocket.waitForReadyRead(msecs);
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            if(msecs < 0) {
+                while(m_webSoketBuffer.size() == 0) {
+                    if(!isConnectedToServer())
+                        return false;
+                    QThread::msleep(10);
+                    qApp->processEvents();
+                }
+                return true;
+            }
+            do {
+                if(m_webSoketBuffer.size() > 0)
+                    return true;
+                if(!isConnectedToServer())
+                    return false;
+                QThread::msleep(10);
+                qApp->processEvents();
+                msecs -= 10;
+            } while(msecs > 0);
+        }
+        return false;
+    }
+    bool waitForConnected() {
+        bool waitConnect = false;
+        if(m_socketType == QVNCClientWidget::TCP) {
+            waitConnect = m_tcpSocket.waitForConnected();
+        } else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
+            do {
+                if(m_webSocket.state() == QAbstractSocket::ConnectedState) {
+                    waitConnect = true;
+                    break;
+                }
+                QThread::msleep(10);
+                qApp->processEvents();
+            } while(true);
+        }
+        return waitConnect;
+    }
+    qint64 bytesAvailable() {
+        if(!isConnectedToServer())
+            return 0;
+        if(m_socketType == QVNCClientWidget::TCP)
+            return m_tcpSocket.bytesAvailable();
+        else if(m_socketType == QVNCClientWidget::WEBSOCKET)
+            return m_webSoketBuffer.size();
+        return 0;
+    }
+signals:
+    void socketReadyRead();
+    void disConnect();
+
+private:
+    QTcpSocket m_tcpSocket;
+    QWebSocket m_webSocket;
+    QVNCClientWidget::SocketType m_socketType;
+    QVector<char> m_webSoketBuffer;
 };
 
 #endif // QVNCCLIENTWIDGET_H
