@@ -30,7 +30,6 @@ Quard Star is the name of the hardware board that we simulate using qemu. It is 
 
 ### Hardware Architecture
 
-
 ![Hardware Architecture](./tutorial/img/img3.png)
 
 ### Software Flow
@@ -52,16 +51,16 @@ Quard Star is the name of the hardware board that we simulate using qemu. It is 
 - Trusted domain and secure boot
 - Debugging tools and scripts
 
-## Prerequisites
+## Pre-requisites
 
 To build and run this project, you will need the following tools:
 
-- gcc and g++ compilers
-- make and cmake utilities
-- git version control system
-- qemu emulator
-- dtc device tree compiler
-- python3 interpreter
+- gcc/g++ 
+- make/cmake
+- git
+- qemu
+- dtc
+- python3
 
 You can install them using your package manager. For example, on Ubuntu 20.04, you can run:
 
