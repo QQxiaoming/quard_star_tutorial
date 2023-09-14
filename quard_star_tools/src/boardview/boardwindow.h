@@ -65,7 +65,7 @@ public:
     explicit BoardWindow(const QString &path,const QString &color = "green",
                     const bool &isDarkTheme = false,
                     QLocale::Language force_translator = QLocale::AnyLanguage,
-                    QString ipAddr = "",
+                    QString ipAddr = "", bool forceWS = false,
                     QWidget *parent = nullptr);
     ~BoardWindow();
     bool powerSwitch(bool power);

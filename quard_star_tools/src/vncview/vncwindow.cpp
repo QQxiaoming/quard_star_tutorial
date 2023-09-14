@@ -96,26 +96,14 @@ VncWindow::~VncWindow()
 
 void VncWindow::reConnect(void)
 {
-#if defined(Q_OS_WASM)
-    // TODO: now wasm not support vnc, we are waiting for the Qt for webassembly
-    //       support -device-option QT_EMSCRIPTEN_ASYNCIFY=1	
-    return;
-#endif
     if(vncView->isConnectedToServer()) {
         vncView->disconnectFromVncServer();
     }
-    if(vncView->connectToVncServer(severAddr,"",severPort)) {
-        vncView->startFrameBufferUpdate();
-    }
+    vncView->connectToVncServer(severAddr,"",severPort);
 }
 
 void VncWindow::disConnect(void)
 {
-#if defined(Q_OS_WASM)
-    // TODO: now wasm not support vnc, we are waiting for the Qt for webassembly
-    //       support -device-option QT_EMSCRIPTEN_ASYNCIFY=1	
-    return;
-#endif
     if(vncView->isConnectedToServer()) {
         vncView->disconnectFromVncServer();
     }

@@ -41,6 +41,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
                          const bool &isSysDarkTheme,
                          QLocale::Language lang,
                          QString ip_addr,
+                         bool forceWS,
                          QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::BoardWindow),
@@ -59,7 +60,7 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
     vCanName(""),
     bootCfg("sd"),
     language(lang),
-    forceWebSocket(false),
+    forceWebSocket(forceWS),
     updateCfg(false)
 {
     ui->setupUi(this);

@@ -1,3 +1,4 @@
+#include <QThread>
 #include "qvncclientwidget.h"
 
 QVNCClientWidget::QVNCClientWidget(SocketType type, QWidget *parent) :
@@ -6,6 +7,8 @@ QVNCClientWidget::QVNCClientWidget(SocketType type, QWidget *parent) :
     setMouseTracking(true);
     setCursor(Qt::BlankCursor);
     m_socketThread = new SocketThread(type,this);
+    m_state = Disconnected;
+    connect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
     connect(m_socketThread, &SocketThread::disConnect, this,
             [&]() {
                 disconnectFromVncServer();
@@ -20,6 +23,24 @@ QVNCClientWidget::~QVNCClientWidget()
 {
     disconnectFromVncServer();
     delete m_socketThread;
+}
+
+void QVNCClientWidget::connectToVncServer(QString ip, QString password, int port)
+{
+    m_password = password;
+    m_state = Protocol;
+    m_socketThread->connectToVncServer(ip, port);
+}
+
+bool QVNCClientWidget::isConnectedToServer()
+{
+    return m_socketThread->isConnectedToServer();
+}
+
+void QVNCClientWidget::disconnectFromVncServer()
+{
+    m_state = Disconnected;
+    m_socketThread->disconnectFromVncServer();
 }
 
 bool QVNCClientWidget::sendSetPixelFormat()
@@ -68,154 +89,6 @@ bool QVNCClientWidget::sendSetEncodings(void)
         return false;
     }
 
-    return true;
-}
-
-bool QVNCClientWidget::connectToVncServer(QString ip, QString password, int port)
-{
-    m_password = password;
-    m_socketThread->connectToVncServer(ip, port);
-    return linkToVncServer();
-}
-
-bool QVNCClientWidget::isConnectedToServer()
-{
-    return m_socketThread->isConnectedToServer();
-}
-
-void QVNCClientWidget::disconnectFromVncServer()
-{
-    disconnect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
-    m_socketThread->disconnectFromVncServer();
-}
-
-bool QVNCClientWidget::linkToVncServer(void)
-{
-    bool waitConnect = m_socketThread->waitForConnected();
-
-    if (waitConnect) {
-        QByteArray response;
-        m_socketThread->waitForReadyRead(-1);
-        response = m_socketThread->readAll();
-        if (response.isEmpty())
-        {
-            qDebug() << "server answer is empty!";
-            m_socketThread->disconnectFromVncServer();
-            return false;
-        }
-        char serverMinorVersion = response.at(10);
-        response.clear();
-        switch (serverMinorVersion)
-        {
-        case '3':
-            response.append("RFB 003.003\n");
-            break;
-        case '7':
-            response.append("RFB 003.007\n");
-            break;
-        case '8':
-            response.append("RFB 003.008\n");
-            break;
-        }
-        m_socketThread->write(response);
-
-        m_socketThread->waitForReadyRead(-1);
-        response = m_socketThread->read(1); // Number of security types
-
-        if (response.isEmpty())
-        {
-            qDebug() << "Number of security types empty!";
-            m_socketThread->disconnectFromVncServer();
-            return false;
-        }
-
-        if (serverMinorVersion == '3')
-        {
-            response = m_socketThread->read(4);
-            int securityType = response.at(2);
-            if (securityType == 0)
-            {
-                qDebug() << "Connection failed";
-                m_socketThread->disconnectFromVncServer();
-                return false;
-            }
-            else if (securityType == 2)
-            {
-                goto Authentication;
-            }
-            else
-                goto clientinit;
-        }
-
-        if (response.at(0) != 0)
-        {
-            response = m_socketThread->read(response.at(0)); // Security types
-
-            if (response.contains('\x01')) // None security mode supported
-            {
-                m_socketThread->write("\x01");
-                m_socketThread->waitForReadyRead(-1);
-                response = m_socketThread->readAll();
-                goto clientinit;
-            }
-            else if (response.contains('\x02')) // VNC Authentication security type supported
-            {
-            Authentication:
-                m_socketThread->write("\x02");
-                m_socketThread->waitForReadyRead(-1);
-                response = m_socketThread->read(16); // Security Challenge
-                m_socketThread->write(desHash(response, m_password.toLatin1()));
-                m_socketThread->waitForReadyRead(-1);
-                response = m_socketThread->read(4); // Security handshake result
-                // Connection successful
-                if (response.toInt() == 0)
-                {
-                clientinit:
-                    m_socketThread->write("\x01"); // ClientInit message (non-zeo: shared, zero:exclusive)
-                    m_socketThread->waitForReadyRead(-1);
-                    response = m_socketThread->read(2); // framebuffer-width in pixels
-                    frameBufferWidth = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
-                    response = m_socketThread->read(2); // framebuffer-height in pixels
-                    frameBufferHeight = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
-
-                    // Pixel Format
-                    // ***************************
-                    if (m_socketThread->read((char *)&pixelFormat, sizeof(pixelFormat)) != sizeof(pixelFormat))
-                        return false;
-                    pixelFormat.redMax = qFromBigEndian(pixelFormat.redMax);
-                    pixelFormat.greenMax = qFromBigEndian(pixelFormat.greenMax);
-                    pixelFormat.blueMax = qFromBigEndian(pixelFormat.blueMax);
-
-                    m_socketThread->read(4); // name-length
-                    response = m_socketThread->readAll();
-                }
-                else
-                {
-                    qDebug() << "Connection failed! Wrong password?!?!?!";
-                    m_socketThread->disconnectFromVncServer();
-                    return false;
-                }
-            }
-        }
-        else // If number of security types is zero then connection failed!
-        {
-            qDebug() << "Connection failed";
-            m_socketThread->disconnectFromVncServer();
-            return false;
-        }
-    }
-    else
-    {
-        qDebug() << "Not connected";
-        m_socketThread->disconnectFromVncServer();
-        return false;
-    }
-
-    screen = QImage(frameBufferWidth, frameBufferHeight, QImage::Format_RGB32);
-    sendSetEncodings();
-    sendSetPixelFormat();
-    connect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
-    emit connected(true);
     return true;
 }
 
@@ -325,93 +198,233 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
 void QVNCClientWidget::onServerMessage()
 {
     disconnect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
-
-    QByteArray response;
-    int numOfRects;
-    response = m_socketThread->read(1);
-    switch (response.at(0))
-    {
-    // ***************************************************************************************
-    // ***************************** Frame Buffer Update *************************************
-    // ***************************************************************************************
-    case RFBProtol::FramebufferUpdate:
-
-        m_socketThread->read(1); // padding
-        response = m_socketThread->read(2); // number of rectangles
-
-        numOfRects = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
-
-        for (int i = 0; i < numOfRects; i++)
-        {
-            qApp->processEvents();
-            if (!m_socketThread->isConnectedToServer())
-                return;
-            struct rfbRectHeader
+    qDebug() << m_state;
+    switch(m_state) {
+        case Disconnected:
+            break;
+        case Protocol: {
+            QByteArray response;
+            response = m_socketThread->readAll();
+            if (response.isEmpty()) {
+                qDebug() << "server answer is empty!";
+                m_socketThread->disconnectFromVncServer();
+                m_state = Disconnected;
+                break;
+            }
+            serverMinorVersion = response.at(10);
+            response.clear();
+            switch (serverMinorVersion)
             {
-                quint16 xPosition;
-                quint16 yPosition;
-                quint16 width;
-                quint16 height;
-                qint32 encodingType;
-            } rectHeader;
-            if (m_socketThread->read((char *)&rectHeader, sizeof(rectHeader)) != sizeof(rectHeader))
+            case '3':
+                response.append("RFB 003.003\n");
+                break;
+            case '7':
+                response.append("RFB 003.007\n");
+                break;
+            case '8':
+                response.append("RFB 003.008\n");
+                break;
+            }
+            m_socketThread->write(response);
+            m_state = Protocol_2;
+            break;
+        }
+        case Protocol_2:{
+            QByteArray response;
+            response = m_socketThread->read(1); // Number of security types
+            if (response.isEmpty()) {
+                qDebug() << "Number of security types empty!";
+                m_socketThread->disconnectFromVncServer();
+                m_state = Disconnected;
+                break;
+            }
+
+            if (serverMinorVersion == '3') {
+                response = m_socketThread->read(4);
+                int securityType = response.at(2);
+                if (securityType == 0) {
+                    qDebug() << "Connection failed";
+                    m_socketThread->disconnectFromVncServer();
+                    m_state = Disconnected;
+                    break;
+                } else if (securityType == 2) {
+                    m_socketThread->write("\x02");
+                    m_state = Authentication;
+                    break;
+                } else {
+                    m_socketThread->write("\x01"); // ClientInit message (non-zeo: shared, zero:exclusive)
+                    m_state = Init;
+                    break;
+                }
+            }
+
+            if (response.at(0) != 0) {
+                response = m_socketThread->read(response.at(0)); // Security types
+                if (response.contains('\x01')) { // None security mode supported
+                    m_socketThread->write("\x01");
+                    m_state = Protocol_3;
+                    break;
+
+                } else if (response.contains('\x02')) {// VNC Authentication security type supported
+                    m_socketThread->write("\x02");
+                    m_state = Authentication;
+                    break;
+                }
+            } 
+
+            // If number of security types is zero then connection failed!
+            qDebug() << "Connection failed";
+            m_socketThread->disconnectFromVncServer();
+            m_state = Disconnected;
+            break;
+        }
+        case Protocol_3:{
+            QByteArray response;
+            response = m_socketThread->readAll();
+            m_socketThread->write("\x01");
+            m_state = Init;
+            break;
+        }
+        case Authentication: {
+            QByteArray response;
+            response = m_socketThread->read(16); // Security Challenge
+            m_socketThread->write(desHash(response, m_password.toLatin1()));
+            m_state = Authentication_2;
+            break;
+        }
+        case Authentication_2: {
+            QByteArray response;
+            response = m_socketThread->read(4); // Security handshake result
+            if (response.toInt() == 0) { // Connection successful
+                m_socketThread->write("\x01"); // ClientInit message (non-zeo: shared, zero:exclusive)
+                m_state = Init;
+                break;
+            }
+            qDebug() << "Connection failed! Wrong password?!?!?!";
+            m_socketThread->disconnectFromVncServer();
+            m_state = Disconnected;
+            break;
+        }
+        case Init: {
+            QByteArray response;
+            response = m_socketThread->read(2); // framebuffer-width in pixels
+            frameBufferWidth = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
+            response = m_socketThread->read(2); // framebuffer-height in pixels
+            frameBufferHeight = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
+
+            // Pixel Format
+            // ***************************
+            if (m_socketThread->read((char *)&pixelFormat, sizeof(pixelFormat)) != sizeof(pixelFormat)) {
+                qDebug() << "read pixel format error";
+                m_socketThread->disconnectFromVncServer();
+                m_state = Disconnected;
+                break;
+            }
+            pixelFormat.redMax = qFromBigEndian(pixelFormat.redMax);
+            pixelFormat.greenMax = qFromBigEndian(pixelFormat.greenMax);
+            pixelFormat.blueMax = qFromBigEndian(pixelFormat.blueMax);
+
+            m_socketThread->read(4); // name-length
+            response = m_socketThread->readAll();
+
+            screen = QImage(frameBufferWidth, frameBufferHeight, QImage::Format_RGB32);
+            sendSetEncodings();
+            sendSetPixelFormat();
+            emit connected(true);
+            startFrameBufferUpdate();
+            m_state = Connected;
+            break;
+        }
+        case Connected:{
+            QByteArray response;
+            int numOfRects;
+            response = m_socketThread->read(1);
+            switch (response.at(0))
             {
-                qDebug("read size error");
+            // ***************************************************************************************
+            // ***************************** Frame Buffer Update *************************************
+            // ***************************************************************************************
+            case RFBProtol::FramebufferUpdate:
+
+                m_socketThread->read(1); // padding
+                response = m_socketThread->read(2); // number of rectangles
+
+                numOfRects = qMakeU16(static_cast<quint8>(response.at(0)), static_cast<quint8>(response.at(1)));
+
+                for (int i = 0; i < numOfRects; i++)
+                {
+                    qApp->processEvents();
+                    if (!m_socketThread->isConnectedToServer())
+                        return;
+                    struct rfbRectHeader
+                    {
+                        quint16 xPosition;
+                        quint16 yPosition;
+                        quint16 width;
+                        quint16 height;
+                        qint32 encodingType;
+                    } rectHeader;
+                    if (m_socketThread->read((char *)&rectHeader, sizeof(rectHeader)) != sizeof(rectHeader))
+                    {
+                        qDebug("read size error");
+                        m_socketThread->readAll();
+                        break;
+                    }
+                    rectHeader.xPosition = qFromBigEndian(rectHeader.xPosition);
+                    rectHeader.yPosition = qFromBigEndian(rectHeader.yPosition);
+                    rectHeader.width = qFromBigEndian(rectHeader.width);
+                    rectHeader.height = qFromBigEndian(rectHeader.height);
+                    rectHeader.encodingType = qFromBigEndian(rectHeader.encodingType);
+                    if (rectHeader.encodingType == RFBProtol::Encodings::Raw)
+                    {
+                        int numOfBytes = rectHeader.width * rectHeader.height * (pixelFormat.bitsPerPixel / 8);
+                        if (numOfBytes <= 0)
+                            break;
+                        while (m_socketThread->bytesAvailable() < numOfBytes)
+                        {
+                            qApp->processEvents();
+                            if (!m_socketThread->isConnectedToServer())
+                                return;
+                        }
+                        QImage image(rectHeader.width, rectHeader.height, QImage::Format_RGB32);
+                        m_socketThread->read((char *)image.bits(), numOfBytes);
+
+                        QPainter painter(&screen);
+                        painter.drawImage(rectHeader.xPosition, rectHeader.yPosition, image);
+                        painter.end();
+                    }
+                    else if (rectHeader.encodingType == RFBProtol::Encodings::CursorSizePseudo)
+                    {
+                        int numOfBytes = rectHeader.width * rectHeader.height * (pixelFormat.bitsPerPixel / 8);
+                        int floor = (rectHeader.width + 7) / 8 * rectHeader.height;
+                        while (m_socketThread->bytesAvailable() < numOfBytes + floor)
+                        {
+                            qApp->processEvents();
+                            if (!m_socketThread->isConnectedToServer())
+                                return;
+                        }
+                        m_socketThread->read(numOfBytes + floor);
+                    }
+                    else
+                    {
+                        qDebug() << "encoding Type:" << rectHeader.encodingType;
+                        response = m_socketThread->readAll();
+                        break;
+                    }
+                }
+
+                repaint();
+                emit frameBufferUpdated();
+                break;
+            default:
+                qDebug() << "server to client message type:" << static_cast<quint8>(response.at(0));
                 m_socketThread->readAll();
                 break;
             }
-            rectHeader.xPosition = qFromBigEndian(rectHeader.xPosition);
-            rectHeader.yPosition = qFromBigEndian(rectHeader.yPosition);
-            rectHeader.width = qFromBigEndian(rectHeader.width);
-            rectHeader.height = qFromBigEndian(rectHeader.height);
-            rectHeader.encodingType = qFromBigEndian(rectHeader.encodingType);
-            if (rectHeader.encodingType == RFBProtol::Encodings::Raw)
-            {
-                int numOfBytes = rectHeader.width * rectHeader.height * (pixelFormat.bitsPerPixel / 8);
-                if (numOfBytes <= 0)
-                    break;
-                while (m_socketThread->bytesAvailable() < numOfBytes)
-                {
-                    qApp->processEvents();
-                    if (!m_socketThread->isConnectedToServer())
-                        return;
-                }
-                QImage image(rectHeader.width, rectHeader.height, QImage::Format_RGB32);
-                m_socketThread->read((char *)image.bits(), numOfBytes);
-
-                QPainter painter(&screen);
-                painter.drawImage(rectHeader.xPosition, rectHeader.yPosition, image);
-                painter.end();
-            }
-            else if (rectHeader.encodingType == RFBProtol::Encodings::CursorSizePseudo)
-            {
-                int numOfBytes = rectHeader.width * rectHeader.height * (pixelFormat.bitsPerPixel / 8);
-                int floor = (rectHeader.width + 7) / 8 * rectHeader.height;
-                while (m_socketThread->bytesAvailable() < numOfBytes + floor)
-                {
-                    qApp->processEvents();
-                    if (!m_socketThread->isConnectedToServer())
-                        return;
-                }
-                m_socketThread->read(numOfBytes + floor);
-            }
-            else
-            {
-                qDebug() << "encoding Type:" << rectHeader.encodingType;
-                response = m_socketThread->readAll();
-                break;
-            }
+            break;
         }
-
-        repaint();
-        emit frameBufferUpdated();
-        break;
-    default:
-        qDebug() << "server to client message type:" << static_cast<quint8>(response.at(0));
-        m_socketThread->readAll();
-        break;
     }
-
+    
     connect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
 }
 

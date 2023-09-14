@@ -3,7 +3,6 @@
 
 #include <QApplication>
 #include <QWidget>
-#include <QThread>
 #include <QTcpSocket>
 #include <QWebSocket>
 #include <QtEndian>
@@ -77,7 +76,7 @@ public:
     explicit QVNCClientWidget(SocketType type = TCP, QWidget *parent = 0);
     ~QVNCClientWidget();
     
-    bool connectToVncServer(QString ip, QString password, int port = 5900);
+    void connectToVncServer(QString ip, QString password, int port = 5900);
     bool isConnectedToServer();
     void disconnectFromVncServer();
 
@@ -112,11 +111,22 @@ signals:
     void connected(bool b);
 
 private:
+    enum ClientState {
+        Disconnected,
+        Protocol,
+        Protocol_2,
+        Protocol_3,
+        Authentication,
+        Authentication_2,
+        Init,
+        Connected
+    };
     SocketThread *m_socketThread;
     QString m_password;
+    ClientState m_state;
+    char serverMinorVersion;
     QImage screen;
     QByteArray desHash(QByteArray challenge, QString passStr);
-    bool linkToVncServer(void);
 
     int frameBufferWidth;
     int frameBufferHeight;
@@ -160,12 +170,12 @@ private:
     quint8 translateRfbPointer(unsigned int mouseStatus, int &posX, int &posY);
 };
 
-class SocketThread : public QThread
+class SocketThread : public QObject
 {
     Q_OBJECT
 public:
     explicit SocketThread(QVNCClientWidget::SocketType type = QVNCClientWidget::TCP, QObject *parent = 0)
-        : QThread(parent), m_socketType(type) {
+        : QObject(parent), m_socketType(type) {
         connect(&m_tcpSocket, &QTcpSocket::stateChanged, this,
                 [&](QAbstractSocket::SocketState state) {
                     switch (state) {
@@ -300,49 +310,6 @@ public:
             return ret;
         }
         return QByteArray();
-    }
-    bool waitForReadyRead(int msecs = 30000) {
-        if(!isConnectedToServer())
-            return false;
-        if(m_socketType == QVNCClientWidget::TCP)
-            return m_tcpSocket.waitForReadyRead(msecs);
-        else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
-            if(msecs < 0) {
-                while(m_webSoketBuffer.size() == 0) {
-                    if(!isConnectedToServer())
-                        return false;
-                    QThread::msleep(10);
-                    qApp->processEvents();
-                }
-                return true;
-            }
-            do {
-                if(m_webSoketBuffer.size() > 0)
-                    return true;
-                if(!isConnectedToServer())
-                    return false;
-                QThread::msleep(10);
-                qApp->processEvents();
-                msecs -= 10;
-            } while(msecs > 0);
-        }
-        return false;
-    }
-    bool waitForConnected() {
-        bool waitConnect = false;
-        if(m_socketType == QVNCClientWidget::TCP) {
-            waitConnect = m_tcpSocket.waitForConnected();
-        } else if(m_socketType == QVNCClientWidget::WEBSOCKET) {
-            do {
-                if(m_webSocket.state() == QAbstractSocket::ConnectedState) {
-                    waitConnect = true;
-                    break;
-                }
-                QThread::msleep(10);
-                qApp->processEvents();
-            } while(true);
-        }
-        return waitConnect;
     }
     qint64 bytesAvailable() {
         if(!isConnectedToServer())

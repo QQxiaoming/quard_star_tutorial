@@ -95,6 +95,12 @@ private:
             "ip-addr",
             "localhost"
             )
+        },
+        {"web_socket",
+        QCommandLineOption(
+            {"w","websocket"},
+            "quard star board use webSocket mode"
+            )
         }
     };
 
@@ -177,6 +183,7 @@ int main(int argc, char *argv[])
     QString dark_theme = AppComLineParser->getOpt("dark_theme");
     QString app_lang = AppComLineParser->getOpt("language");
     QString ip_addr = AppComLineParser->getOpt("ip_addr");
+    bool webSocket = AppComLineParser->isSetOpt("web_socket");
 
     QLocale locale;
     QLocale::Language lang = locale.language();
@@ -226,11 +233,11 @@ int main(int argc, char *argv[])
     window.setObjectName("BackWindow");
     window.setStyleSheet("QWidget#BackWindow {background-color: black;}");
     window.showFullScreen();
-    BoardWindow boardWindow(env_path,skin_color,isDarkTheme,lang,ip_addr, &window);
+    BoardWindow boardWindow(env_path,skin_color,isDarkTheme,lang,ip_addr,webSocket,&window);
     boardWindow.show();
 #elif defined(DESKTOP_INTERACTION_MODE)
     // Desktop apps require a borderless window
-    BoardWindow window(env_path,skin_color,isDarkTheme,lang,ip_addr);
+    BoardWindow window(env_path,skin_color,isDarkTheme,lang,ip_addr,webSocket);
     window.show();
 #endif
 
