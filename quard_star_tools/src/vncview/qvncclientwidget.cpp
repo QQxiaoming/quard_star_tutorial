@@ -198,7 +198,7 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
 void QVNCClientWidget::onServerMessage()
 {
     disconnect(m_socketThread, SIGNAL(socketReadyRead()), this, SLOT(onServerMessage()));
-    qDebug() << m_state;
+
     switch(m_state) {
         case Disconnected:
             break;

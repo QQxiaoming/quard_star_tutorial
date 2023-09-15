@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
     QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
-    QRegularExpression ipFormat("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$");
+    static QRegularExpression ipFormat("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$");
     if(ip_addr == "localhost") {
         ip_addr = "";
     } else if(!ipFormat.match(ip_addr).hasMatch()) {
