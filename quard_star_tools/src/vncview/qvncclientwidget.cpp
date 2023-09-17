@@ -25,6 +25,11 @@ QVNCClientWidget::~QVNCClientWidget()
     delete m_socketThread;
 }
 
+void QVNCClientWidget::setType(SocketType type)
+{
+    m_socketThread->setType(type);
+}
+
 void QVNCClientWidget::connectToVncServer(QString ip, QString password, int port)
 {
     m_password = password;

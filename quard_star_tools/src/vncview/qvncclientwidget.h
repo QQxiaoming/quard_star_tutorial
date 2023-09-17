@@ -76,6 +76,7 @@ public:
     explicit QVNCClientWidget(SocketType type = TCP, QWidget *parent = 0);
     ~QVNCClientWidget();
     
+    void setType(SocketType type);
     void connectToVncServer(QString ip, QString password, int port = 5900);
     bool isConnectedToServer();
     void disconnectFromVncServer();
@@ -218,6 +219,8 @@ public:
                     emit socketReadyRead();
                 });
     }
+
+    void setType(QVNCClientWidget::SocketType type) { m_socketType = type; }
 
     bool isConnectedToServer() { 
         if(m_socketType == QVNCClientWidget::TCP) 
