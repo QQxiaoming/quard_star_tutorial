@@ -125,7 +125,11 @@ BoardWindow::BoardWindow(const QString &path,const QString &color,
         if (!ok || ipAddr.isEmpty()) {
             QMessageBox::critical(this, tr("Error"), tr("IP Address is empty!"));
         } else {
-            QRegularExpression ipFormat("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$");
+            if(ipAddr.left(5) == "ws://") {
+                forceWebSocket = true;
+                ipAddr = ipAddr.mid(5);
+            }
+            static QRegularExpression ipFormat("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$");
             if(!ipFormat.match(ipAddr).hasMatch()) {
                 QMessageBox::critical(this, tr("Error"), tr("IP Address is invalid!"));
                 ipAddr = QHostAddress(QHostAddress::LocalHost).toString();
