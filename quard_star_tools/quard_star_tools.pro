@@ -172,7 +172,7 @@ wasm {
     
     git_tag.commands = $$quote("cd $$PWD && git describe --always --long --dirty --abbrev=10 --exclude '*' | awk \'{print \"\\\"\"\$$0\"\\\"\"}\' > git_tag.tmp && mv git_tag.tmp git_tag.inc")
 
-    AFTER_LINK_CMD_LINE = cp $$PWD/platform/webassembly/$${TARGET}.html $$DESTDIR/ ; cp $$PWD/icons/icon512.png $$DESTDIR/ ; cp $$PWD/icons/icon.ico $$DESTDIR/favicon.ico ; rm -rf $$DESTDIR/qtlogo.svg
+    AFTER_LINK_CMD_LINE = cp $$PWD/platform/webassembly/$${TARGET}.html $$DESTDIR/ ; cp $$PWD/icons/board.gif $$DESTDIR/ ; cp $$PWD/icons/icon.ico $$DESTDIR/favicon.ico ; rm -rf $$DESTDIR/qtlogo.svg
     QMAKE_POST_LINK += $$quote($$AFTER_LINK_CMD_LINE)
 }
 
