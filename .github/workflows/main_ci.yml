@@ -199,7 +199,9 @@ jobs:
           activate-environment: ""
 
       - name: Build all
+        shell: bash -l {0}
         run: |
+          conda init
           conda create -n build_env python=3.11.5 -y
           conda activate build_env
           ./build.sh qemu_macos

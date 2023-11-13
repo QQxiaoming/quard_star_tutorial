@@ -66,9 +66,11 @@ jobs:
           sudo hdiutil detach /Volumes/quard_star_tools
           mv ./output ./quard_star_tools.app/Contents/Frameworks/output
           mv run.sh ./quard_star_tools.app/Contents/Frameworks/run.sh
-          sudo create-dmg --volname "quard_star_tools" --background "installer_background.png" --window-pos 200 120 --window-size 800 450 --icon-size 100 --icon "quard_star_tools.app" 200 190 --app-drop-link 600 185 "quard_star_tools.dmg" "quard_star_tools.app"
-          sudo chmod 777 quard_star_tools.dmg
-          tar -czf release_macos.tar.gz quard_star_tools.dmg
+          # github action not space enough
+          #sudo create-dmg --volname "quard_star_tools" --background "installer_background.png" --window-pos 200 120 --window-size 800 450 --icon-size 100 --icon "quard_star_tools.app" 200 190 --app-drop-link 600 185 "quard_star_tools.dmg" "quard_star_tools.app"
+          #sudo chmod 777 quard_star_tools.dmg
+          #tar -czf release_macos.tar.gz quard_star_tools.dmg
+          tar -czf release_macos.tar.gz quard_star_tools.app
 
       - name: Upload build asserts
         uses: actions/upload-artifact@v3.1.0
@@ -94,8 +96,8 @@ jobs:
         run: |
           brew install libffi gettext glib pkg-config autoconf automake pixman ninja coreutils
           tar -xzvf release_macos.tar.gz
-          sudo hdiutil attach quard_star_tools.dmg
-          cp -R /Volumes/quard_star_tools/quard_star_tools.app ./
+          #sudo hdiutil attach quard_star_tools.dmg
+          #cp -R /Volumes/quard_star_tools/quard_star_tools.app ./
 
       - name: Run tests sd boot
         shell: bash -l {0}
