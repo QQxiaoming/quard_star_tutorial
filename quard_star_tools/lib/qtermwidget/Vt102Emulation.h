@@ -23,15 +23,12 @@
 #ifndef VT102EMULATION_H
 #define VT102EMULATION_H
 
-// Standard Library
 #include <cstdio>
 
-// Qt
 #include <QKeyEvent>
 #include <QHash>
 #include <QTimer>
 
-// Konsole
 #include "Emulation.h"
 #include "Screen.h"
 

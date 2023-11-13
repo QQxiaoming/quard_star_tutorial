@@ -46,23 +46,13 @@
 #include <QUrl>
 #include <QMimeData>
 #include <QDrag>
+#include <QMovie>
+#include <QMediaPlayer>
+#include <QVideoSink>
+#include <QVideoFrame>
 
-// KDE
-//#include <kshell.h>
-//#include <KColorScheme>
-//#include <KCursor>
-//#include <kdebug.h>
-//#include <KLocale>
-//#include <KMenu>
-//#include <KNotification>
-//#include <KGlobalSettings>
-//#include <KShortcut>
-//#include <KIO/NetAccess>
-
-// Konsole
-//#include <config-apps.h>
 #include "Filter.h"
-#include "konsole_wcwidth.h"
+#include "console_charwidth.h"
 #include "ScreenWindow.h"
 #include "TerminalCharacterDecoder.h"
 
@@ -138,7 +128,6 @@ void TerminalDisplay::setScreenWindow(ScreenWindow* window)
 
     if ( window )
     {
-
 // TODO: Determine if this is an issue.
 //#warning "The order here is not specified - does it matter whether updateImage or updateLineProperties comes first?"
         connect( _screenWindow , SIGNAL(outputChanged()) , this , SLOT(updateLineProperties()) );
@@ -429,11 +418,34 @@ TerminalDisplay::TerminalDisplay(QWidget *parent)
 
   setLayout( _gridLayout );
 
+  _isLocked = false;
+  _lockbackgroundImage = QPixmap(10,10);
+  _lockbackgroundImage.fill(Qt::gray);
+
+  _backgroundVideoPlayer = new QMediaPlayer;
+  _backgroundVideoSink = new QVideoSink;
+  _backgroundVideoPlayer->setLoops(QMediaPlayer::Infinite);
+  _backgroundVideoPlayer->setVideoOutput(_backgroundVideoSink);
+  connect(_backgroundVideoSink, &QVideoSink::videoFrameChanged, this, [=](const QVideoFrame &frame){
+    _backgroundVideoFrame = QPixmap::fromImage(frame.toImage());
+    update();
+  });
+
   new AutoScrollHandler(this);
 }
 
 TerminalDisplay::~TerminalDisplay()
 {
+  if(_backgroundVideoPlayer->isPlaying()) {
+    _backgroundVideoPlayer->stop();
+  }
+  delete _backgroundVideoPlayer;
+  delete _backgroundVideoSink;
+  if(_backgroundMovie != nullptr) {
+    _backgroundMovie->stop();
+    QObject::disconnect(_backgroundMovie, nullptr, this, nullptr);
+    delete _backgroundMovie;
+  }
   disconnect(_blinkTimer);
   disconnect(_blinkCursorTimer);
   qApp->removeEventFilter( this );
@@ -564,7 +576,6 @@ static void drawLineChar(QPainter& paint, int x, int y, int w, int h, uint8_t co
         paint.drawPoint(cx, cy+1);
     if (toDraw & Int33)
         paint.drawPoint(cx+1, cy+1);
-
 }
 
 static void drawOtherChar(QPainter& paint, int x, int y, int w, int h, uchar code)
@@ -653,12 +664,14 @@ void TerminalDisplay::drawLineCharString(    QPainter& painter, int x, int y, co
 {
         const QPen& currentPen = painter.pen();
 
+      #if !defined(Q_OS_WIN)
         if ( (attributes->rendition & RE_BOLD) && _boldIntense )
         {
             QPen boldPen(currentPen);
             boldPen.setWidth(3);
             painter.setPen( boldPen );
         }
+      #endif
 
         for (size_t i=0 ; i < str.length(); i++)
         {
@@ -713,7 +726,58 @@ void TerminalDisplay::setBackgroundImage(const QString& backgroundImage)
     else
     {
         _backgroundImage = QPixmap();
-        setAttribute(Qt::WA_OpaquePaintEvent, true);
+        if(_backgroundMovie == nullptr && (!_backgroundVideoPlayer->isPlaying()))
+          setAttribute(Qt::WA_OpaquePaintEvent, true);
+    }
+}
+
+void TerminalDisplay::setBackgroundMovie(const QString& backgroundImage)
+{
+    QMovie* movie = nullptr;
+    if (!backgroundImage.isEmpty()) {
+        movie = new QMovie(backgroundImage);
+    }
+    if (movie && movie->isValid())
+    {
+        if(_backgroundMovie != nullptr) {
+          _backgroundMovie->stop();
+          QObject::disconnect(_backgroundMovie, nullptr, this, nullptr);
+          delete _backgroundMovie;
+        }
+        _backgroundMovie = movie;
+        QObject::connect(_backgroundMovie, &QMovie::frameChanged, this, [=]{ update();});
+        setAttribute(Qt::WA_OpaquePaintEvent, false);
+        _backgroundMovie->start();
+    }
+    else
+    {
+        if(_backgroundMovie != nullptr) {
+          _backgroundMovie->stop();
+          QObject::disconnect(_backgroundMovie, nullptr, this, nullptr);
+          delete _backgroundMovie;
+        }
+        _backgroundMovie = nullptr;
+        if(_backgroundImage.isNull() && (!_backgroundVideoPlayer->isPlaying()))
+          setAttribute(Qt::WA_OpaquePaintEvent, true);
+        if(movie) delete movie;
+    }
+}
+
+void TerminalDisplay::setBackgroundVideo(const QString& backgroundVideo)
+{
+    if (!backgroundVideo.isEmpty())
+    {
+        _backgroundVideoPlayer->setSource(QUrl::fromLocalFile(backgroundVideo));
+        _backgroundVideoPlayer->play();
+        setAttribute(Qt::WA_OpaquePaintEvent, false);
+    }
+    else
+    {
+        _backgroundVideoPlayer->stop();
+        _backgroundVideoPlayer->setSource(QUrl());
+        _backgroundVideoFrame = QPixmap();
+        if(_backgroundMovie == nullptr && _backgroundImage.isNull())
+          setAttribute(Qt::WA_OpaquePaintEvent, true);
     }
 }
 
@@ -724,23 +788,31 @@ void TerminalDisplay::setBackgroundMode(BackgroundMode mode)
 
 void TerminalDisplay::drawBackground(QPainter& painter, const QRect& rect, const QColor& backgroundColor, bool useOpacitySetting )
 {
-        // The whole widget rectangle is filled by the background color from
-        // the color scheme set in setColorTable(), while the scrollbar is
-        // left to the widget style for a consistent look.
-        if ( useOpacitySetting )
-        {
-            if (_backgroundImage.isNull()) {
-                QColor color(backgroundColor);
-                color.setAlphaF(_opacity);
-
-                painter.save();
-                painter.setCompositionMode(QPainter::CompositionMode_Source);
-                painter.fillRect(rect, color);
-                painter.restore();
-            }
+    QPixmap currentBackgroundImage = _backgroundImage;
+    if(_backgroundMovie != nullptr) {
+        currentBackgroundImage = _backgroundMovie->currentPixmap();
+    }
+    if(_backgroundVideoPlayer->isPlaying()) {
+        currentBackgroundImage = _backgroundVideoFrame;
+    }
+    // The whole widget rectangle is filled by the background color from
+    // the color scheme set in setColorTable(), while the scrollbar is
+    // left to the widget style for a consistent look.
+    if ( useOpacitySetting )
+    {
+        QColor color(backgroundColor);
+        if (currentBackgroundImage.isNull()) {
+            color.setAlphaF(1.0);
+        } else {
+            color.setAlphaF(_opacity);
         }
-        else
-            painter.fillRect(rect, backgroundColor);
+        painter.save();
+        painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+        painter.fillRect(rect, color);
+        painter.restore();
+    }
+    else
+        painter.fillRect(rect, backgroundColor);
 }
 
 void TerminalDisplay::drawCursor(QPainter& painter,
@@ -791,7 +863,6 @@ void TerminalDisplay::drawCursor(QPainter& painter,
                              cursorRect.top(),
                              cursorRect.left(),
                              cursorRect.bottom());
-
     }
 }
 
@@ -822,7 +893,9 @@ void TerminalDisplay::drawCharacters(QPainter& painter,
          || font.italic() != useItalic
          || font.strikeOut() != useStrikeOut
          || font.overline() != useOverline) {
+      #if !defined(Q_OS_WIN)
        font.setBold(useBold);
+      #endif
        font.setUnderline(useUnderline);
        font.setItalic(useItalic);
        font.setStrikeOut(useStrikeOut);
@@ -875,7 +948,7 @@ void TerminalDisplay::drawTextFragment(QPainter& painter ,
     const QColor backgroundColor = style->backgroundColor.color(_colorTable);
 
     // draw background if different from the display's background color
-    if ( backgroundColor != palette().window().color() )
+    if ( backgroundColor != _colorTable[DEFAULT_BACK_COLOR].color )
         drawBackground(painter,rect,backgroundColor,
                        false /* do not use transparency */);
 
@@ -1203,7 +1276,6 @@ void TerminalDisplay::updateImage()
         _fixedFont = saveFixedFont;
         x += len - 1;
       }
-
     }
 
     //both the top and bottom halves of double height _lines must always be redrawn
@@ -1264,7 +1336,6 @@ void TerminalDisplay::updateImage()
   if (!_hasBlinker && _blinkTimer->isActive()) { _blinkTimer->stop(); _blinking = false; }
   delete[] dirtyMask;
   delete[] disstrU;
-
 }
 
 void TerminalDisplay::showResizeNotification()
@@ -1283,7 +1354,7 @@ void TerminalDisplay::showResizeNotification()
         _resizeWidget->setMinimumHeight(_resizeWidget->sizeHint().height());
         _resizeWidget->setAlignment(Qt::AlignCenter);
 
-        _resizeWidget->setStyleSheet(QLatin1String("background-color:palette(window);border-style:solid;border-width:1px;border-color:palette(dark)"));
+        _resizeWidget->setStyleSheet(QLatin1String("background-color:palette(window);border-style:solid;border-width:1px;border-color:palette(dark);color:palette(windowText);"));
 
         _resizeTimer = new QTimer(this);
         _resizeTimer->setSingleShot(true);
@@ -1360,8 +1431,16 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
 {
   QPainter paint(this);
   QRect cr = contentsRect();
+  
+  QPixmap currentBackgroundImage = _backgroundImage;
+  if(_backgroundMovie != nullptr) {
+    currentBackgroundImage = _backgroundMovie->currentPixmap();
+  }
+  if(_backgroundVideoPlayer->isPlaying()) {
+    currentBackgroundImage = _backgroundVideoFrame;
+  }
 
-  if ( !_backgroundImage.isNull() )
+  if ( !currentBackgroundImage.isNull() )
   {
     QColor background = _colorTable[DEFAULT_BACK_COLOR].color;
     if (_opacity < static_cast<qreal>(1))
@@ -1382,11 +1461,11 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
 
     if (_backgroundMode == Stretch)
     { // scale the image without keeping its proportions to fill the screen
-        paint.drawPixmap(cr, _backgroundImage, _backgroundImage.rect());
+        paint.drawPixmap(cr, currentBackgroundImage, currentBackgroundImage.rect());
     }
     else if (_backgroundMode == Zoom)
     { // zoom in/out the image to fit it
-        QRect r = _backgroundImage.rect();
+        QRect r = currentBackgroundImage.rect();
         qreal wRatio = static_cast<qreal>(cr.width()) / r.width();
         qreal hRatio = static_cast<qreal>(cr.height()) / r.height();
         if (wRatio > hRatio)
@@ -1400,11 +1479,11 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
             r.setWidth(cr.width());
         }
         r.moveCenter(cr.center());
-        paint.drawPixmap(r, _backgroundImage, _backgroundImage.rect());
+        paint.drawPixmap(r, currentBackgroundImage, currentBackgroundImage.rect());
     }
     else if (_backgroundMode == Fit)
     { // if the image is bigger than the terminal, zoom it out to fit it
-        QRect r = _backgroundImage.rect();
+        QRect r = currentBackgroundImage.rect();
         qreal wRatio = static_cast<qreal>(cr.width()) / r.width();
         qreal hRatio = static_cast<qreal>(cr.height()) / r.height();
         if (r.width() > cr.width())
@@ -1426,17 +1505,43 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
             r.setHeight(cr.height());
         }
         r.moveCenter(cr.center());
-        paint.drawPixmap(r, _backgroundImage, _backgroundImage.rect());
+        paint.drawPixmap(r, currentBackgroundImage, currentBackgroundImage.rect());
     }
     else if (_backgroundMode == Center)
     { // center the image without scaling/zooming
-        QRect r = _backgroundImage.rect();
+        QRect r = currentBackgroundImage.rect();
         r.moveCenter(cr.center());
-        paint.drawPixmap(r.topLeft(), _backgroundImage);
+        paint.drawPixmap(r.topLeft(), currentBackgroundImage);
+    }
+    else if (_backgroundMode == Tile)
+    { // tile the image
+        QPixmap scaled = currentBackgroundImage;
+        qreal wRatio = static_cast<qreal>(cr.width()) / currentBackgroundImage.width();
+        qreal hRatio = static_cast<qreal>(cr.height()) / currentBackgroundImage.height();
+        if(wRatio < 1.0 || hRatio < 1.0)
+        {
+            if (wRatio > hRatio) {
+                scaled = currentBackgroundImage.scaled(currentBackgroundImage.width() * hRatio, currentBackgroundImage.height() * hRatio);
+            } else {
+                scaled = currentBackgroundImage.scaled(currentBackgroundImage.width() * wRatio, currentBackgroundImage.height() * wRatio);
+            }
+        }     
+        int x = 0;
+        int y = 0;
+        while (y < cr.height())
+        {
+            while (x < cr.width())
+            {
+                paint.drawPixmap(x, y, scaled);
+                x += scaled.width();
+            }
+            x = 0;
+            y += scaled.height();
+        }
     }
     else //if (_backgroundMode == None)
     {
-        paint.drawPixmap(0, 0, _backgroundImage);
+        paint.drawPixmap(0, 0, currentBackgroundImage);
     }
 
     paint.restore();
@@ -1450,11 +1555,20 @@ void TerminalDisplay::paintEvent( QPaintEvent* pe )
   const QRegion regToDraw = pe->region() & cr;
   for (auto rect = regToDraw.begin(); rect != regToDraw.end(); rect++)
   {
-    drawBackground(paint,*rect,palette().window().color(),
+    drawBackground(paint,*rect,_colorTable[DEFAULT_BACK_COLOR].color,
                    true /* use opacity setting */);
     drawContents(paint, *rect);
   }
   drawInputMethodPreeditString(paint,preeditRect());
+
+  if(_isLocked) {
+    paint.save();
+    paint.setOpacity(0.3);
+    paint.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    paint.drawPixmap(cr, _lockbackgroundImage, _lockbackgroundImage.rect());
+    paint.restore();
+  }
+
   paintFilters(paint);
 }
 
@@ -1865,6 +1979,7 @@ void TerminalDisplay::updateImageSize()
   {
       showResizeNotification();
     emit changedContentSizeSignal(_contentHeight, _contentWidth); // expose resizeEvent
+    emit changedContentCountSignal(_lines, _columns);
   }
 
   _resizing = false;
@@ -1958,6 +2073,8 @@ void TerminalDisplay::setScrollBarPosition(QTermWidget::ScrollBarPosition positi
 
 void TerminalDisplay::mousePressEvent(QMouseEvent* ev)
 {
+  emit mousePressEventForwarded(ev);
+
   if ( _possibleTripleClick && (ev->button()==Qt::LeftButton) ) {
     mouseTripleClickEvent(ev);
     return;
@@ -2007,16 +2124,17 @@ void TerminalDisplay::mousePressEvent(QMouseEvent* ev)
         pos.ry() += _scrollBar->value();
         _iPntSel = _pntSel = pos;
         _actSel = 1; // left mouse button pressed but nothing selected yet.
-
       }
       else
       {
         emit mouseSignal( 0, charColumn + 1, charLine + 1 +_scrollBar->value() -_scrollBar->maximum() , 0);
       }
 
-      Filter::HotSpot *spot = _filterChain->hotSpotAt(charLine, charColumn);
-      if (spot && spot->type() == Filter::HotSpot::Link)
-          spot->activate(QLatin1String("click-action"));
+      if (ev->modifiers() & Qt::ControlModifier) {
+        Filter::HotSpot *spot = _filterChain->hotSpotAt(charLine, charColumn);
+        if (spot && spot->type() == Filter::HotSpot::Link)
+            spot->activate(QLatin1String("click-action"));
+      }
     }
   }
   else if ( ev->button() == Qt::MiddleButton )
@@ -2347,7 +2465,6 @@ void TerminalDisplay::extendSelection( const QPoint& position )
     {
         _screenWindow->setSelectionStart( ohere.x()-1-offset , ohere.y() , false );
     }
-
   }
 
   _actSel = 2; // within selection
@@ -2362,7 +2479,6 @@ void TerminalDisplay::extendSelection( const QPoint& position )
   {
      _screenWindow->setSelectionEnd( here.x()+offset , here.y() );
   }
-
 }
 
 void TerminalDisplay::mouseReleaseEvent(QMouseEvent* ev)
@@ -2837,6 +2953,16 @@ void TerminalDisplay::pasteSelection()
   emitSelection(true,false);
 }
 
+void TerminalDisplay::selectAll()
+{
+  if ( !_screenWindow )
+      return;
+
+  _screenWindow->clearSelection();
+  _screenWindow->setSelectionStart( 0 , 0 , false );
+  _screenWindow->setSelectionEnd( _columns - 1 , _lines - 1 );
+  setSelection(_screenWindow->selectedText(_preserveLineBreaks));
+}
 
 void TerminalDisplay::setConfirmMultilinePaste(bool confirmMultilinePaste) {
     _confirmMultilinePaste = confirmMultilinePaste;
@@ -3287,7 +3413,6 @@ void TerminalDisplay::outputSuspended(bool suspended)
             _gridLayout->addItem( new QSpacerItem(0,0,QSizePolicy::Expanding,
                                                       QSizePolicy::Expanding),
                                  1,0);
-
     }
 
     _outputSuspendedLabel->setVisible(suspended);

@@ -26,9 +26,6 @@
 // Qt
 #include <QColor>
 
-//#include <kdemacros.h>
-#define KDE_NO_EXPORT
-
 namespace Konsole
 {
 
@@ -108,7 +105,7 @@ public:
 //a standard set of colors using black text on a white background.
 //defined in TerminalDisplay.cpp
 
-extern const ColorEntry base_color_table[TABLE_COLORS] KDE_NO_EXPORT;
+extern const ColorEntry base_color_table[TABLE_COLORS];
 
 /* CharacterColor is a union of the various color spaces.
 

@@ -27,14 +27,9 @@
 #include <QVector>
 #include <QTemporaryFile>
 
-// KDE
-//#include <ktemporaryfile.h>
-
-// Konsole
 #include "BlockArray.h"
 #include "Character.h"
 
-// map
 #if defined(Q_OS_WIN)
 #include <windows.h>
 #else
@@ -80,7 +75,7 @@ private:
   //'get' is called.
   //this is used to detect when a large number of lines are being read and processed from the history
   //and automatically mmap the file for better performance (saves the overhead of many lseek-read calls).
-  int readWriteBalance;
+  int readWriteBalance = 0;
 
   //when readWriteBalance goes below this threshold, the file will be mmap'ed automatically
   static const int MAP_THRESHOLD = -1000;
@@ -127,11 +122,10 @@ public:
   // is very unsafe, because those references will no longer
   // be valid if the history scroll is deleted.
   //
-  const HistoryType& getType() { return *m_histType; }
+  const HistoryType& getType() const { return *m_histType; }
 
 protected:
   HistoryType* m_histType;
-
 };
 
 #if 1
@@ -295,7 +289,6 @@ public:
 class CompactHistoryBlock
 {
 public:
-
   CompactHistoryBlock(){
     blockLength = 4096*64; // 256kb
 

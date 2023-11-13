@@ -34,14 +34,6 @@
 #include <QRandomGenerator>
 #include <QStringView>
 
-// KDE
-//#include <KColorScheme>
-//#include <KConfig>
-//#include <KLocale>
-//#include <KDebug>
-//#include <KConfigGroup>
-//#include <KStandardDirs>
-
 using namespace Konsole;
 
 const ColorEntry ColorScheme::defaultTable[TABLE_COLORS] =
@@ -417,9 +409,9 @@ void ColorScheme::writeColorEntry(KConfig& config , const QString& colorName, co
     // if one of the keys already exists
     if ( !random.isNull() || configGroup.hasKey("MaxRandomHue") )
     {
-        configGroup.writeEntry("MaxRandomHue",(int)random.hue);
-        configGroup.writeEntry("MaxRandomValue",(int)random.value);
-        configGroup.writeEntry("MaxRandomSaturation",(int)random.saturation);
+        configGroup.writeEntry("MaxRandomHue",static_cast<int>(random.hue));
+        configGroup.writeEntry("MaxRandomValue",static_cast<int>(random.value));
+        configGroup.writeEntry("MaxRandomSaturation",static_cast<int>(random.saturation));
     }
 }
 #endif
@@ -521,18 +513,6 @@ QList<const ColorScheme*> ColorSchemeManager::allColorSchemes()
 
     return _colorSchemes.values();
 }
-#if 0
-void ColorSchemeManager::addColorScheme(ColorScheme* scheme)
-{
-    _colorSchemes.insert(scheme->name(),scheme);
-
-    // save changes to disk
-    QString path = KGlobal::dirs()->saveLocation("data","konsole/") + scheme->name() + ".colorscheme";
-    KConfig config(path , KConfig::NoGlobals);
-
-    scheme->write(config);
-}
-#endif
 
 bool ColorSchemeManager::loadCustomColorScheme(const QString& path)
 {
@@ -619,7 +599,6 @@ bool ColorSchemeManager::deleteColorScheme(const QString& name)
 }
 QString ColorSchemeManager::findColorSchemePath(const QString& name) const
 {
-//    QString path = KStandardDirs::locate("data","konsole/"+name+".colorscheme");
     const QStringList dirs = get_color_schemes_dirs();
     if ( dirs.isEmpty() )
         return QString();
@@ -629,7 +608,6 @@ QString ColorSchemeManager::findColorSchemePath(const QString& name) const
     if ( !path.isEmpty() )
         return path;
 
-    //path = KStandardDirs::locate("data","konsole/"+name+".schema");
     path = dir + QLatin1Char('/')+ name + QLatin1String(".schema");
 
     return path;

@@ -69,7 +69,6 @@ bool HistorySearch::search(int startColumn, int startLine, int endColumn, int en
     // blocks of at most 10K lines so that we do not use unhealthy amounts of memory
     int blockSize;
     while ((blockSize = qMin(10000, linesToRead - linesRead)) > 0) {
-
         QString string;
         QTextStream searchStream(&string);
         PlainTextDecoder decoder;

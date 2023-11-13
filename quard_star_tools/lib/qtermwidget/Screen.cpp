@@ -26,7 +26,6 @@
 // Standard
 #include <cstdio>
 #include <cstdlib>
-#include <unistd.h>
 #include <cstring>
 #include <cctype>
 
@@ -34,18 +33,10 @@
 #include <QTextStream>
 #include <QDate>
 
-// KDE
-//#include <kdebug.h>
-
-// Konsole
-#include "konsole_wcwidth.h"
+#include "console_charwidth.h"
 #include "TerminalCharacterDecoder.h"
 
 using namespace Konsole;
-
-//FIXME: this is emulation specific. Use false for xterm, true for ANSI.
-//FIXME: see if we can get this from terminfo.
-#define BS_CLEARS false
 
 //Macro to convert x,y position on screen to position within an image.
 //
@@ -140,7 +131,6 @@ void Screen::cursorNextLine(int n)
         }
         n--;
     }
-
 }
 
 void Screen::cursorPreviousLine(int n)
@@ -180,7 +170,6 @@ void Screen::setMargins(int top, int bot)
     _bottomMargin = bot;
     cuX = 0;
     cuY = getMode(MODE_Origin) ? top : 0;
-
 }
 
 int Screen::topMargin() const
@@ -501,7 +490,6 @@ void Screen::copyFromScreen(Character* dest , int startLine , int count) const
             if (selBegin != -1 && isSelected(column,line + history->getLines()))
                 reverseRendition(dest[destIndex]);
         }
-
     }
 }
 
@@ -607,9 +595,6 @@ void Screen::backspace()
 
     if (screenLines[cuY].size() < cuX+1)
         screenLines[cuY].resize(cuX+1);
-
-    if (BS_CLEARS)
-        screenLines[cuY][cuX].character = ' ';
 }
 
 void Screen::tab(int n)
@@ -682,7 +667,7 @@ void Screen::displayCharacter(wchar_t c)
     // We indicate the fact that a newline has to be triggered by
     // putting the cursor one right to the last column of the screen.
 
-    int w = konsole_wcwidth(c);
+    int w = wcharwidth(c);
     if (w <= 0)
         return;
 
@@ -1373,7 +1358,6 @@ void Screen::addHistLine()
                 selBegin = selBottomRight;
         }
     }
-
 }
 
 int Screen::getHistLines() const

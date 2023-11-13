@@ -38,11 +38,6 @@
 
 #include "tools.h"
 
-// KDE
-//#include <KDebug>
-//#include <KLocale>
-//#include <KStandardDirs>
-
 using namespace Konsole;
 
 
@@ -69,7 +64,6 @@ KeyboardTranslatorManager::~KeyboardTranslatorManager()
 QString KeyboardTranslatorManager::findTranslatorPath(const QString& name)
 {
     return QString(get_kb_layout_dir() + name + QLatin1String(".keytab"));
-    //return KGlobal::dirs()->findResource("data","konsole/"+name+".keytab");
 }
 
 void KeyboardTranslatorManager::findTranslators()
@@ -79,9 +73,6 @@ void KeyboardTranslatorManager::findTranslators()
     filters << QLatin1String("*.keytab");
     dir.setNameFilters(filters);
     QStringList list = dir.entryList(filters);
-//    QStringList list = KGlobal::dirs()->findAllResources("data",
-//                                                         "konsole/*.keytab",
-//                                                        KStandardDirs::NoDuplicates);
 
     // add the name of each translator to the list and associated
     // the name with a null pointer to indicate that the translator
@@ -120,33 +111,8 @@ const KeyboardTranslator* KeyboardTranslatorManager::findTranslator(const QStrin
 
 bool KeyboardTranslatorManager::saveTranslator(const KeyboardTranslator* translator)
 {
-qDebug() << "KeyboardTranslatorManager::saveTranslator" << "unimplemented";
-Q_UNUSED(translator);
-#if 0
-    const QString path = KGlobal::dirs()->saveLocation("data","konsole/")+translator->name()
-           +".keytab";
-
-    //kDebug() << "Saving translator to" << path;
-
-    QFile destination(path);
-    if (!destination.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        qDebug() << "Unable to save keyboard translation:"
-                   << destination.errorString();
-        return false;
-    }
-
-    {
-        KeyboardTranslatorWriter writer(&destination);
-        writer.writeHeader(translator->description());
-
-        QListIterator<KeyboardTranslator::Entry> iter(translator->entries());
-        while ( iter.hasNext() )
-            writer.writeEntry(iter.next());
-    }
-
-    destination.close();
-#endif
+    qDebug() << "KeyboardTranslatorManager::saveTranslator" << "unimplemented";
+    Q_UNUSED(translator);
     return true;
 }
 
@@ -695,7 +661,6 @@ QByteArray KeyboardTranslator::Entry::unescape(const QByteArray& input) const
 
     for ( int i = 0 ; i < result.size()-1 ; i++ )
     {
-
         char ch = result[i];
         if ( ch == '\\' )
         {

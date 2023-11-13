@@ -1,7 +1,10 @@
 INCLUDEPATH += \
+        -I $$PWD/utf8proc \
         -I $$PWD 
 
 SOURCES += \
+    $$PWD/utf8proc/utf8proc.c \
+    $$PWD/utf8proc/utf8proc_data.c \
     $$PWD/BlockArray.cpp \
     $$PWD/ColorScheme.cpp \
     $$PWD/Emulation.cpp \
@@ -9,7 +12,7 @@ SOURCES += \
     $$PWD/History.cpp \
     $$PWD/HistorySearch.cpp \
     $$PWD/KeyboardTranslator.cpp \
-    $$PWD/konsole_wcwidth.cpp \
+    $$PWD/console_charwidth.cpp \
     $$PWD/qtermwidget.cpp \
     $$PWD/Screen.cpp \
     $$PWD/ScreenWindow.cpp \
@@ -22,6 +25,7 @@ SOURCES += \
     $$PWD/Vt102Emulation.cpp
 
 HEADERS += \
+    $$PWD/utf8proc/utf8proc.h \
     $$PWD/BlockArray.h \
     $$PWD/CharacterColor.h \
     $$PWD/Character.h \
@@ -34,10 +38,9 @@ HEADERS += \
     $$PWD/History.h \
     $$PWD/HistorySearch.h \
     $$PWD/KeyboardTranslator.h \
-    $$PWD/konsole_wcwidth.h \
+    $$PWD/console_charwidth.h \
     $$PWD/LineFont.h \
     $$PWD/qtermwidget.h \
-    $$PWD/qtermwidget_export.h \
     $$PWD/qtermwidget_version.h \
     $$PWD/Screen.h \
     $$PWD/ScreenWindow.h \

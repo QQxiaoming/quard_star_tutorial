@@ -200,6 +200,8 @@ private:
     static const char* const translatedColorNames[TABLE_COLORS];
 
     static const ColorEntry defaultTable[]; // table of default color entries
+    
+    ColorScheme& operator=(const ColorScheme&) = delete;
 };
 
 /**
@@ -224,7 +226,6 @@ public:
 class ColorSchemeManager
 {
 public:
-
     /**
      * Constructs a new ColorSchemeManager and loads the list
      * of available color schemes.
@@ -253,15 +254,6 @@ public:
      */
     const ColorScheme* findColorScheme(const QString& name);
 
-#if 0
-    /**
-     * Adds a new color scheme to the manager.  If @p scheme has the same name as
-     * an existing color scheme, it replaces the existing scheme.
-     *
-     * TODO - Ensure the old color scheme gets deleted
-     */
-    void addColorScheme(ColorScheme* scheme);
-#endif
     /**
      * Deletes a color scheme.  Returns true on successful deletion or false otherwise.
      */

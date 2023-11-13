@@ -26,6 +26,7 @@
 
 class SearchBar : public QWidget {
     Q_OBJECT
+
 public:
     SearchBar(QWidget* parent = nullptr);
     ~SearchBar() override;

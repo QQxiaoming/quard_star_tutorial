@@ -142,7 +142,6 @@ private:
     quint8 _lastRendition;
     CharacterColor _lastForeColor;
     CharacterColor _lastBackColor;
-
 };
 
 }

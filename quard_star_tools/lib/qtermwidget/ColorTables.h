@@ -3,8 +3,9 @@
 
 #include "CharacterColor.h"
 
-//using namespace Konsole;
 #if 0
+using namespace Konsole;
+
 static const ColorEntry whiteonblack_color_table[TABLE_COLORS] = {
     // normal
     ColorEntry(QColor(0xFF,0xFF,0xFF), false ), ColorEntry( QColor(0x00,0x00,0x00), true ), // Dfore, Dback

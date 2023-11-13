@@ -193,8 +193,15 @@ jobs:
         run: |
           brew install libslirp libffi gettext glib pkg-config autoconf automake pixman ninja dylibbundler
 
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-activate-base: true
+          activate-environment: ""
+
       - name: Build all
         run: |
+          conda create -n build_env python=3.11.5 -y
+          conda activate build_env
           ./build.sh qemu_macos
           dylibbundler -od -b -x ./output/qemu_macos/bin/qemu-system-riscv64 -d ./output/qemu_macos/libs/
           tar -czf qemu_macos.tar.gz output/
@@ -215,8 +222,8 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5.2'
-          modules: 'qt5compat qtwebsockets'
+          version: '6.5.3'
+          modules: 'qt5compat qtwebsockets qtmultimedia'
           aqtversion: ==3.1.7
 
       - name: Install prerequisites
@@ -225,6 +232,16 @@ jobs:
           sudo apt update
           sudo apt install -y make gcc upx-ucl
 
+      - name: build depend
+        run: |
+          cd quard_star_tools/depend
+          sudo apt install fcitx-libs-dev qtbase5-private-dev libxkbcommon-dev extra-cmake-modules tree
+          export PATH=$Qt6_DIR/bin:$PATH
+          export PATH=$Qt6_DIR/../../Qt/Tools/CMake/bin:$PATH
+          export Qt6GuiTools_DIR=$Qt6_DIR
+          ./build_fcitx_qt6.sh
+          cp ./fcitx-qt5-1.2.7/build/qt6/platforminputcontext/libfcitxplatforminputcontextplugin-qt6.so ./
+          
       - name: Build all
         shell: bash -l {0}
         run: |
@@ -266,8 +283,8 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           arch: win64_mingw
-          version: '6.5.2'
-          modules: 'qt5compat qtwebsockets'
+          version: '6.5.3'
+          modules: 'qt5compat qtwebsockets qtmultimedia'
           aqtversion: ==3.1.7
 
       - name: Build all
@@ -279,8 +296,6 @@ jobs:
           qmake -makefile
           mingw32-make
           windeployqt.exe ./release/out/quard_star_tools.exe
-          Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/bin/lib*.dll ./release/out/
-          Copy-Item C:/ProgramData/Chocolatey/lib/mingw/tools/install/mingw64/lib/lib*.dll ./release/out/
           Rename-Item ./release/out quard_star_tools_w64
           Rename-Item ./release gui_tools
 
@@ -301,8 +316,8 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: '6.5.2'
-          modules: 'qt5compat qtwebsockets'
+          version: '6.5.3'
+          modules: 'qt5compat qtwebsockets qtmultimedia'
           aqtversion: ==3.1.7
 
       - name: Install prerequisites

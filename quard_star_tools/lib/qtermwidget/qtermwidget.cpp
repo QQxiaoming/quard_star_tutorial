@@ -41,12 +41,11 @@
 #define DEFAULT_FONT_FAMILY                   "Monospace"
 #endif
 
-#define STEP_ZOOM 1
+#define STEP_ZOOM 3
 
 using namespace Konsole;
 
 class TermWidgetImpl {
-
 public:
     TermWidgetImpl(QWidget* parent = nullptr);
 
@@ -70,22 +69,7 @@ Session *TermWidgetImpl::createSession(QWidget* parent)
 
     session->setTitle(Session::NameRole, QLatin1String("QTermWidget"));
 
-    /* That's a freaking bad idea!!!!
-     * /bin/bash is not there on every system
-     * better set it to the current $SHELL
-     * Maybe you can also make a list available and then let the widget-owner decide what to use.
-     * By setting it to $SHELL right away we actually make the first filecheck obsolete.
-     * But as I'm not sure if you want to do anything else I'll just let both checks in and set this to $SHELL anyway.
-     */
-    //session->setProgram("/bin/bash");
-
-    session->setProgram(QString::fromLocal8Bit(qgetenv("SHELL")));
-
-
-
     QStringList args = QStringList(QString());
-    session->setArguments(args);
-    session->setAutoClose(true);
 
     session->setCodec(QTextCodec::codecForName("UTF-8"));
 
@@ -113,17 +97,10 @@ TerminalDisplay *TermWidgetImpl::createTerminalDisplay(Session *session, QWidget
     return display;
 }
 
-
-QTermWidget::QTermWidget(int startnow, QWidget *parent)
-    : QWidget(parent)
-{
-    init(startnow);
-}
-
 QTermWidget::QTermWidget(QWidget *parent)
     : QWidget(parent)
 {
-    init(1);
+    init();
 }
 
 void QTermWidget::selectionChanged(bool textSelected)
@@ -213,11 +190,6 @@ bool QTermWidget::terminalSizeHint()
     return m_impl->m_terminalDisplay->terminalSizeHint();
 }
 
-void QTermWidget::startShellProgram()
-{
-    m_impl->m_session->run();
-}
-
 void QTermWidget::startTerminalTeletype()
 {
     m_impl->m_session->runEmptyPTY();
@@ -243,7 +215,7 @@ void QTermWidget::setLangeuage(QLocale::Language lang)
     QStringList dirs;
     dirs.append(QFile::decodeName(":/lib/qtermwidget/translations"));
 
-    for (const QString& dir : qAsConst(dirs)) {
+    for (const QString& dir : std::as_const(dirs)) {
         if (translator->load(QLocale(lang), QLatin1String("qtermwidget"), QLatin1String(QLatin1String("_")), dir)) {
             qApp->installTranslator(translator);
             return;
@@ -254,9 +226,9 @@ void QTermWidget::setLangeuage(QLocale::Language lang)
         qApp->installTranslator(translator);
 }
 
-void QTermWidget::init(int startnow)
+void QTermWidget::init(void)
 {
-    m_layout = new QVBoxLayout();
+    m_layout = new QVBoxLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
     setLayout(m_layout);
 
@@ -266,7 +238,8 @@ void QTermWidget::init(int startnow)
 
     connect(m_impl->m_session, SIGNAL(bellRequest(QString)), m_impl->m_terminalDisplay, SLOT(bell(QString)));
     connect(m_impl->m_terminalDisplay, SIGNAL(notifyBell(QString)), this, SIGNAL(bell(QString)));
-
+    connect(m_impl->m_terminalDisplay, SIGNAL(changedContentCountSignal(int,int)),this, SLOT(sizeChange(int,int)));
+    connect(m_impl->m_terminalDisplay, SIGNAL(mousePressEventForwarded(QMouseEvent*)), this, SIGNAL(mousePressEventForwarded(QMouseEvent*)));
     connect(m_impl->m_session, SIGNAL(activity()), this, SIGNAL(activity()));
     connect(m_impl->m_session, SIGNAL(silence()), this, SIGNAL(silence()));
     connect(m_impl->m_session, &Session::profileChangeCommandReceived, this, &QTermWidget::profileChanged);
@@ -284,10 +257,6 @@ void QTermWidget::init(int startnow)
     connect(m_searchBar, SIGNAL(findPrevious()), this, SLOT(findPrevious()));
     m_layout->addWidget(m_searchBar);
     m_searchBar->hide();
-
-    if (startnow && m_impl->m_session) {
-        m_impl->m_session->run();
-    }
 
     this->setFocus( Qt::OtherFocusReason );
     this->setFocusPolicy( Qt::WheelFocus );
@@ -350,38 +319,19 @@ void QTermWidget::setTerminalBackgroundImage(const QString& backgroundImage)
     m_impl->m_terminalDisplay->setBackgroundImage(backgroundImage);
 }
 
+void QTermWidget::setTerminalBackgroundMovie(const QString& backgroundMovie)
+{
+    m_impl->m_terminalDisplay->setBackgroundMovie(backgroundMovie);
+}
+
+void QTermWidget::setTerminalBackgroundVideo(const QString& backgroundVideo)
+{
+    m_impl->m_terminalDisplay->setBackgroundVideo(backgroundVideo);
+}
+
 void QTermWidget::setTerminalBackgroundMode(int mode)
 {
     m_impl->m_terminalDisplay->setBackgroundMode((Konsole::BackgroundMode)mode);
-}
-
-void QTermWidget::setShellProgram(const QString &program)
-{
-    if (!m_impl->m_session)
-        return;
-    m_impl->m_session->setProgram(program);
-}
-
-void QTermWidget::setWorkingDirectory(const QString& dir)
-{
-    if (!m_impl->m_session)
-        return;
-    m_impl->m_session->setInitialWorkingDirectory(dir);
-}
-
-QString QTermWidget::workingDirectory()
-{
-    if (!m_impl->m_session)
-        return QString();
-
-    return m_impl->m_session->initialWorkingDirectory();
-}
-
-void QTermWidget::setArgs(const QStringList &args)
-{
-    if (!m_impl->m_session)
-        return;
-    m_impl->m_session->setArguments(args);
 }
 
 void QTermWidget::setTextCodec(QTextCodec *codec)
@@ -558,6 +508,11 @@ void QTermWidget::pasteSelection()
     m_impl->m_terminalDisplay->pasteSelection();
 }
 
+void QTermWidget::selectAll()
+{
+    m_impl->m_terminalDisplay->selectAll();
+}
+
 void QTermWidget::setZoom(int step)
 {
     QFont font = m_impl->m_terminalDisplay->getVTFont();
@@ -583,9 +538,19 @@ void QTermWidget::setKeyBindings(const QString & kb)
 
 void QTermWidget::clear()
 {
+    clearScreen();
+    clearScrollback();
+}
+
+void QTermWidget::clearScrollback()
+{
+    m_impl->m_session->clearHistory();
+}
+
+void QTermWidget::clearScreen()
+{
     m_impl->m_session->emulation()->reset();
     m_impl->m_session->refresh();
-    m_impl->m_session->clearHistory();
 }
 
 void QTermWidget::setFlowControlEnabled(bool enabled)
@@ -619,11 +584,6 @@ void QTermWidget::setFlowControlWarningEnabled(bool enabled)
         // Do not show warning label if flow control is disabled
         m_impl->m_terminalDisplay->setFlowControlWarningEnabled(enabled);
     }
-}
-
-void QTermWidget::setEnvironment(const QStringList& environment)
-{
-    m_impl->m_session->setEnvironment(environment);
 }
 
 void QTermWidget::setMotionAfterPasting(int action)
@@ -713,6 +673,11 @@ void QTermWidget::setKeyboardCursorShape(KeyboardCursorShape shape)
     m_impl->m_terminalDisplay->setKeyboardCursorShape(shape);
 }
 
+void QTermWidget::setKeyboardCursorShape(uint32_t shape)
+{
+    m_impl->m_terminalDisplay->setKeyboardCursorShape((KeyboardCursorShape)shape);
+}
+
 void QTermWidget::setBlinkingCursor(bool blink)
 {
     m_impl->m_terminalDisplay->setBlinkingCursor(blink);
@@ -749,11 +714,6 @@ bool QTermWidget::isTitleChanged() const
     return m_impl->m_session->isTitleChanged();
 }
 
-void QTermWidget::setAutoClose(bool enabled)
-{
-    m_impl->m_session->setAutoClose(enabled);
-}
-
 void QTermWidget::cursorChanged(Konsole::Emulation::KeyboardCursorShape cursorShape, bool blinkingCursorEnabled)
 {
     // TODO: A switch to enable/disable DECSCUSR?
@@ -771,12 +731,46 @@ int QTermWidget::getMargin() const
     return m_impl->m_terminalDisplay->margin();
 }
 
-void QTermWidget::saveHistory(QIODevice *device)
+void QTermWidget::saveHistory(QTextStream *stream, int format)
+{
+    TerminalCharacterDecoder *decoder;
+    if(format == 0) {
+        decoder = new PlainTextDecoder;
+    } else {
+        decoder = new HTMLDecoder;
+    }
+    decoder->begin(stream);
+    m_impl->m_session->emulation()->writeToStream(decoder, 0, m_impl->m_session->emulation()->lineCount());
+    delete decoder;
+}
+
+void QTermWidget::saveHistory(QIODevice *device, int format)
 {
     QTextStream stream(device);
-    PlainTextDecoder decoder;
-    decoder.begin(&stream);
-    m_impl->m_session->emulation()->writeToStream(&decoder, 0, m_impl->m_session->emulation()->lineCount());
+    saveHistory(&stream, format);
+}
+
+void QTermWidget::screenShot(QPixmap *pixmap)
+{
+    QPixmap currPixmap(m_impl->m_terminalDisplay->size());
+    m_impl->m_terminalDisplay->render(&currPixmap);
+    *pixmap = currPixmap.scaled(pixmap->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+}
+
+void QTermWidget::screenShot(const QString &fileName)
+{
+    qreal deviceratio = m_impl->m_terminalDisplay->devicePixelRatio();
+    deviceratio = deviceratio*2;
+    QPixmap pixmap(m_impl->m_terminalDisplay->size() * deviceratio);
+    pixmap.setDevicePixelRatio(deviceratio);
+    m_impl->m_terminalDisplay->render(&pixmap);
+    pixmap.save(fileName);
+}
+
+void QTermWidget::setLocked(bool enabled)
+{
+    this->setEnabled(!enabled);
+    m_impl->m_terminalDisplay->setLocked(enabled);
 }
 
 void QTermWidget::setDrawLineChars(bool drawLineChars)

@@ -361,18 +361,18 @@ QMenuBar:focus {
 
 QMenuBar::item {
   background: transparent;
-  padding: 4px;
+  padding: 2px;
 }
 
 QMenuBar::item:selected {
-  padding: 4px;
+  padding: 2px;
   background: transparent;
   border: 0px solid #455364;
   background-color: #1A72BB;
 }
 
 QMenuBar::item:pressed {
-  padding: 4px;
+  padding: 2px;
   border: 0px solid #455364;
   background-color: #1A72BB;
   color: #E0E1E3;
@@ -554,8 +554,8 @@ https://doc.qt.io/qt-5/stylesheet-examples.html#customizing-qscrollbar
 
 --------------------------------------------------------------------------- */
 QScrollBar:horizontal {
-  height: 16px;
-  margin: 2px 16px 2px 16px;
+  height: 8px;
+  margin: 2px 8px 2px 8px;
   border: 1px solid #455364;
   border-radius: 4px;
   background-color: #19232D;
@@ -563,8 +563,8 @@ QScrollBar:horizontal {
 
 QScrollBar:vertical {
   background-color: #19232D;
-  width: 16px;
-  margin: 16px 2px 16px 2px;
+  width: 8px;
+  margin: 8px 2px 8px 2px;
   border: 1px solid #455364;
   border-radius: 4px;
 }
@@ -608,16 +608,16 @@ QScrollBar::handle:vertical:focus {
 QScrollBar::add-line:horizontal {
   margin: 0px 0px 0px 0px;
   border-image: url(":/qss_icons/dark/rc/arrow_right_disabled.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: right;
   subcontrol-origin: margin;
 }
 
 QScrollBar::add-line:horizontal:hover, QScrollBar::add-line:horizontal:on {
   border-image: url(":/qss_icons/dark/rc/arrow_right.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: right;
   subcontrol-origin: margin;
 }
@@ -625,16 +625,16 @@ QScrollBar::add-line:horizontal:hover, QScrollBar::add-line:horizontal:on {
 QScrollBar::add-line:vertical {
   margin: 3px 0px 3px 0px;
   border-image: url(":/qss_icons/dark/rc/arrow_down_disabled.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: bottom;
   subcontrol-origin: margin;
 }
 
 QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on {
   border-image: url(":/qss_icons/dark/rc/arrow_down.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: bottom;
   subcontrol-origin: margin;
 }
@@ -642,16 +642,16 @@ QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on {
 QScrollBar::sub-line:horizontal {
   margin: 0px 3px 0px 3px;
   border-image: url(":/qss_icons/dark/rc/arrow_left_disabled.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: left;
   subcontrol-origin: margin;
 }
 
 QScrollBar::sub-line:horizontal:hover, QScrollBar::sub-line:horizontal:on {
   border-image: url(":/qss_icons/dark/rc/arrow_left.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: left;
   subcontrol-origin: margin;
 }
@@ -659,16 +659,16 @@ QScrollBar::sub-line:horizontal:hover, QScrollBar::sub-line:horizontal:on {
 QScrollBar::sub-line:vertical {
   margin: 3px 0px 3px 0px;
   border-image: url(":/qss_icons/dark/rc/arrow_up_disabled.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: top;
   subcontrol-origin: margin;
 }
 
 QScrollBar::sub-line:vertical:hover, QScrollBar::sub-line:vertical:on {
   border-image: url(":/qss_icons/dark/rc/arrow_up.png");
-  height: 12px;
-  width: 12px;
+  height: 6px;
+  width: 6px;
   subcontrol-position: top;
   subcontrol-origin: margin;
 }
@@ -1224,6 +1224,7 @@ QComboBox {
   selection-background-color: #346792;
   padding-left: 4px;
   padding-right: 4px;
+  combobox-popup: 0;
   /* padding-right = 36; 4 + 16*2 See scrollbar size */
   /* changed to 4px to fix #239 */
   /* Fixes #103, #111 */
@@ -1472,6 +1473,10 @@ QTabWidget::pane {
 QTabWidget::pane:selected {
   background-color: #455364;
   border: 1px solid #346792;
+}
+
+QTabWidget::tab-bar {
+  alignment: left;
 }
 
 /* QTabBar ----------------------------------------------------------------

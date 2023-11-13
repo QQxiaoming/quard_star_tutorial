@@ -51,7 +51,6 @@ Session::Session(QObject* parent) :
         , _monitorActivity(false)
         , _monitorSilence(false)
         , _notifiedActivity(false)
-        , _autoClose(true)
         , _wantedClose(false)
         , _silenceSeconds(10)
         , _isTitleChanged(false)
@@ -112,19 +111,6 @@ void Session::setCodec(QTextCodec * codec) const
     emulation()->setCodec(codec);
 }
 
-void Session::setProgram(const QString & program)
-{
-    _program = ShellCommand::expand(program);
-}
-void Session::setInitialWorkingDirectory(const QString & dir)
-{
-    _initialWorkingDir = ShellCommand::expand(dir);
-}
-void Session::setArguments(const QStringList & arguments)
-{
-    _arguments = ShellCommand::expand(arguments);
-}
-
 QList<TerminalDisplay *> Session::views() const
 {
     return _views;
@@ -168,7 +154,6 @@ void Session::addView(TerminalDisplay * widget)
                       SLOT(viewDestroyed(QObject *)) );
 //slot for close
     QObject::connect(this, SIGNAL(finished()), widget, SLOT(close()));
-
 }
 
 void Session::viewDestroyed(QObject * view)
@@ -203,11 +188,6 @@ void Session::removeView(TerminalDisplay * widget)
     if ( _views.count() == 0 ) {
         close();
     }
-}
-
-void Session::run()
-{
-    emit started();
 }
 
 void Session::runEmptyPTY()
@@ -285,7 +265,7 @@ void Session::setUserTitle( int what, const QString & caption )
     }
 
     if ( modified ) {
-        emit titleChanged();
+        emit titleChanged(what,caption);
     }
 }
 
@@ -416,14 +396,8 @@ void Session::refresh()
     // send an email with method or patches to konsole-devel@kde.org
 }
 
-bool Session::sendHangUp(void)
-{
-    return true;
-}
-
 void Session::close()
 {
-    _autoClose = true;
     _wantedClose = true;
 }
 
@@ -462,16 +436,6 @@ QString Session::keyBindings() const
     return _emulation->keyBindings();
 }
 
-QStringList Session::environment() const
-{
-    return _environment;
-}
-
-void Session::setEnvironment(const QStringList & environment)
-{
-    _environment = environment;
-}
-
 int Session::sessionId() const
 {
     return _sessionId;
@@ -491,7 +455,7 @@ void Session::setTitle(TitleRole role , const QString & newTitle)
             _displayTitle = newTitle;
         }
 
-        emit titleChanged();
+        //emit titleChanged();
     }
 }
 
@@ -510,14 +474,13 @@ void Session::setIconName(const QString & iconName)
 {
     if ( iconName != _iconName ) {
         _iconName = iconName;
-        emit titleChanged();
+        //emit titleChanged();
     }
 }
 
 void Session::setIconText(const QString & iconText)
 {
     _iconText = iconText;
-    //kDebug(1211)<<"Session setIconText " <<  _iconText;
 }
 
 QString Session::iconName() const
@@ -548,16 +511,6 @@ const HistoryType & Session::historyType() const
 void Session::clearHistory()
 {
     _emulation->clearHistory();
-}
-
-QStringList Session::arguments() const
-{
-    return _arguments;
-}
-
-QString Session::program() const
-{
-    return _program;
 }
 
 // unused currently

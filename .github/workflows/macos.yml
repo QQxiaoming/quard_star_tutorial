@@ -63,9 +63,11 @@ jobs:
           mv ./gui_tools/quard_star_tools_macos/installer_background.png ./installer_background.png
           sudo hdiutil attach ./gui_tools/quard_star_tools_macos/quard_star_tools.dmg
           cp -R /Volumes/quard_star_tools/quard_star_tools.app ./
+          sudo hdiutil detach /Volumes/quard_star_tools
           mv ./output ./quard_star_tools.app/Contents/Frameworks/output
           mv run.sh ./quard_star_tools.app/Contents/Frameworks/run.sh
-          create-dmg --volname "quard_star_tools" --background "installer_background.png" --window-pos 200 120 --window-size 800 450 --icon-size 100 --icon "quard_star_tools.app" 200 190 --app-drop-link 600 185 "quard_star_tools.dmg" "quard_star_tools.app"
+          sudo create-dmg --volname "quard_star_tools" --background "installer_background.png" --window-pos 200 120 --window-size 800 450 --icon-size 100 --icon "quard_star_tools.app" 200 190 --app-drop-link 600 185 "quard_star_tools.dmg" "quard_star_tools.app"
+          sudo chmod 777 quard_star_tools.dmg
           tar -czf release_macos.tar.gz quard_star_tools.dmg
 
       - name: Upload build asserts

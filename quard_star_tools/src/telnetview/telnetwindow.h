@@ -53,7 +53,7 @@ private slots:
     void recvASCIIstop();
 
 private:
-    void createContextMenu(void);
+    void createContextMenu(QContextMenuEvent *event);
 
 protected:
     void contextMenuEvent(QContextMenuEvent *event);

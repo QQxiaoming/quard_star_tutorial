@@ -8,32 +8,11 @@
  */
 
 #include <QString>
+#include "utf8proc.h"
+#include "console_charwidth.h"
 
-#ifdef HAVE_UTF8PROC
-#include <utf8proc.h>
-#else
-#include <cwchar>
-#endif
-
-#if defined(Q_OS_WIN)
-#include <wchar.h>
-
-int wcwidth(wchar_t wc) {
-  if (wc == 0) {
-    return 0;
-  } else if (iswprint(wc)) {
-    return 1;
-  } else {
-    return -1;
-  }
-}
-#endif
-
-#include "konsole_wcwidth.h"
-
-int konsole_wcwidth(wchar_t ucs)
+int wcharwidth(wchar_t ucs)
 {
-#ifdef HAVE_UTF8PROC
     utf8proc_category_t cat = utf8proc_category( ucs );
     if (cat == UTF8PROC_CATEGORY_CO) {
         // Co: Private use area. libutf8proc makes them zero width, while tmux
@@ -41,9 +20,6 @@ int konsole_wcwidth(wchar_t ucs)
         return 1;
     }
     return utf8proc_charwidth( ucs );
-#else
-    return wcwidth( ucs );
-#endif
 }
 
 // single byte char: +1, multi byte char: +2
@@ -51,7 +27,7 @@ int string_width( const std::wstring & wstr )
 {
     int w = 0;
     for ( size_t i = 0; i < wstr.length(); ++i ) {
-        w += konsole_wcwidth( wstr[ i ] );
+        w += wcharwidth( wstr[ i ] );
     }
     return w;
 }

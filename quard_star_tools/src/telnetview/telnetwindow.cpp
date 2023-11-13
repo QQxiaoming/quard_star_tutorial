@@ -26,6 +26,7 @@
 #include <QFontDatabase>
 #include <QShortcut>
 #include <QDebug>
+#include <QDesktopServices>
 #include <unistd.h>
 #include "boardwindow.h"
 #include "telnetwindow.h"
@@ -41,7 +42,7 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *p
     this->setStyleSheet("QWidget#telnetWindowWidget {background-color: transparent;}");
 
     telnet = new QTelnet(useWebSocket?QTelnet::WEBSOCKET:QTelnet::TCP, this);
-    termWidget = new QTermWidget(0,this);
+    termWidget = new QTermWidget(this);
     termWidget->setStyleSheet("QWidget#terminalDisplay {background-color: black;}");
 
     sendASCIIBox = new ASCIIBox(ASCIIBox::SEND,this);
@@ -87,6 +88,9 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *p
 
     termWidget->setTerminalFont(font);
     termWidget->setScrollBarPosition(QTermWidget::NoScrollBar);
+    termWidget->setBlinkingCursor(true);
+    termWidget->setMargin(0);
+    termWidget->startTerminalTeletype();
 
     sendASCIIBox->setFont(font);
     recvASCIIBox->setFont(font);
@@ -95,9 +99,9 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *p
     availableColorSchemes.sort();
     currentColorScheme = availableColorSchemes.first();
     foreach(QString colorScheme, availableColorSchemes) {
-        if(colorScheme == "WhiteOnBlack") {
-            termWidget->setColorScheme("WhiteOnBlack");
-            currentColorScheme = "WhiteOnBlack";
+        if(colorScheme == "QuardCRT") {
+            termWidget->setColorScheme("QuardCRT");
+            currentColorScheme = "QuardCRT";
         }
     }
 
@@ -105,16 +109,30 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *p
     availableKeyBindings.sort();
     currentAvailableKeyBindings = availableKeyBindings.first();
     foreach(QString keyBinding, availableKeyBindings) {
-        if(keyBinding == "linux") {
-            termWidget->setKeyBindings("linux");
-            currentAvailableKeyBindings = "linux";
+        if(keyBinding == "default") {
+            termWidget->setKeyBindings("default");
+            currentAvailableKeyBindings = "default";
         }
     }
 
     connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
     connect(termWidget, SIGNAL(dupDisplayOutput(const char*,int)),this,SLOT(dupDisplayOutput(const char*,int)));
-    termWidget->startTerminalTeletype();
+    connect(termWidget, &QTermWidget::urlActivated, this, [](const QUrl& url, bool fromContextMenu){
+        QDesktopServices::openUrl(url);
+        Q_UNUSED(fromContextMenu);
+    });
+    connect(termWidget, &QTermWidget::mousePressEventForwarded, this, [&](QMouseEvent *event){
+        // only windows and macos need do this
+    #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+        if(event->button() == Qt::MiddleButton) {
+            termWidget->copyClipboard();
+            termWidget->pasteClipboard();
+        }
+    #else
+        Q_UNUSED(event);
+    #endif
+    });
 
     connect(sendASCIIBox, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
     connect(recvASCIIBox, SIGNAL(hideOrClose()),this,SLOT(recvASCIIstop()));
@@ -169,7 +187,7 @@ TelnetWindow::~TelnetWindow()
     delete ui;
 }
 
-void TelnetWindow::createContextMenu(void) 
+void TelnetWindow::createContextMenu(QContextMenuEvent *event) 
 {
     if(contextMenu) delete contextMenu;
     contextMenu = new QMenu(this);
@@ -343,6 +361,13 @@ void TelnetWindow::createContextMenu(void)
             this->hide();
         }
     );
+
+    QPoint maptermWidgetPos = termWidget->mapFromGlobal(event->globalPos());
+    QList<QAction*> ftActions = termWidget->filterActions(maptermWidgetPos);
+    if(!ftActions.isEmpty()) {
+        menuEdit->addActions(ftActions);
+        menuEdit->addSeparator();
+    }
 
     QAction *actionFind = new QAction(tr("Find"), menuEdit);
     menuEdit->addAction(actionFind);
@@ -613,7 +638,7 @@ void TelnetWindow::recvASCIIstop()
 
 void TelnetWindow::contextMenuEvent(QContextMenuEvent *event)
 {
-    createContextMenu(); 
+    createContextMenu(event); 
     
     if(!contextMenu->isEmpty()) {
         contextMenu->move(cursor().pos());

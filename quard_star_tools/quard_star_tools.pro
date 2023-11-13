@@ -2,7 +2,7 @@
     message("Cannot use Qt $$QT_VERSION")
     error("Use Qt 6.2.0 or newer")
 }
-QT += core gui network widgets xml svg websockets
+QT += core gui network widgets xml svg websockets multimedia
 QT += core5compat
 
 BUILD_VERSION=0.2.0

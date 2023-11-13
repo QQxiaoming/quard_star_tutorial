@@ -20,12 +20,10 @@
 #ifndef SCREENWINDOW_H
 #define SCREENWINDOW_H
 
-// Qt
 #include <QObject>
 #include <QPoint>
 #include <QRect>
 
-// Konsole
 #include "Character.h"
 #include "KeyboardTranslator.h"
 

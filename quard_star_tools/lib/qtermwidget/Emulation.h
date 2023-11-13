@@ -33,7 +33,6 @@
 #include <QTextStream>
 #include <QTimer>
 
-#include "qtermwidget_export.h"
 #include "KeyboardTranslator.h"
 
 namespace Konsole
@@ -118,12 +117,11 @@ enum
  * how long the emulation has been active/idle for and also respond to
  * a 'bell' event in different ways.
  */
-class QTERMWIDGET_EXPORT Emulation : public QObject
+class Emulation : public QObject
 {
 Q_OBJECT
 
 public:
-
   /**
    * This enum describes the available shapes for the keyboard cursor.
    * See setKeyboardCursorShape()
@@ -514,8 +512,8 @@ private slots:
 private:
   bool _usesMouse;
   bool _bracketedPasteMode;
-  QTimer _bulkTimer1;
-  QTimer _bulkTimer2;
+  QTimer _bulkTimer1{this};
+  QTimer _bulkTimer2{this};
   QByteArray dupCache;
 };
 

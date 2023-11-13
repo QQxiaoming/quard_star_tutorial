@@ -19,29 +19,20 @@
     02110-1301  USA.
 */
 
-// Own
 #include "Emulation.h"
 
-// System
 #include <cstdio>
 #include <cstdlib>
-#include <unistd.h>
 #include <string>
 
-// Qt
 #include <QApplication>
 #include <QClipboard>
 #include <QHash>
 #include <QKeyEvent>
 #include <QTextStream>
 #include <QThread>
-
 #include <QTime>
 
-// KDE
-//#include <kdebug.h>
-
-// Konsole
 #include "KeyboardTranslator.h"
 #include "Screen.h"
 #include "TerminalCharacterDecoder.h"
@@ -138,7 +129,7 @@ void Emulation::setScreen(int n)
   if (_currentScreen != old)
   {
      // tell all windows onto this emulation to switch to the newly active screen
-     for(ScreenWindow* window : qAsConst(_windows))
+     for(ScreenWindow* window : std::as_const(_windows))
          window->setScreen(_currentScreen);
   }
 }
@@ -353,9 +344,6 @@ int Emulation::lineCount() const
     return _currentScreen->getLines() + _currentScreen->getHistLines();
 }
 
-#define BULK_TIMEOUT1 10
-#define BULK_TIMEOUT2 40
-
 void Emulation::showBulk()
 {
     _bulkTimer1.stop();
@@ -369,13 +357,16 @@ void Emulation::showBulk()
 
 void Emulation::bufferedUpdate()
 {
-   _bulkTimer1.setSingleShot(true);
-   _bulkTimer1.start(BULK_TIMEOUT1);
-   if (!_bulkTimer2.isActive())
-   {
-      _bulkTimer2.setSingleShot(true);
-      _bulkTimer2.start(BULK_TIMEOUT2);
-   }
+    static const int BULK_TIMEOUT1 = 10;
+    static const int BULK_TIMEOUT2 = 40;
+
+    _bulkTimer1.setSingleShot(true);
+    _bulkTimer1.start(BULK_TIMEOUT1);
+    if (!_bulkTimer2.isActive())
+    {
+        _bulkTimer2.setSingleShot(true);
+        _bulkTimer2.start(BULK_TIMEOUT2);
+    }
 }
 
 char Emulation::eraseChar() const

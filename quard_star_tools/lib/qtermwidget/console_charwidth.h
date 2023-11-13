@@ -7,13 +7,12 @@
 */
 
 
-#ifndef _KONSOLE_WCWIDTH_H_
-#define _KONSOLE_WCWIDTH_H_
+#ifndef _CONSOLE_CHARWIDTH_H_
+#define _CONSOLE_CHARWIDTH_H_
 
-// Standard
 #include <string>
 
-int konsole_wcwidth(wchar_t ucs);
+int wcharwidth(wchar_t ucs);
 
 int string_width( const std::wstring & wstr );
 

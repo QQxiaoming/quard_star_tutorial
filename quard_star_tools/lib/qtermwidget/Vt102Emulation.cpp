@@ -20,39 +20,15 @@
     02110-1301  USA.
 */
 
-// Own
 #include "Vt102Emulation.h"
 #include "tools.h"
 #include <string>
-
-// XKB
-//#include <config-konsole.h>
-
-// this allows konsole to be compiled without XKB and XTEST extensions
-// even though it might be available on a particular system.
-#if defined(AVOID_XKB)
-    #undef HAVE_XKB
-#endif
-
-#if defined(HAVE_XKB)
-    void scrolllock_set_off();
-    void scrolllock_set_on();
-#endif
-
-// Standard
 #include <cstdio>
-#include <unistd.h>
 
-// Qt
 #include <QEvent>
 #include <QKeyEvent>
 #include <QDebug>
 
-// KDE
-//#include <kdebug.h>
-//#include <klocale.h>
-
-// Konsole
 #include "KeyboardTranslator.h"
 #include "Screen.h"
 
@@ -458,7 +434,6 @@ void Vt102Emulation::processToken(int token, wchar_t p, int q)
 {
   switch (token)
   {
-
     case TY_CHR(         ) : _currentScreen->displayCharacter     (p         );dupDisplayCharacter(p); break; //UTF16
 
     //             127 DEL    : ignored on input
@@ -1057,6 +1032,20 @@ void Vt102Emulation::sendKeyEvent(QKeyEvent* event, bool fromPaste)
                                                 event->key() ,
                                                 modifiers,
                                                 states );
+
+        if ((modifiers & Qt::AltModifier) && (event->key() == Qt::Key_Left)) {
+            entry = _keyTranslator->findEntry(Qt::Key_Home, Qt::NoModifier, states);
+            modifiers = Qt::NoModifier;
+        } else if ((modifiers & Qt::AltModifier) && (event->key() == Qt::Key_Right)) {
+            entry = _keyTranslator->findEntry(Qt::Key_End, Qt::NoModifier, states);
+            modifiers = Qt::NoModifier;
+        } 
+      #if defined(Q_OS_MACOS)
+        if (( modifiers & Qt::ControlModifier ) && ( event->key() == Qt::Key_Backspace )) {
+            entry = _keyTranslator->findEntry(Qt::Key_Delete, Qt::NoModifier, states);
+            modifiers = Qt::NoModifier;
+        }
+      #endif
 
         // send result to terminal
         QByteArray textToSend;

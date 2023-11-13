@@ -29,11 +29,23 @@
 // System
 #if defined(Q_OS_WIN)
 #include <windows.h>
+#if defined(Q_CC_GNU)
+#include <unistd.h>
+#else if defined(Q_CC_MSVC)
+#include <io.h>
+#define dup _dup
+#define fileno _fileno
+#define write _write
+#define read _read
+#define close _close
+#define lseek _lseek
+#define ftruncate _chsize
+#endif
 #else
 #include <sys/mman.h>
 #include <sys/param.h>
-#endif
 #include <unistd.h>
+#endif
 #include <cstdio>
 
 
@@ -60,7 +72,6 @@ BlockArray::BlockArray()
         blocksize = ((sizeof(Block) / getpagesize()) + 1) * getpagesize();
 #endif
     }
-
 }
 
 BlockArray::~BlockArray()
@@ -152,7 +163,6 @@ const Block * BlockArray::at(size_t i)
     }
 
 //     if (index - i >= length) {
-//         kDebug(1211) << "BlockArray::at() index - i >= length\n";
 //         return 0;
 //     }
 
@@ -202,8 +212,6 @@ bool BlockArray::setSize(size_t newsize)
 
 bool BlockArray::setHistorySize(size_t newsize)
 {
-//    kDebug(1211) << "setHistorySize " << size << " " << newsize;
-
     if (size == newsize) {
         return false;
     }
@@ -325,7 +333,6 @@ void BlockArray::decreaseBuffer(size_t newsize)
     delete [] buffer1;
 
     fclose(fion);
-
 }
 
 void BlockArray::increaseBuffer()
@@ -393,6 +400,5 @@ void BlockArray::increaseBuffer()
     delete [] buffer2;
 
     fclose(fion);
-
 }
 

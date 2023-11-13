@@ -23,12 +23,10 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-// Qt
 #include <QRect>
 #include <QTextStream>
 #include <QVarLengthArray>
 
-// Konsole
 #include "Character.h"
 #include "History.h"
 

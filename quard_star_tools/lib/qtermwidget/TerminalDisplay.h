@@ -21,17 +21,17 @@
 #ifndef TERMINALDISPLAY_H
 #define TERMINALDISPLAY_H
 
-// Qt
 #include <QColor>
 #include <QPointer>
 #include <QWidget>
+#include <QMovie>
+#include <QMediaPlayer>
+#include <QVideoSink>
+#include <QVideoFrame>
 
-// Konsole
 #include "Filter.h"
 #include "Character.h"
 #include "qtermwidget.h"
-//#include "konsole_export.h"
-#define KONSOLEPRIVATE_EXPORT
 
 class QDrag;
 class QDragEnterEvent;
@@ -67,7 +67,8 @@ namespace Konsole
         Stretch,
         Zoom,
         Fit,
-        Center
+        Center,
+        Tile
     };
 
 extern unsigned short vt100_graphics[32];
@@ -83,7 +84,7 @@ class ScreenWindow;
  *
  * TODO More documentation
  */
-class KONSOLEPRIVATE_EXPORT TerminalDisplay : public QWidget
+class TerminalDisplay : public QWidget
 {
    Q_OBJECT
 
@@ -112,6 +113,8 @@ public:
 
     /** Sets the background image of the terminal display. */
     void setBackgroundImage(const QString& backgroundImage);
+    void setBackgroundMovie(const QString& backgroundImage);
+    void setBackgroundVideo(const QString& backgroundImage);
 
     /** Sets the background image mode of the terminal display. */
     void setBackgroundMode(BackgroundMode mode);
@@ -465,6 +468,11 @@ public slots:
     void pasteSelection();
 
     /**
+     * Selects all of the text in the display.
+     */
+    void selectAll();
+
+    /**
        * Changes whether the flow control warning box should be shown when the flow control
        * stop key (Ctrl+S) are pressed.
        */
@@ -528,6 +536,8 @@ public slots:
     void setColorTableColor(const int colorId, const QColor &color);
     void selectionChanged();
 
+    void setLocked(bool enabled) { _isLocked = enabled; }
+
 signals:
 
     /**
@@ -543,8 +553,10 @@ signals:
      * @param eventType The type of event.  0 for a mouse press / release or 1 for mouse motion
      */
     void mouseSignal(int button, int column, int line, int eventType);
+    void mousePressEventForwarded(QMouseEvent* event);
     void changedFontMetricSignal(int height, int width);
     void changedContentSizeSignal(int height, int width);
+    void changedContentCountSignal(int line, int column);
 
     /**
      * Emitted when the user right clicks on the display, or right-clicks with the Shift
@@ -642,7 +654,6 @@ private slots:
     void tripleClickTimeout();  // resets possibleTripleClick
 
 private:
-
     // -- Drawing helpers --
 
     // determine the width of this text
@@ -825,6 +836,12 @@ private:
     qreal _opacity;
 
     QPixmap _backgroundImage;
+    QMovie *_backgroundMovie = nullptr;
+    QMediaPlayer* _backgroundVideoPlayer;
+    QVideoSink* _backgroundVideoSink;
+    QPixmap _backgroundVideoFrame;
+    bool _isLocked;
+    QPixmap _lockbackgroundImage;
     BackgroundMode _backgroundMode;
 
     // list of filters currently applied to the display.  used for links and

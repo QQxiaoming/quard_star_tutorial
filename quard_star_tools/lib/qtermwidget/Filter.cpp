@@ -35,13 +35,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-// KDE
-//#include <KLocale>
-//#include <KRun>
-
-// Konsole
 #include "TerminalCharacterDecoder.h"
-#include "konsole_wcwidth.h"
+#include "console_charwidth.h"
 
 using namespace Konsole;
 

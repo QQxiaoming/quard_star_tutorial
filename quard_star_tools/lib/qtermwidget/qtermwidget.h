@@ -25,18 +25,16 @@
 #include <QWidget>
 #include "Emulation.h"
 #include "Filter.h"
-#include "qtermwidget_export.h"
-#include "qtermwidget_version.h"
 
 class QVBoxLayout;
 class TermWidgetImpl;
 class SearchBar;
 class QUrl;
 
-class QTERMWIDGET_EXPORT QTermWidget : public QWidget {
+class QTermWidget : public QWidget {
     Q_OBJECT
-public:
 
+public:
     /**
      * This enum describes the location where the scroll bar is positioned in the display widget.
      */
@@ -52,9 +50,6 @@ public:
     using KeyboardCursorShape = Konsole::Emulation::KeyboardCursorShape;
 
     //Creation of widget
-    QTermWidget(int startnow, // 1 = start shell program immediately
-                QWidget * parent = nullptr);
-    // A dummy constructor for Qt Designer. startnow is 1 by default
     QTermWidget(QWidget *parent = nullptr);
 
     ~QTermWidget() override;
@@ -66,19 +61,12 @@ public:
     void setTerminalSizeHint(bool enabled);
     bool terminalSizeHint();
 
-    //start shell program if it was not started in constructor
-    void startShellProgram();
-
     /**
      * Start terminal teletype as is
      * and redirect data for external recipient.
      * It can be used for display and control a remote terminal.
      */
     void startTerminalTeletype();
-
-    int getShellPID();
-
-    void changeDir(const QString & dir);
 
     //look-n-feel, if you don`t like defaults
 
@@ -89,20 +77,9 @@ public:
     QFont getTerminalFont();
     void setTerminalOpacity(qreal level);
     void setTerminalBackgroundImage(const QString& backgroundImage);
+    void setTerminalBackgroundMovie(const QString& backgroundMovie);
+    void setTerminalBackgroundVideo(const QString& backgroundVideo);
     void setTerminalBackgroundMode(int mode);
-
-    //environment
-    void setEnvironment(const QStringList & environment);
-
-    //  Shell program, default is /bin/bash
-    void setShellProgram(const QString & program);
-
-    //working directory
-    void setWorkingDirectory(const QString & dir);
-    QString workingDirectory();
-
-    // Shell program args, default is none
-    void setArgs(const QStringList & args);
 
     //Text codec, default is UTF-8
     void setTextCodec(QTextCodec * codec);
@@ -216,11 +193,6 @@ public:
      * */
     QList<QAction*> filterActions(const QPoint& position);
 
-    /**
-     * Returns a pty slave file descriptor.
-     * This can be used for display and control
-     * a remote terminal.
-     */
     int recvData(const char *buff, int len) const;
 
     /**
@@ -228,18 +200,13 @@ public:
      * at the position in the terminal where keyboard input will appear.
      */
     void setKeyboardCursorShape(KeyboardCursorShape shape);
+    void setKeyboardCursorShape(uint32_t shape);
 
     void setBlinkingCursor(bool blink);
 
     /** Enables or disables bidi text in the terminal. */
     void setBidiEnabled(bool enabled);
     bool isBidiEnabled();
-
-    /**
-     * Automatically close the terminal session after the shell process exits or
-     * keep it running.
-     */
-    void setAutoClose(bool);
 
     QString title() const;
     QString icon() const;
@@ -266,6 +233,20 @@ public:
 
     void setConfirmMultilinePaste(bool confirmMultilinePaste);
     void setTrimPastedTrailingNewlines(bool trimPastedTrailingNewlines);
+    void proxySendData(QByteArray data) {
+        emit sendData(data.data(), data.size());
+    }
+
+    void setLocked(bool enabled);
+
+    // FIXME: this is a hack operation, should be removed
+    void setUserdata(void *data) {
+        this->userData = data;
+    }
+    void *getUserdata() const {
+        return this->userData;
+    }
+
     void reTranslateUi(void);
     static void setLangeuage(QLocale::Language lang);
 
@@ -296,7 +277,11 @@ signals:
 
     void profileChanged(const QString & profile);
 
-    void titleChanged();
+    void titleChanged(int title,const QString& newTitle);
+
+    void termSizeChange(int lines, int columns);
+
+    void mousePressEventForwarded(QMouseEvent* event);
 
     /**
      * Signals that we received new data from the process running in the
@@ -314,6 +299,9 @@ public slots:
     // Paste selection to terminal
     void pasteSelection();
 
+    // Select all text
+    void selectAll();
+
     // Set zoom
     void zoomIn();
     void zoomOut();
@@ -327,11 +315,17 @@ public slots:
 
     /*! Clear the terminal content and move to home position
      */
+    void clearScrollback();
+    void clearScreen();
     void clear();
 
     void toggleShowSearchBar();
 
-    void saveHistory(QIODevice *device);
+    void saveHistory(QIODevice *device, int format = 0);
+    void saveHistory(QTextStream *stream, int format = 0);
+    void screenShot(QPixmap *pixmap);
+    void screenShot(const QString &fileName);
+
 protected:
     void resizeEvent(QResizeEvent *) override;
 
@@ -350,23 +344,18 @@ private slots:
      * sends the specified cursor states to the terminal display
      */
     void cursorChanged(Konsole::Emulation::KeyboardCursorShape cursorShape, bool blinkingCursorEnabled);
+    void sizeChange(int lines, int columns){
+        emit termSizeChange(lines, columns);
+    }
 
 private:
     void search(bool forwards, bool next);
     void setZoom(int step);
-    void init(int startnow);
+    void init(void);
     TermWidgetImpl * m_impl;
     SearchBar* m_searchBar;
     QVBoxLayout *m_layout;
+    void *userData = nullptr;
 };
 
-
-//Maybe useful, maybe not
-
-#ifdef __cplusplus
-extern "C"
 #endif
-void * createTermWidget(int startnow, void * parent);
-
-#endif
-
