@@ -75,9 +75,13 @@ jobs:
           auto-activate-base: true
           activate-environment: ""
 
+      - name: Install unzip
+        uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: install unzip --no-progress
+
       - name: Install prerequisites
         run: |
-          Choco-Install -PackageName unzip --force
           unzip release_win64.zip
 
       - uses: msys2/setup-msys2@v2
