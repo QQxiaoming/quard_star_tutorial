@@ -19,13 +19,16 @@ project = 'quard_star_tutorial'
 copyright = '2021, Quard(qiaoqiming)'
 author = 'Quard(qiaoqiming)'
 
-extensions = ['myst_parser']
+extensions = ['myst_parser', 'sphinxcontrib.googleanalytics']
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'index.md']
 
 language = 'zh_CN'
 html_theme = 'sphinx_material'
 html_title = '主页'
+
+googleanalytics_enabled = True
+googleanalytics_id = 'G-2TBWPWF42X'
 
 html_sidebars = {
     "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
