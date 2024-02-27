@@ -651,11 +651,26 @@ static void quard_star_machine_instance_init(Object *obj)
 {
 }
 
-static Property quard_star_props[] = {
-    DEFINE_PROP_STRING("mask-rom-path", QuardStarState, mask_rom_path),
-    DEFINE_PROP_LINK("canbus", QuardStarState, canbus, TYPE_CAN_BUS, CanBusState *),
-    DEFINE_PROP_END_OF_LIST()
-};
+static char *quard_star_get_mask_rom_path(Object *obj, Error **errp)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(obj);
+    return g_strdup(s->mask_rom_path);
+}
+
+static void quard_star_set_mask_rom_path(Object *obj, const char *val, Error **errp)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(obj);
+    g_free(s->mask_rom_path);
+    s->mask_rom_path = g_strdup(val);
+}
+
+static void quard_star_check_canbus_support(const Object *obj,
+                                                     const char *name,
+                                                     Object *new_target,
+                                                     Error **errp)
+{
+
+}
 
 static void quard_star_machine_class_init(ObjectClass *oc, void *data)
 {
@@ -675,7 +690,18 @@ static void quard_star_machine_class_init(ObjectClass *oc, void *data)
     mc->get_default_cpu_node_id = riscv_numa_get_default_cpu_node_id;
     mc->numa_mem_supported = true;
 
-    device_class_set_props(DEVICE_CLASS(oc), quard_star_props);
+    object_class_property_add_str(oc, "mask-rom-path", quard_star_get_mask_rom_path,
+                                  quard_star_set_mask_rom_path);
+    object_class_property_set_description(oc, "mask-rom-path",
+                                          "Set Quard Star MaskRom path.");
+
+    object_class_property_add_link(oc, "canbus",
+                                   TYPE_CAN_BUS,
+                                   offsetof(QuardStarState, canbus),
+                                   quard_star_check_canbus_support,
+                                   OBJ_PROP_LINK_STRONG);
+    object_class_property_set_description(oc, "canbus",
+                                          "Set confidential guest scheme to support");
 }
 
 static const TypeInfo quard_star_machine_typeinfo = {
