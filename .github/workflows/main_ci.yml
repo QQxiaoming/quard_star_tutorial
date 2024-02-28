@@ -292,7 +292,7 @@ jobs:
       - name: Build all
         run: |
           cd quard_star_tools
-          git describe --always --long --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print \"\\\"\"$0\"\\\"\"}'  > git_tag.inc
+          git describe --always --long --abbrev=10 --exclude '*' | ./tools/awk/awk.exe '{print "\""$0"\""}'  > git_tag.inc
           ./tools/sed/sed.exe -i "s/git_tag.inc/git_tag.ci.inc/g" quard_star_tools.pro
           lrelease quard_star_tools.pro
           qmake -makefile

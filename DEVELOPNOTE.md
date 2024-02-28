@@ -128,7 +128,7 @@
 - 
     2021.08.06(晚上):target_root_app里的一些工具编译可能在原版的ubuntu18.04上不能直接编译通过，为了确保能顺利偏移通过，以目前的版本看来，automake的版本选用1.16.1，pkg-config选择0.29.2，我们直接引入源码安装到host_output目录下，后续使用host_output下的automake工具执行编译流程。
 - 
-    2021.08.14(下午):最近在持续补充博客文档。今天上海暴雨倾盆，一口气完成了三篇已经更新到ch15。唉，说起来今天还是七夕节，为什么我要在家些博客呢？当然是因为今天约女孩子没约到啊（苦涩）！！！这次更新够多了，休息去刷剧了。
+    2021.08.14(下午):最近在持续补充博客文档。今天上海暴雨倾盆，一口气完成了三篇已经更新到ch15。
 - 
     2021.08.18(晚上):尝试了一下openjdk11的交叉编译，依赖太多了，尤其是x11那一套库，不过倒是成功完成了，而且这次是彻底把automake，pkg-config的实现逻辑搞明白了。openjdk zero实在是性能太差了，运行一条查看版本的命令都要执行七八分钟，回头有机会研究下jit的实现代码，虽然我还不觉得自己有能力移植到rv上，但是这个事情还是蛮有趣的。
 - 
@@ -886,7 +886,7 @@
     ```
 
 - 
-    2022.07.12(凌晨): 最近身体状况不是很好，前几天非常严重的失眠。今天想release个新版本，经过前一段时间的开发目前quard star soc中的各类controller ip已经非常完善了，相对v0.0.2版本变化较大，也修复了不少问题，rootfs构建也搭建了ci，现在是个发布版本v0.0.3的好时机，另外今天是我喜欢的女生的生日，祝愿她生日快乐🎂。
+    2022.07.12(凌晨): 最近身体状况不是很好，前几天非常严重的失眠。今天想release个新版本，经过前一段时间的开发目前quard star soc中的各类controller ip已经非常完善了，相对v0.0.2版本变化较大，也修复了不少问题，rootfs构建也搭建了ci，现在是个发布版本v0.0.3的好时机。
 - 
     2022.08.29(下午): 突然发现spidev的设备树写法（如下示例）在linux 5.17之后不再支持，必须要明确指定设备类型匹配compatible才行。
 
@@ -1015,3 +1015,12 @@
         return IS_ENABLED(CONFIG_ARC) && !IS_ENABLED(CONFIG_ARC_HAS_PAE40);
     }
     ```
+
+- 
+    2024.02.28(晚上): 今天csdn上有网友[留言](https://blog.csdn.net/weixin_39871788/article/details/126174921#comments_31404336)发现quard_star_machine_class_init函数中给machine设置props，使用了device_class_set_props(DEVICE_CLASS(oc), quard_star_props)，但是这里oc是machine类型，转换为device类型理应出错，但是实际上却没有，这是为什么呢？我查看了一下qemu的源码，发现了这个问题。oc是machine类，DEVICE_CLASS对oc的检查不要求完全严格，因此通过了动态类型转换的检查，之后device_class_set_props函数除了赋值成员Property *props_;之外，其他赋值都是对共同的基类object操作，因此没出现严重问题，但是成员props_所在的Machine类此处的内存变量是const char *desc，因此Machine的desc就没法正常打印了，检查了一下打印这个描述的地方只有使用help才打印，如下：
+    
+    ```shell
+    qemu-system-riscv64 -machine help 
+    ```
+
+    这里确实打印乱码了。所以这个地方是一个bug，应该使用object_class_property系列函数设置prop。

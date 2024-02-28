@@ -21,6 +21,7 @@ author = 'Quard(qiaoqiming)'
 
 extensions = ['myst_parser', 'sphinxcontrib.googleanalytics']
 templates_path = ['_templates']
+html_static_path = ['_static']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'index.md']
 
 language = 'zh_CN'
@@ -37,8 +38,8 @@ html_sidebars = {
 html_theme_options = {
     'nav_title': '基于qemu从0开始构建嵌入式linux系统',
 
-    #'color_primary': 'blue',
-    #'color_accent': 'light-blue',
+    'color_primary': 'light-blue',
+    'color_accent': 'blue',
 
     'repo_url': 'https://github.com/QQxiaoming/quard_star_tutorial',
     'repo_name': 'quard_star_tutorial',
@@ -53,3 +54,6 @@ html_theme_options = {
         {"href": "ext1","internal": True,"title": "扩展文章"},
     ],
 }
+
+def setup(app):
+    app.add_css_file('toctree.css') 
