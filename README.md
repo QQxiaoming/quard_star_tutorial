@@ -151,3 +151,13 @@ Note: This project also has an experimental branch called next-kernel that uses 
 ## Thanks
 
 I would like to acknowledge AI tool (New Bing) for assisting me with writing part of this readme file. 
+
+## Star History
+
+<a href="https://star-history.com/#QQxiaoming/quard_star_tutorial&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+ </picture>
+</a>
