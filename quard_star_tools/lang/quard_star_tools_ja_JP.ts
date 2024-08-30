@@ -268,7 +268,7 @@ Support:
     <message>
         <location filename="../src/boardview/boardwindow.cpp" line="626"/>
         <source>Setting is not supported!</source>
-        <translation type="unfinished"></translation>
+        <translation>設定はサポートされていません!</translation>
     </message>
     <message>
         <location filename="../src/boardview/boardwindow.cpp" line="635"/>
@@ -601,50 +601,6 @@ Support:
     </message>
 </context>
 <context>
-    <name>Konsole::Session</name>
-    <message>
-        <location filename="../lib/qtermwidget/Session.cpp" line="318"/>
-        <source>Bell in session &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Konsole::TerminalDisplay</name>
-    <message>
-        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="1270"/>
-        <source>Size: XXX x XXX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="1282"/>
-        <source>Size: %1 x %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2819"/>
-        <source>Paste multiline text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2820"/>
-        <source>Are you sure you want to paste this text?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="3303"/>
-        <source>&lt;qt&gt;Output has been &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;suspended&lt;/a&gt; by pressing Ctrl+S.  Press &lt;b&gt;Ctrl+Q&lt;/b&gt; to resume.&lt;/qt&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Konsole::Vt102Emulation</name>
-    <message>
-        <location filename="../lib/qtermwidget/Vt102Emulation.cpp" line="1125"/>
-        <source>No keyboard translator available.  The information needed to convert key presses into characters to send to the terminal is missing.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>NetSelectBox</name>
     <message>
         <location filename="../src/boardview/netselectbox.ui" line="14"/>
@@ -674,106 +630,91 @@ Support:
     </message>
 </context>
 <context>
-    <name>QMessageBox</name>
-    <message>
-        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2826"/>
-        <source>Show Details...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>QObject</name>
     <message>
         <location filename="../lib/qtermwidget/ColorScheme.cpp" line="267"/>
-        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="282"/>
+        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="281"/>
         <source>Un-named Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>名前のないカラースキーム</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="453"/>
+        <location filename="../lib/qtermwidget/ColorScheme.cpp" line="441"/>
         <source>Accessible Color Scheme</source>
-        <translation type="unfinished"></translation>
+        <translation>アクセシブルカラースキーム</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/Filter.cpp" line="510"/>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="467"/>
         <source>Open Link</source>
-        <translation type="unfinished"></translation>
+        <translation>リンクを開く</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/Filter.cpp" line="511"/>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="468"/>
         <source>Copy Link Address</source>
-        <translation type="unfinished"></translation>
+        <translation>リンクアドレスをコピー</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/Filter.cpp" line="515"/>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="488"/>
         <source>Send Email To...</source>
-        <translation type="unfinished"></translation>
+        <translation>メールを送信...</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/Filter.cpp" line="516"/>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="489"/>
         <source>Copy Email Address</source>
-        <translation type="unfinished"></translation>
+        <translation>メールアドレスをコピー</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="506"/>
+        <source>Open Path</source>
+        <translation>パスを開く</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="507"/>
+        <source>Open Containing Folder</source>
+        <translation>含まれるフォルダを開く</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="508"/>
+        <source>Copy Path</source>
+        <translation>パスをコピー</translation>
     </message>
 </context>
 <context>
     <name>QTermWidget</name>
     <message>
-        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="365"/>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="289"/>
         <source>Color Scheme Error</source>
-        <translation type="unfinished"></translation>
+        <translation>カラースキームエラー</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="366"/>
+        <location filename="../lib/qtermwidget/qtermwidget.cpp" line="290"/>
         <source>Cannot load color scheme: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>カラースキームを読み込めません: %1</translation>
     </message>
 </context>
 <context>
     <name>SearchBar</name>
     <message>
-        <location filename="../lib/qtermwidget/SearchBar.ui" line="14"/>
-        <source>SearchBar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/SearchBar.ui" line="20"/>
-        <source>X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/SearchBar.ui" line="32"/>
+        <location filename="../lib/qtermwidget/SearchBar.ui" line="27"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>検索:</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/SearchBar.ui" line="42"/>
-        <source>&lt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/SearchBar.ui" line="54"/>
-        <source>&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/SearchBar.ui" line="66"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../lib/qtermwidget/SearchBar.cpp" line="40"/>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="42"/>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="139"/>
         <source>Match case</source>
-        <translation type="unfinished"></translation>
+        <translation>大文字と小文字を区別する</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/SearchBar.cpp" line="46"/>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="48"/>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="140"/>
         <source>Regular expression</source>
-        <translation type="unfinished"></translation>
+        <translation>正規表現</translation>
     </message>
     <message>
-        <location filename="../lib/qtermwidget/SearchBar.cpp" line="50"/>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="52"/>
+        <location filename="../lib/qtermwidget/SearchBar.cpp" line="141"/>
         <source>Highlight all matches</source>
-        <translation type="unfinished"></translation>
+        <translation>全ての一致箇所をハイライトする</translation>
     </message>
 </context>
 <context>
@@ -784,251 +725,279 @@ Support:
         <translation>Telnet ウィンドウ</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="236"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="253"/>
         <source>Refresh</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="179"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="196"/>
         <source>Edit</source>
         <translation>編集</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="187"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="517"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="522"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="204"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="541"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="546"/>
         <source>Help</source>
         <translation>手伝い</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="181"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="198"/>
         <source>View</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="185"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="202"/>
         <source>Options</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="192"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="209"/>
         <source>Colors</source>
         <translation>カラースキーム</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="215"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="232"/>
         <source>KeyBindings</source>
         <translation>キーバインド</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="494"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="518"/>
         <source>Misc</source>
         <translation>その他</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="496"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="520"/>
         <source>Log</source>
         <translation>ログ</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="183"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="200"/>
         <source>Transfer</source>
         <translation>送信</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="177"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="194"/>
         <source>File</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="347"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="371"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="356"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="380"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="365"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="389"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="530"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="554"/>
         <source>About</source>
         <translation>について</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="374"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="398"/>
         <source>Reset</source>
         <translation>リセット</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="255"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="264"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="285"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="272"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="281"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="302"/>
         <source>Save log</source>
         <translation>ログの保存</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="383"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="407"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="392"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="416"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="401"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="425"/>
         <source>Reset Zoom</source>
         <translation>ズームのリセット</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="410"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="434"/>
         <source>Send ASCII...</source>
         <translation>送信ASCII...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="418"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="442"/>
         <source>Receive ASCII...</source>
         <translation>受信ASCII...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="436"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="460"/>
         <source>Send Binary...</source>
         <translation>送信Binary...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="462"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="486"/>
         <source>Send Xmodem...</source>
         <translation>送信Xmodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="470"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="494"/>
         <source>Receive Xmodem...</source>
         <translation>受信Xmodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="478"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="502"/>
         <source>Send Ymodem...</source>
         <translation>送信Ymodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="486"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="510"/>
         <source>Receive Ymodem...</source>
         <translation>受信Ymodem...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="301"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="318"/>
         <source>Save Rawlog</source>
         <translation>元のログの保存</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="498"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="522"/>
         <source>Add timestamp on each line...</source>
         <translation>各行にタイムスタンプを追加します...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="245"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="262"/>
         <source>Save screen</source>
         <translation>端末記録の保存</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="507"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="531"/>
         <source>Fflush file...</source>
         <translation>ファイルをフラッシュします...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="250"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="280"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="267"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="297"/>
         <source>Save log...</source>
         <translation>log を保存する...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="251"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="281"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="268"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="298"/>
         <source>log files (*.log)</source>
         <translation>ログファイル (*.log)</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="255"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="285"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="322"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="272"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="302"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="339"/>
         <source>Cannot write file %1:
 %2.</source>
         <translation>ファイル%1に書き込めません:
 %2.</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="317"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="334"/>
         <source>Save Raw log...</source>
         <translation>raw log を保存する...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="318"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="441"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="335"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="465"/>
         <source>binary files (*.bin)</source>
         <translation>バイナリ ファイル (*.bin)</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="322"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="339"/>
         <source>Save Raw log</source>
         <translation>raw log を保存する</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="338"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="355"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="440"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="464"/>
         <source>Open Binary...</source>
         <translation>バイナリを開く...</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="456"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="480"/>
         <source>Open binary file</source>
         <translation>バイナリファイルを開く</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="456"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="480"/>
         <source>Cannot open file %1.</source>
         <translation>ファイル %1 を開けません。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="466"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="474"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="482"/>
         <location filename="../src/telnetview/telnetwindow.cpp" line="490"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="498"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="506"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="514"/>
         <source>Information</source>
         <translation>情報</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="466"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="474"/>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="482"/>
         <location filename="../src/telnetview/telnetwindow.cpp" line="490"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="498"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="506"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="514"/>
         <source>This feature is not ready yet, so stay tuned!</source>
         <translation>この機能はまだ完成していませんので、しばらくお待ちください。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="523"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="547"/>
         <source>1. The central window is the terminal operation window.</source>
         <translation>1. 中央のウィンドウは端末操作ウィンドウです。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="524"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="548"/>
         <source>2. The menu bar provides portable tools and terminal configuration.</source>
         <translation>2. メニュー バーにはポータブル ツールと端末設定が表示されます。</translation>
     </message>
     <message>
-        <location filename="../src/telnetview/telnetwindow.cpp" line="525"/>
+        <location filename="../src/telnetview/telnetwindow.cpp" line="549"/>
         <source>3. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>3. 下部の更新ボタンは、更新と再接続に使用されます。これは、シミュレーションの再開時に接続するために使用されます。</translation>
+    </message>
+</context>
+<context>
+    <name>TerminalDisplay</name>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="1438"/>
+        <source>Size: XXX x XXX</source>
+        <translation>サイズ: XXX x XXX</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="1453"/>
+        <source>Size: %1 x %2</source>
+        <translation>サイズ: %1 x %2</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2990"/>
+        <source>Paste multiline text</source>
+        <translation>複数行のテキストを貼り付ける</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="2991"/>
+        <source>Are you sure you want to paste this text?</source>
+        <translation>このテキストを貼り付けてもよろしいですか？</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/TerminalDisplay.cpp" line="3400"/>
+        <source>&lt;qt&gt;Output has been &lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;suspended&lt;/a&gt; by pressing Ctrl+S.  Press &lt;b&gt;Ctrl+Q&lt;/b&gt; to resume.&lt;/qt&gt;</source>
+        <translation>&lt;qt&gt;Ctrl+Sを押すと出力が&lt;a href=&quot;http://en.wikipedia.org/wiki/Flow_control&quot;&gt;中断&lt;/a&gt;されます。再開するには&lt;b&gt;Ctrl+Q&lt;/b&gt;を押して下さい。&lt;/qt&gt;</translation>
     </message>
 </context>
 <context>
@@ -1088,6 +1057,19 @@ Support:
     </message>
 </context>
 <context>
+    <name>UrlFilter</name>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="371"/>
+        <source>Follow link (ctrl + click)</source>
+        <translation>リンクを開く (ctrl + click)</translation>
+    </message>
+    <message>
+        <location filename="../lib/qtermwidget/Filter.cpp" line="373"/>
+        <source>Follow path (ctrl + click)</source>
+        <translation>パスを開く (ctrl + click)</translation>
+    </message>
+</context>
+<context>
     <name>VncWindow</name>
     <message>
         <location filename="../src/vncview/vncwindow.ui" line="14"/>
@@ -1124,6 +1106,14 @@ Support:
         <location filename="../src/vncview/vncwindow.cpp" line="141"/>
         <source>2. The refresh button at the bottom is used to refresh and reconnect, which is used to connect when the simulation restarts.</source>
         <translation>2. 下部の更新ボタンは、更新と再接続に使用されます。これは、シミュレーションの再開時に接続するために使用されます。</translation>
+    </message>
+</context>
+<context>
+    <name>Vt102Emulation</name>
+    <message>
+        <location filename="../lib/qtermwidget/Vt102Emulation.cpp" line="1789"/>
+        <source>No keyboard translator available.  The information needed to convert key presses into characters to send to the terminal is missing.</source>
+        <translation>利用可能なキーボードトランスレータがありません。キー入力を端末に送信するための文字に変換するために必要な情報がありません。</translation>
     </message>
 </context>
 </TS>

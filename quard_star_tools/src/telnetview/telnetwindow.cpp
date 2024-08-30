@@ -90,7 +90,6 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *p
     termWidget->setScrollBarPosition(QTermWidget::NoScrollBar);
     termWidget->setBlinkingCursor(true);
     termWidget->setMargin(0);
-    termWidget->startTerminalTeletype();
 
     sendASCIIBox->setFont(font);
     recvASCIIBox->setFont(font);
@@ -109,18 +108,18 @@ TelnetWindow::TelnetWindow(const QString &addr, int port, bool useWS, QWidget *p
     availableKeyBindings.sort();
     currentAvailableKeyBindings = availableKeyBindings.first();
     foreach(QString keyBinding, availableKeyBindings) {
-        if(keyBinding == "default") {
-            termWidget->setKeyBindings("default");
-            currentAvailableKeyBindings = "default";
+        if(keyBinding == "linux_default") {
+            termWidget->setKeyBindings("linux_default");
+            currentAvailableKeyBindings = "linux_default";
         }
     }
 
     connect(telnet,SIGNAL(newData(const char*,int)),this,SLOT(recvData(const char*,int)));
     connect(termWidget, SIGNAL(sendData(const char *,int)),this,SLOT(sendData(const char*,int)));
     connect(termWidget, SIGNAL(dupDisplayOutput(const char*,int)),this,SLOT(dupDisplayOutput(const char*,int)));
-    connect(termWidget, &QTermWidget::urlActivated, this, [](const QUrl& url, bool fromContextMenu){
+    connect(termWidget, &QTermWidget::urlActivated, this, [](const QUrl& url, uint32_t opcode){
         QDesktopServices::openUrl(url);
-        Q_UNUSED(fromContextMenu);
+        Q_UNUSED(opcode);
     });
     connect(termWidget, &QTermWidget::mousePressEventForwarded, this, [&](QMouseEvent *event){
         // only windows and macos need do this

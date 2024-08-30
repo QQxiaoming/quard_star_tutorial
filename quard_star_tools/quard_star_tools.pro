@@ -3,7 +3,6 @@
     error("Use Qt 6.2.0 or newer")
 }
 QT += core gui network widgets xml svg websockets multimedia
-QT += core5compat
 
 BUILD_VERSION=0.2.0
 TARGET_ARCH=$${QT_ARCH}
@@ -16,8 +15,10 @@ include(./lib/QFontIcon/QFontIcon.pri)
 include(./lib/lwext4/lwext4.pri)
 include(./lib/ff15/ff15.pri)
 include(./lib/jffs2/jffs2.pri)
-include(./lib/qtxyzmodem/qtxyzmodem.pro)
-include(./lib/qtermwidget/qtermwidget.pro)
+include(./lib/qxymodem/qxymodem.pri)
+include(./lib/qzmodem/qzmodem.pri)
+include(./lib/qtermwidget/qtermwidget.pri)
+include(./lib/QSourceHighlite/QSourceHighlite.pri)
 
 INCLUDEPATH += \
         -I . \

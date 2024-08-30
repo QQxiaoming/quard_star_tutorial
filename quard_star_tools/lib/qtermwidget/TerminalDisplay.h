@@ -1,21 +1,21 @@
 /*
-    Copyright 2007-2008 by Robert Knight <robertknight@gmail.com>
-    Copyright 1997,1998 by Lars Doelle <lars.doelle@on-line.de>
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-    02110-1301  USA.
+ Copyright 2007-2008 by Robert Knight <robertknight@gmail.com>
+ Copyright 1997,1998 by Lars Doelle <lars.doelle@on-line.de>
+ 
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ 02110-1301  USA.
 */
 
 #ifndef TERMINALDISPLAY_H
@@ -24,14 +24,23 @@
 #include <QColor>
 #include <QPointer>
 #include <QWidget>
+#include <QClipboard>
 #include <QMovie>
 #include <QMediaPlayer>
 #include <QVideoSink>
 #include <QVideoFrame>
+#include <QPlainTextEdit>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QVBoxLayout>
+#include <QLabel>
+#include <QPushButton>
 
 #include "Filter.h"
 #include "Character.h"
+#include "CharWidth.h"
 #include "qtermwidget.h"
+#include "qsourcehighliter.h"
 
 class QDrag;
 class QDragEnterEvent;
@@ -47,31 +56,24 @@ class QHideEvent;
 class QTimerEvent;
 class QWidget;
 
-//class KMenu;
-
-namespace Konsole
+enum MotionAfterPasting
 {
+    // No move screenwindow after pasting
+    NoMoveScreenWindow = 0,
+    // Move start of screenwindow after pasting
+    MoveStartScreenWindow = 1,
+    // Move end of screenwindow after pasting
+    MoveEndScreenWindow = 2
+};
 
-    enum MotionAfterPasting
-    {
-        // No move screenwindow after pasting
-        NoMoveScreenWindow = 0,
-        // Move start of screenwindow after pasting
-        MoveStartScreenWindow = 1,
-        // Move end of screenwindow after pasting
-        MoveEndScreenWindow = 2
-    };
-
-    enum BackgroundMode {
-        None,
-        Stretch,
-        Zoom,
-        Fit,
-        Center,
-        Tile
-    };
-
-extern unsigned short vt100_graphics[32];
+enum BackgroundMode {
+    None,
+    Stretch,
+    Zoom,
+    Fit,
+    Center,
+    Tile
+};
 
 class ScreenWindow;
 
@@ -97,21 +99,13 @@ public:
     const ColorEntry* colorTable() const;
     /** Sets the terminal color palette used by the display. */
     void setColorTable(const ColorEntry table[]);
-    /**
-     * Sets the seed used to generate random colors for the display
-     * (in color schemes that support them).
-     */
-    void setRandomSeed(uint seed);
-    /**
-     * Returns the seed used to generate random colors for the display
-     * (in color schemes that support them).
-     */
-    uint randomSeed() const;
 
     /** Sets the opacity of the terminal display. */
     void setOpacity(qreal opacity);
 
     /** Sets the background image of the terminal display. */
+    void setBackgroundPixmap(QPixmap *backgroundImage);
+    void reloadBackgroundPixmap(void);
     void setBackgroundImage(const QString& backgroundImage);
     void setBackgroundMovie(const QString& backgroundImage);
     void setBackgroundVideo(const QString& backgroundImage);
@@ -436,6 +430,11 @@ public:
     void disableBracketedPasteMode(bool disable) { _disabledBracketedPasteMode = disable; }
     bool bracketedPasteModeIsDisabled() const { return _disabledBracketedPasteMode; }
 
+    void setShowResizeNotificationEnabled(bool enabled) { _showResizeNotificationEnabled = enabled; }
+
+    void setPreeditColorIndex(int index) {
+        _preeditColorIndex = index;
+    }
 public slots:
 
     /**
@@ -455,7 +454,7 @@ public slots:
     void updateLineProperties();
 
     /** Copies the selected text to the clipboard. */
-    void copyClipboard();
+    void copyClipboard(QClipboard::Mode mode = QClipboard::Clipboard);
     /**
      * Pastes the content of the clipboard into the
      * display.
@@ -513,6 +512,15 @@ public slots:
     /** See setUsesMouse() */
     bool usesMouse() const;
 
+    /**
+     * Sets _isPrimaryScreen depending on which screen is currently in
+     * use, primary or alternate
+     *
+     * @param use Set to @c true if the primary screen is in use or to
+     * @c false otherwise (i.e. the alternate screen is in use)
+     */
+    void usingPrimaryScreen(bool use);
+
     void setBracketedPasteMode(bool bracketedPasteMode);
     bool bracketedPasteMode() const;
 
@@ -520,7 +528,7 @@ public slots:
      * Shows a notification that a bell event has occurred in the terminal.
      * TODO: More documentation here
      */
-    void bell(const QString& message);
+    void bell();
 
     /**
      * Sets the background of the display to the specified color.
@@ -536,7 +544,32 @@ public slots:
     void setColorTableColor(const int colorId, const QColor &color);
     void selectionChanged();
 
+    void setSelectionOpacity(qreal opacity) {
+        _selectedTextOpacity = opacity;
+    }
+
+    /** Returns the column which the cursor is positioned at. */
+    int  getCursorX() const;
+    /** Returns the line which the cursor is positioned on. */
+    int  getCursorY() const;
+
+    void setCursorX(int x);
+    void setCursorY(int y);
+
+    QString screenGet(int row1, int col1, int row2, int col2, int mode);
+
     void setLocked(bool enabled) { _isLocked = enabled; }
+    void repaintDisplay(void) {
+        // FIXME: we must call hide() and show() to force a repaint,
+        // this is a bad hack, but it works
+    #if defined(Q_OS_LINUX)
+        this->hide();
+        QTimer::singleShot(100, this, [this](){ this->show(); });
+    #endif
+    }
+    void setMessageParentWidget(QWidget *parent) { messageParentWidget = parent; }
+    
+    void set_fix_quardCRT_issue33(bool fix) { _fix_quardCRT_issue33 = fix; }
 
 signals:
 
@@ -585,8 +618,10 @@ signals:
 	void termGetFocus();
 	void termLostFocus();
 
-    void notifyBell(const QString&);
+    void notifyBell();
     void usesMouseChanged();
+
+    void handleCtrlC(void);
 
 protected:
     bool event( QEvent * ) override;
@@ -668,7 +703,7 @@ private:
     // draws a section of text, all the text in this section
     // has a common color and style
     void drawTextFragment(QPainter& painter, const QRect& rect,
-                          const std::wstring& text, const Character* style);
+                          const std::wstring& text, Character* style,bool isSelection);
     // draws the background for a text fragment
     // if useOpacitySetting is true then the color's alpha value will be set to
     // the display's transparency (set with setOpacity()), otherwise the background
@@ -677,13 +712,16 @@ private:
                         bool useOpacitySetting);
     // draws the cursor character
     void drawCursor(QPainter& painter, const QRect& rect , const QColor& foregroundColor,
-                                       const QColor& backgroundColor , bool& invertColors);
+                                       const QColor& backgroundColor , bool& invertColors,
+                                       bool preedit = false);
     // draws the characters or line graphics in a text fragment
     void drawCharacters(QPainter& painter, const QRect& rect,  const std::wstring& text,
                                            const Character* style, bool invertCharacterColor);
     // draws a string of line graphics
     void drawLineCharString(QPainter& painter, int x, int y,
                             const std::wstring& str, const Character* attributes) const;
+    void drawLineCharString(QPainter& painter, int x, int y, 
+                            wchar_t ch, const Character* attributes) const;
 
     // draws the preedit string for input methods
     void drawInputMethodPreeditString(QPainter& painter , const QRect& rect);
@@ -709,7 +747,7 @@ private:
     void scrollImage(int lines , const QRect& region);
 
     // shows the multiline prompt
-    bool multilineConfirmation(const QString& text);
+    bool multilineConfirmation(QString& text);
 
     void calcGeometry();
     void propagateSize();
@@ -743,6 +781,7 @@ private:
 
     QGridLayout* _gridLayout;
 
+    CharWidth *_charWidth;
     bool _fixedFont; // has fixed pitch
     int  _fontHeight;     // height
     int  _fontWidth;     // width
@@ -774,15 +813,16 @@ private:
     QVector<LineProperty> _lineProperties;
 
     ColorEntry _colorTable[TABLE_COLORS];
-    uint _randomSeed;
 
     bool _resizing;
     bool _terminalSizeHint;
     bool _terminalSizeStartup;
     bool _bidiEnabled;
     bool _mouseMarks;
+    bool _isPrimaryScreen;
     bool _bracketedPasteMode;
     bool _disabledBracketedPasteMode;
+    bool _showResizeNotificationEnabled;
 
     QPoint  _iPntSel; // initial selection point
     QPoint  _pntSel; // current selection point
@@ -835,6 +875,7 @@ private:
 
     qreal _opacity;
 
+    QPixmap *_backgroundPixmapRef = nullptr;
     QPixmap _backgroundImage;
     QMovie *_backgroundMovie = nullptr;
     QMediaPlayer* _backgroundVideoPlayer;
@@ -843,6 +884,8 @@ private:
     bool _isLocked;
     QPixmap _lockbackgroundImage;
     BackgroundMode _backgroundMode;
+
+    qreal _selectedTextOpacity;
 
     // list of filters currently applied to the display.  used for links and
     // search highlight
@@ -857,8 +900,8 @@ private:
 
 
     MotionAfterPasting mMotionAfterPasting;
-    bool _confirmMultilinePaste;
-    bool _trimPastedTrailingNewlines;
+    bool _confirmMultilinePaste = true;
+    bool _trimPastedTrailingNewlines = true;
 
     struct InputMethodData
     {
@@ -877,6 +920,15 @@ private:
 
     bool _drawLineChars;
 
+    int _preeditColorIndex = 16; //Color4Intense
+
+    int shiftSelectionStartX = -1;
+    int shiftSelectionStartY = -1;
+
+    QWidget *messageParentWidget = nullptr;
+
+    bool _fix_quardCRT_issue33 = false;
+
 public:
     static void setTransparencyEnabled(bool enable)
     {
@@ -886,8 +938,7 @@ public:
 
 class AutoScrollHandler : public QObject
 {
-Q_OBJECT
-
+    Q_OBJECT
 public:
     AutoScrollHandler(QWidget* parent);
 protected:
@@ -898,6 +949,49 @@ private:
     int _timerId;
 };
 
-}
+class MultilineConfirmationMessageBox : public QDialog {
+    Q_OBJECT
+
+public:
+    explicit MultilineConfirmationMessageBox(QWidget *parent = nullptr) : QDialog(parent) {
+        setModal(true);
+        setSizeGripEnabled(true);
+        resize(500, 300);
+        QVBoxLayout *layout = new QVBoxLayout(this);
+        messageText = new QLabel(this);
+        detailedText = new QPlainTextEdit(this);
+        buttonBox = new QDialogButtonBox(QDialogButtonBox::Yes|QDialogButtonBox::No);
+        layout->addWidget(messageText);
+        layout->addWidget(detailedText);
+        layout->addWidget(buttonBox);
+        setLayout(layout);
+        QSourceHighlite::QSourceHighliter *highlighter =
+            new QSourceHighlite::QSourceHighliter(detailedText->document());
+        highlighter->setCurrentLanguage(QSourceHighlite::QSourceHighliter::CodeBash);
+        detailedText->setLineWrapMode(QPlainTextEdit::NoWrap);
+        //detailedText->setReadOnly(true);
+        connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+        connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    }
+    ~MultilineConfirmationMessageBox() override {
+        delete messageText;
+        delete detailedText;
+        delete buttonBox;
+    }
+    void setText(const QString &text) {
+        messageText->setText(text);
+    }
+    void setDetailedText(const QString &text) {
+        detailedText->setPlainText(text);
+    }
+    QString getDetailedText() const {
+        return detailedText->toPlainText();
+    }
+
+private:
+    QLabel *messageText;
+    QPlainTextEdit *detailedText;
+    QDialogButtonBox *buttonBox;
+};
 
 #endif // TERMINALDISPLAY_H
