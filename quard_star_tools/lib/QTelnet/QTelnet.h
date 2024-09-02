@@ -23,8 +23,9 @@ public:
     };
     enum SocketType
     {
-        TCP,
-        WEBSOCKET
+        TCP = 0,
+        WEBSOCKET,
+        SECUREWEBSOCKET
     };
 
 protected:
@@ -114,6 +115,7 @@ private:
 
 public:
     explicit QTelnet(SocketType type = TCP, QObject *parent = 0);
+    explicit QTelnet(QObject *parent = 0) : QTelnet(TCP, parent) {}
 
     void setType(SocketType type);
     void connectToHost(const QString &hostName, quint16 port);
@@ -138,11 +140,14 @@ public:
     QString peerInfo()const;
     QString peerName()const;
 
+    QString errorString();
+
 signals:
     void newData(const char *buff, int len);
     void endOfRecord();
     void echoLocal(bool echo);
 	void stateChanged(QAbstractSocket::SocketState s);
+    void error(QAbstractSocket::SocketError err);
 
 private slots:
     void socketError(QAbstractSocket::SocketError err);

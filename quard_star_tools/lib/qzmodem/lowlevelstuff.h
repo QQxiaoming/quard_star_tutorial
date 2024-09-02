@@ -178,7 +178,7 @@ private:
   int zm_get_escaped_char(void);
   int zm_get_escaped_char_internal(int);
   int zm_get_hex_encoded_byte(void);
-  void zputhex(int c, char *pos);
+  void zputhex(int c, unsigned char *pos);
   int zm_read_binary_header(void);
   int zm_read_binary_header32(void);
   int zm_read_hex_header(void);

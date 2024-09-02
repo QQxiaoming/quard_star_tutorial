@@ -39,9 +39,7 @@ Vt102Emulation::Vt102Emulation()
             _reportFocusEvents(false), _toUtf8(QStringEncoder::Utf8),
             _isTitleChanged(false) {
     _titleUpdateTimer->setSingleShot(true);
-    QObject::connect(_titleUpdateTimer, &QTimer::timeout, this,
-                                     &Vt102Emulation::updateTitle);
-
+    QObject::connect(_titleUpdateTimer, &QTimer::timeout, this, &Vt102Emulation::updateTitle);
     initTokenizer();
     reset();
 }
@@ -182,9 +180,8 @@ void Vt102Emulation::addToCurrentToken(wchar_t cc) {
 #define DIG 8  // Digit
 #define SCS 16 // TODO: Document me
 #define GRP 32 // TODO: Document me
-#define CPS                                                                    \
-    64 // Character which indicates end of window resize
-         // escape sequence '\e[8;<row>;<col>t'
+#define CPS 64 // Character which indicates end of window resize
+               // escape sequence '\e[8;<row>;<col>t'
 
 void Vt102Emulation::initTokenizer() {
     int i;
@@ -1524,7 +1521,7 @@ void Vt102Emulation::sendString(const char *s, int length) {
     if (length >= 0)
         emit sendData(s, length);
     else
-        emit sendData(s, strlen(s));
+        emit sendData(s, static_cast<int>(strlen(s)));
 }
 
 void Vt102Emulation::reportCursorPosition() {
@@ -1671,6 +1668,7 @@ void Vt102Emulation::sendText(const QString &text) {
         sendKeyEvent(&event, false); // expose as a big fat keypress event
     }
 }
+
 void Vt102Emulation::sendKeyEvent(QKeyEvent *event, bool fromPaste) {
     Qt::KeyboardModifiers modifiers = event->modifiers();
     KeyboardTranslator::States states = KeyboardTranslator::NoState;
@@ -2036,5 +2034,5 @@ char Vt102Emulation::eraseChar() const {
 void Vt102Emulation::reportDecodingError() {
     if (tokenBufferPos == 0 || (tokenBufferPos == 1 && (tokenBuffer[0] & 0xff) >= 32))
         return;
-    qDebug()<< "Undecodable sequence:" << QString::fromWCharArray(tokenBuffer, tokenBufferPos);
+    //qDebug()<< "Undecodable sequence:" << QString::fromWCharArray(tokenBuffer, tokenBufferPos);
 }

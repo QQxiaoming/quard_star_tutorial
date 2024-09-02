@@ -211,7 +211,7 @@ int LowLevelStuff::zm_get_hex_encoded_byte(void) {
 #endif
   return c;
 }
-void LowLevelStuff::zputhex(int c, char *pos) {
+void LowLevelStuff::zputhex(int c, unsigned char *pos) {
   static char digits[] = "0123456789abcdef";
 
 #ifdef DEBUGZ
@@ -561,7 +561,7 @@ void LowLevelStuff::zm_send_binary_header(int type) {
 }
 void LowLevelStuff::zm_send_hex_header(int type) {
   unsigned short crc;
-  char s[30];
+  unsigned char s[30];
   size_t len;
 
 #ifdef DEBUGZ
@@ -608,7 +608,7 @@ void LowLevelStuff::zm_send_hex_header(int type) {
     s[len++] = 021;
   }
   flush_sendlines();
-  xsendlines(s, len);
+  xsendlines((char*)(s), len);
 }
 void LowLevelStuff::zm_send_data(const char *buf, size_t length, int frameend) {
   unsigned short crc;
@@ -900,7 +900,7 @@ fifi:
     }
   }
   if (payload)
-    *payload = rxpos;
+    *payload = static_cast<uint32_t>(rxpos);
 
   /* If we got an intro message, log it. */
   if (intro_msg_len > 0) {
@@ -981,7 +981,7 @@ int LowLevelStuff::zm_do_crc_check(QFile *f, size_t remote_bytes,
   f->seek(0);
 
   while (t1 < 3) {
-    zm_set_header_payload(check_bytes);
+    zm_set_header_payload(static_cast<uint32_t>(check_bytes));
     zm_send_hex_header(ZCRC);
     while (t2 < 3) {
       uint32_t tmp;

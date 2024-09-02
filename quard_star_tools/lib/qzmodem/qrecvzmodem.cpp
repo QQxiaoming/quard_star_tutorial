@@ -237,7 +237,7 @@ int QRecvZmodem::rz_zmodem_session_startup(void) {
       zm->zm_send_hex_header(ZNAK);
       goto again;
     case ZFREECNT:
-      zm->zm_set_header_payload(getfree());
+      zm->zm_set_header_payload(static_cast<uint32_t>(getfree()));
       zm->zm_send_hex_header(ZACK);
       goto again;
     case ZCOMPL:
@@ -578,7 +578,7 @@ int QRecvZmodem::rz_receive_sector(size_t *Blklen, char *rxbuf,
       sectcurr = zm->zreadline_getc(1);
       if ((sectcurr + (oldcrc = zm->zreadline_getc(1))) == 0377) {
         oldcrc = checksum = 0;
-        for (p = rxbuf, wcj = *Blklen; --wcj >= 0;) {
+        for (p = rxbuf, wcj = static_cast<int>(*Blklen); --wcj >= 0;) {
           if ((firstch = zm->zreadline_getc(1)) < 0)
             goto bilge;
           oldcrc = updcrc(firstch, oldcrc);
@@ -788,7 +788,7 @@ int QRecvZmodem::rz_receive_file(struct zm_fileinfo *zi) {
   }
 
   for (;;) {
-    zm->zm_set_header_payload(zi->bytes_received);
+    zm->zm_set_header_payload(static_cast<uint32_t>(zi->bytes_received));
     zm->zm_send_hex_header(ZRPOS);
     goto skip_oosb;
   nxthdr:
@@ -798,14 +798,12 @@ int QRecvZmodem::rz_receive_file(struct zm_fileinfo *zi) {
         if (akt->pos == zi->bytes_received) {
           rz_write_string_to_file(zi, akt->data, akt->len);
           zi->bytes_received += akt->len;
-          qDebug("using saved out-of-sync-paket %lx, len %ld", akt->pos,
-                 akt->len);
+          qDebug() << QString("using saved out-of-sync-paket 0x%0, len %1").arg(akt->pos,0,16).arg(akt->len);
           goto nxthdr;
         }
         next = akt->next;
         if (akt->pos < zi->bytes_received) {
-          qDebug("removing unneeded saved out-of-sync-paket %lx, len %ld",
-                 akt->pos, akt->len);
+          qDebug() << QString("removing unneeded saved out-of-sync-paket 0x%0, len %1").arg(akt->pos,0,16).arg(akt->len);
           if (last)
             last->next = akt->next;
           else
@@ -881,8 +879,7 @@ int QRecvZmodem::rz_receive_file(struct zm_fileinfo *zi) {
             if (neu)
               neu->data = (char *)malloc(bytes_in_block);
             if (neu && neu->data) {
-              qDebug("saving out-of-sync-block %lx, len %lu", pos,
-                     (unsigned long)bytes_in_block);
+              qDebug() << QString("saving out-of-sync-block 0x%0, len %1").arg(pos,0,16).arg(bytes_in_block);
               memcpy(neu->data, secbuf, bytes_in_block);
               neu->pos = pos;
               neu->len = bytes_in_block;
@@ -907,7 +904,7 @@ int QRecvZmodem::rz_receive_file(struct zm_fileinfo *zi) {
           d = 0.5; /* timing() might use time() */
         last_bps = zi->bytes_received / d;
         if (last_bps > 0) {
-          minleft = (R_BYTESLEFT(zi)) / last_bps / 60;
+          minleft = static_cast<int>((R_BYTESLEFT(zi)) / last_bps / 60);
           secleft = ((R_BYTESLEFT(zi)) / last_bps) % 60;
         }
         if (min_bps) {
@@ -937,9 +934,9 @@ int QRecvZmodem::rz_receive_file(struct zm_fileinfo *zi) {
               minleft, secleft);
 #endif
         bool ret = false;
-        emit tick(zi->fname, zi->bytes_received, zi->bytes_total, last_bps,
-                  minleft, secleft, &ret);
-        last_rxbytes = zi->bytes_received;
+        emit tick(zi->fname, static_cast<long>(zi->bytes_received), static_cast<long>(zi->bytes_total),
+                  static_cast<long>(last_bps), minleft, secleft, &ret);
+        last_rxbytes = static_cast<long>(zi->bytes_received);
         not_printed = 0;
       } else
         not_printed++;
@@ -964,14 +961,14 @@ int QRecvZmodem::rz_receive_file(struct zm_fileinfo *zi) {
         n = 20;
         rz_write_string_to_file(zi, secbuf, bytes_in_block);
         zi->bytes_received += bytes_in_block;
-        zm->zm_set_header_payload(zi->bytes_received);
+        zm->zm_set_header_payload(static_cast<uint32_t>(zi->bytes_received));
         zm->zm_send_hex_header(ZACK | 0x80);
         goto nxthdr;
       case GOTCRCQ:
         n = 20;
         rz_write_string_to_file(zi, secbuf, bytes_in_block);
         zi->bytes_received += bytes_in_block;
-        zm->zm_set_header_payload(zi->bytes_received);
+        zm->zm_set_header_payload(static_cast<uint32_t>(zi->bytes_received));
         zm->zm_send_hex_header(ZACK);
         goto moredata;
       case GOTCRCG:

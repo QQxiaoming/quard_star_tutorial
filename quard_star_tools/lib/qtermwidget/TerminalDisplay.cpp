@@ -666,15 +666,17 @@ void TerminalDisplay::drawLineCharString(QPainter &painter, int x, int y,
         boldPen.setWidth(3);
         painter.setPen(boldPen);
     }
+#else
+    Q_UNUSED(attributes);
 #endif
 
     for (size_t i = 0; i < str.length(); i++) {
         uint8_t code = static_cast<uint8_t>(str[i] & 0xffU);
         if (LineChars[code])
-            drawLineChar(painter, x + (_fontWidth * i), y, _fontWidth, _fontHeight,
+            drawLineChar(painter, static_cast<int>(x + (_fontWidth * i)), y, _fontWidth, _fontHeight,
                                      code);
         else
-            drawOtherChar(painter, x + (_fontWidth * i), y, _fontWidth, _fontHeight,
+            drawOtherChar(painter, static_cast<int>(x + (_fontWidth * i)), y, _fontWidth, _fontHeight,
                                         code);
     }
 
@@ -692,6 +694,8 @@ void TerminalDisplay::drawLineCharString(QPainter &painter, int x, int y,
         boldPen.setWidth(3);
         painter.setPen(boldPen);
     }
+#else
+    Q_UNUSED(attributes);
 #endif
 
     uint8_t code = static_cast<uint8_t>(ch & 0xffU);
@@ -709,9 +713,11 @@ void TerminalDisplay::setKeyboardCursorShape(
 
     updateCursor();
 }
+
 QTermWidget::KeyboardCursorShape TerminalDisplay::keyboardCursorShape() const {
     return _cursorShape;
 }
+
 void TerminalDisplay::setKeyboardCursorColor(bool useForegroundColor,
                                              const QColor &color) {
     if (useForegroundColor)
@@ -723,6 +729,7 @@ void TerminalDisplay::setKeyboardCursorColor(bool useForegroundColor,
     else
         _cursorColor = color;
 }
+
 QColor TerminalDisplay::keyboardCursorColor() const { return _cursorColor; }
 
 void TerminalDisplay::setOpacity(qreal opacity) {
@@ -933,7 +940,7 @@ void TerminalDisplay::drawCharacters(QPainter &painter, const QRect &rect,
         for (size_t i = 0; i < text.length(); i++) {
             wchar_t line_char = text[i];
             if (isLineChar(line_char)) {
-                drawLineCharString(painter, rect.x() + single_rect_width * i, rect.y(),
+                drawLineCharString(painter, static_cast<int>(rect.x() + single_rect_width * i), rect.y(),
                                                      line_char, style);
             } else {
                 if (_charWidth->font_width(line_char) !=
@@ -953,10 +960,10 @@ void TerminalDisplay::drawCharacters(QPainter &painter, const QRect &rect,
                                 single_rect_width * (_charWidth->font_width(line_char) -
                                                                          CharWidth::unicode_width(line_char));
                         painter.save();
-                        QRect rightHalfRect(rect.x() + single_rect_width * i, rect.y(),
+                        QRect rightHalfRect(static_cast<int>(rect.x() + single_rect_width * i), rect.y(),
                                                                 single_rect_width, _fontHeight);
                         painter.setClipRect(rightHalfRect);
-                        painter.drawText(rect.x() + single_rect_width * i - offset,
+                        painter.drawText(static_cast<int>(rect.x() + single_rect_width * i - offset),
                                                          rect.y() + _fontAscent + _lineSpacing,
                                                          QString::fromWCharArray(&line_char, 1));
                         painter.restore();
@@ -966,25 +973,25 @@ void TerminalDisplay::drawCharacters(QPainter &painter, const QRect &rect,
                                                     CharWidth::unicode_width(line_char)) /
                                                  2;
                         painter.save();
-                        QRect rightHalfRect(rect.x() + single_rect_width * i, rect.y(),
+                        QRect rightHalfRect(static_cast<int>(rect.x() + single_rect_width * i), rect.y(),
                                                                 single_rect_width, _fontHeight);
                         painter.setClipRect(rightHalfRect);
-                        painter.drawText(rect.x() + single_rect_width * i - offset,
+                        painter.drawText(static_cast<int>(rect.x() + single_rect_width * i - offset),
                                                          rect.y() + _fontAscent + _lineSpacing,
                                                          QString::fromWCharArray(&line_char, 1));
                         painter.restore();
                     } else if (left_chars.contains(line_char)) {
-                        QRect rectangle(rect.x() + single_rect_width * i, rect.y(),
+                        QRect rectangle(static_cast<int>(rect.x() + single_rect_width * i), rect.y(),
                                                         single_rect_width, _fontHeight);
                         painter.drawText(rectangle, 0,
                                                          QString::fromWCharArray(&line_char, 1));
                     } else {
-                        painter.drawText(rect.x() + single_rect_width * i,
+                        painter.drawText(static_cast<int>(rect.x() + single_rect_width * i),
                                                          rect.y() + _fontAscent + _lineSpacing,
                                                          QString::fromWCharArray(&line_char, 1));
                     }
                 } else {
-                    painter.drawText(rect.x() + single_rect_width * i,
+                    painter.drawText(static_cast<int>(rect.x() + single_rect_width * i),
                                                      rect.y() + _fontAscent + _lineSpacing,
                                                      QString::fromWCharArray(&line_char, 1));
                 }
@@ -1746,7 +1753,8 @@ void TerminalDisplay::paintFilters(QPainter &painter) {
             do {
                 if (endColumn <= 0)
                     break;
-                if (_image[loc(startColumn, line)].character > 0xffff)
+                uint64_t ucode = _image[loc(startColumn, line)].character;
+                if (ucode > 0xffff)
                     break;
                 if (QChar(_image[loc(startColumn, line)].character).isSpace())
                     break;

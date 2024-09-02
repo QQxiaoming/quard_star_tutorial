@@ -74,6 +74,7 @@ public:
         WEBSOCKET
     };
     explicit QVNCClientWidget(SocketType type = TCP, QWidget *parent = 0);
+    explicit QVNCClientWidget(QWidget *parent = 0) : QVNCClientWidget(TCP, parent) {}
     ~QVNCClientWidget();
     
     void setType(SocketType type);
@@ -90,9 +91,13 @@ public:
         disconnect(this, SIGNAL(frameBufferUpdated()), this, SLOT(sendFrameBufferUpdateRequest()));
     }
 
+    void screenShot(QPixmap *pixmap);
+    void screenShot(const QString &fileName);
+    
 public slots:
     void sendFrameBufferUpdateRequest(int incremental = 1);
     void setFullScreen(bool full);
+    void setMouseHide(bool hide);
 
 protected:
     void resizeEvent(QResizeEvent *e);

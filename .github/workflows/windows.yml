@@ -56,7 +56,7 @@ jobs:
           zip -r release_win64.zip gui_tools/ output/ run.bat run_quard_star_tools.bat
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: release_win64
           path: |

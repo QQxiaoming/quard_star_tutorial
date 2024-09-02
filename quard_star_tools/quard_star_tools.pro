@@ -19,6 +19,8 @@ include(./lib/qxymodem/qxymodem.pri)
 include(./lib/qzmodem/qzmodem.pri)
 include(./lib/qtermwidget/qtermwidget.pri)
 include(./lib/QSourceHighlite/QSourceHighlite.pri)
+include(./lib/QVNCClient/QVNCClient.pri)
+include(./lib/QTelnet/QTelnet.pri)
 
 INCLUDEPATH += \
         -I . \
@@ -35,10 +37,8 @@ SOURCES += \
     src/boardview/treemodel.cpp \
     src/boardview/fsviewmodel.cpp \
     src/boardview/qfsviewer.cpp \
-    src/telnetview/QTelnet.cpp \
     src/telnetview/telnetwindow.cpp \
     src/telnetview/asciibox.cpp \
-    src/vncview/qvncclientwidget.cpp \
     src/vncview/vncwindow.cpp
 
 HEADERS += \
@@ -48,10 +48,8 @@ HEADERS += \
     src/boardview/treemodel.h \
     src/boardview/fsviewmodel.h \
     src/boardview/qfsviewer.h \
-    src/telnetview/QTelnet.h \
     src/telnetview/telnetwindow.h \
     src/telnetview/asciibox.h \
-    src/vncview/qvncclientwidget.h \
     src/vncview/vncwindow.h
 
 FORMS += \

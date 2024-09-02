@@ -1,7 +1,7 @@
 #include <QThread>
 #include "qvncclientwidget.h"
 
-QVNCClientWidget::QVNCClientWidget(SocketType type, QWidget *parent) :
+QVNCClientWidget::QVNCClientWidget(SocketType type,QWidget *parent) :
     QWidget(parent), isScaled(true)
 {
     setMouseTracking(true);
@@ -144,6 +144,32 @@ void QVNCClientWidget::setFullScreen(bool full)
     resizeEvent(nullptr);
 }
 
+void QVNCClientWidget::setMouseHide(bool hide)
+{
+    if (hide)
+        setCursor(Qt::BlankCursor);
+    else
+        unsetCursor();
+}
+
+void QVNCClientWidget::screenShot(QPixmap *pixmap)
+{
+    QPixmap currPixmap(size());
+    render(&currPixmap);
+    *pixmap = currPixmap.scaled(pixmap->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+}
+
+void QVNCClientWidget::screenShot(const QString &fileName)
+{
+    qreal deviceratio = devicePixelRatio();
+    deviceratio = deviceratio*2;
+    QPixmap pixmap(size() * deviceratio);
+    pixmap.setDevicePixelRatio(deviceratio);
+    render(&pixmap);
+    pixmap.save(fileName);
+}
+
+
 void QVNCClientWidget::resizeEvent(QResizeEvent *e)
 {
     if (isScaled)
@@ -153,9 +179,9 @@ void QVNCClientWidget::resizeEvent(QResizeEvent *e)
     else
     {
         qint32 x = 0, y = 0;
-        if (screen.width() < this->geometry().width())
+        if (screen.width() && screen.width() < this->geometry().width())
             x = (this->geometry().width() - screen.width()) / 2;
-        if (screen.height() < this->geometry().height())
+        if (screen.height() && screen.height() < this->geometry().height())
             y = (this->geometry().height() - screen.height()) / 2;
         paintTargetX = x;
         paintTargetY = y;
@@ -173,8 +199,7 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
 
     QPainter painter;
     painter.begin(this);
-    if (isScaled)
-    {
+    if (isScaled) {
     #if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
         painter.drawImage(paintTargetX, paintTargetY, 
             [&]()->QImage{
@@ -192,9 +217,25 @@ void QVNCClientWidget::paintEvent(QPaintEvent *event)
     #else
         painter.drawImage(paintTargetX, paintTargetY, screen.scaled(width(), height(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
     #endif
-    }
-    else
+    } else {
+    #if defined(Q_OS_MACOS) || defined(Q_OS_IOS)
+        painter.drawImage(paintTargetX, paintTargetY, 
+            [&]()->QImage{
+                QImage src = screen.copy(paintTargetX, paintTargetY, width(), height());
+                QImage dst(src.size(), QImage::Format_RGB888);
+                for (int x = 0; x < src.width(); x++) {
+                    for (int y = 0; y < src.height(); y++) {
+                        QColor pixel = src.pixel(x, y);
+                        pixel.setAlpha(255);
+                        dst.setPixelColor(x, y, pixel);
+                    }
+                }
+                return dst;
+            }());
+    #else
         painter.drawImage(paintTargetX, paintTargetY, screen);
+    #endif
+    }
     painter.end();
 
     event->accept();

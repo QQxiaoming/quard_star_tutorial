@@ -14,7 +14,8 @@ void CharWidth::setFont(QFont font) {
 }
 
 int CharWidth::font_width(wchar_t ucs) {
-    if(ucs <= 0xffff)
+    uint64_t ucode = ucs;
+    if(ucode <= 0xffff)
         return fm->horizontalAdvance(QString(QChar(ucs)),1)/fm->horizontalAdvance("0",1);
     else
         return unicode_width(ucs);

@@ -643,13 +643,13 @@ int QSendZmodem::sz_calculate_block_length(long total_sent) {
       return last_blklen = 1024;
     else
       last_blklen /= 2;
-    return last_blklen = start_blklen;
+    return last_blklen = static_cast<int>(start_blklen);
   }
 
   if (!error_count) {
     /* that's fine */
     if (start_blklen == max_blklen)
-      return start_blklen;
+      return static_cast<int>(start_blklen);
     this_bytes_per_error = LONG_MAX;
     goto calcit;
   }
@@ -875,15 +875,15 @@ somemore:
    * data subpackets."  */
 
   txwcnt = 0;
-  zm->zm_set_header_payload(zi->bytes_sent);
+  zm->zm_set_header_payload(static_cast<uint32_t>(zi->bytes_sent));
   zm->zm_send_binary_header(ZDATA);
 
   do {
     size_t n;
     int e;
-    unsigned old = blklen;
+    unsigned int old = static_cast<unsigned int>(blklen);
     blklen = sz_calculate_block_length(total_sent);
-    total_sent += blklen + OVERHEAD;
+    total_sent += static_cast<long>(blklen + OVERHEAD);
 #ifdef DEBUGZ
     if (blklen != old)
       qDebug("blklen now %ld", blklen);
@@ -916,7 +916,7 @@ somemore:
 #ifdef DEBUGZ
       qDebug("e=ZCRCW/bytcnt == lastsync == %ld", (unsigned long)lastsync);
 #endif
-    } else if (txwindow && (txwcnt += n) >= txwspac) {
+    } else if (txwindow && (txwcnt += static_cast<unsigned int>(n)) >= txwspac) {
       /* Spec 8.2: "ZCRCQ data subpackets expect a
        * ZACK response with the receiver's file
        * offset if no error, otherwise a ZRPOS
@@ -944,7 +944,7 @@ somemore:
       time_t now;
       last_bps = (zi->bytes_sent / timing(0, &now));
       if (last_bps > 0) {
-        minleft = (zi->bytes_total - zi->bytes_sent) / last_bps / 60;
+        minleft = static_cast<int>((zi->bytes_total - zi->bytes_sent) / last_bps / 60);
         secleft = ((zi->bytes_total - zi->bytes_sent) / last_bps) % 60;
       }
       if (min_bps) {
@@ -1040,7 +1040,7 @@ somemore:
     /* Spec 8.2: [after sending a file] The sender sends a
      * ZEOF header with the file ending offset equal to
      * the number of characters in the file. */
-    zm->zm_set_header_payload(zi->bytes_sent);
+    zm->zm_set_header_payload(static_cast<uint32_t>(zi->bytes_sent));
     zm->zm_send_binary_header(ZEOF);
     switch (sz_getinsync(zi, 0)) {
     case ZACK:
@@ -1160,7 +1160,7 @@ int QSendZmodem::sz_transmit_sector(char *buf, int sectnum, size_t cseclen) {
     /* FIXME: clarify the following line - mlg */
     zm->xsendline((-sectnum - 1) & 0xFF);
     oldcrc = checksum = 0;
-    for (wcj = cseclen, cp = buf; --wcj >= 0;) {
+    for (wcj = static_cast<int>(cseclen), cp = buf; --wcj >= 0;) {
       zm->xsendline(*cp);
       oldcrc = updcrc((0377 & *cp), oldcrc);
       checksum += *cp++;
@@ -1199,7 +1199,7 @@ int QSendZmodem::sz_transmit_sector(char *buf, int sectnum, size_t cseclen) {
       continue;
     case ACK:
       firstsec = FALSE;
-      totsecs += (cseclen >> 7);
+      totsecs += static_cast<int>(cseclen >> 7);
       return OK;
     case ZM_ERROR:
       qCritical("Got burst for sector ACK");

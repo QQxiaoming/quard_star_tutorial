@@ -216,8 +216,8 @@ int main(int argc, char *argv[])
         qApp->setStyleSheet(ts.readAll());
     }
     
-    QFontIcon::addFont(":/icons/icons/fontawesome-webfont-v6.6.0-solid-900.ttf");
-    QFontIcon::addFont(":/icons/icons/fontawesome-webfont-v6.6.0-brands-400.ttf");    QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
+    QFontIcon::addFont(":/boardview/icons/fontawesome-webfont-v6.6.0-solid-900.ttf");
+    QFontIcon::addFont(":/boardview/icons/fontawesome-webfont-v6.6.0-brands-400.ttf");    QFontIcon::instance()->setColor(isDarkTheme?Qt::white:Qt::black);
     QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     static QRegularExpression ipFormat("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}$");

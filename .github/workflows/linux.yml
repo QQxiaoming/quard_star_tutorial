@@ -51,7 +51,7 @@ jobs:
           tar -czf release_linux.tar.gz gui_tools/ update_tools/ output/ run.sh update_tools.sh run_quard_star_tools.sh
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: release_linux
           path: |

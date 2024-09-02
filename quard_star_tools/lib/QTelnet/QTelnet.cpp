@@ -15,28 +15,28 @@ char QTelnet::_arrCR[2]           = { 13, 0 };
 QTelnet::QTelnet(SocketType type, QObject *parent) :
     QObject(parent),  m_socketType(type), m_actualSB(0)
 {
-    connect(&m_tcpSocket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)),
-            this, SLOT(socketError(QAbstractSocket::SocketError)) );
-    connect(&m_tcpSocket, SIGNAL(readyRead()),	this, SLOT(onTcpReadyRead()) );
-    connect(&m_tcpSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(onStateChanged(QAbstractSocket::SocketState)) );
+    connect(&m_tcpSocket, &QTcpSocket::errorOccurred, this, &QTelnet::socketError);
+    connect(&m_tcpSocket, &QTcpSocket::readyRead, this, &QTelnet::onTcpReadyRead);
+    connect(&m_tcpSocket, &QTcpSocket::stateChanged, this, &QTelnet::onStateChanged);
 
-    connect(&m_webSocket, SIGNAL(error(QAbstractSocket::SocketError)),
-            this, SLOT(socketError(QAbstractSocket::SocketError)) );
-    connect(&m_webSocket, SIGNAL(binaryMessageReceived(QByteArray)),
-            this, SLOT(binaryMessageReceived(QByteArray)) );
-    connect(&m_webSocket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(onStateChanged(QAbstractSocket::SocketState)) );
+    connect(&m_webSocket, &QWebSocket::errorOccurred, this, &QTelnet::socketError);
+    connect(&m_webSocket, &QWebSocket::binaryMessageReceived, this, &QTelnet::binaryMessageReceived);
+    connect(&m_webSocket, &QWebSocket::stateChanged, this, &QTelnet::onStateChanged);
 }
 
 void QTelnet::setType(SocketType type)
 {
-    m_socketType = type;
+    if(type != TCP && type != WEBSOCKET && type != SECUREWEBSOCKET)
+        m_socketType = TCP;
+    else
+        m_socketType = type;
 }
 
 QString QTelnet::peerInfo() const
 {
     if(m_socketType == TCP)
         return m_tcpSocket.peerName()+" ("+m_tcpSocket.peerAddress().toString()+" ):"+m_tcpSocket.peerPort();
-    else if(m_socketType == WEBSOCKET)
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
         return m_webSocket.peerName()+" ("+m_webSocket.peerAddress().toString()+" ):"+QString::number(m_webSocket.peerPort());
 
     return QString();
@@ -46,7 +46,7 @@ QString QTelnet::peerName() const
 {
     if(m_socketType == TCP)
         return m_tcpSocket.peerName();
-    else if(m_socketType == WEBSOCKET)
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
         return m_webSocket.peerName();
 
     return QString();
@@ -56,7 +56,7 @@ bool QTelnet::isConnected() const
 {
     if(m_socketType == TCP)
         return m_tcpSocket.state() == QAbstractSocket::ConnectedState;
-    else if(m_socketType == WEBSOCKET)
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
         return m_webSocket.state() == QAbstractSocket::ConnectedState;
 
     return false;
@@ -72,6 +72,9 @@ void QTelnet::connectToHost(const QString &host, quint16 port)
         } else if(m_socketType == WEBSOCKET) {
             m_webSocket.abort();
             m_webSocket.open(QUrl("ws://"+host+":"+QString::number(port)));
+        } else if(m_socketType == SECUREWEBSOCKET) {
+            m_webSocket.abort();
+            m_webSocket.open(QUrl("wss://"+host+":"+QString::number(port)));
         }
     }
 }
@@ -80,7 +83,7 @@ void QTelnet::disconnectFromHost(void)
 {
     if(m_socketType == TCP)
         m_tcpSocket.disconnectFromHost();
-    else if(m_socketType == WEBSOCKET)
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
         m_webSocket.close();
 }
 
@@ -90,7 +93,7 @@ void QTelnet::write(const char c)
         return;
     if(m_socketType == TCP)
         m_tcpSocket.write( (char*)&c, 1 );
-    else if(m_socketType == WEBSOCKET)
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
         m_webSocket.sendBinaryMessage(QByteArray(&c, 1));
 }
 
@@ -100,7 +103,7 @@ qint64 QTelnet::write(const char *data, qint64 len)
         return 0;
     if(m_socketType == TCP) {
         return m_tcpSocket.write( data, len );
-    } else if(m_socketType == WEBSOCKET) {
+    } else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET) {
         return m_webSocket.sendBinaryMessage(QByteArray(data, len));
     }
     return 0;
@@ -112,7 +115,7 @@ qint64 QTelnet::read(char *data, qint64 maxlen)
         return 0;
     if(m_socketType == TCP)
         return m_tcpSocket.read(data, maxlen);
-    else if(m_socketType == WEBSOCKET) {
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET) {
         return 0;
     }
     return 0;
@@ -138,7 +141,17 @@ void QTelnet::sendData(const char *data, int len)
 void QTelnet::socketError(QAbstractSocket::SocketError err)
 {
     disconnectFromHost();
-    Q_UNUSED(err);
+    emit error(err);
+}
+
+QString QTelnet::errorString()
+{
+    if(m_socketType == TCP)
+        return m_tcpSocket.errorString();
+    else if(m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
+        return m_webSocket.errorString();
+
+    return QString();
 }
 
 void QTelnet::setCustomCR(char cr, char cr2)
@@ -255,7 +268,7 @@ void QTelnet::transpose(const char *buf, int iLen)
             // linefeed+carriage return is CR LF
 
             // En modo binario no se traduce nada.
-            if( testBinaryMode() || m_socketType == WEBSOCKET )
+            if( testBinaryMode() || m_socketType == WEBSOCKET  || m_socketType == SECUREWEBSOCKET)
                 write(buf[i]);
             else
                 writeCustomCRLF();
@@ -264,7 +277,7 @@ void QTelnet::transpose(const char *buf, int iLen)
             // carriage return is CR NUL */
 
             // En modo binario no se traduce nada.
-            if( testBinaryMode() || m_socketType == WEBSOCKET )
+            if( testBinaryMode() || m_socketType == WEBSOCKET || m_socketType == SECUREWEBSOCKET)
                 write(buf[i]);
             else
                 writeCustomCRLF();

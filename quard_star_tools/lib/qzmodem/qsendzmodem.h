@@ -94,9 +94,9 @@ private:
   size_t bytcnt;
   char crcflg;
   int firstsec;
-  unsigned txwindow; /* Control the size of the transmitted window */
-  unsigned txwspac;  /* Spacing between zcrcq requests */
-  unsigned txwcnt;   /* Counter used to space ack requests */
+  unsigned int txwindow; /* Control the size of the transmitted window */
+  unsigned int txwspac;  /* Spacing between zcrcq requests */
+  unsigned int txwcnt;   /* Counter used to space ack requests */
   size_t lrxpos;     /* Receiver's last reported offset */
   int errors;
   int under_rsh;
