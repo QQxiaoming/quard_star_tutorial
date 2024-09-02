@@ -416,8 +416,6 @@ public:
     /** Returns the terminal screen section which is displayed in this widget.  See setScreenWindow() */
     ScreenWindow* screenWindow() const;
 
-    static bool HAVE_TRANSPARENCY;
-
     void setMotionAfterPasting(MotionAfterPasting action);
     int motionAfterPasting();
     void setConfirmMultilinePaste(bool confirmMultilinePaste);
@@ -928,12 +926,6 @@ private:
     QWidget *messageParentWidget = nullptr;
 
     bool _fix_quardCRT_issue33 = false;
-
-public:
-    static void setTransparencyEnabled(bool enable)
-    {
-        HAVE_TRANSPARENCY = enable;
-    }
 };
 
 class AutoScrollHandler : public QObject

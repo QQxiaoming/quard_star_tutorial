@@ -40,7 +40,7 @@ jobs:
         run: |
           rm -rf ./.git
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: true
           activate-environment: ""
@@ -193,7 +193,7 @@ jobs:
         run: |
           brew install libslirp libffi gettext glib pkg-config autoconf automake pixman ninja dylibbundler
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: true
           activate-environment: ""
