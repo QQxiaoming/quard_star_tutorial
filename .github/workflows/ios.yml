@@ -22,14 +22,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets'
           aqtversion: ==3.1.7
 
       - name: Install Qt ios
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets qtmultimedia'

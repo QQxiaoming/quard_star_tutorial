@@ -28,14 +28,14 @@ jobs:
           sudo apt install -y make gcc
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.6.0'
           modules: 'qt5compat qtwebsockets qtmultimedia'
           aqtversion: ==3.1.7
 
       - name: Install Qt webassembly
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           arch: wasm_singlethread
           version: '6.6.0'
