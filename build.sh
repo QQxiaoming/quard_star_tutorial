@@ -73,6 +73,37 @@ build_qemu_macos()
     make install
 }
 
+build_qemu_android()
+{
+    echo "--------------------------- 编译qemu_android ---------------------------"
+    cd $SHELL_FOLDER/qemu-8.0.0
+    export NDK=/home/qqm/Android/Sdk/ndk/25.1.8937393
+    export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+    export NDK_CROSS=$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin
+    export TARGET=x86_64-linux-android
+    export API=21
+    export AR=$TOOLCHAIN/bin/llvm-ar
+    export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+    export AS=$CC
+    export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+    export LD=$TOOLCHAIN/bin/ld
+    export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+    export STRIP=$TOOLCHAIN/bin/llvm-strip
+    export SYSROOT=$NDK/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+    export PKG_CONFIG_PATH=$SYSROOT/python3/lib/pkgconfig
+    export PKG_CONFIG_LIBDIR=$NDK_CROSS
+    export PATH=$PATH:$NDK:$NDK_CROSS
+    if [ ! -d "$SHELL_FOLDER/output/qemu_android" ]; then  
+    ./configure \
+        --cc=$CC \
+        --cxx=$CXX \
+        --prefix=$SHELL_FOLDER/output/qemu_android \
+        --target-list=riscv64-softmmu --enable-virtfs
+    fi  
+    make -j$PROCESSORS
+    make install
+}
+
 build_mask_rom()
 {
     echo "---------------------------- 编译mask_rom ----------------------------"
@@ -387,6 +418,9 @@ qemu_w64)
     ;;
 qemu_macos)
     build_qemu_macos
+    ;;
+qemu_android)
+    build_qemu_android
     ;;
 mask_rom)
     build_mask_rom

@@ -19,7 +19,6 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
     02110-1301  USA.
 */
-
 #ifndef SCREEN_H
 #define SCREEN_H
 
@@ -37,9 +36,6 @@
 #define MODE_Cursor    4
 #define MODE_NewLine   5
 #define MODES_SCREEN   6
-
-namespace Konsole
-{
 
 class TerminalCharacterDecoder;
 
@@ -314,6 +310,8 @@ public:
     int  getCursorX() const;
     /** Returns the line which the cursor is positioned on. */
     int  getCursorY() const;
+    
+    QString getScreenText(int row1, int col1, int row2, int col2, int mode);
 
     /** Clear the entire screen and move the cursor to the home position.
      * Equivalent to calling clearEntireScreen() followed by home().
@@ -393,11 +391,9 @@ public:
 
 
     /** Return the number of lines. */
-    int getLines() const
-    { return lines; }
+    int getLines() const { return lines; }
     /** Return the number of columns. */
-    int getColumns() const
-    { return columns; }
+    int getColumns() const { return columns; }
     /** Return the number of lines in the history buffer. */
     int getHistLines() const;
     /**
@@ -445,6 +441,7 @@ public:
 
     /** Clears the current selection */
     void clearSelection();
+    bool isClearSelection();
 
     /**
       *  Returns true if the character at (@p column, @p line) is part of the
@@ -665,8 +662,7 @@ private:
     CharacterColor effectiveBackground; // the cu_* variables above
     quint8 effectiveRendition;          // to speed up operation
 
-    class SavedState
-    {
+    class SavedState {
     public:
         SavedState()
         : cursorColumn(0),cursorLine(0),rendition(0) {}
@@ -687,7 +683,5 @@ private:
 
     static Character defaultChar;
 };
-
-}
 
 #endif // SCREEN_H

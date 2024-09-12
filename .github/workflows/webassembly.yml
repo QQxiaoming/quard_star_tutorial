@@ -28,14 +28,14 @@ jobs:
           sudo apt install -y make gcc
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.6.0'
           modules: 'qt5compat qtwebsockets qtmultimedia'
           aqtversion: ==3.1.7
 
       - name: Install Qt webassembly
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           arch: wasm_singlethread
           version: '6.6.0'
@@ -43,7 +43,7 @@ jobs:
           aqtversion: ==3.1.7
 
       - name: Install emsdk
-        uses: mymindstorm/setup-emsdk@v12
+        uses: mymindstorm/setup-emsdk@v14
         with:
           version: 3.1.25
           actions-cache-folder: 'emsdk-cache'
@@ -57,11 +57,11 @@ jobs:
           git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
-          ${Qt6_DIR}/bin/qmake -makefile
+          ${QT_ROOT_DIR}/bin/qmake -makefile
           make
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: quard_star_tools_webassembly
           path: |

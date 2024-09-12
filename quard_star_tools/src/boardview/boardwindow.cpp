@@ -1145,5 +1145,4 @@ void BoardWindow::setAppLangeuage(QLocale::Language lang)
             qApp->installTranslator(appTranslator);
         break;
     }
-    QTermWidget::setLangeuage(lang);
 }

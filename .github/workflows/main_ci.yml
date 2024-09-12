@@ -40,7 +40,7 @@ jobs:
         run: |
           rm -rf ./.git
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: true
           activate-environment: ""
@@ -58,7 +58,7 @@ jobs:
                 libvirglrenderer-dev libsdl2-image-dev
 
       - name: Cache toolchain
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: toolchain
         with:
@@ -120,7 +120,7 @@ jobs:
           tar -czf toolchain.tar.gz $HOME/gcc-riscv64-unknown-linux-gnu $HOME/gcc-riscv64-unknown-elf
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: |
@@ -128,7 +128,7 @@ jobs:
           retention-days: 1
 
       - name: Upload prebuilt toolchain
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: prebuilt_toolchain
           path: |
@@ -171,7 +171,7 @@ jobs:
             cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll ./output/qemu_w64/
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: qemu_w64
           path: |
@@ -193,7 +193,7 @@ jobs:
         run: |
           brew install libslirp libffi gettext glib pkg-config autoconf automake pixman ninja dylibbundler
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: true
           activate-environment: ""
@@ -209,7 +209,7 @@ jobs:
           tar -czf qemu_macos.tar.gz output/
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: qemu_macos
           path: |
@@ -222,7 +222,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets qtmultimedia'
@@ -262,7 +262,7 @@ jobs:
           tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: quard_star_tools
           path: |
@@ -282,7 +282,7 @@ jobs:
           git checkout
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           arch: win64_mingw
           version: '6.5.3'
@@ -302,7 +302,7 @@ jobs:
           Rename-Item ./release gui_tools
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: quard_star_tools_w64
           path: |
@@ -316,7 +316,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets qtmultimedia'
@@ -346,7 +346,7 @@ jobs:
           tar -czf quard_star_tools.tar.gz gui_tools/ 
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: quard_star_tools_macos
           path: |

@@ -1,34 +1,37 @@
-/*  Copyright (C) 2008 e_k (e_k@users.sourceforge.net)
+/*  
+ Copyright (C) 2008 e_k (e_k@users.sourceforge.net)
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public
-    License as published by the Free Software Foundation; either
-    version 2 of the License, or (at your option) any later version.
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Library General Public License for more details.
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
 
-    You should have received a copy of the GNU Library General Public License
-    along with this library; see the file COPYING.LIB.  If not, write to
-    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-    Boston, MA 02110-1301, USA.
+ You should have received a copy of the GNU Library General Public License
+ along with this library; see the file COPYING.LIB.  If not, write to
+ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ Boston, MA 02110-1301, USA.
 */
-
-
 #ifndef _Q_TERM_WIDGET
 #define _Q_TERM_WIDGET
 
 #include <QTranslator>
 #include <QLocale>
 #include <QWidget>
+#include <QClipboard>
+#include <QTimer>
 #include "Emulation.h"
 #include "Filter.h"
 
 class QVBoxLayout;
-class TermWidgetImpl;
 class SearchBar;
+class Session;
+class TerminalDisplay;
+class Emulation;
 class QUrl;
 
 class QTermWidget : public QWidget {
@@ -46,11 +49,16 @@ public:
         /** Show the scroll bar on the right side of the display. */
         ScrollBarRight = 2
     };
+    enum UrlActivatedType {
+        OpenFromContextMenu = 0,
+        OpenContainingFromContextMenu = 1,
+        OpenFromClick = 2
+    };
 
-    using KeyboardCursorShape = Konsole::Emulation::KeyboardCursorShape;
+    using KeyboardCursorShape = Emulation::KeyboardCursorShape;
 
     //Creation of widget
-    QTermWidget(QWidget *parent = nullptr);
+    QTermWidget(QWidget *messageParentWidget = nullptr, QWidget *parent = nullptr);
 
     ~QTermWidget() override;
 
@@ -60,13 +68,6 @@ public:
     // expose TerminalDisplay::TerminalSizeHint, setTerminalSizeHint
     void setTerminalSizeHint(bool enabled);
     bool terminalSizeHint();
-
-    /**
-     * Start terminal teletype as is
-     * and redirect data for external recipient.
-     * It can be used for display and control a remote terminal.
-     */
-    void startTerminalTeletype();
 
     //look-n-feel, if you don`t like defaults
 
@@ -82,7 +83,7 @@ public:
     void setTerminalBackgroundMode(int mode);
 
     //Text codec, default is UTF-8
-    void setTextCodec(QTextCodec * codec);
+    void setTextCodec(QStringEncoder codec);
 
     /** @brief Sets the color scheme, default is white on black
      *
@@ -100,12 +101,12 @@ public:
      */
     QStringList getAvailableColorSchemes();
     static QStringList availableColorSchemes();
-    static void addCustomColorSchemeDir(const QString& custom_dir);
 
     void setBackgroundColor(const QColor &color);
     void setForegroundColor(const QColor &color);
     void setANSIColor(const int ansiColorId, const QColor &color);
 
+    void setPreeditColorIndex(int index);
 
     /** Sets the history size (in lines)
      *
@@ -208,12 +209,6 @@ public:
     void setBidiEnabled(bool enabled);
     bool isBidiEnabled();
 
-    QString title() const;
-    QString icon() const;
-
-    /** True if the title() or icon() was (ever) changed by the session. */
-    bool isTitleChanged() const;
-
     /** change and wrap text corresponding to paste mode **/
     void bracketText(QString& text);
 
@@ -233,129 +228,166 @@ public:
 
     void setConfirmMultilinePaste(bool confirmMultilinePaste);
     void setTrimPastedTrailingNewlines(bool trimPastedTrailingNewlines);
+    void setEcho(bool echo);
+    void setKeyboardCursorColor(bool useForegroundColor, const QColor& color);
     void proxySendData(QByteArray data) {
         emit sendData(data.data(), data.size());
     }
 
     void setLocked(bool enabled);
 
-    // FIXME: this is a hack operation, should be removed
-    void setUserdata(void *data) {
-        this->userData = data;
-    }
-    void *getUserdata() const {
-        return this->userData;
-    }
+    void setSelectionOpacity(qreal opacity);
 
+    void addHighLightText(const QString &text, const QColor &color);
+    bool isContainHighLightText(const QString &text);
+    void removeHighLightText(const QString &text);
+    void clearHighLightTexts(void);
+    QMap<QString, QColor> getHighLightTexts(void);
+
+    void setWordCharacters(const QString &wordCharacters);
+    QString wordCharacters(void);
+    void setShowResizeNotificationEnabled(bool enabled);
+
+    void setEnableHandleCtrlC(bool enable);
+
+    int lines();
+    int columns();
+    int getCursorX();
+    int getCursorY();
+    void setCursorX(int x);
+    void setCursorY(int y);
+
+    QString screenGet(int row1, int col1, int row2, int col2, int mode);
+
+    void setUrlFilterEnabled(bool enable);
+
+    void setMessageParentWidget(QWidget *parent);
     void reTranslateUi(void);
-    static void setLangeuage(QLocale::Language lang);
+    void set_fix_quardCRT_issue33(bool fix);
 
 signals:
     void finished();
     void copyAvailable(bool);
-
     void termGetFocus();
     void termLostFocus();
-
     void termKeyPressed(QKeyEvent *);
-
-    void urlActivated(const QUrl&, bool fromContextMenu);
-
-    void bell(const QString& message);
-
+    void urlActivated(const QUrl&, uint32_t opcode);
+    void notifyBell();
     void activity();
     void silence();
-
+    /**
+     * Emitted when the activity state of this session changes.
+     *
+     * @param state The new state of the session.  This may be one
+     * of NOTIFYNORMAL, NOTIFYSILENCE or NOTIFYACTIVITY
+     */
+    void stateChanged(int state);
+    /**
+     * Emitted when the flow control state changes.
+     *
+     * @param enabled True if flow control is enabled or false otherwise.
+     */
+    void flowControlEnabledChanged(bool enabled);
     /**
      * Emitted when emulator send data to the terminal process
      * (redirected for external recipient). It can be used for
      * control and display the remote terminal.
      */
     void sendData(const char *,int);
-
     void dupDisplayOutput(const char* data,int len);
-
     void profileChanged(const QString & profile);
-
     void titleChanged(int title,const QString& newTitle);
-
+    void changeTabTextColorRequest(int);
     void termSizeChange(int lines, int columns);
-
     void mousePressEventForwarded(QMouseEvent* event);
-
-    /**
-     * Signals that we received new data from the process running in the
-     * terminal emulator
-     */
-    void receivedData(const QString &text);
+    void zmodemSendDetected();
+    void zmodemRecvDetected();
+    void handleCtrlC(void);
 
 public slots:
-    // Copy selection to clipboard
+    // Copy terminal to clipboard
     void copyClipboard();
-
+    // Copy terminal to selection
+    void copySelection();
     // Paste clipboard to terminal
     void pasteClipboard();
-
     // Paste selection to terminal
     void pasteSelection();
-
     // Select all text
     void selectAll();
-
     // Set zoom
-    void zoomIn();
-    void zoomOut();
-
+    int zoomIn();
+    int zoomOut();
     // Set size
     void setSize(const QSize &);
-
     /*! Set named key binding for given widget
      */
     void setKeyBindings(const QString & kb);
-
     /*! Clear the terminal content and move to home position
      */
     void clearScrollback();
     void clearScreen();
     void clear();
-
     void toggleShowSearchBar();
-
-    void saveHistory(QIODevice *device, int format = 0);
-    void saveHistory(QTextStream *stream, int format = 0);
+    void saveHistory(QIODevice *device, int format = 0, int start = -1, int end = -1);
+    void saveHistory(QTextStream *stream, int format = 0, int start = -1, int end = -1);
     void screenShot(QPixmap *pixmap);
     void screenShot(const QString &fileName);
+    void repaintDisplay(void);
 
 protected:
     void resizeEvent(QResizeEvent *) override;
 
 protected slots:
     void sessionFinished();
+    void updateTerminalSize();
     void selectionChanged(bool textSelected);
+    void monitorTimerDone();
+    void activityStateSet(int);
 
 private slots:
-    void find();
-    void findNext();
-    void findPrevious();
-    void matchFound(int startColumn, int startLine, int endColumn, int endLine);
-    void noMatchFound();
     /**
      * Emulation::cursorChanged() signal propagates to here and QTermWidget
      * sends the specified cursor states to the terminal display
      */
-    void cursorChanged(Konsole::Emulation::KeyboardCursorShape cursorShape, bool blinkingCursorEnabled);
-    void sizeChange(int lines, int columns){
-        emit termSizeChange(lines, columns);
-    }
+    void cursorChanged(Emulation::KeyboardCursorShape cursorShape, bool blinkingCursorEnabled);
 
 private:
+    class HighLightText {
+    public:
+        HighLightText(const QString& text, const QColor& color) : text(text), color(color) {
+            regExpFilter = new RegExpFilter();
+            regExpFilter->setRegExp(QRegularExpression(text));
+            regExpFilter->setColor(color);
+        }
+        ~HighLightText() {
+            delete regExpFilter;
+        }
+        QString text;
+        QColor color;
+        RegExpFilter *regExpFilter;
+    };
     void search(bool forwards, bool next);
-    void setZoom(int step);
-    void init(void);
-    TermWidgetImpl * m_impl;
-    SearchBar* m_searchBar;
-    QVBoxLayout *m_layout;
-    void *userData = nullptr;
+    int setZoom(int step);
+    QWidget *messageParentWidget = nullptr;
+    TerminalDisplay *m_terminalDisplay = nullptr;
+    Emulation  *m_emulation = nullptr;
+    SearchBar* m_searchBar = nullptr;
+    QVBoxLayout *m_layout = nullptr;
+    QList<HighLightText*> m_highLightTexts;
+    bool m_echo = false;
+    UrlFilter *m_urlFilter = nullptr;
+    bool m_UrlFilterEnable = true;
+    bool m_flowControl = true;
+    // Color/Font Changes by ESC Sequences
+    bool m_hasDarkBackground = true;
+    bool m_monitorActivity = false;
+    bool m_monitorSilence = false;
+    bool m_notifiedActivity = false;
+    QTimer* m_monitorTimer = nullptr;
+    int m_silenceSeconds = 10;
+
+    const static int STEP_ZOOM = 3;
 };
 
 #endif

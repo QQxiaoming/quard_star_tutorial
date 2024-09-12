@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchBar</class>
+ <widget class="QWidget" name="SearchBar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>399</width>
+    <height>50</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string notr="true">SearchBar</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QToolButton" name="closeButton">
+     <property name="text">
+      <string notr="true">X</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="findLabel">
+     <property name="text">
+      <string>Find:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="searchTextEdit"/>
+   </item>
+   <item>
+    <widget class="QToolButton" name="findPreviousButton">
+     <property name="text">
+      <string notr="true">&lt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="findNextButton">
+     <property name="text">
+      <string notr="true">&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="optionsButton">
+     <property name="text">
+      <string notr="true">...</string>
+     </property>
+     <property name="popupMode">
+      <enum>QToolButton::InstantPopup</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

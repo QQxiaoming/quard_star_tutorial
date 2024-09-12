@@ -28,14 +28,14 @@ jobs:
           sudo apt install -y make gcc
 
       - name: Install Qt android
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets'
           aqtversion: ==3.1.7
 
       - name: Install Qt android
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets qtmultimedia'
@@ -61,13 +61,13 @@ jobs:
           git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
-          ${Qt6_DIR}/bin/qmake -makefile
+          ${QT_ROOT_DIR}/bin/qmake -makefile
           make
           make apk
           mv android-build/quard_star_tools.apk ../
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: quard_star_tools_android
           path: |

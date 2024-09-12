@@ -1,10 +1,10 @@
 主页
 ----------------------------------
 
-.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux&logoColor=white
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml
    :alt: Linux ci
-.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows
+.. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+V2luZG93czwvdGl0bGU+PHBhdGggZD0iTTAsMEgxMS4zNzdWMTEuMzcySDBaTTEyLjYyMywwSDI0VjExLjM3MkgxMi42MjNaTTAsMTIuNjIzSDExLjM3N1YyNEgwWm0xMi42MjMsMEgyNFYyNEgxMi42MjMiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=
    :target: https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml
    :alt: Windows ci
 .. image:: https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple
@@ -57,6 +57,26 @@
 内存分布
 ********
 .. image:: ./img/img5.png
+
+----------------------------------
+捐赠
+----------------------------------
+
+如果您觉得本项目对您有帮助，您可以通过以下方式捐赠：
+
+.. list-table:: 
+   :widths: 33 33 33
+   :header-rows: 0
+
+   * - .. image:: ./img/donate/paypal.jpg
+          :align: center
+     - .. image:: ./img/donate/alipay.jpg
+          :align: center
+     - .. image:: ./img/donate/wechat.jpg
+          :align: center
+   * - paypal
+     - alipay
+     - wechat
 
 .. toctree::
    :maxdepth: 3

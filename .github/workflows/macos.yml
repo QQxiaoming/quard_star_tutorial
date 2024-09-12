@@ -16,19 +16,19 @@ jobs:
         run: |
           brew install create-dmg
 
-      - uses: dawidd6/action-download-artifact@v2
+      - uses: dawidd6/action-download-artifact@v6
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v2
+      - uses: dawidd6/action-download-artifact@v6
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: qemu_macos
 
-      - uses: dawidd6/action-download-artifact@v2
+      - uses: dawidd6/action-download-artifact@v6
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
@@ -73,7 +73,7 @@ jobs:
           tar -czf release_macos.tar.gz quard_star_tools.app
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: release_macos
           path: |
@@ -83,11 +83,11 @@ jobs:
     runs-on: macos-12
     needs: [release_macos]
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: release_macos
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: true
           activate-environment: ""

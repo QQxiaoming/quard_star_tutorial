@@ -1,5 +1,5 @@
-[![Linux ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml)
-[![Windows ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
+[![Linux ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux&logoColor=white)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml)
+[![Windows ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+V2luZG93czwvdGl0bGU+PHBhdGggZD0iTTAsMEgxMS4zNzdWMTEuMzcySDBaTTEyLjYyMywwSDI0VjExLjM3MkgxMi42MjNaTTAsMTIuNjIzSDExLjM3N1YyNEgwWm0xMi42MjMsMEgyNFYyNEgxMi42MjMiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
 [![Macos ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml)
 [![Android ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/android.yml?branch=main&logo=android)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/android.yml)
 [![IOS ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/ios.yml?branch=main&logo=appstore)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ios.yml)
@@ -57,3 +57,21 @@ sudo apt install ninja-build pkg-config libglib2.0-dev libpixman-1-dev libgtk-3-
 项目main分支目前为稳定分支，配套教程文档使用，next-kernel分支用来学习实验kernel上的最新功能，定期与[linux-next](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next)同步。
 
 项目仓库目前体积比较大，但是故意没有用submodule的方式管理，主要是考虑可能会有初学者或git不熟练的同学。还望大家谅解。
+
+## Star 历史
+
+<a href="https://star-history.com/#QQxiaoming/quard_star_tutorial&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+ </picture>
+</a>
+
+## 捐赠
+
+如果您觉得本项目对您有帮助，您可以通过以下方式捐赠：
+
+| ![paypal](./tutorial/img/donate/paypal.jpg)  | ![alipay](./tutorial/img/donate/alipay.jpg) | ![wechat](./tutorial/img/donate/wechat.jpg) |
+| ------ | ------ | ------ |
+| paypal | alipay | wechat |

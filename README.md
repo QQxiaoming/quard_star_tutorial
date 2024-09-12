@@ -1,5 +1,5 @@
-[![Linux ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml)
-[![Windows ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=windows)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
+[![Linux ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/linux.yml?branch=main&logo=linux&logoColor=white)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/linux.yml)
+[![Windows ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/windows.yml?branch=main&logo=data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+V2luZG93czwvdGl0bGU+PHBhdGggZD0iTTAsMEgxMS4zNzdWMTEuMzcySDBaTTEyLjYyMywwSDI0VjExLjM3MkgxMi42MjNaTTAsMTIuNjIzSDExLjM3N1YyNEgwWm0xMi42MjMsMEgyNFYyNEgxMi42MjMiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/windows.yml)
 [![Macos ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/macos.yml?branch=main&logo=apple)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/macos.yml)
 [![Android ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/android.yml?branch=main&logo=android)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/android.yml)
 [![IOS ci](https://img.shields.io/github/actions/workflow/status/qqxiaoming/quard_star_tutorial/ios.yml?branch=main&logo=appstore)](https://github.com/QQxiaoming/quard_star_tutorial/actions/workflows/ios.yml)
@@ -151,3 +151,21 @@ Note: This project also has an experimental branch called next-kernel that uses 
 ## Thanks
 
 I would like to acknowledge AI tool (New Bing) for assisting me with writing part of this readme file. 
+
+## Star History
+
+<a href="https://star-history.com/#QQxiaoming/quard_star_tutorial&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+ </picture>
+</a>
+
+## Donate
+
+If you like this project, you can donate to the author to support the development of the project.
+
+| ![paypal](./tutorial/img/donate/paypal.jpg)  | ![alipay](./tutorial/img/donate/alipay.jpg) | ![wechat](./tutorial/img/donate/wechat.jpg) |
+| ------ | ------ | ------ |
+| paypal | alipay | wechat |

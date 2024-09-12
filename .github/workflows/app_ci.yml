@@ -42,7 +42,7 @@ jobs:
           conda install mako
 
       - name: Cache toolchain
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-toolchain
         with:
@@ -478,7 +478,7 @@ jobs:
           cd target_root_app
           ./build.sh llvm
 
-      - uses: conda-incubator/setup-miniconda@v2
+      - uses: conda-incubator/setup-miniconda@v3
         with:
           auto-activate-base: true
           activate-environment: ""
@@ -542,14 +542,14 @@ jobs:
           mv target_sysroot.tar.gz ../target_sysroot.tar.gz
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: target_sysroot
           path: |
             target_sysroot.tar.gz
 
       #- name: Upload build asserts
-      #  uses: actions/upload-artifact@v3.1.0
+      #  uses: actions/upload-artifact@v4
       #  with:
       #    name: host_tools
       #    path: |
