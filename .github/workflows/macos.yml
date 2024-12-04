@@ -9,26 +9,26 @@ on:
 
 jobs:
   release_macos:
-    runs-on: macos-12
+    runs-on: macos-13
     if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Install prerequisites
         run: |
           brew install create-dmg
 
-      - uses: dawidd6/action-download-artifact@v6
+      - uses: dawidd6/action-download-artifact@v7
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v6
+      - uses: dawidd6/action-download-artifact@v7
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: qemu_macos
 
-      - uses: dawidd6/action-download-artifact@v6
+      - uses: dawidd6/action-download-artifact@v7
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
@@ -80,7 +80,7 @@ jobs:
             release_macos.tar.gz
 
   test_macos:
-    runs-on: macos-12
+    runs-on: macos-13
     needs: [release_macos]
     steps:
       - uses: actions/download-artifact@v4

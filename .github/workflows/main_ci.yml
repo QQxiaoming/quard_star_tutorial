@@ -180,7 +180,7 @@ jobs:
           retention-days: 1
 
   qemu_macos_build:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
 
@@ -311,7 +311,7 @@ jobs:
           retention-days: 1
 
   quard_star_tools_macos_build:
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
 
@@ -337,7 +337,7 @@ jobs:
           qmake -makefile
           make
           cd ./release/out
-          macdeployqt quard_star_tools.app -dmg -verbose=2
+          sudo macdeployqt quard_star_tools.app -dmg -verbose=2
           cd -
           mkdir ./gui_tools
           mkdir ./gui_tools/quard_star_tools_macos
