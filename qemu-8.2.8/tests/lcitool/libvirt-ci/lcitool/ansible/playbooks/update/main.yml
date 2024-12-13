@@ -1,0 +1,14 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ansible version check
+      assert:
+        that: ansible_version.full is version('2.10', '>=')
+        fail_msg: "Please install Ansible >=2.10"
+        quiet: true
+      delegate_to: localhost
+
+- import_playbook: user-pre.yml
+- import_playbook: bootstrap.yml
+- import_playbook: setup.yml

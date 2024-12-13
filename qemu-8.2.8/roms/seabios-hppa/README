@@ -1,0 +1,11 @@
+This project implements a PDC (processor dependend code, aka BIOS)
+for HP-PARISC machines.
+It's based on the SeaBIOS project at http://seabios.org/
+
+For the impatient, SeaBIOS is built for QEMU and tested on QEMU with:
+
+  make parisc
+  qemu -bios out/hppa-firmware.img
+
+SeaBIOS can be configured with kconfig.  To change the default
+configuration one can run "make menuconfig" prior to running "make".

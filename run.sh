@@ -58,8 +58,8 @@ NETDEV1_PARAM="-netdev user,net=192.168.32.0/24,host=192.168.32.2,hostname=qemu_
 fi
 
 if [ -z "$AUDIO_PARAM" ]; then
-AUDIO_PARAM="-audiodev $QEMU_AUDIO,id=audio0"
-#AUDIO_PARAM="-audiodev none,id=audio0"
+AUDIO_PARAM="-audio $QEMU_AUDIO,id=audio0"
+#AUDIO_PARAM="-audio none,id=audio0"
 fi
 
 if [ -z "$HOST_VCAN_PARAM" ]; then
@@ -228,7 +228,7 @@ esac
 ###############################################################################
 
 ################################## run qemu ##################################
-$HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
+$HOST_GDB_PARAM /home/qqm/Videos/qemu-8.2.8/build/qemu-system-riscv64 \
 -M quard-star,mask-rom-path="$SHELL_FOLDER/output/mask_rom/mask_rom.bin",canbus=canbus0 \
 -m 1G \
 -smp 8 \
@@ -243,11 +243,11 @@ $HOST_GDB_PARAM $SHELL_FOLDER/output/$QEMU_PATHNAME/bin/qemu-system-riscv64 \
 -chardev socket,telnet=on,host=127.0.0.1,port=3450,server=on,wait=off,id=usb1 \
 -object can-bus,id=canbus0 $HOST_VCAN_PARAM \
 $NETDEV0_PARAM $NETDEV1_PARAM \
-$AUDIO_PARAM \
 -net nic,netdev=net0 \
 -device usb-storage,drive=usb0 \
 -device usb-serial,always-plugged=true,chardev=usb1 \
 -device wm8750,audiodev=audio0 \
+$AUDIO_PARAM \
 -fw_cfg name="opt/qemu_cmdline",string="qemu_vc=$DEFAULT_V" \
 -fsdev local,security_model=mapped-xattr,path=$SHELL_FOLDER,id=fsdev0 \
 -global virtio-mmio.force-legacy=false \

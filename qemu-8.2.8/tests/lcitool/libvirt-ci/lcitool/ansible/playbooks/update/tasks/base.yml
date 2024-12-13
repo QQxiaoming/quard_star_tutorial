@@ -1,0 +1,29 @@
+---
+- name: Fetch repository metadata
+  apt:
+    update_cache: true
+  when: os.name == 'Debian' or os.name == 'Ubuntu'
+
+# Rawhide is expected to default to DNF5 which decoupled the dnf binary from
+# the python3-dnf package which we need in order to use the 'dnf' Ansible module
+#
+# FIXME: Revisit this hunk once DNF5 is mature enough and regular Fedora
+# defaults to it too
+- name: Make sure python3-dnf is installed on Rawhide
+  block:
+    - name: Check if python3-dnf is installed
+      command: 'rpm -q python3-dnf'
+      ignore_errors: true
+      changed_when: false
+      register: python3_dnf_installed
+
+    - name: Install python3-dnf
+      command: '{{ packaging.command }} install -y python3-dnf'
+      when: python3_dnf_installed.rc != 0
+  when:
+    - os.version == 'Rawhide'
+
+- name: Install packages needed for playbook tasks
+  package:
+    name: '{{ early_install_packages }}'
+    state: present

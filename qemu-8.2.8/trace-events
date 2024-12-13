@@ -1,0 +1,56 @@
+# See docs/devel/tracing.rst for syntax documentation.
+#
+# This file is processed by the tracetool script during the build.
+#
+# To add a new trace event:
+#
+# 1. Choose a name for the trace event.  Declare its arguments and format
+#    string.
+#
+# 2. Call the trace event from code using trace_##name, e.g. multiwrite_cb() ->
+#    trace_multiwrite_cb().  The source file must #include "trace.h".
+#
+# Format of a trace event:
+#
+# [disable] <name>(<type1> <arg1>[, <type2> <arg2>] ...) "<format-string>"
+#
+# Example: g_malloc(size_t size) "size %zu"
+#
+# The "disable" keyword will build without the trace event.
+#
+# The <name> must be a valid as a C function name.
+#
+# Types should be standard C types.  Use void * for pointers because the trace
+# system may not have the necessary headers included.
+#
+# The <format-string> should be a sprintf()-compatible format string.
+
+# cpu.c
+breakpoint_insert(int cpu_index, uint64_t pc, int flags) "cpu=%d pc=0x%" PRIx64 " flags=0x%x"
+breakpoint_remove(int cpu_index, uint64_t pc, int flags) "cpu=%d pc=0x%" PRIx64 " flags=0x%x"
+breakpoint_singlestep(int cpu_index, int enabled) "cpu=%d enable=%d"
+
+# dma-helpers.c
+dma_blk_io(void *dbs, void *bs, int64_t offset, bool to_dev) "dbs=%p bs=%p offset=%" PRId64 " to_dev=%d"
+dma_aio_cancel(void *dbs) "dbs=%p"
+dma_complete(void *dbs, int ret, void *cb) "dbs=%p ret=%d cb=%p"
+dma_blk_cb(void *dbs, int ret) "dbs=%p ret=%d"
+dma_map_wait(void *dbs) "dbs=%p"
+
+# exec.c
+find_ram_offset(uint64_t size, uint64_t offset) "size: 0x%" PRIx64 " @ 0x%" PRIx64
+find_ram_offset_loop(uint64_t size, uint64_t candidate, uint64_t offset, uint64_t next, uint64_t mingap) "trying size: 0x%" PRIx64 " @ 0x%" PRIx64 ", offset: 0x%" PRIx64" next: 0x%" PRIx64 " mingap: 0x%" PRIx64
+ram_block_discard_range(const char *rbname, void *hva, size_t length, bool need_madvise, bool need_fallocate, int ret) "%s@%p + 0x%zx: madvise: %d fallocate: %d ret: %d"
+
+# job.c
+job_state_transition(void *job,  int ret, const char *legal, const char *s0, const char *s1) "job %p (ret: %d) attempting %s transition (%s-->%s)"
+job_apply_verb(void *job, const char *state, const char *verb, const char *legal) "job %p in state %s; applying verb %s (%s)"
+job_completed(void *job, int ret) "job %p ret %d"
+
+# job-qmp.c
+qmp_job_cancel(void *job) "job %p"
+qmp_job_pause(void *job) "job %p"
+qmp_job_resume(void *job) "job %p"
+qmp_job_complete(void *job) "job %p"
+qmp_job_finalize(void *job) "job %p"
+qmp_job_dismiss(void *job) "job %p"

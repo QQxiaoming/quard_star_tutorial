@@ -1,0 +1,20 @@
+config HPPA_B160L
+    bool
+    imply PCI_DEVICES
+    imply E1000_PCI
+    imply VIRTIO_VGA
+    select ASTRO
+    select DINO
+    select LASI
+    select SERIAL
+    select SERIAL_PCI
+    select ISA_BUS
+    select I8259
+    select IDE_CMD646
+    select MC146818RTC
+    select LSI_SCSI_PCI
+    select LASI_82596
+    select LASIPS2
+    select PARALLEL
+    select ARTIST
+    select USB_OHCI_PCI
