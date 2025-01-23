@@ -12,19 +12,19 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: qemu_w64
 
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
