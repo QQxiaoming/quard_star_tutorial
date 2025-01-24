@@ -16,19 +16,19 @@ jobs:
         run: |
           brew install create-dmg
 
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: qemu_macos
 
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v8
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
