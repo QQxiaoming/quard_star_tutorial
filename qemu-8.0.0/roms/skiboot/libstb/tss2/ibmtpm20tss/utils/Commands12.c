@@ -68,6 +68,7 @@ ActivateIdentity_In_Unmarshal(ActivateIdentity_In *target, BYTE **buffer, uint32
     if (rc == 0) {
 	if (target->blobSize > sizeof(target->blob)) {
 	    rc = TPM_RC_SIZE;
+	    target->blobSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -181,6 +182,7 @@ GetCapability12_In_Unmarshal(GetCapability12_In *target, BYTE **buffer, uint32_t
     if (rc == 0) {
 	if (target->subCapSize > sizeof(target->subCap)) {
 	    rc = TPM_RC_SIZE;
+	    target->subCapSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -326,6 +328,7 @@ NV_WriteValue_In_Unmarshal(NV_WriteValue_In *target, BYTE **buffer, uint32_t *si
     if (rc == 0) {
 	if (target->dataSize > sizeof(target->data)) {
 	    rc = TPM_RC_SIZE;
+		target->dataSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -360,6 +363,7 @@ NV_WriteValueAuth_In_Unmarshal(NV_WriteValueAuth_In *target, BYTE **buffer, uint
     if (rc == 0) {
 	if (target->dataSize > sizeof(target->data)) {
 	    rc = TPM_RC_SIZE;
+		target->dataSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -516,6 +520,7 @@ Sign12_In_Unmarshal(Sign12_In *target, BYTE **buffer, uint32_t *size, TPM_HANDLE
     if (rc == 0) {
 	if (target->areaToSignSize > sizeof(target->areaToSign)) {
 	    rc = TPM_RC_SIZE;
+	    target->areaToSignSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -563,6 +568,7 @@ TakeOwnership_In_Unmarshal(TakeOwnership_In *target, BYTE **buffer, uint32_t *si
      if (rc == 0) {
 	 if (target->encOwnerAuthSize > sizeof(target->encOwnerAuth)) {
 	    rc = TPM_RC_SIZE;
+	    target->encOwnerAuthSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -580,6 +586,7 @@ TakeOwnership_In_Unmarshal(TakeOwnership_In *target, BYTE **buffer, uint32_t *si
     if (rc == 0) {
 	if (target->encSrkAuthSize > sizeof(target->encSrkAuth)) {
 	    rc = TPM_RC_SIZE;
+	    target->encSrkAuthSize = 0;
 	}
     }    
     if (rc == 0) {

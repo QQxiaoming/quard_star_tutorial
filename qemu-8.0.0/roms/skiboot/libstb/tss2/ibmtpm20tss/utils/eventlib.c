@@ -224,6 +224,7 @@ TPM_RC TSS_EVENT_Line_Unmarshal(TCG_PCR_EVENT *target, BYTE **buffer, uint32_t *
     if (rc == 0) {
 	if (target->eventDataSize > sizeof(target->event)) {
 	    rc = TPM_RC_SIZE;
+	    target->eventDataSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -254,6 +255,7 @@ TPM_RC TSS_EVENT_Line_LE_Unmarshal(TCG_PCR_EVENT *target, BYTE **buffer, uint32_
     if (rc == 0) {
 	if (target->eventDataSize > sizeof(target->event)) {
 	    rc = TPM_RC_SIZE;
+	    target->eventDataSize = 0;
 	}
     }
     if (rc == 0) {
@@ -661,6 +663,7 @@ TPM_RC TSS_EVENT2_Line_Unmarshal(TCG_PCR_EVENT2 *target, BYTE **buffer, uint32_t
     if (rc == 0) {
 	if (target->eventSize > sizeof(target->event)) {
 	    rc = TPM_RC_SIZE;
+	    target->eventSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -692,6 +695,7 @@ TPM_RC TSS_EVENT2_Line_LE_Unmarshal(TCG_PCR_EVENT2 *target, BYTE **buffer, uint3
     if (rc == 0) {
 	if (target->eventSize > sizeof(target->event)) {
 	    rc = TPM_RC_SIZE;
+	    target->eventSize = 0;
 	}
     }
     if (rc == 0) {
@@ -938,6 +942,7 @@ TSS_TPML_DIGEST_VALUES_LE_Unmarshalu(TPML_DIGEST_VALUES *target, BYTE **buffer, 
     if (rc == TPM_RC_SUCCESS) {
 	if (target->count > HASH_COUNT) {
 	    rc = TPM_RC_SIZE;
+	    target->count = 0;
 	}
     }
     for (i = 0 ; (rc == TPM_RC_SUCCESS) && (i < target->count) ; i++) {

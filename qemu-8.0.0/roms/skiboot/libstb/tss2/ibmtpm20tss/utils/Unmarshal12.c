@@ -121,6 +121,7 @@ TSS_TPM_PCR_SELECTION_Unmarshalu(TPM_PCR_SELECTION *target, BYTE **buffer, uint3
     if (rc == 0) {
 	if (target->sizeOfSelect > sizeof(target->pcrSelect)) {
 	    rc = TPM_RC_SIZE;
+	    target->sizeOfSelect = 0;
 	}
     }    
     if (rc == 0) {
@@ -219,6 +220,7 @@ TSS_TPM_SYMMETRIC_KEY_Unmarshalu(TPM_SYMMETRIC_KEY *target, BYTE **buffer, uint3
     if (rc == 0) {
 	if (target->size > sizeof(target->data)) {
 	    rc = TPM_RC_SIZE;
+	    target->size = 0;
 	}
     }    
     if (rc == 0) {
@@ -245,6 +247,7 @@ TSS_TPM_RSA_KEY_PARMS_Unmarshalu(TPM_RSA_KEY_PARMS *target, BYTE **buffer, uint3
     if (rc == 0) {
 	if (target->exponentSize > sizeof(target->exponent)) {
 	    rc = TPM_RC_SIZE;
+	    target->exponentSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -360,6 +363,7 @@ TSS_TPM_STORE_PUBKEY_Unmarshalu(TPM_STORE_PUBKEY *target, BYTE **buffer, uint32_
     if (rc == 0) {
 	if (target->keyLength > sizeof(target->key)) {
 	    rc = TPM_RC_SIZE;
+	    target->keyLength = 0;
 	}
     }    
     if (rc == 0) {
@@ -457,6 +461,7 @@ TSS_TPM_CAP_VERSION_INFO_Unmarshalu(TPM_CAP_VERSION_INFO *target, BYTE **buffer,
     if (rc == 0) {
 	if (target->vendorSpecificSize > sizeof(target->vendorSpecific)) {
 	    rc = TPM_RC_SIZE;
+	    target->vendorSpecificSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -493,6 +498,7 @@ TSS_TPM_DA_INFO_Unmarshalu(TPM_DA_INFO *target, BYTE **buffer, uint32_t *size)
     if (rc == 0) {
 	if (target->vendorDataSize > sizeof(target->vendorData)) {
 	    rc = TPM_RC_SIZE;
+        target->vendorDataSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -520,6 +526,7 @@ TSS_TPM_DA_INFO_LIMITED_Unmarshalu(TPM_DA_INFO_LIMITED *target, BYTE **buffer, u
     if (rc == 0) {
 	if (target->vendorDataSize > sizeof(target->vendorData)) {
 	    rc = TPM_RC_SIZE;
+        target->vendorDataSize = 0;
 	}
     }    
     if (rc == 0) {
