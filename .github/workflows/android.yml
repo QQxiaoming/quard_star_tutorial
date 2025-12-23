@@ -91,7 +91,7 @@ jobs:
           lrelease quard_star_tools.pro
           ${QT_ROOT_DIR}/bin/qmake -makefile
           make
-          make apk
+          make apk --verbose
           mv android-build/quard_star_tools.apk ../
 
       - name: Upload build asserts
