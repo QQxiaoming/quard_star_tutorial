@@ -77,6 +77,9 @@ jobs:
         env:
           QT_VERSION: 6.5.3
         run: |
+          export ANDROID_SDK_ROOT=$HOME/android-sdk
+          export ANDROID_HOME=$HOME/android-sdk
+          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
           export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r25b
           export ANDROID_BUILD_DIR=$(pwd)/android-build
           cd quard_star_tools
