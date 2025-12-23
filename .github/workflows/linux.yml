@@ -9,16 +9,16 @@ on:
 
 jobs:
   release_linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v11
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
           name: output
 
-      - uses: dawidd6/action-download-artifact@v7
+      - uses: dawidd6/action-download-artifact@v11
         with:
           workflow: main_ci.yml
           workflow_conclusion: success
@@ -51,17 +51,17 @@ jobs:
           tar -czf release_linux.tar.gz gui_tools/ update_tools/ output/ run.sh update_tools.sh run_quard_star_tools.sh
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: release_linux
           path: |
             release_linux.tar.gz
 
   test_linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: [release_linux]
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           name: release_linux
 

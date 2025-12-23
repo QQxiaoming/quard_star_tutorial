@@ -17,9 +17,9 @@ on:
 
 jobs:
   quard_star_tools_ios_build:
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -53,7 +53,7 @@ jobs:
           mv ./IPAFolder/quard_star_tools.ipa ../
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: quard_star_tools_ios
           path: |

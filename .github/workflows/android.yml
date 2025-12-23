@@ -17,9 +17,9 @@ on:
 
 jobs:
   quard_star_tools_android_build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install prerequisites
         shell: bash -l {0}
@@ -50,6 +50,22 @@ jobs:
           curl -O "https://dl.google.com/android/repository/android-ndk-r25b-linux.zip"
           unzip "android-ndk-r25b-linux.zip"
 
+      - name: Set up Android SDK Command Line Tools
+        run: |
+          ANDROID_SDK_ROOT=$HOME/android-sdk
+          mkdir -p $ANDROID_SDK_ROOT
+          wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O cmdline-tools.zip
+          unzip -q cmdline-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools
+          mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
+          export ANDROID_HOME=$ANDROID_SDK_ROOT
+          echo $PATH
+      - name: Install required SDK components
+        run: |
+        export ANDROID_SDK_ROOT=$HOME/android-sdk
+        export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
+        sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33"
+
       - name: Build all
         shell: bash -l {0}
         env:
@@ -67,7 +83,7 @@ jobs:
           mv android-build/quard_star_tools.apk ../
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: quard_star_tools_android
           path: |
