@@ -480,6 +480,7 @@ TSS_GetCapability12_Out_Unmarshalu(GetCapability12_Out *target, TPM_ST tag, BYTE
     if (rc == 0) {
 	if (target->respSize > sizeof(target->resp)) {
 	    rc = TPM_RC_SIZE;
+	    target->respSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -513,6 +514,7 @@ TSS_MakeIdentity_Out_Unmarshalu(MakeIdentity_Out *target, TPM_ST tag, BYTE **buf
     if (rc == 0) {
 	if (target->identityBindingSize > sizeof(target->identityBinding)) {
 	    rc = TPM_RC_SIZE;
+	    target->identityBindingSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -532,6 +534,7 @@ TSS_NV_ReadValueAuth_Out_Unmarshalu(NV_ReadValueAuth_Out *target, TPM_ST tag, BY
     if (rc == 0) {
 	if (target->dataSize > sizeof(target->data)) {
 	    rc = TPM_RC_SIZE;
+        target->dataSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -551,6 +554,7 @@ TSS_NV_ReadValue_Out_Unmarshalu(NV_ReadValue_Out *target, TPM_ST tag, BYTE **buf
     if (rc == 0) {
 	if (target->dataSize > sizeof(target->data)) {
 	    rc = TPM_RC_SIZE;
+	    target->dataSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -632,6 +636,7 @@ TSS_Quote2_Out_Unmarshalu(Quote2_Out *target, TPM_ST tag, BYTE **buffer, uint32_
     if (rc == 0) {
 	if (target->sigSize > sizeof(target->sig)) {
 	    rc = TPM_RC_SIZE;
+	    target->sigSize = 0;
 	}
     }    
     if (rc == 0) {
@@ -651,6 +656,7 @@ TSS_Sign12_Out_Unmarshalu(Sign12_Out *target, TPM_ST tag, BYTE **buffer, uint32_
     if (rc == 0) {
 	if (target->sigSize > sizeof(target->sig)) {
 	    rc = TPM_RC_SIZE;
+	    target->sigSize = 0;
 	}
     }    
     if (rc == 0) {
