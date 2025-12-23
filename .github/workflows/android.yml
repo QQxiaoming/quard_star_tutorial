@@ -50,6 +50,9 @@ jobs:
           curl -O "https://dl.google.com/android/repository/android-ndk-r25b-linux.zip"
           unzip "android-ndk-r25b-linux.zip"
 
+      - name: Install Android SDK
+        run: sdkmanager "platforms;android-34"
+
       - name: Build all
         shell: bash -l {0}
         env:
