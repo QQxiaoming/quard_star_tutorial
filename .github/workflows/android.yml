@@ -32,14 +32,14 @@ jobs:
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets'
-          aqtversion: ==3.1.7
+          aqtversion: '==3.1.*'
 
       - name: Install Qt android
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets qtmultimedia'
-          aqtversion: ==3.1.7
+          aqtversion: '==3.1.*'
           target: 'android'
           arch: 'android_arm64_v8a'
 
