@@ -62,9 +62,9 @@ jobs:
           echo $PATH
       - name: Install required SDK components
         run: |
-        export ANDROID_SDK_ROOT=$HOME/android-sdk
-        export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
-        sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33"
+          export ANDROID_SDK_ROOT=$HOME/android-sdk
+          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
+          sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33"
 
       - name: Build all
         shell: bash -l {0}
