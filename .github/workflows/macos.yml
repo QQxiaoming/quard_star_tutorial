@@ -9,7 +9,7 @@ on:
 
 jobs:
   release_macos:
-    runs-on: macos-13
+    runs-on: macos-15
     if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Install prerequisites
@@ -80,7 +80,7 @@ jobs:
             release_macos.tar.gz
 
   test_macos:
-    runs-on: macos-13
+    runs-on: macos-15
     needs: [release_macos]
     steps:
       - uses: actions/download-artifact@v6
