@@ -349,6 +349,7 @@ build_freetype()
         --prefix=$SHELL_FOLDER/output \
         --disable-static \
         --with-harfbuzz=no \
+        --with-brotli=no \
         --with-zlib=$SHELL_FOLDER/output \
         --with-png=$SHELL_FOLDER/output \
         CXX=$CROSS_PREFIX-g++ \
