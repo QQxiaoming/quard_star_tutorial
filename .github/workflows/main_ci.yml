@@ -122,7 +122,7 @@ jobs:
           tar -czf toolchain.tar.gz $HOME/gcc-riscv64-unknown-linux-gnu $HOME/gcc-riscv64-unknown-elf
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: output
           path: |
@@ -130,7 +130,7 @@ jobs:
           retention-days: 1
 
       - name: Upload prebuilt toolchain
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: prebuilt_toolchain
           path: |
@@ -173,7 +173,7 @@ jobs:
             cp /usr/x86_64-w64-mingw32/sys-root/mingw/bin/*.dll ./output/qemu_w64/
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: qemu_w64
           path: |
@@ -211,7 +211,7 @@ jobs:
           tar -czf qemu_macos.tar.gz output/
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: qemu_macos
           path: |
@@ -264,7 +264,7 @@ jobs:
           tar -czf quard_star_tools.tar.gz gui_tools/ run_quard_star_tools.sh
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: quard_star_tools
           path: |
@@ -304,7 +304,7 @@ jobs:
           Rename-Item ./release gui_tools
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: quard_star_tools_w64
           path: |
@@ -348,7 +348,7 @@ jobs:
           tar -czf quard_star_tools.tar.gz gui_tools/ 
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: quard_star_tools_macos
           path: |

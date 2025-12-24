@@ -545,14 +545,14 @@ jobs:
           mv target_sysroot.tar.gz ../target_sysroot.tar.gz
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: target_sysroot
           path: |
             target_sysroot.tar.gz
 
       #- name: Upload build asserts
-      #  uses: actions/upload-artifact@v5
+      #  uses: actions/upload-artifact@v6
       #  with:
       #    name: host_tools
       #    path: |
