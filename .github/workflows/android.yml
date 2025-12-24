@@ -51,47 +51,20 @@ jobs:
           curl -O "https://dl.google.com/android/repository/android-ndk-r25b-linux.zip"
           unzip "android-ndk-r25b-linux.zip"
           
-      - name: Set up JDK 17
-        uses: actions/setup-java@v5
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Set up Android SDK Command Line Tools
-        run: |
-          ANDROID_SDK_ROOT=$HOME/android-sdk
-          mkdir -p $ANDROID_SDK_ROOT
-          wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O cmdline-tools.zip
-          unzip -q cmdline-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools
-          mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
-          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
-          export ANDROID_HOME=$ANDROID_SDK_ROOT
-          echo $PATH
-      - name: Install required SDK components
-        run: |
-          export ANDROID_SDK_ROOT=$HOME/android-sdk
-          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
-          yes | sdkmanager --licenses
-          sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33" "platforms;android-36-ext19"
-
       - name: Build all
         shell: bash -l {0}
         env:
           QT_VERSION: 6.5.3
         run: |
-          export ANDROID_SDK_ROOT=$HOME/android-sdk
-          export ANDROID_HOME=$HOME/android-sdk
-          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
           export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r25b
           export ANDROID_BUILD_DIR=$(pwd)/android-build
-          yes | sdkmanager --licenses
           cd quard_star_tools
           git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
           ${QT_ROOT_DIR}/bin/qmake -makefile
           make
-          make apk --verbose
+          make apk
           mv android-build/quard_star_tools.apk ../
 
       - name: Upload build asserts
