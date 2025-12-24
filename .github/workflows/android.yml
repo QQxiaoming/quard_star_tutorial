@@ -17,9 +17,9 @@ on:
 
 jobs:
   quard_star_tools_android_build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install prerequisites
         shell: bash -l {0}
@@ -31,15 +31,16 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
-          modules: 'qt5compat qtwebsockets'
-          aqtversion: ==3.1.7
+          modules: 'qt5compat qtwebsockets qtmultimedia'
+          aqtversion: '==3.1.*'
 
       - name: Install Qt android
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.5.3'
           modules: 'qt5compat qtwebsockets qtmultimedia'
-          aqtversion: ==3.1.7
+          aqtversion: '==3.1.*'
+          host: 'linux'
           target: 'android'
           arch: 'android_arm64_v8a'
 
@@ -49,25 +50,52 @@ jobs:
         run: |
           curl -O "https://dl.google.com/android/repository/android-ndk-r25b-linux.zip"
           unzip "android-ndk-r25b-linux.zip"
+          
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK Command Line Tools
+        run: |
+          ANDROID_SDK_ROOT=$HOME/android-sdk
+          mkdir -p $ANDROID_SDK_ROOT
+          wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O cmdline-tools.zip
+          unzip -q cmdline-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools
+          mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest
+          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
+          export ANDROID_HOME=$ANDROID_SDK_ROOT
+          echo $PATH
+      - name: Install required SDK components
+        run: |
+          export ANDROID_SDK_ROOT=$HOME/android-sdk
+          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
+          yes | sdkmanager --licenses
+          sdkmanager --sdk_root=$ANDROID_SDK_ROOT "platform-tools" "platforms;android-33" "platforms;android-36-ext19"
 
       - name: Build all
         shell: bash -l {0}
         env:
           QT_VERSION: 6.5.3
         run: |
+          export ANDROID_SDK_ROOT=$HOME/android-sdk
+          export ANDROID_HOME=$HOME/android-sdk
+          export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
           export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r25b
           export ANDROID_BUILD_DIR=$(pwd)/android-build
+          yes | sdkmanager --licenses
           cd quard_star_tools
           git describe --always --long --abbrev=10 --exclude '*' | awk '{print "\""$0"\""}' > git_tag.inc
           sed -i 's/git_tag.inc/git_tag.ci.inc/g' quard_star_tools.pro
           lrelease quard_star_tools.pro
           ${QT_ROOT_DIR}/bin/qmake -makefile
           make
-          make apk
+          make apk --verbose
           mv android-build/quard_star_tools.apk ../
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: quard_star_tools_android
           path: |

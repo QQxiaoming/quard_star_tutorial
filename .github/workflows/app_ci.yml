@@ -17,13 +17,16 @@ on:
 
 jobs:
   main_build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     timeout-minutes: 360
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
 
-
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.8'
+          
       - name: Install prerequisites
         shell: bash -l {0}
         run: |
@@ -42,7 +45,7 @@ jobs:
           conda install mako
 
       - name: Cache toolchain
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           cache-name: cache-toolchain
         with:
@@ -542,14 +545,14 @@ jobs:
           mv target_sysroot.tar.gz ../target_sysroot.tar.gz
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: target_sysroot
           path: |
             target_sysroot.tar.gz
 
       #- name: Upload build asserts
-      #  uses: actions/upload-artifact@v4
+      #  uses: actions/upload-artifact@v6
       #  with:
       #    name: host_tools
       #    path: |
