@@ -149,6 +149,8 @@ jobs:
       - name: build_docker_image
         shell: bash -l {0}
         run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-ce docker-ce-cli
           cd qemu-8.0.0
           ./tests/docker/docker.py --engine docker build -t qemu/fedora -f tests/docker/dockerfiles/fedora-win64-cross.docker --registry registry.gitlab.com/qemu-project/qemu --add-current-user
 
