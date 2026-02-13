@@ -30,6 +30,7 @@
 #include "hw/ssi/ssi.h"
 #include "hw/ssi/sifive_spi.h"
 #include "hw/usb/hcd-dwc3.h"
+#include "hw/usb/dwc3-udc.h"
 #include "hw/gpio/sifive_gpio.h"
 #include "hw/dma/sifive_pdma.h"
 #include "hw/sd/cadence_sdhci.h"
@@ -63,6 +64,7 @@ struct QuardStarState {
     SiFiveSPIState spi[2];
     FWCfgState *fw_cfg;
     USBDWC3 usb;
+    DWC3UdcState usb_udc;
     SIFIVEGPIOState gpio;
     SiFivePDMAState dma;
     CadenceSDHCIState sdhost;
@@ -118,7 +120,8 @@ enum {
     QUARD_STAR_VIRTIO6,
     QUARD_STAR_VIRTIO7,
     QUARD_STAR_FW_CFG,
-    QUARD_STAR_USB,
+    QUARD_STAR_USB_HOST,
+    QUARD_STAR_USB_PERIPHERAL,
     QUARD_STAR_DMA,
     QUARD_STAR_FLASH,
     QUARD_STAR_DRAM,
@@ -143,15 +146,16 @@ enum {
     QUARD_STAR_I2C2_IRQ    = 16,
     QUARD_STAR_SPI0_IRQ    = 17,
     QUARD_STAR_SPI1_IRQ    = 18,
-    QUARD_STAR_USB_IRQ     = 19,
-    QUARD_STAR_SDIO_IRQ    = 20,
-    QUARD_STAR_I2S_IRQ     = 21,
-    QUARD_STAR_NAND_IRQ    = 22,
-    QUARD_STAR_CAN_IRQ     = 23,
-    QUARD_STAR_ADC_IRQ     = 24,
-    QUARD_STAR_ETH_IRQ     = 25,
-    QUARD_STAR_LCDC_IRQ    = 26,
-    QUARD_STAR_WDT_IRQ     = 27,
+    QUARD_STAR_USB_HOST_IRQ       = 19,
+    QUARD_STAR_USB_PERIPHERAL_IRQ = 20,
+    QUARD_STAR_SDIO_IRQ    = 21,
+    QUARD_STAR_I2S_IRQ     = 22,
+    QUARD_STAR_NAND_IRQ    = 23,
+    QUARD_STAR_CAN_IRQ     = 24,
+    QUARD_STAR_ADC_IRQ     = 25,
+    QUARD_STAR_ETH_IRQ     = 26,
+    QUARD_STAR_LCDC_IRQ    = 27,
+    QUARD_STAR_WDT_IRQ     = 28,
     
     QUARD_STAR_TIMER_IRQ   = 29, /* 29-31 */
     QUARD_STAR_PWM_IRQ     = 32, /* 32-35 */

@@ -80,8 +80,9 @@ static const MemMapEntry quard_star_memmap[] = {
     [QUARD_STAR_VIRTIO7]     = { 0x10107000,    0x1000 },
     [QUARD_STAR_FW_CFG]      = { 0x10108000,      0x18 },
     
-    [QUARD_STAR_USB]         = { 0x11000000,   0x10000 },
-    [QUARD_STAR_NAND]        = { 0x11010000,   0x20000 },
+    [QUARD_STAR_USB_HOST]         = { 0x11000000,   0x10000 },
+    [QUARD_STAR_USB_PERIPHERAL]   = { 0x11010000,   0x10000 },
+    [QUARD_STAR_NAND]        = { 0x11020000,   0x20000 },
     [QUARD_STAR_DMA]         = { 0x12000000,  0x100000 },
     
     [QUARD_STAR_FLASH]       = { 0x20000000, 0x2000000 },
@@ -367,7 +368,20 @@ static void quard_star_spi_create(MachineState *machine)
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->spi[0]), 1, flash_cs);
 }
 
-static void quard_star_usb_create(MachineState *machine)
+static void quard_star_usb_peripheral_create(MachineState *machine)
+{
+    QuardStarState *s = RISCV_VIRT_MACHINE(machine);
+
+    object_initialize_child(OBJECT(s), "dwc3-udc", &s->usb_udc,
+                            TYPE_DWC3_UDC);
+    sysbus_realize(SYS_BUS_DEVICE(&s->usb_udc), &error_fatal);
+    sysbus_mmio_map(SYS_BUS_DEVICE(&s->usb_udc), 0,
+                    quard_star_memmap[QUARD_STAR_USB_PERIPHERAL].base);
+    sysbus_connect_irq(SYS_BUS_DEVICE(&s->usb_udc), 0,
+                    qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_USB_PERIPHERAL_IRQ));
+}
+
+static void quard_star_usb_host_create(MachineState *machine)
 {
     QuardStarState *s = RISCV_VIRT_MACHINE(machine);
 
@@ -379,10 +393,10 @@ static void quard_star_usb_create(MachineState *machine)
     sysbus_realize(SYS_BUS_DEVICE(&s->usb), &error_fatal);
 
     sysbus_mmio_map(SYS_BUS_DEVICE(&s->usb), 0, 
-                            quard_star_memmap[QUARD_STAR_USB].base);
+                            quard_star_memmap[QUARD_STAR_USB_HOST].base);
     qdev_pass_gpios(DEVICE(&s->usb.sysbus_xhci), DEVICE(&s->usb), SYSBUS_DEVICE_GPIO_IRQ);
     sysbus_connect_irq(SYS_BUS_DEVICE(&s->usb), 0,
-                    qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_USB_IRQ));
+                    qdev_get_gpio_in(DEVICE(s->plic), QUARD_STAR_USB_HOST_IRQ));
 }
 
 static void quard_star_gpio_create(MachineState *machine)
@@ -629,7 +643,8 @@ static void quard_star_machine_init(MachineState *machine)
     quard_star_serial_create(machine);
     quard_star_i2c_create(machine);
     quard_star_spi_create(machine);
-    quard_star_usb_create(machine);
+    quard_star_usb_host_create(machine);
+    quard_star_usb_peripheral_create(machine);
     quard_star_gpio_create(machine);
     quard_star_dma_create(machine);
     quard_star_sdio_create(machine);
