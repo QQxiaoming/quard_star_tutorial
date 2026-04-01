@@ -161,13 +161,36 @@ jobs:
           shell: bash -l {0}
           run: |
             dnf update -y
-            dnf install -y zstd wget
-            wget https://repo.msys2.org/mingw/mingw64/mingw-w64-x86_64-libslirp-4.7.0-2-any.pkg.tar.zst
-            tar -I zstd -xvf mingw-w64-x86_64-libslirp-4.7.0-2-any.pkg.tar.zst
+            dnf install -y zstd wget curl
+            LIBSLIRP_PKG=$(curl -fsSL https://repo.msys2.org/mingw/mingw64/ | grep -oE 'mingw-w64-x86_64-libslirp-[0-9][^" ]*\.pkg\.tar\.zst' | sort -V | tail -n1)
+            test -n "$LIBSLIRP_PKG"
+            echo "Using libslirp package: $LIBSLIRP_PKG"
+            wget "https://repo.msys2.org/mingw/mingw64/$LIBSLIRP_PKG"
+            tar -I zstd -xvf "$LIBSLIRP_PKG"
+            GLIB2_PKG=$(curl -fsSL https://repo.msys2.org/mingw/mingw64/ | grep -oE 'mingw-w64-x86_64-glib2-[0-9][^" ]*\.pkg\.tar\.zst' | sort -V | tail -n1)
+            test -n "$GLIB2_PKG"
+            echo "Using glib2 package: $GLIB2_PKG"
+            wget "https://repo.msys2.org/mingw/mingw64/$GLIB2_PKG"
+            tar -I zstd -xvf "$GLIB2_PKG"
             cp ./mingw64/bin/libslirp-0.dll /usr/x86_64-w64-mingw32/sys-root/mingw/bin/libslirp-0.dll
-            mkdir /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp
-            cp ./mingw64/include/slirp/libslirp-version.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp-version.h
-            cp ./mingw64/include/slirp/libslirp.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp.h
+            for dll in libglib-2.0-0.dll libgobject-2.0-0.dll libgio-2.0-0.dll libgmodule-2.0-0.dll libgthread-2.0-0.dll
+            do
+              if [ -f "./mingw64/bin/$dll" ]; then
+                cp "./mingw64/bin/$dll" /usr/x86_64-w64-mingw32/sys-root/mingw/bin/"$dll"
+              fi
+            done
+            mkdir -p /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp
+            if [ -f ./mingw64/include/slirp/libslirp.h ]; then
+              cp ./mingw64/include/slirp/libslirp-version.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp-version.h
+              cp ./mingw64/include/slirp/libslirp.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp.h
+            elif [ -f ./mingw64/include/libslirp.h ]; then
+              cp ./mingw64/include/libslirp-version.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp-version.h
+              cp ./mingw64/include/libslirp.h /usr/x86_64-w64-mingw32/sys-root/mingw/include/slirp/libslirp.h
+            else
+              echo "Cannot find libslirp headers in extracted package"
+              find ./mingw64/include -maxdepth 3 -type f | sort
+              exit 1
+            fi
             cp ./mingw64/lib/libslirp.a /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libslirp.a
             cp ./mingw64/lib/libslirp.dll.a /usr/x86_64-w64-mingw32/sys-root/mingw/lib/libslirp.dll.a
             cp ./.github/workflows/res/slirp.pc /usr/x86_64-w64-mingw32/sys-root/mingw/lib/pkgconfig/slirp.pc
@@ -241,7 +264,7 @@ jobs:
       - name: build depend
         run: |
           cd quard_star_tools/depend
-          sudo apt install fcitx-libs-dev qtbase5-private-dev libxkbcommon-dev extra-cmake-modules tree
+          sudo apt install fcitx-libs-dev qtbase5-private-dev libxkbcommon-dev extra-cmake-modules tree libfuse2
           export PATH=$Qt6_DIR/bin:$PATH
           export PATH=$Qt6_DIR/../../Qt/Tools/CMake/bin:$PATH
           export Qt6GuiTools_DIR=$Qt6_DIR
