@@ -33,7 +33,7 @@ jobs:
   main_build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: clean
         shell: bash -l {0}
@@ -139,7 +139,7 @@ jobs:
   qemu_w64_build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: clean
         shell: bash -l {0}
@@ -209,7 +209,7 @@ jobs:
   qemu_macos_build:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: clean
         shell: bash -l {0}
@@ -246,7 +246,7 @@ jobs:
   quard_star_tools_build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -340,7 +340,7 @@ jobs:
   quard_star_tools_macos_build:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
