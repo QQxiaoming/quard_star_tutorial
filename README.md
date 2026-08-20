@@ -154,11 +154,11 @@ I would like to acknowledge AI tool (New Bing) for assisting me with writing par
 
 ## Star History
 
-<a href="https://star-history.com/#QQxiaoming/quard_star_tutorial&Date">
+<a href="https://www.star-history.com/?type=date&repos=QQxiaoming%2Fquard_star_tutorial">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=QQxiaoming/quard_star_tutorial&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=QQxiaoming/quard_star_tutorial&type=date&theme=dark&legend=top-left&sealed_token=-ngpmV6kIAdO3cRbeK3vzhf1e0QSKFWK1ryrzKX7wxP4oKdC8WjVTPmRrbIJZOHmD-ajAyBT2_8i4xkcRajRJ6oRVe4G1BZQumGkOSDcxv2Jy6YQpDhGKw" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=QQxiaoming/quard_star_tutorial&type=date&legend=top-left&sealed_token=-ngpmV6kIAdO3cRbeK3vzhf1e0QSKFWK1ryrzKX7wxP4oKdC8WjVTPmRrbIJZOHmD-ajAyBT2_8i4xkcRajRJ6oRVe4G1BZQumGkOSDcxv2Jy6YQpDhGKw" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=QQxiaoming/quard_star_tutorial&type=date&legend=top-left&sealed_token=-ngpmV6kIAdO3cRbeK3vzhf1e0QSKFWK1ryrzKX7wxP4oKdC8WjVTPmRrbIJZOHmD-ajAyBT2_8i4xkcRajRJ6oRVe4G1BZQumGkOSDcxv2Jy6YQpDhGKw" />
  </picture>
 </a>
 
