@@ -46,6 +46,7 @@ int main(int argc, char **argv)
 
 int main(int argc, char **argv, char **envp)
 {
+    fprintf(stderr, "hello from MEEEE!!!\n");
     qemu_init(argc, argv, envp);
     qemu_main_loop();
     qemu_cleanup();

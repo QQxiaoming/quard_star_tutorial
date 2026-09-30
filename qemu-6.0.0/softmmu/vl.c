@@ -1539,6 +1539,7 @@ static MachineClass *machine_parse(const char *name, GSList *machines)
 
     if (is_help_option(name)) {
         printf("Supported machines are:\n");
+        printf("yoooooo!!!\n");
         machines = g_slist_sort(machines, machine_class_cmp);
         for (el = machines; el; el = el->next) {
             MachineClass *mc = el->data;
